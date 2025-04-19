@@ -1,0 +1,466 @@
+{
+    "navigation": {
+        "navLinks": [
+                     {"name": "Employees", "link": "employees"},
+                     {"name": "Employers", "link": "employers"},
+                     {"name": "Contact", "link": "contact"},
+                     {"name": "Language", "link": ""}
+        ],
+        "Log-in":  {"name": "Log in", "link": "sign-in"}
+    },
+    "pages": {
+        "landingsPage": {
+            "header": {
+                "headerLinks": ["Employers", "Employees", "Contact", "Language", "Log in"],
+                "headText": "Unleash your potential, find your next assignment!",
+                "subText": "Discover a world of opportunities as an employee on our platform. From creative projects to business tasks, find your next success story here. Join us and make your dreams come true!"
+            },
+            "CTA": [
+                {"name": "Sign up", "href": "/sign-up", "icon": "PlayCircleIcon"},
+                {"name": "Read more", "href": "/employees", "icon": "PhoneIcon"}
+            ],
+            "hero": {
+                "image": {
+                    "testimonial": "The employees are reliable and immediately deployable, which greatly helps us in case of unexpected absences. It gives us the peace of mind and certainty we need to keep the store running smoothly.",
+                    "person": "Sarah de Bakerland",
+                    "personFunction": "Assistant Store Manager Spar"
+                },
+                "content": {
+                    "headText": "Easily scale up and down on our On-demand platform for flexible personnel",
+                    "subText": "At Junter Platform, we believe in connecting talent and opportunities in an innovative and flexible way. As an on-demand platform for flexible personnel, we help companies and entrepreneurs quickly and efficiently find the right professionals, whether it’s for temporary support or specialized expertise.",
+                    "statistics": [
+                        {"name": "employees", "description": "4000+"},
+                        {"name": "employers", "description": "137"},
+                        {"name": "tasks", "description": "2000+"},
+                        {"name": "countries", "description": "2"}
+                    ],
+                    "ctaButton": "Sign up"
+                }
+            },
+            "features": {
+                "headText": "Discover the power of our app for employees - your springboard to limitless opportunities.",
+                "subText": "With our app, you have direct access to a wide range of jobs, fast payments, and complete freedom in your schedule. Find your next challenge today!",
+                "features": [
+                    {"name": "Quick access to assignments", "description": "Find assignments that match your skills and interests in no time, without endless searching.", "icon": "DeviceArrowIcon"},
+                    {"name": "Flexible scheduling", "description": "Manage your own schedule and work whenever it suits you, allowing you to balance work and private life better.", "icon": "DeviceClockIcon"},
+                    {"name": "Diverse clients", "description": "Gain access to a wide range of clients, from startups to large companies, and expand your network and experience.", "icon": "DeviceCardsIcon"},
+                    {"name": "Easy communication", "description": "We are available daily from 09:00 to 17:00 in the chat or via WhatsApp for questions, but you can also reach out 24/7 in the various WhatsApp communities.", "icon": "DeviceListIcon"},
+                    {"name": "Fast payments", "description": "Receive guaranteed payments for your work without hassle or delays.", "icon": "DeviceLockIcon"},
+                    {"name": "Recognition and feedback", "description": "Build a strong reputation by collecting positive reviews and feedback from satisfied clients, increasing your chances of future assignments.", "icon": "DeviceChartIcon"}
+                ]
+            },
+            "branches": {
+                "headText": "Discover the versatility of our platform for job seekers.",
+                "subText": "Whether you have a passion for the hospitality of the catering industry, the precision of logistics and transport, or the care of the healthcare sector, our platform offers a diverse range of opportunities."
+            },
+            "faqs": {
+                "headText": "Unleash your potential, find your next assignment!",
+                "subText1": "More questions?",
+                "subtext2": "Please contact us.",
+                "FAQ": [
+                   [ 
+                    {
+                        "question": "How can I register as a freelancer on the platform?",
+                     "answer": "Simply visit the website or download the app, go through the registration process, and complete your profile with relevant information."
+                    },
+                    {
+                        "question": "How are payments processed for completed assignments?",
+                     "answer": "After completing an assignment, you will initially receive your payment on the last Friday of the month, but starting in February, payments will be made every Friday."
+                    },
+                    {
+                        "question": "Can I set my own rates for the offered services?",
+                     "answer": "As a freelancer, you have the freedom to set your own rates based on your experience and market standards."
+                     }
+                    ],
+                     [
+                        {"question": "What types of assignments are available on the platform?",
+                     "answer": "From serving in hospitality to traffic control and stage work at festivals or meal delivery, a variety of assignments are available to choose from."
+                    },
+                    {
+                        "question": "Is support available if I need help while using the app?",
+                     "answer": "Our team is available every day from 09:00 to 17:00 via the app or WhatsApp to answer any questions."
+                    },
+                    {
+                        "question": "How can I optimize my profile to get more assignments?",
+                     "answer": "Optimize your profile by adding skills and work experience to attract more assignments."
+                     }
+                    ],
+                     [
+                        {"question": "How does the process of finding and accepting assignments work?",
+                     "answer": "Browse available assignments, check the details, and apply with a single click. It’s fast and intuitive."
+                    },
+                    {
+                        "question": "Are there reviews or ratings from clients available for the assignments?",
+                     "answer": "Clients can leave reviews after an assignment is completed, helping you build and improve your reputation."
+                    },
+                    {
+                        "question": "Are there any requirements I need to meet to accept assignments through the platform?",
+                     "answer": "In most cases, minimal experience or skills relevant to the assignment are required."
+                     }
+                    ]
+                ]
+            },
+            "testimonials": {
+                "headTitle": "Testimonials",
+                "subText": "Discover what our users have to say",
+                "testimonials": [
+                    {
+                        "name": "Lisa",
+                        "testimonial": "Great app for hospitality work! I quickly find shifts at cool restaurants that fit my schedule. Super convenient!",
+                        "sector": "Hospitality"
+                    },
+                    {
+                        "name": "Ahmed",
+                        "testimonial": "As a security professional, I appreciate the quick access to relevant assignments. Great app!",
+                        "sector": "Security"
+                    },
+                    {
+                        "name": "Maria",
+                        "testimonial": "I love the simplicity of this app! It has made my search for cleaning jobs so much easier.",
+                        "sector": "Cleaning"
+                    },
+                    {
+                        "name": "George",
+                        "testimonial": "This platform has simplified my search for transport work. Reliable and efficient!",
+                        "sector": "Transport & Logistics"
+                    },
+                    {
+                        "name": "Eva",
+                        "testimonial": "As a healthcare provider, I appreciate the flexibility of this app. It helps me find suitable care assignments.",
+                        "sector": "Healthcare"
+                    },
+                    {
+                        "name": "Solomon",
+                        "testimonial": "This app has taken my freelance administrative work to the next level. Efficient and user-friendly!",
+                        "sector": "Administration"
+                    }
+                ]
+            }
+            
+        },
+
+ 
+    "employersPage": {
+        "title": "Junter for businesses",
+        "headText": "Use it your way",
+        "subText": "Quickly and easily find freelancers or temporary workers for a fixed and non-binding rate",
+        "EmployTypes": [
+          {
+            "type": "Temporary Employment or Secondment",
+            "explanation": "Quickly and flexibly find the right professionals for temporary or long-term assignments, without administrative hassle.",
+            "icon": "PlusCircleIcon"
+          },
+          {
+            "type": "Freelancers",
+            "explanation": "Experienced freelancers ready to take your projects to the next level. Flexible, specialized, and available when you need them.",
+            "icon": "SparklesIcon"
+          },
+          {
+            "type": "Recruitment and Selection",
+            "explanation": "Save time and let us find the perfect candidate for your organization. With our extensive network and expertise, we bring talent and your company together.",
+            "icon": "MagnifyingGlassCircleIcon"
+          },
+          {
+            "type": "Payrolling",
+            "explanation": "Focus on your business while we take care of the employer's responsibilities. With payrolling, you can easily bring in staff.",
+            "icon": "BanknotesIcon"
+          }
+        ],
+        "Benefits": [
+          {
+            "benefit": "Costs",
+            "explanation": "By choosing our platform, you benefit from a transparent and simple cost model where you only pay for the hours worked by the flex workers you invite. Invite unlimited flex workers starting at €16.50 per hour.",
+            "imageSrc": "euroBillsLogo",
+            "imageAlt": "Bills flying around."
+          },
+          {
+            "benefit": "Administration",
+            "explanation": "With our platform, almost all the administration is handled for you, so you can focus on what really matters. Our team is ready to assist you and ensure everything runs smoothly so your business can continue to operate efficiently.",
+            "imageSrc": "officeLogo",
+            "imageAlt": "Save on administrstive work and leave it to us."
+          },
+          {
+            "benefit": "Dashboard",
+            "explanation": "With the dashboard, you have a full overview of all your activities. The dashboard gives you insight into posted jobs, responses to jobs, open checkouts and invoices, and the status of your flex pools.",
+            "imageSrc": "dashboardLogo",
+            "imageAlt": "Simple and easy, sleek and modern dashboard to have a great overview of your business."
+          }
+        ],
+        "Features": {
+            "headText": "Stay on top",
+            "subText": "With these handy features, you barely have to worry about the less exciting tasks.",
+          "features": [
+            {
+              "feature": "Reserves",
+              "explanation": "For assignments, more people can be hired than available spots, and additional people are listed as reserves. If someone hired drops out, reserves automatically move into the available spots.",
+              "icon": "UsersIcon"
+            },
+            {
+              "feature": "Flexpool",
+              "explanation": "When working with freelancers, they are automatically accepted for the jobs they apply to. This means you can call up the freelancers you like to work with more quickly and often.",
+              "icon": "UserGroupIcon"
+            },
+            {
+              "feature": "Competitive pricing",
+              "explanation": "If a shift remains unfilled for a long time, you have the option to automatically raise the rate of the shift. This allows you to quickly attract qualified candidates and ensure the shift is filled.",
+              "icon": "CurrencyEuroIcon"
+            }
+          ]
+        }
+      },
+      "employeesPage": {
+        "headText": "Make Money Fast",
+        "Benefits": [
+          {
+            "benefit": "Over 100 companies",
+            "subText": "different.",
+            "elaboration": "Download the app and sign up. You can register starting at 16 years old and work as a temp. From 18, you can also work as a freelancer. Once registered, you can choose from thousands of jobs in the app."
+          },
+          {
+            "benefit": "2000 weekly jobs",
+            "subText": "available.",
+            "elaboration": "To improve your chances of acceptance, make sure your profile is complete and professional. Add a clear profile picture, fill out your information accurately, and describe your skills and experience in detail. References from previous employers can also help."
+          },
+          {
+            "benefit": "From February",
+            "subText": "you can also choose weekly payments.",
+            "elaboration": "After submitting your worked hours, you'll receive (for now) your payments at the end of the month. Starting from February, you can also choose weekly payments. These payments will be transferred directly to your bank account."
+          }
+        ],
+        "Features": {
+          "headText": "All-in-one platform",
+          "subText": "Discover a world of opportunities as a job seeker on our platform. From creative projects to business tasks, here you will find your next success story. Join us and make your dreams come true!",
+          "features": [
+            {
+              "feature": "Quick access to jobs",
+              "elaboration": "Find jobs that match your skills and interests in no time, without endless searching."
+            },
+            {
+              "feature": "Flexible scheduling",
+              "elaboration": "Manage your own schedule and work when it suits you, allowing you to better balance your work and private life."
+            },
+            {
+              "feature": "Diverse clients",
+              "elaboration": "Access a wide range of clients, from startups to large corporations, expanding your network and experience."
+            },
+            {
+              "feature": "Easy communication",
+              "elaboration": "Communicate directly with us through the app or WhatsApp, allowing you to ask questions quickly, provide feedback, and finish your jobs."
+            },
+            {
+              "feature": "Fast payments",
+              "elaboration": "Receive guaranteed payments for your work without hassle or delays."
+            },
+            {
+              "feature": "Reputation and feedback",
+              "elaboration": "Build a strong reputation by gathering positive reviews and feedback from satisfied clients, increasing your chances for future jobs."
+            }
+          ]
+        }
+      },
+      
+    "junterPage": {
+        "headText": "We are a passionate group of people.",
+        "subText": "Our diversity and shared vision drive us to create innovative solutions that transform the way businesses and customers interact.",
+        "strategyPlan": [
+            {
+                "date": "July 2024",
+                "activity": "Junter Establishment",
+                "elaboration": "The establishment of Junter marks the beginning of an innovative journey. Our goal is to connect job seekers and businesses in a new way."
+            },
+            {
+                "date": "October 2024",
+                "activity": "Capital and Network Expansion",
+                "elaboration": "Various investment rounds for capital and network expansion. Growing further with resources and connections."
+            },
+            {
+                "date": "May 2025",
+                "activity": "Launch in European Countries",
+                "elaboration": "Junter expands into various European markets, allowing even more job seekers and businesses to benefit from our platform."
+            },
+            {
+                "date": "December 2025",
+                "activity": "Global Launch",
+                "elaboration": "Our global launch brings Junter to the international market, enabling us to offer our services worldwide and make a greater impact."
+            }
+        ],
+        "people": {
+            "headText": "Our People",
+            "subText1": "Our people are our greatest asset. They bring expertise, passion, and dedication to everything they do.",
+            "subtext2": "We are proud of our diverse and talented teams who collaborate to achieve great results. Together, we build a future centered on innovation and cooperation."
+        },
+        "vacancies": {
+            "headText": "Unleash your potential, find your next assignment!",
+            "subText": "",
+            "vacancies": [
+                {
+                    "title": "Senior Account Manager",
+                    "description": "As a Senior Account Manager, you will be responsible for managing key client accounts, developing strong relationships, and driving revenue growth. You will work closely with clients to understand their needs, provide tailored solutions, and ensure their satisfaction with our services.",
+                    "salary": "€42,000 - €76,000",
+                    "location": "🇳🇱 Hoofddorp, NL"
+                },
+                {
+                    "title": "Global Marketing Manager",
+                    "description": "The Global Marketing Manager will lead the development and execution of global marketing strategies to increase brand awareness and market share. You will manage a team of marketing professionals, oversee global campaigns, and work cross-functionally to achieve business objectives.",
+                    "salary": "€56,000 - €84,000",
+                    "location": "🇳🇱 Hoofddorp, NL"
+                },
+                {
+                    "title": "Support Agent",
+                    "description": "As a Support Agent, you are the first point of contact for both freelancers and companies. You provide assistance and resolve issues. You handle inquiries and ensure high customer satisfaction by providing timely and effective support.",
+                    "salary": "€28,000 - €34,000",
+                    "location": "🇳🇱 Hoofddorp, NL"
+                }
+            ]
+        },
+        "vacanciesButton": "View all vacancies",
+        "navLinks": [
+                {"name": "Home", "link": "/"},
+                {"name": "Privacy Ploicy", "link": "../pp"},
+                {"name": "Terms of Use", "link": "../tou"}
+        ]
+    },
+    "contactPage": {
+        "headText": "Get in Touch",
+        "subText": "Contact us today through the channel below and receive a response within 48 hours.",
+        "formItems": [
+            {"voornaamItem": "First name"},
+            {"achternaamItem": "Last name"},
+            {"emailadresItem": "Email"},
+            {"bedrijfItem": "Company"},
+            {"telefoonItem": "Phone", "optionalItem": "optional"},
+            {"questionItem": "How can we help you?", "description": "max 500 characters"}
+        ],
+        "expextedBudget": {
+            "title": "Expected budget",
+            "budgetButtons": [
+                "Less than €25K",
+                "€25K – €50K",
+                "€50K – €100K",
+                "€100K+",
+                "Not applicable"
+            ]
+        },
+        "pageButton": "Send message"
+    },
+    "pricingPage": {
+        "title": "Pricing",
+        "headText": "The best price for the right personnel",
+        "subText": "At Junter, we believe in fairness and transparency. No hidden costs or fine print, just clear pricing so you always know what to expect.",
+        
+        "pricingCards": [
+       {    "naam": "Freelancers",
+            "prijs": "£16.50",
+            "prijsUitleg": "£14 + £2.50 (fee)",
+            "features": [
+                "Less administrative burden",
+                "No employer obligations",
+                "Project-based work with a specific deliverable"
+            ],
+            "button": "Post services"
+        },
+         {  "naam": "Temporary Workers",
+            "prijs": "£19.20",
+            "prijsUitleg": "£12 x 1.6 (conversion factor)",
+            "features": [
+                "Less administrative burden",
+                "Immediate availability",
+                "Suitable for long-term collaboration",
+                "Potential for continuity"
+            ],
+            "button": "Create an account"
+        }
+    ],
+        "HeadTextCTA": "Hassle-free flexible staffing",
+        "SubTextCTA": "Unsure between freelancers and temporary workers? Or do you need personal advice on what flexible labor can mean for your organization and the associated costs?",
+        "ButtonCTA": "Contact us"
+    },
+    "notfoundPage": {
+        "title": "404",
+        "headText": "Page not found",
+        "subText": "Sorry, we couldn’t find the page you’re looking for.",
+        "button1": "Back to home",
+        "button2": "Contact support",
+        "button3": "Status"
+    },
+    "verifyPage": {
+        "title": "Verify Identity",
+        "endingSentence": "We will contact you as soon as possible after receiving the documents.",
+        "headText1": "Thank you for filling out the registration form. To verify your company, we need the following documents:",
+        "headText2": "Thank you for filling out the registration form. To verify your profile as a freelancer, we need the following documents:",
+        "Button1": "Understood!",
+        "Button2": "Send message",
+        "instructions": [
+            "Send the documents to",
+            "with the following information:"
+        ],
+        "formItems": [
+            {"voornaamItem": "First name"},
+            {"achternaamItem": "Last name"},
+            {"emailadresItem": "Email"},
+            {"bedrijfItem": "Company"},
+            {"telefoonItem": "Phone",
+             "optionalItem": "optional"},
+            {"questionItem": "How can we help you?",
+             "description": "max 500 characters"}
+        ],
+        "EmployeesPage": {
+            "requiredDocuments": [
+                "A valid identification document (passport, ID card, or driver’s license, document number and photo may be blurred).",
+                "A document confirming your registered address, such as a proof of residence.",
+                "A copy of your bank card."
+            ],
+            "informationRequired": [
+                "- First and last name",
+                "- Date of birth",
+                "- Postal code and house number"
+            ]
+        },
+        "EmployersPage": {
+            "requiredDocuments": [
+                "- A document confirming the provided address, such as an official letter with address and Chamber of Commerce (KVK) number.",
+                "- A completed and signed direct debit authorization form, if applicable.",
+                "- Cooperation agreement."
+            ],
+            "informationRequired": [
+                "- First and last name of the contact person",
+                "- Company name",
+                "- Chamber of Commerce (KVK) number"
+            ]
+        }
+    },
+
+    "privacypolicyPage": {
+            
+    },
+    "termsofusePage": {
+        
+    },
+    "signupPage": {
+
+    },
+    "signinPage": {
+
+    }
+},
+
+
+"footer": {
+    "navLinks": [
+        {"title": "Employees", "links": ["How does it work?", "Find jobs", "Contact"], "href": ["../employees", "../sign-up", "../contact"]},
+        {"title": "Employers", "links": ["Pricing", "Find employees", "API-integration"], "href": ["../pricing", "../sign-up", "../employers"]},
+        {"title": "Junter", "links": ["About us", "Careers", "Partners"], "href": ["../junter", "../junter", "../notfound"]},
+        {"title": "Legal", "links": ["Privacy Policy", "Terms of Use", "Contact"], "href": ["../pp", "../tou", "../contact"]}
+    ],
+    "subscriptionCTA": {
+        "headText": "Subscribe to our newsletter",
+        "subText": "Receive a weekly overview of (new) jobs near you and stay updated on the latest news!",
+        "placeholderText": "Enter your email address",
+        "button": "Subscribe"
+    },
+    "footerText": "© 2025 Junter. All rights reserved."
+},
+"dashboard":{
+
+    }
+}

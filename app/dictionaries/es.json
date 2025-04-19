@@ -1,0 +1,466 @@
+{
+    "navigation": {
+        "navLinks": [
+                     {"name": "Empleados", "link": "employees"},
+                     {"name": "Empleadores", "link": "employers"},
+                     {"name": "Contacto", "link": "contact"},
+                     {"name": "Idioma", "link": ""}
+        ],
+        "Log-in":  {"name": "Acceso", "link": "sign-in"}
+    },
+"pages": {
+    "landingsPage": {
+        "header": {
+            "headerLinks": ["Empleados", "Empleadores", "Contacto", "Idioma", "Acceso"],
+            "headText": "Desata tu potencial, ¡encuentra tu próxima asignación!",
+            "subText": "Descubre un mundo de oportunidades como empleado en nuestra plataforma. Desde proyectos creativos hasta tareas empresariales, encuentra aquí tu próxima historia de éxito. ¡Únete a nosotros y haz realidad tus sueños!"
+        },
+        "CTA": [
+            {"name": "Sign up", "href": "/sign-up", "icon": "PlayCircleIcon"},
+            {"name": "Read more", "href": "/employees", "icon": "PhoneIcon"}
+        ],
+        "hero": {
+            "image": {
+                "testimonial": "Los empleados son confiables y están disponibles de inmediato, lo que nos ayuda enormemente en caso de ausencias inesperadas. Nos brinda la tranquilidad y seguridad que necesitamos para mantener la tienda funcionando sin problemas.",
+                "person": "Sarah de Bakerland",
+                "personFunction": "Subgerente de Tienda Spar"
+            },
+            "content": {
+                "headText": "Aumenta y reduce fácilmente el personal en nuestra plataforma On-demand para trabajadores flexibles",
+                "subText": "En Junter Platform, creemos en conectar talento y oportunidades de manera innovadora y flexible. Como plataforma On-demand para personal flexible, ayudamos a empresas y emprendedores a encontrar rápida y eficientemente a los profesionales adecuados, ya sea para apoyo temporal o experiencia especializada.",
+                "statistics": [
+                    {"name": "employees", "description": "4000+"},
+                    {"name": "employers", "description": "137"},
+                    {"name": "tasks", "description": "2000+"},
+                    {"name": "countries", "description": "2"}
+                ],
+                "ctaButton": "Regístrate"
+            }
+        },
+        "features": {
+            "headText": "Descubre el poder de nuestra app para empleados: tu trampolín hacia oportunidades ilimitadas.",
+            "subText": "Con nuestra app, tienes acceso directo a una amplia variedad de trabajos, pagos rápidos y total libertad en tu horario. ¡Encuentra hoy tu próximo desafío!",
+            "features": [
+                {"name": "Acceso rápido a asignaciones", "description": "Encuentra asignaciones que coincidan con tus habilidades e intereses en poco tiempo, sin búsquedas interminables.", "icon": "DeviceArrowIcon"},
+                {"name": "Horario flexible", "description": "Gestiona tu propio horario y trabaja cuando mejor te convenga, permitiéndote equilibrar mejor el trabajo y la vida personal.", "icon": "DeviceClockIcon"},
+                {"name": "Clientes diversos", "description": "Accede a una amplia gama de clientes, desde startups hasta grandes empresas, y amplía tu red y experiencia.", "icon": "DeviceCardsIcon"},
+                {"name": "Comunicación sencilla", "description": "Estamos disponibles todos los días de 09:00 a 17:00 en el chat o por WhatsApp para preguntas, pero también puedes comunicarte 24/7 en las diversas comunidades de WhatsApp.", "icon": "DeviceListIcon"},
+                {"name": "Pagos rápidos", "description": "Recibe pagos garantizados por tu trabajo sin complicaciones ni retrasos.", "icon": "DeviceLockIcon"},
+                {"name": "Reconocimiento y retroalimentación", "description": "Construye una sólida reputación recolectando reseñas y comentarios positivos de clientes satisfechos, aumentando tus posibilidades de futuras asignaciones.", "icon": "DeviceChartIcon"}
+            ]
+        },
+        "branches": {
+            "headText": "Descubre la versatilidad de nuestra plataforma para quienes buscan empleo.",
+            "subText": "Ya sea que tengas pasión por la hospitalidad en la industria de la restauración, la precisión de la logística y el transporte o el cuidado en el sector de la salud, nuestra plataforma ofrece una amplia gama de oportunidades."
+        },
+        "faqs": {
+            "headText": "Desata tu potencial, ¡encuentra tu próxima asignación!",
+            "subText1": "¿Más preguntas?",
+            "subtext2": "Por favor, contáctenos.",
+            "FAQ": [
+                 [
+                    {
+                        "question": "¿Cómo puedo registrarme como autónomo en la plataforma?",
+                        "answer": "Simplemente visite el sitio web o descargue la aplicación, complete el proceso de registro y complete su perfil con la información relevante."
+                    },
+                    {
+                        "question": "¿Cómo se procesan los pagos por los trabajos completados?",
+                        "answer": "Después de completar un trabajo, inicialmente recibirá su pago el último viernes del mes, pero a partir de febrero, los pagos se realizarán todos los viernes."
+                    },
+                    {
+                        "question": "¿Puedo establecer mis propias tarifas para los servicios ofrecidos?",
+                        "answer": "Como autónomo, tienes la libertad de establecer tus propias tarifas en función de tu experiencia y los estándares del mercado."
+                    }
+                ],
+                 [
+                    {
+                        "question": "¿Qué tipos de trabajos están disponibles en la plataforma?",
+                        "answer": "Desde servir en hostelería hasta control de tráfico, trabajo en escenarios de festivales o reparto de comidas, hay una variedad de trabajos disponibles para elegir."
+                    },
+                    {
+                        "question": "¿Hay soporte disponible si necesito ayuda mientras uso la aplicación?",
+                        "answer": "Nuestro equipo está disponible todos los días de 09:00 a 17:00 a través de la aplicación o WhatsApp para responder cualquier pregunta."
+                    },
+                    {
+                        "question": "¿Cómo puedo optimizar mi perfil para obtener más trabajos?",
+                        "answer": "Optimice su perfil agregando habilidades y experiencia laboral para atraer más trabajos."
+                    }
+                ],
+                 [
+                    {
+                        "question": "¿Cómo funciona el proceso de búsqueda y aceptación de trabajos?",
+                        "answer": "Explora los trabajos disponibles, revisa los detalles y postula con un solo clic. Es rápido e intuitivo."
+                    },
+                    {
+                        "question": "¿Hay reseñas o calificaciones de los clientes disponibles para los trabajos?",
+                        "answer": "Los clientes pueden dejar reseñas después de completar un trabajo, lo que te ayudará a construir y mejorar tu reputación."
+                    },
+                    {
+                        "question": "¿Hay algún requisito que deba cumplir para aceptar trabajos a través de la plataforma?",
+                        "answer": "En la mayoría de los casos, se requiere experiencia mínima o habilidades relevantes para el trabajo."
+                    }
+                ]
+            ]            
+        },
+        "testimonials": {
+            "headTitle": "Testimonios",
+            "subText": "Descubre lo que dicen nuestros usuarios",
+            "testimonials": [
+                {
+                    "name": "Lisa",
+                    "testimonial": "¡Gran aplicación para trabajos en hostelería! Encuentro turnos rápidamente en restaurantes geniales que se adaptan a mi horario. ¡Súper práctica!",
+                    "sector": "Hostelería"
+                },
+                {
+                    "name": "Ahmed",
+                    "testimonial": "Como profesional de la seguridad, aprecio el acceso rápido a trabajos relevantes. ¡Aplicación excelente!",
+                    "sector": "Seguridad"
+                },
+                {
+                    "name": "Maria",
+                    "testimonial": "¡Me encanta la simplicidad de esta aplicación! Ha hecho que mi búsqueda de trabajos de limpieza sea mucho más fácil.",
+                    "sector": "Limpieza"
+                },
+                {
+                    "name": "George",
+                    "testimonial": "Esta plataforma ha simplificado mi búsqueda de trabajo en transporte. ¡Fiable y eficiente!",
+                    "sector": "Transporte y Logística"
+                },
+                {
+                    "name": "Eva",
+                    "testimonial": "Como cuidadora, valoro la flexibilidad de esta aplicación. Me ayuda a encontrar trabajos de atención adecuados.",
+                    "sector": "Sanidad"
+                },
+                {
+                    "name": "Solomon",
+                    "testimonial": "Esta aplicación ha llevado mi trabajo de administración freelance al siguiente nivel. ¡Eficiente y fácil de usar!",
+                    "sector": "Administración"
+                }
+            ]
+        }
+        
+    },
+    "employersPage": {
+        "title": "Junter para empresas",
+        "headText": "Úsalo a tu manera",
+        "subText": "Encuentra rápida y fácilmente autónomos o trabajadores temporales por una tarifa fija y sin compromiso",
+        "EmployTypes": [
+          {
+            "type": "Empleo temporal o destacamento",
+            "explanation": "Encuentra rápida y flexiblemente los profesionales adecuados para trabajos temporales o a largo plazo, sin complicaciones administrativas.",
+            "icon": "PlusCircleIcon"
+          },
+          {
+            "type": "Autónomos",
+            "explanation": "Freelancers experimentados listos para llevar tus proyectos al siguiente nivel. Flexibles, especializados y disponibles cuando los necesites.",
+            "icon": "SparklesIcon"
+          },
+          {
+            "type": "Reclutamiento y selección",
+            "explanation": "Ahorra tiempo y deja que encontremos el candidato perfecto para tu organización. Con nuestra red extensa y nuestra experiencia, reunimos talento y empresas.",
+            "icon": "MagnifyingGlassCircleIcon"
+          },
+          {
+            "type": "Nómina",
+            "explanation": "Concédele atención a tu negocio mientras nosotros nos encargamos de la parte administrativa. Con nómina, puedes contratar personal fácilmente.",
+            "icon": "BanknotesIcon"
+          }
+        ],
+        "Benefits": [
+          {
+            "benefit": "Costos",
+            "explanation": "Al elegir nuestra plataforma, te beneficias de un modelo de costos transparente y sencillo, donde solo pagas por las horas trabajadas por los trabajadores flexibles que invites. Invita trabajadores flexibles ilimitados desde 16,50 € por hora.",
+            "imageSrc": "euroBillsLogo",
+            "imageAlt": "Bills flying around."
+          },
+          {
+            "benefit": "Administración",
+            "explanation": "Con nuestra plataforma, casi toda la administración se maneja, permitiéndote concentrarte en lo que realmente importa. Nuestro equipo está disponible para ayudarte y garantizar que todo funcione sin problemas.",
+            "imageSrc": "officeLogo",
+            "imageAlt": "Save on administrstive work and leave it to us."
+          },
+          {
+            "benefit": "Panel de control",
+            "explanation": "Con el panel de control, tendrás una visión completa de todas tus actividades. Puedes ver los trabajos publicados, las respuestas a tus publicaciones, los pagos pendientes y las facturas, así como el estado de tus pools flexibles.",
+            "imageSrc": "dashboardLogo",
+            "imageAlt": "Simple and easy, sleek and modern dashboard to have a great overview of your business."
+          }
+        ],
+        "Features": {
+            "headText": "Mantente al tanto",
+            "subText": "Con estas funciones prácticas, apenas tendrás que preocuparte por las tareas menos interesantes.",
+          "features": [
+            {
+              "feature": "Reservas",
+              "explanation": "Para cada trabajo, puedes contratar a más personas que los puestos disponibles, y las personas adicionales se registran como reservas. Si alguien contratado se cae, las reservas se colocan automáticamente en los puestos disponibles.",
+              "icon": "UsersIcon"
+            },
+            {
+              "feature": "Red flexible",
+              "explanation": "Cuando trabajas con freelancers, estos se añaden automáticamente a los pools flexibles para los trabajos a los que responden. Esto te permite contactar más rápido y más veces con los freelancers con los que te gustaría trabajar.",
+              "icon": "UserGroupIcon"
+            },
+            {
+              "feature": "Precios competitivos",
+              "explanation": "Si una misión queda vacía por mucho tiempo, tienes la opción de subir automáticamente el precio de la misión. Esto te permite atraer rápidamente a candidatos cualificados y asegurar la cobertura de la misión.",
+              "icon": "CurrencyEuroIcon"
+            }
+          ]
+        }
+      },
+      "employeesPage": {
+        "headText": "Gana dinero rápido",
+        "Benefits": [
+          {
+            "benefit": "Más de 100 empresas",
+            "subText": "diferentes.",
+            "elaboration": "Descarga la app y regístrate. Puedes registrarte desde los 16 años para trabajar como temporal. A partir de los 18 años también puedes trabajar como autónomo. Una vez que estés registrado, puedes elegir entre miles de trabajos en la app."
+          },
+          {
+            "benefit": "2000 trabajos semanales",
+            "subText": "disponibles.",
+            "elaboration": "Para mejorar tus posibilidades de ser aceptado, asegúrate de que tu perfil esté completo y sea profesional. Añade una foto de perfil clara, completa tu información correctamente y describe tus habilidades y experiencia en detalle. Las referencias de trabajos anteriores también pueden ser útiles."
+          },
+          {
+            "benefit": "Desde febrero",
+            "subText": "también podrás elegir pagos semanales.",
+            "elaboration": "Después de enviar tus horas trabajadas, recibirás (por ahora) tu pago a final de mes. Desde febrero, también podrás elegir pagos semanales. Estos pagos se transferirán directamente a tu cuenta bancaria."
+          }
+        ],
+        "Features": {
+          "headText": "Plataforma todo en uno",
+          "subText": "Descubre un mundo de posibilidades como buscador de empleo en nuestra plataforma. Desde proyectos creativos hasta tareas empresariales, aquí encontrarás tu próxima historia de éxito. ¡Únete y haz realidad tus sueños!",
+          "features": [
+            {
+              "feature": "Acceso rápido a trabajos",
+              "elaboration": "Encuentra trabajos que se ajusten a tus habilidades e intereses en poco tiempo, sin tener que buscar durante horas."
+            },
+            {
+              "feature": "Planificación flexible",
+              "elaboration": "Gestiona tu horario y trabaja cuando te convenga, lo que te permite equilibrar tu vida personal y profesional."
+            },
+            {
+              "feature": "Diversidad de empresas",
+              "elaboration": "Accede a una variedad de clientes, desde start-ups hasta grandes empresas, ampliando tu red y tu experiencia."
+            },
+            {
+              "feature": "Comunicación fácil",
+              "elaboration": "Comunícate directamente con nosotros a través de la app o WhatsApp, lo que te permite hacer preguntas rápidamente, dar feedback y finalizar tus trabajos."
+            },
+            {
+              "feature": "Pagos rápidos",
+              "elaboration": "Recibe tu pago garantizado por el trabajo realizado sin complicaciones ni demoras."
+            },
+            {
+              "feature": "Valoración y feedback",
+              "elaboration": "Construye una reputación sólida obteniendo buenas valoraciones y comentarios de clientes satisfechos, lo que aumenta tus posibilidades de obtener más trabajos."
+            }
+          ]
+        }
+      },
+    "junterPage": {
+        "headText": "Somos un grupo apasionado de personas.",
+        "subText": "Nuestra diversidad y visión compartida nos impulsan a crear soluciones innovadoras que transforman la manera en que las empresas y los clientes interactúan.",
+        "strategyPlan": [
+            {
+                "date": "Julio 2024",
+                "activity": "Establecimiento de Junter",
+                "elaboration": "El establecimiento de Junter marca el inicio de un viaje innovador. Nuestro objetivo es conectar a los solicitantes de empleo y las empresas de una manera nueva."
+            },
+            {
+                "date": "Octubre 2024",
+                "activity": "Expansión de capital y red",
+                "elaboration": "Varias rondas de inversión para la expansión del capital y la red. Creciendo con más recursos y conexiones."
+            },
+            {
+                "date": "Mayo 2025",
+                "activity": "Lanzamiento en países europeos",
+                "elaboration": "Junter se expande a varios mercados europeos, permitiendo que más solicitantes de empleo y empresas se beneficien de nuestra plataforma."
+            },
+            {
+                "date": "Diciembre 2025",
+                "activity": "Lanzamiento global",
+                "elaboration": "Nuestro lanzamiento global lleva a Junter al mercado internacional, permitiéndonos ofrecer nuestros servicios en todo el mundo y generar un mayor impacto."
+            }
+        ],
+        "people": {
+            "headText": "Nuestra Gente",
+            "subText1": "Nuestra gente es nuestro mayor activo. Aportan experiencia, pasión y dedicación a todo lo que hacen.",
+            "subtext2": "Estamos orgullosos de nuestros equipos diversos y talentosos que colaboran para lograr grandes resultados. Juntos, construimos un futuro centrado en la innovación y la cooperación."
+        },
+        "vacancies": {
+            "headText": "Libera tu potencial, ¡encuentra tu próximo trabajo!",
+            "subText": "",
+            "vacancies": [
+                {
+                    "title": "Gerente de Cuentas Senior",
+                    "description": "Como Gerente de Cuentas Senior, serás responsable de gestionar cuentas clave de clientes, desarrollar relaciones sólidas y aumentar los ingresos. Trabajarás estrechamente con los clientes para comprender sus necesidades, proporcionar soluciones personalizadas y garantizar su satisfacción con nuestros servicios.",
+                    "salary": "€42,000 - €76,000",
+                    "location": "🇳🇱 Hoofddorp, NL"
+                },
+                {
+                    "title": "Gerente de Marketing Global",
+                    "description": "El Gerente de Marketing Global liderará el desarrollo y la ejecución de estrategias de marketing globales para aumentar el reconocimiento de la marca y la cuota de mercado. Gestionará un equipo de profesionales del marketing, supervisará campañas globales y trabajará de manera transversal para alcanzar los objetivos empresariales.",
+                    "salary": "€56,000 - €84,000",
+                    "location": "🇳🇱 Hoofddorp, NL"
+                },
+                {
+                    "title": "Agente de Soporte",
+                    "description": "Como Agente de Soporte, serás el primer punto de contacto para freelancers y empresas. Brindarás asistencia y resolverás problemas. Manejarás consultas y garantizarás una alta satisfacción del cliente proporcionando soporte oportuno y efectivo.",
+                    "salary": "€28,000 - €34,000",
+                    "location": "🇳🇱 Hoofddorp, NL"
+                }
+            ]
+        },
+        "vacanciesButton": "Ver todas las vacantes",
+        "navLinks": [
+                {"name": "Inicio", "link": "/"},
+                {"name": "Política de privacidad", "link": "../pp"},
+                {"name": "Términos de uso", "link": "../tou"}
+        ]
+     },
+        "contactPage": {
+            "headText": "Ponte en contacto",
+            "subText": "Contáctanos hoy a través del canal a continuación y recibe una respuesta en un plazo de 48 horas.",
+            "formItems": [
+                {"voornaamItem": "Nombre"},
+                {"achternaamItem": "Apellido"},
+                {"emailadresItem": "Correo electrónico"},
+                {"bedrijfItem": "Empresa"},
+                {"telefoonItem": "Teléfono", "optionalItem": "opcional"},
+                {"questionItem": "¿Cómo podemos ayudarte?", "description": "máximo 500 caracteres"}
+            ],
+            "expextedBudget": {
+                "title": "Presupuesto estimado",
+                "budgetButtons": [
+                    "Menos de €25K",
+                    "€25K - €50K",
+                    "€50K - €100K",
+                    "€100K+",
+                    "No aplica"
+                ]
+            },
+            "pageButton": "Enviar mensaje"
+        },
+        "pricingPage": {
+            "title": "Precios",
+            "headText": "El mejor precio para el personal adecuado",
+            "subText": "En Junter, creemos en la equidad y la transparencia. Sin costos ocultos ni letra pequeña, solo precios claros para que siempre sepas qué esperar.",
+            
+            "pricingCards": [
+            {   "naam": "Freelancers",
+                "prijs": "€16.50",
+                "prijsUitleg": "€14 + €2.50 (tarifa)",
+                "features": [
+                    "Menos carga administrativa",
+                    "Sin obligaciones como empleador",
+                    "Trabajo basado en proyectos con un resultado específico"
+                ],
+                "button": "Publicar servicios"
+            },
+            {   "naam": "Trabajadores temporales",
+                "prijs": "€19.20",
+                "prijsUitleg": "€12 x 1.6 (factor de conversión)",
+                "features": [
+                    "Menos carga administrativa",
+                    "Disponibilidad inmediata",
+                    "Adecuado para colaboraciones a largo plazo",
+                    "Potencial de continuidad"
+                ],
+                "button": "Crear una cuenta"
+            }
+        ],
+            "HeadTextCTA": "Contratación flexible sin complicaciones",
+            "SubTextCTA": "¿Dudas entre freelancers y trabajadores temporales? ¿O necesitas asesoramiento personal sobre lo que la mano de obra flexible puede significar para tu organización y los costos asociados?",
+            "ButtonCTA": "Contáctanos"
+        },
+        "notfoundPage": {
+            "title": "404",
+            "headText": "Página no encontrada",
+            "subText": "Lo sentimos, no pudimos encontrar la página que estás buscando.",
+            "button1": "Volver al inicio",
+            "button2": "Contactar soporte",
+            "button3": "Estado"
+        },
+        "verifyPage": {
+            "title": "Verificar identidad",
+            "endingSentence": "Nos pondremos en contacto con usted lo antes posible después de recibir los documentos.",
+            "headText1": "Gracias por completar el formulario de registro. Para verificar su empresa, necesitamos los siguientes documentos:",
+            "headText2": "Gracias por completar el formulario de registro. Para verificar su perfil como autónomo, necesitamos los siguientes documentos:",
+            "Button1": "¡Entendido!",
+            "Button2": "Enviar mensaje",
+            "instructions": [
+                "Envíe los documentos a",
+                "con la siguiente información:"
+            ],
+            "formItems": [
+                {"voornaamItem": "Nombre"},
+                {"achternaamItem": "Apellido"},
+                {"emailadresItem": "Correo electrónico"},
+                {"bedrijfItem": "Empresa"},
+                {"telefoonItem": "Teléfono",
+                 "optionalItem": "opcional"},
+                {"questionItem": "¿Cómo podemos ayudarle?",
+                 "description": "máx. 500 caracteres"}
+            ],
+            "EmployeesPage": {
+                "requiredDocuments": [
+                    "Un documento de identidad válido (pasaporte, DNI o licencia de conducir, el número de documento y la foto en el documento pueden ser ocultados).",
+                    "Un documento que confirme su dirección registrada, como un certificado de empadronamiento.",
+                    "Una copia de su tarjeta bancaria."
+                ],
+                "informationRequired": [
+                    "- Nombre y apellido",
+                    "- Fecha de nacimiento",
+                    "- Código postal y número de casa"
+                ]
+            },
+            "EmployersPage": {
+                "requiredDocuments": [
+                    "- Un documento que confirme la dirección proporcionada, como una carta oficial con dirección y número de registro de empresa (KVK).",
+                    "- Un formulario de autorización de débito directo completado y firmado, si aplica.",
+                    "- Acuerdo de colaboración."
+                ],
+                "informationRequired": [
+                    "- Nombre y apellido de la persona de contacto",
+                    "- Nombre de la empresa",
+                    "- Número de registro de empresa (KVK)"
+                ]
+            },
+        "privacypolicyPage": {
+            
+        },
+        "termsofusePage": {
+            
+        },
+        "signupPage": {
+    
+        },
+        "signinPage": {
+    
+        }
+    }
+},
+
+    "footer": {
+        "navLinks": [
+            {"title": "Empleados", "links": ["¿Cómo funciona?", "Buscar empleos", "Contacto"], "href": ["../employees", "../sign-up", "../contact"]},
+            {"title": "Empleadores", "links": ["Precios", "Buscar empleados", "Integración API"], "href": ["../pricing", "../sign-up", "../employers"]},
+            {"title": "Junter", "links": ["Sobre nosotros", "Carreras", "Socios"], "href": ["../junter", "../junter", "../notfound"]},
+            {"title": "Legal", "links": ["Política de privacidad", "Términos de uso", "Contacto"], "href": ["../pp", "../tou", "../contact"]}
+        ],
+        "subscriptionCTA": {
+            "headText": "Suscríbete a nuestro boletín",
+            "subText": "Recibe un resumen semanal de los (nuevos) trabajos cerca de ti y mantente al día con las últimas noticias!",
+            "placeholderText": "Introduce tu correo electrónico",
+            "button": "Suscribirse"
+        },
+        "footerText": "© 2025 Junter. Todos los derechos reservados."
+        },
+        "dashboard":{
+
+        }
+    
+}
+
+

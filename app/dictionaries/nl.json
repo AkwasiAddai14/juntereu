@@ -1,0 +1,705 @@
+{
+    "navigation": {
+        "navLinks": [
+                     {"name": "Werknemers", "link": "employees"},
+                     {"name": "Werkgevers", "link": "employers"},
+                     {"name": "Contact", "link": "contact"},
+                     {"name": "Taal", "link": ""}
+        ],
+        "Log-in":  {"name": "Inloggen", "link": "sign-in"}  
+    },
+    "pages": {
+        "landingsPage": {
+            "header": {
+                "headerLinks": ["Werknemers", "Werkgevers", "Taal", "Contact", "Inloggen"],
+                "headText": "Ontketen je potentieel, vind je volgende opdracht!",
+                "subText": "Ontdek een wereld van mogelijkheden als werknemer op ons platform. Van creatieve projecten tot zakelijke taken, hier vind je jouw volgende succesverhaal. Word lid en maak je dromen werkelijkheid!"
+            },
+            "CTA": [
+                {"name": "Sign up", "href": "/sign-up", "icon": "PlayCircleIcon"},
+                {"name": "Read more", "href": "/employees", "icon": "PhoneIcon"}
+            ],
+            "hero": {
+                "image": {
+                    "testimonial": "De medewerkers zijn betrouwbaar en direct inzetbaar, wat ons enorm helpt bij onverwachte uitval. Het geeft ons de rust en zekerheid die wij nodig hebben om de winkel soepel te laten draaien.",
+                    "person": "Sarah de Bakerland",
+                    "personFunction": "Assistent winkelmanager Spar"
+                },
+                "content": {
+                    "headText": "Makkelijk op en afschalen op ons On-demand platform voor flexibel personeel",
+                    "subText": "Bij Junter Platform geloven we in het verbinden van talent en kansen op een innovatieve en flexibele manier. Als een on-demand platform voor flexibel personeel, helpen we bedrijven en ondernemers om snel en efficiënt de juiste professionals te vinden, of het nu gaat om tijdelijke ondersteuning of specialistische expertise.",
+                    "statistics": [
+                        {"name":"werknemers", "description": "4000+"},
+                        {"name":"werkgevers", "description": "137"},
+                        {"name":"klussen", "description": "2000+"},
+                        {"name":"landen", "description": "2"}
+                    ],
+                    "ctaButton": "aanmelden"
+                }
+            },
+            "features": {
+                "headText": "Ontdek de kracht van onze app voor werknemers - jouw springplank naar grenzeloze mogelijkheden.",
+                "subText": "Met onze app heb je direct toegang tot een divers scala aan klussen, snelle betalingen en volledige vrijheid in jouw planning. Ontdek jouw volgende uitdaging vandaag nog!",
+                "features": [
+                    {"name": "Snelle toegang tot opdrachten", "description": "Vind in een oogwenk opdrachten die aansluiten bij jouw vaardigheden en interesses, zonder eindeloos te hoeven zoeken.", "icon": "DeviceArrowIcon"},
+                    {"name": "Flexibele planning", "description": "Beheer jouw eigen agenda en werk wanneer het jou uitkomt, waardoor je jouw werk en privéleven beter in balans kunt brengen.", "icon": "DeviceClockIcon"},
+                    {"name": "Diverse opdrachtgevers", "description": "Krijg toegang tot een breed scala aan opdrachtgevers, van startups tot grote bedrijven, en vergroot zo jouw netwerk en ervaring.", "icon": "DeviceCardsIcon"},
+                    {"name": "Gemakkelijke communicatie", "description": "Wij staan dagelijks van 09:00 tot 17:00 klaar voor jou in de chat of via WhatsApp voor vragen, maar je kunt ook 24/7 terecht met vragen of opmerkingen in de verschillende WhatsApp communities.", "icon": "DeviceListIcon"},
+                    {"name": "Snelle betalingen", "description": "Ontvang gegarandeerde betalingen voor jouw werk zonder gedoe of vertragingen.", "icon": "DeviceLockIcon"},
+                    {"name": "Waardering en feedback", "description": "Bouw een sterke reputatie op door positieve beoordelingen en feedback te verzamelen van tevreden opdrachtgevers, waardoor je jouw kansen op toekomstige opdrachten vergroot.", "icon": "DeviceChartIcon"}
+                ]
+            },
+            "branches": {
+                "headText": "Ontdek de veelzijdigheid van ons platform voor werkzoekende.",
+                "subText": "Of je nu een passie hebt voor de gastvrijheid van de horeca, de precisie van logistiek en transport, of de zorgzaamheid van de zorg & welzijn sector, ons platform biedt een divers scala aan mogelijkheden."
+            },
+            "faqs": {
+                "headText": "Ontketen je potentieel, vind je volgende opdracht!",
+                "subText1": "Nog meer vragen?",
+                "subtext2": " Neem gerust contact op.",
+                "FAQ": [
+                    {"question": "Hoe kan ik me registreren als freelancer op het platform?",
+                     "answer": "Gewoon via de website of download eenvoudigweg de app, doorloop het registratieproces en vul je profiel in met relevante informatie."},
+                     {"question": "Hoe worden betalingen verwerkt voor de voltooide opdrachten?",
+                     "answer": "Na voltooiing van een opdracht ontvang je voorlopig de laatste vrijdag van de maand jouw betaling, vanaf Februari elke vrijdag."},
+                     {"question": "Kan ik mijn eigen tarieven instellen voor de aangeboden diensten?",
+                     "answer": "Als freelancer heb je de vrijheid om je eigen tarieven in te stellen op basis van je ervaring en de marktstandaarden."},
+                     {"question": "Welke soorten opdrachten zijn beschikbaar op het platform?",
+                     "answer": "Van bediening in de horeca tot aan verkeersbegeleiding en staging op festivals of maaltijdbezorging, er is een diversiteit aan opdrachten beschikbaar om uit te kiezen."},
+                     {"question": "Is er ondersteuning beschikbaar als ik hulp nodig heb tijdens het gebruik van de app?",
+                     "answer": "Ons team staat elke dag van 09:00 tot 17:00 voor je klaar via de app of WhatsApp om eventuele vragen te beantwoorden."},
+                     {"question": "Hoe kan ik mijn profiel optimaliseren om meer opdrachten te krijgen?",
+                     "answer": "Optimaliseer je profiel door vaardigheden en werkervaring toe te voegen om meer opdrachten aan te trekken."},
+                     {"question": "Hoe werkt het proces van het vinden en accepteren van opdrachten?",
+                     "answer": "Blader door beschikbare opdrachten, bekijk de details en solliciteer met een enkele klik. Het is snel en intuïtief."},
+                     {"question": "Zijn er beoordelingen of beoordelingen van opdrachtgevers beschikbaar voor de opdrachten?",
+                     "answer": "Opdrachtgevers kunnen na voltooiing van de opdracht beoordelingen achterlaten, waardoor je reputatie wordt opgebouwd en verbeterd."},
+                     {"question": "Zijn er bepaalde vereisten waaraan ik moet voldoen om opdrachten te kunnen aannemen via het platform?",
+                     "answer": "In de meeste gevallen heb je minimale ervaring of vaardigheden nodig die relevant zijn voor de opdracht die je wilt aannemen."}
+                ]
+            },
+            "testimonials": {
+                "headTitle": "Testimonials",
+                "subText": "Ontdek wat onze gebruikers te zeggen hebben",
+                "testimonials": [
+                     {
+                        "name": "Lisa",
+                        "testimonial": "Geweldige app voor horecawerk! Ik vind snel shifts bij toffe restuarants die bij mijn schema passen. Superhandig!",
+                        "sector": "Horeca"
+                    },
+                    {
+                        "name": "Ahmed",
+                        "testimonial": "Als beveiligingsprofessional waardeer ik de snelle toegang tot relevante opdrachten. Topapp",
+                        "sector": "Beveiliging"
+                    },
+                    {
+                        "name": "Maria",
+                        "testimonial": "Ik hou van de eenvoud van deze app! Het heeft mijn zoektocht naar schoonmaakklussen zo veel gemakkelijker gemaakt.",
+                        "sector": "Schoonmaak"
+                    },
+                    {
+                        "name": "George",
+                        "testimonial": "Dit platform heeft mijn zoektocht naar transportwerk vereenvoudigd. Betrouwbaar en efficiënt!",
+                        "sector": "Transport & Logistiek"
+                    },
+                    {
+                        "name": "Eva",
+                        "testimonial": "Als zorgverlener waardeer ik de flexibiliteit van deze app. Het helpt me om passende zorgopdrachten te vinden.",
+                        "sector": "Zorg"
+                    },
+                    {
+                        "name": "Solomon",
+                        "testimonial": "Deze app heeft mijn freelance-administratiewerk naar een hoger niveau getild. Efficiënt en gebruiksvriendelijk!",
+                        "sector": "Administratie"
+                    }
+                ]
+
+            }
+        },
+
+        "employersPage": {
+            "title": "Junter voor bedrijven",
+            "headText": "Use it your way",
+            "subText": "Vind snel en gemakkelijk freelancers of uitzendkrachten voor een vast en vrijblijvend tarief",
+            "EmployTypes": [
+                {"type": "Uitzenden of Detacheren",
+                "explanation": "Vind snel en flexibel de juiste professionals voor tijdelijke of langdurige opdrachten, zonder administratieve rompslomp.",
+                "icon": "PlusCircleIcon"},
+                {"type": "Freelancers",
+                "explanation": "Ervaren freelancers die klaarstaan om uw projecten naar een hoger niveau te tillen. Flexibel, specialistisch en inzetbaar wanneer u dat nodig heeft.",
+                "icon": "SparklesIcon"},
+                {"type": "Werving en Selectie",
+                "explanation": "Bespaar tijd en laat ons de perfecte kandidaat vinden voor uw organisatie. Met ons uitgebreide netwerk en expertise brengen we talent en uw bedrijf samen.",
+                "icon": "MagnifyingGlassCircleIcon"},
+                {"type": "Payrolling",
+                "explanation": "Concentreer u op uw zaak terwijl wij de werkgeverschap overnemen. Met payrolling haalt u eenvoudig personeel in huis.",
+                "icon": "BanknotesIcon"}
+            ],
+            "Benefits": [
+                {
+                    "benefit": "Kosten",
+                    "explanation": "Door te kiezen voor ons platform, profiteer je van een transparant en eenvoudig kostenmodel, waarbij je alleen betaalt voor de daadwerkelijk gewerkte uren van de flexwerkers die je uitnodigt. Nodig onbeperkt flexwerkers uit vanaf €16,50 per gewerkt uur.",
+                    "imageSrc": "euroBillsLogo",
+                    "imageAlt": "Bills flying around." 
+                },
+                {
+                    "benefit": "Administratie",
+                    "explanation": "Bij ons platform wordt vrijwel alle administratie voor je uit handen genomen, zodat jij je kunt focussen op wat echt belangrijk is. Ons team staat klaar om je te ondersteunen en ervoor te zorgen dat alles soepel verloopt, zodat je bedrijf efficiënt en probleemloos kan blijven draaien.",
+                    "imageSrc": "officeLogo",
+                    "imageAlt": "Save on administrstive work and leave it to us."
+                },
+                {
+                    "benefit": "Dashboard",
+                    "explanation": "Met het dashboard behoud je als bedrijf volledig overzicht over al je activiteiten. Het dashboard biedt je inzicht in geplaatste klussen, reacties op klussen, openstaande checkouts en facturen, en de status van je flexpools. Met het dashboard heb je alle essentiële informatie binnen handbereik.",
+                    "imageSrc": "dashboardLogo",
+                    "imageAlt": "Simple and easy, sleek and modern dashboard to have a great overview of your business."
+                }
+            ],
+            "Features": {
+                "headText": "Stay on top",
+                "subText": "Met deze handige functies heb je bijna geen omkijken naar de wat minder boeiende zaken.",
+                "features":
+                [
+                    {
+                        "feature": "Reserves",
+                        "explanation": "Bij klussen kunnen meer mensen worden aangenomen dan beschikbare plekken, waarbij extra personen als reserve worden opgenomen. Als een aangenomen persoon uitvalt, schuiven de reserves automatisch door naar beschikbare plekken.",
+                        "icon": "UsersIcon"
+                    },
+                    {
+                        "feature": "Flexpool",
+                        "explanation": "Als u met freelancers werkt worden freelancers in de flexpool automatisch geaccepteerd voor de klussen waar zij op reageren. Dit betekent dat u freelancers waarmee u graag werkt vaker en sneller kunt oproepen.",
+                        "icon": "UserGroupIcon"
+                    },
+                    {
+                        "feature": "Competitve pricing",
+                        "explanation": "Als een shift langere tijd onvervuld blijft, heeft u de mogelijkheid om het tarief van de shift automatisch te verhogen. Dit stelt u in staat om snel gekwalificeerde kandidaten aan te trekken en de bezetting van de shift te waarborgen.",
+                        "icon": "CurrencyEuroIcon"
+                    }
+                ]
+            }
+        },
+        "employeesPage": {
+            "headText": "Make Money Fast",
+            "Benefits": [
+                {
+                    "benefit": "Oplopend 100+",
+                    "subText": "verschillende opdrachtgevers.",
+                    "elaboration": "Download de app en meld je aan. Je kunt je registreren vanaf 16 jaar en werken als uitzendkracht. Vanaf 18 jaar is het toegestaan om als freelancer aan de slag te gaan. Nadat je je hebt aangemeld, kun je kiezen uit duizenden shifts in de app."
+                },
+                {
+                    "benefit": "Wekelijks 2000",
+                    "subText": "verschillende diensten.",
+                    "elaboration": "Om je kansen op acceptatie te verbeteren, zorg ervoor dat je profiel compleet en professioneel is. Voeg een duidelijke profielfoto toe, vul al je gegevens nauwkeurig in, en beschrijf je vaardigheden en ervaring uitvoerig. Referenties van eerdere opdrachtgevers kunnen ook helpen. En dan kan je meteen aan de slag!"
+                },
+                {
+                    "benefit": "Vanaf Februari",
+                    "subText": "kun je ook kiezen voor wekelijkse betalingen.",
+                    "elaboration": "Na het indienen van je gewerkte uren, ontvang je (voorlopig) aan het eind van de maand je betalingen. Vanaf Februari kun je ook voor wekelijkse betalingen kiezen. Deze betalingen worden rechtstreeks naar je bankrekening overgemaakt."
+                }
+            ],
+            "Features": {
+            "headText": "All-in-one platform",
+            "subText": "Ontdek een wereld van mogelijkheden als werkzoekensde op ons platform. Van creatieve projecten tot zakelijke taken, hier vind je jouw volgende succesverhaal. Word lid en maak je dromen werkelijkheid!",
+            "features": 
+            [
+                {
+                    "feature": "Snelle toegang tot opdrachten",
+                    "elaboration": "Vind in een oogwenk opdrachten die aansluiten bij jouw vaardigheden en interesses, zonder eindeloos te hoeven zoeken."
+                },
+                {
+                    "feature": "Flexibele planning",
+                    "elaboration": "Beheer jouw eigen agenda en werk wanneer het jou uitkomt, waardoor je jouw werk en privéleven beter in balans kunt brengen."
+                },
+                {
+                    "feature": "Diverse opdrachtgevers",
+                    "elaboration": "Krijg toegang tot een breed scala aan opdrachtgevers, van startups tot grote bedrijven, en vergroot zo jouw netwerk en ervaring."
+                },
+                {
+                    "feature": "Gemakkelijke communicatie",
+                    "elaboration": "Communiceer direct met ons via de app of WhatsApp, waardoor je snel vragen kunt stellen, feedback kunt geven en opdrachten kunt afronden."
+                },
+                {
+                    "feature": "Snelle betalingen",
+                    "elaboration": "Ontvang gegarandeerde betalingen voor jouw werk zonder gedoe of vertragingen."
+                },
+                {
+                    "feature": "Waardering en feedback",
+                    "elaboration": "Bouw een sterke reputatie op door positieve beoordelingen en feedback te verzamelen van tevreden opdrachtgevers, waardoor je jouw kansen op toekomstige opdrachten vergroot."
+                }
+            ]
+        }
+        },
+        "junterPage": {
+            "headText": "We zijn een gepassioneerde groep mensen.",
+            "subText": "Onze diversiteit en gedeelde visie drijven ons om innovatieve oplossingen te creëren die de manier waarop bedrijven en klanten met elkaar omgaan, transformeren.",
+            "strategyPlan":
+            [
+                {
+                    "date": "Juli 2024",
+                    "activity": "Oprichting Junter",
+                    "elaboration": "De oprichting van Junter markeert het begin van een innovatieve reis. Ons doel is om werkzoekende en bedrijven op een nieuwe manier met elkaar te verbinden."
+                },
+                {
+                    "date": "Oktober 2024",
+                    "activity": "Kapitaal en netwerk uitbreiding",
+                    "elaboration": "Diverse investeringsrondes voor kapitaal en netwerk uitbreiding. Met de middelen en connecties verder groeien."
+                },
+                {
+                    "date": "Mei 2025",
+                    "activity": "Lancering Europese landen",
+                    "elaboration": "Junter breidt uit naar verschillende Europese markten, waardoor nog meer werkzoekende en bedrijven gebruik kunnen maken van ons platform."
+                },{
+                    "date": "Dec 2025",
+                    "activity": "Lancering wereldwijd",
+                    "elaboration": "Onze wereldwijde lancering brengt Junter naar de internationale markt, waardoor we onze diensten wereldwijd kunnen aanbieden en een grotere impact kunnen maken."
+                }
+            ],
+            "people": {
+                "headText": "Onze mensen",
+                "subText1": "Onze mensen zijn ons grootste kapitaal. Ze brengen expertise, passie en toewijding in alles wat ze doen.",
+                "subtext2": "We zijn trots op onze diverse en getalenteerde teams die samenwerken om geweldige resultaten te bereiken. Samen bouwen we aan een toekomst waarin innovatie en samenwerking centraal staan."
+            },
+            "vacancies": {
+                "headText": "We zijn altijd op zoek naar geweldige mensen om ons team te versterken",
+                "subText": "Heb je een passie voor innovatie en een drive om impact te maken? Sluit je dan bij ons aan en help ons om samen te groeien en succes te behalen.",
+                "vacancies": [
+                    {
+                        "title":"Senior Accountmanager",
+                        "description": "Als Senior Accountmanager ben je verantwoordelijk voor het beheren van belangrijke klantaccounts, het ontwikkelen van sterke relaties en het stimuleren van omzetgroei. Je werkt nauw samen met klanten om hun behoeften te begrijpen, op maat gemaakte oplossingen te bieden en hun tevredenheid met onze diensten te waarborgen.",
+                        "salary": "€42000 - €76000",
+                        "location": "🇳🇱 Hoofddorp, NL"
+                    },
+                    {
+                        "title":"Global Marketing Manager",
+                        "description": "De Global Marketing Manager zal leiding geven aan de ontwikkeling en uitvoering van wereldwijde marketingstrategieën om merkbekendheid en marktaandeel te vergroten. Je geeft leiding aan een team van marketingprofessionals, beheert wereldwijde campagnes en werkt cross-functioneel om ervoor te zorgen dat de bedrijfsdoelstellingen worden bereikt.",
+                        "salary": "€56000 - €84000",
+                        "location": "🇳🇱 Hoofddorp, NL"
+                    },
+                    {
+                        "title":"Support Agent",
+                        "description": "Als Support Agent ben je het eerste aanspreekpunt voor zowel de freelancers als bedrijven. Jij biedt hulp en lost problemen op. Je behandelt vragen en zorgt voor een hoge klanttevredenheid door tijdige en effectieve ondersteuning te bieden.",
+                        "salary": "€28000 - €34000",
+                        "location": "🇳🇱 Hoofddorp, NL"
+                    }
+                ]
+            },
+            "vacanciesButton": "Bekijk alle vacatures",
+            "navLinks": [
+                {"name": "Home", "link": "/"},
+                {"name": "Privacy Ploicy", "link": "../pp"},
+                {"name": "Terms of Use", "link": "../tou"}
+            ]
+
+        },
+        "contactPage": {
+            "headText": "Neem contact op",
+            "subText": "Neem vandaag contact op via de onderstaande kanaal en krijg binnen 48 uur bericht",
+            "formItems": [
+                {"voornaamItem": "First name"},
+                {"achternaamItem": "Last name"},
+                {"emailadresItem": "Email"},
+                {"bedrijfItem": "Company"},
+                {"telefoonItem": "Phone",
+                 "optionalItem": "optional"},
+                {"questionItem": "How can we help you?",
+                 "description": "max 500 characters"}
+            ],
+            "expextedBudget": {
+                "title": "Expected budget",
+                "budgetButtons": [
+                    "Less than €25K",
+                    "€25K – €50K",
+                    "€50K – €100K",
+                    "€100K+",
+                    "Not applicable"
+                ]
+             },
+            "pageButton": "Verstuur bericht"
+        }, 
+        "pricingPage": {
+            "title": "Kosten",
+            "headText": "De beste prijs voor de juiste personeel",
+            "subText": "Bij Junter geloven we in eerlijkheid en duidelijkheid. Geen verborgen kosten of kleine lettertjes, maar transparante tarieven waarmee je altijd precies weet waar je aan toe bent.",
+            "pricingCards": [
+             {  "naam": "Freelancers",
+                "prijs": "€16,50",
+                "prijsUitleg": "€14 + €2,50 (fee)",
+                "features": [
+                    "Minder administratieve lasten", 
+                    "Geen werkgeverslasten", 
+                    "Projectmatige inzet met een specifieke oplevering"
+                ],
+                "button": "Diensten plaatsen"
+            },
+            
+             {
+                "naam": "Uitzendkrachten",
+                "prijs": "€19,20",
+                "prijsUitleg": "€12 x 1.6 (omrekenfactor)",
+                "features": [
+                    "Minder administratieve lasten",
+                  "Directe inzetbaarheid",
+                  "Geschikt voor structurele samenwerking",
+                  "Potentie voor continuïteit"
+                ],
+                "button": "Maak een account aan"
+            } 
+        ],
+            "HeadTextCTA": "Zorgeloos flexibel personeel",
+            "SubTextCTA": "Twijfel je tussen freelancers en uitzendkrachten? Of wil je persoonlijk advies over wat flexibele arbeid voor jouw organisatie kan betekenen en welke kosten daarbij komen kijken?",
+            "ButtonCTA": "Neem contact op"
+        },
+        "notfoundPage": {
+            "title": "404",
+            "headText": "Page not found",
+            "subText": "Sorry, we couldn’t find the page you’re looking for.",
+            "button1": "Back to home",
+            "button2": "Contact support",
+            "button3": "Status"
+        },
+        "verifyPage": {
+            "title": "Identiteit verifiëren",
+            "endingSentence": "Wij nemen zo snel mogelijk contact met u op na ontvangst van de documenten.",
+            "headText1": "Bedankt voor het invullen van het registratieformulier. Om uw bedrijf te verifiëren, hebben we de volgende documenten nodig:",
+            "headText2": "Bedankt voor het invullen van het registratieformulier. Om jouw profiel als freelancer te verifiëren, hebben we de volgende documenten nodig:",
+            "Button1": "Begrepen!",
+            "Button2": "Verstuur bericht",
+            "instructions": [
+                "Stuur de documenten naar",
+            "met de volgende informatie:"
+        ], 
+        "formItems": [
+            {"voornaamItem": "First name"},
+            {"achternaamItem": "Last name"},
+            {"emailadresItem": "Email"},
+            {"bedrijfItem": "Company"},
+            {"telefoonItem": "Phone",
+             "optionalItem": "optional"},
+            {"questionItem": "How can we help you?",
+             "description": "max 500 characters"}
+        ],
+            "EmployeesPage": {
+                "requiredDocuments": [
+                    "Een geldig legitimatiebewijs (paspoort, ID-kaart of rijbewijs, het documentnummer en foto op legitimatiebewijs mag onherkenbaar gemaakt worden.).",
+                    "Een document dat uw opgegeven adres bevestigt, zoals een bewijs van inschrijving op dat adres.",
+                    "Een kopie van uw bankpas."
+                ],
+                "informationRequired": [
+                    "- Voor- en achternaam",
+                    "- Geboortedatum",
+                    "- Postcode en huisnummer"
+                ]
+            },
+            "EmployersPage": {
+                "requiredDocuments": [
+                    "- Een document dat het opgegeven adres bevestigt, zoals een officiële brief met adres en KVK-nummer.",
+                    "- Eventueel een ingevuld en ondertekend incasso machtingsformulier.",
+                    "- Samenwerkingsovereenkomst."
+                ],
+                "informationRequired": [
+                    "- Voor- en achternaam van de contactpersoon",
+                    "- Bedrijfsnaam",
+                    "- KVK-nummer"
+                ]
+            }
+        }
+            
+        },
+        "privacypolicyPage": {
+            "privacyPolicyEmployee": {
+                "title": "PrivacyBeleid",
+                "subtitle": "Voor werknemers",
+                "introduction": {
+                  "heading": "Inleiding",
+                  "text": "Welkom bij Junter. Wij waarderen uw vertrouwen in ons en nemen uw privacy serieus. Dit privacybeleid is bedoeld om u te informeren over hoe wij uw persoonlijke gegevens verzamelen, gebruiken, delen en beschermen wanneer u gebruikmaakt van ons platform."
+                },
+                "section1": {
+                  "heading": "1. Gegevens die wij verzamelen",
+                  "text": "Wij verzamelen verschillende soorten gegevens om onze diensten te kunnen leveren en verbeteren.\n\nPersoonlijke Gegevens: Voornaam, achternaam, geboortedatum, e-mailadres, telefoonnummer, adres, BSN, BTW-id, en bankrekeningnummer (IBAN).\nProfessionele Gegevens: Werkervaring, vaardigheden, opleidingen, profielafbeelding, en beoordelingen.\nGebruik van het Platform: Informatie over uw interacties met ons platform, zoals de diensten die u aanbiedt of aanvraagt, communicatie met bedrijven, en uw deelname aan projecten."
+                },
+                "section2": {
+                  "heading": "2. Hoe wij uw gegevens gebruiken",
+                  "text": "Wij gebruiken uw gegevens voor de volgende doeleinden:\n\nDienstverlening: Om u in staat te stellen om projecten te vinden en aan te nemen, en om bedrijven in staat te stellen om uw diensten te boeken.\nCommunicatie: Om contact met u op te nemen over uw account, projecten, en andere gerelateerde zaken.\nVerbetering van het Platform: Om ons platform en onze diensten te analyseren en te verbeteren.\nWettelijke Verplichtingen: Om te voldoen aan wettelijke en regelgevende vereisten."
+                },
+                "section3": {
+                  "heading": "3. Delen van uw gegevens",
+                  "text": "Wij delen uw gegevens alleen met derden wanneer dit noodzakelijk is voor de uitvoering van onze diensten, zoals:\n\nBedrijven: Om bedrijven in staat te stellen contact met u op te nemen en uw diensten te boeken.\nDienstverleners: Om technische ondersteuning en andere diensten te verlenen die noodzakelijk zijn voor het functioneren van ons platform.\nWettelijke Autoriteiten: Indien wij wettelijk verplicht zijn om uw gegevens te verstrekken."
+                },
+                "section4": {
+                  "heading": "4. Beveiliging van uw gegevens",
+                  "text": "Wij nemen passende technische en organisatorische maatregelen om uw gegevens te beschermen tegen ongeautoriseerde toegang, verlies, vernietiging of wijziging. Ondanks onze inspanningen kunnen wij de veiligheid van gegevensoverdracht via internet niet volledig garanderen."
+                },
+                "section5": {
+                  "heading": "5. Bewaartermijnen",
+                  "text": "Wij bewaren uw persoonlijke gegevens niet langer dan noodzakelijk is voor de doeleinden waarvoor zij zijn verzameld, tenzij een langere bewaartermijn wettelijk vereist is."
+                },
+                "section6": {
+                  "heading": "6. Uw rechten",
+                  "text": "U heeft het recht om:\n\nToegang te vragen tot uw persoonlijke gegevens.\nCorrectie te vragen van onjuiste of onvolledige gegevens.\nVerwijdering te vragen van uw persoonlijke gegevens.\nBeperking te vragen van de verwerking van uw gegevens.\nBezwaar te maken tegen de verwerking van uw gegevens.\nGegevensoverdraagbaarheid te vragen van uw gegevens.\nIndien u één van deze rechten wilt uitoefenen, neem dan contact met ons op via support@junter.works."
+                },
+                "section7": {
+                  "heading": "7. Wijzigingen in dit privacybeleid",
+                  "text": "Wij kunnen dit privacybeleid van tijd tot tijd wijzigen. Wij zullen u op de hoogte stellen van wezenlijke wijzigingen door een kennisgeving op ons platform te plaatsen of door u rechtstreeks te informeren."
+                },
+                "section8": {
+                  "heading": "8. Contact",
+                  "text": "Indien u vragen of opmerkingen heeft over dit privacybeleid, neem dan contact met ons op via:",
+                  "email": "support@junter.works"
+                }
+              }
+        },
+        "termsofusePage": {
+            "tabFreelancers": "Werknemers",
+            "tabBedrijven": "Bedrijven",
+            "termsFreelancers": {
+                "header": "Algemene voorwaarden",
+                "title": "Voor freelancers",
+                "introduction": {
+                  "heading": "Inleiding",
+                  "text": "Welkom bij Junter. Door gebruik te maken van ons platform, gaat u akkoord met deze algemene voorwaarden. Lees deze voorwaarden zorgvuldig door voordat u onze diensten gebruikt."
+                },
+                "sections": [
+                  {
+                    "heading": "1. Definities",
+                    "text": "Platform: De online omgeving van Junter, toegankelijk via onze website en/of mobiele applicatie.\nFreelancer: Een individu die zich registreert op het platform om diensten aan te bieden aan bedrijven.\nBedrijf: Een entiteit die zich registreert op het platform om diensten aan te vragen van freelancers.\nGebruiker: Zowel freelancers als bedrijven die gebruikmaken van het platform."
+                  },
+                  {
+                    "heading": "2. Registratie en Account",
+                    "text": "Account Aanmaken: Om gebruik te kunnen maken van ons platform, dient u een account aan te maken door het registratieproces te doorlopen.\nGegevens: U garandeert dat alle door u verstrekte gegevens waarheidsgetrouw, nauwkeurig en actueel zijn.\nBeveiliging: U bent verantwoordelijk voor het vertrouwelijk houden van uw accountgegevens en wachtwoord. Wij zijn niet aansprakelijk voor enig verlies of schade als gevolg van uw nalatigheid in het beschermen van deze informatie."
+                  },
+                  {
+                    "heading": "3. Gebruik van het Platform",
+                    "text": "Toegestaan Gebruik: U mag ons platform alleen gebruiken voor legitieme doeleinden in overeenstemming met deze voorwaarden en de toepasselijke wet- en regelgeving.\nVerboden Gebruik: Het is verboden om het platform te gebruiken voor onwettige activiteiten, het versturen van spam, of om de beveiliging of integriteit van het platform te schenden."
+                  },
+                  {
+                    "heading": "4. Diensten en Betalingen",
+                    "text": "Diensten Aanbieden: Freelancers kunnen hun diensten aanbieden via het platform. Bedrijven kunnen deze diensten boeken en afnemen.\nBetalingen: Betalingen voor de geleverde diensten worden verwerkt via het platform. De exacte betalingsvoorwaarden en -procedures worden afzonderlijk overeengekomen tussen de freelancer en het bedrijf.\nServicekosten: Wij behouden ons het recht voor om servicekosten in rekening te brengen voor het gebruik van het platform. Deze kosten zullen duidelijk worden vermeld voordat een dienst wordt afgenomen."
+                  },
+                  {
+                    "heading": "5. Annuleringen en Geschillen",
+                    "text": "Annuleringen: Annuleringsvoorwaarden voor diensten worden afzonderlijk overeengekomen tussen de freelancer en het bedrijf. Wij raden aan om duidelijke annuleringsvoorwaarden te hanteren.\nGeschillen: Geschillen tussen freelancers en bedrijven dienen onderling te worden opgelost. Wij bieden ondersteuning bij geschillen, maar zijn niet verantwoordelijk voor de uitkomst."
+                  },
+                  {
+                    "heading": "6. Aansprakelijkheid",
+                    "text": "Vrijwaring: U vrijwaart Junter van alle aansprakelijkheid, claims en kosten die voortvloeien uit uw gebruik van het platform.\nBeperking van Aansprakelijkheid: Wij zijn niet aansprakelijk voor indirecte, incidentele, speciale of gevolgschade, of verlies van winst of inkomsten als gevolg van uw gebruik van het platform."
+                  },
+                  {
+                    "heading": "7. Intellectuele Eigendom",
+                    "text": "Eigendom: Alle intellectuele eigendomsrechten met betrekking tot het platform en de inhoud daarvan berusten bij Junter of haar licentiegevers.\nGebruik: U mag de inhoud van het platform alleen gebruiken voor persoonlijke en niet-commerciële doeleinden, tenzij anders overeengekomen."
+                  },
+                  {
+                    "heading": "8. Beëindiging",
+                    "text": "Beëindiging door Gebruiker: U kunt uw account te allen tijde beëindigen door contact met ons op te nemen.\nBeëindiging door Junter: Wij behouden ons het recht voor om uw account te beëindigen of uw toegang tot het platform op te schorten indien u deze voorwaarden schendt."
+                  },
+                  {
+                    "heading": "9. Wijzigingen aan de Voorwaarden",
+                    "text": "Wij kunnen deze algemene voorwaarden van tijd tot tijd wijzigen. Wij zullen u op de hoogte stellen van wezenlijke wijzigingen door een kennisgeving op ons platform te plaatsen of door u rechtstreeks te informeren. Uw voortgezet gebruik van het platform na dergelijke wijzigingen vormt uw aanvaarding van de gewijzigde voorwaarden."
+                  },
+                  {
+                    "heading": "10. Toepasselijk Rechten",
+                    "text": "Deze algemene voorwaarden worden beheerst door en geïnterpreteerd in overeenstemming met de wetten van [Nederland]. Geschillen voortvloeiend uit of in verband met deze voorwaarden zullen worden voorgelegd aan de bevoegde rechtbanken in [Amsterdam, Nederland]."
+                  }
+                ],
+                "contact": {
+                  "heading": "Contact",
+                  "text": "Indien u vragen of opmerkingen heeft, neem dan contact met ons op via:",
+                  "emails": [
+                    "support@junter.works",
+                    "billing@junter.works"
+                  ]
+                }
+              },
+              "AVbedrijven": {
+                "header": "Algemene voorwaarden",
+                "title": "Voor bedrijven",
+                "hoofdstukken": [
+                  {
+                    "titel": "1. Inleiding",
+                    "inhoud": [
+                      "Welkom bij Junter. Deze Algemene Voorwaarden (\"Voorwaarden\", \"Overeenkomst\") zijn van toepassing op uw gebruik van onze diensten, producten en website op www.junter.eu. Door onze Diensten te gebruiken, stemt u in met deze Voorwaarden. Als u niet akkoord gaat met deze Voorwaarden, dient u onze Diensten niet te gebruiken."
+                    ]
+                  },
+                  {
+                    "titel": "2. Definities",
+                    "inhoud": [
+                      "Klant: De entiteit die een contract aangaat met het Bedrijf om Diensten te ontvangen.",
+                      "Diensten: Alle producten, diensten en ondersteuning die door het Bedrijf worden geleverd.",
+                      "Overeenkomst: Deze Voorwaarden en alle andere voorwaarden die schriftelijk zijn overeengekomen door het Bedrijf en de Klant."
+                    ]
+                  },
+                  {
+                    "titel": "3. Diensten",
+                    "subsecties": [
+                      {
+                        "subtitel": "3.1 Levering van Diensten",
+                        "inhoud": "Het Bedrijf stemt ermee in de Diensten te leveren zoals beschreven in het overeengekomen contract of bestelformulier. De reikwijdte, duur en prijzen van de Diensten worden gespecificeerd in het contract of bestelformulier."
+                      },
+                      {
+                        "subtitel": "3.2 Wijzigingen in Diensten",
+                        "inhoud": "Het Bedrijf behoudt zich het recht voor om op elk moment, met of zonder kennisgeving, delen van de Diensten te wijzigen, op te schorten of te beëindigen, op voorwaarde dat dergelijke wijzigingen de kwaliteit van de aan de Klant geleverde Diensten niet wezenlijk beïnvloeden."
+                      }
+                    ]
+                  },
+                  {
+                    "titel": "4. Betalingsvoorwaarden",
+                    "subsecties": [
+                      {
+                        "subtitel": "4.1 Vergoedingen",
+                        "inhoud": "De Klant stemt ermee in de vergoedingen voor de Diensten te betalen zoals gespecificeerd in het contract of bestelformulier. Alle vergoedingen zijn niet-restitueerbaar, tenzij anders vermeld."
+                      },
+                      {
+                        "subtitel": "4.2 Facturering en Betaling",
+                        "inhoud": "Facturen worden uitgereikt volgens het betalingsschema dat is gespecificeerd in het contract. Betaling dient te geschieden binnen 14 dagen na de factuurdatum, tenzij schriftelijk anders is overeengekomen."
+                      },
+                      {
+                        "subtitel": "4.3 Late Betalingen",
+                        "inhoud": "Late betalingen kunnen rente opleveren tegen een tarief van 5.2% per maand of het maximale tarief dat wettelijk is toegestaan, afhankelijk van welk tarief lager is. Het Bedrijf behoudt zich het recht voor om Diensten op te schorten totdat de betaling volledig is ontvangen."
+                      }
+                    ]
+                  },
+                  {
+                    "titel": "5. Vertrouwelijkheid",
+                    "subsecties": [
+                      {
+                        "subtitel": "5.1 Vertrouwelijke Informatie",
+                        "inhoud": "Beide partijen komen overeen de vertrouwelijkheid van enige eigendoms- of vertrouwelijke informatie die tijdens de looptijd van deze Overeenkomst wordt verstrekt, te handhaven. Vertrouwelijke informatie omvat, maar is niet beperkt tot, bedrijfsstrategieën, financiële informatie en klantgegevens."
+                      },
+                      {
+                        "subtitel": "5.2 Niet-openbaarmaking",
+                        "inhoud": "Geen van beide partijen zal de vertrouwelijke informatie van de andere partij aan een derde partij bekendmaken zonder voorafgaande schriftelijke toestemming, behalve zoals wettelijk vereist."
+                      }
+                    ]
+                  },
+                  {
+                    "titel": "6. Intellectueel Eigendom",
+                    "subsecties": [
+                      {
+                        "subtitel": "6.1 Eigendom",
+                        "inhoud": "Alle intellectuele eigendomsrechten in de Diensten, inclusief maar niet beperkt tot software, inhoud en handelsmerken, zijn eigendom van het Bedrijf of zijn licentiegevers. De Klant krijgt een niet-exclusieve, niet-overdraagbare licentie om de Diensten te gebruiken gedurende de looptijd van de Overeenkomst."
+                      },
+                      {
+                        "subtitel": "6.2 Klantgegevens",
+                        "inhoud": "De Klant behoudt het eigendom van alle gegevens die aan het Bedrijf worden verstrekt in verband met de Diensten. Het Bedrijf krijgt een licentie om de gegevens van de Klant te gebruiken, reproduceren en wijzigen uitsluitend voor het leveren van de Diensten."
+                      }
+                    ]
+                  },
+                  {
+                    "titel": "7. Garanties en Aansprakelijkheid",
+                    "subsecties": [
+                      {
+                        "subtitel": "7.1 Garanties",
+                        "inhoud": "Het Bedrijf garandeert dat de Diensten op een professionele en deskundige manier zullen worden uitgevoerd."
+                      },
+                      {
+                        "subtitel": "7.2 Uitsluitingen",
+                        "inhoud": "Behalve zoals uitdrukkelijk vermeld in deze Voorwaarden, worden de Diensten geleverd 'zoals ze zijn' en 'zoals beschikbaar' zonder enige garanties van welke aard dan ook, expliciet of impliciet."
+                      }
+                    ]
+                  },
+                  {
+                    "titel": "8. Beperking van Aansprakelijkheid",
+                    "inhoud": [
+                      "Voor zover maximaal toegestaan door de wet, is het Bedrijf niet aansprakelijk voor enige indirecte, incidentele, speciale, gevolg- of bestraffende schade, of enig verlies van winst of inkomsten, hetzij direct of indirect, of enig verlies van gegevens, gebruik, goodwill of andere immateriële verliezen, voortvloeiend uit (i) uw gebruik of onvermogen om de Diensten te gebruiken; (ii) enige ongeautoriseerde toegang tot of gebruik van onze servers en/of enige persoonlijke informatie die daarin is opgeslagen."
+                    ]
+                  },
+                  {
+                    "titel": "9. Duur en Beëindiging",
+                    "subsecties": [
+                      {
+                        "subtitel": "9.1 Duur",
+                        "inhoud": "Deze overeenkomst gaat in op de ingangsdatum zoals gespecificeerd in het contract en blijft van kracht totdat deze wordt beëindigd zoals hierin bepaald."
+                      },
+                      {
+                        "subtitel": "9.2 Beëindiging om Gemak",
+                        "inhoud": "Elke partij kan deze Overeenkomst om welke reden dan ook beëindigen met 14 dagen schriftelijke kennisgeving aan de andere partij."
+                      },
+                      {
+                        "subtitel": "9.3 Beëindiging om Reden",
+                        "inhoud": "Elke partij kan deze overeenkomst onmiddellijk beëindigen als de andere partij enige materiële bepaling van deze overeenkomst schendt en nalaat om een dergelijke schending binnen 14 dagen na ontvangst van een schriftelijke kennisgeving van de schending te verhelpen."
+                      }
+                    ]
+                  },
+                  {
+                    "titel": "10. Toepasselijk Recht en Geschillenbeslechting",
+                    "subsecties": [
+                      {
+                        "subtitel": "10.1 Toepasselijk Recht",
+                        "inhoud": "Deze overeenkomst wordt beheerst door en geïnterpreteerd in overeenstemming met de wetten van Nederland, zonder rekening te houden met de conflicterende rechtsbeginselen."
+                      },
+                      {
+                        "subtitel": "10.2 Geschillenbeslechting",
+                        "inhoud": "Eventuele geschillen die voortvloeien uit of in verband met deze overeenkomst zullen worden opgelost door middel van onderhandelingen te goeder trouw tussen de partijen. Als het geschil niet kan worden opgelost door middel van onderhandelingen, zal het worden voorgelegd aan arbitrage/mediation in Amsterdam."
+                      }
+                    ]
+                  },
+                  {
+                    "titel": "11. Diverse Bepalingen",
+                    "subsecties": [
+                      {
+                        "subtitel": "11.1 Volledige Overeenkomst",
+                        "inhoud": "Deze overeenkomst vormt de volledige overeenkomst tussen de partijen en vervangt alle eerdere overeenkomsten en afspraken, schriftelijk of mondeling, met betrekking tot het onderwerp ervan."
+                      },
+                      {
+                        "subtitel": "11.2 Wijzigingen",
+                        "inhoud": "Deze overeenkomst kan alleen worden gewijzigd of aangepast door een schriftelijk document ondertekend door beide partijen."
+                      },
+                      {
+                        "subtitel": "11.3 Scheidbaarheid",
+                        "inhoud": "Als enige bepaling van deze overeenkomst ongeldig of onafdwingbaar wordt bevonden, blijven de overige bepalingen volledig van kracht."
+                      },
+                      {
+                        "subtitel": "11.4 Afstand",
+                        "inhoud": "Het niet afdwingen van enig recht of bepaling van deze overeenkomst door een van beide partijen wordt niet beschouwd als een verklaring van afstand van dat recht of die bepaling."
+                      }
+                    ]
+                  }
+                ],
+                "contact": {
+                  "titel": "Contact",
+                  "inhoud": "Indien u vragen of opmerkingen heeft, neem dan contact met ons op via:",
+                  "email1": "support@junter.works",
+                  "email2": "billing@junter.works"
+                }
+              }
+        },
+        "signupPage": {
+          
+        },
+        "signinPage": {
+
+        },
+    "footer": {
+        "navLinks": [
+            {
+                "title": "Employees",
+                "links": ["How does it work?", "Find jobs", "Contact"],
+                "href": ["../employees", "../sign-up", "../contact"]
+            },
+            {
+                "title": "Employers",
+                "links": ["Pricing", "Find employees", "API-integration"],
+                "href": ["../pricing", "../sign-up", "../employers"]
+            },
+            {
+                "title": "Junter",
+                "links": ["About us", "Careers", "Partners"],
+                "href": ["../junter", "../junter", "../notfound"]
+            },
+            {
+                "title": "Legal",
+                "links": ["Privacy Policy", "Terms of Use", "Contact"],
+                "href": ["../pp", "../tou", "../contact"]
+            }
+        ],
+        "subscriptionCTA": {
+            "headText":  "Aboneer op onze nieuwsbrief",
+            "subText": "Ontvang wekelijks een overzicht van (nieuwe) klussen bij jou in de buurt en blijf op de hoogte van het laatste nieuws!",
+            "placeholderText": "Vul je emailadres in",
+            "button": "Aboneer"
+        },
+        "footerText": "© 2025 Junter. Alle rechten voorbehouden."
+    },
+    "dashboard":{
+
+    }
+}
