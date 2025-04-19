@@ -1,9 +1,14 @@
+'use client'
 
 import ShiftForm from "@/app/[lang]/components/shared/forms/ShiftForm";
 import { haalShiftMetId } from "@/app/lib/actions/shift.actions"
-import DashNav from "@/app/[lang]/components/shared/navigation/Navigation";
 import Footer from "@/app/[lang]/components/shared/navigation/Footer4";
 import { fetchBedrijfClerkId } from "@/app/lib/actions/employer.actions";
+import dynamic from 'next/dynamic';
+
+const DashNav = dynamic(() => import('@/app/[lang]/components/shared/navigation/Navigation'), {
+  ssr: false
+});
 
 
 
