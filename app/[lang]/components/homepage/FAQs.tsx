@@ -1,3 +1,5 @@
+"use client"
+
 import { Container } from '@/app/[lang]/components/shared/Container'
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'

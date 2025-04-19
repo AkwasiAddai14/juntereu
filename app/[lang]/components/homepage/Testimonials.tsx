@@ -1,4 +1,4 @@
-
+'use client'
 
 import Image from 'next/image';
 import george from '@/app/assets/images/cc66434b-da39-4066-8f3a-035ae5a804fb.jpg';

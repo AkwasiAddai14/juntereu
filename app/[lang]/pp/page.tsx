@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'

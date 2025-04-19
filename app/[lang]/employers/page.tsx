@@ -105,6 +105,8 @@ const page = async ({ lang }: { lang: Locale }) => {
   };
 
 
+
+
   return (
     <><div className="bg-white">
           <div className="mx-auto max-w-7xl py-12 sm:px-2 sm:py-32 lg:px-4">
@@ -124,7 +126,9 @@ const page = async ({ lang }: { lang: Locale }) => {
     <div key={feature.type} className="relative pl-16">
       <dt className="text-base font-semibold text-gray-900">
         <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600">
-          {IconComponent && <IconComponent className="h-6 w-6 text-white" aria-hidden="true" />}
+          {typeof IconComponent === 'function' && (
+  <IconComponent className="h-6 w-6 text-white" aria-hidden="true" />
+)}
         </div>
         {feature.type}
       </dt>
@@ -173,7 +177,9 @@ const page = async ({ lang }: { lang: Locale }) => {
     <div key={feature.feature} className="flex flex-col">
       <dt className="text-base font-semibold leading-7 text-gray-900">
         <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600">
-          {IconComponent && <IconComponent className="h-6 w-6 text-white" aria-hidden="true" />}
+        {typeof IconComponent === 'function' && (
+  <IconComponent className="h-6 w-6 text-white" aria-hidden="true" />
+)}
         </div>
         {feature.feature}
       </dt>
