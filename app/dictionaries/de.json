@@ -331,7 +331,7 @@
                 {"telefoonItem": "Telefon", "optionalItem": "optional"},
                 {"questionItem": "Wie können wir Ihnen helfen?", "description": "max. 500 Zeichen"}
             ],
-            "expextedBudget": {
+            "expectedBudget": {
                 "title": "Erwartetes Budget",
                 "budgetButtons": [
                     "Weniger als €25K",

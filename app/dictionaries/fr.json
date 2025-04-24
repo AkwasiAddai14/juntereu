@@ -332,7 +332,7 @@
                 {"telefoonItem": "Téléphone", "optionalItem": "optionnel"},
                 {"questionItem": "Comment pouvons-nous vous aider ?", "description": "max 500 caractères"}
             ],
-            "expextedBudget": {
+            "expectedBudget": {
                 "title": "Budget attendu",
                 "budgetButtons": [
                     "Moins de 25K €",

@@ -330,7 +330,7 @@
                 {"telefoonItem": "Teléfono", "optionalItem": "opcional"},
                 {"questionItem": "¿Cómo podemos ayudarte?", "description": "máximo 500 caracteres"}
             ],
-            "expextedBudget": {
+            "expectedBudget": {
                 "title": "Presupuesto estimado",
                 "budgetButtons": [
                     "Menos de €25K",

@@ -120,57 +120,57 @@ export default async function Example({ lang }: { lang: Locale }) {
                     </div>
                   </div>
                   <fieldset className="sm:col-span-2">
-                    <legend className="block text-sm/6 font-semibold text-gray-900">{pages.contactPage.expextedBudget.title}</legend>
+                    <legend className="block text-sm/6 font-semibold text-gray-900">{pages.contactPage.expectedBudget.title}</legend>
                     <div className="mt-4 space-y-4 text-sm/6 text-gray-600">
                       <div className="flex gap-x-2.5">
                         <input
-                          defaultValue={pages.contactPage.expextedBudget.budgetButtons[0]}
-                          id={pages.contactPage.expextedBudget.budgetButtons[0]}
+                          defaultValue={pages.contactPage.expectedBudget.budgetButtons[0]}
+                          id={pages.contactPage.expectedBudget.budgetButtons[0]}
                           name="budget"
                           type="radio"
                           className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-sky-600 checked:bg-indigo500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
                         />
-                        <label htmlFor="budget-under-25k">{pages.contactPage.expextedBudget.budgetButtons[0]}</label>
+                        <label htmlFor="budget-under-25k">{pages.contactPage.expectedBudget.budgetButtons[0]}</label>
                       </div>
                       <div className="flex gap-x-2.5">
                         <input
-                          defaultValue={pages.contactPage.expextedBudget.budgetButtons[1]}
-                          id={pages.contactPage.expextedBudget.budgetButtons[1]}
+                          defaultValue={pages.contactPage.expectedBudget.budgetButtons[1]}
+                          id={pages.contactPage.expectedBudget.budgetButtons[1]}
                           name="budget"
                           type="radio"
                           className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-sky-600 checked:bg-sky-600  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
                         />
-                        <label htmlFor="budget-25k-50k">{pages.contactPage.expextedBudget.budgetButtons[1]}</label>
+                        <label htmlFor="budget-25k-50k">{pages.contactPage.expectedBudget.budgetButtons[1]}</label>
                       </div>
                       <div className="flex gap-x-2.5">
                         <input
-                          defaultValue={pages.contactPage.expextedBudget.budgetButtons[2]}
-                          id={pages.contactPage.expextedBudget.budgetButtons[2]}
+                          defaultValue={pages.contactPage.expectedBudget.budgetButtons[2]}
+                          id={pages.contactPage.expectedBudget.budgetButtons[2]}
                           name="budget"
                           type="radio"
                           className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-sky-600 checked:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
                         />
-                        <label htmlFor="budget-50k-100k">{pages.contactPage.expextedBudget.budgetButtons[2]}</label>
+                        <label htmlFor="budget-50k-100k">{pages.contactPage.expectedBudget.budgetButtons[2]}</label>
                       </div>
                       <div className="flex gap-x-2.5">
                         <input
-                          defaultValue={pages.contactPage.expextedBudget.budgetButtons[3]}
-                          id={pages.contactPage.expextedBudget.budgetButtons[3]}
+                          defaultValue={pages.contactPage.expectedBudget.budgetButtons[3]}
+                          id={pages.contactPage.expectedBudget.budgetButtons[3]}
                           name="budget"
                           type="radio"
                           className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-sky-600 checked:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
                         />
-                        <label htmlFor="budget-over-100k">{pages.contactPage.expextedBudget.budgetButtons[3]}</label>
+                        <label htmlFor="budget-over-100k">{pages.contactPage.expectedBudget.budgetButtons[3]}</label>
                       </div>
                       <div className="flex gap-x-2.5">
                         <input
-                          defaultValue={pages.contactPage.expextedBudget.budgetButtons[4]}
-                          id={pages.contactPage.expextedBudget.budgetButtons[4]}
+                          defaultValue={pages.contactPage.expectedBudget.budgetButtons[4]}
+                          id={pages.contactPage.expectedBudget.budgetButtons[4]}
                           name="budget"
                           type="radio"
                           className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-sky-600 checked:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
                         />
-                        <label htmlFor={pages.contactPage.expextedBudget.budgetButtons[4]}>{pages.contactPage.expextedBudget.budgetButtons[4]}</label>
+                        <label htmlFor={pages.contactPage.expectedBudget.budgetButtons[4]}>{pages.contactPage.expectedBudget.budgetButtons[4]}</label>
                       </div>
                     </div>
                   </fieldset>
