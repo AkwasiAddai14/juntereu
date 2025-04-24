@@ -1,10 +1,9 @@
-'use client'
+
 
 import Image from 'next/image'; 
 import supermarkt from '@/app/assets/images/iStock-1298571081.jpg'
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
-import LocaleSwitcher from '@/app/[lang]/components/shared/LocaleSwitcher'
 
 const stats = [
     { label: 'Opdrachtnemers', value: '4000+' },

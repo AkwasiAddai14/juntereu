@@ -1,4 +1,4 @@
-'use client'
+
 
 import Image from 'next/image';
 import george from '@/app/assets/images/cc66434b-da39-4066-8f3a-035ae5a804fb.jpg';
@@ -9,7 +9,6 @@ import emma from '@/app/assets/images/IMG_8351.jpg';
 import mariah from '@/app/assets/images/IMG_8352.jpg';
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
-import LocaleSwitcher from '@/app/[lang]/components/shared/LocaleSwitcher'
 
 
 

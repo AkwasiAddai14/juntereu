@@ -1,8 +1,6 @@
 "use client"
-import Image from "next/image";
-import { Locale } from '@/i18n.config'
-import { getDictionary } from '@/app/[lang]/dictionaries'
-import Header from '@/app/[lang]/components/homepage/Header';
+
+import NavBar from '@/app/[lang]/components/shared/navigation/NavBar';
 import Footer from '@/app/[lang]/components/shared/navigation/Footer';
 import Testimonials from "@/app/[lang]/components/homepage/Testimonials";
 import {Faqs}  from "@/app/[lang]/components/homepage/FAQs";
@@ -14,7 +12,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation'
 
 export default function Home() {
-  const { isLoaded, user } = useUser();
+/*   const { isLoaded, user } = useUser();
   const router = useRouter();
  
 
@@ -24,10 +22,10 @@ export default function Home() {
       router.push('/dashboard', { scroll: false }) // Navigate to the dashboard if the user is signed in
     }
   }, [isLoaded, user]);
-
+ */
   return (
     <main>
-      <Header/>
+      <NavBar lang={'en'}/>
       <Hero lang={"en"}/> 
       <Features lang={"en"}/>
       <Branches lang={"en"}/>

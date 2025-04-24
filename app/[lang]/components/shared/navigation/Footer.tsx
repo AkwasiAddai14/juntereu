@@ -1,11 +1,9 @@
-"use client"
 
-import { JSX, SVGProps, useState } from "react"
-import Link from 'next/link'
+
+import { JSX, SVGProps } from "react"
 import FooterForm from './FooterForm'
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
-import LocaleSwitcher from '@/app/[lang]/components/shared/LocaleSwitcher'
 
 
 

@@ -4,18 +4,14 @@ import Link from 'next/link'
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import LocaleSwitcher from '@/app/[lang]/components/shared/LocaleSwitcher'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { Dialog, DialogPanel, Disclosure, DisclosureButton, DisclosurePanel, Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Dialog, Disclosure, DisclosureButton, DisclosurePanel, Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/react'
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image'; 
 import logo from '@/app/assets/images/178884748_padded_logo.png'; 
 
-const navigation = [
-    { name: 'Werknemers', href: '../freelancers' },
-    { name: 'Bedrijven', href: '../bedrijven' },
-    { name: 'Contact', href: '../contact' },
-  ];
+
 
   const countries = [
     { name: 'United Kingdom', description: 'English', href: '/[en]', icon: '🇬🇧' },

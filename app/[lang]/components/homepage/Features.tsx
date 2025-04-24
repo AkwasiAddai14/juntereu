@@ -1,4 +1,4 @@
-'use client'
+
 
 import { useId } from 'react'
 import { Container } from '@/app/[lang]/components/shared/Container'

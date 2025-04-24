@@ -33,7 +33,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                         name="first-name"
                         type="text"
                         autoComplete="given-name"
-                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900  outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900  outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600"
                       />
                     </div>
                   </div>
@@ -47,7 +47,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                         name="last-name"
                         type="text"
                         autoComplete="family-name"
-                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900  outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900  outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600"
                       />
                     </div>
                   </div>
@@ -61,7 +61,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                         name="email"
                         type="email"
                         autoComplete="email"
-                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600"
                       />
                     </div>
                   </div>
@@ -75,7 +75,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                         name="company"
                         type="text"
                         autoComplete="organization"
-                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600"
                       />
                     </div>
                   </div>
@@ -95,7 +95,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                         type="tel"
                         autoComplete="tel"
                         aria-describedby="phone-description"
-                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600"
                       />
                     </div>
                   </div>
@@ -114,7 +114,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                         name="message"
                         rows={4}
                         aria-describedby="message-description"
-                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900  outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900  outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600"
                         defaultValue={''}
                       />
                     </div>
@@ -128,7 +128,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                           id={pages.contactPage.expextedBudget.budgetButtons[0]}
                           name="budget"
                           type="radio"
-                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
+                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-sky-600 checked:bg-indigo500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
                         />
                         <label htmlFor="budget-under-25k">{pages.contactPage.expextedBudget.budgetButtons[0]}</label>
                       </div>
@@ -138,7 +138,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                           id={pages.contactPage.expextedBudget.budgetButtons[1]}
                           name="budget"
                           type="radio"
-                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
+                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-sky-600 checked:bg-sky-600  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
                         />
                         <label htmlFor="budget-25k-50k">{pages.contactPage.expextedBudget.budgetButtons[1]}</label>
                       </div>
@@ -148,7 +148,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                           id={pages.contactPage.expextedBudget.budgetButtons[2]}
                           name="budget"
                           type="radio"
-                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
+                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-sky-600 checked:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
                         />
                         <label htmlFor="budget-50k-100k">{pages.contactPage.expextedBudget.budgetButtons[2]}</label>
                       </div>
@@ -158,7 +158,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                           id={pages.contactPage.expextedBudget.budgetButtons[3]}
                           name="budget"
                           type="radio"
-                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
+                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-sky-600 checked:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
                         />
                         <label htmlFor="budget-over-100k">{pages.contactPage.expextedBudget.budgetButtons[3]}</label>
                       </div>
@@ -168,7 +168,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                           id={pages.contactPage.expextedBudget.budgetButtons[4]}
                           name="budget"
                           type="radio"
-                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
+                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-sky-600 checked:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
                         />
                         <label htmlFor={pages.contactPage.expextedBudget.budgetButtons[4]}>{pages.contactPage.expextedBudget.budgetButtons[4]}</label>
                       </div>
@@ -178,7 +178,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                 <div className="mt-10 flex justify-end border-t border-gray-900/10 pt-8">
                   <button
                     type="submit"
-                    className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="rounded-md bg-sky-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
                   >
                     {pages.contactPage.pageButton} 
                   </button>

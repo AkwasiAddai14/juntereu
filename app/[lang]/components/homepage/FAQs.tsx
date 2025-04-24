@@ -1,10 +1,8 @@
-"use client"
+
 
 import { Container } from '@/app/[lang]/components/shared/Container'
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
-import LocaleSwitcher from '@/app/[lang]/components/shared/LocaleSwitcher'
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Key } from 'react'
 
 const faqs = [
   [
