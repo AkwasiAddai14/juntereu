@@ -1,0 +1,2059 @@
+{
+    "navigation": {
+        "navLinks": [
+            { "name": "Työntekijät", "link": "employees" },
+            { "name": "Työnantajat", "link": "employers" },
+            { "name": "Yhteystiedot", "link": "contact" }
+          ],
+          "Taal": { "name": "Kieli", "link": "" },
+          "Log-in": { "name": "Kirjaudu sisään", "link": "sign-in" }
+    },
+    "pages": {
+        "landingsPage": {
+            "header": {
+                "Text1": "Tutustu, miksi työnhakijat valitsevat alustamme – löydä seuraava keikkasi jo tänään!",
+                "headerLinks": ["Työntekijät", "Työnantajat", "Kieli", "Yhteystiedot", "Kirjaudu sisään"],
+                "headText": "Vapauta potentiaalisi – löydä seuraava tehtäväsi!",
+                "subText": "Löydä mahdollisuuksien maailma työntekijänä alustallamme. Luovista projekteista liiketoimintatehtäviin – täältä löydät seuraavan menestystarinasi. Liity mukaan ja tee unelmistasi totta!"
+              },
+              "CTA": [
+                { "name": "Rekisteröidy", "href": "/sign-up", "icon": "PlayCircleIcon" },
+                { "name": "Lue lisää", "href": "/employees", "icon": "PhoneIcon" }
+              ],
+              "hero": {
+                "image": {
+                  "testimonial": "Työntekijät ovat luotettavia ja heti valmiita aloittamaan, mikä auttaa meitä paljon yllättävissä poissaoloissa. Se tuo meille rauhaa ja varmuutta, jota tarvitsemme pitääksemme kaupan toiminnassa.",
+                  "person": "Sarah de Bakerland",
+                  "personFunction": "Apulaismyymäläpäällikkö Spar"
+                },
+                "content": {
+                  "headText": "Helppoa henkilöstön skaalausta on-demand-alustamme avulla",
+                  "subText": "Junter Platform uskoo osaamisen ja mahdollisuuksien yhdistämiseen innovatiivisella ja joustavalla tavalla. On-demand-alustana joustavalle työvoimalle autamme yrityksiä ja yrittäjiä löytämään nopeasti ja tehokkaasti oikeat ammattilaiset – tilapäiseen apuun tai erikoisosaamiseen.",
+                  "statistics": [
+                    { "name": "työntekijät", "description": "4000+" },
+                    { "name": "työnantajat", "description": "137" },
+                    { "name": "tehtävät", "description": "2000+" },
+                    { "name": "maat", "description": "2" }
+                  ],
+                  "ctaButton": "rekisteröidy"
+                }
+              },
+              "features": {
+                "headText": "Tutustu sovelluksemme voimaan työntekijöille – ponnahduslautasi rajattomiin mahdollisuuksiin.",
+                "subText": "Sovelluksemme avulla saat välittömän pääsyn monipuolisiin työtehtäviin, nopeisiin maksuihin ja täyteen vapauteen oman aikataulusi hallinnassa. Löydä seuraava haasteesi jo tänään!",
+                "features": [
+                  {
+                    "name": "Nopea pääsy tehtäviin",
+                    "description": "Löydä hetkessä tehtäviä, jotka sopivat taitoihisi ja kiinnostuksen kohteisiisi – ilman loputonta etsintää.",
+                    "icon": "DeviceArrowIcon"
+                  },
+                  {
+                    "name": "Joustava aikataulu",
+                    "description": "Hallitse omaa kalenteriasi ja työskentele silloin kun sinulle sopii, jotta voit paremmin tasapainottaa työ- ja yksityiselämäsi.",
+                    "icon": "DeviceClockIcon"
+                  },
+                  {
+                    "name": "Monipuoliset toimeksiantajat",
+                    "description": "Pääsy laajaan joukkoon toimeksiantajia, pienistä startupeista suuriin yrityksiin – laajenna verkostoasi ja kokemustasi.",
+                    "icon": "DeviceCardsIcon"
+                  },
+                  {
+                    "name": "Helppo viestintä",
+                    "description": "Olemme tavoitettavissa päivittäin klo 9:00–17:00 chatin tai WhatsAppin kautta kysymyksiä varten – tai 24/7 eri WhatsApp-yhteisöissä.",
+                    "icon": "DeviceListIcon"
+                  },
+                  {
+                    "name": "Nopeat maksut",
+                    "description": "Saat taatut maksut työstäsi ilman vaivaa tai viivästyksiä.",
+                    "icon": "DeviceLockIcon"
+                  },
+                  {
+                    "name": "Arvostus ja palaute",
+                    "description": "Rakenna vahvaa mainetta keräämällä positiivisia arvosteluja ja palautetta tyytyväisiltä asiakkailta – paranna mahdollisuuksiasi tuleviin toimeksiantoihin.",
+                    "icon": "DeviceChartIcon"
+                  }
+                ]
+              },
+              "branches": {
+                "headText": "Tutustu alustan monipuolisuuteen työnhakijoille.",
+                "subText": "Etsitpä sitten vieraanvaraisuuden iloa ravintola-alalta, logistiikan ja kuljetuksen tarkkuutta tai hoiva-alan lämpöä – alustamme tarjoaa monipuolisia mahdollisuuksia."
+              },"faqs": {
+                "headText": "Hyödynnä potentiaalisi, löydä seuraava keikkasi!",
+                "subText1": "Onko vielä kysymyksiä?",
+                "subtext2": " Ota rohkeasti yhteyttä.",
+                "FAQ": [
+                  
+                  [{
+                    "question": "Kuinka voin rekisteröityä freelanceriksi alustalle?",
+                    "answer": "Voit helposti rekisteröityä verkkosivuston kautta tai ladata sovelluksen, käydä rekisteröintiprosessi läpi ja täyttää profiilisi tarvittavilla tiedoilla."
+                  },
+                  {
+                    "question": "Miten maksut käsitellään suoritetuista tehtävistä?",
+                    "answer": "Tehtävän suorittamisen jälkeen saat maksusi alustavasti kuukauden viimeisenä perjantaina, helmikuusta alkaen joka perjantai."
+                  },
+                  {
+                    "question": "Voinko määrittää omat hintani tarjoamilleni palveluille?",
+                    "answer": "Freelancerina voit vapaasti määrittää omat hintasi kokemuksesi ja markkinastandardien perusteella."
+                  },
+                  {
+                    "question": "Millaisia tehtäviä alustalla on tarjolla?",
+                    "answer": "Tarjolla on monenlaisia tehtäviä, kuten tarjoilu ravintoloissa, liikenteenohjaus, lavarakennus festivaaleilla ja ruokalähettipalvelut."
+                  }],
+
+                  [{
+                    "question": "Onko saatavilla tukea, jos tarvitsen apua sovelluksen käytössä?",
+                    "answer": "Tiimimme on valmiina auttamaan joka päivä klo 9:00–17:00 sovelluksen tai WhatsAppin kautta."
+                  },
+                  {
+                    "question": "Kuinka voin optimoida profiilini saadakseni enemmän tehtäviä?",
+                    "answer": "Lisää profiiliisi taitoja ja työkokemusta houkutellaksesi enemmän tehtäviä."
+                  },
+                  {
+                    "question": "Miten tehtävien löytäminen ja hyväksyminen toimii?",
+                    "answer": "Selaa saatavilla olevia tehtäviä, katso yksityiskohdat ja hae yhdellä napautuksella. Se on nopeaa ja intuitiivista."
+                  }],
+
+                  [{
+                    "question": "Onko saatavilla arvioita tai arvosteluja toimeksiantajista?",
+                    "answer": "Toimeksiantajat voivat jättää arvosteluja tehtävien valmistuttua, mikä auttaa sinua rakentamaan ja parantamaan mainettasi."
+                  },
+                  {
+                    "question": "Onko tiettyjä vaatimuksia, jotka minun on täytettävä hyväksyäkseni tehtäviä alustalla?",
+                    "answer": "Useimmissa tapauksissa tarvitset vain vähäistä kokemusta tai tehtävään liittyviä taitoja."
+                  }]
+                ]
+              },
+              "testimonials": {
+                "headTitle": "Suositukset",
+                "subText": "Katso, mitä käyttäjämme sanovat",
+                "testimonials": [
+                  {
+                    "name": "Lisa",
+                    "testimonial": "Mahtava sovellus ravintolatöihin! Löydän nopeasti vuoroja mukavista ravintoloista, jotka sopivat aikatauluuni. Todella kätevää!",
+                    "sector": "Ravintola-ala"
+                  },
+                  {
+                    "name": "Ahmed",
+                    "testimonial": "Turvallisuusalan ammattilaisena arvostan nopeaa pääsyä sopiviin työtehtäviin. Huippusovellus!",
+                    "sector": "Turvallisuus"
+                  },
+                  {
+                    "name": "Maria",
+                    "testimonial": "Rakastan tämän sovelluksen yksinkertaisuutta! Se on tehnyt siivoustöiden etsimisestä paljon helpompaa.",
+                    "sector": "Siivous"
+                  },
+                  {
+                    "name": "George",
+                    "testimonial": "Tämä alusta on helpottanut kuljetustöiden etsimistäni. Luotettava ja tehokas!",
+                    "sector": "Kuljetus ja logistiikka"
+                  },
+                  {
+                    "name": "Eva",
+                    "testimonial": "Hoitotyöntekijänä arvostan tämän sovelluksen joustavuutta. Se auttaa minua löytämään sopivia hoivatyötehtäviä.",
+                    "sector": "Sosiaali- ja terveysala"
+                  },
+                  {
+                    "name": "Solomon",
+                    "testimonial": "Tämä sovellus on nostanut freelance-hallintotyöni uudelle tasolle. Tehokas ja käyttäjäystävällinen!",
+                    "sector": "Hallinto"
+                  }
+                ]
+              }
+        },
+        "employersPage": {
+            "title": "Junter yrityksille",
+  "headText": "Käytä omalla tavallasi",
+  "subText": "Löydä nopeasti ja helposti freelancereita tai vuokratyöntekijöitä kiinteään ja sitoumuksettomaan hintaan",
+  "EmployTypes": [
+    {
+      "type": "Vuokratyö tai henkilöstövuokraus",
+      "explanation": "Löydä nopeasti ja joustavasti oikeat ammattilaiset tilapäisiin tai pitkäaikaisiin toimeksiantoihin ilman hallinnollista vaivaa.",
+      "icon": "PlusCircleIcon"
+    },
+    {
+      "type": "Freelancerit",
+      "explanation": "Kokenut freelancer-verkosto, joka on valmis viemään projektisi uudelle tasolle. Joustavaa, asiantuntevaa ja käytettävissä juuri silloin kun tarvitset.",
+      "icon": "SparklesIcon"
+    },
+    {
+      "type": "Rekrytointi ja valinta",
+      "explanation": "Säästä aikaa ja anna meidän löytää täydellinen ehdokas yrityksellesi. Laajan verkostomme ja asiantuntemuksemme avulla yhdistämme osaajat ja yrityksesi.",
+      "icon": "MagnifyingGlassCircleIcon"
+    },
+    {
+      "type": "Palkkahallinto (Payrolling)",
+      "explanation": "Keskity liiketoimintaasi, kun me otamme työnantajavastuun. Palkkahallinnon avulla saat henkilöstöä helposti ja vaivattomasti.",
+      "icon": "BanknotesIcon"
+    }
+  ],
+  "Benefits": [
+    {
+      "benefit": "Kustannukset",
+      "explanation": "Valitsemalla alustamme hyödyt läpinäkyvästä ja yksinkertaisesta kustannusmallista – maksat vain toteutuneista työtunneista. Kutsu rajattomasti joustotyöntekijöitä alkaen 15,60 € per työtunti.",
+      "imageSrc": "euroBillsLogo",
+      "imageAlt": "Laskuja leijailee ilmassa."
+    },
+    {
+      "benefit": "Hallinto",
+      "explanation": "Alustallamme suurin osa hallinnollisista tehtävistä hoidetaan puolestasi, jotta voit keskittyä siihen, mikä on tärkeää. Tiimimme tukee sinua ja huolehtii siitä, että kaikki sujuu ongelmitta ja tehokkaasti.",
+      "imageSrc": "officeLogo",
+      "imageAlt": "Säästä hallintotyötä ja jätä se meidän huoleksemme."
+    },
+    {
+      "benefit": "Hallintapaneeli",
+      "explanation": "Yrityksenä sinulla on täydellinen yleiskuva toiminnastasi. Hallintapaneeli näyttää julkaistut tehtävät, hakemukset, avoimet checkoutit ja laskut sekä flexpoolien tilan – kaikki tärkeä tieto yhdessä paikassa.",
+      "imageSrc": "dashboardLogo",
+      "imageAlt": "Yksinkertainen, helppokäyttöinen ja moderni hallintapaneeli yrityksesi hallintaan."
+    }
+  ],
+  "Features": {
+    "headText": "Pysy kartalla",
+    "subText": "Näiden kätevien ominaisuuksien ansiosta sinun ei tarvitse murehtia tylsemmistä asioista.",
+    "features": [
+      {
+        "feature": "Varallaolijat",
+        "explanation": "Tehtäviin voidaan ottaa enemmän henkilöitä kuin paikkoja on – ylimääräiset henkilöt asetetaan varasijalle. Jos joku peruuttaa, varallaolijat siirtyvät automaattisesti tilalle.",
+        "icon": "UsersIcon"
+      },
+      {
+        "feature": "Flexpool",
+        "explanation": "Freelancereiden kanssa työskennellessä flexpooliin kuuluvat henkilöt hyväksytään automaattisesti tehtäviin, joihin he hakevat. Tämä mahdollistaa nopeamman ja toistuvan yhteistyön suosikkifreelancereidesi kanssa.",
+        "icon": "UserGroupIcon"
+      },
+      {
+        "feature": "Kilpailukykyinen hinnoittelu",
+        "explanation": "Jos tehtävä pysyy pitkään täyttämättä, voit nostaa sen palkkiota automaattisesti. Tämä auttaa houkuttelemaan nopeasti päteviä ehdokkaita ja varmistamaan tehtävän täyttymisen.",
+        "icon": "CurrencyEuroIcon"
+      }
+    ]
+  }
+        },
+        "employeesPage": {
+            "headText": "Tienaa nopeasti rahaa",
+  "Benefits": [
+    {
+      "benefit": "Yli 100",
+      "subText": "erilaista toimeksiantajaa.",
+      "elaboration": "Lataa sovellus ja rekisteröidy. Voit rekisteröityä vuokratyöntekijäksi 16-vuotiaasta alkaen. 18-vuotiaana voit työskennellä myös freelancerina. Rekisteröitymisen jälkeen voit valita tuhansista vuoroista sovelluksessa."
+    },
+    {
+      "benefit": "Viikoittain 2000",
+      "subText": "erilaista työvuoroa.",
+      "elaboration": "Parantaaksesi hyväksynnän mahdollisuuksia varmista, että profiilisi on täydellinen ja ammattimainen. Lisää selkeä profiilikuva, täytä tietosi huolellisesti ja kuvaile taitojasi ja kokemustasi yksityiskohtaisesti. Aiemmat suosittelut voivat myös auttaa. Ja sitten pääset heti aloittamaan!"
+    },
+    {
+      "benefit": "Helmikuusta alkaen",
+      "subText": "voit valita myös viikoittaiset maksut.",
+      "elaboration": "Työtuntiesi kirjaamisen jälkeen saat maksusi (toistaiseksi) kuukauden lopussa. Helmikuusta alkaen voit valita myös viikoittaiset maksut, jotka maksetaan suoraan pankkitilillesi."
+    }
+  ],
+  "Features": {
+    "headText": "Kaikki yhdessä -alusta",
+    "subText": "Tutustu mahdollisuuksien maailmaan työnhakijana alustallamme. Luovista projekteista liiketoimintatehtäviin – täältä löydät seuraavan menestystarinasi. Liity mukaan ja tee unelmistasi totta!",
+    "features": [
+      {
+        "feature": "Nopea pääsy työtehtäviin",
+        "elaboration": "Löydä hetkessä tehtäviä, jotka sopivat taitoihisi ja kiinnostuksiisi – ilman loputonta etsintää."
+      },
+      {
+        "feature": "Joustava aikataulu",
+        "elaboration": "Hallitse omaa aikatauluasi ja työskentele silloin kun sinulle sopii – näin voit paremmin tasapainottaa työ- ja yksityiselämäsi."
+      },
+      {
+        "feature": "Monipuoliset toimeksiantajat",
+        "elaboration": "Saat pääsyn laajaan kirjoon toimeksiantajia – startupeista suuriin yrityksiin – ja kasvatat verkostoasi sekä kokemustasi."
+      },
+      {
+        "feature": "Helppo viestintä",
+        "elaboration": "Viestittele suoraan kanssamme sovelluksessa tai WhatsAppissa – kysymysten, palautteen ja tehtävien viimeistelyn hoitaminen on helppoa ja nopeaa."
+      },
+      {
+        "feature": "Nopeat maksut",
+        "elaboration": "Saat taatut maksut työstäsi ilman vaivaa tai viivästyksiä."
+      },
+      {
+        "feature": "Arvostelut ja palaute",
+        "elaboration": "Rakenna vahvaa mainetta keräämällä positiivisia arvioita ja palautetta tyytyväisiltä toimeksiantajilta – näin parannat mahdollisuuksiasi tuleviin tehtäviin."
+      }
+    ]
+  }
+        },
+        "junterPage": {
+            "headText": "Olemme intohimoinen joukko ihmisiä.",
+  "subText": "Monimuotoisuutemme ja yhteinen visiomme ajavat meitä luomaan innovatiivisia ratkaisuja, jotka muuttavat tapaa, jolla yritykset ja asiakkaat ovat vuorovaikutuksessa.",
+  "strategyPlan": [
+    {
+      "date": "Heinäkuu 2024",
+      "activity": "Junterin perustaminen",
+      "elaboration": "Junterin perustaminen merkitsee innovatiivisen matkan alkua. Tavoitteenamme on yhdistää työnhakijat ja yritykset uudella tavalla."
+    },
+    {
+      "date": "Lokakuu 2024",
+      "activity": "Pääoman ja verkoston laajentaminen",
+      "elaboration": "Erilaisia rahoituskierroksia pääoman ja verkoston laajentamiseksi. Resurssien ja yhteyksien avulla voimme kasvaa edelleen."
+    },
+    {
+      "date": "Toukokuu 2025",
+      "activity": "Laajentuminen Euroopan maihin",
+      "elaboration": "Junter laajenee useille Euroopan markkinoille, jolloin yhä useammat työnhakijat ja yritykset voivat hyödyntää alustaamme."
+    },
+    {
+      "date": "Joulukuu 2025",
+      "activity": "Maailmanlaajuinen lanseeraus",
+      "elaboration": "Maailmanlaajuisen lanseerauksen myötä Junter tulee kansainvälisille markkinoille, mikä mahdollistaa palveluidemme tarjoamisen maailmanlaajuisesti ja suuremman vaikutuksen tekemisen."
+    }
+  ],
+  "people": {
+    "headText": "Ihmisemme",
+    "subText1": "Ihmisemme ovat tärkein voimavaramme. He tuovat asiantuntemusta, intohimoa ja omistautumista kaikkeen, mitä tekevät.",
+    "subtext2": "Olemme ylpeitä monimuotoisista ja lahjakkaista tiimeistämme, jotka työskentelevät yhdessä saavuttaakseen upeita tuloksia. Yhdessä rakennamme tulevaisuutta, jossa innovaatio ja yhteistyö ovat keskiössä."
+  },
+  "vacancies": {
+    "headText": "Etsimme jatkuvasti loistavia ihmisiä vahvistamaan tiimiämme",
+    "subText": "Onko sinulla intohimoa innovaatioon ja halua vaikuttaa? Liity joukkoomme ja auta meitä kasvamaan ja saavuttamaan menestystä yhdessä.",
+    "vacancies": [
+      {
+        "title": "Vanhempi asiakkuuspäällikkö",
+        "description": "Vanhempana asiakkuuspäällikkönä vastaat tärkeiden asiakkuuksien hallinnasta, vahvojen suhteiden kehittämisestä ja liikevaihdon kasvattamisesta. Työskentelet tiiviisti asiakkaiden kanssa ymmärtääksesi heidän tarpeitaan, tarjotaksesi räätälöityjä ratkaisuja ja varmistaaksesi asiakastyytyväisyyden.",
+        "salary": "€42000 - €76000",
+        "location": "🇫🇮 Remote - Helsinki, FI"
+      },
+      {
+        "title": "Kansainvälinen markkinointipäällikkö",
+        "description": "Kansainvälinen markkinointipäällikkö vastaa globaalien markkinointistrategioiden kehittämisestä ja toteuttamisesta bränditietoisuuden ja markkinaosuuden kasvattamiseksi. Johdat markkinointitiimiä, hallinnoit kansainvälisiä kampanjoita ja teet yhteistyötä eri toimintojen kanssa yrityksen tavoitteiden saavuttamiseksi.",
+        "salary": "€56000 - €84000",
+        "location": "🇳🇱 Hoofddorp, NL"
+      },
+      {
+        "title": "Asiakastukihenkilö",
+        "description": "Asiakastukihenkilönä olet ensimmäinen yhteyshenkilö freelancereille ja yrityksille. Tarjoat apua ja ratkaiset ongelmia. Käsittelet kysymyksiä ja varmistat korkean asiakastyytyväisyyden tarjoamalla oikea-aikaista ja tehokasta tukea.",
+        "salary": "€28000 - €34000",
+        "location": "🇫🇮 Remote - Helsinki, FI"
+      }
+    ]
+  },
+  "vacanciesButton": "Katso kaikki avoimet työpaikat",
+  "navLinks": [
+    { "name": "Etusivu", "link": "/" },
+    { "name": "Tietosuojakäytäntö", "link": "../pp" },
+    { "name": "Käyttöehdot", "link": "../tou" }
+  ]
+        },
+        "contactPage": {
+            "headText": "Ota yhteyttä",
+  "subText": "Ota meihin yhteyttä alla olevan kanavan kautta ja saat vastauksen 48 tunnin kuluessa",
+  "formItems": [
+    { "voornaamItem": "Etunimi" },
+    { "achternaamItem": "Sukunimi" },
+    { "emailadresItem": "Sähköposti" },
+    { "bedrijfItem": "Yritys" },
+    {
+      "telefoonItem": "Puhelin",
+      "optionalItem": "valinnainen"
+    },
+    {
+      "questionItem": "Miten voimme auttaa sinua?",
+      "description": "max 500 merkkiä"
+    }
+  ],
+  "expectedBudget": {
+    "title": "Odotettu budjetti",
+    "budgetButtons": [
+      "Alle €25K",
+      "€25K – €50K",
+      "€50K – €100K",
+      "Yli €100K",
+      "Ei sovellu"
+    ]
+  },
+  "pageButton": "Lähetä viesti"
+        },
+        "pricingPage": {
+            "title": "Kustannukset",
+  "headText": "Paras hinta oikealle henkilöstölle",
+  "subText": "Junterilla uskomme rehellisyyteen ja selkeyteen. Ei piilokuluja tai pienellä präntättyä – vain läpinäkyvät hinnat, jotta tiedät aina tarkalleen, mitä maksat.",
+  "pricingCards": [
+    {
+      "naam": "Freelancerit",
+      "prijs": "€16,50",
+      "prijsUitleg": "€14 + €2,50 (palvelumaksu)",
+      "features": [
+        "Vähemmän hallinnollista työtä",
+        "Ei työnantajavelvoitteita",
+        "Projektikohtainen työskentely selkeällä lopputuloksella"
+      ],
+      "button": "Julkaise tehtäviä"
+    },
+    {
+      "naam": "Vuokratyöntekijät",
+      "prijs": "€15,60",
+      "prijsUitleg": "€12 x 1,3 (kerroin)",
+      "features": [
+        "Vähemmän hallinnollista työtä",
+        "Välitön saatavuus",
+        "Sopii jatkuvaan yhteistyöhön",
+        "Mahdollisuus jatkuvuuteen"
+      ],
+      "button": "Luo tili"
+    }
+  ],
+  "HeadTextCTA": "Huoleton joustava työvoima",
+  "SubTextCTA": "Epäiletkö valintaa freelancerin ja vuokratyöntekijän välillä? Tai haluatko henkilökohtaista neuvontaa siitä, mitä joustava työvoima voi tarjota organisaatiollesi ja mitä kustannuksia siihen liittyy?",
+  "ButtonCTA": "Ota yhteyttä"
+        },
+        "notfoundPage": {
+            "title": "404",
+  "headText": "Sivua ei löytynyt",
+  "subText": "Valitettavasti emme löytäneet etsimääsi sivua.",
+  "button1": "Takaisin etusivulle",
+  "button2": "Ota yhteyttä tukeen",
+  "button3": "Tila"
+        },
+        "verifyPage": {
+          "title": "Vahvista henkilöllisyys",
+          "endingSentence": "Otamme sinuun yhteyttä mahdollisimman pian asiakirjojen vastaanottamisen jälkeen.",
+          "headText1": "Kiitos rekisteröintilomakkeen täyttämisestä. Yrityksesi vahvistamiseksi tarvitsemme seuraavat asiakirjat:",
+          "headText2": "Kiitos rekisteröintilomakkeen täyttämisestä. Profiilisi vahvistamiseksi freelancerina tarvitsemme seuraavat asiakirjat:",
+          "Button1": "Ymmärretty!",
+          "Button2": "Lähetä viesti",
+          "instructions": [
+            "Lähetä asiakirjat osoitteeseen",
+            "seuraavilla tiedoilla:"
+          ],
+          "formItems": [
+            { "voornaamItem": "Etunimi" },
+            { "achternaamItem": "Sukunimi" },
+            { "emailadresItem": "Sähköposti" },
+            { "bedrijfItem": "Yritys" },
+            {
+              "telefoonItem": "Puhelin",
+              "optionalItem": "valinnainen"
+            },
+            {
+              "questionItem": "Miten voimme auttaa sinua?",
+              "description": "max 500 merkkiä"
+            }
+          ],
+          "EmployeesPage": {
+            "requiredDocuments": [
+              "Voimassa oleva henkilöllisyystodistus (passi, henkilökortti tai ajokortti; asiakirjanumero ja valokuva voidaan peittää).",
+              "Asiakirja, joka vahvistaa ilmoitetun osoitteesi, kuten väestörekisteriote.",
+              "Kopio pankkikortistasi."
+            ],
+            "informationRequired": [
+              "- Etu- ja sukunimi",
+              "- Syntymäaika",
+              "- Postinumero ja talon numero"
+            ]
+          },
+          "EmployersPage": {
+            "requiredDocuments": [
+              "- Asiakirja, joka vahvistaa annetun osoitteen, kuten virallinen kirje, jossa on osoite ja Y-tunnus.",
+              "- Tarvittaessa täytetty ja allekirjoitettu suoraveloitusvaltakirja.",
+              "- Yhteistyösopimus."
+            ],
+            "informationRequired": [
+              "- Yhteyshenkilön etu- ja sukunimi",
+              "- Yrityksen nimi",
+              "- Y-tunnus"
+            ]
+          }
+        },
+    "privacypolicyPage": {
+      "privacyPolicyEmployee": {
+        "title": "Tietosuojakäytäntö",
+        "subtitle": "Työntekijöille",
+        "introduction": {
+          "heading": "Johdanto",
+          "text": "Tervetuloa Junteriin. Arvostamme luottamustasi ja suhtaudumme yksityisyyteesi vakavasti. Tämä tietosuojakäytäntö on tarkoitettu kertomaan sinulle, kuinka keräämme, käytämme, jaamme ja suojaamme henkilötietojasi, kun käytät alustamme."
+        },
+        "section1": {
+          "heading": "1. Keräämämme tiedot",
+          "text": "Keräämme erilaisia tietoja voidaksemme tarjota ja parantaa palveluitamme.\n\nHenkilötiedot: Etunimi, sukunimi, syntymäaika, sähköpostiosoite, puhelinnumero, osoite, henkilötunnus (hetu), arvonlisäverotunniste (ALV-tunnus) ja pankkitilinumero (IBAN).\nAmmatilliset tiedot: Työkokemus, taidot, koulutus, profiilikuva ja arvostelut.\nAlustan käyttö: Tiedot vuorovaikutuksestasi alustalla, kuten tarjoamasi tai pyytämäsi palvelut, yhteydenpito yrityksiin ja osallistumisesi projekteihin."
+        },
+        "section2": {
+          "heading": "2. Miten käytämme tietojasi",
+          "text": "Käytämme tietojasi seuraaviin tarkoituksiin:\n\nPalvelujen tarjoaminen: Mahdollistaaksemme projektien löytämisen ja vastaanottamisen sekä yritysten mahdollisuuden varata palveluitasi.\nViestintä: Ottaaksemme sinuun yhteyttä tilisi, projektiesi ja muiden asioiden tiimoilta.\nAlustan parantaminen: Analysoidaksemme ja parantaaksemme alustaa ja palveluitamme.\nLakisääteiset velvoitteet: Täyttääksemme lainsäädännölliset ja sääntelyyn liittyvät velvoitteet."
+        },
+        "section3": {
+          "heading": "3. Tietojesi jakaminen",
+          "text": "Jaamme tietojasi kolmansille osapuolille vain, kun se on välttämätöntä palvelujemme toteuttamiseksi, kuten:\n\nYritykset: Jotta he voivat ottaa sinuun yhteyttä ja varata palveluitasi.\nPalveluntarjoajat: Teknisen tuen ja muiden alustamme toimintaa tukevien palvelujen tarjoamiseksi.\nViranomaiset: Mikäli laki velvoittaa meitä luovuttamaan tietojasi."
+        },
+        "section4": {
+          "heading": "4. Tietojesi suojaaminen",
+          "text": "Otamme käyttöön asianmukaisia teknisiä ja organisatorisia toimenpiteitä suojellaksemme tietojasi luvattomalta käytöltä, häviämiseltä, tuhoutumiselta tai muuttamiselta. Pyrkimyksistämme huolimatta emme voi taata internetin kautta tapahtuvan tiedonsiirron täydellistä turvallisuutta."
+        },
+        "section5": {
+          "heading": "5. Säilytysajat",
+          "text": "Säilytämme henkilötietojasi vain niin kauan kuin on tarpeen niiden keräämisen tarkoitusten toteuttamiseksi, ellei pidempi säilytysaika ole laissa edellytetty."
+        },
+        "section6": {
+          "heading": "6. Oikeutesi",
+          "text": "Sinulla on oikeus:\n\nPyytää pääsyä henkilötietoihisi.\nPyytää virheellisten tai puutteellisten tietojen oikaisua.\nPyytää henkilötietojesi poistamista.\nPyytää tietojesi käsittelyn rajoittamista.\nVastustaa tietojesi käsittelyä.\nPyytää tietojesi siirrettävyyttä.\nJos haluat käyttää jotain näistä oikeuksista, ota meihin yhteyttä osoitteessa support@junter.works."
+        },
+        "section7": {
+          "heading": "7. Tietosuojakäytännön muutokset",
+          "text": "Voimme muuttaa tätä tietosuojakäytäntöä ajoittain. Ilmoitamme olennaisista muutoksista julkaisemalla ilmoituksen alustallamme tai ottamalla sinuun yhteyttä suoraan."
+        },
+        "section8": {
+          "heading": "8. Yhteystiedot",
+          "text": "Jos sinulla on kysyttävää tai kommentoitavaa tästä tietosuojakäytännöstä, ota meihin yhteyttä:",
+          "email": "support@junter.works"
+        }
+      }
+    },
+    "termsofusePage": {
+      "tabFreelancers": "Työntekijät",
+      "tabBedrijven": "Yritykset",
+      "termsFreelancers": {
+        "header": "Käyttöehdot",
+        "title": "Työntekijöille",
+        "introduction": {
+          "heading": "Johdanto",
+          "text": "Tervetuloa Junteriin. Käyttämällä alustaamme hyväksyt nämä käyttöehdot. Lue nämä ehdot huolellisesti ennen palveluidemme käyttöä."
+        },
+        "sections": [
+          {
+            "heading": "1. Määritelmät",
+            "text": "Alusta: Junterin verkkoympäristö, johon pääsee verkkosivustomme ja/tai mobiilisovelluksen kautta.\nTyöntekijä: Henkilö, joka rekisteröityy alustalle tarjotakseen palveluja yrityksille.\nYritys: Taho, joka rekisteröityy alustalle pyytääkseen palveluja työntekijöiltä.\nKäyttäjä: Sekä työntekijät että yritykset, jotka käyttävät alustaa."
+          },
+          {
+            "heading": "2. Rekisteröinti ja Tili",
+            "text": "Tilin luominen: Käyttääksesi alustaa sinun on luotava tili rekisteröitymällä.\nTiedot: Vakuutat, että kaikki antamasi tiedot ovat totuudenmukaisia, tarkkoja ja ajan tasalla.\nTurvallisuus: Olet vastuussa tilitietojesi ja salasanasi luottamuksellisuudesta. Emme ole vastuussa menetyksistä tai vahingoista, jotka johtuvat tietojesi suojaamisen laiminlyönnistä."
+          },
+          {
+            "heading": "3. Alustan Käyttö",
+            "text": "Sallittu käyttö: Saat käyttää alustaa vain laillisiin tarkoituksiin näiden ehtojen ja sovellettavan lainsäädännön mukaisesti.\nKielletty käyttö: Alustan käyttö laittomaan toimintaan, roskapostin lähettämiseen tai alustan turvallisuuden rikkomiseen on kielletty."
+          },
+          {
+            "heading": "4. Palvelut ja Maksut",
+            "text": "Palvelujen tarjoaminen: Työntekijät voivat tarjota palveluitaan alustan kautta. Yritykset voivat varata ja ostaa näitä palveluja.\nMaksut: Maksut käsitellään alustan kautta. Tarkat maksuehdot sovitaan työntekijän ja yrityksen välillä.\nPalvelumaksut: Varaamme oikeuden veloittaa palvelumaksuja alustan käytöstä. Maksut ilmoitetaan selkeästi ennen palvelun tilaamista."
+          },
+          {
+            "heading": "5. Peruutukset ja Riidat",
+            "text": "Peruutukset: Peruutusehdot sovitaan työntekijän ja yrityksen välillä. Suosittelemme selkeitä peruutusehtoja.\nRiidat: Riidat tulee ratkaista osapuolten välillä. Tarjoamme tukea, mutta emme vastaa lopputuloksesta."
+          },
+          {
+            "heading": "6. Vastuu",
+            "text": "Vastuunrajoitus: Vapautat Junterin kaikesta vastuusta, vaatimuksista ja kustannuksista, jotka johtuvat alustan käytöstäsi.\nRajoitettu vastuu: Emme vastaa epäsuorista, satunnaisista tai erityisistä vahingoista, mukaan lukien tulon tai tiedon menetys."
+          },
+          {
+            "heading": "7. Immateriaalioikeudet",
+            "text": "Omistusoikeus: Kaikki alustan ja sen sisällön immateriaalioikeudet kuuluvat Junterille tai sen lisenssinantajille.\nKäyttö: Voit käyttää alustan sisältöä vain henkilökohtaiseen ja ei-kaupalliseen tarkoitukseen, ellei muuta ole sovittu."
+          },
+          {
+            "heading": "8. Tilin Päättäminen",
+            "text": "Käyttäjän päättäminen: Voit milloin tahansa lopettaa tilisi ottamalla meihin yhteyttä.\nJunterin päättäminen: Varaamme oikeuden sulkea tilisi tai estää pääsysi alustalle, jos rikot näitä ehtoja."
+          },
+          {
+            "heading": "9. Ehtojen Muutokset",
+            "text": "Saatamme muuttaa näitä ehtoja ajoittain. Ilmoitamme olennaisista muutoksista alustalla tai ottamalla sinuun suoraan yhteyttä. Jatkamalla alustan käyttöä hyväksyt muutetut ehdot."
+          },
+          {
+            "heading": "10. Sovellettava Laki",
+            "text": "Näitä ehtoja säätelee ja tulkitaan Suomen lakien mukaisesti. Kaikki näihin ehtoihin liittyvät riidat käsitellään toimivaltaisessa tuomioistuimessa Helsingissä, Suomessa."
+          }
+        ],
+        "contact": {
+          "heading": "Yhteystiedot",
+          "text": "Jos sinulla on kysymyksiä tai huomautuksia, ota meihin yhteyttä:",
+          "emails": [
+            "support@junter.works",
+            "billing@junter.works"
+          ]
+        }
+      },
+          "AVbedrijven": {
+            "header": "Yleiset ehdot",
+            "title": "Yrityksille",
+            "hoofdstukken": [
+              {
+                "titel": "1. Johdanto",
+                "inhoud": [
+                  "Tervetuloa Junteriin. Näitä yleisiä ehtoja (\"Ehdot\", \"Sopimus\") sovelletaan palveluidemme, tuotteidemme ja verkkosivustomme www.junter.eu käyttöön. Käyttämällä palvelujamme hyväksyt nämä ehdot. Jos et hyväksy näitä ehtoja, älä käytä palvelujamme."
+                ]
+              },
+              {
+                "titel": "2. Määritelmät",
+                "inhoud": [
+                  "Asiakas: Yksikkö, joka tekee sopimuksen Yrityksen kanssa saadakseen palveluja.",
+                  "Palvelut: Kaikki tuotteet, palvelut ja tuki, jotka Yritys toimittaa.",
+                  "Sopimus: Nämä ehdot ja kaikki muut kirjallisesti sovitut ehdot Yrityksen ja Asiakkaan välillä."
+                ]
+              },
+              {
+                "titel": "3. Palvelut",
+                "subsecties": [
+                  {
+                    "subtitel": "3.1 Palvelujen toimitus",
+                    "inhoud": "Yritys sitoutuu toimittamaan palvelut sovitun sopimuksen tai tilauslomakkeen mukaisesti. Palvelujen laajuus, kesto ja hinnat määritellään sopimuksessa tai tilauslomakkeessa."
+                  },
+                  {
+                    "subtitel": "3.2 Palvelujen muutokset",
+                    "inhoud": "Yrityksellä on oikeus muuttaa, keskeyttää tai lopettaa palvelujen osia milloin tahansa, ilmoittamalla tai ilmoittamatta, edellyttäen, että muutokset eivät olennaisesti vaikuta Asiakkaalle toimitettujen palvelujen laatuun."
+                  }
+                ]
+              },
+              {
+                "titel": "4. Maksuehdot",
+                "subsecties": [
+                  {
+                    "subtitel": "4.1 Maksut",
+                    "inhoud": "Asiakas sitoutuu maksamaan palveluista sovitut maksut sopimuksessa tai tilauslomakkeessa määritellyllä tavalla. Kaikki maksut ovat palauttamattomia, ellei toisin mainita."
+                  },
+                  {
+                    "subtitel": "4.2 Laskutus ja maksaminen",
+                    "inhoud": "Laskut toimitetaan sopimuksessa määritellyn maksuaikataulun mukaisesti. Maksu on suoritettava 14 päivän kuluessa laskun päiväyksestä, ellei kirjallisesti toisin sovita."
+                  },
+                  {
+                    "subtitel": "4.3 Myöhästyneet maksut",
+                    "inhoud": "Myöhästyneet maksut voivat aiheuttaa 5,2 %:n kuukausikoron tai lain salliman enimmäiskoron, sen mukaan kumpi on alempi. Yrityksellä on oikeus keskeyttää palvelut, kunnes maksu on saatu kokonaisuudessaan."
+                  }
+                ]
+              },
+              {
+                "titel": "5. Luottamuksellisuus",
+                "subsecties": [
+                  {
+                    "subtitel": "5.1 Luottamuksellinen tieto",
+                    "inhoud": "Osapuolet sitoutuvat pitämään luottamuksellisina kaikki sopimuksen aikana annetut omistusoikeudelliset tai luottamukselliset tiedot. Luottamuksellinen tieto voi sisältää muun muassa liiketoimintastrategioita, taloustietoja ja asiakastietoja."
+                  },
+                  {
+                    "subtitel": "5.2 Salassapito",
+                    "inhoud": "Kumpikaan osapuoli ei saa paljastaa toisen osapuolen luottamuksellista tietoa kolmansille osapuolille ilman etukäteen annettua kirjallista suostumusta, paitsi jos laki sitä vaatii."
+                  }
+                ]
+              },
+              {
+                "titel": "6. Immateriaalioikeudet",
+                "subsecties": [
+                  {
+                    "subtitel": "6.1 Omistus",
+                    "inhoud": "Kaikki palvelujen immateriaalioikeudet, mukaan lukien ohjelmisto, sisältö ja tavaramerkit, ovat Yrityksen tai sen lisenssinantajien omaisuutta. Asiakas saa ei-yksinomaisen, ei-siirrettävän käyttöoikeuden palveluihin sopimuksen voimassaoloaikana."
+                  },
+                  {
+                    "subtitel": "6.2 Asiakastiedot",
+                    "inhoud": "Asiakas säilyttää omistusoikeuden kaikkiin Yritykselle toimitettuihin tietoihin palveluiden yhteydessä. Yrityksellä on oikeus käyttää, kopioida ja muokata tietoja yksinomaan palvelujen tarjoamista varten."
+                  }
+                ]
+              },
+              {
+                "titel": "7. Takuut ja vastuu",
+                "subsecties": [
+                  {
+                    "subtitel": "7.1 Takuut",
+                    "inhoud": "Yritys takaa, että palvelut suoritetaan ammattitaitoisesti ja asiantuntevasti."
+                  },
+                  {
+                    "subtitel": "7.2 Vastuunrajoitukset",
+                    "inhoud": "Ellei näissä ehdoissa nimenomaisesti toisin mainita, palvelut tarjotaan \"sellaisina kuin ne ovat\" ilman mitään nimenomaisia tai epäsuoria takuita."
+                  }
+                ]
+              },
+              {
+                "titel": "8. Vastuun rajoittaminen",
+                "inhoud": [
+                  "Sovellettavan lain sallimissa rajoissa Yritys ei ole vastuussa epäsuorista, satunnaisista, erityisistä, seuraamuksellisista tai rangaistavista vahingoista, mukaan lukien voiton, tulojen, tietojen tai goodwillin menetyksestä, jotka johtuvat (i) palvelujen käytöstä tai niiden kykenemättömyydestä; (ii) luvattomasta pääsystä palvelimiimme tai niissä oleviin henkilötietoihin."
+                ]
+              },
+              {
+                "titel": "9. Kesto ja irtisanominen",
+                "subsecties": [
+                  {
+                    "subtitel": "9.1 Kesto",
+                    "inhoud": "Tämä sopimus astuu voimaan alkamispäivänä, joka on määritelty sopimuksessa, ja pysyy voimassa, kunnes se päätetään näiden ehtojen mukaisesti."
+                  },
+                  {
+                    "subtitel": "9.2 Irtisanominen ilman syytä",
+                    "inhoud": "Kumpi tahansa osapuoli voi irtisanoa sopimuksen mistä tahansa syystä ilmoittamalla asiasta kirjallisesti 14 päivää etukäteen."
+                  },
+                  {
+                    "subtitel": "9.3 Irtisanominen syystä",
+                    "inhoud": "Kumpi tahansa osapuoli voi irtisanoa sopimuksen välittömästi, jos toinen osapuoli rikkoo olennaisesti sopimusta eikä korjaa rikkomusta 14 päivän kuluessa kirjallisesta ilmoituksesta."
+                  }
+                ]
+              },
+              {
+                "titel": "10. Sovellettava laki ja riitojen ratkaisu",
+                "subsecties": [
+                  {
+                    "subtitel": "10.1 Sovellettava laki",
+                    "inhoud": "Tähän sopimukseen sovelletaan Alankomaiden lakia, lukuun ottamatta sen lainvalintasääntöjä."
+                  },
+                  {
+                    "subtitel": "10.2 Riitojen ratkaisu",
+                    "inhoud": "Kaikki tästä sopimuksesta johtuvat tai siihen liittyvät riidat ratkaistaan ensisijaisesti osapuolten välisillä hyväntahtoisilla neuvotteluilla. Mikäli neuvottelut epäonnistuvat, riita ratkaistaan välimiesmenettelyssä tai sovittelussa Helsinki."
+                  }
+                ]
+              },
+              {
+                "titel": "11. Sekalaiset ehdot",
+                "subsecties": [
+                  {
+                    "subtitel": "11.1 Koko sopimus",
+                    "inhoud": "Tämä sopimus muodostaa koko sopimuksen osapuolten välillä ja korvaa kaikki aiemmat suulliset tai kirjalliset sopimukset ja järjestelyt sen aiheesta."
+                  },
+                  {
+                    "subtitel": "11.2 Muutokset",
+                    "inhoud": "Tätä sopimusta voidaan muuttaa vain molempien osapuolten kirjallisesti allekirjoittamalla asiakirjalla."
+                  },
+                  {
+                    "subtitel": "11.3 Erottaminen",
+                    "inhoud": "Jos jokin tämän sopimuksen määräys todetaan mitättömäksi tai täytäntöönpanokelvottomaksi, jäljellä olevat määräykset pysyvät voimassa."
+                  },
+                  {
+                    "subtitel": "11.4 Luopuminen",
+                    "inhoud": "Sopimuksen oikeuksien tai ehtojen täytäntöönpanon laiminlyönti ei merkitse luopumista kyseisestä oikeudesta tai ehdosta."
+                  }
+                ]
+              }
+            ],
+            "contact": {
+              "titel": "Yhteystiedot",
+              "inhoud": "Jos sinulla on kysyttävää tai kommentoitavaa, ota meihin yhteyttä:",
+              "email1": "support@junter.works",
+              "email2": "billing@junter.works"
+            }
+          }
+    }
+  },
+    "footer": {
+      "navLinks": [
+        {
+          "title": "Työntekijät",
+          "links": ["Miten se toimii?", "Löydä töitä", "Yhteystiedot"],
+          "href": ["../employees", "../sign-up", "../contact"]
+        },
+        {
+          "title": "Työnantajat",
+          "links": ["Hinnat", "Löydä työntekijöitä", "API-integraatio"],
+          "href": ["../pricing", "../sign-up", "../employers"]
+        },
+        {
+          "title": "Junter",
+          "links": ["Meistä", "Urat", "Yhteistyökumppanit"],
+          "href": ["../junter", "../junter", "../notfound"]
+        },
+        {
+          "title": "Laillinen",
+          "links": ["Tietosuojakäytäntö", "Käyttöehdot", "Yhteystiedot"],
+          "href": ["../pp", "../tou", "../contact"]
+        }
+      ],
+      "subscriptionCTA": {
+        "headText": "Tilaa uutiskirjeemme",
+        "subText": "Saat viikoittain yhteenvedon (uusista) töistä alueellasi ja pysyt ajan tasalla viimeisimmistä uutisista!",
+        "placeholderText": "Syötä sähköpostiosoitteesi",
+        "button": "Tilaa"
+      },
+      "footerText": "© 2025 Junter. Kaikki oikeudet pidätetään."
+    },
+    "dashboard": {
+        "werknemersPage": {
+          "BentoGrid": {
+            "headTitle": "Julkaise nopeammin",
+            "subTitle": "Kaikki, mitä tarvitset sovelluksesi julkaisuun",
+            "gridTitles": [
+              "Hallintapaneeli",
+              "Profiili",
+              "Tulevat tapahtumat",
+              "Toiminnot",
+              "Talous"
+            ],
+            "shiftsDashboard": {
+              "items": [
+                {
+                  "title": "Ilmoittautumiset",
+                  "icon": "ClockIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-teal-50",
+                  "IconForeGround": "text-teal-700"
+                },
+                {
+                  "title": "Hakemukset",
+                  "icon": "CheckBadgeIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-purple-50",
+                  "IconForeGround": "text-purple-700"
+                },
+                {
+                  "title": "Vuorot",
+                  "icon": "AcademicCapIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-sky-50",
+                  "IconForeGround": "text-sky-700"
+                },
+                {
+                  "title": "Palvelut",
+                  "icon": "ReceiptRefundIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-rose-50",
+                  "IconForeGround": "text-rose-700"
+                },
+                {
+                  "title": "Joustavat tiimit",
+                  "icon": "UsersIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-indigo-50",
+                  "IconForeGround": "text-indigo-700"
+                },
+                {
+                  "title": "Laskut",
+                  "icon": "BanknotesIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-yellow-50",
+                  "IconForeGround": "text-yellow-700"
+                }
+              ],
+              "RandomTekst": "Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae."
+            },
+            "Checkouts": {
+              "zeroFoundText": "Ei palveluita tai kassatoimia löytynyt"
+            },
+            "Financien": {
+              "headTitle": "Laskut",
+              "subtitle": "Yhteenveto kaikista laskuistasi ja palkkalaskelmistasi.",
+              "ColumnTitles": [
+                "Lasku/Palkkalaskelma ID",
+                "Viikko",
+                "Vuoro/Palvelu",
+                "Summa",
+                "Tila"
+              ],
+              "button": "Lataa"
+            },
+            "profiel": {
+              "headTitle": "Profiili",
+              "subTitle": "Käyntikorttisi työnantajille.😉",
+              "ProfielFotoButton": "Muokkaa profiilikuvaa",
+              "placeholderTextButton": "JPG, GIF tai PNG. Max 1MB.",
+              "formItems": [
+                "Nimi",
+                "Sähköposti",
+                "Puhelinnumero",
+                "Syntymäaika",
+                "Katuosoite",
+                "Talon numero",
+                "Verovähennys",
+                "Pienten yritysten järjestelmä"
+              ],
+              "werkervaring": {
+                "headTitle": "Työkokemus",
+                "subTitle": "Lisää työkokemus",
+                "button": "Muokkaa"
+              },
+              "opleiding": {
+                "headTitle": "Koulutus",
+                "subTitle": "Lisää koulutus",
+                "button": "Muokkaa"
+              },
+              "taalendata": {
+                "headTitle": "Kieli ja päivämäärä",
+                "subTitle": "Valitse kieli- ja päivämääräasetukset",
+                "formItems": [
+                  "Kieli",
+                  "Päivämäärän muoto"
+                ],
+                "button": "Muokkaa",
+                "dataLabel": "Automaattinen aikavyöhyke"
+              }
+            },
+            "UpcomingEvents": {
+              "text1": "Aloitusaika",
+              "text2": "Lopetusaika",
+              "currencySign": "€"
+            }
+          },
+          "Calender": {
+            "calender": {
+              "navigation": [
+                { "name": "Päivä", "value": "Päivä" },
+                { "name": "Viikko", "value": "Viikko" },
+                { "name": "Kuukausi", "value": "Kuukausi" },
+                { "name": "Vuosi", "value": "Vuosi" }
+              ],
+              "buttons": [
+                "Saatavuus",
+                "Tänään"
+              ]
+            },
+            "Dag": {
+              "tekst1": "miehitys",
+              "tekst2": "Ei vuoroja saatavilla tälle vuorolle.",
+              "button": "Poista"
+            },
+            "Week": {
+              "button": "Tänään"
+            },
+            "Maand": {
+              "button": "Tänään"
+            },
+            "Jaar": {
+              "button": "Tänään"
+            }
+          },
+          "Dashboard": {
+            "DashboardingLoading": {
+              "tekst1": " Ladataan...",
+              "tekst2": "Toivottavasti ei kestä kauaa 🙂🚀"
+            },
+            "headTitle": "Hallintapaneeli",
+            "navigation": [
+              { "name": "Etusivu", "value": "Etusivu" },
+              { "name": "Kalenteri", "value": "Kalenteri" },
+              { "name": "Vuorot", "value": "Vuorot" },
+              { "name": "Joustavat tiimit", "value": "Joustavat tiimit" },
+              { "name": "Talous", "value": "Talous" }
+            ],
+            "UserNavigation": [
+              { "name": "Asetukset", "value": "Asetukset" },
+              { "name": "Usein kysytyt kysymykset", "value": "Usein kysytyt kysymykset" },
+              { "name": "Kirjaudu ulos", "value": "Kirjaudu ulos" }
+            ]
+          },
+          "Explore": {
+            "tabs": [
+              "Vuorot",
+              "Työpaikat"
+            ],
+            "ShiftPagina": {
+              "headTitle": "Vuorot",
+              "NoShifts": "Ei vuoroja saatavilla"
+            },
+            "VacaturePagina": {
+              "headTitle": "Työpaikat",
+              "NoVacatures": "Ei työpaikkoja saatavilla"
+            },
+            "filter": [
+              "Etäisyys",
+              "Hinta"
+            ],
+            "buttons": [
+              "Hae",
+              "Nollaa"
+            ]
+          },
+          "FAQ": {
+            "headTitle:": "Usein kysytyt kysymykset"
+          },
+          "Financien": {
+            "Facturen": {
+              "headTitle": "Laskut",
+              "noInvoices": "Ei laskuja löytynyt"
+            },
+            "Loonstroken": "Palkkalaskelmat",
+            "noPyaslips": "Ei palkkalaskelmia löytynyt"
+          },
+          "Flexpool": {
+            "Flexpools": {
+              "headTitle": "Joustavat tiimit",
+              "NoFlexpools": "Ei joustavia tiimejä löytynyt"
+            },
+            "Favorieten": {
+              "headTitle": "Suosikit",
+              "noFavorieten": "Ei suosikkeja löytynyt"
+            }
+          },
+          "Profiel": {
+            "ProfielItems": [
+              "Nimi",
+              "Syntymäaika",
+              "Sähköpostiosoite",
+              "Arvostelut",
+              "Vuorot",
+              "Palvelut"
+            ]
+          },
+          "Shifts": {
+            "tabs": [
+              "Ilmoittautunut",
+              "Hyväksytty",
+              "Suoritettu"
+            ],
+            "texts": [
+              {
+                "headTitleShifts": "Ilmoittautuneet vuorot",
+                "headTitleVacatures": "Ilmoittautuneet palvelut",
+                "NoShifts": "Ei vuoroja saatavilla",
+                "NoVacatures": "Ei työpaikkoja saatavilla"
+              },
+              {
+                "headTitleShifts": "Hyväksytyt vuorot",
+                "headTitleVacatures": "Hyväksytyt palvelut",
+                "NoShifts": "Ei vuoroja saatavilla",
+                "NoVacatures": "Ei työpaikkoja saatavilla"
+              },
+              {
+                "headTitleShifts": "Suoritetut vuorot",
+                "headTitleVacatures": "Suoritetut palvelut",
+                "NoShifts": "Ei vuoroja saatavilla",
+                "NoVacatures": "Ei työpaikkoja saatavilla"
+              }
+            ]
+          }
+        },
+        "werkgeversPage": {
+          "Dashboard": {
+            "headTitle": "Hallintapaneeli",
+            "texts": [
+              {
+                "name": "Työpaikat",
+                "notFound": "Ei työpaikkoja löytynyt"
+              },
+              {
+                "name": "Julkaistut vuorot",
+                "notFound": "Ei vuoroja löytynyt"
+              },
+              {
+                "name": "Check-outit",
+                "notFound": "Ei check-outeja löytynyt"
+              },
+              {
+                "name": "Julkaisemattomat vuorot",
+                "notFound": "Ei vuoroja löytynyt"
+              },
+              {
+                "name": "Joustavat tiimit",
+                "notFound": "Ei joustavia tiimejä löytynyt",
+                "modal": {
+                  "title": "Luo joustava tiimi",
+                  "subTitle": "Luo joustava tiimi",
+                  "buttons": [
+                    "Peruuta",
+                    "Lisää"
+                  ]
+                }
+              },
+              {
+                "name": "Laskut",
+                "notFound": "Ei laskuja löytynyt"
+              },
+              {
+                "name": "Vuorot",
+                "attributes": [
+                  "ilmoittautumiset",
+                  "paikat",
+                  "hyväksytty"
+                ],
+                "localDateString": "fi-FI",
+                "noDate": "päivämäärä ei saatavilla"
+              },
+              {
+                "name": "Check-outit",
+                "attributes": [
+                  { "currencySign": "€" },
+                  "päivämäärä",
+                  "taukominuutit"
+                ],
+                "buttons": [
+                  "Hyväksy",
+                  "Hylkää"
+                ],
+                "localDateString": "fi-FI",
+                "noDate": "päivämäärä ei saatavilla"
+              },
+              {
+                "name": "Laskut",
+                "attributes": [
+                  "vuoro",
+                  "vuorot",
+                  "maksettu",
+                  "avoinna",
+                  { "currencySign": "€" }
+                ],
+                "localDateString": "fi-FI",
+                "noDate": "päivämäärä ei saatavilla"
+              }
+            ]
+          },
+          "Veelgesteldevragen": {
+            "headTitle": "Usein kysytyt kysymykset"
+          },
+          "Calender": {
+            "calender": {
+              "navigation": [
+                {
+                  "name": "Päivä",
+                  "value": "Päivä"
+                },
+                {
+                  "name": "Viikko",
+                  "value": "Viikko"
+                },
+                {
+                  "name": "Kuukausi",
+                  "value": "Kuukausi"
+                },
+                {
+                  "name": "Vuosi",
+                  "value": "Vuosi"
+                }
+              ],
+              "buttons": [
+                "Julkaise vuoro",
+                "Julkaise työpaikka",
+                "Saatavuus",
+                "Tänään"
+              ]
+            },
+            "Dag": {
+              "tekst1": "miehitys",
+              "tekst2": "Ei vuoroja saatavilla tälle päivälle.",
+              "tekst3": "Aikataulu kenelle",
+              "button": "Poista"
+            },
+            "Week": {
+              "button": "Tänään"
+            },
+            "Maand": {
+              "button": "Tänään",
+              "Aanmeldingen": "ilmoittautumiset",
+              "Reserveren": "varata",
+              "Aangenomen": "hyväksytty"
+            },
+            "Jaar": {
+              "button": "Tänään",
+              "Wijzig": "Muokkaa",
+              "Bekijk": "Näytä",
+              "Plek": "Avoin paikka",
+              "Plekken": "Avoimet paikat"
+            }
+          }
+        }
+    },
+    "components": {
+        "cards": {
+          "ApplicationCard": {
+            "typeJob": "Joustotyö",
+            "shifts": "palvelut",
+            "localDateString": "fi-FI",
+            "ToastMessage1": "Hakemus peruttu",
+            "Toastmessage2": "Toiminto ei ole sallittu!"
+          },
+          "CheckoutCard": {
+            "ToastMessage1": "Checkout lähetetty! 👍",
+            "Toastmessage2": "Toiminto ei ole sallittu! ❌",
+            "localDateString": "fi-FI",
+            "gewerkteUren": "Tehdyt tunnit: ",
+            "minPauze": "minuuttia taukoa",
+            "accepteren": "Hyväksy",
+            "weigeren": "Hylkää",
+            "currencySign": "€",
+            "shift_statussen": [
+              "saatavilla",
+              "ilmoittautunut",
+              "hyväksytty",
+              "checkout hylätty",
+              "checkout hyväksytty",
+              "checkout lähetettävä",
+              "hylätty"
+            ]
+          },
+          "FlexpoolCard": {
+            "hvl_freelancers": "freelancerit",
+            "hvl_shifts": "vuorot",
+            "shift": "vuoro"
+          },
+          "InvoiceCard": {
+            "week": "viikko",
+            "hvl_shifts": "vuorot",
+            "shift": "vuoro",
+            "currencySign": "€",
+            "voldaan": "maksettu",
+            "openstaand": "avoinna"
+          },
+          "JobCard": {
+            "ToastMessage1": "Peruutettu palvelusta!",
+            "Toastmessage2": "Toiminto ei ole sallittu!",
+            "localDateString": "fi-FI",
+            "currencySign": "€",
+            "pauze": "min tauko"
+          },
+          "ShiftArrayCard": {
+            "localDateString": "fi-FI",
+            "currencySign": "€"
+          },
+          "ShiftCard": {
+            "ToastMessage1": "Peruutettu vuorosta!",
+            "Toastmessage2": "Toiminto ei ole sallittu!",
+            "localDateString": "fi-FI",
+            "currencySign": "€",
+            "shift_statussen": [
+              "saatavilla",
+              "ilmoittautunut",
+              "hyväksytty",
+              "checkout hylätty",
+              "checkout hyväksytty",
+              "checkout lähetettävä",
+              "hylätty"
+            ]
+          },
+          "VacancyCard": {
+            "localDateString": "fi-FI",
+            "currencySign": "€",
+            "hvl_shifts": "palvelut",
+            "hvl_sollicitaties": "hakemukset",
+            "kledingvoorschriften": [
+              "pukukoodi",
+              "pukukoodit"
+            ],
+            "vaardigeheden": [
+              "taito",
+              "taidot"
+            ],
+            "voor": "alkaen",
+            "tot": "asti"
+          }
+        },
+        "forms": {
+          "CompanyForm": {
+            "steps": [
+              {
+                "id": "1",
+                "name": "Tiedot",
+                "fields": [
+                  "Etunimi",
+                  "Liite",
+                  "Sukunimi",
+                  "Y-tunnus"
+                ]
+              },
+              {
+                "id": "2",
+                "name": "Profiili",
+                "fields": [
+                  "Näyttönimi",
+                  "Profiilikuva",
+                  "Esittely"
+                ]
+              },
+              {
+                "id": "3",
+                "name": "Valmis"
+              }
+            ],
+            "headTitle": "Yrityksen tiedot",
+            "subTitle": "Täytä yrityksesi käyntikortin tiedot tähän.",
+            "bioSubtitle": "Mitä toimeksiantajat saavat tietää yrityksestä?",
+            "final_page_header": "Tervetuloa Junteriin!",
+            "final_page_subtitle": "Olet valmis! Klikkaa 'Valmis' viimeistelläksesi prosessin.",
+            "buttons": [
+              "Edellinen",
+              "Seuraava",
+              "Valmis"
+            ],
+            "location": "Maa",
+            "formItems": [
+              "Y-tunnus",
+              "Yhteyshenkilön nimi / ylläpitäjä",
+              "Postinumero",
+              "Talon numero",
+              "Katuosoite",
+              "Kaupunki",
+              "Sähköpostiosoite",
+              "Puhelinnumero",
+              "ALV-tunnus",
+              "IBAN",
+              "Näyttönimi",
+              "Esittely",
+              "Profiilikuva"
+            ],
+            "optioneel": "valinnainen"
+          },
+          "EmployeeForm": {
+            "steps": [
+              {
+                "id": "1",
+                "name": "Henkilötiedot",
+                "fields": [
+                  "Etunimi",
+                  "Liite",
+                  "Sukunimi",
+                  "Syntymäaika",
+                  "Maa",
+                  "Sosiaaliturvatunnus"
+                ]
+              },
+              {
+                "id": "2",
+                "name": "Yritystiedot",
+                "fields": [
+                  "Y-tunnus",
+                  "ALV-tunnus",
+                  "Postinumero",
+                  "Talon numero",
+                  "Kaupunki",
+                  "Katuosoite"
+                ]
+              },
+              {
+                "id": "3",
+                "name": "Profiili",
+                "fields": [
+                  "Esittely",
+                  "Profiilikuva",
+                  "CV"
+                ]
+              },
+              {
+                "id": "4",
+                "name": "Valmis"
+              }
+            ],
+            "headTitle": "Henkilötiedot",
+  "subTtitle": "Täytä henkilötietosi.",
+  "head2Title": "Yritystiedot",
+  "sub2Title": "Täytä yritystietosi.",
+  "head3Title": "Profiili",
+  "sub3Title": "Käyntikorttisi asiakkaille. 😁👋",
+  "Location": "Maa",
+  "final_page_header": "Valmista! Klikkaa 'Viimeistele' suorittaaksesi prosessin loppuun.",
+  "compleet": "Valmis",
+  "formItems": [
+    "Etunimi",
+    "Sukunimiliite",
+    "Sukunimi",
+    "Syntymäaika",
+    "Talonnumerö",
+    "Postinumero",
+    "Katuosoite",
+    "Kaupunki",
+    "ALV-tunnus",
+    "IBAN",
+    "Esittelyteksti",
+    "Profiilikuva"
+  ],
+            "buttons": [
+              "Edellinen",
+              "Seuraava",
+              "Valmis"
+            ]
+          },
+          "ShiftForm": {
+            "ToastMessage1": "Julkaisematon vuoro luotu! 👍",
+            "Toastmessage2": "Toiminto ei ole sallittu! ❌",
+            "ToastMessage3": "Julkaisemattoman vuoron luominen epäonnistui:",
+            "selectShifts": "Valitse vuoro",
+            "formItems": [
+              "Otsikko",
+              "Tehtävä",
+              "Kuva",
+              "Tuntipalkka",
+              "Osoite",
+              "Aloituspäivä",
+              "Päättymispäivä",
+              "Päättymisaika",
+              "Aloitusaika",
+              "Tauko",
+              "Kuvaus",
+              "Taidot",
+              "Pukeutumiskoodi",
+              "lisää vuoro joustavaan tiimiin"
+            ],
+            "PlaceholderTexts": [
+              "etsimme innokkaita ravintola-alan osaajia",
+              "kuvaus",
+              "osoite",
+              "aloitusaika",
+              "päättymisaika",
+              "14",
+              "paikkaa",
+              "suomi, englanti, kolmen lautasen kantaminen, tarjottimen käyttö, viinien esittely ja tarjoilu, tilausten vastaanotto",
+              "mustat kengät, mustat housut, valkoinen kauluspaita"
+            ],
+            "buttonsTitle": [
+              "luodaan vuoro...",
+              "luo vuoro",
+              "julkaistaan vuoro...",
+              "julkaise vuoro",
+              "päivitä vuoro...",
+              "päivitä vuoro"
+            ]
+          },
+          "VacancyForm": {
+            "steps": [
+              {
+                "id": 1,
+                "name": "Työpaikan tiedot",
+                "fields": [
+                  "otsikko",
+                  "tehtävä",
+                  "kuvaus",
+                  "osoite",
+                  "pukeutumiskoodi",
+                  "taidot",
+                  "kuva"
+                ]
+              },
+              {
+                "id": 2,
+                "name": "Osoite",
+                "fields": [
+                  "postinumero",
+                  "talon numero",
+                  "kadunnimi",
+                  "kaupunki"
+                ]
+              },
+              {
+                "id": 3,
+                "name": "Päivämäärät",
+                "fields": [
+                  "aloituspäivä",
+                  "päättymispäivä",
+                  "aloitusaika",
+                  "päättymisaika"
+                ]
+              },
+              {
+                "id": 4,
+                "name": "Palkka",
+                "fields": [
+                  "tuntipalkka",
+                  "lisä",
+                  "lisätyyppi",
+                  "lisäprosentti"
+                ]
+              },
+              {
+                "id": 5,
+                "name": "Valmis"
+              }
+            ],
+            "titles": [
+              {
+                "headTitle": "Työpaikan tiedot",
+                "subTitle": "Kuvaile työpaikka"
+              },
+              {
+                "headTitle": "Osoite",
+                "subTitle": "Missä työ suoritetaan?"
+              },
+              {
+                "headTitle": "Päivämäärät",
+                "subTitle": "Mille päiville ja ajoille etsit työntekijöitä?"
+              },
+              {
+                "headTitle": "Palkka",
+                "subTitle": "Mitä työntekijä ansaitsee?"
+              }
+            ],
+            "placeholderTexts": [
+              "suomi, englanti, kolmen lautasen kantaminen, tarjottimen käyttö, viinien esittely ja tarjoilu, tilausten vastaanotto",
+              "mustat kengät, mustat housut, valkoinen kauluspaita"
+            ],
+            "buttons": [
+              "Edellinen",
+              "Seuraava",
+              "Valmis"
+            ],
+            "formItems": [
+              "otsikko",
+              "tehtävä",
+              "kuvaus",
+              "kuva",
+              "taidot",
+              "pukukoodi"
+            ],
+            "locatie": {
+              "fieldLabels": [
+                "Talon numero",
+                "Postinumero",
+                "Kaupunki",
+                "Kadunnimi"
+              ]
+            },
+            "data": {
+              "fieldLabels": [
+                "Täytä työajat",
+                "Aloituspäivä",
+                "Päättymispäivä",
+                "Aloitusaika",
+                "Päättymisaika",
+                "Tauko (minuuttia)"
+              ],
+              "buttons": [
+                "Poista",
+                "Lisää työaika",
+                "Lähetä"
+              ]
+            },
+            "salaris": {
+              "fieldLabels": [
+                "tuntipalkka (€)",
+                "lisä",
+                "Lisän käyttö",
+                "Lisätyyppi",
+                "Valitse",
+                "Valitse lisätyyppi",
+                "Alkaen",
+                "Päättyen"
+              ],
+              "typeToeslag": [
+                "Arkipäivä",
+                "Lauantai",
+                "Sunnuntai"
+              ],
+              "percentageToeslag": [
+                "125%",
+                "150%",
+                "200%",
+                "Lisämaksun prosentti"
+              ],
+              "currencySign": "(€)"
+            }
+          },
+          "AvailabilityForm": {
+            "headTitle": "Saatavuuden yhteenveto",
+            "Dates": "Päivät",
+            "Times": "Ajat",
+            "Categories": "Kategoriat",
+            "Distance": "Etäisyys",
+            "subTitle": "Ilmoita saatavuutesi",
+            "Section1": {
+              "HeadTitles": ["Päivät", "Ajat"],
+              "subTitle": "Milloin olet käytettävissä?",
+              "formItems": ["Yksi päivä", "Useita päiviä"]
+            },
+            "Section2": {
+              "HeadTitles": ["Kategoriat", "Etäisyys"],
+              "subTitles": ["Valitse kategoriat", "Valitse etäisyys"],
+              "formItems": [
+                "Kategoria",
+                "Alakategoria",
+                "Nykyinen osoitteeni",
+                "Toinen osoite",
+                "Ei väliä"
+              ],
+              "placeholderTexts": ["Talon numero", "Postinumero", "Katu", "Kaupunki"]
+            },
+            "CancelModal": {
+              "headText": "Peruuta muutokset",
+              "subText": "Haluatko varmasti peruuttaa? Kaikki muutokset menetetään."
+            },
+            "Buttons": [
+              "Peruuta",
+              "Lähetä",
+              "Kyllä, peruuta muutokset",
+              "Ei, jatka"
+            ]
+          }
+        },
+        "navigation": {
+          "Footer": {
+            "navigation": [
+              {
+                "name": "Työntekijät",
+                "links": [
+                  {
+                    "name": "Miten se toimii",
+                    "href": "/employees"
+                  },
+                  {
+                    "name": "Löydä työtä",
+                    "href": "/sign-up"
+                  },
+                  {
+                    "name": "Yhteystiedot",
+                    "href": "/contact"
+                  }
+                ]
+              },
+              {
+                "name": "Työnantajat",
+                "links": [
+                  {
+                    "name": "Hinnat",
+                    "href": "/pricing"
+                  },
+                  {
+                    "name": "Löydä työntekijöitä",
+                    "href": "/sign-up"
+                  },
+                  {
+                    "name": "UKK",
+                    "href": "/faq"
+                  }
+                ]
+              },
+              {
+                "name": "Junter",
+                "links": [
+                  {
+                    "name": "Tietoa meistä",
+                    "href": "/junter"
+                  },
+                  {
+                    "name": "Työpaikat",
+                    "href": "/junter"
+                  },
+                  {
+                    "name": "Yhteistyökumppanit",
+                    "href": "/junter"
+                  }
+                ]
+              },
+              {
+                "name": "Lakisääteinen",
+                "links": [
+                  {
+                    "name": "Yhteystiedot",
+                    "href": "/contact"
+                  },
+                  {
+                    "name": "Tietosuojakäytäntö",
+                    "href": "/pp"
+                  },
+                  {
+                    "name": "Käyttöehdot",
+                    "href": "/tou"
+                  }
+                ]
+              }
+            ]
+          },
+          "Footer4": {
+            "title": "2025 Junter. Kaikki oikeudet pidätetään."
+          },
+          "FooterForm": {
+            "emailadres": "sähköpostiosoite"
+          },
+          "NavBar": {
+            "inloggen": "Kirjaudu sisään",
+            "aanmelden": "Rekisteröidy"
+          },
+          "Navigation": {
+            "dashboard": "Hallintapaneeli",
+            "terug": "Takaisin",
+            "uitloggen": "Kirjaudu ulos"
+          }
+        },
+        "shared": {
+          "ApplyConfirmation": {
+            "ToastMessage1": "Ilmoittauduttu vuoroon! 👍",
+            "ToastMessage2": "Toiminto ei ole sallittu! ❌"
+          },
+          "CheckoutModal": {
+            "ToastMessage1": "Checkout lähetetty! 👍",
+            "ToastMessage2": "Toiminto ei ole sallittu! ❌",
+            "ToastMessage3": "Oho.. toiminto epäonnistui!",
+            "buttons": [
+              "Lähetä checkout",
+              "Hyväksy",
+              "Lähetä",
+              "Sulje",
+              "Ei tullut paikalle"
+            ],
+            "fieldLabels": [
+              "Vuorot suoritettu",
+              "Vuoron tiedot",
+              "minuuttia taukoa",
+              "Tuntipalkka",
+              "Ilmoitetut tunnit",
+              "Myöhässä"
+            ],
+            "per_Uur": "€/h",
+            "currencySign": "€",
+            "localDateString": "fi-FI"
+          },
+          "DeleteConfirmation": {
+            "DialogText": [
+              "Haluatko varmasti poistaa tämän vuoron?",
+              "Tämä toiminto poistaa vuoron pysyvästi."
+            ],
+            "buttons": [
+              "Peruuta",
+              "Poistetaan...",
+              "Poista"
+            ],
+            "ToastMessage1": "Virheellinen vuoron tunnus"
+          },
+          "Dienstensectie": {
+            "ToastMessage1": "Työntekijä peruutettu palvelusta!",
+            "ToastMessage2": "Toiminto ei ole sallittu! {{string}}",
+            "buttons": [
+              "Muokkaa",
+              "Peruuta"
+            ],
+            "fieldLabels": [
+              "Työntekijä",
+              "Asuinpaikka",
+              "Tehtävät",
+              "Arvostelut"
+            ],
+            "voltooid": "valmistunut"
+          },
+          "Dropdown": {
+            "labels": [
+              "ei joustotiimejä",
+              "Luo joustotiimi",
+              "Joustotiimi"
+            ],
+            "buttons": [
+              "Peruuta",
+              "Lisää"
+            ]
+          },
+          "DropdownCategorie": {
+            "fields": [
+              {
+                "label": "Ravintola-ala",
+                "items": [
+                  { "value": "Ravintola-ala: ravintolat", "label": "ravintola" },
+                  { "value": "Ravintola-ala: kahvilat ja baarit", "label": "kahvila ja baari" },
+                  { "value": "Ravintola-ala: catering", "label": "catering" },
+                  { "value": "Ravintola-ala: hotellit", "label": "hotelli" }
+                ]
+              },
+              {
+                "label": "Vähittäiskauppa",
+                "items": [
+                  { "value": "Vähittäiskauppa: supermarketit", "label": "supermarketti" },
+                  { "value": "Vähittäiskauppa: vaatekaupat", "label": "vaatekauppa" },
+                  { "value": "Vähittäiskauppa: elektroniikkaliikkeet", "label": "elektroniikkaliike" },
+                  { "value": "Vähittäiskauppa: tavaratalot", "label": "tavaratalo" }
+                ]
+              },
+              {
+                "label": "Logistiikka ja varastotyö",
+                "items": [
+                  { "value": "Logistiikka: jakelukeskukset", "label": "jakelukeskus" },
+                  { "value": "Logistiikka: toimitus", "label": "toimitus" },
+                  { "value": "Logistiikka: varastot", "label": "varasto" }
+                ]
+              },
+              {
+                "label": "Asiakaspalvelu ja puhelinkeskukset",
+                "items": [
+                  { "value": "Asiakaspalvelu: puhelintuki", "label": "puhelintuki" },
+                  { "value": "Asiakaspalvelu: asiakaspalvelu", "label": "asiakaspalvelu" },
+                  { "value": "Asiakaspalvelu: chat-tuki", "label": "chat-tuki" }
+                ]
+              },
+              {
+                "label": "Koulutus ja tukiopetus",
+                "items": [
+                  { "value": "Koulutus: tutorointi", "label": "tutorointi" },
+                  { "value": "Koulutus: opetusavustaja", "label": "opetusavustaja" },
+                  { "value": "Koulutus: läksyapu", "label": "läksyapu" }
+                ]
+              },
+              {
+                "label": "Sosiaali- ja terveydenhuolto",
+                "items": [
+                  { "value": "Sote: kotipalvelu", "label": "kotipalvelu" },
+                  { "value": "Sote: hoitoavustajat", "label": "hoitoavustaja" },
+                  { "value": "Sote: lastenhoito", "label": "lastenhoito" }
+                ]
+              },
+              {
+                "label": "Markkinointi ja promootio",
+                "items": [
+                  { "value": "Markkinointi: promootiotyö", "label": "promootiotyö" },
+                  { "value": "Markkinointi: markkinatutkimus", "label": "markkinatutkimus" },
+                  { "value": "Markkinointi: sosiaalisen median hallinta", "label": "sosiaalisen median hallinta" }
+                ]
+              },
+              {
+                "label": "Tapahtumat ja viihde",
+                "items": [
+                  { "value": "Viihde: festarityöntekijä", "label": "festarityöntekijä" },
+                  { "value": "Viihde: turvallisuus", "label": "turvallisuus" },
+                  { "value": "Viihde: yritys", "label": "yritys" }
+                ]
+              },
+              {
+                "label": "Luova työ",
+                "items": [
+                  { "value": "Luova: graafinen suunnittelu", "label": "graafinen suunnittelu" },
+                  { "value": "Luova: kirjoittaminen ja editointi", "label": "kirjoittaminen" },
+                  { "value": "Luova: valokuvaus", "label": "valokuvaus" }
+                ]
+              },
+              {
+                "label": "Teknologia ja IT",
+                "items": [
+                  { "value": "IT: tukipalvelu", "label": "tukipalvelu" },
+                  { "value": "IT: verkkokehitys", "label": "verkkokehitys" },
+                  { "value": "IT: sovelluskehitys", "label": "sovelluskehitys" }
+                ]
+              },
+              {
+                "label": "Tuotanto ja tehtaat",
+                "items": [
+                  { "value": "Tuotanto: kokoonpanolinja", "label": "kokoonpanolinja" },
+                  { "value": "Tuotanto: elintarvikkeiden käsittely", "label": "elintarvikkeiden käsittely" },
+                  { "value": "Tuotanto: tuotantoavustaja", "label": "tuotantoavustaja" }
+                ]
+              },
+              {
+                "label": "Maatalous ja kausityö",
+                "items": [
+                  { "value": "Maatalous: sadonkorjuu", "label": "sadonkorjuu" },
+                  { "value": "Maatalous: hedelmien poiminta", "label": "hedelmien poiminta" },
+                  { "value": "Maatalous: maatilatyö", "label": "maatilatyö" }
+                ]
+              },
+              {
+                "label": "Hallinto ja toimistotyö",
+                "items": [
+                  { "value": "Hallinto: tietojen syöttö", "label": "tietojen syöttö" },
+                  { "value": "Hallinto: hallinnollinen apu", "label": "hallinnollinen apu" },
+                  { "value": "Hallinto: vastaanottotyö", "label": "vastaanottotyö" }
+                ]
+              },
+              {
+                "label": "Matkailu ja turismi",
+                "items": [
+                  { "value": "Matkailu: matkaoppaat", "label": "matkaopas" },
+                  { "value": "Matkailu: hotellin vastaanotto", "label": "vastaanottohotelli" },
+                  { "value": "Matkailu: matkatoimisto", "label": "matkatoimisto" }
+                ]
+              },
+              {
+                "label": "Urheilu ja kuntoilu",
+                "items": [
+                  { "value": "Urheilu: kunto-ohjaajat", "label": "kunto-ohjaaja" },
+                  { "value": "Urheilu: uimavalvojat", "label": "uimaohjaaja" },
+                  { "value": "Urheilu: valmennus", "label": "urheiluvalmennus" }
+                ]
+              },
+              {
+                "label": "Siivous",
+                "items": [
+                  { "value": "Siivous: toimistot", "label": "toimistot" },
+                  { "value": "Siivous: koulut ja oppilaitokset", "label": "oppilaitokset" },
+                  { "value": "Siivous: ravintola-ala", "label": "ravintola-ala" },
+                  { "value": "Siivous: terveydenhuolto", "label": "terveydenhuolto" },
+                  { "value": "Siivous: tapahtumapaikat", "label": "tapahtumapaikka" },
+                  { "value": "Siivous: vähittäiskauppa", "label": "vähittäiskauppa" },
+                  { "value": "Siivous: julkiset tilat", "label": "julkiset tilat" },
+                  { "value": "Siivous: yksityisasunnot", "label": "yksityisasunnot" },
+                  { "value": "Siivous: lomamökit", "label": "lomamökit" }
+                ]
+              }
+            ],
+            "title": "Kategoria",
+            "buttons": [
+              "Peruuta",
+              "Lisää"
+            ],
+            "placeholderText": "lisää kategoria"
+          },
+          "DropdownPauze": {
+            "placeholderText": "Tauko",
+            "options": [
+              { "value": "0", "label": "Ei taukoa" },
+              { "value": "15", "label": "15 minuutin tauko" },
+              { "value": "30", "label": "30 minuutin tauko" },
+              { "value": "45", "label": "45 minuutin tauko" },
+              { "value": "60", "label": "60 minuutin tauko" },
+              { "value": "90", "label": "90 minuutin tauko" },
+              { "value": "120", "label": "120 minuutin tauko" }
+            ]
+          },
+          "EmployeePage": {
+            "buttons": [
+              "Peruuta",
+              "Lähetä"
+            ],
+            "fieldsItems": [
+              "Palvelut",
+              "minuuttia taukoa",
+              "Ei taukoa"
+            ],
+            "currencySign": "€",
+            "features": [
+              {
+                "name": "Palkka",
+                "description": "`€ ${vacature.uurloon} ${diensten.length} palvelusta`",
+                "icon": "BanknotesIcon"
+              },
+              {
+                "name": "Ajanjakso",
+                "description": "` ${vacature.begindatum} – ${vacature.einddatum}`",
+                "icon": "CalendarDateRangeIcon"
+              },
+              {
+                "name": "Osoite",
+                "description": "vacature.adres",
+                "icon": "BuildingOffice2Icon"
+              },
+              {
+                "name": "Pukeutumiskoodi",
+                "description": "Ei erityisiä ohjeita",
+                "icon": "BriefcaseIcon"
+              },
+              {
+                "name": "Taidot",
+                "description": "Ei vaadittuja taitoja",
+                "icon": "ClipboardDocumentCheckIcon"
+              }
+            ]
+          },
+          "EmployerPage": {
+            "currencySign": "€",
+            "features": [
+              {
+                "name": "Palkka",
+                "description": "`€ ${vacature.uurloon} ${diensten.length} palvelusta`",
+                "icon": "BanknotesIcon"
+              },
+              {
+                "name": "Ajanjakso",
+                "description": "` ${vacature.begindatum} – ${vacature.einddatum}`",
+                "icon": "CalendarDateRangeIcon"
+              },
+              {
+                "name": "Osoite",
+                "description": "vacature.adres",
+                "icon": "BuildingOffice2Icon"
+              },
+              {
+                "name": "Pukeutumiskoodi",
+                "description": "Ei erityisiä ohjeita",
+                "icon": "BriefcaseIcon"
+              },
+              {
+                "name": "Taidot",
+                "description": "Ei vaadittuja taitoja",
+                "icon": "ClipboardDocumentCheckIcon"
+              }
+            ]
+          },
+          "ForbiddenPage": {
+            "headTitle": "404",
+            "subTitle": "Sivua ei löytynyt",
+            "pagetext": "Valitettavasti emme löytäneet etsimääsi sivua.",
+            "buttons": [
+              "Takaisin etusivulle",
+              "Ota yhteyttä tukeen"
+            ]
+          },
+          "NotFoundPage": {
+            "headTitle": "404",
+            "subTitle": "Sivua ei löytynyt",
+            "pagetext": "Valitettavasti emme löytäneet etsimääsi sivua.",
+            "button": "Takaisin etusivulle"
+          },
+          "SollicitatieModal": {
+            "ToastMessage1": "Työntekijä hyväksytty valittuihin palveluihin!",
+            "ToastMessage2": "Toiminto ei ole sallittu! {{string}}",
+            "ToastMessage3": "Hakemus hylätty!",
+            "ToastMessage4": "Toiminto ei ole sallittu! {{string}}",
+            "ToastMessage5": "Työntekijä hyväksytty työpaikkaan!",
+            "ToastMessage6": "Toiminto ei ole sallittu! {{string}}",
+            "currencySign": "€",
+            "fiedValues": [
+              "minuuttia taukoa",
+              "Ei taukoa",
+              "Työntekijä",
+              "Tehtävät",
+              "Tähdet",
+              "Esittely",
+              "Asuinpaikka",
+              "Syntymäaika",
+              "Sähköpostiosoite"
+            ],
+            "buttons": [
+              "Hyväksy",
+              "Vahvista",
+              "Hylkää",
+              "Chattaa",
+              "Estä",
+              "Suosikit",
+              "Hyväksy kaikki",
+              "Lähetä"
+            ]
+          },
+          "Sollicitaties": {
+            "headTitle": "Hakemukset",
+            "subTitle": "Lista kaikista työpaikkahakemuksista.",
+            "fieldValues": [
+              "Toimeksisaaja",
+              "Työkokemus",
+              "Saapuminen",
+              "Täsmällisyys"
+            ],
+            "attributes": [
+              "tehtävät",
+              "tähdet",
+              "ilmoittautumiset"
+            ]
+          },
+          "UitlogModal": {
+            "headtitle": "Kirjaudu ulos",
+            "subTitle": "Haluatko varmasti kirjautua ulos?",
+            "buttons": [
+              "Peruuta",
+              "Kirjaudu ulos"
+            ]
+          }
+        }
+    },
+    "Validations": {
+      "CheckoutValidations": {
+        "Begintijd": "Syötä kelvollinen aloitusaika.",
+        "Eindtijd": "Syötä kelvollinen lopetusaika.",
+        "Pauze": "Syötä tauon kesto minuutteina (0 tai enemmän)."
+      },
+      "EmployeeValidations": {
+        "Land": "Valitse maa.",
+        "voornaam": "Etunimi on pakollinen.",
+        "Achternaam": "Sukunimi on pakollinen.",
+        "Geboortedatum": "Syötä kelvollinen syntymäpäivä.",
+        "Telefoonnumer": "Syötä kelvollinen puhelinnumero.",
+        "Emailadres": "Syötä kelvollinen sähköpostiosoite.",
+        "IBAN": "Syötä kelvollinen IBAN-tilinumero.",
+        "Huisnummer": "Talonnumeron täyttäminen on pakollista.",
+        "Postcode": "Syötä kelvollinen postinumero.",
+        "Straat": "Kadunnimi on pakollinen.",
+        "Stad": "Kaupunki on pakollinen."
+      },
+      "EmployerValidations": {
+        "Land": "Valitse maa.",
+        "Naam": "Yrityksen nimi on pakollinen.",
+        "CompanyRN": "Y-tunnus on pakollinen.",
+        "IBAN": "Syötä kelvollinen IBAN-tilinumero.",
+        "Telefoonnumer": "Syötä kelvollinen puhelinnumero.",
+        "Emailadres": "Syötä kelvollinen sähköpostiosoite.",
+        "Huisnummer": "Talonnumeron täyttäminen on pakollista.",
+        "Postcode": "Syötä kelvollinen postinumero.",
+        "Straat": "Kadunnimi on pakollinen.",
+        "Stad": "Kaupunki on pakollinen."
+      },
+      "VacancyValidations": {
+        "Titel": "Otsikko on pakollinen.",
+        "Functie": "Tehtävänimike on pakollinen.",
+        "Uurtarief": "Syötä kelvollinen tuntipalkka.",
+        "Begindatum": "Valitse aloituspäivämäärä.",
+        "Einddatum": "Valitse lopetuspäivämäärä.",
+        "Huisnummer": "Talonnumeron täyttäminen on pakollista.",
+        "Postcode": "Syötä kelvollinen postinumero.",
+        "Straat": "Kadunnimi on pakollinen.",
+        "Stad": "Kaupunki on pakollinen.",
+        "begintijd": "Syötä kelvollinen aloitusaika.",
+        "eindtijd": "Syötä kelvollinen lopetusaika.",
+        "pauze": "Syötä tauon kesto minuutteina (0 tai enemmän).",
+        "beschrijving": "Kuvaus on pakollinen."
+      },
+      "ShiftValidations": {
+        "Titel": "Otsikko on pakollinen.",
+        "Functie": "Tehtävänimike on pakollinen.",
+        "Uurtarief": "Syötä kelvollinen tuntipalkka.",
+        "Begindatum": "Valitse aloituspäivämäärä.",
+        "Einddatum": "Valitse lopetuspäivämäärä.",
+        "Begintijd": "Syötä kelvollinen aloitusaika.",
+        "Eindtijd": "Syötä kelvollinen lopetusaika.",
+        "Adres": "Osoite on pakollinen.",
+        "Pauze": "Syötä tauon kesto minuutteina (0 tai enemmän).",
+        "Plekken": "Ilmoita tarvittavien henkilöiden määrä.",
+        "Beschrijving": "Kuvaus on pakollinen."
+      },
+      "AvailabilityValidations": {
+        "TypeData": "Valitse haluatko ilmoittaa yhden vai useamman päivän.",
+        "Data": "Valitse vähintään yksi päivämäärä.",
+        "Tijden": "Ilmoita käytettävissä olevat ajat."
+      }
+    }
+}

@@ -8,12 +8,15 @@ import { haalCheckouts, haalCheckoutsMetClerkId } from "@/app/lib/actions/checko
 import forkliftDriver from '@/app/assets/images/iStock-1308572401.jpg';
 import { IJob } from "@/app/lib/models/job.model";
 import { ShiftType } from "@/app/lib/models/shift.model";
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
   
-  export default function Checkout() {
+  export default async function Checkout({ lang }: { lang: Locale }) {
     const { isLoaded, user } = useUser();
     const [freelancerId, setFreelancerId] = useState<any>(null);
     const [checkout, setCheckout] = useState<any[]>([]);
     const [diensten, setDiensten] = useState<any[]>([]);
+    const { dashboard } = await getDictionary(lang);
 
     useEffect(() => {
       if (isLoaded && user) {
@@ -61,7 +64,7 @@ import { ShiftType } from "@/app/lib/models/shift.model";
     if(checkout.length === 0 && diensten.length === 0){
       return (
         <div className="flex h-full items-center justify-center text-gray-400 text-center">
-          Geen diensten noch checkouts gevonden
+          {dashboard.werknemersPage.BentoGrid.Checkouts.zeroFoundText}
         </div>
       )
     }

@@ -1,6 +1,6 @@
 'use client'
 
-import { Dialog, DialogBackdrop, DialogPanel, Input, Transition, TransitionChild } from '@headlessui/react';
+import { Dialog, Input, Transition } from '@headlessui/react';
 import {  Bars3Icon,  CalendarIcon,  HomeIcon,  UserGroupIcon,  XMarkIcon,  DocumentCheckIcon,  BanknotesIcon } from '@heroicons/react/24/outline';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { useUser } from "@clerk/nextjs";
@@ -25,9 +25,10 @@ import { toast } from '@/app/[lang]/components/ui/use-toast';
 import CheckoutModal from '@/app/[lang]/components/shared/CheckoutModal';
 import Card from '@/app/[lang]/components/shared/cards/CheckoutCard';
 import { IVacancy } from '@/app/lib/models/vacancy.model';
-import { IJob } from '@/app/lib/models/job.model';
 import VacatureCard from '@/app/[lang]/components/shared/cards/VacancyCard';
-import { haalBijbehorendeDiensten, haalGeplaatsteVacatures } from '@/app/lib/actions/vacancy.actions';
+import { haalGeplaatsteVacatures } from '@/app/lib/actions/vacancy.actions';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
 
@@ -45,7 +46,7 @@ function classNames(...classes: string[]) {
 }
 
 
-const Dashboard =  () => {
+const Dashboard =  async ({ lang }: { lang: Locale }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { isLoaded, user } = useUser();
   const [position, setPosition] = useState("Dashboard");
@@ -63,6 +64,7 @@ const Dashboard =  () => {
   const [showCheckout, setShowCheckout] = useState(false);
   const [checkoutId, setCheckoutID] = useState('')
   const router = useRouter();
+  const { dashboard } = await getDictionary(lang);
 
   useEffect(() => {
     if (isLoaded && user) {
@@ -370,7 +372,7 @@ const Dashboard =  () => {
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
-          <div className="flex-1 text-sm font-semibold leading-6 text-white">Dashboard</div>
+          <div className="flex-1 text-sm font-semibold leading-6 text-white">{dashboard.werkgeversPage.Dashboard.headTitle}</div>
           <a href="/">
             <span className="sr-only">{fullName}</span>
             <Image
@@ -390,7 +392,7 @@ const Dashboard =  () => {
 
           
             <div className="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
-            {position === 'Dashboard' && ( <Calender/> )}
+            {position === 'Dashboard' && ( <Calender lang={'en'}/> )}
             </div>
 
             <div className="lg:pl-96 ml-6 h-full overflow-hidden px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
@@ -400,33 +402,33 @@ const Dashboard =  () => {
 
 
                       <ScrollArea>
-                  <h1 className='mb-10 items-center justify-center text-4xl'>Vacatures</h1>
+                  <h1 className='mb-10 items-center justify-center text-4xl'>{dashboard.werkgeversPage.Dashboard.texts[0].name}</h1>
                   {vacatures.length > 0 ? (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {vacatures.slice(0, shift.length).map((vacaturesItem, index) => (
-        <VacatureCard key={index} vacature={vacaturesItem} />
+        <VacatureCard key={index} vacature={vacaturesItem} lang={lang}/>
       ))}
     </div>
   ) : (
-    <p className="text-center text-lg text-gray-500">Geen vacatures beschikbaar</p>
+    <p className="text-center text-lg text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[0].notFound}</p>
   )}
                     </ScrollArea>
 
 
                   <ScrollArea>
-                  <h1 className='mb-10 items-center justify-center text-4xl'>Gepubliceerde shifts</h1>
+                  <h1 className='mb-10 items-center justify-center text-4xl'>{dashboard.werkgeversPage.Dashboard.texts[1].name}</h1>
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                       {shift.slice(0, shift.length).map((shiftItem, index) => (
-                        <ShiftCard key={index} shift={shiftItem} />
+                        <ShiftCard key={index} shift={shiftItem} lang={lang}/>
                       ))}
                       </div>
                     </ScrollArea>
 
                     <ScrollArea>
-                      <h1 className='my-10 items-center justify-center text-4xl'>Ongepubliceerde shifts</h1>
+                      <h1 className='my-10 items-center justify-center text-4xl'>{dashboard.werkgeversPage.Dashboard.texts[3].name}</h1>
                     <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-4">
                       {unpublished.slice(0, unpublished.length).map((unpublishedItem, index) => (
-                          <ShiftCard key={index} shift={unpublishedItem} />
+                          <ShiftCard key={index} shift={unpublishedItem} lang={lang}/>
                         ))}
                     </div>
                   </ScrollArea>
@@ -438,21 +440,21 @@ const Dashboard =  () => {
 
                       <ScrollArea>
 
-                  <h1 className='mb-10 items-center justify-center text-4xl'>Vacatures</h1>
+                  <h1 className='mb-10 items-center justify-center text-4xl'>{dashboard.werkgeversPage.Dashboard.texts[0].name}</h1>
                   
                   {vacatures.length > 0 ? (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {vacatures.slice(0, shift.length).map((vacaturesItem, index) => (
-        <VacatureCard key={index} vacature={vacaturesItem} />
+        <VacatureCard key={index} vacature={vacaturesItem} lang={lang}/>
       ))}
     </div>
   ) : (
-    <p className="text-center text-lg text-gray-500">Geen vacatures beschikbaar</p>
+    <p className="text-center text-lg text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[0].notFound}</p>
   )}
 
                     </ScrollArea>
 
-                  <div className="lg:pl-96 h-full overflow-hidden">Geen shifts beschikbaar</div>
+                  <div className="lg:pl-96 h-full overflow-hidden">{dashboard.werkgeversPage.Dashboard.texts[1].notFound}</div>
 
 
                         </>
@@ -463,14 +465,15 @@ const Dashboard =  () => {
               {position === 'Checkouts' ? 
               checkout.length > 0 ? (
                 <ScrollArea>
+                  <h1 className='mb-10 items-center justify-center text-4xl'>{dashboard.werkgeversPage.Dashboard.texts[2].name}</h1>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {checkout.slice(0, 9).map((checkoutItem, index) => (
-                      <Card key={index} shift={checkoutItem} />
+                      <Card key={index} shift={checkoutItem} lang={lang}/>
                     ))}
                   </div>
                 </ScrollArea>
               ) : (
-                <div className="lg:pl-96 h-full overflow-hidden"> Geen checkouts beschikbaar </div>
+                <div className="lg:pl-96 h-full overflow-hidden"> {dashboard.werkgeversPage.Dashboard.texts[2].notFound} </div>
               ): null 
               }
 
@@ -478,14 +481,15 @@ const Dashboard =  () => {
               {position === 'Facturen' ? 
               factuur.length > 0 ? (
                 <ScrollArea>
+                  <h1 className='mb-10 items-center justify-center text-4xl'>{dashboard.werkgeversPage.Dashboard.texts[5].name}</h1>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {factuur.slice(0, 9).map((factuurItem, index) => (
-                      <FactuurCard key={index} factuur={factuurItem} /> // ****
+                      <FactuurCard key={index} factuur={factuurItem} lang={lang}/> // ****
                     ))}
                   </div>
                 </ScrollArea>
                ) : (
-                <div className="lg:pl-96 h-full overflow-hidden"> Geen facturen gevonden </div> 
+                <div className="lg:pl-96 h-full overflow-hidden"> {dashboard.werkgeversPage.Dashboard.texts[5].notFound} </div> 
               ): null 
               }
 
@@ -495,29 +499,30 @@ const Dashboard =  () => {
                 <ScrollArea>
                   <AlertDialog>
                         <AlertDialogTrigger className="p-medium-14 my-10 flex w-32 rounded-md bg-sky-500 py-3 justify-center items-center text-primary-50 hover:bg-primary-50 focus:text-primary-500">
-                            Maak flexpool
+                        {dashboard.werkgeversPage.Dashboard.texts[6].modal?.title}
                         </AlertDialogTrigger>
                         <AlertDialogContent className="bg-white">
                             <AlertDialogHeader>
                                 <AlertDialogTitle>Flexpool</AlertDialogTitle>
                                 <AlertDialogDescription>
-                                    <Input type="text" placeholder="flexpool toevoegen" className="input-field mt-3" onChange={(e) => setNewFlexpoolTitle(e.target.value)} />
+                                    <Input type="text" placeholder={dashboard.werkgeversPage.Dashboard.texts[4].modal?.subTitle} className="input-field mt-3" onChange={(e) => setNewFlexpoolTitle(e.target.value)} />
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
-                                <AlertDialogCancel>Annuleer</AlertDialogCancel>
-                                <AlertDialogAction onClick={voegFlexpoolToe}>Toevoegen</AlertDialogAction>
+                                <AlertDialogCancel>{dashboard.werkgeversPage.Dashboard.texts[6].modal?.buttons[0]}</AlertDialogCancel>
+                                <AlertDialogAction onClick={voegFlexpoolToe}>{dashboard.werkgeversPage.Dashboard.texts[6].modal?.buttons[1]}</AlertDialogAction>
                             </AlertDialogFooter>
                         </AlertDialogContent>
                     </AlertDialog>
+                    <h1 className='mb-10 items-center justify-center text-4xl'>{dashboard.werkgeversPage.Dashboard.texts[4].name}</h1>
                   <div className="grid grid-cols-3 gap-4">
                     {flexpool.slice(0, 9).map((flexpoolItem, index) => (
-                      <FlexpoolCard key={index} flexpool={flexpoolItem} />
+                      <FlexpoolCard key={index} flexpool={flexpoolItem} lang={lang}/>
                     ))}
                   </div>
                 </ScrollArea>
               ) : (
-                <div className="lg:pl-96 h-full overflow-hidden"> Geen flexpools beschikbaar </div>
+                <div className="lg:pl-96 h-full overflow-hidden"> {dashboard.werkgeversPage.Dashboard.texts[4].notFound} </div>
               ): null 
               }
               </div>
@@ -529,7 +534,7 @@ const Dashboard =  () => {
         <div className="h-full py-2 px-2 items-stretch rounded-lg border-2 border-b flex flex-col">
           <div className="h-1/3 border-2 rounded-lg flex flex-col">
             <div className="w-full border-b-2 h-10">
-              <p className="italic font-mono text-lg font-semibold text-center mt-2">Shifts</p>
+              <p className="italic font-mono text-lg font-semibold text-center mt-2"><h1 className='mb-10 items-center justify-center text-4xl'>{dashboard.werkgeversPage.Dashboard.texts[6].name}</h1></p>
             </div>
             <div className="flex-grow overflow-hidden">
             <ScrollArea className="h-full overflow-auto">
@@ -541,10 +546,10 @@ const Dashboard =  () => {
           <a href={`/dashboard/shift/bedrijf/${shiftItem._id}`} className="font-medium text-gray-900 hover:text-gray-600">
             {shiftItem.title}
           </a>
-          <p className="text-gray-500">{shiftItem.startingDate ? new Date(shiftItem.startingDate).toLocaleDateString('nl-NL') : 'Datum niet beschikbaar'}</p>
-          <p className="text-gray-500">{shiftItem.applications ? shiftItem.applications.length : 0} Aanmeldingen</p>
-          <p className="text-gray-500">{shiftItem.spots ?? 0} Plekken</p>
-          <p className="text-gray-500">{shiftItem.accepted ? shiftItem.accepted.length : 0} Aangenomen</p>
+          <p className="text-gray-500">{shiftItem.startingDate ? new Date(shiftItem.startingDate).toLocaleDateString(`${dashboard.werkgeversPage.Dashboard.texts[6].localDateString}`) : `${dashboard.werkgeversPage.Dashboard.texts[6].noDate}`}</p>
+          <p className="text-gray-500">{shiftItem.applications ? shiftItem.applications.length : 0} {dashboard.werkgeversPage.Dashboard.texts[6].attributes[0]}</p>
+          <p className="text-gray-500">{shiftItem.spots ?? 0} {dashboard.werkgeversPage.Dashboard.texts[6].attributes[1]}</p>
+          <p className="text-gray-500">{shiftItem.accepted ? shiftItem.accepted.length : 0} {dashboard.werkgeversPage.Dashboard.texts[6].attributes[2]} </p>
         </div>
       </div>
       <div className="mt-10 h-16 w-16 items-center justify-center overflow-hidden">
@@ -566,7 +571,7 @@ const Dashboard =  () => {
       
           <div className="h-1/3 border-2 rounded-lg flex flex-col mt-2">
             <div className="w-full border-b-2 h-10">
-              <p className="mt-2 italic font-mono text-lg font-semibold text-center">Checkouts</p>
+              <p className="mt-2 italic font-mono text-lg font-semibold text-center">{dashboard.werkgeversPage.Dashboard.texts[7].name}</p>
             </div>
             <div className="flex-grow overflow-hidden">
             <ScrollArea className="h-full overflow-auto">
@@ -579,22 +584,22 @@ const Dashboard =  () => {
                       <a href={`/dashboard/checkout/bedrijf/${checkoutItem._id}`} className="font-medium text-gray-900 hover:text-gray-600">
                         {checkoutItem.titel}
                       </a>
-                      <p className="text-gray-500">€{checkoutItem?.uurtarief}</p>
+                      <p className="text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[7].attributes[0].currencySign}{checkoutItem?.uurtarief}</p>
                       </div>
                       <p className="text-gray-500">
-                        {checkoutItem?.begindatum ? new Date(checkoutItem.begindatum).toLocaleDateString('nl-NL') : 'Datum'}
+                        {checkoutItem?.begindatum ? new Date(checkoutItem.begindatum).toLocaleDateString(`${dashboard.werkgeversPage.Dashboard.texts[7].localDateString}`) : `${dashboard.werkgeversPage.Dashboard.texts[7].noDate}`}
                         </p>
                         <div className="flex justify-between">
                         <p className="text-gray-500">
                         {checkoutItem?.begintijd || 'Begintijd'} - {checkoutItem?.eindtijd || 'Eindtijd'}
                         </p>
-                        <p className="text-gray-500">{checkoutItem?.pauze || 'Pauze'} minuten pauze</p>
+                        <p className="text-gray-500">{checkoutItem?.pauze || 'Pauze'} {dashboard.werkgeversPage.Dashboard.texts[7].attributes[2]}</p>
                         </div>
                         <div className="flex justify-between">
                         <p>
                         {checkoutItem?.checkoutbegintijd || 'Begintijd'} - {checkoutItem?.checkouteindtijd || 'Eindtijd'}
                         </p>
-                        <p>{checkoutItem?.checkoutpauze || '0'} minuten pauze</p>
+                        <p>{checkoutItem?.checkoutpauze || '0'} {dashboard.werkgeversPage.Dashboard.texts[7].attributes[2]}</p>
                         </div>
                         <div className="flex justify-between">
                         <p>{checkoutItem?.freelancerVoornaam || '0'} {checkoutItem?.freelancerAchternaam || '0'}</p>
@@ -610,11 +615,11 @@ const Dashboard =  () => {
                         </div> 
                         <div className='mt-4 flex justify-between'>
                         <button onClick={() => setOpen(true, checkoutItem._id)} className="inline-flex ml-2 items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-green-600/20">
-                          Weigeren
+                          {dashboard.werkgeversPage.Dashboard.texts[7].buttons[0]}
                         </button>         
                         <button onClick={() => handleCheckoutAcceptance(checkoutItem._id)}
                        className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                          Accepteren
+                          {dashboard.werkgeversPage.Dashboard.texts[7].buttons[1]}
                         </button> 
                         </div> 
                       </div>
@@ -627,7 +632,7 @@ const Dashboard =  () => {
       
           <div className="h-1/3 border-2 rounded-lg flex flex-col mt-2">
             <div className="w-full border-b-2 h-10">
-              <p className="mt-2 italic font-mono text-lg font-semibold text-center">Facturen</p>
+              <p className="mt-2 italic font-mono text-lg font-semibold text-center">{dashboard.werkgeversPage.Dashboard.texts[8].name}</p>
             </div>
             <div className="flex-grow overflow-hidden">
               <ScrollArea className="h-full overflow-auto">
@@ -641,20 +646,20 @@ const Dashboard =  () => {
                         {factuurItem.shifts?.length === 1 ? (
                    <>
                <p className="text-gray-500">
-                 {factuurItem.shifts?.length} shift 
+                 {factuurItem.shifts?.length} {dashboard.werkgeversPage.Dashboard.texts[8].attributes[0]} 
                </p>
              </>
             ) : (
               <p className="text-gray-500">
-                {factuurItem.shifts?.length} shifts
+                {factuurItem.shifts?.length} {dashboard.werkgeversPage.Dashboard.texts[8].attributes[1]}
               </p>
             )}
                         <div className="flex flex-1 items-center justify-between">
-                        <p className="text-gray-500">€{factuurItem.totaalbedrag} </p>
+                        <p className="text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[8].attributes[4].currencySign}{factuurItem.totaalbedrag} </p>
                         {factuurItem.isVoltooid ? (
-                        <p className="text-green-600">Betaald</p>
+                        <p className="text-green-600">{dashboard.werkgeversPage.Dashboard.texts[8].attributes[2]}</p>
                         ) : (
-                          <p className="text-gray-500">Openstaand</p>
+                          <p className="text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[8].attributes[3]}</p>
                         )}
                         </div>
                       </div>
@@ -670,14 +675,8 @@ const Dashboard =  () => {
 
     </div>
   </>
-    <UitlogModal isVisible={showLogOut} onClose={() => setShowLogOut(false)}/>
-    <CheckoutModal 
-        isVisible={showCheckout}
-        onClose={() => setShowCheckout(false)} 
-        params={{
-          id: checkoutId
-        }} 
-        searchParams={{}}    />
+    <UitlogModal isVisible={showLogOut} onClose={() => setShowLogOut(false)} lang={lang}/>
+    <CheckoutModal  isVisible={showCheckout} onClose={() => setShowCheckout(false)} params={{id: checkoutId}} searchParams={{}} lang={lang}/>
     </Fragment>
   )
 }

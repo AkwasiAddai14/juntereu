@@ -5,7 +5,10 @@ import FooterForm from './FooterForm'
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
 
-
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
+  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+];
 
 const navigation = {
   Werknemers: [
@@ -94,7 +97,8 @@ const navigation = {
 }
 
 export default async function Footer({ lang }: { lang: Locale }) {
-  const { footer } = await getDictionary(lang);
+  
+  const { footer, components } = await getDictionary(lang);
 
   return (
     <footer className="bg-white" aria-labelledby="footer-heading">
@@ -108,24 +112,32 @@ export default async function Footer({ lang }: { lang: Locale }) {
               <div>
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">{footer.navLinks[0].title}</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.Werknemers.map((item) => (
-                    <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
-                        {item.name}
+                {footer.navLinks[0].links.map((navItem, i) => (
+                  <div key={navItem}>
+                    <a href={`${lang}/${footer.navLinks[0].href[i]}`}>
+                      <h4>
+                        {navItem}
+                        </h4>
                       </a>
-                    </li>
+                   <ul> 
+                    </ul>
+                   </div>
                   ))}
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">{footer.navLinks[1].title}</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.Werkgevers.map((item) => (
-                    <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
-                        {item.name}
+                {footer.navLinks[1].links.map((navItem, i) => (
+                  <div key={navItem}>
+                    <a href={`${lang}/${footer.navLinks[1].href[i]}`}>
+                      <h4>
+                        {navItem}
+                        </h4>
                       </a>
-                    </li>
+                   <ul> 
+                    </ul>
+                   </div>
                   ))}
                 </ul>
               </div>
@@ -134,27 +146,30 @@ export default async function Footer({ lang }: { lang: Locale }) {
               <div>
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">{footer.navLinks[2].title}</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.Junter.map((item) => (
-                    <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
-                        {item.name}
+                {footer.navLinks[2].links.map((navItem, i) => (
+                  <div key={navItem}>
+                    <a href={`${lang}/${footer.navLinks[2].href[i]}`}>
+                      <h4>
+                        {navItem}
+                        </h4>
                       </a>
-                    </li>
+                   <ul> 
+                    </ul>
+                   </div>
                   ))}
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">{footer.navLinks[3].title}</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                {footer.navLinks.map((navItem) => (
-                  <div key={navItem.title}>
-                     <h4>{navItem.title}</h4>
-                   <ul>
-                  {navItem.links.map((link, index) => (
-                     <li key={index}>
-                   <a href={navItem.href[index]}>{link}</a>
-                     </li>
-                      ))}
+                {footer.navLinks[3].links.map((navItem, i) => (
+                  <div key={navItem}>
+                    <a href={`${lang}/${footer.navLinks[3].href[i]}`}>
+                      <h4>
+                        {navItem}
+                        </h4>
+                      </a>
+                   <ul> 
                     </ul>
                    </div>
                   ))}
@@ -167,7 +182,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
             <p className="mt-2 text-sm leading-6 text-gray-600">
             {footer.subscriptionCTA.subText}
             </p>
-            <FooterForm footer={footer} />
+            <FooterForm footer={footer} components={components} />
           </div>
         </div>
         <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">

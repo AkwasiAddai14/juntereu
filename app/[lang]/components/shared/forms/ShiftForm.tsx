@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "@/app/[lang]/components/ui/button";
@@ -19,8 +20,6 @@ import { Checkbox } from "@/app/[lang]/components/ui/checkbox";
 import { useRouter } from "next/navigation";
 import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { maakOngepubliceerdeShift, maakShift, updateShift } from "@/app/lib/actions/shift.actions";
-import { ShiftType } from "@/app/lib/models/shift.model";
-import * as React from "react";
 import Dropdown from "@/app/[lang]/components/shared/Dropdown";
 import DropdownPauze from "@/app/[lang]/components/shared/DropdownPauze";
 import DropdownCategorie from "@/app/[lang]/components/shared/DropdownCategorie";
@@ -35,6 +34,8 @@ import { ChevronUpDownIcon } from "@heroicons/react/24/outline";
 import { CheckIcon } from "lucide-react";
 import { IShiftArray } from "@/app/lib/models/shiftArray.model";
 import { fetchUnpublishedShifts } from "@/app/lib/actions/shiftArray.actions";
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
 type ShiftFormProps = {
@@ -45,7 +46,7 @@ type ShiftFormProps = {
 };
 
 
-const ShiftForm = ({ userId, type, shift, shiftId }: ShiftFormProps) => {
+const ShiftForm = async ({ userId, type, shift, shiftId }: ShiftFormProps, { lang }: { lang: Locale }) => {
   const [files, setFiles] = useState<File[]>([]);
   const [begintijd, setBegintijd] = useState<Dayjs | null>(dayjs('2022-04-17T08:00'));
   const [eindtijd, setEindtijd] = useState<Dayjs | null>(dayjs('2022-04-17T16:30'));
@@ -59,6 +60,7 @@ const ShiftForm = ({ userId, type, shift, shiftId }: ShiftFormProps) => {
   const router = useRouter();
   const { startUpload } = useUploadThing("media");
   const { toast } = useToast();
+  const { components } = await getDictionary(lang);
   
   const DefaultValues = selectedShift ? {
     opdrachtgever: selectedShift.employer,
@@ -331,18 +333,18 @@ if (files.length > 0) {
       if(unpublished.succes){
         toast({
           variant: 'succes',
-          description: "ongepubliceerde shift gemaakt! 👍"
+          description: `${components.forms.ShiftForm.ToastMessage1}`
         });
         setLoading(false);
         router.back();
       } else {
         toast({
           variant: 'destructive',
-          description: "Actie is niet toegestaan! ❌"
+          description: `${components.forms.ShiftForm.Toastmessage2}`
         });
       }
     } catch (error: any) {
-      console.error("Het maken van een ongepubliceerde shift is niet gelukt:", error);
+      console.error(`${components.forms.ShiftForm.ToastMessage3}`, error);
       toast({
         variant: 'destructive',
         description: `${error}`
@@ -385,10 +387,10 @@ if (files.length > 0) {
               }}
               className="mb-10"
             >
-              <Label className="block text-sm font-medium leading-6 text-gray-900">Selecteer shift</Label>
+              <Label className="block text-sm font-medium leading-6 text-gray-900">{components.forms.ShiftForm.selectShifts}</Label>
               <div className="relative mt-2">
                 <ComboboxInput
-                  className="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   onChange={(event) => setQuery(event.target.value)}
                   onBlur={() => setQuery('')}
                   displayValue={(shift: any) => shift ? `${shift.titel} ` : ''}
@@ -403,14 +405,14 @@ if (files.length > 0) {
                       <ComboboxOption
                         key={shift.titel}
                         value={shift}
-                        className="group relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 data-[focus]:bg-indigo-600 data-[focus]:text-white"
+                        className="group relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 data-[focus]:bg-sky-600 data-[focus]:text-white"
                       >
                         <div className="flex items-center">
                           <img src={shift.afbeelding} alt="profielfoto" className="h-6 w-6 flex-shrink-0 rounded-full" />
                           <span className="ml-3 truncate group-data-[selected]:font-semibold">{shift.titel}</span>
                         </div>
       
-                        <span className="absolute inset-y-0 right-0 hidden items-center pr-4 text-indigo-600 group-data-[selected]:flex group-data-[focus]:text-white">
+                        <span className="absolute inset-y-0 right-0 hidden items-center pr-4 text-sky-600 group-data-[selected]:flex group-data-[focus]:text-white">
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
                         </span>
                       </ComboboxOption>
@@ -427,10 +429,10 @@ if (files.length > 0) {
             name="title"
             render={({ field }) => (
               <FormItem className="w-full">
-                 <FormLabel className="justify-end font-semibold">Titel</FormLabel>
+                 <FormLabel className="justify-end font-semibold">{components.forms.ShiftForm.formItems[0]}</FormLabel>
                 <FormControl>
                   <Input 
-                  placeholder={selectedShift ? selectedShift.title : "enthousiaste horecatoppers gezocht"}
+                  placeholder={selectedShift ? selectedShift.title : `${components.forms.ShiftForm.PlaceholderTexts[0]}`}
                   defaultValue={selectedShift ? selectedShift.title : undefined} 
                   {...field} 
                   className="input-field" />
@@ -444,7 +446,7 @@ if (files.length > 0) {
             name="function"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Categorie</FormLabel>
+                <FormLabel>{components.forms.ShiftForm.formItems[1]}</FormLabel>
                 <FormControl>
                 <div className="flex-center  h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
                 <DropdownCategorie 
@@ -468,7 +470,7 @@ if (files.length > 0) {
                 <FormControl className="h-72">
                   <Textarea 
                   {...field}
-                  placeholder={selectedShift ? selectedShift.description : "beschrijving"}
+                  placeholder={selectedShift ? selectedShift.description : `${components.forms.ShiftForm.PlaceholderTexts[1]}`}
                   defaultValue={selectedShift ? selectedShift.description : undefined } 
                   className="textarea rounded-2xl" 
                   />
@@ -503,7 +505,7 @@ if (files.length > 0) {
                   <path fillRule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clipRule="evenodd" />
                   </svg>
                     <Input
-                     placeholder={selectedShift ? selectedShift.adres : adres} 
+                     placeholder={selectedShift ? selectedShift.adres : `${components.forms.ShiftForm.PlaceholderTexts[2]}`} 
                      defaultValue={selectedShift ? selectedShift.adres : undefined}
                      {...field} 
                      className="input-field" />
@@ -526,7 +528,7 @@ if (files.length > 0) {
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5m.002-2.25h.005v.006H12v-.006Zm-.001 4.5h.006v.006h-.006v-.005Zm-2.25.001h.005v.006H9.75v-.006Zm-2.25 0h.005v.005h-.006v-.005Zm6.75-2.247h.005v.005h-.005v-.005Zm0 2.247h.006v.006h-.006v-.006Zm2.25-2.248h.006V15H16.5v-.005Z" />
                   </svg>
-                    <p className="whitespace-nowrap text-grey-600">Begindatum:</p>
+                    <p className="whitespace-nowrap text-grey-600">{components.forms.ShiftForm.formItems[6]}</p>
                     <DatePicker
                       selected={field.value}
                       onChange={(date: Date | null) => field.onChange(date)}
@@ -551,7 +553,7 @@ if (files.length > 0) {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5m.002-2.25h.005v.006H12v-.006Zm-.001 4.5h.006v.006h-.006v-.005Zm-2.25.001h.005v.006H9.75v-.006Zm-2.25 0h.005v.005h-.006v-.005Zm6.75-2.247h.005v.005h-.005v-.005Zm0 2.247h.006v.006h-.006v-.006Zm2.25-2.248h.006V15H16.5v-.005Z" />
                   </svg>
 
-                    <p className="whitespace-nowrap text-grey-600">Einddatum:</p>
+                    <p className="whitespace-nowrap text-grey-600">{components.forms.ShiftForm.formItems[7]}</p>
                     <DatePicker
                       selected={field.value}
                       onChange={(date: Date | null) => field.onChange(date)}
@@ -573,7 +575,7 @@ if (files.length > 0) {
   render={({ field }) => (
     <div className="w-full">
       <TimePicker
-        label="Begintijd"
+        label={`${components.forms.ShiftForm.formItems[8]}`}
         value={selectedShift ? dayjs(selectedShift.starting) : begintijd}
         onChange={(newValue) => {
           console.log("Selected Time:", newValue ? newValue.format("HH:mm") : "08:00");
@@ -593,7 +595,7 @@ if (files.length > 0) {
               <div className="w-full">
                 <div className="">
                 <TimePicker
-          label="Eindtijd"
+          label={`${components.forms.ShiftForm.formItems[9]}`}
           value={selectedShift ? dayjs(selectedShift.ending) : eindtijd}
           onChange={(newValue) => {
             console.log("Selected Time:", newValue ? newValue.format("HH:mm") : "08:00");
@@ -614,7 +616,7 @@ if (files.length > 0) {
             name="break"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Pauze</FormLabel>
+                <FormLabel>{components.forms.ShiftForm.formItems[10]}</FormLabel>
                 <FormControl>
                 <div className="flex-center  h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 mr-3">
@@ -633,7 +635,7 @@ if (files.length > 0) {
             name="hourlyRate"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>uurtarief</FormLabel>
+                <FormLabel>{components.forms.ShiftForm.formItems[4]}</FormLabel>
                 <FormControl>
                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 mr-3">
@@ -641,7 +643,7 @@ if (files.length > 0) {
                   </svg>
                     <Input
                       type="number"
-                      placeholder={selectedShift ? selectedShift.hourlyRate as unknown as string : "14"}
+                      placeholder={selectedShift ? selectedShift.hourlyRate as unknown as string : `${components.forms.ShiftForm.PlaceholderTexts[5]}`}
                       { ...field}
                       defaultValue={selectedShift ? selectedShift.hourlyRate : undefined}
                       className="p-regular-16 border-0 bg-grey-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -658,7 +660,7 @@ if (files.length > 0) {
             name="spots"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Plekken</FormLabel>
+                <FormLabel>{components.forms.ShiftForm.formItems[11]}</FormLabel>
                 <FormControl>
                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 mr-3">
@@ -667,7 +669,7 @@ if (files.length > 0) {
                     <Input
                       {...field}
                       type="number"
-                      placeholder={selectedShift ? selectedShift.spots as unknown as string : "Plekken"}
+                      placeholder={selectedShift ? selectedShift.spots as unknown as string : `${components.forms.ShiftForm.PlaceholderTexts[6]}`}
                       defaultValue={selectedShift ? selectedShift.spots : undefined}
                       className="p-regular-16 border-0 bg-grey-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                       onChange={(e) => field.onChange(Number(e.target.value))}
@@ -686,10 +688,10 @@ if (files.length > 0) {
             name="skills"
             render={({ field }) => (
               <FormItem className="w-full justify-end">
-                 <FormLabel className="justify-end font-semibold">Vaardigheden </FormLabel>
+                 <FormLabel className="justify-end font-semibold">{components.forms.ShiftForm.formItems[13]}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="nederlands, engels, met 3 borden lopen, dienblad lopen, wijn presenteren, wijn inschenken, bestellingen opnemen"
+                    placeholder={components.forms.ShiftForm.PlaceholderTexts[7]}
                     {...field}
                     className="input-field"
                   />
@@ -703,10 +705,10 @@ if (files.length > 0) {
             name="dresscode"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Kledingsvoorschriften </FormLabel>
+                <FormLabel>{components.forms.ShiftForm.formItems[14]}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="zwarte schoenen, zwarte broek/pantalon, wit overhemd"
+                    placeholder={components.forms.ShiftForm.PlaceholderTexts[8]}
                     {...field}
                     className="input-field"
                   />
@@ -727,7 +729,7 @@ if (files.length > 0) {
                 <FormControl>
                   <div className="flex items-center">
                     <label htmlFor="Flexpool" className="whitespace-nowrap pr-3 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                      shift in de flexpool plaatsen
+                      {components.forms.ShiftForm.formItems[15]}
                     </label>
                     <Checkbox
                       onCheckedChange={(checked) => {
@@ -766,27 +768,26 @@ if (files.length > 0) {
             />
           )}
         </div>
+
                 {type === 'maak' ? (
                   <>
-
             <Button type="button" onClick={() => {
               const values = getValues(); // Get form values
               makeUnpublishedShift(values);}} size="lg" disabled={loading} className="button col-span-2 w-full">
-              {loading ? "Shift maken..." : `${type} shift `}
+              {loading ? `${components.forms.ShiftForm.buttonsTitle[0]}` : `${components.forms.ShiftForm.buttonsTitle[1]}`}
             </Button>
             
             <Button type="submit" size="lg" disabled={form.formState.isSubmitting} className="button col-span-2 w-full bg-white text-sky-500 border-sky-500 border-2">
-                {form.formState.isSubmitting ? "Shift plaatsen..." : `plaats shift `}
+                {form.formState.isSubmitting ? `${components.forms.ShiftForm.buttonsTitle[2]}` : `${components.forms.ShiftForm.buttonsTitle[3]}`}
             </Button>
 
               </>
                 ) : (
               <Button type="submit" size="lg" disabled={form.formState.isSubmitting} className="button col-span-2 w-full">
-                {form.formState.isSubmitting ? "Shift updaten..." : `${type} shift `}
+                {form.formState.isSubmitting ? `${components.forms.ShiftForm.buttonsTitle[4]}` : `${components.forms.ShiftForm.buttonsTitle[5]}`}
               </Button>
-
               )}
-        
+
       </form>
     </Form>
     </LocalizationProvider>

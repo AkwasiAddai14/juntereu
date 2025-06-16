@@ -6,11 +6,12 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
 import { AcademicCapIcon, BanknotesIcon, CheckBadgeIcon, ClockIcon, ReceiptRefundIcon, UsersIcon } from '@heroicons/react/24/outline'
-import { IVacancy } from "@/app/lib/models/vacancy.model";
 import { haalFlexpoolFreelancer } from "@/app/lib/actions/flexpool.actions";
 import { haalFacturenFreelancer } from "@/app/lib/actions/invoice.actions";
 import { haalAangemeld } from "@/app/lib/actions/shift.actions";
 import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/actions/vacancy.actions";
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
   
 
   
@@ -18,7 +19,7 @@ import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/a
     return classes.filter(Boolean).join(' ')
   }
   
-  export default function Dashboard() {
+  export default async function Dashboard ({ lang }: { lang: Locale }) {
     const { isLoaded, user } = useUser();
     const [freelancerId, setFreelancerId] = useState<any>(null);
     const [geaccepteerd, setGeaccepteerd] = useState<any[]>([]);
@@ -27,6 +28,7 @@ import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/a
     const [sollicitaties, setSollicitaties] = useState <any[]>([]);
     const [flexpool, setFlexpool] = useState<any[]>([]);
     const [factuur, setFactuur] = useState<any[]>([]);
+    const { dashboard } = await getDictionary(lang);
 
     useEffect(() => {
       if (isLoaded && user) {
@@ -130,7 +132,7 @@ import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/a
       const statistics = [
         {
           length: aangemeld.length,
-          title: 'Aanmeldingen',
+          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[0].title}`,
           href: '#',
           icon: ClockIcon,
           iconForeground: 'text-teal-700',
@@ -138,7 +140,7 @@ import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/a
         },
         {
           length: sollicitaties.length,
-          title: 'Sollicitaties',
+          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[1].title}`,
           href: '#',
           icon: CheckBadgeIcon,
           iconForeground: 'text-purple-700',
@@ -146,7 +148,7 @@ import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/a
         },
         {
           length: geaccepteerd.length,
-          title: 'Shifts',
+          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[2].title}`,
           href: '#',
           icon: AcademicCapIcon,
           iconForeground: 'text-sky-700',
@@ -154,7 +156,7 @@ import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/a
         },
         {
           length: diensten.length,
-          title: 'Diensten',
+          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[3].title}`,
           href: '#',
           icon: ReceiptRefundIcon,
           iconForeground: 'text-rose-700',
@@ -162,7 +164,7 @@ import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/a
         },
         {
           length: flexpool.length,
-          title: 'Flexpool',
+          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[4].title}`,
           href: '#',
           icon: UsersIcon ,
           iconForeground: 'text-indigo-700',
@@ -170,7 +172,7 @@ import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/a
         },
         {
           length: factuur.length,
-          title: 'Facturen',
+          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[5].title}`,
           href: '#',
           icon: BanknotesIcon,
           iconForeground: 'text-yellow-700',
@@ -211,8 +213,7 @@ import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/a
                 </a>
               </h3>
               <p className="mt-2 text-sm text-gray-500">
-                Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et
-                quo et molestiae.
+                {dashboard.werknemersPage.BentoGrid.shiftsDashboard.RandomTekst}
               </p>
             </div>
             <span

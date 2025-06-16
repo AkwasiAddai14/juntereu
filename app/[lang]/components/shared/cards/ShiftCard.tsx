@@ -9,16 +9,19 @@ import { ShiftType } from '@/app/lib/models/shift.model';
 import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { annuleerAanmeldingen } from '@/app/lib/actions/shift.actions';
 import { useRouter } from 'next/navigation';
-import Employee from '@/app/lib/models/employee.model';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 type CardProps = {
   shift: ShiftType;
 };
 
-const Card = ({ shift }: CardProps) => {
+const Card = async ({ shift, lang }: CardProps & { lang: Locale }) => {
   const { toast } = useToast();
-  const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | null>(null);
   const router = useRouter();
+  const { components } = await getDictionary(lang);
+  const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | null>(null);
+  const shiftStatussen = components.cards.ShiftCard.shift_statussen;
 
 
   const bedrijfCheck = async () => {
@@ -40,22 +43,20 @@ bedrijfCheck();
   const opdrachtnemerId = typeof shift.employee === 'string' ? shift.employer : shift.employee?.toString();
 
   const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'aangenomen':
+    switch (status.toLowerCase()) {
+      case shiftStatussen[2]: // 'geaccepteerd'
       case 'afgerond':
-        case 'checkout geaccepteerd':
-        return 'bg-green-500'; // Green background for 'aangenomen' and 'afgerond'
-      case 'voltooi checkout':
+        return 'bg-green-500';
+      case shiftStatussen[5]: // 'checkout indienen'
         return 'bg-yellow-400';
-        case 'checkout ingevuld':
-        return 'bg-sky-500'; // Yellow background for 'voltooi checkout'
-        case 'afgewezen':
-          case 'afgezegd':
-            case 'no show':
-              case 'Checkout geweigerd':
-            return 'bg-red-500'
+      case shiftStatussen[3]: // 'chekout geweigerd'
+        return 'bg-red-500';
+      case shiftStatussen[6]: // 'afgewezen'
+      case 'afgezegd':
+      case 'no show':
+        return 'bg-red-500';
       default:
-        return 'bg-blue-400'; // Default background if no status matches
+        return 'bg-blue-400';
     }
   };
 
@@ -68,19 +69,19 @@ bedrijfCheck();
       if (response.success) {
         toast({
           variant: 'succes',
-          description: "afgemeld voor de shift! "
+          description: `${components.cards.ShiftCard.ToastMessage1}`
         });
       } else {
         // Handle non-success response
         toast({
           variant: 'destructive',
-          description: `Actie is niet toegestaan! ${response.message}`
+          description: `${components.cards.ShiftCard.Toastmessage2} ${response.message}`
         });
       }
     } catch (error: any) {
       toast({
         variant: 'destructive',
-        description: `Actie is niet toegestaan! ${error.message} `
+        description: `${components.cards.ShiftCard.Toastmessage2} ${error.message} `
       });
     }
   };
@@ -114,7 +115,7 @@ bedrijfCheck();
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
         <div className="flex gap-2">
           <span className="p-semibold-14 w-min rounded-full line-clamp-1 bg-green-100 px-4 py-1 text-green-60">
-            €{shift.hourlyRate}
+            {components.cards.ShiftCard.currencySign}{shift.hourlyRate}
           </span>
           <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1">
             {shift.function}
@@ -123,7 +124,7 @@ bedrijfCheck();
 
         <div className="flex-between w-full">
           <p className="p-medium-16 p-medium-18 text-grey-500">
-          {new Date(shift.startingDate).toLocaleDateString('nl-NL')}
+          {new Date(shift.startingDate).toLocaleDateString(`${components.cards.ShiftCard.localDateString}`)}
           </p> 
           <p className="p-medium-16 p-medium-18 text-grey-500">
           {shift.starting} - {shift.ending}
@@ -143,28 +144,37 @@ bedrijfCheck();
             {opdrachtgeverName}
           </p> 
         </div>
-        <div className="flex-between w-full">
-          { shift.status === 'afgerond' && shift.totaalAmount ? 
-            <p className="p-medium-14 md:p-medium-16 text-grey-600">€{shift.totaalAmount}</p>
-            :
-            <p className="p-medium-14 md:p-medium-16 text-grey-600">{flexpoolTitle}</p>
-          }{/* //<p className="p-medium-14 md:p-medium-16 text-grey-600">{flexpoolTitle}</p> */}
-       <div className={`rounded-md px-4 py-2 ${getStatusColor(shift.status)}`}>
-        {shift.status === 'voltooi checkout' || shift.status === 'Checkout geweigerd' ? 
-        <Link href={`/dashboard/checkout/freelancer/${shift.shiftArrayId}`}>
-        <p className="p-medium-14 md:p-medium-16 text-grey-600">
-          {shift.status}
-          </p>
-        </Link> :
-        <Link href={linkHref}>
-        <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-        {shift.status}
-        </p>
-        </Link>
-        
-        }  
-          </div>
-        </div>
+                  <div className="flex-between w-full">
+                    { shift.status === 'afgerond' && shift.totaalAmount ? 
+                      <p className="p-medium-14 md:p-medium-16 text-grey-600">{components.cards.ShiftCard.currencySign}{shift.totaalAmount}</p>
+                      :
+                      <p className="p-medium-14 md:p-medium-16 text-grey-600">{flexpoolTitle}</p>
+                    }{/* //<p className="p-medium-14 md:p-medium-16 text-grey-600">{flexpoolTitle}</p> */}
+                 <div className={`rounded-md px-4 py-2 ${getStatusColor(shift.status)}`}>
+                  {shift.status === 'voltooi checkout' || shift.status === 'Checkout geweigerd' ? 
+                  <Link href={`/dashboard/checkout/freelancer/${shift.shiftArrayId}`}>
+                  <p className="p-medium-14 md:p-medium-16 text-grey-600">
+                  {shift.status === 'Checkout geweigerd' 
+              ? shiftStatussen[3] 
+                : shift.status === 'voltooi checkout' 
+                  ? shiftStatussen[5] 
+                  : shift.status}
+                    </p>
+                  </Link> :
+                  <Link href={linkHref}>
+                  <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
+                  {shift.status === 'Checkout geweigerd' 
+              ? shiftStatussen[3] 
+              : shift.status === 'checkout geaccepteerd' 
+                ? shiftStatussen[4] 
+                : shift.status === 'voltooi checkout' 
+                  ? shiftStatussen[5] 
+                  : shift.status}
+                  </p>
+                  </Link>
+                  }  
+                    </div>
+                  </div>
       </div>
     </div>
   );

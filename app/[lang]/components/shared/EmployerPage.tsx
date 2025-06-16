@@ -1,8 +1,12 @@
 'use client'
 
-import { CalendarDateRangeIcon, BanknotesIcon, BuildingOffice2Icon, BriefcaseIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/20/solid'
-import { Sollicitaties } from '@/app/[lang]/components/shared/Sollicitaties'
-import  Dienstensectie  from '@/app/[lang]/components/shared/Dienstensectie'
+import { CalendarDateRangeIcon, BanknotesIcon, 
+  BuildingOffice2Icon, BriefcaseIcon, 
+  ClipboardDocumentCheckIcon } from '@heroicons/react/20/solid';
+import { Sollicitaties } from '@/app/[lang]/components/shared/Sollicitaties';
+import  Dienstensectie  from '@/app/[lang]/components/shared/Dienstensectie';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
 interface BedrijvenPageProps {
@@ -87,17 +91,17 @@ interface BedrijvenPageProps {
 }
   
 
-export default function BedrijvenPage({vacature, diensten, sollicitaties}: BedrijvenPageProps) {
-
+export default async function BedrijvenPage({vacature, diensten, sollicitaties}: BedrijvenPageProps, { lang }: { lang: Locale }) {
+  const { components } = await getDictionary(lang);
     const features = [
         {
           name: 'Loon',
-          description: `€ ${vacature.uurloon} voor ${diensten.length}`,
+          description: `${components.forms.VacancyForm.salaris.currencySign} ${vacature.uurloon} / ${diensten.length}`,
           icon: BanknotesIcon,
         },
         {
           name: 'Data',
-          description: ` Van ${vacature.begindatum} tot ${vacature.einddatum}`,
+          description: `${components.forms.VacancyForm.salaris.fieldLabels[6]} ${vacature.begindatum} ${components.forms.VacancyForm.salaris.fieldLabels[7]} ${vacature.einddatum}`,
           icon: CalendarDateRangeIcon,
         },
         {
@@ -173,8 +177,8 @@ export default function BedrijvenPage({vacature, diensten, sollicitaties}: Bedri
         </div>
       </div>
     </div>
-    <Sollicitaties sollicitaties={sollicitaties}/>
-    <Dienstensectie diensten={diensten} />
+    <Sollicitaties sollicitaties={sollicitaties} lang={'en'}/>
+    <Dienstensectie diensten={diensten} lang={lang}/>
     </>
   )
 }

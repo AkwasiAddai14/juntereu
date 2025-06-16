@@ -1,8 +1,13 @@
 "use client";
 
-import { CheckIcon } from '@heroicons/react/20/solid'
-import { Locale } from '@/i18n.config'
-import { getDictionary } from '@/app/[lang]/dictionaries'
+import { CheckIcon } from '@heroicons/react/20/solid';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
+
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
+  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+];
 
 const tiers = [
   {
@@ -29,11 +34,14 @@ const tiers = [
   },
 ]
 
-export default async function Example({ lang }: { lang: Locale }) {
+export default async function Example({ params }: { params: { lang: string } }) {
+  const lang = supportedLocales.includes(params.lang as Locale)
+  ? (params.lang as Locale)
+  : 'en';
   const { pages, navigation, footer } = await getDictionary(lang);
   return (
     <div className="isolate overflow-hidden bg-white">
-      <div className="mx-auto max-w-7xl px-6 pb-96 pt-24 text-center sm:pt-32 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 pb-96 pt-32 text-center sm:pt-32 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-base/7 font-semibold text-sky-400">{pages.pricingPage.title}</h2>
           <p className="mt-2 text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-6xl">
@@ -74,7 +82,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                     </h3>
                     <div className="mt-4 flex items-baseline gap-x-2">
                       <span className="text-5xl font-semibold tracking-tight text-gray-900">{tier.prijs}</span>
-                      <span className="text-base/7 font-semibold text-gray-600">/ gewerkt uur</span>
+                      <span className="text-base/7 font-semibold text-gray-600"> </span>
                     </div>
                     <p className="mt-6 text-base/7 text-gray-600">{tier.prijsUitleg}</p>
                     <ul role="list" className="mt-10 space-y-4 text-sm/6 text-gray-600">
@@ -87,7 +95,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                     </ul>
                   </div>
                   <a
-                    href='../sign-up'
+                    href={`../${lang}/sign-up`}
                     aria-describedby={tier.naam}
                     className="mt-8 block rounded-md bg-sky-600 px-3.5 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
                   >
@@ -103,7 +111,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                   </p>
                 </div>
                 <a
-                  href="../contact"
+                  href={`../${lang}/contact`}
                   className="rounded-md px-3.5 py-2 text-sm/6 font-semibold text-sky-600 ring-1 ring-inset ring-sky-200 hover:ring-sky-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
                 >
                   {pages.pricingPage.ButtonCTA} <span aria-hidden="true">&rarr;</span>

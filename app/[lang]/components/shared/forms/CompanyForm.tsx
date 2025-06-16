@@ -1,20 +1,22 @@
 'use client';
 
+import { z } from 'zod';
+import axios from 'axios';
+import { useUser } from '@clerk/nextjs';
+import { CheckIcon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { easeInOut, motion } from 'framer-motion';
-import axios from 'axios';
-import { z } from 'zod';
-import { CompanyValidation } from '@/app/lib/validations/employer';
+import { useOrganizationList } from "@clerk/nextjs";
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useUploadThing } from "@/app/lib/uploadthing";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { usePathname, useRouter } from 'next/navigation';
-import { useOrganizationList } from "@clerk/nextjs";
+import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import { maakBedrijf } from '@/app/lib/actions/employer.actions';
-import { useUser } from '@clerk/nextjs';
-import { CheckIcon, UserCircleIcon } from 'lucide-react';
-import { useUploadThing } from "@/app/lib/uploadthing";
+import { CompanyValidation } from '@/app/lib/validations/employer';
 import { FileUploader } from "@/app/[lang]/components/shared/FileUploader";
-import { ChevronDownIcon } from '@heroicons/react/16/solid'
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 type Inputs = z.infer<typeof CompanyValidation>;
 
@@ -39,17 +41,17 @@ const countries = [
     { name: 'United Kingdom', id: "VerenigdKoninkrijk", icon: '🇬🇧' },
     { name: 'Nederland', id: "Nederland",  icon: '🇳🇱' },
     { name: 'France', id: "Frankrijk",  icon: '🇫🇷' },
-    { name: 'Italia', id: "Italie",  icon: '🇮🇹' },
-    { name: 'België', id: "Belgie",  icon: '🇧🇪' },
+    { name: 'België/Bégique', id: "Belgie",  icon: '🇧🇪' },
+    { name: 'Deutschland', id: "Duitsland", icon: '🇩🇪' },
     { name: 'Österreich', id: "Oostenrijk",  icon: '🇦🇹' },
     { name: 'España', id: "Spanje", icon: '🇪🇸' },
     { name: 'Portugal', id: "Portugal", icon: '🇵🇹' },
-    { name: 'Deutschland', id: "Duitsland", icon: '🇩🇪' },
+    { name: 'Italia', id: "Italie",  icon: '🇮🇹' },
+    { name: 'Suisse', id: "Zwitserland", icon: '🇨🇭' },
     { name: 'Sverige', id: "Zweden",  icon: '🇸🇪' },
     { name: 'Danmark', id: "Denemarken",  icon: '🇩🇰' },
     { name: 'Norge', id: "Noorwegen",  icon: '🇳🇴' },
     { name: 'Suomi', id: "Finland",  icon: '🇫🇮' },
-    { name: 'Suisse', id: "Zwitserland", icon: '🇨🇭' }
   ]
 
 interface Props {
@@ -72,7 +74,7 @@ interface Props {
     };
 }
 
-const BedrijfsForm = ({ bedrijven }: Props) => {
+const BedrijfsForm = async ({ bedrijven }: Props, { lang }: { lang: Locale }) => {
     const { createOrganization } = useOrganizationList();
     const [organizationName, setOrganizationName] = useState("");
     const router = useRouter();
@@ -82,6 +84,13 @@ const BedrijfsForm = ({ bedrijven }: Props) => {
     const [files, setFiles] = useState<File[]>([]);
     const { startUpload } = useUploadThing("media");
     const [loading, setLoading] = useState(false);
+    const { components } = await getDictionary(lang);
+
+    const steps = components.forms.CompanyForm.steps.map(step => ({
+        id: parseInt(step.id),
+        name: step.name,
+        fields: step.fields || []
+      }));
 
     const haalBedrijfsData = async (kvkNummer: string) => {
         try {
@@ -305,11 +314,11 @@ if (files.length > 0) {
     >
         <div className="px-8 space-y-12 sm:space-y-16">
             <div className="border-b border-gray-900/10 pb-12">
-                <h2 className="text-base font-semibold mt-10 leading-7 text-gray-900">Bedrijfgegevens</h2>
+                <h2 className="text-base font-semibold mt-10 leading-7 text-gray-900">{components.forms.CompanyForm.headTitle}</h2>
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div>
                             <label htmlFor="location" className="block text-sm/6 font-medium text-gray-900">
-                              Location
+                              {components.forms.CompanyForm.location}
                             </label>
                             <div className="mt-2 grid grid-cols-1">
                               {countries.map((item) => (
@@ -342,7 +351,7 @@ if (files.length > 0) {
                          </div>
                     <div className="sm:col-span-6">
                         <label htmlFor="kvk" className="block text-sm font-medium leading-6 text-gray-900">
-                            KVK
+                            {components.forms.CompanyForm.formItems[0]}
                         </label>
                         <div className="mt-2">
                             <input
@@ -362,7 +371,7 @@ if (files.length > 0) {
 
                     <div className="sm:col-span-6">
                         <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
-                            Naam contactpersoon / beheerder
+                        {components.forms.CompanyForm.formItems[1]}
                         </label>
                         <div className="mt-2">
                             <input
@@ -381,7 +390,7 @@ if (files.length > 0) {
 
                     <div className="sm:col-span-3">
                         <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
-                            Postcode
+                            {components.forms.CompanyForm.formItems[2]}
                         </label>
                         <div className="mt-2">
                             <input
@@ -402,7 +411,7 @@ if (files.length > 0) {
 
                     <div className="sm:col-span-3">
                         <label htmlFor="housenumber" className="block text-sm font-medium leading-6 text-gray-900">
-                            Huisnummer
+                            {components.forms.CompanyForm.formItems[3]}
                         </label>
                         <div className="mt-2">
                             <input
@@ -423,7 +432,7 @@ if (files.length > 0) {
 
                     <div className="sm:col-span-6">
                         <label htmlFor="street" className="block text-sm font-medium leading-6 text-gray-900">
-                            Straatnaam
+                            {components.forms.CompanyForm.formItems[4]}
                         </label>
                         <div className="mt-2">
                             <input
@@ -444,7 +453,7 @@ if (files.length > 0) {
 
                     <div className="sm:col-span-6">
                         <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-                            Stad
+                            {components.forms.CompanyForm.formItems[5]}
                         </label>
                         <div className="mt-2">
                             <input
@@ -464,7 +473,7 @@ if (files.length > 0) {
 
                     <div className="sm:col-span-6">
                         <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-                            Emailadres
+                            {components.forms.CompanyForm.formItems[6]}
                         </label>
                         <div className="mt-2">
                             <input
@@ -482,7 +491,7 @@ if (files.length > 0) {
 
                     <div className="sm:col-span-6">
                         <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-                            Telefoonnummer
+                            {components.forms.CompanyForm.formItems[7]}
                         </label>
                         <div className="mt-2">
                             <input
@@ -500,9 +509,9 @@ if (files.length > 0) {
 
                     <div className="sm:col-span-6">
                         <label htmlFor="iban" className="block text-sm font-medium leading-6 text-gray-900">
-                            BTW-ID
+                            {components.forms.CompanyForm.formItems[8]}
                         </label>
-                        <p className="text-sm text-slate-400">(optioneel)</p>
+                        <p className="text-sm text-slate-400">({components.forms.CompanyForm.optioneel})</p>
                         <div className="mt-2">
                             <input
                                 id="btwnr"
@@ -519,9 +528,9 @@ if (files.length > 0) {
 
                     <div className="sm:col-span-6">
                         <label htmlFor="iban" className="block text-sm font-medium leading-6 text-gray-900">
-                            IBAN
+                            {components.forms.CompanyForm.formItems[9]}
                         </label>
-                        <p className="text-sm text-slate-400">(optioneel)</p>
+                        <p className="text-sm text-slate-400">({components.forms.CompanyForm.optioneel})</p>
                         <div className="mt-2">
                             <input
                                 id="iban"
@@ -550,15 +559,15 @@ if (files.length > 0) {
                     >
                         <div className="px-8 space-y-12 sm:space-y-16">
                             <div className="border-b border-gray-900/10 pb-12">
-                                <h2 className="text-base font-semibold  mt-10 leading-7 text-gray-900">Bedrijfgegevens</h2>
+                                <h2 className="text-base font-semibold  mt-10 leading-7 text-gray-900">{components.forms.CompanyForm.headTitle}</h2>
                                 <p className="mt-1 text-sm leading-6 text-gray-600">
-                                    Vul hier de gegevens in voor het visitekaartje van het bedrijf.
+                                    {components.forms.CompanyForm.subTitle}
                                 </p>
 
                                  <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                  <div className="col-span-full sm:col-span-4">
                                         <label htmlFor="displaynaam" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Displaynaam
+                                            {components.forms.CompanyForm.formItems[10]}
                                         </label>
                                         <input
                                             id="displaynaam"
@@ -575,7 +584,7 @@ if (files.length > 0) {
                                          <div className="mt-10 space-y-8 col-span-full pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
                                             <div className="sm:grid sm:grid-cols-1 sm:items-start sm:gap-4 sm:py-6">
                                               <label htmlFor="profielfoto" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                                               Profielfoto
+                                               {components.forms.CompanyForm.formItems[12]}
                                               </label>
                                               <div className="mt-2 sm:col-span-2 sm:mt-0">
                                               <FileUploader
@@ -590,10 +599,10 @@ if (files.length > 0) {
 
                                     <div className="col-span-full">
                                         <label htmlFor="bio" className="block text-sm font-medium leading-6 text-gray-900">
-                                            Bio
+                                            {components.forms.CompanyForm.formItems[11]}
                                         </label>
                                         <p className="mt-3 text-sm leading-6 text-gray-600">
-                                                Wat mogen de opdrachtnemers weten over het bedrijf?
+                                                {components.forms.CompanyForm.bioSubtitle}
                                             </p>
                                         <div className="mt-2">
                                             <textarea
@@ -621,9 +630,9 @@ if (files.length > 0) {
                     >
                         <div className="px-8 space-y-12 sm:space-y-16">
                             <div className="border-b border-gray-900/10 pb-12">
-                                <h2 className="mt-7 text-base font-semibold leading-7 text-gray-900">Welkom bij Junter!</h2>
+                                <h2 className="mt-7 text-base font-semibold leading-7 text-gray-900">{components.forms.CompanyForm.final_page_header}</h2>
                                 <p className="mt-1 text-sm leading-6 text-gray-600">
-                                Je bent klaar! Klik op 'Voltooien' om het proces af te ronden.
+                                {components.forms.CompanyForm.final_page_subtitle}
                                 </p>
                             </div>
                         </div>
@@ -637,7 +646,7 @@ if (files.length > 0) {
                         onClick={prev}
                         className="inline-flex justify-center rounded-md border border-transparent bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                     >
-                        Vorige
+                        {components.forms.CompanyForm.buttons[0]}
                     </button>
                 )}
                 {currentStep < 2 ? (
@@ -646,14 +655,14 @@ if (files.length > 0) {
                         onClick={next}
                         className="rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                     >
-                        Volgende
+                        {components.forms.CompanyForm.buttons[1]}
                     </button>
                 ) : (
                     <button
                         type="submit"
                         className="rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                     >
-                        Voltooien
+                        {components.forms.CompanyForm.buttons[2]}
                     </button>
                 )}
             </div>

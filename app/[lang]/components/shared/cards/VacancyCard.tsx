@@ -8,13 +8,15 @@ import { IVacancy } from '@/app/lib/models/vacancy.model';
 import { isBedrijf } from '@/app/lib/actions/employer.actions';
 import { IJob } from '@/app/lib/models/job.model';
 import { haalBijbehorendeDiensten } from '@/app/lib/actions/vacancy.actions';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 type CardProps = {
   vacature: IVacancy;
 };
 
-const Card = ({ vacature }: CardProps) => {
-
+const Card = async ({ vacature, lang }: CardProps & { lang: Locale }) => {
+  const { components } = await getDictionary(lang);
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | undefined>(false);
   const [diensten, setDiensten] = useState<IJob[]>([]);
 
@@ -65,7 +67,7 @@ const Card = ({ vacature }: CardProps) => {
 
       {isEenBedrijf && (
         <div className="absolute items-stretch right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
-          <DeleteConfirmation shiftId={vacature._id as string} />
+          <DeleteConfirmation shiftId={vacature._id as string} lang={lang}/>
         </div>
       ) 
 }
@@ -74,11 +76,11 @@ const Card = ({ vacature }: CardProps) => {
         <div className="flex gap-2">
             { isEenBedrijf ?  (
                  <span className="p-semibold-14 w-min rounded-full line-clamp-1 bg-green-100 px-4 py-1 text-green-60">
-                 €{vacature.hourlyRate}
+                 {components.cards.VacancyCard.currencySign}{vacature.hourlyRate}
                </span>
             ) : (
                 <span className="p-semibold-14 w-min rounded-full line-clamp-1 bg-green-100 px-4 py-1 text-green-60">
-                €{totaalbedrag} voor {vacature.jobs?.length || 0} diensten 
+                {components.cards.VacancyCard.currencySign}{totaalbedrag} {components.cards.VacancyCard.voor} {vacature.jobs?.length || 0} {components.cards.VacancyCard.hvl_shifts} 
               </span>
             )
         }
@@ -89,12 +91,12 @@ const Card = ({ vacature }: CardProps) => {
           {
             isEenBedrijf && (
                 <p className="text-sm md:p-medium-16 text-grey-600 line-clamp-1">
-                {vacature.jobs?.length || 0} diensten 
+                {vacature.jobs?.length || 0} {components.cards.VacancyCard.hvl_shifts} 
                </p>
             )
           }
           <p className="text-sm md:p-medium-16 text-grey-600 line-clamp-1">
-           {vacature.applications?.length || 0} sollicitaties 
+           {vacature.applications?.length || 0} {components.cards.VacancyCard.hvl_sollicitaties} 
           </p>
         </div>
 
@@ -103,10 +105,10 @@ const Card = ({ vacature }: CardProps) => {
         vacature.available && (
              <div className="flex-between w-full">
                 <p className="p-medium-16 p-medium-18 text-grey-500">
-                  {new Intl.DateTimeFormat('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(vacature.startingDate))} tot 
+                  {new Intl.DateTimeFormat(`${components.cards.VacancyCard.localDateString}`, { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(vacature.startingDate))} {components.cards.VacancyCard.tot} 
                 </p>
                 <p className="p-medium-16 p-medium-18 text-grey-500">
-                {new Intl.DateTimeFormat('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(vacature.endingDate))}
+                {new Intl.DateTimeFormat(`${components.cards.VacancyCard.localDateString}`, { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(vacature.endingDate))}
                 </p>
             </div>
                   )
@@ -128,21 +130,21 @@ const Card = ({ vacature }: CardProps) => {
                <div className="flex-between w-full">
                {vacature.dresscode?.length === 1 ? (
                     <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-                   {vacature.dresscode.length} kledingsvoorschrift
+                   {vacature.dresscode.length} {components.cards.VacancyCard.kledingvoorschriften[0]}
                    </p>
                ) : (
                    <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-                   {vacature.dresscode?.length || 0} kledingsvoorschriften
+                   {vacature.dresscode?.length || 0} {components.cards.VacancyCard.kledingvoorschriften[1]}
                    </p>
                )}
               
               {vacature.dresscode?.length === 1 ? (
                     <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-                   {vacature.skills?.length} vaardigheid
+                   {vacature.skills?.length} {components.cards.VacancyCard.vaardigeheden[0]}
                    </p>
                ) : (
                    <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-                   {vacature.skills?.length || 0} vaardigeheden
+                   {vacature.skills?.length || 0} {components.cards.VacancyCard.vaardigeheden[1]}
                    </p>
                )}
            </div>

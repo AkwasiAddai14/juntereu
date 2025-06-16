@@ -18,10 +18,11 @@ import Flexpool from "../Flexpool/Flexpool";
 import Financien from '../Financien/Facturen';
 import Profiel from '../Profiel/Profile';
 import FAQ from '../FAQ/FAQ';
- 
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
-const navigation = [
+/* const navigation = [
   { name: 'Home', value: 'Home',  href: '#' , current: true},
   { name: 'Calender', value: 'Calender', href: '#' , current: false },
   { name: 'Shifts', value: 'Shifts', href: '#' , current: false },
@@ -34,7 +35,11 @@ const userNavigation = [
   { name: 'Profiel', value: 'Profiel', href: '#' },
   { name: 'Uitloggen', value: 'Uitloggen', href: '#' },
   { name: 'FAQ', value: 'FAQ', href: '#' },
-]
+] */
+
+
+
+
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -42,11 +47,25 @@ function classNames(...classes: string[]) {
 
 
 
-export default function EmployeeDashboard() {
+export default async function EmployeeDashboard({ lang }: { lang: Locale }) {
   const { isLoaded, user } = useUser();
   const [position, setPosition] = React.useState("Shifts");
   const [showLogOut, setShowLogOut] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const { dashboard } = await getDictionary(lang);
+
+  const navigation = dashboard.werknemersPage.Dashboard.navigation.map((item, index) => ({
+    name: item.name,
+    value: item.value,
+    href: '#',          // voeg hier eventueel dynamisch routing aan toe
+    current: index === 0, // bijv. eerste item actief
+  }));
+
+  const userNavigation = dashboard.werknemersPage.Dashboard.UserNavigation.map(item => ({
+    name: item.name,
+    value: item.value,
+    href: '#',
+  }));
   
   useEffect(() => {
     if (isLoaded && user) {
@@ -61,7 +80,7 @@ export default function EmployeeDashboard() {
   if(isLoading){
     return (
       <div>
-       <Loading/> 
+       <Loading lang={"en"}/> 
       </div>
     )
   }
@@ -150,7 +169,7 @@ export default function EmployeeDashboard() {
               </div>
               <div className="-mr-2 flex items-center sm:hidden">
                 {/* Mobile menu button */}
-                <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   <Bars3Icon aria-hidden="true" className="block size-6 group-data-[open]:hidden" />
@@ -190,7 +209,7 @@ export default function EmployeeDashboard() {
                 </div>
                 <button
                   type="button"
-                  className="relative ml-auto shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="relative ml-auto shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
@@ -216,7 +235,7 @@ export default function EmployeeDashboard() {
         <div className="py-10">
           <header>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900">{dashboard.werknemersPage.Dashboard.headTitle}</h1>
             </div>
           </header>
           <main className={`${['Geaccepteerde shifts','Aanmeldingen', 'Checkouts', 'Facturen', 'Flexpools'].includes(position) ? 'xl:pl-0' : 'xl:pl-96'}`}>
@@ -225,7 +244,7 @@ export default function EmployeeDashboard() {
               <div className="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">{/* Main area */}
                     {
                     position === 'Home' ??
-                     <BentoGrid/>
+                     <BentoGrid lang={"en"}/>
                     }
                     {
                     position === 'Explore' ??
@@ -233,7 +252,7 @@ export default function EmployeeDashboard() {
                     }
                     {
                     position === 'Calender' ??
-                     <Calender/>
+                     <Calender lang={"en"}/>
                     }
                     {
                     position === 'Shifts' ??
@@ -241,11 +260,11 @@ export default function EmployeeDashboard() {
                     }
                     {
                     position === 'Financien' ??
-                     <Financien/>
+                     <Financien lang={lang}/>
                     }      
                     {
                     position === 'Flexpools' ??
-                     <Flexpool/>
+                     <Flexpool lang={lang}/>
                     } 
                     {
                     position === 'Profiel' ??
@@ -260,7 +279,7 @@ export default function EmployeeDashboard() {
           </main>
         </div>
       </div>
-      <UitlogModal isVisible={showLogOut} onClose={() => setShowLogOut(false)}/>
+      <UitlogModal isVisible={showLogOut} onClose={() => setShowLogOut(false)} lang={lang}/>
       </Fragment>
   )
 }

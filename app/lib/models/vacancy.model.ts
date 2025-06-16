@@ -32,7 +32,8 @@ export interface IVacancy extends Document {
         surchargePercentage: number,
         surchargeVan: string,
         surchargeTot: string,
-      }]
+      }],
+      label: string
 }
 
 const vacancySchema: Schema<IVacancy> = new mongoose.Schema({
@@ -84,7 +85,7 @@ const vacancySchema: Schema<IVacancy> = new mongoose.Schema({
         surchargeVan: { type: String},
         surchargeTot: {type: String},
 }],
-
+label: { type: String, required: false }
 });
 
 const Vacancy: Model<IVacancy> = mongoose.models.Vacancy || mongoose.model<IVacancy>('Vacancy', vacancySchema);

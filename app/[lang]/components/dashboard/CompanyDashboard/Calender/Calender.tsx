@@ -11,6 +11,9 @@ import Dag from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Dag
 import Week from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Week';
 import Maand from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Maand';
 import Jaar from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Jaar';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
+
 
 
 function classNames(...classes: (string | boolean | undefined)[]) {
@@ -24,9 +27,10 @@ function classNames(...classes: (string | boolean | undefined)[]) {
     { name: 'Jaar', value: 'Jaar' },
   ]
 
-const Calender = () => {
+const Calender = async ({ lang }: { lang: Locale }) => {
     const [position, setPosition] = React.useState("Maand");
     const [currentDate, setCurrentDate] = useState<Date>(new Date());
+    const { dashboard } = await getDictionary(lang);
     const router = useRouter()
     
       useEffect(() => {
@@ -88,7 +92,7 @@ const Calender = () => {
                         )}
                       >
                         <span className="sr-only">Dag</span>
-                        Dag
+                        {dashboard.werkgeversPage.Calender.calender.navigation[0].name}
                       </button>
                       )}
                     </Menu.Item>
@@ -103,7 +107,7 @@ const Calender = () => {
                         )}
                       >
                         <span className="sr-only">Week</span>
-                        Week
+                        {dashboard.werkgeversPage.Calender.calender.navigation[1].name}
                       </button>
                       )}
                     </Menu.Item>
@@ -118,7 +122,7 @@ const Calender = () => {
                         )}
                       >
                         <span className="sr-only">Maand</span>
-                        Maand
+                        {dashboard.werkgeversPage.Calender.calender.navigation[2].name}
                       </button>
                       )}
                     </Menu.Item>
@@ -134,7 +138,7 @@ const Calender = () => {
                       >
 
                         <span className="sr-only">Jaar</span>
-                        Jaar
+                        {dashboard.werkgeversPage.Calender.calender.navigation[3].name}
                       </button>
                       )}
                     </Menu.Item>
@@ -148,14 +152,14 @@ const Calender = () => {
               className="ml-6 rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
               onClick={() => router.push("../dashboard/shift/maak")}
             >
-              Plaats shift
+              {dashboard.werkgeversPage.Calender.calender.buttons[0]}
             </button>
             <button
               type="button"
               className="ml-6 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
               onClick={() => router.push("../dashboard/vacature/maak")}
             >
-              Plaats vacature
+               {dashboard.werkgeversPage.Calender.calender.buttons[1]}
             </button>
           </div>
           <Menu as="div" className="relative ml-6 md:hidden">
@@ -184,7 +188,7 @@ const Calender = () => {
                           'block px-4 py-2 text-sm'
                         )}
                       >
-                        Plaats shift
+                         {dashboard.werkgeversPage.Calender.calender.buttons[0]}
                       </a>
                     )}
                   </Menu.Item>
@@ -199,7 +203,7 @@ const Calender = () => {
                           'block px-4 py-2 text-sm'
                         )}
                       >
-                        Vandaag
+                         {dashboard.werkgeversPage.Calender.calender.buttons[3]}
                       </a>
                     )}
                   </Menu.Item>
@@ -208,15 +212,15 @@ const Calender = () => {
                 <Menu.Item>
                     {({ active }) => (
                       <button
-                      key={"Week"}
+                      key={"Dag"}
                       onClick={() => setPosition("Dag")}
                       className={classNames(
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                           'block px-4 py-2 text-sm'
                       )}
                     >
-                      <span className="sr-only">Week</span>
-                      Dag
+                      <span className="sr-only">Dag</span>
+                      {dashboard.werkgeversPage.Calender.calender.navigation[0].name}
                     </button>
                     )}
                   </Menu.Item>
@@ -231,7 +235,7 @@ const Calender = () => {
                       )}
                     >
                       <span className="sr-only">Week</span>
-                      Week
+                      {dashboard.werkgeversPage.Calender.calender.navigation[1].name}
                     </button>
                     )}
                   </Menu.Item>
@@ -246,7 +250,7 @@ const Calender = () => {
                       )}
                     >
                       <span className="sr-only">Maand</span>
-                      Maand
+                      {dashboard.werkgeversPage.Calender.calender.navigation[2].name}
                     </button>
                     )}
                   </Menu.Item>
@@ -261,7 +265,7 @@ const Calender = () => {
                       )}
                     >
                       <span className="sr-only">Jaar</span>
-                      Jaar
+                      {dashboard.werkgeversPage.Calender.calender.navigation[3].name}
                     </button>
                     )}
                   </Menu.Item>
@@ -274,19 +278,19 @@ const Calender = () => {
   </div>
   <div>
   {position === "Dag"  && (
-<Dag/>
+<Dag lang={'en'}/>
     )
     }
 {position === "Week"  && (
-<Week/>
+<Week lang={'en'}/>
     )
     }
     {position === "Maand"  && (
-<Maand />
+<Maand lang={'en'} />
     )
     }
     {position === "Jaar"  && (
-<Jaar/>
+<Jaar lang={'en'}/>
     )
     }
   </div>

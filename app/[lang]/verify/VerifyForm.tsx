@@ -3,11 +3,17 @@
 import { useUser, useClerk } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { Locale } from '@/i18n.config';
 
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
+  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+];
 
-
-
-export default function Example({ pages }: { pages: any; navigation: any; footer: any }) {
+export default function Example({ pages, params }: { pages: any; navigation: any; footer: any, params: { lang: string } }) {
+  const lang = supportedLocales.includes(params.lang as Locale)
+  ? (params.lang as Locale)
+  : 'en';
   const { isLoaded, isSignedIn, user } = useUser();
   const router = useRouter();
   const { signOut } = useClerk();

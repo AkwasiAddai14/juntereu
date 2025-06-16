@@ -1,7 +1,7 @@
 import { ClerkProvider } from '@clerk/nextjs'
 import { Inter } from 'next/font/google'
 import { frFR, svSE, esES, ptPT, nbNO, itIT, deDE, fiFI, nlNL, daDK, arSA } from '@clerk/localizations'
-import '@/app/globals.css'
+import '@/app/[lang]/globals.css';
 
 export const metadata = {
   title: 'Junter',

@@ -1,4 +1,9 @@
-export default function Example() {
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
+
+
+export default async function Example({ lang }: { lang: Locale }) {
+  const { components } = await getDictionary(lang);
     return (
       <>
         {/*
@@ -16,16 +21,16 @@ export default function Example() {
             className="absolute inset-0 -z-10 size-full object-cover object-top"
           />
           <div className="mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">
-            <p className="text-base/8 font-semibold text-white">404</p>
+            <p className="text-base/8 font-semibold text-white">{components.shared.NotFoundPage.headTitle}</p>
             <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl">
-              Page not found
+            {components.shared.NotFoundPage.subTitle}
             </h1>
             <p className="mt-6 text-pretty text-lg font-medium text-white/70 sm:text-xl/8">
-              Sorry, we couldn’t find the page you’re looking for.
+              {components.shared.NotFoundPage.pagetext}
             </p>
             <div className="mt-10 flex justify-center">
               <a href="/" className="text-sm/7 font-semibold text-white">
-                <span aria-hidden="true">&larr;</span> Back to home
+                <span aria-hidden="true">&larr;</span> {components.shared.NotFoundPage.button}
               </a>
             </div>
           </div>

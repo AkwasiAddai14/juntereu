@@ -8,24 +8,25 @@ import Aangemeld from "@/app/[lang]/components/dashboard/EmployeeDashboard/Shift
 import Aangenomen from "@/app/[lang]/components/dashboard/EmployeeDashboard/Shifts/Aangenomen";
 import Afgerond from "@/app/[lang]/components/dashboard/EmployeeDashboard/Shifts/Afgerond";
 
-const page = () => {
+const page = async ({ lang }: { lang: Locale }) => {
+  const { dashboard } = await getDictionary(lang);
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
-      <Tabs defaultValue="Freelancer" className="w-full max-w-4xl ">
+      <Tabs defaultValue="Aangenomen" className="w-full max-w-4xl ">
         <TabsList className="flex justify-center px-24 bg-white items-center">
-          <TabsTrigger value="Aangemeld">Aangemeld</TabsTrigger>
-          <TabsTrigger value="Aangenomen">Aangenomen</TabsTrigger>
-          <TabsTrigger value="Afgerond">Afgerond</TabsTrigger>
+          <TabsTrigger value="Aangemeld">{dashboard.werknemersPage.Shifts.tabs[0]}</TabsTrigger>
+          <TabsTrigger value="Aangenomen">{dashboard.werknemersPage.Shifts.tabs[1]}</TabsTrigger>
+          <TabsTrigger value="Afgerond">{dashboard.werknemersPage.Shifts.tabs[2]}</TabsTrigger>
         </TabsList>
         <section className="mt-6">
-          <TabsContent value="Freelancer">
-            <Aangemeld/>
+          <TabsContent value="Aangemeld">
+            <Aangemeld lang={'en'}/>
           </TabsContent>
-          <TabsContent value="Bedrijven">
-            <Aangenomen/>
+          <TabsContent value="Aangenomen">
+            <Aangenomen lang={'en'}/>
           </TabsContent>
-          <TabsContent value="Bedrijven">
-            <Afgerond/>
+          <TabsContent value="Afgerond">
+            <Afgerond lang={'en'}/>
           </TabsContent>
         </section>
       </Tabs>

@@ -63,7 +63,7 @@ const DashboardPage = () => {
 
   return (
     <div>
-      {isBedrijf ? <EmployerDashboard /> : <EmployeeDashboard /> }
+      {isBedrijf ? <EmployerDashboard lang={'en'} /> : <EmployeeDashboard lang={'en'} /> }
     </div>
   );
 };

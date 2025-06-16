@@ -1,17 +1,24 @@
 'use client'
 
-import { useEffect, useState, useTransition } from 'react'
-import { usePathname } from 'next/navigation'
-import Image from 'next/image'
-import {  AlertDialog,  AlertDialogAction,  AlertDialogCancel,  AlertDialogContent, AlertDialogDescription,  AlertDialogFooter,  AlertDialogHeader,  AlertDialogTitle,  AlertDialogTrigger } from '@/app/[lang]/components/ui/alert-dialog'
-import del from "@/app/assets/images/delete.svg"
-
+import { useEffect, useState, useTransition } from 'react';
+import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import {  AlertDialog,  AlertDialogAction,  
+  AlertDialogCancel,  AlertDialogContent, 
+  AlertDialogDescription,  AlertDialogFooter,  
+  AlertDialogHeader,  AlertDialogTitle,  
+  AlertDialogTrigger 
+} from '@/app/[lang]/components/ui/alert-dialog';
+import del from "@/app/assets/images/delete.svg";
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 import { haalShiftMetIdDelete, verwijderShiftArray } from '@/app/lib/actions/shift.actions'
 
-export const DeleteConfirmation = ({ shiftId }: { shiftId: string }) => {
+export const DeleteConfirmation = async ({ shiftId, lang }: { shiftId: string } & { lang: Locale }) => {
   const pathname = usePathname()
   let [isPending, startTransition] = useTransition()
   const [shift, setShift] = useState<any>(null);
+  const { components } = await getDictionary(lang);
 
   useEffect(() => {
     const fetchShift = async () => {
@@ -36,14 +43,14 @@ export const DeleteConfirmation = ({ shiftId }: { shiftId: string }) => {
 
       <AlertDialogContent className="bg-white">
         <AlertDialogHeader>
-          <AlertDialogTitle>Weet u zeker dat u de shift wilt verwijderen ?</AlertDialogTitle>
+          <AlertDialogTitle>{components.shared.DeleteConfirmation.DialogText[0]}</AlertDialogTitle>
           <AlertDialogDescription className="p-regular-16 text-grey-600">
-            Deze actie zal de shift definitief verwijderen.
+            {components.shared.DeleteConfirmation.DialogText[1]}
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogCancel>Annuleer</AlertDialogCancel>
+          <AlertDialogCancel>{components.shared.DeleteConfirmation.buttons[0]}</AlertDialogCancel>
 
           {shiftArrayId ? (
             <AlertDialogAction
@@ -52,10 +59,10 @@ export const DeleteConfirmation = ({ shiftId }: { shiftId: string }) => {
                   await verwijderShiftArray({ shiftArrayId, forceDelete: true, path: pathname || "/dashboard" })
                 })
               }>
-              {isPending ? 'Verwijderen...' : 'verwijderen'}
+              {isPending ? `${components.shared.DeleteConfirmation.buttons[1]}` : `${components.shared.DeleteConfirmation.buttons[2]}`}
             </AlertDialogAction>
           ) : (
-            <p>Invalid Shift ID</p>
+            <p>{components.shared.DeleteConfirmation.ToastMessage1}</p>
           )}
         </AlertDialogFooter>
       </AlertDialogContent>

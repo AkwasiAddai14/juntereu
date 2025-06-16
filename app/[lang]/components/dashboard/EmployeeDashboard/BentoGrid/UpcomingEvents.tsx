@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { haalAangemeld } from "@/app/lib/actions/shift.actions"
 import { haalDienstenFreelancer } from "@/app/lib/actions/vacancy.actions";
 import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon";
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 const people = [
   {
@@ -69,11 +71,12 @@ const people = [
   },
 ]
 
-export default function Events() {
+export default async function Events({ lang }: { lang: Locale }) {
   const { isLoaded, user } = useUser();
   const [freelancerId, setFreelancerId] = useState<any>(null);
   const [geaccepteerd, setGeaccepteerd] = useState<any[]>([]);
   const [diensten, setDiensten] = useState<any[]>([]);
+  const { dashboard } = await getDictionary(lang);
 
   useEffect(() => {
     if (isLoaded && user) {
@@ -141,17 +144,17 @@ useEffect(() => {
             <div className="hidden sm:flex sm:flex-col sm:items-end">
               <p className="text-sm/6 text-gray-900">{shift.startingDate}</p>
                 <p className="mt-1 text-xs/5 text-gray-500">
-                  Begintijd <time dateTime={shift.starting}>{shift.starting}</time>
+                  {dashboard.werknemersPage.BentoGrid.UpcomingEvents.text1} <time dateTime={shift.starting}>{shift.starting}</time>
                 </p>
                 <p className="mt-1 text-xs/5 text-gray-500">
-                  eindtijd <time dateTime={shift.ending}>{shift.ending}</time>
+                  {dashboard.werknemersPage.BentoGrid.UpcomingEvents.text2} <time dateTime={shift.ending}>{shift.ending}</time>
                 </p>
               
                 <div className="mt-1 flex items-center gap-x-1.5">
                   <div className="flex-none rounded-full bg-emerald-500/20 p-1">
                     <div className="size-1.5 rounded-full bg-emerald-500" />
                   </div>
-                  <p className="text-xs/5 text-gray-500">€ {shift.hourlyRate}</p>
+                  <p className="text-xs/5 text-gray-500">{dashboard.werknemersPage.BentoGrid.UpcomingEvents.currencySign} {shift.hourlyRate}</p>
                 </div>
           
             </div>

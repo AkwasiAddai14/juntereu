@@ -3,21 +3,23 @@
         "navLinks": [
                      {"name": "Werknemers", "link": "employees"},
                      {"name": "Werkgevers", "link": "employers"},
-                     {"name": "Contact", "link": "contact"},
-                     {"name": "Taal", "link": ""}
+                     {"name": "Contact", "link": "contact"}
+                     
         ],
+        "Taal": {"name": "Taal", "link": ""},
         "Log-in":  {"name": "Inloggen", "link": "sign-in"}  
     },
     "pages": {
         "landingsPage": {
             "header": {
+                "Text1": "Ontdek waarom werkzoekende ons platform verkiezen en vind je volgende klus vandaag nog!",
                 "headerLinks": ["Werknemers", "Werkgevers", "Taal", "Contact", "Inloggen"],
                 "headText": "Ontketen je potentieel, vind je volgende opdracht!",
                 "subText": "Ontdek een wereld van mogelijkheden als werknemer op ons platform. Van creatieve projecten tot zakelijke taken, hier vind je jouw volgende succesverhaal. Word lid en maak je dromen werkelijkheid!"
             },
             "CTA": [
-                {"name": "Sign up", "href": "/sign-up", "icon": "PlayCircleIcon"},
-                {"name": "Read more", "href": "/employees", "icon": "PhoneIcon"}
+                {"name": "Aanmelden", "href": "/sign-up", "icon": "PlayCircleIcon"},
+                {"name": "Lees Meer", "href": "/employees", "icon": "PhoneIcon"}
             ],
             "hero": {
                 "image": {
@@ -58,24 +60,32 @@
                 "subText1": "Nog meer vragen?",
                 "subtext2": " Neem gerust contact op.",
                 "FAQ": [
-                    {"question": "Hoe kan ik me registreren als freelancer op het platform?",
+
+
+                    [{"question": "Hoe kan ik me registreren als freelancer op het platform?",
                      "answer": "Gewoon via de website of download eenvoudigweg de app, doorloop het registratieproces en vul je profiel in met relevante informatie."},
                      {"question": "Hoe worden betalingen verwerkt voor de voltooide opdrachten?",
                      "answer": "Na voltooiing van een opdracht ontvang je voorlopig de laatste vrijdag van de maand jouw betaling, vanaf Februari elke vrijdag."},
                      {"question": "Kan ik mijn eigen tarieven instellen voor de aangeboden diensten?",
-                     "answer": "Als freelancer heb je de vrijheid om je eigen tarieven in te stellen op basis van je ervaring en de marktstandaarden."},
-                     {"question": "Welke soorten opdrachten zijn beschikbaar op het platform?",
+                     "answer": "Als freelancer heb je de vrijheid om je eigen tarieven in te stellen op basis van je ervaring en de marktstandaarden."}],
+
+
+                     [{"question": "Welke soorten opdrachten zijn beschikbaar op het platform?",
                      "answer": "Van bediening in de horeca tot aan verkeersbegeleiding en staging op festivals of maaltijdbezorging, er is een diversiteit aan opdrachten beschikbaar om uit te kiezen."},
                      {"question": "Is er ondersteuning beschikbaar als ik hulp nodig heb tijdens het gebruik van de app?",
                      "answer": "Ons team staat elke dag van 09:00 tot 17:00 voor je klaar via de app of WhatsApp om eventuele vragen te beantwoorden."},
                      {"question": "Hoe kan ik mijn profiel optimaliseren om meer opdrachten te krijgen?",
-                     "answer": "Optimaliseer je profiel door vaardigheden en werkervaring toe te voegen om meer opdrachten aan te trekken."},
-                     {"question": "Hoe werkt het proces van het vinden en accepteren van opdrachten?",
+                     "answer": "Optimaliseer je profiel door vaardigheden en werkervaring toe te voegen om meer opdrachten aan te trekken."}],
+
+
+                     [{"question": "Hoe werkt het proces van het vinden en accepteren van opdrachten?",
                      "answer": "Blader door beschikbare opdrachten, bekijk de details en solliciteer met een enkele klik. Het is snel en intuïtief."},
                      {"question": "Zijn er beoordelingen of beoordelingen van opdrachtgevers beschikbaar voor de opdrachten?",
                      "answer": "Opdrachtgevers kunnen na voltooiing van de opdracht beoordelingen achterlaten, waardoor je reputatie wordt opgebouwd en verbeterd."},
                      {"question": "Zijn er bepaalde vereisten waaraan ik moet voldoen om opdrachten te kunnen aannemen via het platform?",
-                     "answer": "In de meeste gevallen heb je minimale ervaring of vaardigheden nodig die relevant zijn voor de opdracht die je wilt aannemen."}
+                     "answer": "In de meeste gevallen heb je minimale ervaring of vaardigheden nodig die relevant zijn voor de opdracht die je wilt aannemen."}]
+
+
                 ]
             },
             "testimonials": {
@@ -113,7 +123,6 @@
                         "sector": "Administratie"
                     }
                 ]
-
             }
         },
 
@@ -289,7 +298,6 @@
                 {"name": "Privacy Ploicy", "link": "../pp"},
                 {"name": "Terms of Use", "link": "../tou"}
             ]
-
         },
         "contactPage": {
             "headText": "Neem contact op",
@@ -334,8 +342,8 @@
             
              {
                 "naam": "Uitzendkrachten",
-                "prijs": "€19,20",
-                "prijsUitleg": "€12 x 1.6 (omrekenfactor)",
+                "prijs": "€22,40",
+                "prijsUitleg": "€14 x 1.6 (omrekenfactor)",
                 "features": [
                     "Minder administratieve lasten",
                   "Directe inzetbaarheid",
@@ -402,8 +410,6 @@
                     "- KVK-nummer"
                 ]
             }
-        }
-            
         },
         "privacypolicyPage": {
             "privacyPolicyEmployee": {
@@ -461,7 +467,7 @@
                 "sections": [
                   {
                     "heading": "1. Definities",
-                    "text": "Platform: De online omgeving van Junter, toegankelijk via onze website en/of mobiele applicatie.\nFreelancer: Een individu die zich registreert op het platform om diensten aan te bieden aan bedrijven.\nBedrijf: Een entiteit die zich registreert op het platform om diensten aan te vragen van freelancers.\nGebruiker: Zowel freelancers als bedrijven die gebruikmaken van het platform."
+                    "text": "Platform: De online omgeving van Junter, toegankelijk via onze website en/of mobiele applicatie.\nWerknemer: Een individu die zich registreert op het platform om diensten aan te bieden aan bedrijven.\nBedrijf: Een entiteit die zich registreert op het platform om diensten aan te vragen van werknemers.\nGebruiker: Zowel werknemers als bedrijven die gebruikmaken van het platform."
                   },
                   {
                     "heading": "2. Registratie en Account",
@@ -473,11 +479,11 @@
                   },
                   {
                     "heading": "4. Diensten en Betalingen",
-                    "text": "Diensten Aanbieden: Freelancers kunnen hun diensten aanbieden via het platform. Bedrijven kunnen deze diensten boeken en afnemen.\nBetalingen: Betalingen voor de geleverde diensten worden verwerkt via het platform. De exacte betalingsvoorwaarden en -procedures worden afzonderlijk overeengekomen tussen de freelancer en het bedrijf.\nServicekosten: Wij behouden ons het recht voor om servicekosten in rekening te brengen voor het gebruik van het platform. Deze kosten zullen duidelijk worden vermeld voordat een dienst wordt afgenomen."
+                    "text": "Diensten Aanbieden: Werknemers kunnen hun diensten aanbieden via het platform. Bedrijven kunnen deze diensten boeken en afnemen.\nBetalingen: Betalingen voor de geleverde diensten worden verwerkt via het platform. De exacte betalingsvoorwaarden en -procedures worden afzonderlijk overeengekomen tussen het platform/bureau en het bedrijf.\nServicekosten: Wij behouden ons het recht voor om servicekosten in rekening te brengen voor het gebruik van het platform. Deze kosten zullen duidelijk worden vermeld voordat een dienst wordt afgenomen."
                   },
                   {
                     "heading": "5. Annuleringen en Geschillen",
-                    "text": "Annuleringen: Annuleringsvoorwaarden voor diensten worden afzonderlijk overeengekomen tussen de freelancer en het bedrijf. Wij raden aan om duidelijke annuleringsvoorwaarden te hanteren.\nGeschillen: Geschillen tussen freelancers en bedrijven dienen onderling te worden opgelost. Wij bieden ondersteuning bij geschillen, maar zijn niet verantwoordelijk voor de uitkomst."
+                    "text": "Annuleringen: Annuleringsvoorwaarden voor diensten worden afzonderlijk overeengekomen tussen de werknemer en het bedrijf. Wij raden aan om duidelijke annuleringsvoorwaarden te hanteren.\nGeschillen: Geschillen tussen werknemer en bedrijven dienen onderling te worden opgelost. Wij bieden ondersteuning bij geschillen, maar zijn niet verantwoordelijk voor de uitkomst."
                   },
                   {
                     "heading": "6. Aansprakelijkheid",
@@ -497,7 +503,7 @@
                   },
                   {
                     "heading": "10. Toepasselijk Rechten",
-                    "text": "Deze algemene voorwaarden worden beheerst door en geïnterpreteerd in overeenstemming met de wetten van [Nederland]. Geschillen voortvloeiend uit of in verband met deze voorwaarden zullen worden voorgelegd aan de bevoegde rechtbanken in [Amsterdam, Nederland]."
+                    "text": "Deze algemene voorwaarden worden beheerst door en geïnterpreteerd in overeenstemming met de wetten van Nederland. Geschillen voortvloeiend uit of in verband met deze voorwaarden zullen worden voorgelegd aan de bevoegde rechtbanken in Amsterdam, Nederland."
                   }
                 ],
                 "contact": {
@@ -661,33 +667,28 @@
                   "email2": "billing@junter.works"
                 }
               }
-        },
-        "signupPage": {
-          
-        },
-        "signinPage": {
-
-        },
-    "footer": {
+        }
+      },
+      "footer": {
         "navLinks": [
             {
-                "title": "Employees",
-                "links": ["How does it work?", "Find jobs", "Contact"],
+                "title": "Werknemers",
+                "links": ["Hoe werkt het?", "Vind werk", "Contact"],
                 "href": ["../employees", "../sign-up", "../contact"]
             },
             {
-                "title": "Employers",
-                "links": ["Pricing", "Find employees", "API-integration"],
+                "title": "Werkgevers",
+                "links": ["Kosten", "Vind werkers", "API-integratie"],
                 "href": ["../pricing", "../sign-up", "../employers"]
             },
             {
                 "title": "Junter",
-                "links": ["About us", "Careers", "Partners"],
+                "links": ["Over ons", "Werken bij", "Partners"],
                 "href": ["../junter", "../junter", "../notfound"]
             },
             {
                 "title": "Legal",
-                "links": ["Privacy Policy", "Terms of Use", "Contact"],
+                "links": ["Privacybeleid", "Algemene voorwaarden", "Contact"],
                 "href": ["../pp", "../tou", "../contact"]
             }
         ],
@@ -700,6 +701,1351 @@
         "footerText": "© 2025 Junter. Alle rechten voorbehouden."
     },
     "dashboard":{
+      "werknemersPage": {
+          "BentoGrid": {
+            "headTitle": "Deploy faster",
+            "subTitle": "Everything you need to deploy your app",
+            "gridTitles": [
+              "Dashboard",
+              "Profiel",
+              "upcoming Events",
+              "Actions",
+              "Financien"
+            ],
+            "shiftsDashboard": {
+              "items": [
+                {
+                  "title": "Aanmeldingen",
+                  "icon": "ClockIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-teal-50",
+                  "IconForeGround": "text-teal-700"
+                },
+                {
+                  "title": "Sollicitaties",
+                  "icon": "CheckBadgeIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-purple-50",
+                  "IconForeGround": "text-purple-700"
+                },
+                {
+                  "title": "Shifts",
+                  "icon": "AcademicCapIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-sky-50",
+                  "IconForeGround": "text-sky-700"
+                },
+                {
+                  "title": "Diensten",
+                  "icon": "ReceiptRefundIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-rose-50",
+                  "IconForeGround": "text-rose-700"
+                },
+                {
+                  "title": "Flexpools",
+                  "icon": "UsersIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-indigo-50",
+                  "IconForeGround": "text-indigo-700"
+                },
+                {
+                  "title": "Facturen",
+                  "icon": "BanknotesIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-yellow-50",
+                  "IconForeGround": "text-yellow-700"
+                }
+              ],
+              "RandomTekst": "Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae."
+            },
+            "Checkouts": {
+              "zeroFoundText": "Geen diensten noch checkouts gevonden"
+            },
+            "Financien": {
+              "headTitle": "Facturen",
+              "subtitle": "Een overzicht van al je facturen en loonstroken.",
+              "ColumnTitles": [
+                "Factuur/Loonstrook ID",
+                "Week",
+                "Shift/Dienst",
+                "Bedrag",
+                "Status"
+              ],
+              "button": "Downloaden"
+            },
+            "profiel": {
+              "headTitle": "Profiel",
+              "subTitle": "Jouw visitekaartje naar de werkgevers.😉",
+              "ProfielFotoButton": "Wijzig profielfoto",
+              "placeholderTextButton": "JPG, GIF or PNG. 1MB max.",
+              "formItems": [
+                "Naam",
+                "E-mailadres",
+                "Telefoonnumer",
+                "Geboortedatum",
+                "Straat",
+                "Huisnummer",
+                "Loonheffingskorting",
+                "Kleine ondernemersregeling"
+              ],
+              "werkervaring": {
+                "headTitle": "Werkervaring",
+                "subTitle": "Voeg werkervaring toe",
+                "button": "Wijzig"
+              },
+              "opleiding": {
+                "headTitle": "opleiding",
+                "subTitle": "Voeg opleiding toe",
+                "button": "wijzig"
+              },
+              "taalendata": {
+                "headTitle": "Taal en Data",
+                "subTitle": "Kies jouw voorkeurstaal en data format",
+                "formItems": [
+                  "Taal",
+                  "Data format"
+                ],
+                "button": "wijzig",
+                "dataLabel": "Automatische tijdzone"
+              }
+            },
+            "UpcomingEvents": {
+              "text1": "Begintijd",
+              "text2": "Eindtijd",
+              "currencySign": "€"
+            }
+          },
+          "Calender": {
+            "calender": {
+              "navigation": [
+                {
+                  "name": "Dag",
+                  "value": "Dag"
+                },
+                {
+                  "name": "Week",
+                  "value": "Week"
+                },
+                {
+                  "name": "Maand",
+                  "value": "Maand"
+                },
+                {
+                  "name": "Jaar",
+                  "value": "Jaar"
+                }
+              ],
+              "buttons": [
+                "Beschikbaarheid",
+                "Vandaag"
+              ]
+            },
+            "Dag": {
+              "tekst1": "bezetting",
+              "tekst2": "No shift(s) available for this shift.",
+              "button": "Verwijder"
+            },
+            "Week": {
+              "button": "Vandaag"
+            },
+            "Maand": {
+              "button": "Vandaag"
+            },
+            "Jaar": {
+              "button": "Vandaag"
+            }
+          },
+          "Dashboard": {
+            "DashboardingLoading": {
+              "tekst1": " Loading...",
+              "tekst2": "Hopefully not for too long 🙂🚀"
+            },
+            "headTitle": "Dashboard",
+            "navigation": [
+              {
+                "name": "Home",
+                "value": "Home"
+              },
+              {
+                "name": "Calender",
+                "value": "Calender"
+              },
+              {
+                "name": "Shifts",
+                "value": "Shifts"
+              },
+              {
+                "name": "Flexpools",
+                "value": "Flexpools"
+              },
+              {
+                "name": "Financien",
+                "value": "Financien"
+              }
+            ],
+            "UserNavigation": [
+              {
+                "name": "Settings",
+                "value": "Settings"
+              },
+              {
+                "name": "Veelgestelde vragen",
+                "value": "Veelgestelde vragen"
+              },
+              {
+                "name": "Uitloggen",
+                "value": "Uitloggen"
+              }
+            ]
+          },
+          "Explore": {
+            "tabs": [
+              "Shifts",
+              "vacatures"
+            ],
+            "ShiftPagina": {
+              "headTitle": "Shifts",
+              "NoShifts": "Geen shifts beschikbaar"
+            },
+            "VacaturePagina": {
+              "headTitle": "Vacatures",
+              "NoVacatures": "Geen vacatures beschikbaar"
+            },
+            "filter": [
+              "Afstand",
+              "Tarief"
+            ],
+            "buttons": [
+              "Zoek",
+              "Reset"
+            ]
+          },
+          "FAQ": {
+            "headTitle:": "Veelgestelde vragen"
+          },
+          "Financien": {
+            "Facturen": {
+              "headTitle": "Facturen",
+              "noInvoices": "Geen facturen gevonden"
+            },
+            "Loonstroken": "Loonstroken",
+            "noPyaslips": "Geen loonstroken gevonden"
+          },
+          "Flexpool": {
+            "Flexpools": {
+              "headTitle": "Flexpools",
+              "NoFlexpools": "Geen flexpools gevonden"
+            },
+            "Favorieten": {
+              "headTitle": "Favorieten",
+              "noFavorieten": "Geen favorieten gevonden"
+            }
+          },
+          "Profiel": {
+            "ProfielItems": [
+              "Naam",
+              "Geboortedatum",
+              "E-mailadres",
+              "Ratings",
+              "Shifts",
+              "Diensten"
+            ]
+          },
+          "Shifts": {
+            "tabs": [
+              "Aangemeld",
+              "Aangenomen",
+              "Afgerond"
+            ],
+            "texts": [
+              {
+                "headTitleShifts": "Aangemelde shifts",
+                "headTitleVacatures": "Aangemelde diensten",
+                "NoShifts": "Geen shifts beschikbaar",
+                "NoVacatures":"Geen vacatures beschikbaar"
+              },
+              {
+                "headTitleShifts": "Aangenomen shifts",
+                "headTitleVacatures": "Aangenomen diensten",
+                "NoShifts": "Geen shifts beschikbaar",
+                "NoVacatures":"Geen vacatures beschikbaar"
+              },
+              {
+                "headTitleShifts": "Afgeronde shifts",
+                "headTitleVacatures": "Afgeronde diensten",
+                "NoShifts": "Geen shifts beschikbaar",
+                "NoVacatures":"Geen vacatures beschikbaar"
+              }
+            ]
+          }
+        },
+        "werkgeversPage": {
+          "Dashboard": {
+            "headTitle": "Dashboard",
+            "texts":[
+              {
+                "name": "Vacatures",
+                "notFound": "Geen vacatures gevonden"
+              },
+              {
+                "name": "Gepubliceerde shifts",
+                "notFound": "Geen shifts gevonden"
+              },
+              {
+                "name": "Checkouts",
+                "notFound": "Geen checkouts gevonden"
+              },
+              {
+                "name": "Ongepubliceerde shifts",
+                "notFound": "Geen shifts gevonden"
+              },
+              {
+                "name": "Flexpools",
+                "notFound": "Geen flexpools gevonden",
+                "modal": {
+                  "title": "Maak flexpool",
+                  "subTitle": "Maak Flexpool",
+                  "buttons": [
+                    "Annuleer",
+                    "Toevoegen"
+                  ]
+                }
+              },
+              {
+                "name": "Facturen",
+                "notFound": "Geen facturen gevonden"
+              },
+              {
+                "name": "Shifts",
+                "attributes": [
+                  "aanmeldingen",
+                  "plekken",
+                  "aangenomen"
+                ],
+                "localDateString": "nl-NL",
+                "noDate": "datum niet beschikbaar"
+              },
+              {
+                "name": "Checkouts",
+                "attributes": [
+                  {"currencySign": "€"},
+                  "datum",
+                  "minuten pauze"
+                ],
+                "buttons": [
+                  "Accepteren",
+                  "Weigeren"
+                ],
+                "localDateString": "nl-NL",
+                "noDate": "datum niet beschikbaar"
+              },
+              {
+                "name": "Facturen",
+                "attributes":[
+                  "shift",
+                  "shifts",
+                  "betaald",
+                  "openstaand",
+                  {"currencySign": "€"}
+                ],
+                "localDateString": "nl-NL",
+                "noDate": "datum niet beschikbaar"
+              }
+            ]
+          },
+          "Veelgesteldevragen": {
+            "headTitle": "Veelgestelde vragen"
+          },
+          "Calender": {
+                "calender": {
+                  "navigation": [
+                    {
+                      "name": "Dag",
+                      "value": "Dag"
+                    },
+                    {
+                      "name": "Week",
+                      "value": "Week"
+                    },
+                    {
+                      "name": "Maand",
+                      "value": "Maand"
+                    },
+                    {
+                      "name": "Jaar",
+                      "value": "Jaar"
+                    }
+                  ],
+                  "buttons": [
+                    "Plaats shift",
+                    "Plaats vacature",
+                    "Beschikbaarheid",
+                    "Vandaag"
+                  ]
+                },
+                "Dag": {
+                  "tekst1": "bezetting",
+                  "tekst2": "No shift(s) available for this shift.",
+                  "tekst3": "Schedule for",
+                  "button": "Verwijder"
+                },
+                "Week": {
+                  "button": "Vandaag"
+                },
+                "Maand": {
+                  "button": "Vandaag",
+                  "Aanmeldingen": "aanmeldingen",
+                  "Reserveren": "reserven",
+                  "Aangenomen": "aangenomen"
+                },
+                "Jaar": {
+                  "button": "Vandaag",
+                  "Wijzig": "Wijzig",
+                  "Bekijk": "Bekijk",
+                  "Plek": "Plek",
+                  "Plekken": "Plekken"
+                }
+          }
+        }
+      },
+    "components": {
+      "cards": {
+        "ApplicationCard": {
+          "typeJob": "Flexwerk",
+          "shifts": "diensten",
+          "localDateString": "nl-NL",
+          "ToastMessage1": "Sollicitatie ingetrokken",
+          "Toastmessage2": "Actie is niet toegestaan!"
+        },
+        "CheckoutCard": {
+          "ToastMessage1": "Checkout verstuurd! 👍",
+          "Toastmessage2": "Actie is niet toegestaan! ❌",
+          "localDateString": "nl-NL",
+          "gewerkteUren": "Gewerkte uren: ",
+          "minPauze": "minuten pauze",
+          "accepteren": "Accepteren",
+          "weigeren": "Weigeren",
+          "currencySign": "€",
+          "shift_statussen": [
+            "beschikbaar",
+            "aangemeld",
+            "geaccepteerd",
+            "chekout geweigerd",
+            "checkout geaccpeteerd",
+            "checkout indienen",
+            "afgewezen"
+          ]
+        },
+        "FlexpoolCard": {
+          "hvl_freelancers": "freelancers",
+          "hvl_shifts": "shifts",
+          "shift": "shift"
+        },
+        "InvoiceCard": {
+          "week": "week",
+          "hvl_shifts": "shifts",
+          "shift": "shift",
+          "currencySign": "€",
+          "voldaan": "voldaan",
+          "openstaand": "openstaand"
+        },
+        "JobCard": {
+          "ToastMessage1": "Afgemeld voor de dienst!",
+          "Toastmessage2": "Actie is niet toegestaan!",
+          "localDateString": "nl-NL",
+          "currencySign": "€",
+          "pauze": "min pauze"
+        },
+        "ShiftArrayCard": {
+          "localDateString": "nl-NL",
+          "currencySign": "€"
+        },
+        "ShiftCard": {
+          "ToastMessage1": "Afgemeld voor de shift!",
+          "Toastmessage2": "Actie is niet toegestaan!",
+          "localDateString": "nl-NL",
+          "currencySign": "€",
+          "shift_statussen": [
+            "beschikbaar",
+            "aangemeld",
+            "geaccepteerd",
+            "checkout geweigerd",
+            "checkout geaccpeteerd",
+            "checkout indienen",
+            "voltooi checkout",
+            "afgewezen"
+          ]
+        },
+        "VacancyCard": {
+          "localDateString": "nl-NL",
+          "currencySign": "€",
+          "hvl_shifts": "diensten",
+          "hvl_sollicitaties": "sollicitaties",
+          "kledingvoorschriften": [
+            "kledingvoorschrift",
+            "kledingvoorschriften"
+          ],
+          "vaardigeheden": [
+            "vaardigheid",
+            "vaardigheden"
+          ],
+          "voor": "voor",
+          "tot": "tot"
+        }
+      },
+      "forms": {
+        "CompanyForm": {
+          "steps": [
+            {
+              "id": "1",
+              "name": "Gegevens",
+              "fields": [
+                "Voornaam",
+                "Tussenvoegsel",
+                "Achternaam",
+                "Company Registration Number"
+              ]
+            },
+            {
+              "id": "2",
+              "name": "Profiel",
+              "fields": [
+                "Displaynaam",
+                "Profielfoto",
+                "Bio"
+              ]
+            },
+            {
+              "id": "3",
+              "name": "Compleet"
+            }
+          ],
+          "headTitle": "Bedrijfgegevens",
+          "subTitle": "Vul hier de gegevens in voor het visitekaartje van het bedrijf.",
+          "bioSubtitle": "Wat mogen de opdrachtnemers weten over het bedrijf?",
+          "final_page_header": "Welkom bij Junter!",
+          "final_page_subtitle": "Je bent klaar! Klik op 'Voltooien' om het proces af te ronden.",
+          "buttons": [
+            "Vorige",
+            "Volgende",
+            "Voltooien"
+          ],
+          "location": "Land",
+          "formItems": [
+            "Kvk",
+            "Naam contactpersoon / beheerder",
+            "Postcode",
+            "Huisnummer",
+            "Straatnaam",
+            "Stad",
+            "E-mailadres",
+            "Telefoonnumer",
+            "BTW-ID",
+            "IBAN",
+            "Displaynaam",
+            "Bio",
+            "Profielfoto"
+          ],
+          "optioneel": "optioneel"
+        },
+        "EmployeeForm": {
+          "steps": [
+            {
+              "id": "1",
+              "name": "Persoonlijke gegevens",
+              "fields": [
+                "Voornaam",
+                "Tussenvoegsel",
+                "Achternaam",
+                "Geboortedatum",
+                "Land",
+                "BSN"
+              ]
+            },
+            {
+              "id": "2",
+              "name": "Zakelijke gegevens",
+              "fields": [
+                "KVK-NR",
+                "BTW-ID",
+                "Postcode",
+                "Huisnummer",
+                "Stad",
+                "Straatnaam"
+              ]
+            },
+            {
+              "id":"3",
+              "name": "Profiel",
+              "fields": [
+                "Bio",
+                "Profielfoto",
+                "CV"
+              ]
+            },
+            {
+              "id": "4",
+              "name": "Compleet"
+            }
+          ],
+          "headTitle": "Persoonlijke gegevens",
+          "subTtitle": " Vul je persoonlijke gegevens in.",
+          "head2Title": "Zakelijke gegevens",
+          "sub2Title": "Vul je zakelijke gegevens in.",
+          "head3Title": "Profiel",
+          "sub3Title": "Jouw visitekaartje naar opdrachtgevers toe. 😁👋",
+          "Location": "Land",
+          "final_page_header": "Je bent klaar! Klik op 'Voltooien' om het proces af te ronden.",
+          "compleet": "Compleet",
+          "formItems": [
+            "Voornaam",
+            "Tussenvoegsel",
+            "Achternaam",
+            "Geboortedatum",
+            "Huisnummer",
+            "Postcode",
+            "Straatnaam",
+            "Stad",
+            "BTW-ID",
+            "IBAN",
+            "Bio",
+            "Profielfoto"
+          ],
+          "buttons": [
+            "Vorige",
+            "Volgende",
+            "Voltooien"
+          ]
+        },
+        "ShiftForm": {
+          "ToastMessage1": "ongepubliceerde shift gemaakt! 👍",
+          "Toastmessage2": "Actie is niet toegestaan! ❌",
+          "ToastMessage3": "Het maken van een ongepubliceerde shift is niet gelukt:",
+          "selectShifts": "Selecteer shift",
+          "formItems": [
+            "Titel",
+            "Categorie",
+            "Functie",
+            "Afbeelding",
+            "Uurtarief",
+            "Adres",
+            "Begindatum",
+            "Einddatum",
+            "Eindtijd",
+            "Begintijd",
+            "Pauze",
+            "Plekken",
+            "Beschrijving",
+            "vaardigheden",
+            "Kledinsvoorschriften",
+            "shift in de flexpool plaatsen"
+           ],
+          "PlaceholderTexts": [
+            "enthousiaste horecatoppers gezocht",
+            "beschrijving",
+            "adres",
+            "begintijd",
+            "eindtijd",
+            "14",
+            "plekken",
+            "nederlands, engels, met 3 borden lopen, dienblad lopen, wijn presenteren, wijn inschenken, bestellingen opnemen",
+            "zwarte schoenen, zwarte broek/pantalon, wit overhemd"
+          ],
+          "buttonsTitle": [
+            "shift maken...",
+            "maak shift",
+            "Shift plaatsen...",
+            "plaats shift",
+            "Shift updaten...",
+            "update shift"
+          ]
+        },
+        "VacancyForm": {
+          "steps": [
+            {
+              "id": 1,
+              "name": "Vacature details",
+              "fields": [
+                "titel",
+                "functie", 
+                "beschrijving",
+                "adres",
+                "kledingsvoorschriften",
+                "vaardigheden",
+                "afbeelding"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Adres",
+              "fields": [
+                "postcode",
+                "huisnummer",
+                "straatnaam",
+                "stad"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Data",
+              "fields": [
+                "begindatum",
+                "einddatum",
+                "begintijd",
+                "eindtijd"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "Uurloon",
+              "fields": [
+                "uurloon",
+                "toeslag",
+                "toeslagtype",
+                "toeslagpercentage"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "Compleet"
+            }
+          ],
+          "titles": [
+            {
+              "headTitle": "Vacature Details",
+              "subTitle": "Beschrijf de vacature"
+            },
+            {
+              "headTitle": "Adres ",
+              "subTitle": "Waar gaat de vacature uitgevoerd worden ?"
+            },
+            {
+              "headTitle": "Data",
+              "subTitle": "Voor welke dagen en tijden zoek je personeel ?"
+            },
+            {
+              "headTitle": "Salaris",
+              "subTitle": "Wat gaat de werknemer verdienen ?"
+            }
+          ],
+          "placeholderTexts": [
+            "nederlands, engels, met 3 borden lopen, dienblad lopen, wijn presenteren, wijn inschenken, bestellingen opnemen",
+            "zwarte schoenen, zwarte broek/pantalon, wit overhemd"
+          ],
+          "buttons": [
+            "Vorige",
+            "Volgende",
+            "Voltooien"
+          ],
+          "formItems":[
+            "titel",
+            "functie",
+            "beschrijving",
+            "afbeelding",
+            "vaardigheden",
+            "kledingsvoorschriften"
+          ],
+          "locatie": {
+            "fieldLabels": [
+              "Huisnummer",
+              "Postcode",
+              "Stad",
+              "Straatnaam"
+            ]
+          },
+          "data": {
+            "fieldLabels": [
+              "Werktijden invullen",
+              "Begindatum",
+              "Einddatum",
+              "Begintijd",
+              "Eindtijd",
+              "Pauze (minuten)"
+            ],
+            "buttons": [
+              "Verwijderen",
+              "Werktijden toevoegen",
+              "Versturen"
+            ]
+          },
+          "salaris": {
+            "fieldLabels": [
+              "uurloon (€)",
+              "toeslag",
+              "Toeslag toepassen",
+              "Type toeslag",
+              "Selecteer",
+              "Kies een type toeslag",
+              "Van",
+              "Tot"
+            ],
+            "typeToeslag": [
+              "Doordeweeks",
+              "Zaterdag",
+              "Zon- en feestdagen"
+            ],
+            "percentageToeslag": [
+              "125%",
+              "150%",
+              "200%",
+              "Percentage toeslag"
+            ],
+            "currencySign": "(€)"
+          }
+        }, 
+        "AvailabilityForm": {
+          "headTitle": "Samenvatting Beschikbaarheid",
+          "Dates": "Data",
+          "Times": "Tijden",
+          "Categories": "Categorieën",
+          "Distance": "Afstand",
+          "subTitle": "Vul je beschikbaarheid in",
+          "Section1": {
+            "HeadTitles": ["Data", "Tijden"],
+            "subTitle": "Wanneer ben je beschikbaar?",
+            "formItems": ["Één dag", "Meerdere dagen"]
+          },
+          "Section2": {
+            "HeadTitles": ["Categorieën", "Afstand"],
+            "subTitles": ["Selecteer categorieën", "Selecteer afstand"],
+            "formItems": [
+              "Categorie",
+              "Subcategorie",
+              "Mijn huidige adres",
+              "Ander adres",
+              "Maakt niet uit"
+            ],
+            "placeholderTexts": ["Huisnummer", "Postcode", "Straat", "Stad"]
+          },
+          "CancelModal": {
+            "headText": "Wijzigingen annuleren",
+            "subText": "Weet je zeker dat je wilt annuleren? Alle wijzigingen gaan verloren."
+          },
+          "Buttons": [
+            "Annuleren",
+            "Versturen",
+            "Ja, annuleer wijzigingen",
+            "Nee, doorgaan"
+          ]
+        }
+      },
+      "navigation": {
+        "Footer": {
+          "navigation": [
+            {
+              "name":"Werknemers",
+              "links": [
+                {
+                  "name": "Hoe werkt het",
+                  "href": "/employees"
+                },
+                {
+                  "name": "Vind werk",
+                  "href": "/sign-up"
+                },
+                {
+                  "name": "Contact",
+                  "href": "/contact"
+                }
+              ]
+            },
+            {
+              "name":"Werkgevers",
+              "links": [
+                {
+                  "name": "Kosten",
+                  "href": "/pricing"
+                },
+                {
+                  "name": "Vind werkers",
+                  "href": "/sign-up"
+                },
+                {
+                  "name": "FAQ",
+                  "href": "/faq"
+                }
+              ]
+            },
+            {
+              "name":"Junter",
+              "links": [
+                {
+                  "name": "Over ons",
+                  "href": "/junter"
+                },
+                {
+                  "name": "Werken bij",
+                  "href": "/junter"
+                },
+                {
+                  "name": "Partners",
+                  "href": "/junter"
+                }
+              ]
+            },
+            {
+              "name":"Legal",
+              "links": [
+                {
+                  "name": "Contact",
+                  "href": "/contact"
+                },
+                {
+                  "name": "Privacybeleid",
+                  "href": "/pp"
+                },
+                {
+                  "name": "Algemene voorwaarden",
+                  "href": "/tou"
+                }
+              ]
+            }
+          ]
+        },
+        "Footer4": {
+          "title": "2025 Junter. Alle rechten voorbehouden."
+        },
+        "FooterForm": {
+          "emailadres": "emailadres"
+        },
+        "NavBar": {
+          "inloggen": "Inloggen",
+          "aanmelden": "Aanmelden"
+        },
+        "Navigation": {
+          "dashboard": "Dashboard",
+          "terug": "Terug",
+          "uitloggen": "Uitloggen"
+        }
+      },
+      "shared": {
+        "ApplyConfirmation": {
+          "ToastMessage1": "Aangemeld voor de shift! 👍",
+          "ToastMessage2": "Actie is niet toegestaan! ❌"
+        },
+        "CheckoutModal": {
+          "ToastMessage1": "Checkout verstuurd! 👍",
+          "ToastMessage2": "Actie is niet toegestaan! ❌",
+          "ToastMessage3": "oei.. actie is mislukt!",
+          "buttons": [
+            "Checkout indienen...",
+            "Accepteren",
+            "Versturen",
+            "Sluiten",
+            "No show"
+          ],
+          "fieldLabels": [
+            "Shifts voltooid",
+            "Shift Details",
+            "minuten pauze",
+            "Uurtarief",
+            "Gedeclareerde uren",
+            "Te laat"
+          ],
+          "per_Uur": "p/u",
+          "currencySign": "€",
+          "localDateString": "nl-NL"
+        },
+        "DeleteConfirmation": {
+          "DialogText": [
+            "Weet u zeker dat u de shift wilt verwijderen ?",
+            "Deze actie zal de shift definitief verwijderen."
+          ],
+          "buttons": [
+            "Annuleren",
+            "Verwijderen...",
+            "Verwijderen"
+          ],
+          "ToastMessage1": "Invalid Shift ID"
+        },
+        "Dienstensectie": {
+          "ToastMessage1": "Werkenemer afgemeld voor de dienst!",
+          "ToastMessage2": "Actie is niet toegestaan! {{string}}",
+          "buttons": [
+            "Aanpassen",
+            "Afzeggen"
+          ],
+          "fieldLabels": [
+            "Werknemer",
+            "Woonplaats",
+            "Klussen",
+            "Beoordelingen"
+          ],
+          "voltooid": "voltooid"
+        },
+        "Dropdown": {
+          "labels": [
+            "geen flexpools",
+            "Maak flexpool",
+            "Flexpool"
+          ],
+          "buttons": [
+            "Annuleren",
+            "Toevoegen"
+          ]
+        },
+        "DropdownCategorie": {
+          "fields":[
+            {
+              "label": "Horeca",
+              "items": [
+                { "value": "Horeca: restaurants", "label": "restaurant" },
+                { "value": "Horeca: cafes en bars", "label": "cafe en bar" },
+                { "value": "Horeca: catering", "label": "catering" },
+                { "value": "Horeca: hotels", "label": "hotel" }
+              ]
+            },
+            {
+              "label": "Retail",
+              "items": [
+                { "value": "Retail: supermarkten", "label": "supermarkt" },
+                { "value": "Retail: kledingwinkels", "label": "kledingwinkel" },
+                { "value": "Retail: elektronicazaken", "label": "elektronicazaak" },
+                { "value": "Retail: Warenhuizen", "label": "warenhuis" }
+              ]
+            },
+            {
+              "label": "Logistiek en Magazijnwerk",
+              "items": [
+                { "value": "Logistiek: distributiecentra", "label": "distributiecentrum" },
+                { "value": "Logistiek: bezorging", "label": "bezorging" },
+                { "value": "Logistiek: magazijnen", "label": "magazijn" }
+              ]
+            },
+            {
+              "label": "Klantenservice en Callcenters",
+              "items": [
+                { "value": "Klantenservice: telefonische ondersteuning", "label": "telefonische ondersteuning" },
+                { "value": "Klantenservice: klantendienst", "label": "klantendienst" },
+                { "value": "Klantenservice: Chat support", "label": "chat support" }
+              ]
+            },
+            {
+              "label": "Onderwijs en Bijles",
+              "items": [
+                { "value": "Onderwijs: tutorwerk", "label": "tutorwerk" },
+                { "value": "onderwijs: onderwijsassistent", "label": "onderwijsassistent" },
+                { "value": "Onderwijs: huiswerkbegeleiding", "label": "huiswerkbegeleiding" }
+              ]
+            },
+            {
+              "label": "Zorg en Welzijn",
+              "items": [
+                { "value": "Zorg: Thuiszorg", "label": "thuiszorg" },
+                { "value": "Zorg: zorgassistenten zorgassistenten", "label": "onderwijsassistent" },
+                { "value": "Zorg: kinderopvang", "label": "kinderopvang" }
+              ]
+            },
+            {
+              "label": "Marketing en Promotie",
+              "items": [
+                { "value": "Marketing: promotiewerk", "label": "promotiewerk" },
+                { "value": "Marketing: marktonderzoek", "label": "marktonderzoek" },
+                { "value": "Marketing: social media beheer", "label": "social media beheer" }
+              ]
+            },
+            {
+              "label": "Evenementen en Entertainment",
+              "items": [
+                { "value": "Entertainment: festivalmedewerker", "label": "festivalmedewerker" },
+                { "value": "Entertainment: beveiliging", "label": "beveiliging" },
+                { "value": "Entertainment: bedrijf", "label": "bedrijf" }
+              ]
+            },
+            {
+              "label": "Creatief werk",
+              "items": [
+                { "value": "Creatief: grafisch ontwerp", "label": "grafisch ontwerp" },
+                { "value": "Creatief: schrijven en redigeren", "label": "schrijven" },
+                { "value": "Creatief: fotografie", "label": "fotografie" }
+              ]
+            },
+            {
+              "label": "Technologie en IT",
+              "items": [
+                { "value": "IT: helpdeskondersteuning", "label": "helpdeskondersteuning" },
+                { "value": "IT: webontwikkeling", "label": "webontwikkeling" },
+                { "value": "IT: app-ontwikkeling", "label": "app-ontwikkeling" }
+              ]
+            },
+            {
+              "label": "Productie en Fabrieken",
+              "items": [
+                { "value": "Productie: assemblagelijnen", "label": "assemblagelijnen" },
+                { "value": "Productie: voedselverwerking", "label": "voedselverwerking" },
+                { "value": "Productie: productie-assisententen", "label": "productie-assistenten" }
+              ]
+            },
+            {
+              "label": "Landbow en Seizoenswerk",
+              "items": [
+                { "value": "Landbouw: oogstwerk", "label": "oogstwerk" },
+                { "value": "Landbouw: plukken van fruit", "label": "plukken van fruit" },
+                { "value": "Landbouw: werken op boerderijen", "label": "werken op boerderijen" }
+              ]
+            },
+            {
+              "label": "Administatie en Kantoorwerk",
+              "items": [
+                { "value": "Admninistratie: data-invoer", "label": "data-invoer" },
+                { "value": "Administratie: administratieve assistentie", "label": "administratieve assistentie" },
+                { "value": "Administratie: receptiewerk", "label": "receptiewerk" }
+              ]
+            },
+            {
+              "label": "Toerime en Reizen",
+              "items": [
+                { "value": "Toerimse: reisleiders", "label": "reisleiders" },
+                { "value": "Toerimse: Frontdesk hotels", "label": "Frontdesk hotels" },
+                { "value": "Toerisme: reisbureau", "label": "reisbureau" }
+              ]
+            },
+            {
+              "label": "Sport en Fitness",
+              "items": [
+                { "value": "Sport: fitnessinstructeurs", "label": "fitnessinstructeurs" },
+                { "value": "Sport: zweminstructeurs", "label": "zweminstructeurs" },
+                { "value": "Sport: sportcoaching", "label": "sportcoaching" }
+              ]
+            },
+            {
+              "label": "Schoonmaak",
+              "items": [
+                { "value": "Schoonmaak: kantoren", "label": "kantoren" },
+                { "value": "Schoonmaak: scholen en onderwijsinstellingen", "label": "onderwijsinstellingen" },
+                { "value": "Schoonmaak: horeca", "label": "horeca" },
+                { "value": "Schoonmaak: gezondheidszorg", "label": "gezondheidszorg" },
+                { "value": "Schoonmaak: evenementenlocatie", "label": "evenementenlocatie" },
+                { "value": "Schoonmaak: detailhandel", "label": "detailhandel" },
+                { "value": "Schoonmaak: openbare ruimtes", "label": "openbare ruimtes" },
+                { "value": "Schoonmaak: privewoningen", "label": "privewoningen" },
+                { "value": "Schoonmaak: vakantiehuizen", "label": "vakantiehuizen" }
+              ]
+            }
+          ],
+          "title": "Categorie",
+          "buttons": [
+            "Annuleren",
+            "Toevoegen"
+          ],
+          "placeholderText": "voeg categorie toe"
+        },
+        "DropdownPauze": {
+          "placeholderText": "Pauze",
+          "options": [
+            { "value": "0", "label": "Geen pauze" },
+            { "value": "15", "label": "15 minuten pauze" },
+            { "value": "30", "label": "30 minuten pauze" },
+            { "value": "45", "label": "45 minuten pauze" },
+            { "value": "60", "label": "60 minuten pauze" },
+            { "value": "90", "label": "90 minuten pauze" },
+            { "value": "120", "label": "120 minuten pauze" }
+          ]
+        },
+        "EmployeePage": {
+          "buttons": [
+            "Annuleren",
+            "Versturen"
+          ],
+          "fieldsItems": [
+            "Diensten",
+            "minuten pauze",
+            "Geen pauze"
+          ],
+          "currencySign": "€",
+          "features": [
+            {
+              "name": "Loon",
+              "description": "`€ ${vacature.uurloon} voor ${diensten.length}`",
+              "icon": "BanknotesIcon"
+            },
+            {
+              "name": "Data",
+              "description": "` Van ${vacature.begindatum} tot ${vacature.einddatum}`",
+              "icon": "CalendarDateRangeIcon"
+            },
+            {
+              "name": "Adres",
+              "description": "vacature.adres",
+              "icon": "BuildingOffice2Icon"
+            },
+            {
+              "name": "Kledingsvoorschriften",
+              "description": "Geen specifieke voorschriften",
+              "icon": "BriefcaseIcon"
+            },
+            {
+              "name": "Vaardigheden",
+              "description": "Geen vaardigheden vereist",
+              "icon": "ClipboardDocumentCheckIcon"
+            }
+          ]
+        },
+        "EmployerPage": {
+          "currencySign": "€",
+          "features": [
+            {
+              "name": "Loon",
+              "description": "`€ ${vacature.uurloon} voor ${diensten.length}`",
+              "icon": "BanknotesIcon"
+            },
+            {
+              "name": "Data",
+              "description": "` Van ${vacature.begindatum} tot ${vacature.einddatum}`",
+              "icon": "CalendarDateRangeIcon"
+            },
+            {
+              "name": "Adres",
+              "description": "vacature.adres",
+              "icon": "BuildingOffice2Icon"
+            },
+            {
+              "name": "Kledingsvoorschriften",
+              "description": "Geen specifieke voorschriften",
+              "icon": "BriefcaseIcon"
+            },
+            {
+              "name": "Vaardigheden",
+              "description": "Geen vaardigheden vereist",
+              "icon": "ClipboardDocumentCheckIcon"
+            }
+          ]
+        },
+        "ForbiddenPage": {
+          "headTitle": "404",
+          "subTitle": "Page not found",
+          "pagetext": "Sorry, we couldn’t find the page you’re looking for.",
+          "buttons": [
+            "Back to home",
+            "Contact support"
+          ]
+        },
+        "NotFoundPage": {
+          "headTitle": "404",
+          "subTitle": "Page not found",
+          "pagetext": "Sorry, we couldn’t find the page you’re looking for.",
+          "button": "Back to home"
 
+        },
+        "SollicitatieModal": {
+          "ToastMessage1": "Werknemer aangenomen voor de geselecteerde diensten!",
+          "ToastMessage2": "Actie is niet toegestaan! {{string}}",
+          "ToastMessage3": "Sollicitatie afgewezen!",
+          "ToastMessage4": "Actie is niet toegestaan! {{string}}",
+          "ToastMessage5": "Werkenemer geaccepteerd voor de vacature! ",
+          "ToastMessage6": "Actie is niet toegestaan! {{string}}",
+          "currencySign": "€",
+          "fiedValues": [
+            "minuten pauze",
+            "Geen pauze",
+            "Werknemer",
+            "Klussen",
+            "Sterren",
+            "Bio",
+            "Woonplaats",
+            "Geboortedatum",
+            "Emailadres"
+          ],
+          "buttons": [
+            "Accepteren",
+            "Bevestigen",
+            "Afwijzen",
+            "Chat met",
+            "Blokkeren",
+            "Favorieten",
+            "Accepteer alle",
+            "Versturen"
+          ]
+        },
+        "Sollicitaties": {
+          "headTitle": "Sollicitatie",
+          "subTitle": "Een lijst van alle sollicitaties op de vacature.",
+          "fieldValues": [
+            "Opdrachtnemer",
+            "Werkervaring",
+            "Opkomst",
+            "Punctualiteit"
+          ],
+          "attributes": [
+            "klussen",
+            "sterren",
+            "aanmeldingen"
+          ]
+        },
+        "UitlogModal": {
+          "headtitle": "Uitloggen",
+          "subTitle": "Weet u zeker dat u wilt uitloggen?",
+          "buttons": [
+            "Annueleren",
+            "Uitloggen"
+          ]
+        }
+      }
+    },
+    "Validations": {
+      "CheckoutValidations": {
+        "Begintijd": "Voer een geldige begintijd in.",
+        "Eindtijd": "Voer een geldige eindtijd in.",
+        "Pauze": "Voer het aantal minuten pauze in (0 of meer)."
+      },
+      "EmployeeValidations": {
+        "Land": "Selecteer een land.",
+        "voornaam": "Voornaam is verplicht.",
+        "Achternaam": "Achternaam is verplicht.",
+        "Geboortedatum": "Voer een geldige geboortedatum in.",
+        "Telefoonnumer": "Voer een geldig telefoonnummer in.",
+        "Emailadres": "Voer een geldig e-mailadres in.",
+        "IBAN": "Voer een geldig IBAN-nummer in.",
+        "Huisnummer": "Huisnummer is verplicht.",
+        "Postcode": "Voer een geldige postcode in.",
+        "Straat": "Straatnaam is verplicht.",
+        "Stad": "Stad is verplicht."
+      },
+      "EmployerValidations": {
+        "Land": "Selecteer een land.",
+        "Naam": "Bedrijfsnaam is verplicht.",
+        "CompanyRN": "KvK-nummer is verplicht.",
+        "IBAN": "Voer een geldig IBAN-nummer in.",
+        "Telefoonnumer": "Voer een geldig telefoonnummer in.",
+        "Emailadres": "Voer een geldig e-mailadres in.",
+        "Huisnummer": "Huisnummer is verplicht.",
+        "Postcode": "Voer een geldige postcode in.",
+        "Straat": "Straatnaam is verplicht.",
+        "Stad": "Stad is verplicht."
+      },
+      "VacancyValidations": {
+        "Titel": "Titel is verplicht.",
+        "Functie": "Functie is verplicht.",
+        "Uurtarief": "Voer een geldig uurtarief in.",
+        "Begindatum": "Selecteer een begindatum.",
+        "Einddatum": "Selecteer een einddatum.",
+        "Huisnummer": "Huisnummer is verplicht.",
+        "Postcode": "Voer een geldige postcode in.",
+        "Straat": "Straatnaam is verplicht.",
+        "Stad": "Stad is verplicht.",
+        "begintijd": "Voer een geldige begintijd in.",
+        "eindtijd": "Voer een geldige eindtijd in.",
+        "pauze": "Voer het aantal minuten pauze in (0 of meer).",
+        "beschrijving": "Beschrijving is verplicht."
+      },
+      "ShiftValidations": {
+        "Titel": "Titel is verplicht.",
+        "Functie": "Functie is verplicht.",
+        "Uurtarief": "Voer een geldig uurtarief in.",
+        "Begindatum": "Selecteer een begindatum.",
+        "Einddatum": "Selecteer een einddatum.",
+        "Begintijd": "Voer een geldige begintijd in.",
+        "Eindtijd": "Voer een geldige eindtijd in.",
+        "Adres": "Adres is verplicht.",
+        "Pauze": "Voer het aantal minuten pauze in (0 of meer).",
+        "Plekken": "Geef aan hoeveel mensen er nodig zijn.",
+        "Beschrijving": "Beschrijving is verplicht."
+      },
+      "AvailabilityValidations": {
+        "TypeData": "Selecteer of je één of meerdere dagen wilt aangeven.",
+        "Data": "Selecteer ten minste één datum.",
+        "Tijden": "Voer je beschikbare tijden in."
+      }
     }
 }

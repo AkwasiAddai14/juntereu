@@ -1,0 +1,2099 @@
+{
+    "navigation": {
+
+      "navLinks": [
+        { "name": "Medarbejdere", "link": "employees" },
+        { "name": "Arbejdsgivere", "link": "employers" },
+        { "name": "Kontakt", "link": "contact" }
+        ],
+      "Taal": { "name": "Sprog", "link": "" },
+      "Log-in": { "name": "Log ind", "link": "sign-in" }
+    },
+    "pages": {
+        "landingsPage": {
+          "header": {
+            "Text1": "Opdag hvorfor jobsøgere vælger vores platform, og find din næste opgave allerede i dag!",
+            "headerLinks": ["Medarbejdere", "Arbejdsgivere", "Sprog", "Kontakt", "Log ind"],
+            "headText": "Frigør dit potentiale, find din næste opgave!",
+            "subText": "Oplev en verden af muligheder som medarbejder på vores platform. Fra kreative projekter til forretningsopgaver – her finder du din næste succeshistorie. Bliv medlem og gør dine drømme til virkelighed!"
+          },
+          "CTA": [
+            { "name": "Tilmeld dig", "href": "/sign-up", "icon": "PlayCircleIcon" },
+            { "name": "Læs mere", "href": "/employees", "icon": "PhoneIcon" }
+          ],
+          "hero": {
+            "image": {
+              "testimonial": "Medarbejderne er pålidelige og kan straks sættes ind, hvilket hjælper os enormt ved uventet fravær. Det giver os den ro og sikkerhed, vi har brug for til at holde butikken kørende.",
+              "person": "Sarah de Bakerland",
+              "personFunction": "Assisterende butikschef hos Spar"
+            },
+            "content": {
+              "headText": "Nem op- og nedskalering med vores on-demand platform for fleksibelt personale",
+              "subText": "Hos Junter Platform tror vi på at forbinde talent og muligheder på en innovativ og fleksibel måde. Som en on-demand platform for fleksibelt personale hjælper vi virksomheder og iværksættere med hurtigt og effektivt at finde de rette fagfolk – uanset om det handler om midlertidig støtte eller specialiseret ekspertise.",
+              "statistics": [
+                { "name": "medarbejdere", "description": "4000+" },
+                { "name": "arbejdsgivere", "description": "137" },
+                { "name": "opgaver", "description": "2000+" },
+                { "name": "lande", "description": "2" }
+              ],
+              "ctaButton": "tilmeld"
+            }
+          },
+          "features": {
+            "headText": "Opdag styrken ved vores app for medarbejdere – dit springbræt til ubegrænsede muligheder.",
+            "subText": "Med vores app får du direkte adgang til et bredt udvalg af opgaver, hurtige betalinger og fuld frihed i din planlægning. Find din næste udfordring allerede i dag!",
+            "features": [
+              {
+                "name": "Hurtig adgang til opgaver",
+                "description": "Find opgaver, der matcher dine færdigheder og interesser på ingen tid – uden at skulle søge i timevis.",
+                "icon": "DeviceArrowIcon"
+              },
+              {
+                "name": "Fleksibel planlægning",
+                "description": "Styr din egen kalender og arbejd, når det passer dig – så du kan skabe bedre balance mellem arbejde og fritid.",
+                "icon": "DeviceClockIcon"
+              },
+              {
+                "name": "Mangfoldige arbejdsgivere",
+                "description": "Få adgang til et bredt udvalg af arbejdsgivere – fra startups til større virksomheder – og udvid dit netværk og din erfaring.",
+                "icon": "DeviceCardsIcon"
+              },
+              {
+                "name": "Nem kommunikation",
+                "description": "Vi er tilgængelige dagligt fra 09:00 til 17:00 via chat eller WhatsApp, og du kan stille spørgsmål døgnet rundt i vores forskellige WhatsApp-fællesskaber.",
+                "icon": "DeviceListIcon"
+              },
+              {
+                "name": "Hurtige betalinger",
+                "description": "Modtag garanterede betalinger for dit arbejde uden besvær eller forsinkelser.",
+                "icon": "DeviceLockIcon"
+              },
+              {
+                "name": "Anerkendelse og feedback",
+                "description": "Opbyg et stærkt omdømme ved at modtage positive anmeldelser og feedback fra tilfredse arbejdsgivere – og øg dine chancer for fremtidige opgaver.",
+                "icon": "DeviceChartIcon"
+              }
+            ]
+          },
+          "branches": {
+            "headText": "Opdag alsidigheden i vores platform for jobsøgende.",
+            "subText": "Uanset om du brænder for gæstfriheden i hotel- og restaurationsbranchen, præcisionen i logistik og transport eller omsorgen i sundheds- og plejesektoren, tilbyder vores platform et bredt udvalg af muligheder."
+          },
+          "faqs": {
+            "headText": "Frigør dit potentiale, find din næste opgave!",
+            "subText1": "Flere spørgsmål?",
+            "subtext2": " Du er velkommen til at kontakte os.",
+            "FAQ": [
+              
+             [ {
+                "question": "Hvordan registrerer jeg mig som freelancer på platformen?",
+                "answer": "Gå blot ind på hjemmesiden eller download appen, gennemfør registreringsprocessen og udfyld din profil med relevante oplysninger."
+              },
+              {
+                "question": "Hvordan behandles betalinger for udførte opgaver?",
+                "answer": "Efter at have gennemført en opgave modtager du i øjeblikket din betaling den sidste fredag i måneden, fra februar sker det hver fredag."
+              },
+              {
+                "question": "Kan jeg fastsætte mine egne priser for de tilbudte ydelser?",
+                "answer": "Som freelancer har du frihed til at fastsætte dine egne priser baseret på din erfaring og markedsstandarder."
+              }],
+
+              [{
+                "question": "Hvilke typer opgaver er tilgængelige på platformen?",
+                "answer": "Fra servering i restauranter til trafikstyring og sceneopsætning ved festivaler eller madlevering – der er mange forskellige opgaver at vælge imellem."
+              },
+              {
+                "question": "Er der support tilgængelig, hvis jeg har brug for hjælp under brug af appen?",
+                "answer": "Vores team er tilgængeligt hver dag fra 09:00 til 17:00 via appen eller WhatsApp for at besvare spørgsmål."
+              },
+              {
+                "question": "Hvordan kan jeg optimere min profil for at få flere opgaver?",
+                "answer": "Optimer din profil ved at tilføje færdigheder og erhvervserfaring for at tiltrække flere opgaver."
+              }],
+
+              [{
+                "question": "Hvordan fungerer processen med at finde og acceptere opgaver?",
+                "answer": "Gennemse tilgængelige opgaver, se detaljerne og ansøg med ét klik. Det er hurtigt og intuitivt."
+              },
+              {
+                "question": "Er der anmeldelser fra arbejdsgivere tilgængelige for opgaverne?",
+                "answer": "Arbejdsgivere kan give anmeldelser efter opgaven er fuldført, hvilket hjælper med at opbygge og forbedre dit omdømme."
+              },
+              {
+                "question": "Er der visse krav, jeg skal opfylde for at tage opgaver via platformen?",
+                "answer": "I de fleste tilfælde har du brug for minimal erfaring eller færdigheder, der er relevante for den opgave, du ønsker at påtage dig."
+              }]
+              
+            ]
+          },
+          "testimonials": {
+            "headTitle": "Anmeldelser",
+            "subText": "Se hvad vores brugere siger",
+            "testimonials": [
+              {
+                "name": "Lisa",
+                "testimonial": "Fantastisk app til arbejde i restaurationsbranchen! Jeg finder hurtigt vagter på fede restauranter, der passer til mit skema. Super praktisk!",
+                "sector": "Hotel og restauration"
+              },
+              {
+                "name": "Ahmed",
+                "testimonial": "Som sikkerhedsprofessionel sætter jeg pris på den hurtige adgang til relevante opgaver. Top app!",
+                "sector": "Sikkerhed"
+              },
+              {
+                "name": "Maria",
+                "testimonial": "Jeg elsker, hvor enkel denne app er! Den har gjort min søgen efter rengøringsopgaver meget nemmere.",
+                "sector": "Rengøring"
+              },
+              {
+                "name": "George",
+                "testimonial": "Denne platform har gjort det nemmere for mig at finde transportarbejde. Pålidelig og effektiv!",
+                "sector": "Transport og logistik"
+              },
+              {
+                "name": "Eva",
+                "testimonial": "Som sundhedsarbejder værdsætter jeg fleksibiliteten i denne app. Den hjælper mig med at finde passende plejeopgaver.",
+                "sector": "Sundhed og omsorg"
+              },
+              {
+                "name": "Solomon",
+                "testimonial": "Denne app har løftet mit freelance-administrative arbejde til et nyt niveau. Effektiv og brugervenlig!",
+                "sector": "Administration"
+              }
+            ]
+          }
+        },
+        "employersPage": {
+          "title": "Junter for virksomheder",
+  "headText": "Brug det på din måde",
+  "subText": "Find hurtigt og nemt freelancere eller vikarer til en fast og uforpligtende pris",
+  "EmployTypes": [
+    {
+      "type": "Vikarbureau eller udstationering",
+      "explanation": "Find hurtigt og fleksibelt de rette fagfolk til midlertidige eller længerevarende opgaver – uden administrativt besvær.",
+      "icon": "PlusCircleIcon"
+    },
+    {
+      "type": "Freelancere",
+      "explanation": "Erfarne freelancere, der står klar til at løfte dine projekter til et højere niveau. Fleksible, specialiserede og klar, når du har brug for dem.",
+      "icon": "SparklesIcon"
+    },
+    {
+      "type": "Rekruttering og udvælgelse",
+      "explanation": "Spar tid og lad os finde den perfekte kandidat til din organisation. Med vores brede netværk og ekspertise matcher vi talenter med din virksomhed.",
+      "icon": "MagnifyingGlassCircleIcon"
+    },
+    {
+      "type": "Lønadministration (payrolling)",
+      "explanation": "Fokuser på din forretning, mens vi overtager arbejdsgiveransvaret. Med payrolling kan du nemt tilknytte personale uden ekstra administrativ byrde.",
+      "icon": "BanknotesIcon"
+    }
+  ],
+  "Benefits": [
+    {
+      "benefit": "Omkostninger",
+      "explanation": "Ved at vælge vores platform drager du fordel af en gennemsigtig og enkel prismodel, hvor du kun betaler for de faktisk præsterede timer af de fleksarbejdere, du inviterer. Inviter ubegrænset antal fleksarbejdere fra kun DKK142 pr. arbejdstime.",
+      "imageSrc": "euroBillsLogo",
+      "imageAlt": "Regninger flyver rundt."
+    },
+    {
+      "benefit": "Administration",
+      "explanation": "På vores platform overtager vi stort set al administration, så du kan fokusere på det, der virkelig betyder noget. Vores team står klar til at støtte dig og sikre, at alt forløber gnidningsløst, så din virksomhed kan køre effektivt og problemfrit.",
+      "imageSrc": "officeLogo",
+      "imageAlt": "Spar på administrativt arbejde og lad os klare det."
+    },
+    {
+      "benefit": "Dashboard",
+      "explanation": "Med dashboardet bevarer du som virksomhed det fulde overblik over dine aktiviteter. Det giver indsigt i oprettede opgaver, ansøgninger, åbne checkouts og fakturaer samt status på dine fleksible puljer. Alle vigtige oplysninger samlet ét sted.",
+      "imageSrc": "dashboardLogo",
+      "imageAlt": "Enkel og moderne oversigt, så du har fuldt overblik over din forretning."
+    }
+  ],
+  "Features": {
+    "headText": "Hold styr på det hele",
+    "subText": "Med disse smarte funktioner slipper du for at bekymre dig om de mindre spændende opgaver.",
+    "features": [
+      {
+        "feature": "Reserveliste",
+        "explanation": "Ved opgaver kan der ansættes flere personer end der er ledige pladser – de ekstra bliver reserver. Hvis en deltager falder fra, rykker reserverne automatisk op.",
+        "icon": "UsersIcon"
+      },
+      {
+        "feature": "Fleksibel pulje",
+        "explanation": "Når du arbejder med freelancere, bliver de i din fleksible pulje automatisk accepteret til opgaver, de reagerer på. Det betyder, at du hurtigere kan få fat i dine foretrukne folk.",
+        "icon": "UserGroupIcon"
+      },
+      {
+        "feature": "Konkurrencedygtige priser",
+        "explanation": "Hvis et skift forbliver ubesat i længere tid, har du mulighed for automatisk at øge timelønnen. Det hjælper dig med hurtigt at tiltrække kvalificerede kandidater og sikre bemandingen.",
+        "icon": "CurrencyEuroIcon"
+      }
+    ]
+  }
+        },
+        "employeesPage": {
+          "headText": "Tjen penge hurtigt",
+          "Benefits": [
+            {
+              "benefit": "Over 100",
+              "subText": "forskellige arbejdsgivere.",
+              "elaboration": "Download appen og tilmeld dig. Du kan registrere dig som vikar fra du er 16 år gammel. Fra 18 år og opefter kan du arbejde som freelancer. Når du har tilmeldt dig, kan du vælge mellem tusindvis af vagter i appen."
+            },
+            {
+              "benefit": "2000 om ugen",
+              "subText": "forskellige vagter.",
+              "elaboration": "For at øge dine chancer for at blive accepteret, skal du sørge for, at din profil er komplet og professionel. Tilføj et klart profilbillede, udfyld dine oplysninger præcist, og beskriv dine færdigheder og erfaring grundigt. Referencer fra tidligere arbejdsgivere kan også hjælpe. Så er du klar til at komme i gang!"
+            },
+            {
+              "benefit": "Fra februar",
+              "subText": "kan du også vælge ugentlige betalinger.",
+              "elaboration": "Efter du har indsendt dine arbejdstimer, modtager du (indtil videre) betaling i slutningen af måneden. Fra februar har du mulighed for at vælge ugentlige betalinger. Disse overføres direkte til din bankkonto."
+            }
+          ],
+          "Features": {
+            "headText": "Alt-i-en platform",
+            "subText": "Opdag en verden af muligheder som jobsøgende på vores platform. Fra kreative projekter til forretningsopgaver – her finder du din næste succeshistorie. Bliv medlem og gør dine drømme til virkelighed!",
+            "features": [
+              {
+                "feature": "Hurtig adgang til opgaver",
+                "elaboration": "Find opgaver, der matcher dine færdigheder og interesser på ingen tid – uden at skulle lede længe."
+              },
+              {
+                "feature": "Fleksibel planlægning",
+                "elaboration": "Styr din egen kalender og arbejd, når det passer dig – så du kan skabe bedre balance mellem arbejde og fritid."
+              },
+              {
+                "feature": "Mangfoldige arbejdsgivere",
+                "elaboration": "Få adgang til en bred vifte af arbejdsgivere – fra startups til store virksomheder – og udvid dit netværk og din erfaring."
+              },
+              {
+                "feature": "Nem kommunikation",
+                "elaboration": "Kommunikér direkte med os via appen eller WhatsApp, så du hurtigt kan stille spørgsmål, give feedback og gennemføre opgaver."
+              },
+              {
+                "feature": "Hurtige betalinger",
+                "elaboration": "Modtag garanterede betalinger for dit arbejde uden besvær eller forsinkelser."
+              },
+              {
+                "feature": "Anerkendelse og feedback",
+                "elaboration": "Opbyg et stærkt omdømme ved at indsamle positive anmeldelser og feedback fra tilfredse arbejdsgivere – og øg dine chancer for fremtidige opgaver."
+              }
+            ]
+          }
+        },
+        "junterPage": {
+          "headText": "Vi er en passioneret gruppe mennesker.",
+          "subText": "Vores mangfoldighed og fælles vision driver os til at skabe innovative løsninger, der transformerer måden, virksomheder og kunder interagerer på.",
+          "strategyPlan": [
+            {
+              "date": "Juli 2024",
+              "activity": "Etablering af Junter",
+              "elaboration": "Etableringen af Junter markerer begyndelsen på en innovativ rejse. Vores mål er at forbinde jobsøgende og virksomheder på en ny måde."
+            },
+            {
+              "date": "Oktober 2024",
+              "activity": "Udvidelse af kapital og netværk",
+              "elaboration": "Flere investeringsrunder for at øge kapital og udvide netværket. Med ressourcerne og forbindelserne kan vi vokse yderligere."
+            },
+            {
+              "date": "Maj 2025",
+              "activity": "Lancering i europæiske lande",
+              "elaboration": "Junter udvider til forskellige europæiske markeder, så endnu flere jobsøgende og virksomheder kan bruge vores platform."
+            },
+            {
+              "date": "Dec 2025",
+              "activity": "Global lancering",
+              "elaboration": "Vores globale lancering bringer Junter ud på det internationale marked, hvilket gør det muligt at tilbyde vores tjenester globalt og skabe større impact."
+            }
+          ],
+          "people": {
+            "headText": "Vores folk",
+            "subText1": "Vores medarbejdere er vores største ressource. De bringer ekspertise, passion og engagement i alt, hvad de gør.",
+            "subtext2": "Vi er stolte af vores mangfoldige og talentfulde teams, der samarbejder om at opnå fantastiske resultater. Sammen bygger vi en fremtid, hvor innovation og samarbejde er i centrum."
+          },
+          "vacancies": {
+            "headText": "Vi leder altid efter fantastiske mennesker til at styrke vores team",
+            "subText": "Har du en passion for innovation og en drivkraft for at gøre en forskel? Slut dig til os og hjælp os med at vokse og opnå succes sammen.",
+            "vacancies": [
+              {
+                "title": "Account Manager",
+                "description": "Som Senior Account Manager er du ansvarlig for at administrere vigtige kundeporteføljer, udvikle stærke relationer og øge omsætningen. Du arbejder tæt sammen med kunderne for at forstå deres behov, tilbyde skræddersyede løsninger og sikre deres tilfredshed med vores tjenester.",
+                "salary": "DKK36540 - DKK66120",
+                "location": "🇩🇰 Remote - Oslo, DK"
+              },
+              {
+                "title": "Global Marketing Manager",
+                "description": "Global Marketing Manager leder udviklingen og implementeringen af globale marketingstrategier for at øge brandbevidsthed og markedsandel. Du leder et team af marketingfolk, administrerer globale kampagner og samarbejder på tværs af afdelinger for at sikre opfyldelse af virksomhedens mål.",
+                "salary": "DKK48720 - DKK73080",
+                "location": "🇳🇱 Hoofddorp, NL"
+              },
+              {
+                "title": "Supportmedarbejder",
+                "description": "Som supportmedarbejder er du det første kontaktpunkt for både freelancere og virksomheder. Du yder support og løser problemer. Du besvarer spørgsmål og sikrer høj kundetilfredshed ved at yde hurtig og effektiv assistance.",
+                "salary": "DKK28000 - DKK34000",
+                "location": "🇩🇰 Remote - Oslo, DK"
+              }
+            ]
+          },
+          "vacanciesButton": "Se alle ledige stillinger",
+          "navLinks": [
+            { "name": "Hjem", "link": "/" },
+            { "name": "Privatlivspolitik", "link": "../pp" },
+            { "name": "Vilkår for brug", "link": "../tou" }
+          ]
+        },
+        "contactPage": {
+          "headText": "Kontakt os",
+          "subText": "Kontakt os i dag via kanalen nedenfor og få svar inden for 48 timer",
+          "formItems": [
+            { "voornaamItem": "Fornavn" },
+            { "achternaamItem": "Efternavn" },
+            { "emailadresItem": "E-mail" },
+            { "bedrijfItem": "Virksomhed" },
+            {
+              "telefoonItem": "Telefon",
+              "optionalItem": "valgfri"
+            },
+            {
+              "questionItem": "Hvordan kan vi hjælpe dig?",
+              "description": "maks. 500 tegn"
+            }
+          ],
+          "expectedBudget": {
+            "title": "Forventet budget",
+            "budgetButtons": [
+              "Mindre end DKK250K",
+              "DKK250K – DKK500K",
+              "DKK500K – €DKK1000k",
+              "DKK1000K+",
+              "Ikke relevant"
+            ]
+          },
+          "pageButton": "Send besked"
+        },
+        "pricingPage": {
+          "title": "Omkostninger",
+          "headText": "Den bedste pris for det rette personale",
+          "subText": "Hos Junter tror vi på ærlighed og gennemsigtighed. Ingen skjulte omkostninger eller småt skrift – kun gennemsigtige priser, så du altid ved, hvad du kan forvente.",
+          "pricingCards": [
+            {
+              "naam": "Freelancere",
+              "prijs": "DKK148",
+              "prijsUitleg": "DKK129 + DKK19 (gebyr)",
+              "features": [
+                "Mindre administrativt arbejde",
+                "Ingen arbejdsgiveromkostninger",
+                "Projektbaseret arbejde med specifik levering"
+              ],
+              "button": "Opslå opgaver"
+            },
+            {
+              "naam": "Vikarer",
+              "prijs": "DKK142",
+              "prijsUitleg": "DKK129 x 1,1 (omregningsfaktor)",
+              "features": [
+                "Mindre administrativt arbejde",
+                "Øjeblikkelig tilgængelighed",
+                "Egnet til løbende samarbejde",
+                "Mulighed for kontinuitet"
+              ],
+              "button": "Opret en konto"
+            }
+          ],
+          "HeadTextCTA": "Problemfrit fleksibelt personale",
+          "SubTextCTA": "Er du i tvivl om du skal vælge freelancere eller vikarer? Eller vil du gerne have personlig rådgivning om, hvad fleksibelt arbejde kan betyde for din organisation og hvilke omkostninger der er forbundet med det?",
+          "ButtonCTA": "Kontakt os"
+        },
+        "notfoundPage": {
+          "title": "404",
+          "headText": "Siden blev ikke fundet",
+          "subText": "Beklager, vi kunne ikke finde den side, du leder efter.",
+          "button1": "Tilbage til forsiden",
+          "button2": "Kontakt support",
+          "button3": "Status"
+        },
+        "verifyPage": {
+          "title": "Bekræft identitet",
+  "endingSentence": "Vi kontakter dig hurtigst muligt, når vi har modtaget dokumenterne.",
+  "headText1": "Tak for at udfylde registreringsformularen. For at verificere din virksomhed har vi brug for følgende dokumenter:",
+  "headText2": "Tak for at udfylde registreringsformularen. For at verificere din profil som freelancer har vi brug for følgende dokumenter:",
+  "Button1": "Forstået!",
+  "Button2": "Send besked",
+  "instructions": [
+    "Send dokumenterne til",
+    "med følgende oplysninger:"
+  ],
+  "formItems": [
+    { "voornaamItem": "Fornavn" },
+    { "achternaamItem": "Efternavn" },
+    { "emailadresItem": "E-mail" },
+    { "bedrijfItem": "Virksomhed" },
+    {
+      "telefoonItem": "Telefon",
+      "optionalItem": "valgfrit"
+    },
+    {
+      "questionItem": "Hvordan kan vi hjælpe dig?",
+      "description": "maks. 500 tegn"
+    }
+  ],
+  "EmployeesPage": {
+    "requiredDocuments": [
+      "Et gyldigt identifikationsdokument (pas, ID-kort eller kørekort – dokumentnummer og foto må gerne anonymiseres).",
+      "Et dokument der bekræfter den angivne adresse, f.eks. en tilmeldingsattest på adressen.",
+      "En kopi af dit betalingskort."
+    ],
+    "informationRequired": [
+      "- For- og efternavn",
+      "- Fødselsdato",
+      "- Postnummer og husnummer"
+    ]
+  },
+  "EmployersPage": {
+    "requiredDocuments": [
+      "- Et dokument der bekræfter den angivne adresse, f.eks. et officielt brev med adresse og CVR-nummer.",
+      "- Eventuelt en udfyldt og underskrevet betalingsfuldmagt.",
+      "- Samarbejdsaftale."
+    ],
+    "informationRequired": [
+      "- Kontaktpersonens for- og efternavn",
+      "- Virksomhedsnavn",
+      "- CVR-nummer"
+    ]
+  }
+        },
+
+    "privacypolicyPage": {
+      "privacyPolicyEmployee": {
+        "title": "Privatlivspolitik",
+        "subtitle": "For medarbejdere",
+        "introduction": {
+          "heading": "Introduktion",
+          "text": "Velkommen til Junter. Vi værdsætter din tillid til os og tager dit privatliv alvorligt. Denne privatlivspolitik har til formål at informere dig om, hvordan vi indsamler, bruger, deler og beskytter dine personoplysninger, når du bruger vores platform."
+        },
+        "section1": {
+          "heading": "1. Oplysninger vi indsamler",
+          "text": "Vi indsamler forskellige typer oplysninger for at kunne levere og forbedre vores tjenester.\n\nPersonlige oplysninger: Fornavn, efternavn, fødselsdato, e-mailadresse, telefonnummer, adresse, CPR-nummer (personnummer), CVR-nummer (momsregistreringsnummer) og bankkontonummer (IBAN).\nProfessionelle oplysninger: Arbejdserfaring, færdigheder, uddannelse, profilbillede og vurderinger.\nBrug af platformen: Information om din interaktion med vores platform, såsom de tjenester du tilbyder eller anmoder om, kommunikation med virksomheder og din deltagelse i projekter."
+        },
+        "section2": {
+          "heading": "2. Hvordan vi bruger dine oplysninger",
+          "text": "Vi bruger dine oplysninger til følgende formål:\n\nTjenesteydelser: For at give dig mulighed for at finde og acceptere projekter og for at virksomheder kan booke dine tjenester.\nKommunikation: For at kontakte dig angående din konto, dine projekter og andre relaterede forhold.\nForbedring af platformen: For at analysere og forbedre vores platform og tjenester.\nJuridiske forpligtelser: For at overholde lovmæssige og regulatoriske krav."
+        },
+        "section3": {
+          "heading": "3. Deling af dine oplysninger",
+          "text": "Vi deler kun dine oplysninger med tredjeparter, når det er nødvendigt for at levere vores tjenester, for eksempel:\n\nVirksomheder: For at give dem mulighed for at kontakte dig og booke dine tjenester.\nTjenesteudbydere: For at levere teknisk support og andre nødvendige tjenester for platformens drift.\nMyndigheder: Hvis vi er juridisk forpligtede til at videregive dine oplysninger."
+        },
+        "section4": {
+          "heading": "4. Beskyttelse af dine oplysninger",
+          "text": "Vi træffer passende tekniske og organisatoriske foranstaltninger for at beskytte dine oplysninger mod uautoriseret adgang, tab, ødelæggelse eller ændring. På trods af vores bestræbelser kan vi ikke garantere fuld sikkerhed ved overførsel af data via internettet."
+        },
+        "section5": {
+          "heading": "5. Opbevaringsperioder",
+          "text": "Vi opbevarer ikke dine personoplysninger længere end nødvendigt til de formål, hvortil de er indsamlet, medmindre en længere opbevaringsperiode kræves ved lov."
+        },
+        "section6": {
+          "heading": "6. Dine rettigheder",
+          "text": "Du har ret til:\n\nAt anmode om adgang til dine personoplysninger.\nAt anmode om rettelse af forkerte eller ufuldstændige oplysninger.\nAt anmode om sletning af dine personoplysninger.\nAt anmode om begrænsning af behandlingen af dine oplysninger.\nAt gøre indsigelse mod behandlingen af dine oplysninger.\nAt anmode om dataportabilitet.\nHvis du ønsker at udøve nogen af disse rettigheder, bedes du kontakte os på support@junter.works."
+        },
+        "section7": {
+          "heading": "7. Ændringer i denne privatlivspolitik",
+          "text": "Vi kan opdatere denne privatlivspolitik fra tid til anden. Vi giver dig besked om væsentlige ændringer ved at offentliggøre en meddelelse på vores platform eller kontakte dig direkte."
+        },
+        "section8": {
+          "heading": "8. Kontakt",
+          "text": "Hvis du har spørgsmål eller kommentarer til denne privatlivspolitik, bedes du kontakte os via:",
+          "email": "support@junter.works"
+        }
+      }
+    },
+    "termsofusePage": {
+      "tabFreelancers": "Medarbejdere",
+      "tabBedrijven": "Virksomheder",
+      "termsFreelancers": {
+        "header": "Vilkår og betingelser",
+        "title": "For medarbejdere",
+        "introduction": {
+          "heading": "Introduktion",
+          "text": "Velkommen til Junter. Ved at bruge vores platform accepterer du disse vilkår og betingelser. Læs dem venligst grundigt, før du bruger vores tjenester."
+        },
+        "sections": [
+          {
+            "heading": "1. Definitioner",
+            "text": "Platform: Junters online miljø, tilgængeligt via vores hjemmeside og/eller mobilapplikation.\nMedarbejder: En person, der registrerer sig på platformen for at tilbyde tjenester til virksomheder.\nVirksomhed: En enhed, der registrerer sig på platformen for at anmode om tjenester fra medarbejdere.\nBruger: Både medarbejdere og virksomheder, der bruger platformen."
+          },
+          {
+            "heading": "2. Registrering og Konto",
+            "text": "Oprettelse af Konto: For at bruge platformen skal du oprette en konto ved at gennemføre registreringsprocessen.\nOplysninger: Du garanterer, at alle oplysninger, du giver, er sande, nøjagtige og opdaterede.\nSikkerhed: Du er ansvarlig for at holde dine kontooplysninger og adgangskode fortrolige. Vi er ikke ansvarlige for tab eller skader som følge af manglende beskyttelse af disse oplysninger."
+          },
+          {
+            "heading": "3. Brug af Platformen",
+            "text": "Tilladt Brug: Du må kun bruge platformen til lovlige formål i overensstemmelse med disse vilkår og gældende lovgivning.\nForbudt Brug: Det er forbudt at bruge platformen til ulovlige aktiviteter, spam eller at kompromittere platformens sikkerhed eller integritet."
+          },
+          {
+            "heading": "4. Tjenester og Betalinger",
+            "text": "Tilbud af Tjenester: Medarbejdere kan tilbyde deres tjenester via platformen. Virksomheder kan booke og benytte disse tjenester.\nBetalinger: Betalinger for udførte tjenester behandles via platformen. Betalingsbetingelser aftales separat mellem medarbejderen og virksomheden.\nServicegebyrer: Vi forbeholder os retten til at opkræve servicegebyrer for brug af platformen. Disse gebyrer vil blive tydeligt angivet før bestilling af en tjeneste."
+          },
+          {
+            "heading": "5. Annulleringer og Tvister",
+            "text": "Annulleringer: Betingelser for annullering aftales mellem medarbejderen og virksomheden. Vi anbefaler klare annulleringsbetingelser.\nTvister: Tvister mellem medarbejdere og virksomheder skal løses mellem parterne. Vi tilbyder support, men er ikke ansvarlige for resultatet."
+          },
+          {
+            "heading": "6. Ansvar",
+            "text": "Ansvarsfraskrivelse: Du fritager Junter for ethvert ansvar, krav og omkostninger, der opstår som følge af din brug af platformen.\nBegrænsning af Ansvar: Vi er ikke ansvarlige for indirekte, tilfældige, særlige eller følgeskader eller tab af indtægter som følge af brugen af platformen."
+          },
+          {
+            "heading": "7. Immaterielle Rettigheder",
+            "text": "Ejerskab: Alle immaterielle rettigheder relateret til platformen og dens indhold tilhører Junter eller dets licensgivere.\nBrug: Du må kun bruge platformens indhold til personlig og ikke-kommerciel brug, medmindre andet er aftalt."
+          },
+          {
+            "heading": "8. Opsigelse",
+            "text": "Opsigelse af Brugeren: Du kan til enhver tid opsige din konto ved at kontakte os.\nOpsigelse af Junter: Vi forbeholder os retten til at opsige din konto eller suspendere adgangen, hvis du overtræder disse vilkår."
+          },
+          {
+            "heading": "9. Ændringer i Vilkårene",
+            "text": "Vi kan ændre disse vilkår fra tid til anden. Vi vil informere dig om væsentlige ændringer via opslag på platformen eller direkte meddelelse. Fortsat brug af platformen efter ændringer betragtes som accept."
+          },
+          {
+            "heading": "10. Gældende Lovgivning",
+            "text": "Disse vilkår er underlagt og skal fortolkes i overensstemmelse med lovgivningen i Danmark. Tvister skal behandles af de kompetente domstole i København, Danmark."
+          }
+        ],
+        "contact": {
+          "heading": "Kontakt",
+          "text": "Hvis du har spørgsmål eller kommentarer, kontakt os venligst via:",
+          "emails": [
+            "support@junter.works",
+            "billing@junter.works"
+          ]
+        }
+      },
+          "AVbedrijven": {
+            "header": "Almindelige betingelser",
+            "title": "For virksomheder",
+            "hoofdstukken": [
+              {
+                "titel": "1. Introduktion",
+                "inhoud": [
+                  "Velkommen til Junter. Disse Almindelige Betingelser (\"Betingelser\", \"Aftale\") gælder for din brug af vores tjenester, produkter og hjemmeside på www.junter.eu. Ved at bruge vores tjenester accepterer du disse betingelser. Hvis du ikke accepterer disse betingelser, skal du ikke bruge vores tjenester."
+                ]
+              },
+              {
+                "titel": "2. Definitioner",
+                "inhoud": [
+                  "Kunde: Den enhed, der indgår en kontrakt med virksomheden for at modtage tjenester.",
+                  "Tjenester: Alle produkter, tjenester og support leveret af virksomheden.",
+                  "Aftale: Disse betingelser og alle andre vilkår, der er skriftligt aftalt mellem virksomheden og kunden."
+                ]
+              },
+              {
+                "titel": "3. Tjenester",
+                "subsecties": [
+                  {
+                    "subtitel": "3.1 Levering af Tjenester",
+                    "inhoud": "Virksomheden forpligter sig til at levere tjenesterne som beskrevet i den aftalte kontrakt eller bestillingsformular. Omfang, varighed og priser for tjenesterne specificeres i kontrakten eller bestillingsformularen."
+                  },
+                  {
+                    "subtitel": "3.2 Ændringer i Tjenester",
+                    "inhoud": "Virksomheden forbeholder sig ret til til enhver tid, med eller uden varsel, at ændre, suspendere eller afslutte dele af tjenesterne, forudsat at sådanne ændringer ikke væsentligt påvirker kvaliteten af de leverede tjenester til kunden."
+                  }
+                ]
+              },
+              {
+                "titel": "4. Betalingsbetingelser",
+                "subsecties": [
+                  {
+                    "subtitel": "4.1 Gebyrer",
+                    "inhoud": "Kunden accepterer at betale gebyrerne for tjenesterne som angivet i kontrakten eller bestillingsformularen. Alle gebyrer er ikke-refunderbare, medmindre andet er angivet."
+                  },
+                  {
+                    "subtitel": "4.2 Fakturering og Betaling",
+                    "inhoud": "Fakturaer udstedes i henhold til den betalingsplan, der er specificeret i kontrakten. Betaling skal ske inden for 14 dage efter fakturadatoen, medmindre andet er skriftligt aftalt."
+                  },
+                  {
+                    "subtitel": "4.3 Forsinkede Betalinger",
+                    "inhoud": "Forsinkede betalinger kan medføre renter på 5,2 % pr. måned eller den maksimalt tilladte sats ved lov, alt efter hvilken sats der er lavest. Virksomheden forbeholder sig ret til at suspendere tjenester, indtil betaling er modtaget fuldt ud."
+                  }
+                ]
+              },
+              {
+                "titel": "5. Fortrolighed",
+                "subsecties": [
+                  {
+                    "subtitel": "5.1 Fortrolige Oplysninger",
+                    "inhoud": "Begge parter accepterer at opretholde fortroligheden af enhver ejendomsretlig eller fortrolig information, der gives i løbet af denne aftale. Fortrolige oplysninger omfatter, men er ikke begrænset til, forretningsstrategier, finansielle oplysninger og kundeoplysninger."
+                  },
+                  {
+                    "subtitel": "5.2 Ikke-offentliggørelse",
+                    "inhoud": "Ingen af parterne vil afsløre den anden parts fortrolige oplysninger til tredjeparter uden forudgående skriftligt samtykke, undtagen når det kræves ved lov."
+                  }
+                ]
+              },
+              {
+                "titel": "6. Intellektuelle Ejendomsrettigheder",
+                "subsecties": [
+                  {
+                    "subtitel": "6.1 Ejerskab",
+                    "inhoud": "Alle intellektuelle ejendomsrettigheder i tjenesterne, herunder men ikke begrænset til software, indhold og varemærker, tilhører virksomheden eller dets licensgivere. Kunden får en ikke-eksklusiv, ikke-overdragelig licens til at bruge tjenesterne i aftalens løbetid."
+                  },
+                  {
+                    "subtitel": "6.2 Kundedata",
+                    "inhoud": "Kunden bevarer ejerskabet af alle data, der leveres til virksomheden i forbindelse med tjenesterne. Virksomheden får en licens til at bruge, reproducere og ændre kundens data udelukkende til levering af tjenesterne."
+                  }
+                ]
+              },
+              {
+                "titel": "7. Garantier og Ansvar",
+                "subsecties": [
+                  {
+                    "subtitel": "7.1 Garantier",
+                    "inhoud": "Virksomheden garanterer, at tjenesterne vil blive udført på en professionel og kompetent måde."
+                  },
+                  {
+                    "subtitel": "7.2 Udelukkelser",
+                    "inhoud": "Bortset fra hvad der udtrykkeligt er angivet i disse betingelser, leveres tjenesterne \"som de er\" og \"som tilgængelige\" uden nogen former for garantier, hverken udtrykkelige eller underforståede."
+                  }
+                ]
+              },
+              {
+                "titel": "8. Begrænsning af Ansvar",
+                "inhoud": [
+                  "I det omfang loven tillader det, er virksomheden ikke ansvarlig for nogen indirekte, tilfældige, særlige, følgeskader eller strafbare skader, eller noget tab af fortjeneste eller indtægter, direkte eller indirekte, eller noget tab af data, brug, goodwill eller andre immaterielle tab som følge af (i) din brug eller manglende evne til at bruge tjenesterne; (ii) enhver uautoriseret adgang til eller brug af vores servere og/eller personlige oplysninger gemt deri."
+                ]
+              },
+              {
+                "titel": "9. Varighed og Opsigelse",
+                "subsecties": [
+                  {
+                    "subtitel": "9.1 Varighed",
+                    "inhoud": "Denne aftale træder i kraft på den startdato, der er angivet i kontrakten, og forbliver i kraft, indtil den opsiges som angivet heri."
+                  },
+                  {
+                    "subtitel": "9.2 Opsigelse uden Grund",
+                    "inhoud": "Enhver part kan opsige denne aftale af enhver grund med 14 dages skriftligt varsel til den anden part."
+                  },
+                  {
+                    "subtitel": "9.3 Opsigelse ved Misligholdelse",
+                    "inhoud": "Enhver part kan opsige denne aftale øjeblikkeligt, hvis den anden part væsentligt overtræder aftalens bestemmelser og undlader at afhjælpe overtrædelsen inden for 14 dage efter skriftlig meddelelse."
+                  }
+                ]
+              },
+              {
+                "titel": "10. Gældende Lov og Tvistbilæggelse",
+                "subsecties": [
+                  {
+                    "subtitel": "10.1 Gældende Lov",
+                    "inhoud": "Denne aftale er underlagt og fortolkes i overensstemmelse med lovgivningen i Nederlandene uden hensyntagen til konflikter mellem lovprincipper."
+                  },
+                  {
+                    "subtitel": "10.2 Tvistbilæggelse",
+                    "inhoud": "Enhver tvist, der opstår som følge af eller i forbindelse med denne aftale, skal forsøges løst i god tro gennem forhandlinger mellem parterne. Hvis tvisten ikke kan løses gennem forhandlinger, skal den afgøres ved voldgift/mægling i Kopenhagen."
+                  }
+                ]
+              },
+              {
+                "titel": "11. Diverse Bestemmelser",
+                "subsecties": [
+                  {
+                    "subtitel": "11.1 Hele Aftalen",
+                    "inhoud": "Denne aftale udgør den fuldstændige aftale mellem parterne og erstatter alle tidligere aftaler og forståelser, skriftlige eller mundtlige, vedrørende dens indhold."
+                  },
+                  {
+                    "subtitel": "11.2 Ændringer",
+                    "inhoud": "Denne aftale kan kun ændres eller justeres ved en skriftlig aftale underskrevet af begge parter."
+                  },
+                  {
+                    "subtitel": "11.3 Adskillelse",
+                    "inhoud": "Hvis nogen bestemmelse i denne aftale findes ugyldig eller ikke kan håndhæves, forbliver de resterende bestemmelser i fuld kraft og virkning."
+                  },
+                  {
+                    "subtitel": "11.4 Afkald",
+                    "inhoud": "Manglende håndhævelse af nogen rettighed eller bestemmelse i denne aftale skal ikke betragtes som afkald på sådan rettighed eller bestemmelse."
+                  }
+                ]
+              }
+            ],
+            "contact": {
+              "titel": "Kontakt",
+              "inhoud": "Hvis du har spørgsmål eller kommentarer, bedes du kontakte os via:",
+              "email1": "support@junter.works",
+              "email2": "billing@junter.works"
+            }
+          }
+    }
+  },
+    "footer": {
+      "navLinks": [
+        {
+          "title": "Medarbejdere",
+          "links": ["Hvordan fungerer det?", "Find jobs", "Kontakt"],
+          "href": ["../employees", "../sign-up", "../contact"]
+        },
+        {
+          "title": "Arbejdsgivere",
+          "links": ["Priser", "Find medarbejdere", "API-integration"],
+          "href": ["../pricing", "../sign-up", "../employers"]
+        },
+        {
+          "title": "Junter",
+          "links": ["Om os", "Karriere", "Partnere"],
+          "href": ["../junter", "../junter", "../notfound"]
+        },
+        {
+          "title": "Juridisk",
+          "links": ["Privatlivspolitik", "Vilkår for brug", "Kontakt"],
+          "href": ["../pp", "../tou", "../contact"]
+        }
+      ],
+      "subscriptionCTA": {
+        "headText": "Tilmeld dig vores nyhedsbrev",
+        "subText": "Få ugentlige opdateringer om (nye) opgaver i dit område og hold dig opdateret med de seneste nyheder!",
+        "placeholderText": "Indtast din e-mailadresse",
+        "button": "Tilmeld"
+      },
+      "footerText": "© 2025 Junter. Alle rettigheder forbeholdes."
+    },
+    "dashboard": {
+        "werknemersPage": {
+          "BentoGrid": {
+            "headTitle": "Implementér hurtigere",
+            "subTitle": "Alt hvad du behøver for at implementere din app",
+            "gridTitles": [
+              "Dashboard",
+              "Profil",
+              "Kommende begivenheder",
+              "Handlinger",
+              "Finanser"
+            ],
+            "shiftsDashboard": {
+              "items": [
+                {
+                  "title": "Tilmeldinger",
+                  "icon": "ClockIcon",
+                  "funktion": "",
+                  "IconBackGround": "bg-teal-50",
+                  "IconForeGround": "text-teal-700"
+                },
+                {
+                  "title": "Ansøgninger",
+                  "icon": "CheckBadgeIcon",
+                  "funktion": "",
+                  "IconBackGround": "bg-purple-50",
+                  "IconForeGround": "text-purple-700"
+                },
+                {
+                  "title": "Vagter",
+                  "icon": "AcademicCapIcon",
+                  "funktion": "",
+                  "IconBackGround": "bg-sky-50",
+                  "IconForeGround": "text-sky-700"
+                },
+                {
+                  "title": "Tjenester",
+                  "icon": "ReceiptRefundIcon",
+                  "funktion": "",
+                  "IconBackGround": "bg-rose-50",
+                  "IconForeGround": "text-rose-700"
+                },
+                {
+                  "title": "Flexpuljer",
+                  "icon": "UsersIcon",
+                  "funktion": "",
+                  "IconBackGround": "bg-indigo-50",
+                  "IconForeGround": "text-indigo-700"
+                },
+                {
+                  "title": "Fakturaer",
+                  "icon": "BanknotesIcon",
+                  "funktion": "",
+                  "IconBackGround": "bg-yellow-50",
+                  "IconForeGround": "text-yellow-700"
+                }
+              ],
+              "RandomTekst": "Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae."
+            },
+            "Checkouts": {
+              "zeroFoundText": "Ingen tjenester eller checkouts fundet"
+            },
+            "Financien": {
+              "headTitle": "Fakturaer",
+              "subtitle": "Et overblik over alle dine fakturaer og lønsedler.",
+              "ColumnTitles": [
+                "Faktura/Lønseddel ID",
+                "Uge",
+                "Vagt/Tjeneste",
+                "Beløb",
+                "Status"
+              ],
+              "button": "Download"
+            },
+            "profiel": {
+              "headTitle": "Profil",
+              "subTitle": "Dit visitkort til arbejdsgiverne.😉",
+              "ProfielFotoButton": "Skift profilbillede",
+              "placeholderTextButton": "JPG, GIF eller PNG. Maks. 1MB.",
+              "formItems": [
+                "Navn",
+                "E-mailadresse",
+                "Telefonnummer",
+                "Fødselsdato",
+                "Gade",
+                "Husnummer",
+                "Skattefradrag",
+                "Små virksomheders ordning"
+              ],
+              "werkervaring": {
+                "headTitle": "Erhvervserfaring",
+                "subTitle": "Tilføj erhvervserfaring",
+                "button": "Rediger"
+              },
+              "opleiding": {
+                "headTitle": "Uddannelse",
+                "subTitle": "Tilføj uddannelse",
+                "button": "Rediger"
+              },
+              "taalendata": {
+                "headTitle": "Sprog og data",
+                "subTitle": "Vælg dit foretrukne sprog og datoformat",
+                "formItems": [
+                  "Sprog",
+                  "Datoformat"
+                ],
+                "button": "Rediger",
+                "dataLabel": "Automatisk tidszone"
+              }
+            },
+            "UpcomingEvents": {
+              "text1": "Starttidspunkt",
+              "text2": "Sluttidspunkt",
+              "currencySign": "DKK"
+            }
+          },
+          "Calender": {
+            "calender": {
+              "navigation": [
+                {
+                  "name": "Dag",
+                  "value": "Dag"
+                },
+                {
+                  "name": "Uge",
+                  "value": "Uge"
+                },
+                {
+                  "name": "Måned",
+                  "value": "Måned"
+                },
+                {
+                  "name": "År",
+                  "value": "År"
+                }
+              ],
+              "buttons": [
+                "Tilgængelighed",
+                "I dag"
+              ]
+            },
+            "Dag": {
+              "tekst1": "bemanding",
+              "tekst2": "Ingen vagter tilgængelige for dette skift.",
+              "button": "Fjern"
+            },
+            "Week": {
+              "button": "I dag"
+            },
+            "Maand": {
+              "button": "I dag"
+            },
+            "Jaar": {
+              "button": "I dag"
+            }
+          },
+          "Dashboard": {
+          "DashboardingLoading": {
+            "tekst1": "Indlæser...",
+            "tekst2": "Forhåbentlig ikke alt for længe 🙂🚀"
+          },
+          "headTitle": "Dashboard",
+          "navigation": [
+            {
+              "name": "Hjem",
+              "value": "Hjem"
+            },
+            {
+              "name": "Kalender",
+              "value": "Kalender"
+            },
+            {
+              "name": "Vagter",
+              "value": "Vagter"
+            },
+            {
+              "name": "Fleksible puljer",
+              "value": "Fleksible puljer"
+            },
+            {
+              "name": "Finanser",
+              "value": "Finanser"
+            }
+          ],
+          "UserNavigation": [
+            {
+              "name": "Indstillinger",
+              "value": "Indstillinger"
+            },
+            {
+              "name": "Ofte stillede spørgsmål",
+              "value": "Ofte stillede spørgsmål"
+            },
+            {
+              "name": "Log ud",
+              "value": "Log ud"
+            }
+          ]
+        },
+        "Explore": {
+          "tabs": [
+            "Vagter",
+            "Stillinger"
+          ],
+          "ShiftPagina": {
+            "headTitle": "Vagter",
+            "NoShifts": "Ingen vagter tilgængelige"
+          },
+          "VacaturePagina": {
+            "headTitle": "Stillinger",
+            "NoVacatures": "Ingen stillinger tilgængelige"
+          },
+          "filter": [
+            "Afstand",
+            "Pris"
+          ],
+          "buttons": [
+            "Søg",
+            "Nulstil"
+          ]
+        },
+        "FAQ": {
+          "headTitle:": "Ofte stillede spørgsmål"
+        },
+        "Financien": {
+          "Facturen": {
+            "headTitle": "Fakturaer",
+            "noInvoices": "Ingen fakturaer fundet"
+          },
+          "Loonstroken": "Lønsedler",
+          "noPyaslips": "Ingen lønsedler fundet"
+        },
+        "Flexpool": {
+          "Flexpools": {
+            "headTitle": "Fleksible puljer",
+            "NoFlexpools": "Ingen fleksible puljer fundet"
+          },
+          "Favorieten": {
+            "headTitle": "Favoritter",
+            "noFavorieten": "Ingen favoritter fundet"
+          }
+        },
+        "Profiel": {
+          "ProfielItems": [
+            "Navn",
+            "Fødselsdato",
+            "E-mailadresse",
+            "Bedømmelser",
+            "Vagter",
+            "Tjenester"
+          ]
+        },
+        "Shifts": {
+          "tabs": [
+            "Tilmeldt",
+            "Accepteret",
+            "Afsluttet"
+          ],
+          "texts": [
+            {
+              "headTitleShifts": "Tilmeldte vagter",
+              "headTitleVacatures": "Tilmeldte tjenester",
+              "NoShifts": "Ingen vagter tilgængelige",
+              "NoVacatures": "Ingen tjenester tilgængelige"
+            },
+            {
+              "headTitleShifts": "Accepterede vagter",
+              "headTitleVacatures": "Accepterede tjenester",
+              "NoShifts": "Ingen vagter tilgængelige",
+              "NoVacatures": "Ingen tjenester tilgængelige"
+            },
+            {
+              "headTitleShifts": "Afsluttede vagter",
+              "headTitleVacatures": "Afsluttede tjenester",
+              "NoShifts": "Ingen vagter tilgængelige",
+              "NoVacatures": "Ingen tjenester tilgængelige"
+            }
+          ]
+        }
+      },
+      "werkgeversPage": {
+        "Dashboard": {
+          "headTitle": "Dashboard",
+          "texts": [
+            {
+              "name": "Stillinger",
+              "notFound": "Ingen stillinger fundet"
+            },
+            {
+              "name": "Offentliggjorte vagter",
+              "notFound": "Ingen vagter fundet"
+            },
+            {
+              "name": "Checkouts",
+              "notFound": "Ingen checkouts fundet"
+            },
+            {
+              "name": "Ikke-offentliggjorte vagter",
+              "notFound": "Ingen vagter fundet"
+            },
+            {
+              "name": "Fleksible puljer",
+              "notFound": "Ingen fleksible puljer fundet",
+              "modal": {
+                "title": "Opret fleksibel pulje",
+                "subTitle": "Opret fleksibel pulje",
+                "buttons": [
+                  "Annuller",
+                  "Tilføj"
+                ]
+              }
+            },
+            {
+              "name": "Fakturaer",
+              "notFound": "Ingen fakturaer fundet"
+            },
+            {
+              "name": "Vagter",
+              "attributes": [
+                "tilmeldinger",
+                "pladser",
+                "accepteret"
+              ],
+              "localDateString": "da-DK",
+              "noDate": "dato ikke tilgængelig"
+            },
+            {
+              "name": "Checkouts",
+              "attributes": [
+                { "currencySign": "DKK" },
+                "dato",
+                "minutters pause"
+              ],
+              "buttons": [
+                "Accepter",
+                "Afvis"
+              ],
+              "localDateString": "da-DK",
+              "noDate": "dato ikke tilgængelig"
+            },
+            {
+              "name": "Fakturaer",
+              "attributes": [
+                "vagt",
+                "vagter",
+                "betalt",
+                "åbenstående",
+                { "currencySign": "DKK" }
+              ],
+              "localDateString": "da-DK",
+              "noDate": "dato ikke tilgængelig"
+            }
+          ]
+        },
+        "Veelgesteldevragen": {
+          "headTitle": "Ofte stillede spørgsmål"
+        },
+        "Calender": {
+          "calender": {
+            "navigation": [
+              {
+                "name": "Dag",
+                "value": "Dag"
+              },
+              {
+                "name": "Uge",
+                "value": "Uge"
+              },
+              {
+                "name": "Måned",
+                "value": "Måned"
+              },
+              {
+                "name": "År",
+                "value": "År"
+              }
+            ],
+            "buttons": [
+              "Opret vagt",
+              "Opret stilling",
+              "Tilgængelighed",
+              "I dag"
+            ]
+          },
+          "Dag": {
+            "tekst1": "bemanding",
+            "tekst2": "Ingen vagter tilgængelige for dette tidspunkt.",
+            "tekst3": "Tidsplan for",
+            "button": "Fjern"
+          },
+          "Week": {
+            "button": "I dag"
+          },
+          "Maand": {
+            "button": "I dag",
+            "Aanmeldingen": "tilmeldinger",
+            "Reserveren": "reservere",
+            "Aangenomen": "accepteret"
+          },
+          "Jaar": {
+            "button": "I dag",
+            "Wijzig": "Rediger",
+            "Bekijk": "Se",
+            "Plek": "Ledig plads",
+            "Plekken": "Ledige pladser"
+          }
+        }
+      }
+    },
+    "components": {
+        "cards": {
+          "ApplicationCard": {
+            "typeJob": "Fleksibelt arbejde",
+            "shifts": "tjenester",
+            "localDateString": "da-DK",
+            "ToastMessage1": "Ansøgning trukket tilbage",
+            "Toastmessage2": "Handling er ikke tilladt!"
+          },
+          "CheckoutCard": {
+            "ToastMessage1": "Checkout sendt! 👍",
+            "Toastmessage2": "Handling er ikke tilladt! ❌",
+            "localDateString": "da-DK",
+            "gewerkteUren": "Arbejdstimer: ",
+            "minPauze": "minutters pause",
+            "accepteren": "Accepter",
+            "weigeren": "Afvis",
+            "currencySign": "DKK",
+            "shift_statussen": [
+              "tilgængelig",
+              "tilmeldt",
+              "accepteret",
+              "checkout afvist",
+              "checkout accepteret",
+              "indsend checkout",
+              "afvist"
+            ]
+          },
+          "FlexpoolCard": {
+            "hvl_freelancers": "freelancere",
+            "hvl_shifts": "vagter",
+            "shift": "vagt"
+          },
+          "InvoiceCard": {
+            "week": "uge",
+            "hvl_shifts": "vagter",
+            "shift": "vagt",
+            "currencySign": "DKK",
+            "voldaan": "betalt",
+            "openstaand": "udestående"
+          },
+          "JobCard": {
+            "ToastMessage1": "Afmeldt fra tjenesten!",
+            "Toastmessage2": "Handling er ikke tilladt!",
+            "localDateString": "da-DK",
+            "currencySign": "DKK",
+            "pauze": "min pause"
+          },
+          "ShiftArrayCard": {
+            "localDateString": "da-DK",
+            "currencySign": "DKK"
+          },
+          "ShiftCard": {
+            "ToastMessage1": "Afmeldt fra vagten!",
+            "Toastmessage2": "Handling er ikke tilladt!",
+            "localDateString": "da-DK",
+            "currencySign": "DKK",
+            "shift_statussen": [
+              "tilgængelig",
+              "tilmeldt",
+              "accepteret",
+              "checkout afvist",
+              "checkout accepteret",
+              "indsend checkout",
+              "afvist"
+            ]
+          },
+          "VacancyCard": {
+            "localDateString": "da-DK",
+            "currencySign": "DKK",
+            "hvl_shifts": "tjenester",
+            "hvl_sollicitaties": "ansøgninger",
+            "kledingvoorschriften": [
+              "påklædningskrav",
+              "påklædningskrav"
+            ],
+            "vaardigeheden": [
+              "færdighed",
+              "færdigheder"
+            ],
+            "voor": "for",
+            "tot": "til"
+          }
+        },
+        "forms": {
+          "CompanyForm": {
+            "steps": [
+              {
+                "id": "1",
+                "name": "Oplysninger",
+                "fields": [
+                  "Fornavn",
+                  "Mellemnavn",
+                  "Efternavn",
+                  "Virksomhedsregistreringsnummer"
+                ]
+              },
+              {
+                "id": "2",
+                "name": "Profil",
+                "fields": [
+                  "Visningsnavn",
+                  "Profilbillede",
+                  "Bio"
+                ]
+              },
+              {
+                "id": "3",
+                "name": "Færdig"
+              }
+            ],
+            "headTitle": "Virksomhedsoplysninger",
+            "subTitle": "Indtast her oplysningerne til virksomhedens visitkort.",
+            "bioSubtitle": "Hvad må opgavemodtagere vide om virksomheden?",
+            "final_page_header": "Velkommen til Junter!",
+            "final_page_subtitle": "Du er færdig! Klik på 'Fuldfør' for at afslutte processen.",
+            "buttons": [
+              "Forrige",
+              "Næste",
+              "Fuldfør"
+            ],
+            "location": "Land",
+            "formItems": [
+              "CVR",
+              "Navn på kontaktperson / administrator",
+              "Postnummer",
+              "Husnummer",
+              "Gadenavn",
+              "By",
+              "E-mailadresse",
+              "Telefonnummer",
+              "Momsnummer",
+              "IBAN",
+              "Visningsnavn",
+              "Bio",
+              "Profilbillede"
+            ],
+            "optioneel": "valgfrit"
+          },
+          "EmployeeForm": {
+            "steps": [
+              {
+                "id": "1",
+                "name": "Personlige oplysninger",
+                "fields": [
+                  "Fornavn",
+                  "Mellemnavn",
+                  "Efternavn",
+                  "Fødselsdato",
+                  "Land",
+                  "CPR-nummer"
+                ]
+              },
+              {
+                "id": "2",
+                "name": "Forretningsoplysninger",
+                "fields": [
+                  "CVR-nummer",
+                  "Momsnummer",
+                  "Postnummer",
+                  "Husnummer",
+                  "By",
+                  "Gadenavn"
+                ]
+              },
+              {
+                "id": "3",
+                "name": "Profil",
+                "fields": [
+                  "Bio",
+                  "Profilbillede",
+                  "CV"
+                ]
+              },
+              {
+                "id": "4",
+                "name": "Færdig"
+              }
+            ],
+            "headTitle": "Personlige oplysninger",
+  "subTtitle": "Udfyld dine personlige oplysninger.",
+  "head2Title": "Virksomhedsoplysninger",
+  "sub2Title": "Udfyld dine virksomhedsoplysninger.",
+  "head3Title": "Profil",
+  "sub3Title": "Dit visitkort til kunderne. 😁👋",
+  "Location": "Land",
+  "final_page_header": "Du er færdig! Klik på 'Fuldfør' for at afslutte processen.",
+  "compleet": "Fuldført",
+  "formItems": [
+    "Fornavn",
+    "Mellemnavn/forstavelse",
+    "Efternavn",
+    "Fødselsdato",
+    "Husnummer",
+    "Postnummer",
+    "Gadenavn",
+    "By",
+    "Momsnummer",
+    "IBAN",
+    "Bio",
+    "Profilbillede"
+  ],
+            "buttons": [
+              "Forrige",
+              "Næste",
+              "Fuldfør"
+            ]
+          },
+          "ShiftForm": {
+            "ToastMessage1": "Upubliceret vagt oprettet! 👍",
+            "Toastmessage2": "Handling er ikke tilladt! ❌",
+            "ToastMessage3": "Oprettelse af upubliceret vagt mislykkedes:",
+            "selectShifts": "Vælg vagt",
+            "formItems": [
+              "Titel",
+              "Stilling",
+              "Billede",
+              "Timeløn",
+              "Adresse",
+              "Startdato",
+              "Slutdato",
+              "Sluttidspunkt",
+              "Starttidspunkt",
+              "Pause",
+              "Beskrivelse",
+              "Færdigheder",
+              "Påklædningskrav",
+              "tilføj vagt til fleksibel pulje"
+            ],
+            "PlaceholderTexts": [
+              "entusiastiske serveringsmedarbejdere søges",
+              "beskrivelse",
+              "adresse",
+              "starttidspunkt",
+              "sluttidspunkt",
+              "14",
+              "pladser",
+              "dansk, engelsk, bære tre tallerkener, serveringsbakke, præsentere vin, skænke vin, tage imod bestillinger",
+              "sorte sko, sorte bukser, hvid skjorte"
+            ],
+            "buttonsTitle": [
+              "opretter vagt...",
+              "opret vagt",
+              "offentliggør vagt...",
+              "offentliggør vagt",
+              "opdater vagt...",
+              "opdater vagt"
+            ]
+          },
+          "VacancyForm": {
+            "steps": [
+              {
+                "id": 1,
+                "name": "Joboplysninger",
+                "fields": [
+                  "titel",
+                  "stilling",
+                  "beskrivelse",
+                  "adresse",
+                  "påklædningskrav",
+                  "færdigheder",
+                  "billede"
+                ]
+              },
+              {
+                "id": 2,
+                "name": "Adresse",
+                "fields": [
+                  "postnummer",
+                  "husnummer",
+                  "gadenavn",
+                  "by"
+                ]
+              },
+              {
+                "id": 3,
+                "name": "Datoer",
+                "fields": [
+                  "startdato",
+                  "slutdato",
+                  "starttidspunkt",
+                  "sluttidspunkt"
+                ]
+              },
+              {
+                "id": 4,
+                "name": "Timeløn",
+                "fields": [
+                  "timeløn",
+                  "tillæg",
+                  "tillægstype",
+                  "tillægsprocent"
+                ]
+              },
+              {
+                "id": 5,
+                "name": "Færdig"
+              }
+            ],
+            "titles": [
+              {
+                "headTitle": "Joboplysninger",
+                "subTitle": "Beskriv stillingen"
+              },
+              {
+                "headTitle": "Adresse",
+                "subTitle": "Hvor skal jobbet udføres?"
+              },
+              {
+                "headTitle": "Datoer",
+                "subTitle": "Hvilke dage og tidspunkter har du brug for personale?"
+              },
+              {
+                "headTitle": "Løn",
+                "subTitle": "Hvad skal medarbejderen tjene?"
+              }
+            ],
+            "placeholderTexts": [
+              "dansk, engelsk, bære tre tallerkener, serveringsbakke, præsentere vin, skænke vin, tage imod bestillinger",
+              "sorte sko, sorte bukser, hvid skjorte"
+            ],
+            "buttons": [
+              "Forrige",
+              "Næste",
+              "Fuldfør"
+            ],
+            "formItems": [
+              "titel",
+              "funktion",
+              "beskrivelse",
+              "billede",
+              "færdigheder",
+              "dresscode"
+            ],
+            "locatie": {
+              "fieldLabels": [
+                "Husnummer",
+                "Postnummer",
+                "By",
+                "Gadenavn"
+              ]
+            },
+            "data": {
+              "fieldLabels": [
+                "Indtast arbejdstider",
+                "Startdato",
+                "Slutdato",
+                "Starttidspunkt",
+                "Sluttidspunkt",
+                "Pause (minutter)"
+              ],
+              "buttons": [
+                "Fjern",
+                "Tilføj arbejdstid",
+                "Send"
+              ]
+            },
+            "salaris": {
+              "fieldLabels": [
+                "timeløn (DKK)",
+                "tillæg",
+                "Anvend tillæg",
+                "Tillægstype",
+                "Vælg",
+                "Vælg en tillægstype",
+                "Fra",
+                "Til"
+              ],
+              "typeToeslag": [
+                "Hverdage",
+                "Lørdag",
+                "Søndag"
+              ],
+              "percentageToeslag": [
+                "125%",
+                "150%",
+                "200%",
+                "Procenttillæg"
+              ],
+              "currencySign": "(DKK)"
+            }
+          },
+          "AvailabilityForm": {
+            "headTitle": "Tilgængelighedsoversigt",
+            "Dates": "Datoer",
+            "Times": "Tidspunkter",
+            "Categories": "Kategorier",
+            "Distance": "Afstand",
+            "subTitle": "Angiv din tilgængelighed",
+            "Section1": {
+              "HeadTitles": ["Datoer", "Tidspunkter"],
+              "subTitle": "Hvornår er du tilgængelig?",
+              "formItems": ["Én dag", "Flere dage"]
+            },
+            "Section2": {
+              "HeadTitles": ["Kategorier", "Afstand"],
+              "subTitles": ["Vælg kategorier", "Vælg afstand"],
+              "formItems": [
+                "Kategori",
+                "Underkategori",
+                "Min nuværende adresse",
+                "Anden adresse",
+                "Ligegyldigt"
+              ],
+              "placeholderTexts": ["Husnummer", "Postnummer", "Gade", "By"]
+            },
+            "CancelModal": {
+              "headText": "Annuller ændringer",
+              "subText": "Er du sikker på, at du vil annullere? Alle ændringer vil gå tabt."
+            },
+            "Buttons": [
+              "Annuller",
+              "Indsend",
+              "Ja, annuller ændringer",
+              "Nej, fortsæt"
+            ]
+          }
+        },
+        "navigation": {
+          "Footer": {
+            "navigation": [
+              {
+                "name": "Medarbejdere",
+                "links": [
+                  {
+                    "name": "Hvordan fungerer det",
+                    "href": "/employees"
+                  },
+                  {
+                    "name": "Find arbejde",
+                    "href": "/sign-up"
+                  },
+                  {
+                    "name": "Kontakt",
+                    "href": "/contact"
+                  }
+                ]
+              },
+              {
+                "name": "Arbejdsgivere",
+                "links": [
+                  {
+                    "name": "Omkostninger",
+                    "href": "/pricing"
+                  },
+                  {
+                    "name": "Find arbejdere",
+                    "href": "/sign-up"
+                  },
+                  {
+                    "name": "FAQ",
+                    "href": "/faq"
+                  }
+                ]
+              },
+              {
+                "name": "Junter",
+                "links": [
+                  {
+                    "name": "Om os",
+                    "href": "/junter"
+                  },
+                  {
+                    "name": "Jobs hos os",
+                    "href": "/junter"
+                  },
+                  {
+                    "name": "Partnere",
+                    "href": "/junter"
+                  }
+                ]
+              },
+              {
+                "name": "Juridisk",
+                "links": [
+                  {
+                    "name": "Kontakt",
+                    "href": "/contact"
+                  },
+                  {
+                    "name": "Privatlivspolitik",
+                    "href": "/pp"
+                  },
+                  {
+                    "name": "Vilkår og betingelser",
+                    "href": "/tou"
+                  }
+                ]
+              }
+            ]
+          },
+          "Footer4": {
+            "title": "2025 Junter. Alle rettigheder forbeholdes."
+          },
+          "FooterForm": {
+            "emailadres": "e-mailadresse"
+          },
+          "NavBar": {
+            "inloggen": "Log ind",
+            "aanmelden": "Tilmeld"
+          },
+          "Navigation": {
+            "dashboard": "Dashboard",
+            "terug": "Tilbage",
+            "uitloggen": "Log ud"
+          }
+        },
+        "shared": {
+          "ApplyConfirmation": {
+            "ToastMessage1": "Tilmeldt til vagten! 👍",
+            "ToastMessage2": "Handling er ikke tilladt! ❌"
+          },
+          "CheckoutModal": {
+            "ToastMessage1": "Checkout sendt! 👍",
+            "ToastMessage2": "Handling er ikke tilladt! ❌",
+            "ToastMessage3": "Ups... handlingen mislykkedes!",
+            "buttons": [
+              "Indsend checkout",
+              "Accepter",
+              "Send",
+              "Luk",
+              "Mødte ikke op"
+            ],
+            "fieldLabels": [
+              "Fuldførte vagter",
+              "Vagtdetaljer",
+              "minutters pause",
+              "Timeløn",
+              "Anmeldte timer",
+              "For sent"
+            ],
+            "per_Uur": "t/u",
+            "currencySign": "DKK",
+            "localDateString": "da-DK"
+          },
+          "DeleteConfirmation": {
+            "DialogText": [
+              "Er du sikker på, at du vil slette denne vagt?",
+              "Denne handling vil slette vagten permanent."
+            ],
+            "buttons": [
+              "Annuller",
+              "Sletter...",
+              "Slet"
+            ],
+            "ToastMessage1": "Ugyldigt vagt-ID"
+          },
+          "Dienstensectie": {
+            "ToastMessage1": "Medarbejder afmeldt fra tjenesten!",
+            "ToastMessage2": "Handling er ikke tilladt! {{string}}",
+            "buttons": [
+              "Rediger",
+              "Aflys"
+            ],
+            "fieldLabels": [
+              "Medarbejder",
+              "Bopæl",
+              "Opgaver",
+              "Bedømmelser"
+            ],
+            "voltooid": "fuldført"
+          },
+          "Dropdown": {
+            "labels": [
+              "ingen fleksible puljer",
+              "Opret fleksibel pulje",
+              "Fleksibel pulje"
+            ],
+            "buttons": [
+              "Annuller",
+              "Tilføj"
+            ]
+          },
+          "DropdownCategorie": {
+            "fields": [
+              {
+                "label": "Hotel og restauration",
+                "items": [
+                  { "value": "Horeca: restauranter", "label": "restaurant" },
+                  { "value": "Horeca: caféer og barer", "label": "café og bar" },
+                  { "value": "Horeca: catering", "label": "catering" },
+                  { "value": "Horeca: hoteller", "label": "hotel" }
+                ]
+              },
+              {
+                "label": "Detailhandel",
+                "items": [
+                  { "value": "Retail: supermarkeder", "label": "supermarked" },
+                  { "value": "Retail: tøjbutikker", "label": "tøjbutik" },
+                  { "value": "Retail: elektronikbutikker", "label": "elektronikbutik" },
+                  { "value": "Retail: stormagasiner", "label": "stormagasin" }
+                ]
+              },
+              {
+                "label": "Logistik og lager",
+                "items": [
+                  { "value": "Logistik: distributionscentre", "label": "distributionscenter" },
+                  { "value": "Logistik: levering", "label": "levering" },
+                  { "value": "Logistik: lagre", "label": "lager" }
+                ]
+              },
+              {
+                "label": "Kundeservice og callcentre",
+                "items": [
+                  { "value": "Kundeservice: telefonisk support", "label": "telefonisk support" },
+                  { "value": "Kundeservice: kundeservice", "label": "kundeservice" },
+                  { "value": "Kundeservice: chat support", "label": "chat support" }
+                ]
+              },
+              {
+                "label": "Uddannelse og lektiehjælp",
+                "items": [
+                  { "value": "Uddannelse: tutorarbejde", "label": "tutorarbejde" },
+                  { "value": "Uddannelse: undervisningsassistent", "label": "undervisningsassistent" },
+                  { "value": "Uddannelse: lektiehjælp", "label": "lektiehjælp" }
+                ]
+              },
+              {
+                "label": "Sundhed og velfærd",
+                "items": [
+                  { "value": "Sundhed: hjemmepleje", "label": "hjemmepleje" },
+                  { "value": "Sundhed: plejepersonale", "label": "plejepersonale" },
+                  { "value": "Sundhed: børnepasning", "label": "børnepasning" }
+                ]
+              },
+              {
+                "label": "Marketing og promotion",
+                "items": [
+                  { "value": "Marketing: promotionarbejde", "label": "promotionarbejde" },
+                  { "value": "Marketing: markedsundersøgelser", "label": "markedsundersøgelser" },
+                  { "value": "Marketing: sociale medier", "label": "sociale medier" }
+                ]
+              },
+              {
+                "label": "Events og underholdning",
+                "items": [
+                  { "value": "Underholdning: festivalmedarbejder", "label": "festivalmedarbejder" },
+                  { "value": "Underholdning: sikkerhed", "label": "sikkerhed" },
+                  { "value": "Underholdning: virksomhed", "label": "virksomhed" }
+                ]
+              },
+              {
+                "label": "Kreativt arbejde",
+                "items": [
+                  { "value": "Kreativ: grafisk design", "label": "grafisk design" },
+                  { "value": "Kreativ: skrivning og redigering", "label": "skrivning" },
+                  { "value": "Kreativ: fotografi", "label": "fotografi" }
+                ]
+              },
+              {
+                "label": "Teknologi og IT",
+                "items": [
+                  { "value": "IT: helpdesk support", "label": "helpdesk support" },
+                  { "value": "IT: webudvikling", "label": "webudvikling" },
+                  { "value": "IT: app-udvikling", "label": "app-udvikling" }
+                ]
+              },
+              {
+                "label": "Produktion og fabrikker",
+                "items": [
+                  { "value": "Produktion: samlebånd", "label": "samlebånd" },
+                  { "value": "Produktion: fødevareforarbejdning", "label": "fødevareforarbejdning" },
+                  { "value": "Produktion: produktionsassistenter", "label": "produktionsassistenter" }
+                ]
+              },
+              {
+                "label": "Landbrug og sæsonarbejde",
+                "items": [
+                  { "value": "Landbrug: høstarbejde", "label": "høstarbejde" },
+                  { "value": "Landbrug: frugtplukning", "label": "frugtplukning" },
+                  { "value": "Landbrug: arbejde på gårde", "label": "arbejde på gårde" }
+                ]
+              },
+              {
+                "label": "Administration og kontorarbejde",
+                "items": [
+                  { "value": "Administration: dataindtastning", "label": "dataindtastning" },
+                  { "value": "Administration: administrativ assistance", "label": "administrativ assistance" },
+                  { "value": "Administration: receptionsarbejde", "label": "receptionsarbejde" }
+                ]
+              },
+              {
+                "label": "Turisme og rejser",
+                "items": [
+                  { "value": "Turisme: rejseledere", "label": "rejseledere" },
+                  { "value": "Turisme: reception hoteller", "label": "reception hoteller" },
+                  { "value": "Turisme: rejsebureau", "label": "rejsebureau" }
+                ]
+              },
+              {
+                "label": "Sport og fitness",
+                "items": [
+                  { "value": "Sport: fitnessinstruktører", "label": "fitnessinstruktører" },
+                  { "value": "Sport: svømmeinstruktører", "label": "svømmeinstruktører" },
+                  { "value": "Sport: sportstræning", "label": "sportstræning" }
+                ]
+              },
+              {
+                "label": "Rengøring",
+                "items": [
+                  { "value": "Rengøring: kontorer", "label": "kontorer" },
+                  { "value": "Rengøring: skoler og uddannelsesinstitutioner", "label": "uddannelsesinstitutioner" },
+                  { "value": "Rengøring: hotel og restauration", "label": "hotel og restauration" },
+                  { "value": "Rengøring: sundhedssektoren", "label": "sundhedssektoren" },
+                  { "value": "Rengøring: eventlokaler", "label": "eventlokaler" },
+                  { "value": "Rengøring: detailhandel", "label": "detailhandel" },
+                  { "value": "Rengøring: offentlige områder", "label": "offentlige områder" },
+                  { "value": "Rengøring: private hjem", "label": "private hjem" },
+                  { "value": "Rengøring: sommerhuse", "label": "sommerhuse" }
+                ]
+              }
+            ],
+            "title": "Kategori",
+            "buttons": [
+              "Annuller",
+              "Tilføj"
+            ],
+            "placeholderText": "tilføj kategori"
+          },
+          "DropdownPauze": {
+            "placeholderText": "Pause",
+            "options": [
+              { "value": "0", "label": "Ingen pause" },
+              { "value": "15", "label": "15 minutters pause" },
+              { "value": "30", "label": "30 minutters pause" },
+              { "value": "45", "label": "45 minutters pause" },
+              { "value": "60", "label": "60 minutters pause" },
+              { "value": "90", "label": "90 minutters pause" },
+              { "value": "120", "label": "120 minutters pause" }
+            ]
+          },
+          "EmployeePage": {
+            "buttons": [
+              "Annuller",
+              "Send"
+            ],
+            "fieldsItems": [
+              "Tjenester",
+              "minutters pause",
+              "Ingen pause"
+            ],
+            "currencySign": "DKK",
+            "features": [
+              {
+                "name": "Løn",
+                "description": "`DKK ${vacature.uurloon} for ${diensten.length}`",
+                "icon": "BanknotesIcon"
+              },
+              {
+                "name": "Datoer",
+                "description": "`Fra ${vacature.begindatum} til ${vacature.einddatum}`",
+                "icon": "CalendarDateRangeIcon"
+              },
+              {
+                "name": "Adresse",
+                "description": "vacature.adres",
+                "icon": "BuildingOffice2Icon"
+              },
+              {
+                "name": "Påklædningskrav",
+                "description": "Ingen specifikke krav",
+                "icon": "BriefcaseIcon"
+              },
+              {
+                "name": "Færdigheder",
+                "description": "Ingen færdigheder kræves",
+                "icon": "ClipboardDocumentCheckIcon"
+              }
+            ]
+          },
+          "EmployerPage": {
+            "currencySign": "DKK",
+            "features": [
+              {
+                "name": "Løn",
+                "description": "`DKK ${vacature.uurloon} for ${diensten.length}`",
+                "icon": "BanknotesIcon"
+              },
+              {
+                "name": "Datoer",
+                "description": "`Fra ${vacature.begindatum} til ${vacature.einddatum}`",
+                "icon": "CalendarDateRangeIcon"
+              },
+              {
+                "name": "Adresse",
+                "description": "vacature.adres",
+                "icon": "BuildingOffice2Icon"
+              },
+              {
+                "name": "Påklædningskrav",
+                "description": "Ingen specifikke krav",
+                "icon": "BriefcaseIcon"
+              },
+              {
+                "name": "Færdigheder",
+                "description": "Ingen færdigheder kræves",
+                "icon": "ClipboardDocumentCheckIcon"
+              }
+            ]
+          },
+          "ForbiddenPage": {
+            "headTitle": "404",
+            "subTitle": "Siden blev ikke fundet",
+            "pagetext": "Beklager, vi kunne ikke finde den side, du leder efter.",
+            "buttons": [
+              "Tilbage til forsiden",
+              "Kontakt support"
+            ]
+          },
+          "NotFoundPage": {
+            "headTitle": "404",
+            "subTitle": "Siden blev ikke fundet",
+            "pagetext": "Beklager, vi kunne ikke finde den side, du leder efter.",
+            "button": "Tilbage til forsiden"
+          },
+          "SollicitatieModal": {
+            "ToastMessage1": "Medarbejder accepteret til de valgte tjenester!",
+            "ToastMessage2": "Handling er ikke tilladt! {{string}}",
+            "ToastMessage3": "Ansøgning afvist!",
+            "ToastMessage4": "Handling er ikke tilladt! {{string}}",
+            "ToastMessage5": "Medarbejder accepteret til stillingen!",
+            "ToastMessage6": "Handling er ikke tilladt! {{string}}",
+            "currencySign": "€",
+            "fiedValues": [
+              "minutters pause",
+              "Ingen pause",
+              "Medarbejder",
+              "Opgaver",
+              "Stjerner",
+              "Bio",
+              "Bopæl",
+              "Fødselsdato",
+              "E-mailadresse"
+            ],
+            "buttons": [
+              "Accepter",
+              "Bekræft",
+              "Afvis",
+              "Chat med",
+              "Bloker",
+              "Favoritter",
+              "Accepter alle",
+              "Indsend"
+            ]
+          },
+          "Sollicitaties": {
+            "headTitle": "Ansøgninger",
+            "subTitle": "En liste over alle ansøgninger til stillingen.",
+            "fieldValues": [
+              "Opgaveløser",
+              "Arbejds­erfaring",
+              "Fremmøde",
+              "Præcision"
+            ],
+            "attributes": [
+              "opgaver",
+              "stjerner",
+              "tilmeldinger"
+            ]
+          },
+          "UitlogModal": {
+            "headtitle": "Log ud",
+            "subTitle": "Er du sikker på, at du vil logge ud?",
+            "buttons": [
+              "Annuller",
+              "Log ud"
+            ]
+          }
+        }
+    },
+    "Validations": {
+      "CheckoutValidations": {
+        "Begintijd": "Indtast et gyldigt starttidspunkt.",
+        "Eindtijd": "Indtast et gyldigt sluttidspunkt.",
+        "Pauze": "Angiv pauselængde i minutter (0 eller mere)."
+      },
+      "EmployeeValidations": {
+        "Land": "Vælg et land.",
+        "voornaam": "Fornavn er påkrævet.",
+        "Achternaam": "Efternavn er påkrævet.",
+        "Geboortedatum": "Indtast en gyldig fødselsdato.",
+        "Telefoonnumer": "Indtast et gyldigt telefonnummer.",
+        "Emailadres": "Indtast en gyldig e-mailadresse.",
+        "IBAN": "Indtast et gyldigt IBAN.",
+        "Huisnummer": "Husnummer er påkrævet.",
+        "Postcode": "Indtast et gyldigt postnummer.",
+        "Straat": "Gadenavn er påkrævet.",
+        "Stad": "By er påkrævet."
+      },
+      "EmployerValidations": {
+        "Land": "Vælg et land.",
+        "Naam": "Firmanavn er påkrævet.",
+        "CompanyRN": "CVR-nummer er påkrævet.",
+        "IBAN": "Indtast et gyldigt IBAN.",
+        "Telefoonnumer": "Indtast et gyldigt telefonnummer.",
+        "Emailadres": "Indtast en gyldig e-mailadresse.",
+        "Huisnummer": "Husnummer er påkrævet.",
+        "Postcode": "Indtast et gyldigt postnummer.",
+        "Straat": "Gadenavn er påkrævet.",
+        "Stad": "By er påkrævet."
+      },
+      "VacancyValidations": {
+        "Titel": "Titel er påkrævet.",
+        "Functie": "Jobtitel er påkrævet.",
+        "Uurtarief": "Indtast en gyldig timeløn.",
+        "Begindatum": "Vælg en startdato.",
+        "Einddatum": "Vælg en slutdato.",
+        "Huisnummer": "Husnummer er påkrævet.",
+        "Postcode": "Indtast et gyldigt postnummer.",
+        "Straat": "Gadenavn er påkrævet.",
+        "Stad": "By er påkrævet.",
+        "begintijd": "Indtast et gyldigt starttidspunkt.",
+        "eindtijd": "Indtast et gyldigt sluttidspunkt.",
+        "pauze": "Angiv pauselængde i minutter (0 eller mere).",
+        "beschrijving": "Beskrivelse er påkrævet."
+      },
+      "ShiftValidations": {
+        "Titel": "Titel er påkrævet.",
+        "Functie": "Jobtitel er påkrævet.",
+        "Uurtarief": "Indtast en gyldig timeløn.",
+        "Begindatum": "Vælg en startdato.",
+        "Einddatum": "Vælg en slutdato.",
+        "Begintijd": "Indtast et gyldigt starttidspunkt.",
+        "Eindtijd": "Indtast et gyldigt sluttidspunkt.",
+        "Adres": "Adresse er påkrævet.",
+        "Pauze": "Angiv pauselængde i minutter (0 eller mere).",
+        "Plekken": "Angiv antal ledige pladser.",
+        "Beschrijving": "Beskrivelse er påkrævet."
+      },
+      "AvailabilityValidations": {
+        "TypeData": "Vælg om du vil angive en eller flere dage.",
+        "Data": "Vælg mindst en dato.",
+        "Tijden": "Angiv tilgængelige tidspunkter."
+      }
+    }
+}

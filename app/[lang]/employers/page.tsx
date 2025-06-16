@@ -1,5 +1,4 @@
 import React, { ComponentType } from 'react'
-import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import { CurrencyEuroIcon, UserGroupIcon, UsersIcon } from '@heroicons/react/24/outline'
 import dashboardLogo from '@/app/assets/images/A sleek modern dashboard displayed on a computer screen in a compact office space.jpg'
@@ -7,6 +6,13 @@ import officeLogo from '@/app/assets/images/A smaller office with people working
 import euroBillsLogo from '@/app/assets/images/Euro bills flying around in the air.jpg'
 import Image, {StaticImageData} from 'next/image'
 import { SparklesIcon, BanknotesIcon, MagnifyingGlassCircleIcon, PlusCircleIcon } from '@heroicons/react/24/outline'
+import { Locale } from '@/i18n.config';
+
+
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
+  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+];
 
 const Oplossingen = [
   {
@@ -85,7 +91,10 @@ const features = [
 
 
 
-const page = async ({ lang }: { lang: Locale }) => {
+const page = async ({ params }: { params: { lang: string }}) => {
+  const lang = supportedLocales.includes(params.lang as Locale)
+    ? (params.lang as Locale)
+    : 'en';
   const { pages } = await getDictionary(lang);
 
   const imageMapping: { [key: string]: StaticImageData } = {
@@ -109,7 +118,7 @@ const page = async ({ lang }: { lang: Locale }) => {
 
   return (
     <><div className="bg-white">
-          <div className="mx-auto max-w-7xl py-12 sm:px-2 sm:py-32 lg:px-4">
+          <div className="mx-auto max-w-7xl py-4 sm:px-2 sm:py-32 lg:px-4">
               <div className="mx-auto max-w-2xl px-4 lg:max-w-none">
                   <div className="border-b border-gray-200 pb-10 sm:mt-16 sm:pt-16 ">
                       <h2 className="font-semibold text-gray-500">{pages.employersPage.title}</h2>
@@ -173,15 +182,17 @@ const page = async ({ lang }: { lang: Locale }) => {
                   <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
                       <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
                       {pages.employersPage.Features.features.map((feature) => {
-  const IconComponent = iconMapping[feature.icon]; // Haal de juiste icon-component op
+                  const IconComponent = iconMapping[feature.icon]; // Haal de juiste icon-component op
   
   return (
     <div key={feature.feature} className="flex flex-col">
       <dt className="text-base font-semibold leading-7 text-gray-900">
         <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600">
-        {typeof IconComponent === 'function' && (
-  <IconComponent className="h-6 w-6 text-white" aria-hidden="true" />
-)}
+        {IconComponent ? (
+            <IconComponent className="h-6 w-6 text-white" aria-hidden="true" />
+          ) : (
+            <span className="h-6 w-6 text-white">?</span> // Fallback icon or placeholder
+          )}
         </div>
         {feature.feature}
       </dt>

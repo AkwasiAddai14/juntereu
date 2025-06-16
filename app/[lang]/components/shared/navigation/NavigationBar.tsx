@@ -1,0 +1,202 @@
+"use client"
+
+import Link from 'next/link';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Dialog, Disclosure, DisclosureButton, DisclosurePanel, Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/react'
+import { useState } from 'react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image'; 
+import logo from '@/app/assets/images/178884748_padded_logo.png'; 
+import Flag from 'react-flagpack';
+
+
+
+  const countries = [
+    { name: 'United Kingdom', description: 'English', href: '/en', flag: 'GBR' },
+    { name: 'Nederland', description: 'Nederlands', href: 'https://nl.junter.eu', flag: 'NLD' },
+    { name: 'France', description: 'Français', href: '/fr', flag: 'FRA' },
+    { name: 'Deutschland', description: 'Deutsch', href: '/de', flag: 'DEU' },
+    { name: 'Osterreich', description: 'Deutsch', href: '/os', flag: 'AUT' },
+    { name: 'Italia', description: 'Italiano', href: '/it', flag: 'ITA' },
+    { name: 'España', description: 'Español', href: '/es', flag: 'ESP' },
+    { name: 'Portugal', description: 'Português', href: '/pt', flag: 'PRT' },
+    { name: 'Sverige', description: 'Svenska', href: '/sw', flag: 'SWE' },
+    { name: 'Danmark', description: 'Dansk', href: '/dk', flag: 'DNK' },
+    { name: 'Norge', description: 'Norsk', href: '/no', flag: 'NOR' },
+    { name: 'Suomi', description: 'Suomeksi', href: '/fi', flag: 'FIN' },
+    { name: 'België', description: 'Nederlands', href: '/benl', flag: 'BEL' },
+    { name: 'Belgique', description: 'Français', href: '/befr', flag: 'BEL' },
+    { name: 'Suisse', description: 'Français', href: '/sufr', flag: 'CHE' },
+    { name: 'Suisse', description: 'Italiano', href: '/suit', flag: 'CHE' },
+    { name: 'Suisse', description: 'Deutsch', href: '/sude', flag: 'CHE' },
+  ]
+  
+  export default async function Example({ lang }: { lang: Locale }) {
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { pages, navigation, components } = await getDictionary(lang);
+  
+    return (
+      <header className="bg-white">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8" aria-label="Global">
+        <div className="flex lg:flex-1">
+            <a href={`/${lang}`} className="-m-1.5 p-1.5">
+              <span className="sr-only">Junter</span>
+              <Image className="h-32 w-auto" src={logo} alt="Junter logo" /> {/* Use Image component for optimized images */}
+            </a>
+            </div>
+          <div className="flex lg:hidden">
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(true)}
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+          >
+            <span className="sr-only">Open main menu</span>
+            <Bars3Icon aria-hidden="true" className="size-6" />
+          </button>
+        </div>
+          <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+          {navigation.navLinks.map((item) => (
+            <Link href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
+            {item.name}
+            </Link>
+            ))}
+          <Popover className="relative">
+            <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
+              {navigation.Taal.name}
+              <ChevronDownIcon aria-hidden="true" className="size-5 flex-none text-gray-400" />
+            </PopoverButton>
+
+            <PopoverPanel
+              transition
+              className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+            >
+              <div className="p-4">
+                {countries.map((item) => (
+                  <div
+                    key={item.name}
+                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
+                  >
+                    <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                    <Flag code={item.flag} size="L" hasDropShadow className='border-lg'/>
+                    </div>
+                    <div className="flex-auto">
+                      <a href={item.href} className="block font-semibold text-gray-900">
+                        {item.name}
+                        <span className="absolute inset-0" />
+                      </a>
+                      <p className="mt-1 text-gray-600">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                {pages.landingsPage.CTA.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100"
+                  >
+                   {/*  <item.icon aria-hidden="true"  
+                    // className="size-5 flex-none text-gray-400" 
+                    /> */}
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </PopoverPanel>
+          </Popover>
+        </PopoverGroup>
+          <div className="flex flex-1 items-center justify-end gap-x-6">
+            <a href={`../${lang}/sign-in`} className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-orange-400">
+              {components.navigation.NavBar.inloggen}
+            </a>
+            <a
+              href={`../${lang}/sign-up`}
+              className="rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              {components.navigation.NavBar.aanmelden}
+            </a>
+          </div>
+         {/*  <div className="flex lg:hidden">
+            <button
+              type="button"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div> */}
+        </nav>
+        <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+          <div className="fixed inset-0 z-10" />
+          <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+            <div className="flex items-center gap-x-6">
+              <a href="#" className="-m-1.5 p-1.5">
+                <span className="sr-only">Junter</span>
+                <Image
+                  className="h-8 w-auto"
+                  src={logo}
+                  alt=""
+                />
+              </a>
+              <a
+                href={`../${lang}/sign-up`}
+                className="ml-auto rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+              >
+                {components.navigation.NavBar.aanmelden}
+              </a>
+              <button
+                type="button"
+                className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="sr-only">Close menu</span>
+                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              </button>
+            </div>
+            <div className="mt-6 flow-root">
+            <div className="-my-6 divide-y divide-gray-500/10">
+            <div className="space-y-2 py-6">
+                <Disclosure as="div" className="-mx-3">
+                  <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                  {navigation.Taal.name}
+                    <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
+                  </DisclosureButton>
+                  <DisclosurePanel className="mt-2 space-y-2">
+                    {[...countries, ...pages.landingsPage.CTA].map((item) => (
+                      <DisclosureButton
+                        key={item.name}
+                        as="a"
+                        href={item.href}
+                        className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
+                      >
+                        {item.name}
+                      </DisclosureButton>
+                    ))}
+                  </DisclosurePanel>
+                </Disclosure>
+                {navigation.navLinks.map((item) => (
+            <Link href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
+            {item.name}
+            </Link>
+            ))}
+              </div>
+                <div className="py-6">
+                  <a
+                    href={`../${lang}/sign-in`}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-orange-400 hover:bg-gray-50"
+                  >
+                    {navigation['Log-in'].name}
+                  </a>
+                </div>
+            </div>
+        </div>
+          </Dialog.Panel>
+        </Dialog>
+        {/* <LocaleSwitcher /> */}
+      </header>
+    )
+  }

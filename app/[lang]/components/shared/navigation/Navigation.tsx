@@ -1,19 +1,23 @@
 "use client"
 
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from '@/app/assets/images/178884748_padded_logo.png';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { useClerk } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
-export default function Example() {
+export default async function Example({ lang }: { lang: Locale }) {
   const { isLoaded, user } = useUser();
   const [profilePhoto, setProfilePhoto] = useState("");
   const router = useRouter();
   const { signOut } = useClerk();
+  const { components } = await getDictionary(lang);
+
 
 
   useEffect(() => {
@@ -52,7 +56,7 @@ export default function Example() {
                 onClick={() => router.back()}
                 className="inline-flex items-center border-b-2 border-sky-500 px-1 pt-1 text-sm font-medium text-gray-900"
               >
-                Dashboard
+                {components.navigation.Navigation.dashboard}
               </a>
              
             </div>
@@ -62,7 +66,7 @@ export default function Example() {
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
               <div>
-                <MenuButton className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <MenuButton className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
                   <Image
@@ -84,7 +88,7 @@ export default function Example() {
                    onClick={() => router.back()} 
                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                    >
-                   Terug
+                   {components.navigation.Navigation.terug}
                   </a>
                 </MenuItem>
                 <MenuItem>
@@ -93,7 +97,7 @@ export default function Example() {
                   className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                   onClick={() => signOut({ redirectUrl: '/' })}
                   >
-                    Uitloggen
+                    {components.navigation.Navigation.uitloggen}
                   </a>
                 </MenuItem>
               </MenuItems>
@@ -111,7 +115,7 @@ export default function Example() {
             onClick={() => router.back()}
             className="block border-l-4 border-sky-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-sky-700"
           >
-            Dashboard
+            {components.navigation.Navigation.dashboard}
           </DisclosureButton>
         </div>
       </DisclosurePanel>

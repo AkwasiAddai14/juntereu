@@ -1,0 +1,2067 @@
+{
+    "navigation": {
+        "navLinks": [
+            { "name": "Empregados", "link": "employees" },
+            { "name": "Empregadores", "link": "employers" },
+            { "name": "Contato", "link": "contact" }
+          ],
+          "Taal":  { "name": "Idioma", "link": "" },
+          "Log-in": { "name": "Entrar", "link": "sign-in" }
+    },
+    "pages": {
+        "landingsPage": {
+            "header": {
+                "Text1": "Descubra por que os candidatos a emprego escolhem a nossa plataforma e encontre o seu próximo trabalho hoje mesmo!",
+                "headerLinks": ["Trabalhadores", "Empregadores", "Idioma", "Contato", "Entrar"],
+                "headText": "Libere seu potencial, encontre sua próxima oportunidade!",
+                "subText": "Descubra um mundo de possibilidades como trabalhador na nossa plataforma. De projetos criativos a tarefas empresariais, aqui você encontrará sua próxima história de sucesso. Junte-se a nós e realize seus sonhos!"
+              },
+              "CTA": [
+                { "name": "Inscrever-se", "href": "/sign-up", "icon": "PlayCircleIcon" },
+                { "name": "Saiba mais", "href": "/employees", "icon": "PhoneIcon" }
+              ],
+              "hero": {
+                "image": {
+                  "testimonial": "Os colaboradores são confiáveis e prontos para começar, o que nos ajuda muito em casos de ausências inesperadas. Isso nos dá a tranquilidade e a segurança necessárias para manter a loja funcionando sem problemas.",
+                  "person": "Sarah de Bakerland",
+                  "personFunction": "Gerente assistente da loja Spar"
+                },
+                "content": {
+                  "headText": "Escale facilmente para cima ou para baixo com nossa plataforma on-demand para mão de obra flexível",
+                  "subText": "Na plataforma Junter, acreditamos em conectar talentos e oportunidades de forma inovadora e flexível. Como uma plataforma on-demand para trabalhadores flexíveis, ajudamos empresas e empreendedores a encontrar rapidamente os profissionais certos, seja para suporte temporário ou expertise especializada.",
+                  "statistics": [
+                    { "name": "trabalhadores", "description": "4000+" },
+                    { "name": "empregadores", "description": "137" },
+                    { "name": "tarefas", "description": "2000+" },
+                    { "name": "países", "description": "2" }
+                  ],
+                  "ctaButton": "inscrever-se"
+                }
+              },
+              "features": {
+                "headText": "Descubra o poder do nosso aplicativo para trabalhadores – o seu trampolim para oportunidades ilimitadas.",
+                "subText": "Com o nosso app, você tem acesso imediato a uma variedade de trabalhos, pagamentos rápidos e total liberdade na sua programação. Descubra hoje mesmo seu próximo desafio!",
+                "features": [
+                  {
+                    "name": "Acesso rápido às tarefas",
+                    "description": "Encontre rapidamente tarefas que correspondam às suas habilidades e interesses, sem precisar procurar por horas.",
+                    "icon": "DeviceArrowIcon"
+                  },
+                  {
+                    "name": "Planejamento flexível",
+                    "description": "Gerencie sua própria agenda e trabalhe quando quiser, equilibrando melhor sua vida profissional e pessoal.",
+                    "icon": "DeviceClockIcon"
+                  },
+                  {
+                    "name": "Diversos contratantes",
+                    "description": "Tenha acesso a uma ampla gama de contratantes, de startups a grandes empresas, ampliando sua rede e experiência.",
+                    "icon": "DeviceCardsIcon"
+                  },
+                  {
+                    "name": "Comunicação fácil",
+                    "description": "Estamos disponíveis diariamente das 09:00 às 17:00 pelo chat ou WhatsApp para responder suas perguntas. Você também pode acessar nossas comunidades no WhatsApp 24/7.",
+                    "icon": "DeviceListIcon"
+                  },
+                  {
+                    "name": "Pagamentos rápidos",
+                    "description": "Receba pagamentos garantidos pelo seu trabalho sem complicações ou atrasos.",
+                    "icon": "DeviceLockIcon"
+                  },
+                  {
+                    "name": "Avaliações e feedback",
+                    "description": "Construa uma reputação forte com avaliações positivas e feedbacks de clientes satisfeitos, aumentando suas chances de conseguir novos trabalhos.",
+                    "icon": "DeviceChartIcon"
+                  }
+                ]
+              },
+              "branches": {
+                "headText": "Descubra a versatilidade da nossa plataforma para quem procura emprego.",
+                "subText": "Se você tem paixão pela hospitalidade, pela precisão da logística e transporte ou pelo cuidado da área da saúde e bem-estar, nossa plataforma oferece uma ampla variedade de oportunidades."
+              },
+              "faqs": {
+                "headText": "Liberte seu potencial, encontre seu próximo trabalho!",
+                "subText1": "Tem mais perguntas?",
+                "subtext2": " Fique à vontade para entrar em contato.",
+                "FAQ": [
+
+
+                  [{
+                    "question": "Como posso me registrar como freelancer na plataforma?",
+                    "answer": "Simplesmente através do site ou baixe o aplicativo, siga o processo de registro e preencha seu perfil com informações relevantes."
+                  },
+                  {
+                    "question": "Como os pagamentos são processados para tarefas concluídas?",
+                    "answer": "Após a conclusão de uma tarefa, você receberá o pagamento na última sexta-feira do mês. A partir de fevereiro, será possível receber semanalmente."
+                  },
+                  {
+                    "question": "Posso definir minhas próprias tarifas para os serviços oferecidos?",
+                    "answer": "Como freelancer, você tem a liberdade de definir seus próprios preços com base em sua experiência e nos padrões do mercado."
+                  }],
+
+
+                  [{
+                    "question": "Que tipos de tarefas estão disponíveis na plataforma?",
+                    "answer": "De serviços de hospitalidade a orientação de tráfego e montagem de eventos ou entrega de refeições, há uma grande variedade de tarefas disponíveis."
+                  },
+                  {
+                    "question": "Existe suporte disponível caso eu precise de ajuda usando o app?",
+                    "answer": "Nossa equipe está disponível todos os dias das 09:00 às 17:00 pelo app ou WhatsApp para responder qualquer dúvida."
+                  },
+                  {
+                    "question": "Como posso otimizar meu perfil para conseguir mais trabalhos?",
+                    "answer": "Otimize seu perfil adicionando habilidades e experiências de trabalho para atrair mais oportunidades."
+                  }],
+
+
+                  [{
+                    "question": "Como funciona o processo de encontrar e aceitar tarefas?",
+                    "answer": "Navegue pelas tarefas disponíveis, veja os detalhes e candidate-se com um único clique. É rápido e intuitivo."
+                  },
+                  {
+                    "question": "Existem avaliações de contratantes disponíveis para as tarefas?",
+                    "answer": "Os contratantes podem deixar avaliações após a conclusão das tarefas, ajudando a construir e melhorar sua reputação."
+                  },
+                  {
+                    "question": "Existem requisitos específicos para aceitar tarefas na plataforma?",
+                    "answer": "Na maioria dos casos, é necessário ter experiência mínima ou habilidades relevantes para a tarefa desejada."
+                  }]
+
+
+                ]
+              },
+              "testimonials": {
+                "headTitle": "Depoimentos",
+                "subText": "Descubra o que nossos usuários têm a dizer",
+                "testimonials": [
+                  {
+                    "name": "Lisa",
+                    "testimonial": "Aplicativo incrível para trabalhos em restaurantes! Encontro turnos rapidamente em lugares legais que combinam com a minha agenda. Super prático!",
+                    "sector": "Restaurantes"
+                  },
+                  {
+                    "name": "Ahmed",
+                    "testimonial": "Como profissional de segurança, aprecio o acesso rápido a tarefas relevantes. Excelente aplicativo.",
+                    "sector": "Segurança"
+                  },
+                  {
+                    "name": "Maria",
+                    "testimonial": "Adoro a simplicidade deste aplicativo! Facilitou muito minha busca por trabalhos de limpeza.",
+                    "sector": "Limpeza"
+                  },
+                  {
+                    "name": "George",
+                    "testimonial": "Esta plataforma simplificou minha busca por trabalho em transporte. Confiável e eficiente!",
+                    "sector": "Transporte & Logística"
+                  },
+                  {
+                    "name": "Eva",
+                    "testimonial": "Como cuidadora, valorizo a flexibilidade deste app. Ele me ajuda a encontrar tarefas adequadas na área da saúde.",
+                    "sector": "Saúde"
+                  },
+                  {
+                    "name": "Solomon",
+                    "testimonial": "Este app elevou meu trabalho de freelancer administrativo a um novo nível. Eficiente e fácil de usar!",
+                    "sector": "Administração"
+                  }
+                ]
+              } 
+        },
+        "employersPage": {
+            
+                "title": "Junter para empresas",
+                "headText": "Use do seu jeito",
+                "subText": "Encontre freelancers ou trabalhadores temporários de forma rápida e fácil por uma taxa fixa e sem compromisso",
+                "EmployTypes": [
+                  {
+                    "type": "Contratação Temporária ou Destacamento",
+                    "explanation": "Encontre rapidamente os profissionais certos para tarefas temporárias ou de longo prazo, sem complicações administrativas.",
+                    "icon": "PlusCircleIcon"
+                  },
+                  {
+                    "type": "Freelancers",
+                    "explanation": "Freelancers experientes prontos para levar seus projetos a um novo nível. Flexíveis, especializados e disponíveis quando você precisar.",
+                    "icon": "SparklesIcon"
+                  },
+                  {
+                    "type": "Recrutamento e Seleção",
+                    "explanation": "Economize tempo e deixe-nos encontrar o candidato perfeito para sua organização. Com nossa ampla rede e expertise, conectamos talentos à sua empresa.",
+                    "icon": "MagnifyingGlassCircleIcon"
+                  },
+                  {
+                    "type": "Gestão de Folha de Pagamento",
+                    "explanation": "Concentre-se no seu negócio enquanto assumimos as responsabilidades do empregador. Com a gestão de folha de pagamento, você contrata pessoal facilmente.",
+                    "icon": "BanknotesIcon"
+                  }
+                ],
+                "Benefits": [
+                  {
+                    "benefit": "Custos",
+                    "explanation": "Ao escolher nossa plataforma, você se beneficia de um modelo de custos transparente e simples, pagando apenas pelas horas efetivamente trabalhadas pelos freelancers que você convida. Convide freelancers ilimitados a partir de €9,35 por hora trabalhada.",
+                    "imageSrc": "euroBillsLogo",
+                    "imageAlt": "Notas voando ao redor."
+                  },
+                  {
+                    "benefit": "Administração",
+                    "explanation": "Em nossa plataforma, quase toda a administração é cuidada para você, permitindo que você se concentre no que realmente importa. Nossa equipe está pronta para apoiá-lo e garantir que tudo funcione sem problemas, para que sua empresa continue operando de forma eficiente.",
+                    "imageSrc": "officeLogo",
+                    "imageAlt": "Economize no trabalho administrativo e deixe conosco."
+                  },
+                  {
+                    "benefit": "Painel de Controle",
+                    "explanation": "Com o painel de controle, sua empresa mantém total visão de todas as atividades. Ele oferece insights sobre trabalhos postados, respostas recebidas, checkouts pendentes, faturas e o status de seus pools de freelancers. Todas as informações essenciais ao seu alcance.",
+                    "imageSrc": "dashboardLogo",
+                    "imageAlt": "Painel simples e moderno para uma ótima visão geral do seu negócio."
+                  }
+                ],
+                "Features": {
+                  "headText": "Mantenha-se no controle",
+                  "subText": "Com esses recursos úteis, você quase não precisa se preocupar com os aspectos menos interessantes.",
+                  "features": [
+                    {
+                      "feature": "Reservas",
+                      "explanation": "Em trabalhos, mais pessoas podem ser contratadas do que vagas disponíveis, com os extras sendo adicionados como reservas. Se alguém desistir, as reservas são automaticamente promovidas para as vagas disponíveis.",
+                      "icon": "UsersIcon"
+                    },
+                    {
+                      "feature": "Pool de Freelancers",
+                      "explanation": "Se você trabalha com freelancers, aqueles em seu pool são automaticamente aceitos para os trabalhos aos quais respondem. Isso significa que você pode convocar freelancers preferidos com mais frequência e rapidez.",
+                      "icon": "UserGroupIcon"
+                    },
+                    {
+                      "feature": "Preços Competitivos",
+                      "explanation": "Se um turno permanecer não preenchido por um longo tempo, você tem a opção de aumentar automaticamente a tarifa. Isso permite atrair rapidamente candidatos qualificados e garantir o preenchimento do turno.",
+                      "icon": "CurrencyEuroIcon"
+                    }
+                  ]
+                }
+        },
+        "employeesPage": {
+            "headText": "Ganhe Dinheiro Rápido",
+  "Benefits": [
+    {
+      "benefit": "Mais de 100",
+      "subText": "diferentes contratantes.",
+      "elaboration": "Baixe o aplicativo e inscreva-se. Você pode se registrar a partir dos 16 anos para trabalhar como temporário. A partir dos 18 anos, é permitido atuar como freelancer. Após o cadastro, você pode escolher entre milhares de turnos no aplicativo."
+    },
+    {
+      "benefit": "Semanalmente 2000",
+      "subText": "diferentes turnos.",
+      "elaboration": "Para aumentar suas chances de aceitação, certifique-se de que seu perfil esteja completo e profissional. Adicione uma foto de perfil clara, preencha todos os seus dados com precisão e descreva suas habilidades e experiências detalhadamente. Referências de contratantes anteriores também podem ajudar. E então você pode começar imediatamente!"
+    },
+    {
+      "benefit": "A partir de fevereiro",
+      "subText": "você também pode optar por pagamentos semanais.",
+      "elaboration": "Após enviar suas horas trabalhadas, você receberá (por enquanto) seus pagamentos no final do mês. A partir de fevereiro, você também pode optar por pagamentos semanais. Esses pagamentos serão transferidos diretamente para sua conta bancária."
+    }
+  ],
+  "Features": {
+    "headText": "Plataforma Tudo-em-Um",
+    "subText": "Descubra um mundo de possibilidades como candidato em nossa plataforma. De projetos criativos a tarefas empresariais, aqui você encontra sua próxima história de sucesso. Torne-se membro e realize seus sonhos!",
+    "features": [
+      {
+        "feature": "Acesso rápido a tarefas",
+        "elaboration": "Encontre rapidamente tarefas que correspondam às suas habilidades e interesses, sem a necessidade de buscas intermináveis."
+      },
+      {
+        "feature": "Planejamento flexível",
+        "elaboration": "Gerencie sua própria agenda e trabalhe quando for conveniente para você, equilibrando melhor sua vida profissional e pessoal."
+      },
+      {
+        "feature": "Diversos contratantes",
+        "elaboration": "Tenha acesso a uma ampla variedade de contratantes, desde startups até grandes empresas, ampliando sua rede e experiência."
+      },
+      {
+        "feature": "Comunicação fácil",
+        "elaboration": "Comunique-se diretamente conosco via aplicativo ou WhatsApp, permitindo que você faça perguntas rapidamente, forneça feedback e conclua tarefas."
+      },
+      {
+        "feature": "Pagamentos rápidos",
+        "elaboration": "Receba pagamentos garantidos pelo seu trabalho sem complicações ou atrasos."
+      },
+      {
+        "feature": "Avaliação e feedback",
+        "elaboration": "Construa uma reputação sólida coletando avaliações positivas e feedback de contratantes satisfeitos, aumentando suas chances de futuras tarefas."
+      }
+    ]
+  }
+        },
+        "junterPage": {
+            "headText": "Somos um grupo de pessoas apaixonadas.",
+  "subText": "Nossa diversidade e visão compartilhada nos impulsionam a criar soluções inovadoras que transformam a maneira como empresas e clientes interagem.",
+  "strategyPlan": [
+    {
+      "date": "Julho 2024",
+      "activity": "Fundação da Junter",
+      "elaboration": "A fundação da Junter marca o início de uma jornada inovadora. Nosso objetivo é conectar candidatos a emprego e empresas de uma nova maneira."
+    },
+    {
+      "date": "Outubro 2024",
+      "activity": "Expansão de capital e rede",
+      "elaboration": "Diversas rodadas de investimento para expansão de capital e rede. Com os recursos e conexões, crescer ainda mais."
+    },
+    {
+      "date": "Maio 2025",
+      "activity": "Lançamento em países europeus",
+      "elaboration": "A Junter se expande para diversos mercados europeus, permitindo que mais candidatos a emprego e empresas utilizem nossa plataforma."
+    },
+    {
+      "date": "Dezembro 2025",
+      "activity": "Lançamento global",
+      "elaboration": "Nosso lançamento global leva a Junter ao mercado internacional, permitindo que ofereçamos nossos serviços em todo o mundo e tenhamos um impacto maior."
+    }
+  ],
+  "people": {
+    "headText": "Nossas pessoas",
+    "subText1": "Nossas pessoas são nosso maior patrimônio. Elas trazem expertise, paixão e dedicação em tudo o que fazem.",
+    "subtext2": "Temos orgulho de nossas equipes diversas e talentosas que trabalham juntas para alcançar resultados incríveis. Juntos, construímos um futuro onde a inovação e a colaboração estão no centro."
+  },
+  "vacancies": {
+    "headText": "Estamos sempre em busca de pessoas incríveis para fortalecer nossa equipe",
+    "subText": "Você tem paixão por inovação e vontade de causar impacto? Junte-se a nós e ajude-nos a crescer e alcançar o sucesso juntos.",
+    "vacancies": [
+      {
+        "title": "Gerente de Contas Sênior",
+        "description": "Como Gerente de Contas Sênior, você será responsável por gerenciar contas de clientes importantes, desenvolver relacionamentos sólidos e impulsionar o crescimento da receita. Você trabalhará em estreita colaboração com os clientes para entender suas necessidades, oferecer soluções personalizadas e garantir sua satisfação com nossos serviços.",
+        "salary": "€42.000 - €76.000",
+        "location": "🇳🇱 Hoofddorp, NL"
+      },
+      {
+        "title": "Gerente de Marketing Global",
+        "description": "O Gerente de Marketing Global liderará o desenvolvimento e a execução de estratégias de marketing globais para aumentar o reconhecimento da marca e a participação de mercado. Você liderará uma equipe de profissionais de marketing, gerenciará campanhas globais e trabalhará de forma interfuncional para garantir que os objetivos de negócios sejam alcançados.",
+        "salary": "€56.000 - €84.000",
+        "location": "🇳🇱 Hoofddorp, NL"
+      },
+      {
+        "title": "Agente de Suporte",
+        "description": "Como Agente de Suporte, você será o primeiro ponto de contato para freelancers e empresas. Você fornecerá assistência e resolverá problemas. Você lidará com perguntas e garantirá alta satisfação do cliente, oferecendo suporte oportuno e eficaz.",
+        "salary": "€28.000 - €34.000",
+        "location": "🇳🇱 Hoofddorp, NL"
+      }
+    ]
+  },
+  "vacanciesButton": "Ver todas as vagas",
+  "navLinks": [
+    { "name": "Início", "link": "/" },
+    { "name": "Política de Privacidade", "link": "../pp" },
+    { "name": "Termos de Uso", "link": "../tou" }
+  ]
+        },
+        "contactPage": {
+            "headText": "Entre em contato",
+            "subText": "Entre em contato hoje através do canal abaixo e receba uma resposta em até 48 horas",
+            "formItems": [
+              { "voornaamItem": "Nome" },
+              { "achternaamItem": "Sobrenome" },
+              { "emailadresItem": "E-mail" },
+              { "bedrijfItem": "Empresa" },
+              {
+                "telefoonItem": "Telefone",
+                "optionalItem": "opcional"
+              },
+              {
+                "questionItem": "Como podemos ajudar você?",
+                "description": "máx. 500 caracteres"
+              }
+            ],
+            "expectedBudget": {
+              "title": "Orçamento estimado",
+              "budgetButtons": [
+                "Menos de €25K",
+                "€25K – €50K",
+                "€50K – €100K",
+                "Mais de €100K",
+                "Não se aplica"
+              ]
+            },
+            "pageButton": "Enviar mensagem"
+          },
+          "pricingPage": {
+            "title": "Custos",
+            "headText": "O melhor preço para a equipe certa",
+            "subText": "Na Junter acreditamos em transparência e clareza. Sem custos ocultos ou letras miúdas, apenas tarifas transparentes que permitem que você saiba exatamente o que esperar.",
+            "pricingCards": [
+              {
+                "naam": "Freelancers",
+                "prijs": "€16,50",
+                "prijsUitleg": "€14 + €2,50 (taxa)",
+                "features": [
+                  "Menos encargos administrativos",
+                  "Sem encargos trabalhistas",
+                  "Trabalho por projeto com uma entrega específica"
+                ],
+                "button": "Publicar serviços"
+              },
+              {
+                "naam": "Trabalhadores temporários",
+                "prijs": "€9,35",
+                "prijsUitleg": "€8,50 x 1,1 (fator de conversão)",
+                "features": [
+                  "Menos encargos administrativos",
+                  "Disponibilidade imediata",
+                  "Adequado para parcerias de longo prazo",
+                  "Potencial de continuidade"
+                ],
+                "button": "Criar uma conta"
+              }
+            ],
+            "HeadTextCTA": "Equipe flexível sem preocupações",
+            "SubTextCTA": "Está em dúvida entre freelancers e trabalhadores temporários? Ou quer um conselho personalizado sobre como o trabalho flexível pode beneficiar sua organização e quais os custos envolvidos?",
+            "ButtonCTA": "Entre em contato"
+          },
+          "notfoundPage": {
+            "title": "404",
+            "headText": "Página não encontrada",
+            "subText": "Desculpe, não conseguimos encontrar a página que você está procurando.",
+            "button1": "Voltar para a página inicial",
+            "button2": "Entrar em contato com o suporte",
+            "button3": "Status"
+          },
+          "verifyPage": {
+            "title": "Verificar identidade",
+            "endingSentence": "Entraremos em contato com você o mais rápido possível após o recebimento dos documentos.",
+            "headText1": "Obrigado por preencher o formulário de registro. Para verificar sua empresa, precisamos dos seguintes documentos:",
+            "headText2": "Obrigado por preencher o formulário de registro. Para verificar seu perfil como freelancer, precisamos dos seguintes documentos:",
+            "Button1": "Entendido!",
+            "Button2": "Enviar mensagem",
+            "instructions": [
+              "Envie os documentos para",
+              "com as seguintes informações:"
+            ],
+            "formItems": [
+              { "voornaamItem": "Nome" },
+              { "achternaamItem": "Sobrenome" },
+              { "emailadresItem": "Email" },
+              { "bedrijfItem": "Empresa" },
+              {
+                "telefoonItem": "Telefone",
+                "optionalItem": "opcional"
+              },
+              {
+                "questionItem": "Como podemos ajudá-lo?",
+                "description": "máx. 500 caracteres"
+              }
+            ],
+            "EmployeesPage": {
+              "requiredDocuments": [
+                "Um documento de identidade válido (passaporte, carteira de identidade ou carteira de motorista; o número do documento e a foto podem ser ocultados).",
+                "Um documento que comprove o endereço fornecido, como um comprovante de residência.",
+                "Uma cópia do seu cartão bancário."
+              ],
+              "informationRequired": [
+                "- Nome e sobrenome",
+                "- Data de nascimento",
+                "- Código postal e número da casa"
+              ]
+            },
+            "EmployersPage": {
+              "requiredDocuments": [
+                "- Um documento que comprove o endereço fornecido, como uma carta oficial com o endereço e número da câmara de comércio.",
+                "- Opcionalmente, um formulário de autorização de débito preenchido e assinado.",
+                "- Contrato de parceria."
+              ],
+              "informationRequired": [
+                "- Nome e sobrenome da pessoa de contato",
+                "- Nome da empresa",
+                "- Número da câmara de comércio"
+              ]
+            }
+          },
+    "privacypolicyPage": {
+      "privacyPolicyEmployee": {
+        "title": "Política de Privacidade",
+        "subtitle": "Para trabalhadores",
+        "introduction": {
+          "heading": "Introdução",
+          "text": "Bem-vindo à Junter. Valorizamos a sua confiança em nós e levamos a sua privacidade muito a sério. Esta política de privacidade tem como objetivo informá-lo sobre como recolhemos, utilizamos, partilhamos e protegemos os seus dados pessoais quando utiliza a nossa plataforma."
+        },
+        "section1": {
+          "heading": "1. Dados que recolhemos",
+          "text": "Recolhemos vários tipos de dados para podermos fornecer e melhorar os nossos serviços.\n\nDados Pessoais: Nome próprio, apelido, data de nascimento, endereço de e-mail, número de telefone, morada, Número de Identificação Fiscal (NIF), Número de Identificação de IVA e número de conta bancária (IBAN).\nDados Profissionais: Experiência profissional, competências, formação, fotografia de perfil e avaliações.\nUtilização da Plataforma: Informações sobre as suas interações com a nossa plataforma, como os serviços que oferece ou solicita, comunicações com empresas e a sua participação em projetos."
+        },
+        "section2": {
+          "heading": "2. Como utilizamos os seus dados",
+          "text": "Utilizamos os seus dados para os seguintes fins:\n\nPrestação de Serviços: Para permitir que encontre e aceite projetos, e para permitir que as empresas reservem os seus serviços.\nComunicação: Para o contactar relativamente à sua conta, projetos e outras questões relevantes.\nMelhoria da Plataforma: Para analisar e melhorar a nossa plataforma e os nossos serviços.\nObrigações Legais: Para cumprir os requisitos legais e regulamentares."
+        },
+        "section3": {
+          "heading": "3. Partilha dos seus dados",
+          "text": "Só partilhamos os seus dados com terceiros quando tal for necessário para a prestação dos nossos serviços, como por exemplo:\n\nEmpresas: Para que estas possam contactá-lo e reservar os seus serviços.\nPrestadores de Serviços: Para fornecer suporte técnico e outros serviços necessários ao funcionamento da nossa plataforma.\nAutoridades Legais: Se formos legalmente obrigados a divulgar os seus dados."
+        },
+        "section4": {
+          "heading": "4. Segurança dos seus dados",
+          "text": "Adotamos medidas técnicas e organizativas adequadas para proteger os seus dados contra acesso não autorizado, perda, destruição ou alteração. Apesar dos nossos esforços, não podemos garantir totalmente a segurança da transmissão de dados pela Internet."
+        },
+        "section5": {
+          "heading": "5. Períodos de conservação",
+          "text": "Não conservamos os seus dados pessoais por mais tempo do que o necessário para os fins para os quais foram recolhidos, a menos que um período de conservação mais longo seja exigido por lei."
+        },
+        "section6": {
+          "heading": "6. Os seus direitos",
+          "text": "Tem o direito de:\n\nSolicitar acesso aos seus dados pessoais.\nSolicitar a correção de dados incorretos ou incompletos.\nSolicitar a eliminação dos seus dados pessoais.\nSolicitar a limitação do tratamento dos seus dados.\nOpor-se ao tratamento dos seus dados.\nSolicitar a portabilidade dos seus dados.\nSe desejar exercer algum destes direitos, por favor contacte-nos através do e-mail support@junter.works."
+        },
+        "section7": {
+          "heading": "7. Alterações a esta política de privacidade",
+          "text": "Podemos alterar esta política de privacidade periodicamente. Iremos notificá-lo sobre quaisquer alterações significativas publicando um aviso na nossa plataforma ou contactando-o diretamente."
+        },
+        "section8": {
+          "heading": "8. Contacto",
+          "text": "Se tiver dúvidas ou comentários sobre esta política de privacidade, por favor contacte-nos através de:",
+          "email": "support@junter.works"
+        }
+      }
+    },
+    "termsofusePage": {
+      "tabFreelancers": "trabalhadores",
+      "tabBedrijven": "Empresas",
+      "termsFreelancers": {
+        "header": "Termos e Condições",
+        "title": "Para trabalhadores",
+      "introduction": {
+        "heading": "Introdução",
+        "text": "Bem-vindo à Junter. Ao utilizar a nossa plataforma, você concorda com estes termos e condições. Por favor, leia estes termos cuidadosamente antes de utilizar os nossos serviços."
+      },
+      "sections": [
+        {
+          "heading": "1. Definições",
+          "text": "Plataforma: O ambiente online da Junter, acessível através do nosso site e/ou aplicação móvel.\nTrabalhador: Indivíduo que se regista na plataforma para oferecer serviços às empresas.\nEmpresa: Entidade que se regista na plataforma para solicitar serviços aos trabalhadores.\nUtilizador: Tanto os trabalhadores como as empresas que utilizam a plataforma."
+        },
+        {
+          "heading": "2. Registo e Conta",
+          "text": "Criação de Conta: Para utilizar a nossa plataforma, deve criar uma conta através do processo de registo.\nDados: Você garante que todas as informações fornecidas são verdadeiras, precisas e atualizadas.\nSegurança: Você é responsável por manter a confidencialidade dos seus dados de conta e palavra-passe. Não nos responsabilizamos por qualquer perda ou dano resultante da sua negligência na proteção dessas informações."
+        },
+        {
+          "heading": "3. Utilização da Plataforma",
+          "text": "Utilização Permitida: Só pode utilizar a nossa plataforma para fins legítimos, de acordo com estes termos e com a legislação aplicável.\nUtilização Proibida: É proibido utilizar a plataforma para atividades ilegais, envio de spam, ou comprometer a segurança ou integridade do sistema."
+        },
+        {
+          "heading": "4. Serviços e Pagamentos",
+          "text": "Oferta de Serviços: Os trabalhadores podem oferecer os seus serviços através da plataforma. As empresas podem reservar e adquirir esses serviços.\nPagamentos: Os pagamentos pelos serviços prestados são processados através da plataforma. As condições exatas de pagamento são acordadas separadamente entre o trabalhador e a empresa.\nTaxas de Serviço: Reservamo-nos o direito de cobrar taxas de serviço pela utilização da plataforma. Estas taxas serão claramente indicadas antes da contratação de qualquer serviço."
+        },
+        {
+          "heading": "5. Cancelamentos e Litígios",
+          "text": "Cancelamentos: As condições de cancelamento devem ser acordadas entre o trabalhador e a empresa. Recomendamos definir políticas claras de cancelamento.\nLitígios: Os litígios entre trabalhadores e empresas devem ser resolvidos entre as partes. Podemos prestar assistência, mas não somos responsáveis pelo resultado."
+        },
+        {
+          "heading": "6. Responsabilidade",
+          "text": "Isenção de Responsabilidade: Você isenta a Junter de qualquer responsabilidade, reclamação ou custo decorrente da sua utilização da plataforma.\nLimitação de Responsabilidade: Não somos responsáveis por danos indiretos, incidentais, especiais ou consequenciais, ou por perdas de lucros decorrentes da utilização da plataforma."
+        },
+        {
+          "heading": "7. Propriedade Intelectual",
+          "text": "Propriedade: Todos os direitos de propriedade intelectual relacionados com a plataforma e o seu conteúdo pertencem à Junter ou aos seus licenciadores.\nUtilização: Pode utilizar o conteúdo da plataforma apenas para fins pessoais e não comerciais, salvo acordo em contrário."
+        },
+        {
+          "heading": "8. Rescisão",
+          "text": "Rescisão pelo Utilizador: Pode encerrar a sua conta a qualquer momento, contactando-nos.\nRescisão pela Junter: Reservamo-nos o direito de suspender ou encerrar a sua conta caso viole estes termos."
+        },
+        {
+          "heading": "9. Alterações aos Termos",
+          "text": "Podemos modificar estes termos e condições ocasionalmente. Iremos notificá-lo sobre alterações significativas através de um aviso na plataforma ou contactando-o diretamente. A continuação da utilização da plataforma constitui aceitação dos termos modificados."
+        },
+        {
+          "heading": "10. Lei Aplicável",
+          "text": "Estes termos e condições são regidos e interpretados de acordo com as leis de Portugal. Quaisquer disputas relacionadas com estes termos serão submetidas aos tribunais competentes de Lisboa, Portugal."
+        }
+      ],
+      "contact": {
+        "heading": "Contacto",
+        "text": "Se tiver dúvidas ou comentários, entre em contacto connosco através de:",
+        "emails": [
+          "support@junter.works",
+          "billing@junter.works"
+        ]
+      }
+    },
+          "AVbedrijven": {
+            "header": "Termos e Condições",
+            "title": "Para Empresas",
+            "hoofdstukken": [
+              {
+                "titel": "1. Introdução",
+                "inhoud": [
+                  "Bem‑vindo à Junter. Estes Termos e Condições (“Termos”, “Contrato”) aplicam‑se ao seu uso dos nossos serviços, produtos e do site www.junter.eu. Ao utilizar os nossos Serviços, você concorda com estes Termos. Se não concordar, por favor não utilize os nossos Serviços."
+                ]
+              },
+              {
+                "titel": "2. Definições",
+                "inhoud": [
+                  "Cliente: A entidade que celebra um contrato com a Empresa para receber Serviços.",
+                  "Serviços: Todos os produtos, serviços e suporte fornecidos pela Empresa.",
+                  "Contrato: Estes Termos e quaisquer outros termos acordados por escrito entre a Empresa e o Cliente."
+                ]
+              },
+              {
+                "titel": "3. Serviços",
+                "subsecties": [
+                  {
+                    "subtitel": "3.1 Prestação de Serviços",
+                    "inhoud": "A Empresa compromete‑se a prestar os Serviços conforme descrito no contrato ou formulário de pedido acordado. O escopo, duração e preços dos Serviços são especificados no contrato ou formulário."
+                  },
+                  {
+                    "subtitel": "3.2 Alterações aos Serviços",
+                    "inhoud": "A Empresa reserva‑se o direito de modificar, suspender ou encerrar qualquer parte dos Serviços a qualquer momento, com ou sem aviso prévio, desde que tais alterações não afetem substancialmente a qualidade dos Serviços prestados ao Cliente."
+                  }
+                ]
+              },
+              {
+                "titel": "4. Condições de Pagamento",
+                "subsecties": [
+                  {
+                    "subtitel": "4.1 Taxas",
+                    "inhoud": "O Cliente concorda em pagar as taxas pelos Serviços conforme especificado no contrato ou formulário de pedido. Todas as taxas são não reembolsáveis, salvo indicação em contrário."
+                  },
+                  {
+                    "subtitel": "4.2 Faturação e Pagamento",
+                    "inhoud": "As faturas são emitidas conforme o cronograma de pagamento estabelecido no contrato. O pagamento deve ser efetuado no prazo de 14 dias a partir da data da fatura, salvo acordo escrito em contrário."
+                  },
+                  {
+                    "subtitel": "4.3 Pagamentos em Atraso",
+                    "inhoud": "Pagamentos em atraso podem incorrer em juros à taxa de 5,2% ao mês ou à taxa máxima permitida por lei, prevalecendo a menor. A Empresa reserva‑se o direito de suspender os Serviços até o pagamento completo ser recebido."
+                  }
+                ]
+              },
+              {
+                "titel": "5. Confidencialidade",
+                "subsecties": [
+                  {
+                    "subtitel": "5.1 Informação Confidencial",
+                    "inhoud": "Ambas as partes concordam em manter a confidencialidade de qualquer informação proprietária ou confidencial divulgada durante o prazo deste Contrato. Informação confidencial inclui, entre outros, estratégias empresariais, dados financeiros e informações de clientes."
+                  },
+                  {
+                    "subtitel": "5.2 Não Divulgação",
+                    "inhoud": "Nenhuma das partes divulgará a informação confidencial da outra a terceiros sem consentimento prévio por escrito, exceto quando exigido por lei."
+                  }
+                ]
+              },
+              {
+                "titel": "6. Propriedade Intelectual",
+                "subsecties": [
+                  {
+                    "subtitel": "6.1 Propriedade",
+                    "inhoud": "Todos os direitos de propriedade intelectual sobre os Serviços, incluindo, mas não se limitando a software, conteúdos e marcas, pertencem à Empresa ou aos seus licenciadores. O Cliente recebe uma licença não‑exclusiva e intransferível para usar os Serviços enquanto o Contrato estiver em vigor."
+                  },
+                  {
+                    "subtitel": "6.2 Dados do Cliente",
+                    "inhoud": "O Cliente mantém a propriedade de todos os dados fornecidos à Empresa em conexão com os Serviços. A Empresa recebe uma licença para usar, reproduzir e modificar esses dados exclusivamente para fornecer os Serviços."
+                  }
+                ]
+              },
+              {
+                "titel": "7. Garantias e Responsabilidade",
+                "subsecties": [
+                  {
+                    "subtitel": "7.1 Garantias",
+                    "inhoud": "A Empresa garante que os Serviços serão prestados profissionalmente e com competência."
+                  },
+                  {
+                    "subtitel": "7.2 Exclusões",
+                    "inhoud": "Salvo disposição expressa nestes Termos, os Serviços são fornecidos “no estado em que se encontram” e “conforme disponível”, sem garantias expressas ou implícitas de qualquer tipo."
+                  }
+                ]
+              },
+              {
+                "titel": "8. Limitação de Responsabilidade",
+                "inhoud": [
+                  "Na máxima extensão permitida por lei, a Empresa não será responsável por danos indiretos, incidentais, especiais, consequenciais ou punitivos, nem por perda de lucros, receitas, dados, uso, clientela ou outras perdas intangíveis decorrentes direta ou indiretamente de (i) seu uso ou incapacidade de usar os Serviços; ou (ii) acesso não autorizado aos nossos servidores ou informações pessoais."
+                ]
+              },
+              {
+                "titel": "9. Prazo e Rescisão",
+                "subsecties": [
+                  {
+                    "subtitel": "9.1 Prazo",
+                    "inhoud": "Este Contrato entra em vigor na Data de Vigência especificada no contrato e permanece em vigor até a sua rescisão conforme estabelecido neste documento."
+                  },
+                  {
+                    "subtitel": "9.2 Rescisão sem Justa Causa",
+                    "inhoud": "Qualquer uma das partes pode rescindir este Contrato por qualquer motivo com aviso escrito de 14 dias à outra parte."
+                  },
+                  {
+                    "subtitel": "9.3 Rescisão por Justa Causa",
+                    "inhoud": "Qualquer das partes pode rescindir imediatamente este Contrato se a outra parte violar substancialmente qualquer disposição e não corrigir essa violação dentro de 14 dias após notificação escrita."
+                  }
+                ]
+              },
+              {
+                "titel": "10. Legislação Aplicável e Resolução de Disputas",
+                "subsecties": [
+                  {
+                    "subtitel": "10.1 Legislação Aplicável",
+                    "inhoud": "Este Contrato é regido e interpretado de acordo com as leis dos Países Baixos, sem considerar princípios de conflitos de leis."
+                  },
+                  {
+                    "subtitel": "10.2 Resolução de Litígios",
+                    "inhoud": "Disputas decorrentes deste Contrato serão resolvidas inicialmente por negociações de boa‑fé. Se não forem resolvidas, serão submetidas à arbitragem/mediação em Lisboã."
+                  }
+                ]
+              },
+              {
+                "titel": "11. Disposições Diversas",
+                "subsecties": [
+                  {
+                    "subtitel": "11.1 Acordo Integral",
+                    "inhoud": "Este Contrato constitui o acordo integral entre as partes e substitui todos os acordos anteriores, escritos ou orais."
+                  },
+                  {
+                    "subtitel": "11.2 Alterações",
+                    "inhoud": "Este Contrato só pode ser alterado por documento escrito assinado por ambas as partes."
+                  },
+                  {
+                    "subtitel": "11.3 Divisibilidade",
+                    "inhoud": "Se qualquer disposição deste Contrato for considerada inválida ou inexequível, as demais disposições permanecerão em vigor."
+                  },
+                  {
+                    "subtitel": "11.4 Renúncia",
+                    "inhoud": "A falha em exigir o cumprimento de qualquer direito ou disposição deste Contrato não constitui renúncia a esse direito ou disposição."
+                  }
+                ]
+              }
+            ],
+            "contact": {
+              "titel": "Contacto",
+              "inhoud": "Se tiver alguma pergunta ou comentário, por favor entre em contacto connosco através de:",
+              "email1": "support@junter.works",
+              "email2": "billing@junter.works"
+            }
+          }
+    }
+  },
+    "footer": {
+        "navLinks": [
+            {
+              "title": "Funcionários",
+              "links": ["Como funciona?", "Encontrar trabalhos", "Contato"],
+              "href": ["../employees", "../sign-up", "../contact"]
+            },
+            {
+              "title": "Empregadores",
+              "links": ["Preços", "Encontrar funcionários", "Integração API"],
+              "href": ["../pricing", "../sign-up", "../employers"]
+            },
+            {
+              "title": "Junter",
+              "links": ["Sobre nós", "Carreiras", "Parceiros"],
+              "href": ["../junter", "../junter", "../notfound"]
+            },
+            {
+              "title": "Legal",
+              "links": ["Política de Privacidade", "Termos de Uso", "Contato"],
+              "href": ["../pp", "../tou", "../contact"]
+            }
+          ],
+          "subscriptionCTA": {
+            "headText": "Assine a nossa newsletter",
+            "subText": "Receba semanalmente uma visão geral de (novos) trabalhos perto de você e fique por dentro das últimas novidades!",
+            "placeholderText": "Insira seu endereço de e-mail",
+            "button": "Assinar"
+          },
+          "footerText": "© 2025 Junter. Todos os direitos reservados."
+    },
+    "dashboard": {
+        "werknemersPage": {
+            "BentoGrid": {
+                "headTitle": "Implante mais rápido",
+                "subTitle": "Tudo o que você precisa para lançar seu aplicativo",
+                "gridTitles": [
+                  "Painel",
+                  "Perfil",
+                  "Próximos Eventos",
+                  "Ações",
+                  "Finanças"
+                ],
+                "shiftsDashboard": {
+                  "items": [
+                    {
+                      "title": "Inscrições",
+                      "icon": "ClockIcon",
+                      "functie": "",
+                      "IconBackGround": "bg-teal-50",
+                      "IconForeGround": "text-teal-700"
+                    },
+                    {
+                      "title": "Candidaturas",
+                      "icon": "CheckBadgeIcon",
+                      "functie": "",
+                      "IconBackGround": "bg-purple-50",
+                      "IconForeGround": "text-purple-700"
+                    },
+                    {
+                      "title": "Turnos",
+                      "icon": "AcademicCapIcon",
+                      "functie": "",
+                      "IconBackGround": "bg-sky-50",
+                      "IconForeGround": "text-sky-700"
+                    },
+                    {
+                      "title": "Serviços",
+                      "icon": "ReceiptRefundIcon",
+                      "functie": "",
+                      "IconBackGround": "bg-rose-50",
+                      "IconForeGround": "text-rose-700"
+                    },
+                    {
+                      "title": "Pools flexíveis",
+                      "icon": "UsersIcon",
+                      "functie": "",
+                      "IconBackGround": "bg-indigo-50",
+                      "IconForeGround": "text-indigo-700"
+                    },
+                    {
+                      "title": "Faturas",
+                      "icon": "BanknotesIcon",
+                      "functie": "",
+                      "IconBackGround": "bg-yellow-50",
+                      "IconForeGround": "text-yellow-700"
+                    }
+                  ],
+                  "RandomTekst": "Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae."
+                },
+                "Checkouts": {
+                  "zeroFoundText": "Nenhum serviço ou checkout encontrado"
+                },
+                "Financien": {
+                  "headTitle": "Faturas",
+                  "subtitle": "Uma visão geral de todas as suas faturas e contracheques.",
+                  "ColumnTitles": [
+                    "ID da Fatura/Contracheque",
+                    "Semana",
+                    "Turno/Serviço",
+                    "Valor",
+                    "Status"
+                  ],
+                  "button": "Baixar"
+                },
+                "profiel": {
+                  "headTitle": "Perfil",
+                  "subTitle": "Seu cartão de visita para os empregadores.😉",
+                  "ProfielFotoButton": "Alterar foto de perfil",
+                  "placeholderTextButton": "JPG, GIF ou PNG. Máx. 1MB.",
+                  "formItems": [
+                    "Nome",
+                    "E-mail",
+                    "Número de telefone",
+                    "Data de nascimento",
+                    "Rua",
+                    "Número",
+                    "Desconto fiscal salarial",
+                    "Regime para pequenos empresários"
+                  ],
+                  "werkervaring": {
+                    "headTitle": "Experiência profissional",
+                    "subTitle": "Adicionar experiência de trabalho",
+                    "button": "Alterar"
+                  },
+                  "opleiding": {
+                    "headTitle": "Formação",
+                    "subTitle": "Adicionar formação",
+                    "button": "alterar"
+                  },
+                  "taalendata": {
+                    "headTitle": "Idioma e Dados",
+                    "subTitle": "Escolha seu idioma e formato de data preferidos",
+                    "formItems": [
+                      "Idioma",
+                      "Formato de data"
+                    ],
+                    "button": "alterar",
+                    "dataLabel": "Fuso horário automático"
+                  }
+                },
+                "UpcomingEvents": {
+                  "text1": "Hora de início",
+                  "text2": "Hora de término",
+                  "currencySign": "€"
+                }
+              },
+              "Calender": {
+                "calender": {
+                  "navigation": [
+                    { "name": "Dia", "value": "Dia" },
+                    { "name": "Semana", "value": "Semana" },
+                    { "name": "Mês", "value": "Mês" },
+                    { "name": "Ano", "value": "Ano" }
+                  ],
+                  "buttons": [
+                    "Disponibilidade",
+                    "Hoje"
+                  ]
+                },
+                "Dag": {
+                  "tekst1": "ocupação",
+                  "tekst2": "Nenhum turno disponível para este turno.",
+                  "button": "Remover"
+                },
+                "Week": {
+                  "button": "Hoje"
+                },
+                "Maand": {
+                  "button": "Hoje"
+                },
+                "Jaar": {
+                  "button": "Hoje"
+                }
+              },
+              "Dashboard": {
+                "DashboardingLoading": {
+                  "tekst1": "Carregando...",
+                  "tekst2": "Esperamos que não demore muito 🙂🚀"
+                },
+                "headTitle": "Painel",
+                "navigation": [
+                  { "name": "Início", "value": "Início" },
+                  { "name": "Calendário", "value": "Calendário" },
+                  { "name": "Turnos", "value": "Turnos" },
+                  { "name": "Pools flexíveis", "value": "Pools flexíveis" },
+                  { "name": "Finanças", "value": "Finanças" }
+                ],
+                "UserNavigation": [
+                  { "name": "Configurações", "value": "Configurações" },
+                  { "name": "Perguntas frequentes", "value": "Perguntas frequentes" },
+                  { "name": "Sair", "value": "Sair" }
+                ]
+              },
+              "Explore": {
+                "tabs": [
+                  "Turnos",
+                  "Vagas"
+                ],
+                "ShiftPagina": {
+                  "headTitle": "Turnos",
+                  "NoShifts": "Nenhum turno disponível"
+                },
+                "VacaturePagina": {
+                  "headTitle": "Vagas",
+                  "NoVacatures": "Nenhuma vaga disponível"
+                },
+                "filter": [
+                  "Distância",
+                  "Tarifa"
+                ],
+                "buttons": [
+                  "Procurar",
+                  "Reiniciar"
+                ]
+              },
+              "FAQ": {
+                "headTitle:": "Perguntas Frequentes"
+              },
+              "Financien": {
+                "Facturen": {
+                  "headTitle": "Faturas",
+                  "noInvoices": "Nenhuma fatura encontrada"
+                },
+                "Loonstroken": "Holerites",
+                "noPyaslips": "Nenhum holerite encontrado"
+              },
+              "Flexpool": {
+                "Flexpools": {
+                  "headTitle": "Pools Flexíveis",
+                  "NoFlexpools": "Nenhum pool flexível encontrado"
+                },
+                "Favorieten": {
+                  "headTitle": "Favoritos",
+                  "noFavorieten": "Nenhum favorito encontrado"
+                }
+              },
+              "Profiel": {
+                "ProfielItems": [
+                  "Nome",
+                  "Data de nascimento",
+                  "Endereço de e-mail",
+                  "Avaliações",
+                  "Turnos",
+                  "Serviços"
+                ]
+              },
+              "Shifts": {
+                "tabs": [
+                  "Inscrito",
+                  "Aceito",
+                  "Concluído"
+                ],
+                "texts": [
+                  {
+                    "headTitleShifts": "Turnos inscritos",
+                    "headTitleVacatures": "Serviços inscritos",
+                    "NoShifts": "Nenhum turno disponível",
+                    "NoVacatures": "Nenhuma vaga disponível"
+                  },
+                  {
+                    "headTitleShifts": "Turnos aceitos",
+                    "headTitleVacatures": "Serviços aceitos",
+                    "NoShifts": "Nenhum turno disponível",
+                    "NoVacatures": "Nenhuma vaga disponível"
+                  },
+                  {
+                    "headTitleShifts": "Turnos concluídos",
+                    "headTitleVacatures": "Serviços concluídos",
+                    "NoShifts": "Nenhum turno disponível",
+                    "NoVacatures": "Nenhuma vaga disponível"
+                  }
+                ]
+              }
+        },
+        "werkgeversPage": {
+            "Dashboard": {
+                "headTitle": "Painel",
+                "texts": [
+                  {
+                    "name": "Vagas",
+                    "notFound": "Nenhuma vaga encontrada"
+                  },
+                  {
+                    "name": "Turnos publicados",
+                    "notFound": "Nenhum turno encontrado"
+                  },
+                  {
+                    "name": "Checkouts",
+                    "notFound": "Nenhum checkout encontrado"
+                  },
+                  {
+                    "name": "Turnos não publicados",
+                    "notFound": "Nenhum turno encontrado"
+                  },
+                  {
+                    "name": "Pools flexíveis",
+                    "notFound": "Nenhuma pool flexível encontrada",
+                    "modal": {
+                      "title": "Criar pool flexível",
+                      "subTitle": "Criar pool flexível",
+                      "buttons": [
+                        "Cancelar",
+                        "Adicionar"
+                      ]
+                    }
+                  },
+                  {
+                    "name": "Faturas",
+                    "notFound": "Nenhuma fatura encontrada"
+                  },
+                  {
+                    "name": "Turnos",
+                    "attributes": [
+                      "candidaturas",
+                      "vagas",
+                      "aceitos"
+                    ],
+                    "localDateString": "pt-PT",
+                    "noDate": "data não disponível"
+                  },
+                  {
+                    "name": "Checkouts",
+                    "attributes": [
+                      { "currencySign": "€" },
+                      "data",
+                      "minutos de pausa"
+                    ],
+                    "buttons": [
+                      "Aceitar",
+                      "Recusar"
+                    ],
+                    "localDateString": "pt-PT",
+                    "noDate": "data não disponível"
+                  },
+                  {
+                    "name": "Faturas",
+                    "attributes": [
+                      "turno",
+                      "turnos",
+                      "pago",
+                      "pendente",
+                      { "currencySign": "€" }
+                    ],
+                    "localDateString": "pt-PT",
+                    "noDate": "data não disponível"
+                  }
+                ]
+              },
+              "Veelgesteldevragen": {
+                "headTitle": "Perguntas frequentes"
+              },
+              "Calender": {
+                "calender": {
+                  "navigation": [
+                    {
+                      "name": "Dia",
+                      "value": "Dia"
+                    },
+                    {
+                      "name": "Semana",
+                      "value": "Semana"
+                    },
+                    {
+                      "name": "Mês",
+                      "value": "Mês"
+                    },
+                    {
+                      "name": "Ano",
+                      "value": "Ano"
+                    }
+                  ],
+                  "buttons": [
+                    "Publicar turno",
+                    "Publicar vaga",
+                    "Disponibilidade",
+                    "Hoje"
+                  ]
+                },
+                "Dag": {
+                  "tekst1": "ocupação",
+                  "tekst2": "Nenhum turno disponível para este turno.",
+                  "tekst3": "Agenda para",
+                  "button": "Remover"
+                },
+                "Week": {
+                  "button": "Hoje"
+                },
+                "Maand": {
+                  "button": "Hoje",
+                  "Aanmeldingen": "inscrições",
+                  "Reserveren": "reservar",
+                  "Aangenomen": "aceito"
+                },
+                "Jaar": {
+                  "button": "Hoje",
+                  "Wijzig": "Editar",
+                  "Bekijk": "Visualizar",
+                  "Plek": "Vaga disponível",
+                  "Plekken": "Vagas disponíveis"
+                }
+              }
+        }
+    },
+
+    "components": {
+        "cards": {
+            "ApplicationCard": {
+                "typeJob": "Trabalho flexível",
+                "shifts": "turnos",
+                "localDateString": "pt-PT",
+                "ToastMessage1": "Candidatura retirada",
+                "Toastmessage2": "Ação não permitida!"
+              },
+              "CheckoutCard": {
+                "ToastMessage1": "Checkout enviado! 👍",
+                "Toastmessage2": "Ação não permitida! ❌",
+                "localDateString": "pt-PT",
+                "gewerkteUren": "Horas trabalhadas: ",
+                "minPauze": "minutos de pausa",
+                "accepteren": "Aceitar",
+                "weigeren": "Rejeitar",
+                "currencySign": "€",
+                "shift_statussen": [
+                  "disponível",
+                  "inscrito",
+                  "aceite",
+                  "checkout rejeitado",
+                  "checkout aceite",
+                  "enviar checkout",
+                  "rejeitado"
+                ]
+              },
+              "FlexpoolCard": {
+                "hvl_freelancers": "freelancers",
+                "hvl_shifts": "turnos",
+                "shift": "turno"
+              },
+              "InvoiceCard": {
+                "week": "semana",
+                "hvl_shifts": "turnos",
+                "shift": "turno",
+                "currencySign": "€",
+                "voldaan": "pago",
+                "openstaand": "pendente"
+              },
+              "JobCard": {
+                "ToastMessage1": "Cancelado para o turno!",
+                "Toastmessage2": "Ação não permitida!",
+                "localDateString": "pt-PT",
+                "currencySign": "€",
+                "pauze": "min de pausa"
+              },
+              "ShiftArrayCard": {
+                "localDateString": "pt-PT",
+                "currencySign": "€"
+              },
+              "ShiftCard": {
+                "ToastMessage1": "Cancelado para o turno!",
+                "Toastmessage2": "Ação não permitida!",
+                "localDateString": "pt-PT",
+                "currencySign": "€",
+                "shift_statussen": [
+                  "disponível",
+                  "inscrito",
+                  "aceite",
+                  "checkout rejeitado",
+                  "checkout aceite",
+                  "enviar checkout",
+                  "rejeitado"
+                ]
+              },
+              "VacancyCard": {
+                "localDateString": "pt-PT",
+                "currencySign": "€",
+                "hvl_shifts": "turnos",
+                "hvl_sollicitaties": "candidaturas",
+                "kledingvoorschriften": [
+                  "código de vestuário",
+                  "códigos de vestuário"
+                ],
+                "vaardigeheden": [
+                  "competência",
+                  "competências"
+                ],
+                "voor": "para",
+                "tot": "até"
+              }
+        },
+        "forms": {
+            "CompanyForm": {
+                "steps": [
+                  {
+                    "id": "1",
+                    "name": "Dados",
+                    "fields": [
+                      "Nome próprio",
+                      "Prefixo",
+                      "Apelido",
+                      "Número de registro da empresa"
+                    ]
+                  },
+                  {
+                    "id": "2",
+                    "name": "Perfil",
+                    "fields": [
+                      "Nome de exibição",
+                      "Foto de perfil",
+                      "Biografia"
+                    ]
+                  },
+                  {
+                    "id": "3",
+                    "name": "Concluído"
+                  }
+                ],
+                "headTitle": "Dados da empresa",
+                "subTitle": "Preencha aqui as informações para o cartão de visita da empresa.",
+                "bioSubtitle": "O que os prestadores de serviço devem saber sobre a empresa?",
+                "final_page_header": "Bem-vindo à Junter!",
+                "final_page_subtitle": "Você terminou! Clique em 'Concluir' para finalizar o processo.",
+                "buttons": [
+                  "Anterior",
+                  "Próximo",
+                  "Concluir"
+                ],
+                "location": "País",
+                "formItems": [
+                  "Câmara de Comércio (KvK)",
+                  "Nome da pessoa de contato / administrador",
+                  "Código postal",
+                  "Número da casa",
+                  "Nome da rua",
+                  "Cidade",
+                  "Endereço de e-mail",
+                  "Número de telefone",
+                  "Número de IVA",
+                  "IBAN",
+                  "Nome de exibição",
+                  "Biografia",
+                  "Foto de perfil"
+                ],
+                "optioneel": "opcional"
+              },
+              "EmployeeForm": {
+                "steps": [
+                  {
+                    "id": "1",
+                    "name": "Dados pessoais",
+                    "fields": [
+                      "Nome próprio",
+                      "Prefixo",
+                      "Apelido",
+                      "Data de nascimento",
+                      "País",
+                      "Número de Seguro Social (BSN)"
+                    ]
+                  },
+                  {
+                    "id": "2",
+                    "name": "Dados comerciais",
+                    "fields": [
+                      "Número KvK",
+                      "Número de IVA",
+                      "Código postal",
+                      "Número da casa",
+                      "Cidade",
+                      "Nome da rua"
+                    ]
+                  },
+                  {
+                    "id": "3",
+                    "name": "Perfil",
+                    "fields": [
+                      "Biografia",
+                      "Foto de perfil",
+                      "Currículo"
+                    ]
+                  },
+                  {
+                    "id": "4",
+                    "name": "Concluído"
+                  }
+                ],
+                "headTitle": "Informações pessoais",
+  "subTtitle": "Preencha suas informações pessoais.",
+  "head2Title": "Informações comerciais",
+  "sub2Title": "Preencha suas informações comerciais.",
+  "head3Title": "Perfil",
+  "sub3Title": "Seu cartão de visita para os clientes. 😁👋",
+  "Location": "País",
+  "final_page_header": "Tudo pronto! Clique em 'Concluir' para finalizar o processo.",
+  "compleet": "Concluído",
+  "formItems": [
+    "Nome",
+    "Prefixo",
+    "Sobrenome",
+    "Data de nascimento",
+    "Número da casa",
+    "Código postal",
+    "Nome da rua",
+    "Cidade",
+    "ID de IVA",
+    "IBAN",
+    "Biografia",
+    "Foto de perfil"
+  ],
+                "buttons": [
+                  "Anterior",
+                  "Próximo",
+                  "Concluir"
+                ]
+              },
+              "ShiftForm": {
+                "ToastMessage1": "Turno não publicado criado! 👍",
+                "Toastmessage2": "Ação não permitida! ❌",
+                "ToastMessage3": "Falha ao criar o turno não publicado:",
+                "selectShifts": "Selecionar turno",
+                "formItems": [
+                  "Título",
+                  "Função",
+                  "Imagem",
+                  "Tarifa por hora",
+                  "Endereço",
+                  "Data de início",
+                  "Data de término",
+                  "Hora de término",
+                  "Hora de início",
+                  "Pausa",
+                  "Descrição",
+                  "Competências",
+                  "Código de vestuário",
+                  "colocar turno na flexpool"
+                ],
+                "PlaceholderTexts": [
+                  "procuramos profissionais entusiastas de hospitalidade",
+                  "descrição",
+                  "endereço",
+                  "hora de início",
+                  "hora de término",
+                  "14",
+                  "vagas",
+                  "neerlandês, inglês, carregar 3 pratos, servir com bandeja, apresentar vinho, servir vinho, anotar pedidos",
+                  "sapatos pretos, calças pretas/social, camisa branca"
+                ],
+                "buttonsTitle": [
+                  "criando turno...",
+                  "criar turno",
+                  "publicando turno...",
+                  "publicar turno",
+                  "atualizar turno...",
+                  "atualizar turno"
+                ]
+              },
+              "VacancyForm": {
+                "steps": [
+                  {
+                    "id": 1,
+                    "name": "Detalhes da vaga",
+                    "fields": [
+                      "título",
+                      "função",
+                      "descrição",
+                      "endereço",
+                      "código de vestuário",
+                      "competências",
+                      "imagem"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "name": "Endereço",
+                    "fields": [
+                      "código postal",
+                      "número",
+                      "nome da rua",
+                      "cidade"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "name": "Datas",
+                    "fields": [
+                      "data de início",
+                      "data de término",
+                      "hora de início",
+                      "hora de término"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "name": "Salário por hora",
+                    "fields": [
+                      "salário por hora",
+                      "adicional",
+                      "tipo de adicional",
+                      "percentual de adicional"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "name": "Concluído"
+                  }
+                ],
+                "titles": [
+                  {
+                    "headTitle": "Detalhes da vaga",
+                    "subTitle": "Descreva a vaga"
+                  },
+                  {
+                    "headTitle": "Endereço",
+                    "subTitle": "Onde será realizada a vaga?"
+                  },
+                  {
+                    "headTitle": "Datas",
+                    "subTitle": "Para quais dias e horários você precisa de pessoal?"
+                  },
+                  {
+                    "headTitle": "Salário",
+                    "subTitle": "Quanto o trabalhador vai ganhar?"
+                  }
+                ],
+                "placeholderTexts": [
+                  "neerlandês, inglês, carregar 3 pratos, servir com bandeja, apresentar vinho, servir vinho, anotar pedidos",
+                  "sapatos pretos, calças pretas/social, camisa branca"
+                ],
+                "buttons": [
+                  "Anterior",
+                  "Próximo",
+                  "Concluir"
+                ],
+                "formItems": [
+                  "título",
+                  "função",
+                  "descrição",
+                  "imagem",
+                  "competências",
+                  "código de vestuário"
+                ],
+                "locatie": {
+                  "fieldLabels": [
+                    "Número da casa",
+                    "Código postal",
+                    "Cidade",
+                    "Nome da rua"
+                  ]
+                },
+                "data": {
+                  "fieldLabels": [
+                    "Preencher horários de trabalho",
+                    "Data de início",
+                    "Data de término",
+                    "Hora de início",
+                    "Hora de término",
+                    "Pausa (minutos)"
+                  ],
+                  "buttons": [
+                    "Remover",
+                    "Adicionar horário de trabalho",
+                    "Enviar"
+                  ]
+                },
+                "salaris": {
+                  "fieldLabels": [
+                    "salário por hora (€)",
+                    "adicional",
+                    "Aplicar adicional",
+                    "Tipo de adicional",
+                    "Selecionar",
+                    "Escolha um tipo de adicional",
+                    "De",
+                    "Até"
+                  ],
+                  "typeToeslag": [
+                    "Dias de semana",
+                    "Sábado",
+                    "Domingo"
+                  ],
+                  "percentageToeslag": [
+                    "125%",
+                    "150%",
+                    "200%",
+                    "Percentagem de sobretaxa"
+                  ],
+                  "currencySign": "(€)"
+                }
+              },
+              "AvailabilityForm": {
+                "headTitle": "Resumo de disponibilidade",
+                "Dates": "Datas",
+                "Times": "Horários",
+                "Categories": "Categorias",
+                "Distance": "Distância",
+                "subTitle": "Indique sua disponibilidade",
+                "Section1": {
+                  "HeadTitles": ["Datas", "Horários"],
+                  "subTitle": "Quando você está disponível?",
+                  "formItems": ["Um dia", "Vários dias"]
+                },
+                "Section2": {
+                  "HeadTitles": ["Categorias", "Distância"],
+                  "subTitles": ["Selecionar categorias", "Selecionar distância"],
+                  "formItems": [
+                    "Categoria",
+                    "Subcategoria",
+                    "Meu endereço atual",
+                    "Outro endereço",
+                    "Tanto faz"
+                  ],
+                  "placeholderTexts": ["Número", "Código postal", "Rua", "Cidade"]
+                },
+                "CancelModal": {
+                  "headText": "Cancelar alterações",
+                  "subText": "Tem certeza de que deseja cancelar? Todas as alterações serão perdidas."
+                },
+                "Buttons": [
+                  "Cancelar",
+                  "Enviar",
+                  "Sim, cancelar alterações",
+                  "Não, continuar"
+                ]
+              }
+        },
+        "navigation": {
+            "Footer": {
+                "navigation": [
+                  {
+                    "name": "Trabalhadores",
+                    "links": [
+                      {
+                        "name": "Como funciona",
+                        "href": "/employees"
+                      },
+                      {
+                        "name": "Encontrar trabalho",
+                        "href": "/sign-up"
+                      },
+                      {
+                        "name": "Contato",
+                        "href": "/contact"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Empregadores",
+                    "links": [
+                      {
+                        "name": "Custos",
+                        "href": "/pricing"
+                      },
+                      {
+                        "name": "Encontrar trabalhadores",
+                        "href": "/sign-up"
+                      },
+                      {
+                        "name": "FAQ",
+                        "href": "/faq"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Junter",
+                    "links": [
+                      {
+                        "name": "Sobre nós",
+                        "href": "/junter"
+                      },
+                      {
+                        "name": "Trabalhar na Junter",
+                        "href": "/junter"
+                      },
+                      {
+                        "name": "Parceiros",
+                        "href": "/junter"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Jurídico",
+                    "links": [
+                      {
+                        "name": "Contato",
+                        "href": "/contact"
+                      },
+                      {
+                        "name": "Política de privacidade",
+                        "href": "/pp"
+                      },
+                      {
+                        "name": "Termos e Condições",
+                        "href": "/tou"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Footer4": {
+                "title": "2025 Junter. Todos os direitos reservados."
+              },
+              "FooterForm": {
+                "emailadres": "endereço de e-mail"
+              },
+              "NavBar": {
+                "inloggen": "Entrar",
+                "aanmelden": "Registrar-se"
+              },
+              "Navigation": {
+                "dashboard": "Painel",
+                "terug": "Voltar",
+                "uitloggen": "Sair"
+              }
+        },
+        "shared": {
+            "ApplyConfirmation": {
+                "ToastMessage1": "Inscrito para o turno! 👍",
+                "ToastMessage2": "Ação não permitida! ❌"
+              },
+              "CheckoutModal": {
+                "ToastMessage1": "Checkout enviado! 👍",
+                "ToastMessage2": "Ação não permitida! ❌",
+                "ToastMessage3": "Ops... a ação falhou!",
+                "buttons": [
+                  "Enviar checkout",
+                  "Aceitar",
+                  "Enviar",
+                  "Fechar",
+                  "Faltou"
+                ],
+                "fieldLabels": [
+                  "Turnos concluídos",
+                  "Detalhes do turno",
+                  "minutos de pausa",
+                  "Tarifa por hora",
+                  "Horas declaradas",
+                  "Atrasado"
+                ],
+                "per_Uur": "€/h",
+                "currencySign": "€",
+                "localDateString": "pt-PT"
+              },
+              "DeleteConfirmation": {
+                "DialogText": [
+                  "Tem certeza de que deseja excluir este turno?",
+                  "Esta ação removerá o turno permanentemente."
+                ],
+                "buttons": [
+                  "Cancelar",
+                  "Excluindo...",
+                  "Excluir"
+                ],
+                "ToastMessage1": "ID de turno inválido"
+              },
+              "Dienstensectie": {
+                "ToastMessage1": "Trabalhador removido do turno!",
+                "ToastMessage2": "Ação não permitida! {{string}}",
+                "buttons": [
+                  "Editar",
+                  "Cancelar"
+                ],
+                "fieldLabels": [
+                  "Trabalhador",
+                  "Cidade",
+                  "Tarefas",
+                  "Avaliações"
+                ],
+                "voltooid": "concluído"
+              },
+              "Dropdown": {
+                "labels": [
+                  "sem flexpools",
+                  "Criar flexpool",
+                  "Flexpool"
+                ],
+                "buttons": [
+                  "Cancelar",
+                  "Adicionar"
+                ]
+              },
+              "DropdownCategorie": {
+                "fields": [
+                  {
+                    "label": "Hotelaria",
+                    "items": [
+                      { "value": "Hotelaria: restaurantes", "label": "restaurante" },
+                      { "value": "Hotelaria: cafés e bares", "label": "café e bar" },
+                      { "value": "Hotelaria: catering", "label": "catering" },
+                      { "value": "Hotelaria: hotéis", "label": "hotel" }
+                    ]
+                  },
+                  {
+                    "label": "Varejo",
+                    "items": [
+                      { "value": "Varejo: supermercados", "label": "supermercado" },
+                      { "value": "Varejo: lojas de roupas", "label": "loja de roupas" },
+                      { "value": "Varejo: lojas de eletrônicos", "label": "loja de eletrônicos" },
+                      { "value": "Varejo: lojas de departamento", "label": "loja de departamento" }
+                    ]
+                  },
+                  {
+                    "label": "Logística e Armazém",
+                    "items": [
+                      { "value": "Logística: centros de distribuição", "label": "centro de distribuição" },
+                      { "value": "Logística: entregas", "label": "entregas" },
+                      { "value": "Logística: armazéns", "label": "armazém" }
+                    ]
+                  },
+                  {
+                    "label": "Atendimento ao Cliente e Callcenters",
+                    "items": [
+                      { "value": "Atendimento: suporte telefônico", "label": "suporte telefônico" },
+                      { "value": "Atendimento: atendimento ao cliente", "label": "atendimento ao cliente" },
+                      { "value": "Atendimento: suporte via chat", "label": "suporte via chat" }
+                    ]
+                  },
+                  {
+                    "label": "Educação e Aulas Particulares",
+                    "items": [
+                      { "value": "Educação: tutorias", "label": "tutoria" },
+                      { "value": "Educação: assistente educacional", "label": "assistente educacional" },
+                      { "value": "Educação: acompanhamento de deveres", "label": "acompanhamento de deveres" }
+                    ]
+                  },
+                  {
+                    "label": "Cuidados e Bem-estar",
+                    "items": [
+                      { "value": "Cuidados: cuidados domiciliares", "label": "cuidados domiciliares" },
+                      { "value": "Cuidados: assistentes de cuidados", "label": "assistente de cuidados" },
+                      { "value": "Cuidados: creches", "label": "creche" }
+                    ]
+                  },
+                  {
+                    "label": "Marketing e Promoção",
+                    "items": [
+                      { "value": "Marketing: promoções", "label": "promoção" },
+                      { "value": "Marketing: pesquisa de mercado", "label": "pesquisa de mercado" },
+                      { "value": "Marketing: gestão de redes sociais", "label": "gestão de redes sociais" }
+                    ]
+                  },
+                  {
+                    "label": "Eventos e Entretenimento",
+                    "items": [
+                      { "value": "Entretenimento: colaborador de festival", "label": "colaborador de festival" },
+                      { "value": "Entretenimento: segurança", "label": "segurança" },
+                      { "value": "Entretenimento: empresa", "label": "empresa" }
+                    ]
+                  },
+                  {
+                    "label": "Trabalho Criativo",
+                    "items": [
+                      { "value": "Criativo: design gráfico", "label": "design gráfico" },
+                      { "value": "Criativo: escrita e edição", "label": "escrita" },
+                      { "value": "Criativo: fotografia", "label": "fotografia" }
+                    ]
+                  },
+                  {
+                    "label": "Tecnologia e TI",
+                    "items": [
+                      { "value": "TI: suporte técnico", "label": "suporte técnico" },
+                      { "value": "TI: desenvolvimento web", "label": "desenvolvimento web" },
+                      { "value": "TI: desenvolvimento de apps", "label": "desenvolvimento de apps" }
+                    ]
+                  },
+                  {
+                    "label": "Produção e Fábricas",
+                    "items": [
+                      { "value": "Produção: linhas de montagem", "label": "linhas de montagem" },
+                      { "value": "Produção: processamento de alimentos", "label": "processamento de alimentos" },
+                      { "value": "Produção: assistentes de produção", "label": "assistentes de produção" }
+                    ]
+                  },
+                  {
+                    "label": "Agricultura e Trabalho Sazonal",
+                    "items": [
+                      { "value": "Agricultura: colheita", "label": "colheita" },
+                      { "value": "Agricultura: colheita de frutas", "label": "colheita de frutas" },
+                      { "value": "Agricultura: trabalho em fazendas", "label": "trabalho em fazendas" }
+                    ]
+                  },
+                  {
+                    "label": "Administração e Escritório",
+                    "items": [
+                      { "value": "Administração: entrada de dados", "label": "entrada de dados" },
+                      { "value": "Administração: assistente administrativo", "label": "assistente administrativo" },
+                      { "value": "Administração: recepção", "label": "recepção" }
+                    ]
+                  },
+                  {
+                    "label": "Turismo e Viagens",
+                    "items": [
+                      { "value": "Turismo: guias turísticos", "label": "guias turísticos" },
+                      { "value": "Turismo: recepção de hotéis", "label": "recepção de hotéis" },
+                      { "value": "Turismo: agência de viagens", "label": "agência de viagens" }
+                    ]
+                  },
+                  {
+                    "label": "Esportes e Fitness",
+                    "items": [
+                      { "value": "Esporte: instrutores de fitness", "label": "instrutores de fitness" },
+                      { "value": "Esporte: instrutores de natação", "label": "instrutores de natação" },
+                      { "value": "Esporte: treinadores esportivos", "label": "treinadores esportivos" }
+                    ]
+                  },
+                  {
+                    "label": "Limpeza",
+                    "items": [
+                      { "value": "Limpeza: escritórios", "label": "escritórios" },
+                      { "value": "Limpeza: escolas e instituições de ensino", "label": "instituições de ensino" },
+                      { "value": "Limpeza: hotelaria", "label": "hotelaria" },
+                      { "value": "Limpeza: cuidados de saúde", "label": "cuidados de saúde" },
+                      { "value": "Limpeza: locais de eventos", "label": "locais de eventos" },
+                      { "value": "Limpeza: varejo", "label": "varejo" },
+                      { "value": "Limpeza: espaços públicos", "label": "espaços públicos" },
+                      { "value": "Limpeza: residências particulares", "label": "residências particulares" },
+                      { "value": "Limpeza: casas de férias", "label": "casas de férias" }
+                    ]
+                  }
+                ],
+                "title": "Categoria",
+                "buttons": [
+                  "Cancelar",
+                  "Adicionar"
+                ],
+                "placeholderText": "adicionar categoria"
+              },
+              "DropdownPauze": {
+                "placeholderText": "Pausa",
+                "options": [
+                  { "value": "0", "label": "Sem pausa" },
+                  { "value": "15", "label": "15 minutos de pausa" },
+                  { "value": "30", "label": "30 minutos de pausa" },
+                  { "value": "45", "label": "45 minutos de pausa" },
+                  { "value": "60", "label": "60 minutos de pausa" },
+                  { "value": "90", "label": "90 minutos de pausa" },
+                  { "value": "120", "label": "120 minutos de pausa" }
+                ]
+              },
+              "EmployeePage": {
+                "buttons": [
+                  "Cancelar",
+                  "Enviar"
+                ],
+                "fieldsItems": [
+                  "Turnos",
+                  "minutos de pausa",
+                  "Sem pausa"
+                ],
+                "currencySign": "€",
+                "features": [
+                  {
+                    "name": "Salário",
+                    "description": "`€ ${vacature.uurloon} por ${diensten.length}`",
+                    "icon": "BanknotesIcon"
+                  },
+                  {
+                    "name": "Datas",
+                    "description": "` De ${vacature.begindatum} até ${vacature.einddatum}`",
+                    "icon": "CalendarDateRangeIcon"
+                  },
+                  {
+                    "name": "Endereço",
+                    "description": "vacature.adres",
+                    "icon": "BuildingOffice2Icon"
+                  },
+                  {
+                    "name": "Código de vestuário",
+                    "description": "Sem exigências específicas",
+                    "icon": "BriefcaseIcon"
+                  },
+                  {
+                    "name": "Competências",
+                    "description": "Nenhuma competência necessária",
+                    "icon": "ClipboardDocumentCheckIcon"
+                  }
+                ]
+              },
+              "EmployerPage": {
+                "currencySign": "€",
+                "features": [
+                  {
+                    "name": "Salário",
+                    "description": "`€ ${vacature.uurloon} por ${diensten.length}`",
+                    "icon": "BanknotesIcon"
+                  },
+                  {
+                    "name": "Datas",
+                    "description": "` De ${vacature.begindatum} até ${vacature.einddatum}`",
+                    "icon": "CalendarDateRangeIcon"
+                  },
+                  {
+                    "name": "Endereço",
+                    "description": "vacature.adres",
+                    "icon": "BuildingOffice2Icon"
+                  },
+                  {
+                    "name": "Código de vestuário",
+                    "description": "Sem exigências específicas",
+                    "icon": "BriefcaseIcon"
+                  },
+                  {
+                    "name": "Competências",
+                    "description": "Nenhuma competência necessária",
+                    "icon": "ClipboardDocumentCheckIcon"
+                  }
+                ]
+              },
+              "ForbiddenPage": {
+                "headTitle": "404",
+                "subTitle": "Página não encontrada",
+                "pagetext": "Desculpe, não conseguimos encontrar a página que você está procurando.",
+                "buttons": [
+                  "Voltar para a página inicial",
+                  "Entrar em contato com o suporte"
+                ]
+              },
+              "NotFoundPage": {
+                "headTitle": "404",
+                "subTitle": "Página não encontrada",
+                "pagetext": "Desculpe, não conseguimos encontrar a página que você está procurando.",
+                "button": "Voltar para a página inicial"
+              },
+              "SollicitatieModal": {
+                "ToastMessage1": "Trabalhador contratado para os turnos selecionados!",
+                "ToastMessage2": "Ação não permitida! {{string}}",
+                "ToastMessage3": "Candidatura rejeitada!",
+                "ToastMessage4": "Ação não permitida! {{string}}",
+                "ToastMessage5": "Trabalhador aceito para a vaga!",
+                "ToastMessage6": "Ação não permitida! {{string}}",
+                "currencySign": "€",
+                "fiedValues": [
+                  "minutos de pausa",
+                  "Sem pausa",
+                  "Trabalhador",
+                  "Tarefas",
+                  "Estrelas",
+                  "Biografia",
+                  "Cidade",
+                  "Data de nascimento",
+                  "Endereço de e-mail"
+                ],
+                "buttons": [
+                  "Aceitar",
+                  "Confirmar",
+                  "Rejeitar",
+                  "Conversar com",
+                  "Bloquear",
+                  "Favoritos",
+                  "Aceitar tudo",
+                  "Enviar"
+                ]
+              },
+              "Sollicitaties": {
+                "headTitle": "Candidatura",
+                "subTitle": "Uma lista de todas as candidaturas para a vaga.",
+                "fieldValues": [
+                  "Prestador de serviço",
+                  "Experiência de trabalho",
+                  "Presença",
+                  "Pontualidade"
+                ],
+                "attributes": [
+                  "tarefas",
+                  "estrelas",
+                  "candidaturas"
+                ]
+              },
+              "UitlogModal": {
+                "headtitle": "Sair",
+                "subTitle": "Tem certeza de que deseja sair?",
+                "buttons": [
+                  "Cancelar",
+                  "Sair"
+                ]
+              }
+        }
+    },
+    "Validations": {
+      "CheckoutValidations": {
+        "Begintijd": "Insira um horário de início válido.",
+        "Eindtijd": "Insira um horário de término válido.",
+        "Pauze": "Insira os minutos de pausa (0 ou mais)."
+      },
+      "EmployeeValidations": {
+        "Land": "Selecione um país.",
+        "voornaam": "O nome é obrigatório.",
+        "Achternaam": "O sobrenome é obrigatório.",
+        "Geboortedatum": "Insira uma data de nascimento válida.",
+        "Telefoonnumer": "Insira um número de telefone válido.",
+        "Emailadres": "Insira um endereço de e-mail válido.",
+        "IBAN": "Insira um IBAN válido.",
+        "Huisnummer": "O número da casa é obrigatório.",
+        "Postcode": "Insira um código postal válido.",
+        "Straat": "O nome da rua é obrigatório.",
+        "Stad": "A cidade é obrigatória."
+      },
+      "EmployerValidations": {
+        "Land": "Selecione um país.",
+        "Naam": "O nome da empresa é obrigatório.",
+        "CompanyRN": "O número de registro é obrigatório.",
+        "IBAN": "Insira um IBAN válido.",
+        "Telefoonnumer": "Insira um número de telefone válido.",
+        "Emailadres": "Insira um endereço de e-mail válido.",
+        "Huisnummer": "O número da casa é obrigatório.",
+        "Postcode": "Insira um código postal válido.",
+        "Straat": "O nome da rua é obrigatório.",
+        "Stad": "A cidade é obrigatória."
+      },
+      "VacancyValidations": {
+        "Titel": "O título é obrigatório.",
+        "Functie": "A função é obrigatória.",
+        "Uurtarief": "Insira uma tarifa horária válida.",
+        "Begindatum": "Selecione uma data de início.",
+        "Einddatum": "Selecione uma data de término.",
+        "Huisnummer": "O número da casa é obrigatório.",
+        "Postcode": "Insira um código postal válido.",
+        "Straat": "O nome da rua é obrigatório.",
+        "Stad": "A cidade é obrigatória.",
+        "begintijd": "Insira um horário de início válido.",
+        "eindtijd": "Insira um horário de término válido.",
+        "pauze": "Insira os minutos de pausa (0 ou mais).",
+        "beschrijving": "A descrição é obrigatória."
+      },
+      "ShiftValidations": {
+        "Titel": "O título é obrigatório.",
+        "Functie": "A função é obrigatória.",
+        "Uurtarief": "Insira uma tarifa horária válida.",
+        "Begindatum": "Selecione uma data de início.",
+        "Einddatum": "Selecione uma data de término.",
+        "Begintijd": "Insira um horário de início válido.",
+        "Eindtijd": "Insira um horário de término válido.",
+        "Adres": "O endereço é obrigatório.",
+        "Pauze": "Insira os minutos de pausa (0 ou mais).",
+        "Plekken": "Indique quantas pessoas são necessárias.",
+        "Beschrijving": "A descrição é obrigatória."
+      },
+      "AvailabilityValidations": {
+        "TypeData": "Selecione se deseja inserir um ou mais dias.",
+        "Data": "Selecione pelo menos uma data.",
+        "Tijden": "Insira os horários em que está disponível."
+      }
+    }
+}

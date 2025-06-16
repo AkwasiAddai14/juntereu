@@ -1,21 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { CheckIcon } from '@radix-ui/react-icons';
-import { motion } from 'framer-motion';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
-import { EmployeeValidation } from '@/app/lib/validations/employee';
 import axios from 'axios';
-import { createEmployee } from '@/app/lib/actions/employee.actions';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { usePathname, useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { useUser } from '@clerk/nextjs';
-import "react-datepicker/dist/react-datepicker.css";
-import { FileUploader } from '@/app/[lang]/components/shared/FileUploader';
-import { useUploadThing } from '@/app/lib/uploadthing';
 import DatePicker from 'react-datepicker';
-import { ChevronDownIcon } from '@heroicons/react/16/solid'
+import { CheckIcon } from '@radix-ui/react-icons';
+import React, { useEffect, useState } from 'react';
+import "react-datepicker/dist/react-datepicker.css";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useUploadThing } from '@/app/lib/uploadthing';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { usePathname, useRouter } from 'next/navigation';
+import { ChevronDownIcon } from '@heroicons/react/16/solid';
+import { EmployeeValidation } from '@/app/lib/validations/employee';
+import { createEmployee } from '@/app/lib/actions/employee.actions';
+import { FileUploader } from '@/app/[lang]/components/shared/FileUploader';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
 const steps = [
@@ -30,7 +32,7 @@ const countries = [
   { name: 'Nederland', id: "Nederland",  icon: '🇳🇱' },
   { name: 'France', id: "Frankrijk",  icon: '🇫🇷' },
   { name: 'Italia', id: "Italie",  icon: '🇮🇹' },
-  { name: 'België', id: "Belgie",  icon: '🇧🇪' },
+  { name: 'België/Bégique', id: "Belgie",  icon: '🇧🇪' },
   { name: 'Österreich', id: "Oostenrijk",  icon: '🇦🇹' },
   { name: 'España', id: "Spanje", icon: '🇪🇸' },
   { name: 'Portugal', id: "Portugal", icon: '🇵🇹' },
@@ -69,7 +71,7 @@ interface Props {
   };
 }
 
-const Page: React.FC<Props> = ({ employee }) => {
+const EmployeeForm = async ({ employee }: Props, { lang }: { lang: Locale }) => {
   const [files, setFiles] = useState<File[]>([]);
   const [currentStep, setCurrentStep] = useState(0);
   const [previousStep, setPreviousStep] = useState(0);
@@ -78,8 +80,15 @@ const Page: React.FC<Props> = ({ employee }) => {
   const router = useRouter();
   const { startUpload } = useUploadThing("media");
   const pathname = usePathname();
-  const {user, isLoaded} = useUser()
+  const {user, isLoaded} = useUser();
   const [loading, setLoading] = useState(false);
+  const { components } = await getDictionary(lang);
+
+  const steps = components.forms.EmployeeForm.steps.map(step => ({
+    id: parseInt(step.id),
+    name: step.name,
+    fields: step.fields || []
+  }));
 
   const fetchAddressData = async (postcode: string, housenumber: string) => {
     try {
@@ -294,14 +303,14 @@ if (files.length > 0) {
               >
                 <div className="px-8 space-y-12 sm:space-y-16">
                   <div className="border-b border-gray-900/10 pb-12">
-                    <h2 className="text-base font-semibold leading-7 mt-10 text-gray-900">Persoonlijke gegevens</h2>
+                    <h2 className="text-base font-semibold leading-7 mt-10 text-gray-900">{components.forms.EmployeeForm.headTitle}</h2>
                     <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
-                      Vul je persoonlijke gegevens in.
+                      {components.forms.EmployeeForm.subTtitle}
                     </p>
                     <div className="mt-10 space-y-8  pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
                     <div>
                             <label htmlFor="location" className="block text-sm/6 font-medium text-gray-900">
-                              Location
+                              {components.forms.EmployeeForm.Location}
                             </label>
                             <div className="mt-2 grid grid-cols-1">
                               {countries.map((item) => (
@@ -311,7 +320,7 @@ if (files.length > 0) {
                   >
                     <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                     <item.icon 
-                        // className="size-6 text-gray-600 group-hover:text-indigo-600" 
+                        // className="size-6 text-gray-600 group-hover:text-sky-600" 
                         aria-hidden="true" 
                     />
                     </div>
@@ -319,7 +328,7 @@ if (files.length > 0) {
                                 id={item.name}
                                 name={item.name}
                                 defaultValue={countries[0].name}
-                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600 sm:text-sm/6"
                               >
                                 <option>{item.name}</option>
                                
@@ -334,46 +343,46 @@ if (files.length > 0) {
                          </div>
                       <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                         <label htmlFor="voornaam" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                          Voornaam
+                          {components.forms.EmployeeForm.formItems[0]}
                         </label>
                         <div className="mt-2 sm:col-span-2 sm:mt-0">
                           <input
                             type="text"
                             {...register('firstname', { required: true })}
                             id="voornaam"
-                            className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                            className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6" />
                           {errors.firstname && <p className="mt-2 text-sm text-red-600">{errors.firstname.message}</p>}
                         </div>
                       </div>
                       <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                         <label htmlFor="infix" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                          Tussenvoegsel
+                          {components.forms.EmployeeForm.formItems[1]}
                         </label>
                         <div className="mt-2 sm:col-span-2 sm:mt-0">
                           <input
                             type="text"
                             {...register('infix')}
                             id="tussenvoegsel"
-                            className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                            className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6" />
                         </div>
                       </div>
                       <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                         <label htmlFor="lastname" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                          Achternaam
+                          {components.forms.EmployeeForm.formItems[2]}
                         </label>
                         <div className="mt-2 sm:col-span-2 sm:mt-0">
                           <input
                             type="text"
                             {...register('lastname', { required: true })}
                             id="achternaam"
-                            className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                            className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6" />
                           {errors.lastname && <p className="mt-2 text-sm text-red-600">{errors.lastname.message}</p>}
                         </div>
                       </div>
 
                       <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                     <label htmlFor="dateOfBirth" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                      Geboortedatum
+                      {components.forms.EmployeeForm.formItems[3]}
                     <p className="text-sm text-slate-400">(MM/dd/yyyy)</p>
                     </label>
                     
@@ -402,73 +411,74 @@ if (files.length > 0) {
             >
               <div className="px-8 space-y-12 sm:space-y-16">
                 <div className="border-b border-gray-900/10 pb-12">
-                  <h2 className="text-base font-semibold leading-7 mt-10 text-gray-900">Zakelijke gegevens</h2>
+                  <h2 className="text-base font-semibold leading-7 mt-10 text-gray-900">{components.forms.EmployeeForm.head2Title}</h2>
                   <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
-                    Vul je zakelijke gegevens in.
+                    {components.forms.EmployeeForm.sub2Title}
                   </p>
                   <div className="mt-10 space-y-8  pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
                     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                       <label htmlFor="btwid" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                        BTW ID
+                        {components.forms.EmployeeForm.formItems[8]}
                       </label>
+                      <p className="text-sm text-slate-400">({components.forms.CompanyForm.optioneel})</p>
                       <div className="mt-2 sm:col-span-2 sm:mt-0">
                         <input
                           type="text"
                           {...register('VATidnr', { required: true })}
                           id="btwid"
-                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6" />
                         {errors.VATidnr && <p className="mt-2 text-sm text-red-600">{errors.VATidnr.message}</p>}
                       </div>
                     </div>
                     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                       <label htmlFor="iban" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                        IBAN
+                      {components.forms.EmployeeForm.formItems[9]}
                       </label>
                       <div className="mt-2 sm:col-span-2 sm:mt-0">
                         <input
                           type="text"
                           {...register('iban', { required: true })}
                           id="iban"
-                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6" />
                         {errors.iban && <p className="mt-2 text-sm text-red-600">{errors.iban.message}</p>}
                       </div>
                     </div>
                     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                       <label htmlFor="huisnummer" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                        Huisnummer
+                      {components.forms.EmployeeForm.formItems[4]}
                       </label>
                       <div className="mt-2 sm:col-span-2 sm:mt-0">
                         <input
                           type="text"
                           {...register('housenumber', { required: true })}
                           id="huisnummer"
-                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6" />
                         {errors.housenumber && <p className="mt-2 text-sm text-red-600">{errors.housenumber.message}</p>}
                       </div>
                     </div>
                     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                       <label htmlFor="postcode" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                        Postcode
+                      {components.forms.EmployeeForm.formItems[5]}
                       </label>
                       <div className="mt-2 sm:col-span-2 sm:mt-0">
                         <input
                           type="text"
                           {...register('postcode', { required: true })}
                           id="postcode"
-                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6" />
                         {errors.postcode && <p className="mt-2 text-sm text-red-600">{errors.postcode.message}</p>}
                       </div>
                     </div>
                     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                       <label htmlFor="stad" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                        Stad
+                      {components.forms.EmployeeForm.formItems[7]}
                       </label>
                       <div className="mt-2 sm:col-span-2 sm:mt-0">
                         <input
                           type="text"
                           {...register('city', { required: true })}
                           id="stad"
-                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                           value={city}
                           onChange={(e) => setCity(e.target.value)}
                         />
@@ -477,14 +487,14 @@ if (files.length > 0) {
                     </div>
                     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                       <label htmlFor="straatnaam" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                        Straatnaam
+                      {components.forms.EmployeeForm.formItems[6]}
                       </label>
                       <div className="mt-2 sm:col-span-2 sm:mt-0">
                         <input
                           type="text"
                           {...register('street', { required: true })}
                           id="street"
-                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                           value={street}
                           onChange={(e) => setStreet(e.target.value)}
                         />
@@ -504,15 +514,15 @@ if (files.length > 0) {
             >
               <div className="px-8 space-y-12 sm:space-y-16">
                 <div className="border-b border-gray-900/10 pb-12">
-                  <h2 className="text-base font-semibold leading-7 mt-10 text-gray-900">Profiel</h2>
+                  <h2 className="text-base font-semibold leading-7 mt-10 text-gray-900">{components.forms.EmployeeForm.head3Title}</h2>
                   <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
-                    Jouw visitekaartje naar opdrachtgevers toe. 😁👋
+                    {components.forms.EmployeeForm.sub3Title}
                   </p>
 
                   <div className="mt-10 space-y-8  pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
                     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                       <label htmlFor="profielfoto" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                        Profielfoto
+                        {components.forms.EmployeeForm.formItems[11]}
                       </label>
                       <div className="mt-2 sm:col-span-2 sm:mt-0">
                       <FileUploader
@@ -528,14 +538,14 @@ if (files.length > 0) {
                   <div className="mt-10 space-y-8  pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
                     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                       <label htmlFor="bio" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                        Bio
+                        {components.forms.EmployeeForm.formItems[10]}
                       </label>
                       <div className="mt-2 sm:col-span-2 sm:mt-0">
                         <textarea
                           {...register('bio')}
                           id="bio"
                           rows={4}
-                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6" />
                         {errors.bio && <p className="mt-2 text-sm text-red-600">{errors.bio.message}</p>}
                       </div>
                     </div>
@@ -552,9 +562,9 @@ if (files.length > 0) {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
               <div className="px-8 space-y-7 sm:space-y-16">
-                <h2 className="text-base font-semibold leading-7 text-gray-900 pt-10">Compleet</h2>
+                <h2 className="text-base font-semibold leading-7 text-gray-900 pt-10">{components.forms.EmployeeForm.compleet}</h2>
                 <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
-                  Je bent klaar! Klik op 'Voltooien' om het proces af te ronden.
+                  {components.forms.EmployeeForm.final_page_header}
                 </p>
               </div>
             </motion.div>
@@ -567,7 +577,7 @@ if (files.length > 0) {
               onClick={prevStep}
               className="inline-flex justify-center rounded-md border border-transparent bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
             >
-              Vorige
+             {components.forms.EmployeeForm.buttons[0]}
             </button>
           )}
           {currentStep < steps.length - 1 && (
@@ -576,7 +586,7 @@ if (files.length > 0) {
               onClick={nextStep}
               className="inline-flex justify-center rounded-md border border-transparent bg-sky-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
             >
-              Volgende
+              {components.forms.EmployeeForm.buttons[1]}
             </button>
           )}
           {currentStep === steps.length - 1 && (
@@ -584,7 +594,7 @@ if (files.length > 0) {
         type="submit"
         className="inline-flex justify-center rounded-md border border-transparent bg-sky-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
       >
-        Voltooien
+        {components.forms.EmployeeForm.buttons[2]}
       </button>
     )}
         </div>
@@ -594,4 +604,4 @@ if (files.length > 0) {
   );
 }
 
-export default Page;
+export default EmployeeForm;

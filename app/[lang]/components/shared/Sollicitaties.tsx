@@ -5,6 +5,8 @@ import { format, parse } from 'date-fns';
 import { useToast } from '../ui/use-toast';
 import Image from 'next/image';
 import SollicitatieModal from "@/app/[lang]/components/shared/SollicitatieModal";
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 interface SollicitatiePageProps  {
     sollicitaties: [
@@ -39,11 +41,12 @@ interface SollicitatiePageProps  {
 };
 
 
-export const Sollicitaties = ({ sollicitaties }: SollicitatiePageProps) => {
+export const Sollicitaties = async ({ sollicitaties, lang }: SollicitatiePageProps & { lang: Locale }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selected, setSelected] = useState<any>();
   const [id, setId] = useState<string>('');
-  const { toast } = useToast()
+  const { toast } = useToast();
+  const { components } = await getDictionary(lang);
   
   const parseShiftTime = (date: Date): Date => {
     // Format the date to 'yyyy-MM-dd'
@@ -83,9 +86,9 @@ export const Sollicitaties = ({ sollicitaties }: SollicitatiePageProps) => {
       <div className="px-4 mt-12 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-base font-semibold leading-6 text-gray-900">Sollicitatie</h1>
+            <h1 className="text-base font-semibold leading-6 text-gray-900">{components.shared.Sollicitaties.headTitle}</h1>
             <p className="mt-2 text-sm text-gray-700">
-              Een lijst van alle sollicitaties op de vacature.
+              {components.shared.Sollicitaties.subTitle}
             </p>
           </div>
         </div>
@@ -96,16 +99,16 @@ export const Sollicitaties = ({ sollicitaties }: SollicitatiePageProps) => {
                 <thead>
                   <tr>
                     <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                      Opdrachtnemer
+                      {components.shared.Sollicitaties.fieldValues[0]}
                     </th>
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      Werkervaring
+                    {components.shared.Sollicitaties.fieldValues[1]}
                     </th>
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      Opkomst
+                    {components.shared.Sollicitaties.fieldValues[2]}
                     </th>
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      Punctualiteit
+                    {components.shared.Sollicitaties.fieldValues[3]}
                     </th>
                     <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
                       <span className="sr-only">Edit</span>
@@ -127,11 +130,11 @@ export const Sollicitaties = ({ sollicitaties }: SollicitatiePageProps) => {
                         </div>
                       </td>
                       <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                        <div className="text-gray-900">{sollicitatie.opdrachtnemer.rating.toFixed(2)} sterren</div>
-                        <div className="mt-1 text-gray-500">{sollicitatie.opdrachtnemer.klussen} klussen</div>
+                        <div className="text-gray-900">{sollicitatie.opdrachtnemer.rating.toFixed(2)} {components.shared.Sollicitaties.attributes[1]}</div>
+                        <div className="mt-1 text-gray-500">{sollicitatie.opdrachtnemer.klussen} {components.shared.Sollicitaties.attributes[0]}</div>
                       </td>
                       
-                      <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">{sollicitatie.diensten.length} aanmeldingen</td>
+                      <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">{sollicitatie.diensten.length} {components.shared.Sollicitaties.attributes[2]}</td>
                       <td className="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                         <button onClick= {
                           () => 
@@ -151,7 +154,7 @@ export const Sollicitaties = ({ sollicitaties }: SollicitatiePageProps) => {
           </div>
         </div>
       </div>
-      <SollicitatieModal sollicitatie={selected} isVisible={showModal} />
+      <SollicitatieModal sollicitatie={selected} isVisible={showModal} lang={lang}/>
       </Fragment>
     )
   }

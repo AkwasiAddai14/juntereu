@@ -21,7 +21,9 @@ import {
   } from "@/app/[lang]/components/ui/alert-dialog"
   import type { ICategory } from '@/app/lib/models/categorie.model'
 import { Input } from '@headlessui/react'
-import { getAllCategories, voegAangepast } from '@/app/lib/actions/shift.actions'
+import { getAllCategories, voegAangepast } from '@/app/lib/actions/shift.actions';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
   type DropdownProps = {
@@ -30,9 +32,10 @@ import { getAllCategories, voegAangepast } from '@/app/lib/actions/shift.actions
   }
 
 
-const DropdownCategorie = ({value, onChangeHandler}: DropdownProps) => {
+const DropdownCategorie = async ({value, onChangeHandler}: DropdownProps, { lang }: { lang: Locale }) => {
      const [categorie, setCategorie] = useState<ICategory[]>([])
      const [aangepast, setAangepast] = useState('');
+     const { components } = await getDictionary(lang);
 
      const voegCategorieToe = () => {
         voegAangepast({
@@ -44,23 +47,34 @@ const DropdownCategorie = ({value, onChangeHandler}: DropdownProps) => {
       }
 
 useEffect(() =>{
-    const getCategories = async () => {
+     async () => {
     const categoryList = await getAllCategories();
 
     categoryList && setCategorie(categoryList as ICategory[])
     }
 })
 
+const fields = components.shared.DropdownCategorie.fields
+
   return (
     <div>
         <Select onValueChange={onChangeHandler} defaultValue={value}>
     <SelectTrigger className="w-[180px]">
-      <SelectValue placeholder="Categorie" />
+      <SelectValue placeholder={components.shared.DropdownCategorie.title} />
     </SelectTrigger>
     <SelectContent>
 
 
-    <SelectGroup>
+    {fields.map((group, groupIdx) => (
+  <SelectGroup key={groupIdx}>
+    <SelectLabel>{group.label}</SelectLabel>
+    {group.items.map((item, itemIdx) => (
+      <SelectItem key={itemIdx} value={item.value}>{item.label}</SelectItem>
+    ))}
+  </SelectGroup>
+))}
+
+    {/* <SelectGroup>
       <SelectLabel>Horeca</SelectLabel>
       <SelectItem value="Horeca: restaurants">restaurant</SelectItem>
       <SelectItem value="Horeca: cafes en bars">cafe en bar</SelectItem>
@@ -183,7 +197,7 @@ useEffect(() =>{
       <SelectItem value="Schoonmaak: openbare ruimtes">openbare ruimtes</SelectItem>
       <SelectItem value="Schoonmaak: privewoningen">privewoningen</SelectItem>
       <SelectItem value="Schoonmaak: vakantiehuizen">vakantiehuizen</SelectItem>
-      </SelectGroup>
+      </SelectGroup> */}
       
 
 
@@ -195,17 +209,17 @@ useEffect(() =>{
 
 
       <AlertDialog>
-          <AlertDialogTrigger className="p-medium-14 flex w-full rounded-sm py-3 pl-8 text-primary-500 hover:bg-primary-50 focus:text-primary-500">Categorie</AlertDialogTrigger>
+          <AlertDialogTrigger className="p-medium-14 flex w-full rounded-sm py-3 pl-8 text-primary-500 hover:bg-primary-50 focus:text-primary-500">{components.shared.DropdownCategorie.title}</AlertDialogTrigger>
           <AlertDialogContent className="bg-white">
             <AlertDialogHeader>
-              <AlertDialogTitle>Categorie</AlertDialogTitle>
+              <AlertDialogTitle>{components.shared.DropdownCategorie.title}</AlertDialogTitle>
               <AlertDialogDescription>
-                <Input type="text" placeholder="voeg categorie toe" className="input-field mt-3" onChange={(e) => setAangepast(e.target.value)} />
+                <Input type="text" placeholder={components.shared.DropdownCategorie.placeholderText} className="input-field mt-3" onChange={(e) => setAangepast(e.target.value)} />
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Annuleer</AlertDialogCancel>
-              <AlertDialogAction onClick={() => startTransition(voegCategorieToe)}>Toevoegen</AlertDialogAction>
+              <AlertDialogCancel>{components.shared.DropdownCategorie.buttons[0]}</AlertDialogCancel>
+              <AlertDialogAction onClick={() => startTransition(voegCategorieToe)}>{components.shared.DropdownCategorie.buttons[1]}</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

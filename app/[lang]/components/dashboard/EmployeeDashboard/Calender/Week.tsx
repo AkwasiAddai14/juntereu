@@ -10,6 +10,8 @@ import { fetchBedrijfByClerkId } from '@/app/lib/actions/employer.actions';
 import { IShiftArray } from '@/app/lib/models/shiftArray.model';
 import { useUser } from '@clerk/nextjs';
 import { IJob } from '@/app/lib/models/job.model';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -49,7 +51,7 @@ const parseShiftTime = (date: Date | string, timeString: string): Date => {
   return parsedDate;
 };
 
-const CalenderW = () => {
+const CalenderW = async ({ lang }: { lang: Locale }) => {
   const container = useRef<HTMLDivElement>(null);
   const containerNav = useRef<HTMLDivElement>(null);
   const containerOffset = useRef<HTMLDivElement>(null);
@@ -59,6 +61,7 @@ const CalenderW = () => {
   const [shifts, setShifts] = useState<IShiftArray[]>([]);
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
   const [bedrijfiD, setBedrijfiD] = useState<string>("");
+  const { dashboard } = await getDictionary(lang);
 
   useEffect(() => {
     if (isLoaded && user) {
@@ -185,7 +188,7 @@ const CalenderW = () => {
             <div className="grid grid-cols-7 text-sm leading-6 text-gray-500 sm:hidden">
               {days.map((day, index) => (
                 <button type="button" key={index} className="flex flex-col items-center pb-3 pt-2">
-                  {format(day, 'E')} <span className={classNames('mt-1 flex h-8 w-8 items-center justify-center font-semibold', isToday(day) ? 'bg-indigo-600 text-white rounded-full' : 'text-gray-900')}>{format(day, 'd')}</span>
+                  {format(day, 'E')} <span className={classNames('mt-1 flex h-8 w-8 items-center justify-center font-semibold', isToday(day) ? 'bg-sky-600 text-white rounded-full' : 'text-gray-900')}>{format(day, 'd')}</span>
                 </button>
               ))}
             </div>

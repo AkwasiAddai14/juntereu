@@ -1,12 +1,17 @@
 'use client' 
 
-import {  JSX, SVGProps, useState } from 'react'
-import { Locale } from '@/i18n.config'
-import { getDictionary } from '@/app/[lang]/dictionaries'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import {  JSX, SVGProps, useState } from 'react';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
+import { Dialog, DialogPanel } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from "next/image";
 import logo from '@/app/assets/images/178884748_padded_logo.png'; 
+
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
+  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+];
 
 const navigation = [
   { name: 'Werknemers', href: '../freelancers' },
@@ -72,11 +77,20 @@ const jobOpenings = [
     location: '🇳🇱 Hoofddorp, NL',
   },
 ]
-const footerNavigation = {
+
+
+export default async function Example({ params }: { params: { lang: string } }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const lang = supportedLocales.includes(params.lang as Locale)
+    ? (params.lang as Locale)
+    : 'en';
+  const { pages, navigation, footer } = await getDictionary(lang);
+
+  const footerNavigation = {
     main: [
-      { name: 'Home', href: "/" },
-      { name: 'Algemene Voorwaarden', href: '../av' },
-      { name: 'Privacybeleid', href: '../pb' },
+      { name: 'Home', href: `/${lang}` },
+      { name: 'Algemene Voorwaarden', href: `../${lang}/av` },
+      { name: 'Privacybeleid', href: `../${lang}/pb` },
     ],
     social: [
       {
@@ -143,17 +157,13 @@ const footerNavigation = {
     ],
   }
 
-export default async function Example({ lang }: { lang: Locale }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { pages, navigation, footer } = await getDictionary(lang);
-
   return (
     <div className="bg-white">
       {/* Header */}
       <header className="absolute inset-x-0 top-0 z-50">
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
-            <a href="/" className="-m-1.5 p-1.5">
+            <a href={`/${lang}`} className="-m-1.5 p-1.5">
               <span className="sr-only">Junter Platform</span>
               <Image
                   alt="Junter Logo"
@@ -199,12 +209,12 @@ export default async function Example({ lang }: { lang: Locale }) {
               <Image
                 className="h-8 w-auto"
                 src={logo}
-                alt=""
+                alt="Junter logo"
               />
             </a>
             <a
               href={navigation['Log-in'].link}
-              className="ml-auto rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="ml-auto rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
             >
               {navigation['Log-in'].name}
             </a>
@@ -265,7 +275,7 @@ export default async function Example({ lang }: { lang: Locale }) {
               </div>
               <img
                 src="https://images.unsplash.com/photo-1567532900872-f4e906cbf06a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1280&q=80"
-                alt=""
+                alt="Team Junter"
                 className="mt-10 aspect-[6/5] w-full max-w-lg rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-36"
               />
             </div>
@@ -455,11 +465,10 @@ export default async function Example({ lang }: { lang: Locale }) {
           <div className="mx-auto flex max-w-2xl flex-col items-end justify-between gap-16 lg:mx-0 lg:max-w-none lg:flex-row">
             <div className="w-full lg:max-w-lg lg:flex-auto">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              We zijn altijd op zoek naar geweldige mensen om ons team te versterken
+             {pages.junterPage.vacancies.headText}
               </h2>
               <p className="mt-6 text-xl leading-8 text-gray-600">
-              Heb je een passie voor innovatie en 
-              een drive om impact te maken? Sluit je dan bij ons aan en help ons om samen te groeien en succes te behalen.
+              {pages.junterPage.vacancies.subText}
               </p>
               <img
                 src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1344&h=1104&q=80"
@@ -510,8 +519,10 @@ export default async function Example({ lang }: { lang: Locale }) {
       <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
           {pages.junterPage.navLinks.map((item) => (
             <div key={item.name} className="pb-6">
-              <a href={item.link} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
+              <a href={`${lang}/${item.link}`}>
+                <h3 className="text-lg leading-6 text-gray-600 hover:text-gray-900">
                 {item.name}
+                </h3>
               </a>
             </div>
           ))}

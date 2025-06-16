@@ -1,15 +1,19 @@
 'use client'
 
-import { CalendarDateRangeIcon, BanknotesIcon, BuildingOffice2Icon, BriefcaseIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/20/solid'
-import { useEffect, useState } from 'react'
-import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
 import * as React from 'react';
+import { useUser } from "@clerk/nextjs";
+import { useEffect, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import { IJob } from '@/app/lib/models/job.model';
-import { solliciteerOpVacature } from '@/app/lib/actions/vacancy.actions'
-import { useUser } from "@clerk/nextjs"
-import { haalFreelancer } from '@/app/lib/actions/employee.actions'
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { haalFreelancer } from '@/app/lib/actions/employee.actions';
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
+import { solliciteerOpVacature } from '@/app/lib/actions/vacancy.actions';
+import { CalendarDateRangeIcon, BanknotesIcon, 
+BuildingOffice2Icon, BriefcaseIcon, 
+ClipboardDocumentCheckIcon } from '@heroicons/react/20/solid';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
 interface WerknemerPageProps {
@@ -38,7 +42,8 @@ interface WerknemerPageProps {
 
 
   
-  export default function WerknemerPage({ vacature, diensten }: WerknemerPageProps) {
+  export default async function WerknemerPage({ vacature, diensten }: WerknemerPageProps, { lang }: { lang: Locale }) {
+    const { components } = await getDictionary(lang);
     const { isLoaded, user } = useUser();
     const [freelancer, setFreelancer] = useState<any>(null);
     const [freelancerId, setFreelancerId] = useState<any>(null);
@@ -88,12 +93,12 @@ interface WerknemerPageProps {
         const features = [
             {
               name: 'Loon',
-              description: `€ ${vacature.uurloon} voor ${diensten.length}`,
+              description: `${components.forms.VacancyForm.salaris.currencySign} ${vacature.uurloon} / ${diensten.length}`,
               icon: BanknotesIcon,
             },
             {
               name: 'Data',
-              description: ` Van ${vacature.begindatum} tot ${vacature.einddatum}`,
+              description: `${components.forms.VacancyForm.salaris.fieldLabels[6]} ${vacature.begindatum} ${components.forms.VacancyForm.salaris.fieldLabels[7]} ${vacature.einddatum}`,
               icon: CalendarDateRangeIcon,
             },
             {
@@ -215,14 +220,14 @@ interface WerknemerPageProps {
           </div>
           <div className="flex items-center justify-between gap-x-4 sm:w-1/2 sm:flex-none">
             <div className="hidden sm:block">
-              <p className="text-sm/6 text-gray-900">€{}</p>
+              <p className="text-sm/6 text-gray-900">{components.shared.EmployeePage.currencySign}{dienst.amount}</p>
               {dienst.werktijden.pauze ? (
                 <p className="mt-1 text-xs/5 text-gray-500">
-                 <time dateTime={dienst.werktijden.pauze}>{dienst.werktijden.pauze}</time> minuten pauze
+                 <time dateTime={dienst.werktijden.pauze}>{dienst.werktijden.pauze}</time> {components.shared.EmployeePage.fieldsItems[1]}
                 </p>
               ) : (
                 <div className="mt-1 flex items-center gap-x-1.5">
-                  <p className="text-xs/5 text-gray-500">Geen pauze</p>
+                  <p className="text-xs/5 text-gray-500">{components.shared.EmployeePage.fieldsItems[2]}</p>
                 </div>
               )}
             </div>
@@ -252,7 +257,7 @@ interface WerknemerPageProps {
                 <div className="flex min-h-0 flex-1 flex-col overflow-y-scroll py-6">
                   <div className="px-4 sm:px-6">
                     <div className="flex items-start justify-between">
-                      <DialogTitle className="text-base font-semibold text-gray-900">Diensten</DialogTitle>
+                      <DialogTitle className="text-base font-semibold text-gray-900">{components.shared.EmployeePage.fieldsItems[0]}</DialogTitle>
                       <div className="ml-3 flex h-7 items-center">
                         <button
                           type="button"
@@ -300,14 +305,14 @@ interface WerknemerPageProps {
                     onClick={() => setOpen(false)}
                     className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-red-600 shadow-sm ring-1 ring-inset ring-red-300 hover:ring-red-400"
                   >
-                    Annueleren
+                    {components.shared.EmployeePage.buttons[0]}
                   </button>
                   <button
         type="button"
         onClick={handleSubmit} // Voeg de submit functie toe aan de knop
         className="ml-4 inline-flex justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
       >
-        Versturen
+        {components.shared.EmployeePage.buttons[1]}
       </button>
                 </div>
               </div>

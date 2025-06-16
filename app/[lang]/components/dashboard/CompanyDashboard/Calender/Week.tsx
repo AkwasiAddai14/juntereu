@@ -10,6 +10,8 @@ import { fetchBedrijfByClerkId } from '@/app/lib/actions/employer.actions';
 import { IShiftArray } from '@/app/lib/models/shiftArray.model';
 import { useUser } from '@clerk/nextjs';
 import { IJob } from '@/app/lib/models/job.model';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -49,7 +51,7 @@ const parseShiftTime = (date: Date | string, timeString: string): Date => {
   return parsedDate;
 };
 
-const CalenderW = () => {
+const CalenderW = async ({ lang }: { lang: Locale }) => {
   const container = useRef<HTMLDivElement>(null);
   const containerNav = useRef<HTMLDivElement>(null);
   const containerOffset = useRef<HTMLDivElement>(null);
@@ -59,6 +61,7 @@ const CalenderW = () => {
   const [shifts, setShifts] = useState<IShiftArray[]>([]);
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
   const [bedrijfiD, setBedrijfiD] = useState<string>("");
+  const { dashboard } = await getDictionary(lang);
 
   useEffect(() => {
     if (isLoaded && user) {
@@ -166,7 +169,7 @@ const CalenderW = () => {
             className="hidden border-y border-gray-300 px-3.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:relative md:block"
             onClick={() => setCurrentWeek(new Date())}
           >
-            Today
+            {dashboard.werkgeversPage.Calender.Week.button}
           </button>
           <button
             type="button"

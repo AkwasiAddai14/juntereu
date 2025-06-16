@@ -4,6 +4,8 @@ import { StarIcon } from '@heroicons/react/24/outline';
 import { werknemerAfzeggen } from '@/app/lib/actions/vacancy.actions';
 import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 interface DienstenSectiePageProps {
     diensten: [{
@@ -33,9 +35,13 @@ interface DienstenSectiePageProps {
     }]
 }
   
-  export default function Dienstensectie( { diensten }: DienstenSectiePageProps) {
+  export default async function Dienstensectie({
+    diensten,
+    lang
+  }: DienstenSectiePageProps & { lang: Locale }) {
     const { toast } = useToast();
     const router = useRouter();
+    const { components } = await getDictionary(lang);
 
     const afzeggenWerknemer = async (arg0: { dienstId: any; freelancerId: any; }) => {
 
@@ -43,13 +49,13 @@ interface DienstenSectiePageProps {
       if (response.success){
         toast({
           variant: 'succes',
-          description: "Werkenemer afgemeld voor de dienst! "
+          description: `${components.shared.Dienstensectie.ToastMessage1}`
         });
         router.refresh();
       } else {
         toast({
           variant: 'destructive',
-          description: `Actie is niet toegestaan! ${response.message}`
+          description: `${components.shared.Dienstensectie.ToastMessage2} ${response.message}`
         });
         throw new Error('Het annuleren van werknemer niet mogelijk. Neem contact op voor vragen.');
       }
@@ -72,7 +78,7 @@ interface DienstenSectiePageProps {
                     type="button"
                     className="block rounded-md bg-sky-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
                   >
-                    Aanpassen
+                    {components.shared.Dienstensectie.buttons[0]}
                   </button>
                 </div>
               </div>
@@ -84,16 +90,16 @@ interface DienstenSectiePageProps {
                       <thead>
                         <tr>
                           <th className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                            Werknemer
+                            {components.shared.Dienstensectie.fieldLabels[0]}
                           </th>
                           <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                            Woonplaats
+                            {components.shared.Dienstensectie.fieldLabels[1]}
                           </th>
                           <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                            Klussen
+                            {components.shared.Dienstensectie.fieldLabels[2]}
                           </th>
                           <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                            Beoordelingen
+                            {components.shared.Dienstensectie.fieldLabels[3]}
                           </th>
                           <th className="relative py-3.5 pl-3 pr-4 sm:pr-0">
                             <span className="sr-only">Aanpassen</span>
@@ -130,13 +136,13 @@ interface DienstenSectiePageProps {
                               </span>
                             </td>
                             <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                            <div className="text-gray-900">{opdrachtnemer.klussen} voltooid</div>
+                            <div className="text-gray-900">{opdrachtnemer.klussen} {components.shared.Dienstensectie.voltooid}</div>
                             </td>
                             <td className="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                               <button 
                               onClick={()=> {afzeggenWerknemer({ dienstId: dienst.dienstId, freelancerId: opdrachtnemer.freelancerId })}}
                               className="inline-flex items-center rounded-md bg-sky-50 px-2 py-1 text-xs font-medium text-sky-600 hover:text-sky-900 ring-1 ring-inset ring-sky-600/20">
-                                Afzeggen<span className="sr-only">, {opdrachtnemer.naam}</span>
+                                {components.shared.Dienstensectie.buttons[1]}<span className="sr-only">, {opdrachtnemer.naam}</span>
                               </button>
                             </td>
                           </tr>

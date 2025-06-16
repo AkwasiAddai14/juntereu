@@ -1,16 +1,13 @@
 "use server";
 
-import mongoose, { Schema, Document, ObjectId, Types }  from "mongoose";
 import { connectToDB } from "@/app/lib/mongoose";
-import { revalidatePath } from "next/cache";
+import { currentUser } from '@clerk/nextjs/server';
+import Shift from "@/app/lib/models/shift.model";
 import Employee from "@/app/lib/models/employee.model";
 import Employer from "@/app/lib/models/employer.model";
 import Flexpool from "@/app/lib/models/flexpool.model";
-import Shift, { ShiftType } from "@/app/lib/models/shift.model";
-import ShiftArray, { IShiftArray } from "@/app/lib/models/shiftArray.model";
 import Invoice from '@/app/lib/models/invoice.model';
-import { currentUser } from '@clerk/nextjs/server';
-import { redirect } from "next/navigation";
+import ShiftArray from "@/app/lib/models/shiftArray.model";
 
 
 export const AuthorisatieCheck = async (id: string, nummer: number) => {/*  */
@@ -79,7 +76,7 @@ export const AuthorisatieCheck = async (id: string, nummer: number) => {/*  */
       case 5: // Freelancer is in flexpool
         if (freelancer) {
           const flexpool = await Flexpool.findById(id).exec();
-          if (flexpool && flexpool.freelancers.includes(freelancer._id.toString())) {
+          if (flexpool && flexpool.employees.includes(freelancer._id.toString())) {
             return true;
           }
         }
@@ -89,7 +86,7 @@ export const AuthorisatieCheck = async (id: string, nummer: number) => {/*  */
       case 6: // Bedrijf is opdrachtgever for flexpool
         if (bedrijf) {
           const flexpool = await Flexpool.findById(id).exec();
-          if (flexpool && flexpool.bedrijf === bedrijf._id) {
+          if (flexpool && flexpool.employer === bedrijf._id) {
             return true;
           }
         }

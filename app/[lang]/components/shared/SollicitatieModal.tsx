@@ -9,6 +9,8 @@ import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 import { accepteerSollicitatieDiensten, alleDienstenAfwijzen, accepteerGeselecteerdeDiensten, solliciteerOpVacature } from '@/app/lib/actions/vacancy.actions';
 import mongoose from 'mongoose';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 interface SollicitatiePageProps {
     sollicitatie: {
@@ -20,6 +22,7 @@ interface SollicitatiePageProps {
           datum: string;
           begintijd: string;
           eindtijd: string;
+          bedrag: number;
           pauze: number;
           opdrachtnemers: number;
       }>;
@@ -38,11 +41,20 @@ interface SollicitatiePageProps {
     }
 }
 
-export default function SollicitatieModal({ sollicitatie, isVisible }: { sollicitatie: SollicitatiePageProps['sollicitatie']; isVisible: boolean }) {
+export default async function SollicitatieModal({
+  sollicitatie,
+  isVisible,
+  lang
+}: {
+  sollicitatie: SollicitatiePageProps['sollicitatie'];
+  isVisible: boolean;
+  lang: Locale;
+}) {
   const [open, setOpen] = useState(isVisible);
   const [geaccepteerd, setGeaccepteerd] = useState<any[]>([]);
   const { toast } = useToast();
   const router = useRouter();
+  const { components } = await getDictionary(lang);
 
 
   if (!isVisible) return null;
@@ -58,13 +70,13 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
       if (response.success){
         toast({
           variant: 'succes',
-          description: "Werknemer aangenomen voor de geselecteerde diensten! "
+          description: `${components.shared.SollicitatieModal.ToastMessage1}`
         });
         isVisible = false;
       } else {
         toast({
           variant: 'destructive',
-          description: `Actie is niet toegestaan! ${response.message}`
+          description: `${components.shared.SollicitatieModal.ToastMessage2} ${response.message}`
         });
         throw new Error('Het accepteren van werknemer niet mogelijk. Neem contact op voor vragen.');
       }
@@ -75,14 +87,14 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
       if (response.success){
         toast({
           variant: 'succes',
-          description: "Sollicitatie afgewezen! "
+          description: `${components.shared.SollicitatieModal.ToastMessage3}`
         });
         isVisible = false;
         router.refresh();
       } else {
         toast({
           variant: 'destructive',
-          description: `Actie is niet toegestaan! ${response.message}`
+          description: `${components.shared.SollicitatieModal.ToastMessage4} ${response.message}`
         });
         throw new Error('Het afwijzen van werknemer niet mogelijk. Neem contact op voor vragen.');
       }
@@ -93,14 +105,14 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
       if (response.success){
         toast({
           variant: 'succes',
-          description: "Werkenemer geaccepteerd voor de vacature! "
+          description: `${components.shared.SollicitatieModal.ToastMessage5}`
         });
         isVisible = false;
         router.refresh();
       } else {
         toast({
           variant: 'destructive',
-          description: `Actie is niet toegestaan! ${response.message}`
+          description: `${components.shared.SollicitatieModal.ToastMessage6} ${response.message}`
         });
         throw new Error('Het annuleren van werknemer niet mogelijk. Neem contact op voor vragen.');
       }
@@ -132,14 +144,14 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
           </div>
           <div className="flex items-center justify-between gap-x-4 sm:w-1/2 sm:flex-none">
             <div className="hidden sm:block">
-              <p className="text-sm/6 text-gray-900">€{}</p>
+              <p className="text-sm/6 text-gray-900">{components.shared.SollicitatieModal.currencySign}{dienst.bedrag}</p>
               {dienst.pauze ? (
                 <p className="mt-1 text-xs/5 text-gray-500">
-                {dienst.pauze} minuten pauze
+                {dienst.pauze} {components.shared.SollicitatieModal.fiedValues[0]}
                 </p>
               ) : (
                 <div className="mt-1 flex items-center gap-x-1.5">
-                  <p className="text-xs/5 text-gray-500">Geen pauze</p>
+                  <p className="text-xs/5 text-gray-500">{components.shared.SollicitatieModal.fiedValues[1]}</p>
                 </div>
               )}
             </div>
@@ -151,7 +163,7 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
                     <CheckCircleIcon aria-hidden="true" className="size-8 bg-green-400" />
                 ) : (
                   <p>  
-                    Accepteren
+                    {components.shared.SollicitatieModal.buttons[6]}
                     <span className="sr-only">, {sollicitatie.opdrachtnemer.naam}
                     </span>
                     </p>
@@ -169,7 +181,7 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
               <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                 <div className="px-4 py-6 sm:px-6">
                   <div className="flex items-start justify-between">
-                    <DialogTitle className="text-base font-semibold text-gray-900">Werknemer</DialogTitle>
+                    <DialogTitle className="text-base font-semibold text-gray-900">{components.shared.SollicitatieModal.fiedValues[2]}</DialogTitle>
                     <div className="ml-3 flex h-7 items-center">
                       <button
                         type="button"
@@ -204,10 +216,10 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
                           <div className="flex items-center">
                             <h3 className="text-xl font-bold text-gray-900 sm:text-2xl">{sollicitatie.opdrachtnemer.naam}</h3>
                             <span className="ml-2.5 inline-block size-2 shrink-0 rounded-full bg-orange-400">
-                              <span className="sr-only">{sollicitatie.opdrachtnemer.klussen} klussen</span>
+                              <span className="sr-only">{sollicitatie.opdrachtnemer.klussen} {components.shared.SollicitatieModal.fiedValues[3]}</span>
                             </span>
                           </div>
-                          <p className="text-sm text-gray-500">{sollicitatie.opdrachtnemer.rating} sterren</p>
+                          <p className="text-sm text-gray-500">{sollicitatie.opdrachtnemer.rating} {components.shared.SollicitatieModal.fiedValues[4]}</p>
                         </div>
                         <div className="mt-5 flex flex-wrap space-y-3 sm:space-x-3 sm:space-y-0">
                           <button
@@ -222,7 +234,7 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
                             onClick={() => {alleAfwijzen(sollicitatie.sollicitatieId)}}
                             className="inline-flex w-full flex-1 items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-red-600 shadow-sm ring-1 ring-inset ring-red-300 hover:bg-red-50"
                           >
-                            Afwijzen
+                            {components.shared.SollicitatieModal.buttons[2]} 
                           </button>
                           <div className="ml-3 inline-flex sm:ml-0">
                             <Menu as="div" className="relative inline-block text-left">
@@ -241,7 +253,7 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
                                       href="#"
                                       className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
                                     >
-                                      Chat met {sollicitatie.opdrachtnemer.naam}
+                                       {components.shared.SollicitatieModal.buttons[3]} {sollicitatie.opdrachtnemer.naam}
                                     </a>
                                   </MenuItem>
                                   <MenuItem>
@@ -249,7 +261,7 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
                                       href="#"
                                       className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
                                     >
-                                      Favorieten
+                                       {components.shared.SollicitatieModal.buttons[5]}
                                     </a>
                                   </MenuItem>
                                   <MenuItem>
@@ -257,7 +269,7 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
                                       href="#"
                                       className="block px-4 py-2 text-sm text-red-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
                                     >
-                                      Blokkeren
+                                      {components.shared.SollicitatieModal.buttons[4]}
                                     </a>
                                   </MenuItem>
                                 </div>
@@ -271,7 +283,7 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
                   <div className="px-4 py-5 sm:px-0 sm:py-0">
                     <dl className="space-y-8 sm:space-y-0 sm:divide-y sm:divide-gray-200">
                       <div className="sm:flex sm:px-6 sm:py-5">
-                        <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">Bio</dt>
+                        <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">{components.shared.SollicitatieModal.fiedValues[5]}</dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">
                           <p>
                             {sollicitatie.opdrachtnemer.bio}
@@ -279,17 +291,17 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
                         </dd>
                       </div>
                       <div className="sm:flex sm:px-6 sm:py-5">
-                        <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">Woonplaats</dt>
+                        <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">{components.shared.SollicitatieModal.fiedValues[6]}</dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">{sollicitatie.opdrachtnemer.stad}</dd>
                       </div>
                       <div className="sm:flex sm:px-6 sm:py-5">
-                        <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">Geboortedatum</dt>
+                        <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">{components.shared.SollicitatieModal.fiedValues[7]}</dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">
                           <time dateTime="1982-06-23">{sollicitatie.opdrachtnemer.geboortedatum}</time>
                         </dd>
                       </div>
                       <div className="sm:flex sm:px-6 sm:py-5">
-                        <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">Emailadres</dt>
+                        <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">{components.shared.SollicitatieModal.fiedValues[8]}</dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">{sollicitatie.opdrachtnemer.emailadres}</dd>
                       </div>
                     </dl>
@@ -304,7 +316,7 @@ export default function SollicitatieModal({ sollicitatie, isVisible }: { sollici
     <Button 
     onClick={() => verstuurOfferte(sollicitatie.opdrachtnemer.opdrachtnemerId, sollicitatie.sollicitatieId, geaccepteerd)}
     className='bg-orange-400 font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 sm:flex-1 rounded-md px-2 py-2 my-4' >
-        Bevestigen
+        {components.shared.SollicitatieModal.buttons[7]}
     </Button>
     </>
   )

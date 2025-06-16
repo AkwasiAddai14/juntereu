@@ -41,7 +41,16 @@ const features = [
       { label: 'verschillende diensten', value: 'Wekelijks 2000' },
     { label: 'kun je ook kiezen voor wekelijkse betalingen', value: 'Vanaf Februari' },
   ]
-const page = async ({ lang }: { lang: Locale }) => {
+
+  const supportedLocales: Locale[] = [
+    'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
+    'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+  ];
+
+const page = async ({ params }: { params: { lang: string } }) => {
+    const lang = supportedLocales.includes(params.lang as Locale)
+    ? (params.lang as Locale)
+    : 'en';
     const { pages } = await getDictionary(lang);
   return (
     <><div className="mx-auto  pt-40 mt-20 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">

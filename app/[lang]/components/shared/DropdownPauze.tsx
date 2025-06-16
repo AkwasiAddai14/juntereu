@@ -1,7 +1,12 @@
-import React, { startTransition, useState } from 'react'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/[lang]/components/ui/select"
-import type { IPauze } from '@/app/lib/models/pauze.model'
-import { voegAangepast } from '@/app/lib/actions/shift.actions'
+import React, { startTransition, useState } from 'react';
+import { Select, SelectContent, 
+  SelectItem, SelectTrigger, 
+  SelectValue } from "@/app/[lang]/components/ui/select";
+import type { IPauze } from '@/app/lib/models/pauze.model';
+import { voegAangepast } from '@/app/lib/actions/shift.actions';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
+
 
   type DropdownProps = {
     value?: string,
@@ -9,9 +14,10 @@ import { voegAangepast } from '@/app/lib/actions/shift.actions'
   }
 
 
-const DropdownPauze = ({value, onChangeHandler}: DropdownProps) => {
+const DropdownPauze = async ({value, onChangeHandler, lang}: DropdownProps & { lang: Locale }) => {
      const [pauze, setPauze] = useState<IPauze[]>([])
      const [aangepast, setAangepast] = useState('');
+     const { components } = await getDictionary(lang);
 
      const voegPauzeToe = () => {
         voegAangepast({
@@ -22,6 +28,8 @@ const DropdownPauze = ({value, onChangeHandler}: DropdownProps) => {
           })
       }
 
+      const fields = components.shared.DropdownPauze.options
+
   return (
     <div>
         <Select onValueChange={onChangeHandler} defaultValue={value}>
@@ -31,13 +39,19 @@ const DropdownPauze = ({value, onChangeHandler}: DropdownProps) => {
     <SelectContent>
 
 
-      <SelectItem value="0">Geen pauze</SelectItem>
+      {/* <SelectItem value="0">Geen pauze</SelectItem>
       <SelectItem value="15">15 minuten pauze</SelectItem>
       <SelectItem value="30">30 minuten pauze</SelectItem>
       <SelectItem value="45">45 minuten pauze</SelectItem>
       <SelectItem value="60">60 minuten pauze</SelectItem>
       <SelectItem value="90">90 minuten pauze</SelectItem>
-      <SelectItem value="120">120 minuten pauze</SelectItem>
+      <SelectItem value="120">120 minuten pauze</SelectItem> */}
+
+{fields.map((option) => (
+  <SelectItem key={option.value} value={option.value}>
+    {option.label}
+  </SelectItem>
+))}
 
       {/* {pauze.length > 0 && pauze.map((pauze) => (
           <SelectItem key={pauze._id} value={pauze._id} className="select-item p-regular-14">

@@ -22,6 +22,8 @@ import LeButton from './LeButton';
 import ElButton from './ElButton';
 import { IJob } from '@/app/lib/models/job.model';
 import { haalGeplaatsteDiensten } from '@/app/lib/actions/vacancy.actions';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
 function classNames(...classes: (string | boolean | undefined)[]) {
@@ -30,7 +32,7 @@ function classNames(...classes: (string | boolean | undefined)[]) {
 
   
 
-    const CalenderD = () => {
+    const CalenderD = async ({ lang }: { lang: Locale }) => {
 
   const { isLoaded, user } = useUser();
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
@@ -38,6 +40,7 @@ function classNames(...classes: (string | boolean | undefined)[]) {
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
   const [bedrijfiD, setBedrijfiD] = useState<string>("");
   const [selectedDay, setSelectedDay] = useState<Date>(new Date());
+  const { dashboard } = await getDictionary(lang);
   const router = useRouter()
 
   useEffect(() => {
@@ -255,7 +258,7 @@ function classNames(...classes: (string | boolean | undefined)[]) {
       </div>
       <section className="mt-12 md:mt-0 md:pl-14">
         <h2 className="text-base font-semibold leading-6 text-gray-900">
-          Schedule for <time dateTime={selectedDay.toISOString()}>{selectedDay.toDateString()}</time>
+          {dashboard.werkgeversPage.Calender.Dag.tekst3} <time dateTime={selectedDay.toISOString()}>{selectedDay.toDateString()}</time>
         </h2>
         <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
           {filteredShifts.length > 0 ? (
@@ -270,7 +273,7 @@ function classNames(...classes: (string | boolean | undefined)[]) {
                   <p className="mt-0.5">
                     <time dateTime={shift.starting}>{shift.ending}</time> -{' '}
                     <time dateTime={shift.starting}>{shift.ending}</time> |
-                    Bezetting: {' '} {shift.accepted.length}/
+                    {dashboard.werkgeversPage.Calender.Dag.tekst1}: {' '} {shift.accepted.length}/
                     {shift.spots} 
                   </p>
                 </div>
@@ -299,7 +302,7 @@ function classNames(...classes: (string | boolean | undefined)[]) {
                           }
                           className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                         >
-                          verwijder
+                          {dashboard.werkgeversPage.Calender.Dag.button}
                         </button>
                       </MenuItem>
                     </div>
@@ -308,7 +311,7 @@ function classNames(...classes: (string | boolean | undefined)[]) {
               </li>
             ))
           ) : (
-            <p className="text-gray-500">No shifts available for this day.</p>
+            <p className="text-gray-500">{dashboard.werkgeversPage.Calender.Dag.tekst2}</p>
           )}
         </ol>
       </section>

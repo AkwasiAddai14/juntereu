@@ -8,13 +8,15 @@ import { ApplyConfirmation } from '@/app/[lang]/components/shared/ApplyConfirmat
 import { IShiftArray } from '@/app/lib/models/shiftArray.model';
 import  edit  from "@/app/assets/images/edit.svg"
 import { isBedrijf } from '@/app/lib/actions/employer.actions';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 type CardProps = {
   shift: IShiftArray;
 };
 
-const Card = ({ shift }: CardProps) => {
-
+const Card = async ({ shift, lang }: CardProps & { lang: Locale }) => {
+  const { components } = await getDictionary(lang);
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | undefined>(false);;
 
   useEffect(() => {
@@ -55,13 +57,13 @@ const Card = ({ shift }: CardProps) => {
           <Link href={`/dashboard/shift/bedrijf/${shift._id}/update`}>
             <Image src={edit} alt="edit" width={20} height={20} />
           </Link>
-          <DeleteConfirmation shiftId={shift._id as string} />
+          <DeleteConfirmation shiftId={shift._id as string} lang={lang}/>
         </div>
       ) :
       (
           !isEenBedrijf && (
             <div className="absolute items-stretch right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
-          <ApplyConfirmation shiftId={shift._id as string} />
+          <ApplyConfirmation shiftId={shift._id as string} lang={lang}/>
         </div>
           )
       )}
@@ -69,7 +71,7 @@ const Card = ({ shift }: CardProps) => {
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
         <div className="flex gap-2">
           <span className="p-semibold-14 w-min rounded-full line-clamp-1 bg-green-100 px-4 py-1 text-green-60">
-            €{shift.hourlyRate}
+            {components.cards.ShiftArrayCard.currencySign}{shift.hourlyRate}
           </span>
           <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1">
             {shift.function}
@@ -84,7 +86,7 @@ const Card = ({ shift }: CardProps) => {
         shift.available && (
              <div className="flex-between w-full">
                 <p className="p-medium-16 p-medium-18 text-grey-500">
-                  {new Intl.DateTimeFormat('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(shift.startingDate))}
+                  {new Intl.DateTimeFormat(`${components.cards.ShiftArrayCard.localDateString}`, { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(shift.startingDate))}
                 </p>
                 <p className="p-medium-16 p-medium-18 text-grey-500">
                   {shift.starting} - {shift.ending}

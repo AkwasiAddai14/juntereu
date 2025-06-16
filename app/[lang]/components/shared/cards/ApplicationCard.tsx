@@ -8,16 +8,19 @@ import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 import { IApplication } from '@/app/lib/models/application.model';
 import { berekenBedragVanAlleDiensten, haalVacature, trekSollicitatieIn } from '@/app/lib/actions/vacancy.actions';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 type CardProps = {
   sollicitatie: IApplication;
 };
 
-const Card = ({ sollicitatie }: CardProps) => {
+const Card = async ({ sollicitatie, lang }: CardProps & { lang: Locale }) => {
   const { toast } = useToast();
   const [totaalbedrag, setTotaalBedrag] = useState<number | null>(0);
   const [vacature, setVacature] = useState<any>();
   const router = useRouter();
+  const { components } = await getDictionary(lang);
 
 
   useEffect(() => {
@@ -46,7 +49,7 @@ const berekenBedragvanVacature = async (sollicitatieId:string) => {
       } catch (error: any) {
         toast({
           variant: 'destructive',
-          description: `Actie is niet toegestaan! ${error.message} `
+          description: `${components.cards.ApplicationCard.Toastmessage2} ${error.message} `
         });
       }
 }; 
@@ -61,20 +64,20 @@ berekenBedragvanVacature(sollicitatie.id);
      if (response.success) {
        toast({
          variant: 'succes',
-         description: "Sollicitatie ingetrokkken! "
+         description: `${components.cards.ApplicationCard.ToastMessage1}`
        });
        router.refresh();
      } else {
        // Handle non-success response
        toast({
          variant: 'destructive',
-         description: `Actie is niet toegestaan! ${response.message}`
+         description: `${components.cards.ApplicationCard.Toastmessage2} ${response.message}`
        });
      }
    } catch (error: any) {
      toast({
        variant: 'destructive',
-       description: `Actie is niet toegestaan! ${error.message} `
+       description: `${components.cards.ApplicationCard.Toastmessage2} ${error.message} `
      });
    }
  };
@@ -124,7 +127,7 @@ berekenBedragvanVacature(sollicitatie.id);
 
         <div className="flex-between w-full">
           <p className="p-medium-16 p-medium-18 text-grey-500">
-          {new Date(vacature.begindatum).toLocaleDateString('nl-NL')}
+          {new Date(vacature.begindatum).toLocaleDateString(`${components.cards.ApplicationCard.localDateString}`)}
           </p> 
           <p className="p-medium-16 p-medium-18 text-grey-500">
           {vacature.begintijd} - {vacature.eindtijd}
@@ -143,11 +146,11 @@ berekenBedragvanVacature(sollicitatie.id);
           </p> 
         </div>
         <div className="flex-between w-full">
-            <p className="p-medium-14 md:p-medium-16 text-grey-600">Flexwerk</p>
+            <p className="p-medium-14 md:p-medium-16 text-grey-600">{components.cards.ApplicationCard.typeJob}</p>
        <div className={`rounded-md px-4 py-2 ${getStatusColor(status)}`}> 
         <Link href={linkHref}>
         <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-        {sollicitatie.jobs.length} diensten
+        {sollicitatie.jobs.length} {components.cards.ApplicationCard.shifts}
         </p>
         </Link>
           </div>

@@ -4,17 +4,21 @@ import { fetchBedrijfDetails, isBedrijf } from '@/app/lib/actions/employer.actio
 import { IFlexpool } from '@/app/lib/models/flexpool.model';
 import Link from 'next/link';
 import { encodePath } from '@/app/lib/utils';
+import { Locale } from '@/i18n.config'
+import { getDictionary } from '@/app/[lang]/dictionaries'
+import { compareAsc } from 'date-fns';
 
 
 type CardProps = {
   flexpool:  IFlexpool 
 }
 
-const Card = ({ flexpool }: CardProps) => {
+const Card = async ({ flexpool, lang }: CardProps & { lang: Locale }) => {
   const { user } = useUser();
   const userId = user?.id as string;
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | undefined>(false);
-  const [bedrijfDetails, setBedrijfsdetails] = useState<any>(null)
+  const [bedrijfDetails, setBedrijfsdetails] = useState<any>(null);
+  const { components } = await getDictionary(lang);
 
   useEffect(() => {
   const bedrijfCheck = async () => {
@@ -70,19 +74,19 @@ const Card = ({ flexpool }: CardProps) => {
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
         <div className="flex gap-2">
           <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-            {flexpool.freelancers.length} freelancers
+            {flexpool.freelancers.length} {components.cards.FlexpoolCard.hvl_freelancers}
           </p>
         </div>
         <div>
         {flexpool.shifts.length === 1 ? (
                    <>
                <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-                 {flexpool.shifts.length} shift 
+                 {flexpool.shifts.length} {components.cards.FlexpoolCard.shift} 
                </p>
              </>
             ) : (
               <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-                {flexpool.shifts.length} shifts
+                {flexpool.shifts.length} {components.cards.FlexpoolCard.hvl_shifts}
               </p>
             )}
           </div>

@@ -12,6 +12,8 @@ import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import { Button } from '@/app/[lang]/components/ui/button'
 import { Calendar } from "@/app/[lang]/components/ui/calender"
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 const MAX = 100;
 const MIN = 0;
@@ -37,7 +39,7 @@ const distancemarks = [
   },
 ];
 
-export default function Shifts (){
+export default async function Shifts ({ lang }: { lang: Locale }){
   const { isLoaded, user } = useUser();
   const [freelancerId, setFreelancerId] = useState<any>(null);
   const [shift, setShift] = useState<any[]>([]);
@@ -45,6 +47,7 @@ export default function Shifts (){
   const [tarief, setTarief] = useState<number>(14);
   const [afstand, setAfstand] = useState<number>(5);
   const [euroVal, setEuroVal] = React.useState<number>(MIN);
+  const { dashboard } = await getDictionary(lang);
   const handleUurtariefChange = (_: Event, newValue: number | number[]) => {
     setEuroVal(newValue as number);
     setTarief(euroVal);
@@ -90,15 +93,15 @@ export default function Shifts (){
 
     return (
       <>
-                    <h1 className='mb-10 items-center justify-center text-4xl'>Shifts</h1>
+                    <h1 className='mb-10 items-center justify-center text-4xl'>{dashboard.werknemersPage.Explore.ShiftPagina.headTitle}</h1>
             <ScrollArea>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                       {shift.slice(0, shift.length).map((shiftItem, index) => (
-                        <ShiftCard key={index} shift={shiftItem} />
+                        <ShiftCard key={index} shift={shiftItem} lang={lang}/>
                       ))}
                     </div>
             ) : ( 
-              <div>Geen shifts beschikbaar</div>
+              <div>{dashboard.werknemersPage.Explore.ShiftPagina.NoShifts}</div>
                 )
                 : null
             </ScrollArea>
@@ -113,7 +116,7 @@ export default function Shifts (){
         />
       </div>
       <div>
-        <p className="mt-20">Tarief</p>
+        <p className="mt-20">{dashboard.werknemersPage.Explore.filter[1]}</p>
         <Box sx={{ width: 250 }}>
           <Slider
             marks={euromarks}
@@ -142,7 +145,7 @@ export default function Shifts (){
           </Box>
         </Box>
       </div>
-      <p className="mt-20">Afstand</p>
+      <p className="mt-20">{dashboard.werknemersPage.Explore.filter[0]}</p>
       <Box sx={{ width: 250 }}>
         <Slider
           marks={distancemarks}
@@ -172,10 +175,10 @@ export default function Shifts (){
       </Box>
       <div className="justify-between">
         <Button className="mt-20 bg-white text-black border-2 border-black mr-10" onClick={() => setPosition("Shifts")}>
-          Reset
+          {dashboard.werknemersPage.Explore.buttons[1]}
         </Button>
         <Button className="mt-20 bg-sky-500" onClick={() => setPosition('Filter')}>
-          Zoek
+        {dashboard.werknemersPage.Explore.buttons[0]}
         </Button>
       </div>
     </div>

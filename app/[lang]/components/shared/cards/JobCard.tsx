@@ -8,16 +8,18 @@ import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 import { IJob } from '@/app/lib/models/job.model';
 import { haalVacature, verwijderDienst } from '@/app/lib/actions/vacancy.actions';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 type CardProps = {
   dienst: IJob;
 };
 
-const Card = ({ dienst }: CardProps) => {
+const Card = async ({ dienst, lang }: CardProps & { lang: Locale }) => {
   const { toast } = useToast();
-
   const [vacature, setVacature] = useState<any>();
   const router = useRouter();
+  const { components } = await getDictionary(lang);
 
   useEffect(() => {
     const fetchVacature = async () => {
@@ -59,20 +61,20 @@ const getStatusColor = (status: boolean) => {
       if (response.success) {
         toast({
           variant: 'succes',
-          description: "afgemeld voor de dienst! "
+          description: `${components.cards.JobCard.ToastMessage1}`
         });
         router.refresh();
       } else {
         // Handle non-success response
         toast({
           variant: 'destructive',
-          description: `Actie is niet toegestaan! ${response.message}`
+          description: `${components.cards.JobCard.Toastmessage2} ${response.message}`
         });
       }
     } catch (error: any) {
       toast({
         variant: 'destructive',
-        description: `Actie is niet toegestaan! ${error.message} `
+        description: `${components.cards.JobCard.Toastmessage2} ${error.message} `
       });
     }
   };
@@ -106,13 +108,13 @@ const getStatusColor = (status: boolean) => {
 
         <div className="flex-between w-full">
           <p className="p-medium-16 p-medium-18 text-grey-500">
-          {new Date(dienst.date).toLocaleDateString('nl-NL')}
+          {new Date(dienst.date).toLocaleDateString(`${components.cards.JobCard.localDateString}`)}
           </p> 
           <p className="p-medium-16 p-medium-18 text-grey-500">
           {dienst.workingtime.starting} - {dienst.workingtime.ending}
           </p>
           <p className="p-medium-16 p-medium-18 text-grey-500">
-          {dienst.workingtime.break} min pauze
+          {dienst.workingtime.break} {components.cards.JobCard.pauze}
           </p>
         </div>
        
@@ -121,7 +123,7 @@ const getStatusColor = (status: boolean) => {
 
 
           <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-          €{dienst.amount} 
+          {components.cards.JobCard.currencySign}{dienst.amount} 
           </p> 
 
 

@@ -23,6 +23,8 @@ import { Input } from '@headlessui/react';
 import { haalAlleFlexpools, maakFlexpool } from '@/app/lib/actions/flexpool.actions';
 import { IFlexpool } from '@/app/lib/models/flexpool.model';
 import mongoose from 'mongoose';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 type DropdownProps = {
   value?: string;
@@ -31,9 +33,10 @@ type DropdownProps = {
   userId: string;
 };
 
-const Dropdown = ({ value, onChangeHandler, flexpoolsList, userId }: DropdownProps) => {
+const Dropdown = async ({ value, onChangeHandler, flexpoolsList, userId }: DropdownProps, { lang }: { lang: Locale }) => {
     const [flexpools, setFlexpools] = useState<IFlexpool[]>([])
     const [newFlexpoolTitle, setNewFlexpoolTitle] = useState('');
+    const { components } = await getDictionary(lang);
 
     useEffect(() => {
       const fetchFlexpools = async () => {
@@ -95,23 +98,23 @@ const Dropdown = ({ value, onChangeHandler, flexpoolsList, userId }: DropdownPro
                           </SelectItem>
                         ))
                       ) : (
-                        <div className='ml-8 items-center justify-center text-sm'>geen flexpools</div>
+                        <div className='ml-8 items-center justify-center text-sm'>{components.shared.Dropdown.labels[0]}</div>
                       )}
 
                     <AlertDialog>
                         <AlertDialogTrigger className="p-medium-14 flex w-full rounded-sm py-3 pl-8 text-primary-500 hover:bg-primary-50 focus:text-primary-500">
-                            Maak flexpool
+                            {components.shared.Dropdown.labels[1]}
                         </AlertDialogTrigger>
                         <AlertDialogContent className="bg-white">
                             <AlertDialogHeader>
-                                <AlertDialogTitle>Flexpool</AlertDialogTitle>
+                                <AlertDialogTitle>{components.shared.Dropdown.labels[2]}</AlertDialogTitle>
                                 <AlertDialogDescription>
                                     <Input type="text" placeholder="flexpool toevoegen" className="input-field mt-3" onChange={(e) => setNewFlexpoolTitle(e.target.value)} />
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
-                                <AlertDialogCancel>Annuleer</AlertDialogCancel>
-                                <AlertDialogAction onClick={voegFlexpoolToe}>Toevoegen</AlertDialogAction>
+                                <AlertDialogCancel>{components.shared.Dropdown.buttons[0]}</AlertDialogCancel>
+                                <AlertDialogAction onClick={voegFlexpoolToe}>{components.shared.Dropdown.buttons[1]}</AlertDialogAction>
                             </AlertDialogFooter>
                         </AlertDialogContent>
                     </AlertDialog>

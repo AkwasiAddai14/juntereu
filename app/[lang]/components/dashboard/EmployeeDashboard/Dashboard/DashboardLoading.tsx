@@ -1,13 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
-const loading = () => {
+const loading = async ({ lang }: { lang: Locale }) => {
+  const { dashboard } = await getDictionary(lang);
   return (
     <main className="text-center">
       <h2 className='text-sky-500'>
-      Loading...
+      {dashboard.werknemersPage.Dashboard.DashboardingLoading.tekst1}
       </h2>
       <p>
-        Hopefully not for too long 🙂🚀
+      {dashboard.werknemersPage.Dashboard.DashboardingLoading.tekst2}
       </p>
     </main>
   )

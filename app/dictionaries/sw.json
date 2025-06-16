@@ -1,0 +1,2100 @@
+{
+    "navigation": {
+      "navLinks": [
+        { "name": "Anställda", "link": "employees" },
+        { "name": "Arbetsgivare", "link": "employers" },
+        { "name": "Kontakt", "link": "contact" }
+      ],
+      "Taal":  { "name": "Språk", "link": "" },
+      "Log-in": { "name": "Logga in", "link": "sign-in" }
+    },
+    "pages": {
+        "landingsPage": {
+          "header": {
+            "Text1": "Upptäck varför arbetssökande väljer vår plattform och hitta ditt nästa uppdrag redan idag!",
+            "headerLinks": ["Anställda", "Arbetsgivare", "Språk", "Kontakt", "Logga in"],
+            "headText": "Frigör din potential, hitta ditt nästa uppdrag!",
+            "subText": "Upptäck en värld av möjligheter som anställd på vår plattform. Från kreativa projekt till affärsuppdrag – här hittar du din nästa framgångshistoria. Bli medlem och förverkliga dina drömmar!"
+          },
+          "CTA": [
+            { "name": "Registrera dig", "href": "/sign-up", "icon": "PlayCircleIcon" },
+            { "name": "Läs mer", "href": "/employees", "icon": "PhoneIcon" }
+          ],
+          "hero": {
+            "image": {
+              "testimonial": "Personalen är pålitlig och omedelbart tillgänglig, vilket hjälper oss enormt vid oväntade frånfällen. Det ger oss lugn och trygghet som vi behöver för att butiken ska fungera smidigt.",
+              "person": "Sarah de Bakerland",
+              "personFunction": "Biträdande butikschef Spar"
+            },
+            "content": {
+              "headText": "Enkel upp- och nedskalning med vår on-demand-plattform för flexibel personal",
+              "subText": "På Junter Platform tror vi på att sammanföra talanger och möjligheter på ett innovativt och flexibelt sätt. Som en on-demand-plattform för flexibel personal hjälper vi företag och entreprenörer att snabbt och effektivt hitta rätt yrkespersoner – oavsett om det gäller tillfällig hjälp eller specialistkompetens.",
+              "statistics": [
+                { "name": "anställda", "description": "4000+" },
+                { "name": "arbetsgivare", "description": "137" },
+                { "name": "uppdrag", "description": "2000+" },
+                { "name": "länder", "description": "2" }
+              ],
+              "ctaButton": "registrera dig"
+            }
+          },
+          "features": {
+            "headText": "Upptäck kraften i vår app för anställda – din språngbräda till gränslösa möjligheter.",
+            "subText": "Med vår app får du direkt tillgång till ett brett utbud av uppdrag, snabba betalningar och full frihet i din planering. Hitta din nästa utmaning redan idag!",
+            "features": [
+              {
+                "name": "Snabb tillgång till uppdrag",
+                "description": "Hitta uppdrag som matchar dina färdigheter och intressen på ett ögonblick – utan att behöva söka i evigheter.",
+                "icon": "DeviceArrowIcon"
+              },
+              {
+                "name": "Flexibel planering",
+                "description": "Hantera ditt eget schema och arbeta när det passar dig, så att du bättre kan balansera arbete och privatliv.",
+                "icon": "DeviceClockIcon"
+              },
+              {
+                "name": "Olika uppdragsgivare",
+                "description": "Få tillgång till ett brett utbud av uppdragsgivare – från startups till stora företag – och utöka ditt nätverk och din erfarenhet.",
+                "icon": "DeviceCardsIcon"
+              },
+              {
+                "name": "Enkel kommunikation",
+                "description": "Vi finns tillgängliga i chatten eller via WhatsApp varje dag mellan 09:00 och 17:00 för frågor. Du kan också när som helst nå oss via våra WhatsApp-grupper.",
+                "icon": "DeviceListIcon"
+              },
+              {
+                "name": "Snabba betalningar",
+                "description": "Få garanterad betalning för ditt arbete – utan krångel eller förseningar.",
+                "icon": "DeviceLockIcon"
+              },
+              {
+                "name": "Uppskattning och feedback",
+                "description": "Bygg ett starkt rykte genom att samla positiva omdömen och feedback från nöjda uppdragsgivare – vilket ökar dina chanser till framtida uppdrag.",
+                "icon": "DeviceChartIcon"
+              }
+            ]
+          },
+          "branches": {
+            "headText": "Upptäck mångsidigheten på vår plattform för arbetssökande.",
+            "subText": "Oavsett om du brinner för gästfriheten inom restaurangbranschen, noggrannheten inom logistik och transport, eller omsorgen inom vård och omsorg – vår plattform erbjuder ett brett spektrum av möjligheter."
+          },
+          "faqs": {
+            "headText": "Frigör din potential, hitta ditt nästa uppdrag!",
+            "subText1": "Fler frågor?",
+            "subtext2": " Tveka inte att kontakta oss.",
+            "FAQ": [
+
+
+              [{
+                "question": "Hur registrerar jag mig som frilansare på plattformen?",
+                "answer": "Gå helt enkelt till webbplatsen eller ladda ner appen, följ registreringsprocessen och fyll i din profil med relevant information."
+              },
+              {
+                "question": "Hur behandlas betalningar för slutförda uppdrag?",
+                "answer": "Efter att ett uppdrag har slutförts får du i nuläget din betalning den sista fredagen i månaden. Från och med februari betalas det ut varje fredag."
+              },
+              {
+                "question": "Kan jag sätta mina egna priser för de tjänster jag erbjuder?",
+                "answer": "Som frilansare har du friheten att sätta dina egna priser baserat på din erfarenhet och marknadsstandarder."
+              }],
+
+
+              [{
+                "question": "Vilka typer av uppdrag finns tillgängliga på plattformen?",
+                "answer": "Från servering inom restaurangbranschen till trafikledning och scenarbete på festivaler eller matleveranser – det finns ett brett utbud av uppdrag att välja mellan."
+              },
+              {
+                "question": "Finns det support om jag behöver hjälp när jag använder appen?",
+                "answer": "Vårt team är tillgängligt varje dag mellan 09:00 och 17:00 via appen eller WhatsApp för att svara på dina frågor."
+              },
+              {
+                "question": "Hur kan jag optimera min profil för att få fler uppdrag?",
+                "answer": "Optimera din profil genom att lägga till färdigheter och arbetslivserfarenhet för att öka dina chanser till fler uppdrag."
+              }],
+
+
+              [{
+                "question": "Hur fungerar processen att hitta och acceptera uppdrag?",
+                "answer": "Bläddra bland tillgängliga uppdrag, se detaljerna och ansök med ett klick. Det är snabbt och intuitivt."
+              },
+              {
+                "question": "Finns det recensioner från uppdragsgivare tillgängliga för uppdragen?",
+                "answer": "Uppdragsgivare kan lämna omdömen efter slutförda uppdrag, vilket hjälper dig att bygga upp och stärka ditt rykte."
+              },
+              {
+                "question": "Finns det några krav jag måste uppfylla för att kunna ta uppdrag via plattformen?",
+                "answer": "I de flesta fall krävs grundläggande erfarenhet eller färdigheter som är relevanta för det uppdrag du vill ta."
+              }]
+
+            ]
+          },
+          "testimonials": {
+            "headTitle": "Omdömen",
+            "subText": "Upptäck vad våra användare säger",
+            "testimonials": [
+              {
+                "name": "Lisa",
+                "testimonial": "Fantastisk app för restaurangjobb! Jag hittar snabbt pass på trevliga restauranger som passar mitt schema. Superpraktiskt!",
+                "sector": "Restaurang"
+              },
+              {
+                "name": "Ahmed",
+                "testimonial": "Som säkerhetsvakt uppskattar jag den snabba tillgången till relevanta uppdrag. Toppenapp!",
+                "sector": "Säkerhet"
+              },
+              {
+                "name": "Maria",
+                "testimonial": "Jag älskar hur enkel den här appen är! Den har gjort det så mycket lättare att hitta städuppdrag.",
+                "sector": "Städning"
+              },
+              {
+                "name": "George",
+                "testimonial": "Den här plattformen har gjort det enklare att hitta jobb inom transport. Pålitlig och effektiv!",
+                "sector": "Transport & Logistik"
+              },
+              {
+                "name": "Eva",
+                "testimonial": "Som vårdgivare uppskattar jag flexibiliteten i den här appen. Den hjälper mig att hitta passande vårduppdrag.",
+                "sector": "Vård"
+              },
+              {
+                "name": "Solomon",
+                "testimonial": "Den här appen har tagit mitt frilansande inom administration till nästa nivå. Effektiv och användarvänlig!",
+                "sector": "Administration"
+              }
+            ]
+          }
+        },
+        "employersPage": {
+          "title": "Junter för företag",
+  "headText": "Använd det på ditt sätt",
+  "subText": "Hitta snabbt och enkelt frilansare eller bemanningspersonal till ett fast och icke-bindande pris",
+  "EmployTypes": [
+    {
+      "type": "Bemanning eller Uthyrning",
+      "explanation": "Hitta snabbt och flexibelt rätt yrkespersoner för tillfälliga eller långsiktiga uppdrag – utan administrativt krångel.",
+      "icon": "PlusCircleIcon"
+    },
+    {
+      "type": "Frilansare",
+      "explanation": "Erfarna frilansare redo att ta dina projekt till nästa nivå. Flexibla, specialiserade och tillgängliga när du behöver dem.",
+      "icon": "SparklesIcon"
+    },
+    {
+      "type": "Rekrytering och Urval",
+      "explanation": "Spara tid och låt oss hitta den perfekta kandidaten för ditt företag. Med vårt omfattande nätverk och vår expertis kopplar vi ihop talang med din verksamhet.",
+      "icon": "MagnifyingGlassCircleIcon"
+    },
+    {
+      "type": "Löneadministration",
+      "explanation": "Fokusera på din verksamhet medan vi tar över arbetsgivaransvaret. Med payrolling får du enkelt in personal i din organisation.",
+      "icon": "BanknotesIcon"
+    }
+  ],
+  "Benefits": [
+    {
+      "benefit": "Kostnader",
+      "explanation": "Genom att välja vår plattform drar du nytta av en transparent och enkel prismodell där du endast betalar för de faktiskt arbetade timmarna av de flexarbetare du bjuder in. Bjud in obegränsat antal arbetare från SEK188,5 per arbetad timme.",
+      "imageSrc": "euroBillsLogo",
+      "imageAlt": "Sedlar som flyger runt."
+    },
+    {
+      "benefit": "Administration",
+      "explanation": "På vår plattform tar vi hand om nästan all administration åt dig, så att du kan fokusera på det som verkligen är viktigt. Vårt team står redo att stötta dig och se till att allt löper smidigt, så att din verksamhet kan fortsätta effektivt och utan bekymmer.",
+      "imageSrc": "officeLogo",
+      "imageAlt": "Spara på administrativt arbete och överlåt det till oss."
+    },
+    {
+      "benefit": "Dashboard",
+      "explanation": "Med instrumentpanelen har du som företag fullständig överblick över alla dina aktiviteter. Den ger dig insikt i publicerade uppdrag, svar, öppna checkouts och fakturor samt status för dina flexpooler. All viktig information direkt till hands.",
+      "imageSrc": "dashboardLogo",
+      "imageAlt": "Enkel, modern och tydlig översikt över ditt företag."
+    }
+  ],
+  "Features": {
+    "headText": "Behåll kontrollen",
+    "subText": "Med dessa smidiga funktioner slipper du oroa dig för de mindre spännande uppgifterna.",
+    "features": [
+      {
+        "feature": "Reserver",
+        "explanation": "Fler personer än det finns platser kan anställas för ett uppdrag. De extra personerna listas som reserver och flyttas automatiskt upp om någon hoppar av.",
+        "icon": "UsersIcon"
+      },
+      {
+        "feature": "Flexpool",
+        "explanation": "När du arbetar med frilansare accepteras de automatiskt för uppdrag de svarar på, om de finns i din flexpool. Det gör det lättare att snabbt boka favoriter.",
+        "icon": "UserGroupIcon"
+      },
+      {
+        "feature": "Konkurrenskraftiga priser",
+        "explanation": "Om ett skift förblir otillsatt under längre tid kan du automatiskt höja timpriset för att attrahera kvalificerade kandidater och säkra bemanningen.",
+        "icon": "CurrencyEuroIcon"
+      }
+    ]
+  }
+        },
+        "employeesPage": {
+          "headText": "Tjäna pengar snabbt",
+  "Benefits": [
+    {
+      "benefit": "Över 100",
+      "subText": "olika uppdragsgivare.",
+      "elaboration": "Ladda ner appen och registrera dig. Du kan registrera dig från 16 års ålder och arbeta som bemanningspersonal. Från 18 års ålder är det tillåtet att arbeta som frilansare. När du har registrerat dig kan du välja bland tusentals skift i appen."
+    },
+    {
+      "benefit": "2000 varje vecka",
+      "subText": "olika uppdrag.",
+      "elaboration": "För att öka dina chanser att bli accepterad, se till att din profil är komplett och professionell. Lägg till ett tydligt profilfoto, fyll i alla uppgifter noggrant och beskriv dina färdigheter och erfarenheter utförligt. Referenser från tidigare uppdragsgivare kan också vara till hjälp. Sedan kan du börja direkt!"
+    },
+    {
+      "benefit": "Från och med februari",
+      "subText": "kan du även välja veckobetalningar.",
+      "elaboration": "Efter att du skickat in dina arbetade timmar får du (för närvarande) din betalning i slutet av månaden. Från och med februari kan du också välja att få betalt varje vecka. Betalningarna överförs direkt till ditt bankkonto."
+    }
+  ],
+  "Features": {
+    "headText": "Allt-i-ett-plattform",
+    "subText": "Upptäck en värld av möjligheter som arbetssökande på vår plattform. Från kreativa projekt till affärsuppdrag – här hittar du din nästa framgångshistoria. Bli medlem och gör dina drömmar till verklighet!",
+    "features": [
+      {
+        "feature": "Snabb tillgång till uppdrag",
+        "elaboration": "Hitta uppdrag som matchar dina färdigheter och intressen på ett ögonblick – utan att behöva leta i evigheter."
+      },
+      {
+        "feature": "Flexibel planering",
+        "elaboration": "Hantera ditt eget schema och arbeta när det passar dig, så att du lättare kan balansera arbete och privatliv."
+      },
+      {
+        "feature": "Olika uppdragsgivare",
+        "elaboration": "Få tillgång till ett brett utbud av uppdragsgivare – från startups till stora företag – och utöka ditt nätverk och din erfarenhet."
+      },
+      {
+        "feature": "Enkel kommunikation",
+        "elaboration": "Kommunicera direkt med oss via appen eller WhatsApp, så att du snabbt kan ställa frågor, ge feedback och slutföra uppdrag."
+      },
+      {
+        "feature": "Snabba betalningar",
+        "elaboration": "Få garanterad betalning för ditt arbete – utan krångel eller förseningar."
+      },
+      {
+        "feature": "Omdömen och feedback",
+        "elaboration": "Bygg upp ett starkt rykte genom att samla positiva omdömen och feedback från nöjda uppdragsgivare – vilket ökar dina chanser till framtida uppdrag."
+      }
+    ]
+  }
+        },
+        "junterPage": {
+          "headText": "Vi är en passionerad grupp människor.",
+  "subText": "Vår mångfald och gemensamma vision driver oss att skapa innovativa lösningar som förändrar hur företag och kunder interagerar.",
+  "strategyPlan": [
+    {
+      "date": "Juli 2024",
+      "activity": "Grundandet av Junter",
+      "elaboration": "Grundandet av Junter markerar början på en innovativ resa. Vårt mål är att koppla samman arbetssökande och företag på ett nytt sätt."
+    },
+    {
+      "date": "Oktober 2024",
+      "activity": "Kapital- och nätverksutvidgning",
+      "elaboration": "Olika investeringsrundor för att öka kapitalet och bygga nätverk. Med resurser och kontakter fortsätter vi att växa."
+    },
+    {
+      "date": "Maj 2025",
+      "activity": "Lansering i europeiska länder",
+      "elaboration": "Junter expanderar till flera europeiska marknader, vilket gör det möjligt för fler arbetssökande och företag att använda vår plattform."
+    },
+    {
+      "date": "Dec 2025",
+      "activity": "Global lansering",
+      "elaboration": "Vår globala lansering tar Junter till den internationella marknaden och gör det möjligt för oss att erbjuda våra tjänster världen över och skapa större genomslag."
+    }
+  ],
+  "people": {
+    "headText": "Våra människor",
+    "subText1": "Våra medarbetare är vår största tillgång. De bidrar med expertis, passion och engagemang i allt de gör.",
+    "subtext2": "Vi är stolta över våra mångsidiga och talangfulla team som samarbetar för att uppnå fantastiska resultat. Tillsammans bygger vi en framtid där innovation och samarbete står i centrum."
+  },
+  "vacancies": {
+    "headText": "Vi letar alltid efter fantastiska människor som vill stärka vårt team",
+    "subText": "Har du en passion för innovation och en vilja att göra skillnad? Gå med oss och hjälp oss växa och nå framgång tillsammans.",
+    "vacancies": [
+      {
+        "title": "Senior Account Manager",
+        "description": "Som Senior Account Manager ansvarar du för att hantera viktiga kundkonton, utveckla starka relationer och driva intäktstillväxt. Du arbetar nära kunderna för att förstå deras behov, erbjuda skräddarsydda lösningar och säkerställa deras tillfredsställelse med våra tjänster.",
+        "salary": "€42000 - €76000",
+        "location": "🇳🇱 Hoofddorp, NL"
+      },
+      {
+        "title": "Global Marketing Manager",
+        "description": "Som Global Marketing Manager leder du utvecklingen och genomförandet av globala marknadsföringsstrategier för att öka varumärkeskännedom och marknadsandelar. Du leder ett team av marknadsföringsproffs, hanterar globala kampanjer och samarbetar tvärfunktionellt för att säkerställa att affärsmålen uppnås.",
+        "salary": "€56000 - €84000",
+        "location": "🇳🇱 Hoofddorp, NL"
+      },
+      {
+        "title": "Supportagent",
+        "description": "Som Supportagent är du den första kontaktpunkten för både frilansare och företag. Du erbjuder hjälp och löser problem. Du hanterar frågor och säkerställer hög kundnöjdhet genom snabb och effektiv support.",
+        "salary": "€28000 - €34000",
+        "location": "🇳🇱 Hoofddorp, NL"
+      }
+    ]
+  },
+  "vacanciesButton": "Visa alla lediga tjänster",
+  "navLinks": [
+    { "name": "Hem", "link": "/" },
+    { "name": "Integritetspolicy", "link": "../pp" },
+    { "name": "Användarvillkor", "link": "../tou" }
+  ]
+        },
+        "contactPage": {
+          "headText": "Kontakta oss",
+  "subText": "Kontakta oss idag via nedanstående kanal och få svar inom 48 timmar",
+  "formItems": [
+    { "voornaamItem": "Förnamn" },
+    { "achternaamItem": "Efternamn" },
+    { "emailadresItem": "E-post" },
+    { "bedrijfItem": "Företag" },
+    {
+      "telefoonItem": "Telefon",
+      "optionalItem": "valfritt"
+    },
+    {
+      "questionItem": "Hur kan vi hjälpa dig?",
+      "description": "max 500 tecken"
+    }
+  ],
+  "expectedBudget": {
+    "title": "Förväntad budget",
+    "budgetButtons": [
+      "Mindre än SEK250K",
+      "SEK250K – SEK500K",
+      "SEK500K – SEK1000K",
+      "SEK1000K+",
+      "Ej tillämpligt"
+    ]
+  },
+  "pageButton": "Skicka meddelande"
+        },
+        "pricingPage": {
+          "title": "Kostnader",
+  "headText": "Bästa priset för rätt personal",
+  "subText": "På Junter tror vi på ärlighet och tydlighet. Inga dolda avgifter eller finstilt – bara transparenta priser så att du alltid vet exakt vad du betalar för.",
+  "pricingCards": [
+    {
+      "naam": "Frilansare",
+      "prijs": "SEK190",
+      "prijsUitleg": "SEK175 + SEK15 (avgift)",
+      "features": [
+        "Mindre administrativ börda",
+        "Inga arbetsgivaravgifter",
+        "Projektbaserat arbete med specifikt resultat"
+      ],
+      "button": "Publicera uppdrag"
+    },
+    {
+      "naam": "Bemanningspersonal",
+      "prijs": "SEK188,5",
+      "prijsUitleg": "SEK145 x 1,3 (omräkningsfaktor)",
+      "features": [
+        "Mindre administrativ börda",
+        "Omedelbar tillgänglighet",
+        "Lämplig för långsiktigt samarbete",
+        "Potential för kontinuitet"
+      ],
+      "button": "Skapa ett konto"
+    }
+  ],
+  "HeadTextCTA": "Problemfri flexibel personal",
+  "SubTextCTA": "Tvekar du mellan frilansare och bemanningspersonal? Eller vill du ha personlig rådgivning om vad flexibel arbetskraft kan innebära för din organisation och vilka kostnader som är kopplade till det?",
+  "ButtonCTA": "Kontakta oss"
+        },
+        "notfoundPage": {
+          "title": "404",
+          "headText": "Sidan kunde inte hittas",
+          "subText": "Tyvärr kunde vi inte hitta sidan du letar efter.",
+          "button1": "Till startsidan",
+          "button2": "Kontakta support",
+          "button3": "Status"
+        },
+        "verifyPage": {
+          "title": "Verifiera identitet",
+          "endingSentence": "Vi kontaktar dig så snart som möjligt efter att vi har tagit emot dokumenten.",
+          "headText1": "Tack för att du har fyllt i registreringsformuläret. För att verifiera ditt företag behöver vi följande dokument:",
+          "headText2": "Tack för att du har fyllt i registreringsformuläret. För att verifiera din profil som frilansare behöver vi följande dokument:",
+          "Button1": "Förstått!",
+          "Button2": "Skicka meddelande",
+          "instructions": [
+            "Skicka dokumenten till",
+            "med följande information:"
+          ],
+          "formItems": [
+            { "voornaamItem": "Förnamn" },
+            { "achternaamItem": "Efternamn" },
+            { "emailadresItem": "E-post" },
+            { "bedrijfItem": "Företag" },
+            {
+              "telefoonItem": "Telefon",
+              "optionalItem": "valfritt"
+            },
+            {
+              "questionItem": "Hur kan vi hjälpa dig?",
+              "description": "max 500 tecken"
+            }
+          ],
+          "EmployeesPage": {
+            "requiredDocuments": [
+              "Ett giltigt ID (pass, ID-kort eller körkort – dokumentnummer och foto kan döljas).",
+              "Ett dokument som bekräftar den angivna adressen, till exempel ett adressintyg eller folkbokföringsbevis.",
+              "En kopia av ditt bankkort."
+            ],
+            "informationRequired": [
+              "- För- och efternamn",
+              "- Födelsedatum",
+              "- Postnummer och gatunummer"
+            ]
+          },
+          "EmployersPage": {
+            "requiredDocuments": [
+              "- Ett dokument som bekräftar den angivna adressen, t.ex. ett officiellt brev med adress och organisationsnummer.",
+              "- Eventuellt ett ifyllt och undertecknat autogiroformulär.",
+              "- Samarbetsavtal."
+            ],
+            "informationRequired": [
+              "- Kontaktpersonens för- och efternamn",
+              "- Företagsnamn",
+              "- Organisationsnummer"
+            ]
+          }
+        },
+    "privacypolicyPage": {
+      "privacyPolicyEmployee": {
+        "title": "Integritetspolicy",
+        "subtitle": "För anställda",
+        "introduction": {
+          "heading": "Introduktion",
+          "text": "Välkommen till Junter. Vi värdesätter ditt förtroende för oss och tar din integritet på största allvar. Denna integritetspolicy är avsedd att informera dig om hur vi samlar in, använder, delar och skyddar dina personuppgifter när du använder vår plattform."
+        },
+        "section1": {
+          "heading": "1. Uppgifter vi samlar in",
+          "text": "Vi samlar in olika typer av uppgifter för att kunna tillhandahålla och förbättra våra tjänster.\n\nPersonuppgifter: Förnamn, efternamn, födelsedatum, e-postadress, telefonnummer, adress, personnummer, momsregistreringsnummer (VAT-nummer) och bankkontonummer (IBAN).\nYrkesrelaterade uppgifter: Arbetslivserfarenhet, färdigheter, utbildning, profilbild och omdömen.\nPlattformsanvändning: Information om din interaktion med vår plattform, såsom vilka tjänster du erbjuder eller efterfrågar, kommunikation med företag och ditt deltagande i projekt."
+        },
+        "section2": {
+          "heading": "2. Hur vi använder dina uppgifter",
+          "text": "Vi använder dina uppgifter för följande ändamål:\n\nTjänsteleverans: För att göra det möjligt för dig att hitta och acceptera projekt, samt för företag att boka dina tjänster.\nKommunikation: För att kontakta dig angående ditt konto, projekt och andra relaterade ärenden.\nPlattformsförbättring: För att analysera och förbättra vår plattform och våra tjänster.\nLagliga skyldigheter: För att uppfylla juridiska och regulatoriska krav."
+        },
+        "section3": {
+          "heading": "3. Delning av dina uppgifter",
+          "text": "Vi delar endast dina uppgifter med tredje part när det är nödvändigt för att utföra våra tjänster, såsom:\n\nFöretag: För att ge dem möjlighet att kontakta dig och boka dina tjänster.\nTjänsteleverantörer: För att tillhandahålla teknisk support och andra nödvändiga tjänster för vår plattforms funktion.\nMyndigheter: Om vi är juridiskt skyldiga att lämna ut dina uppgifter."
+        },
+        "section4": {
+          "heading": "4. Säkerhet för dina uppgifter",
+          "text": "Vi vidtar lämpliga tekniska och organisatoriska åtgärder för att skydda dina uppgifter mot obehörig åtkomst, förlust, förstörelse eller ändring. Trots våra ansträngningar kan vi inte helt garantera säkerheten för dataöverföring via internet."
+        },
+        "section5": {
+          "heading": "5. Lagringstid",
+          "text": "Vi behåller inte dina personuppgifter längre än nödvändigt för de ändamål för vilka de samlades in, såvida inte en längre lagringstid krävs enligt lag."
+        },
+        "section6": {
+          "heading": "6. Dina rättigheter",
+          "text": "Du har rätt att:\n\nBegära tillgång till dina personuppgifter.\nBegära rättelse av felaktiga eller ofullständiga uppgifter.\nBegära radering av dina personuppgifter.\nBegära begränsning av behandlingen av dina uppgifter.\nInvända mot behandlingen av dina uppgifter.\nBegära dataportabilitet.\nOm du vill utöva någon av dessa rättigheter, vänligen kontakta oss på support@junter.works."
+        },
+        "section7": {
+          "heading": "7. Ändringar i denna integritetspolicy",
+          "text": "Vi kan komma att uppdatera denna integritetspolicy från tid till annan. Vi meddelar dig om väsentliga ändringar genom ett meddelande på vår plattform eller genom att kontakta dig direkt."
+        },
+        "section8": {
+          "heading": "8. Kontakt",
+          "text": "Om du har frågor eller synpunkter angående denna integritetspolicy, vänligen kontakta oss via:",
+          "email": "support@junter.works"
+        }
+      }
+    },
+    "termsofusePage": {
+      "tabFreelancers": "Arbetstagare",
+      "tabBedrijven": "Företag",
+      "termsFreelancers": {
+        "header": "Allmänna villkor",
+        "title": "För arbetstagare",
+        "introduction": {
+          "heading": "Introduktion",
+          "text": "Välkommen till Junter. Genom att använda vår plattform godkänner du dessa allmänna villkor. Läs dessa villkor noggrant innan du använder våra tjänster."
+        },
+        "sections": [
+          {
+            "heading": "1. Definitioner",
+            "text": "Plattform: Junters onlineplattform, tillgänglig via vår webbplats och/eller mobilapp.\nArbetstagare: En individ som registrerar sig på plattformen för att erbjuda tjänster till företag.\nFöretag: En enhet som registrerar sig på plattformen för att efterfråga tjänster från arbetstagare.\nAnvändare: Både arbetstagare och företag som använder plattformen."
+          },
+          {
+            "heading": "2. Registrering och Konto",
+            "text": "Skapa Konto: För att använda vår plattform måste du skapa ett konto genom att slutföra registreringsprocessen.\nUppgifter: Du garanterar att all information du lämnar är sanningsenlig, korrekt och uppdaterad.\nSäkerhet: Du är ansvarig för att hålla dina kontouppgifter och lösenord konfidentiella. Vi ansvarar inte för förlust eller skada som uppstår till följd av din försummelse att skydda denna information."
+          },
+          {
+            "heading": "3. Användning av Plattformen",
+            "text": "Tillåten Användning: Du får endast använda vår plattform för legitima ändamål i enlighet med dessa villkor och gällande lagar.\nOtillåten Användning: Det är förbjudet att använda plattformen för olagliga aktiviteter, spam eller för att äventyra plattformens säkerhet eller integritet."
+          },
+          {
+            "heading": "4. Tjänster och Betalningar",
+            "text": "Erbjuda Tjänster: Arbetstagare kan erbjuda sina tjänster via plattformen. Företag kan boka och använda dessa tjänster.\nBetalningar: Betalningar för utförda tjänster hanteras via plattformen. Exakta betalningsvillkor avtalas separat mellan arbetstagaren och företaget.\nServiceavgifter: Vi förbehåller oss rätten att ta ut serviceavgifter för användning av plattformen. Dessa avgifter anges tydligt innan en tjänst bokas."
+          },
+          {
+            "heading": "5. Avbokningar och Tvister",
+            "text": "Avbokningar: Avbokningsvillkor för tjänster avtalas separat mellan arbetstagaren och företaget. Vi rekommenderar att tydliga avbokningsregler fastställs.\nTvister: Tvister mellan arbetstagare och företag bör lösas mellan parterna. Vi erbjuder stöd vid tvister men ansvarar inte för utfallet."
+          },
+          {
+            "heading": "6. Ansvar",
+            "text": "Friskrivning: Du friskriver Junter från allt ansvar, alla krav och kostnader som uppstår till följd av din användning av plattformen.\nAnsvarsbegränsning: Vi är inte ansvariga för indirekta, tillfälliga, särskilda eller följdskador, eller förlust av vinster som uppstår genom användningen av plattformen."
+          },
+          {
+            "heading": "7. Immateriella Rättigheter",
+            "text": "Ägande: Alla immateriella rättigheter kopplade till plattformen och dess innehåll tillhör Junter eller dess licensgivare.\nAnvändning: Du får endast använda plattformens innehåll för personliga och icke-kommersiella ändamål, om inte annat avtalats."
+          },
+          {
+            "heading": "8. Uppsägning",
+            "text": "Uppsägning av Användaren: Du kan när som helst avsluta ditt konto genom att kontakta oss.\nUppsägning av Junter: Vi förbehåller oss rätten att avsluta ditt konto eller stänga av åtkomsten till plattformen om du bryter mot dessa villkor."
+          },
+          {
+            "heading": "9. Ändringar av Villkor",
+            "text": "Vi kan komma att ändra dessa allmänna villkor från tid till annan. Vi kommer att informera dig om väsentliga ändringar via en avisering på vår plattform eller genom direktkontakt. Din fortsatta användning av plattformen efter sådana ändringar utgör ditt godkännande av de uppdaterade villkoren."
+          },
+          {
+            "heading": "10. Tillämplig Lag",
+            "text": "Dessa allmänna villkor regleras av och tolkas i enlighet med svensk lag. Eventuella tvister som uppstår i samband med dessa villkor ska hänskjutas till behörig domstol i Stockholm, Sverige."
+          }
+        ],
+        "contact": {
+          "heading": "Kontakt",
+          "text": "Om du har några frågor eller kommentarer, vänligen kontakta oss via:",
+          "emails": [
+            "support@junter.works",
+            "billing@junter.works"
+          ]
+        }
+      },
+          "AVbedrijven": {
+            "header": "Allmänna villkor",
+            "title": "För företag",
+            "hoofdstukken": [
+              {
+                "titel": "1. Inledning",
+                "inhoud": [
+                  "Välkommen till Junter. Dessa Allmänna Villkor (\"Villkor\", \"Avtal\") gäller för din användning av våra tjänster, produkter och webbplats på www.junter.eu. Genom att använda våra tjänster godkänner du dessa villkor. Om du inte godkänner dessa villkor ska du inte använda våra tjänster."
+                ]
+              },
+              {
+                "titel": "2. Definitioner",
+                "inhoud": [
+                  "Kund: Den enhet som ingår avtal med Företaget för att ta emot tjänster.",
+                  "Tjänster: Alla produkter, tjänster och support som tillhandahålls av Företaget.",
+                  "Avtal: Dessa Villkor samt alla andra villkor som skriftligen avtalats mellan Företaget och Kunden."
+                ]
+              },
+              {
+                "titel": "3. Tjänster",
+                "subsecties": [
+                  {
+                    "subtitel": "3.1 Leverans av tjänster",
+                    "inhoud": "Företaget åtar sig att tillhandahålla tjänster enligt det överenskomna avtalet eller beställningsformuläret. Omfattning, varaktighet och priser anges i avtalet eller beställningsformuläret."
+                  },
+                  {
+                    "subtitel": "3.2 Ändringar av tjänster",
+                    "inhoud": "Företaget förbehåller sig rätten att när som helst ändra, avbryta eller avsluta delar av tjänsterna med eller utan förvarning, förutsatt att sådana ändringar inte väsentligt påverkar kvaliteten på tjänsterna som tillhandahålls kunden."
+                  }
+                ]
+              },
+              {
+                "titel": "4. Betalningsvillkor",
+                "subsecties": [
+                  {
+                    "subtitel": "4.1 Avgifter",
+                    "inhoud": "Kunden åtar sig att betala avgifterna för tjänsterna enligt det avtal eller beställningsformulär som gäller. Alla avgifter är ej återbetalningsbara, om inte annat anges."
+                  },
+                  {
+                    "subtitel": "4.2 Fakturering och betalning",
+                    "inhoud": "Fakturor utfärdas enligt det betalningsschema som anges i avtalet. Betalning ska ske inom 14 dagar från fakturadatum, om inget annat skriftligen har överenskommits."
+                  },
+                  {
+                    "subtitel": "4.3 Försenade betalningar",
+                    "inhoud": "Försenade betalningar kan medföra ränta med en räntesats på 5,2 % per månad eller den högsta lagligt tillåtna räntan, beroende på vilket som är lägre. Företaget förbehåller sig rätten att tillfälligt avbryta tjänster tills fullständig betalning mottagits."
+                  }
+                ]
+              },
+              {
+                "titel": "5. Sekretess",
+                "subsecties": [
+                  {
+                    "subtitel": "5.1 Konfidentiell information",
+                    "inhoud": "Båda parter samtycker till att bevara sekretessen för all egendomsrättslig eller konfidentiell information som tillhandahålls under avtalets löptid. Konfidentiell information inkluderar men är inte begränsad till affärsstrategier, finansiell information och kunddata."
+                  },
+                  {
+                    "subtitel": "5.2 Icke-uppenbarelse",
+                    "inhoud": "Ingen av parterna får avslöja den andra partens konfidentiella information till tredje part utan föregående skriftligt godkännande, utom där det krävs enligt lag."
+                  }
+                ]
+              },
+              {
+                "titel": "6. Immateriella rättigheter",
+                "subsecties": [
+                  {
+                    "subtitel": "6.1 Äganderätt",
+                    "inhoud": "Alla immateriella rättigheter till tjänsterna, inklusive men inte begränsat till programvara, innehåll och varumärken, tillhör Företaget eller dess licensgivare. Kunden beviljas en icke-exklusiv, icke-överförbar licens att använda tjänsterna under avtalets löptid."
+                  },
+                  {
+                    "subtitel": "6.2 Kunddata",
+                    "inhoud": "Kunden behåller äganderätten till all data som tillhandahålls Företaget i samband med tjänsterna. Företaget beviljas en licens att använda, reproducera och modifiera kundens data enbart i syfte att tillhandahålla tjänsterna."
+                  }
+                ]
+              },
+              {
+                "titel": "7. Garantier och ansvar",
+                "subsecties": [
+                  {
+                    "subtitel": "7.1 Garantier",
+                    "inhoud": "Företaget garanterar att tjänsterna kommer att utföras på ett professionellt och sakkunnigt sätt."
+                  },
+                  {
+                    "subtitel": "7.2 Undantag",
+                    "inhoud": "Förutom vad som uttryckligen anges i dessa villkor tillhandahålls tjänsterna \"i befintligt skick\" och \"såsom tillgängliga\" utan några garantier av något slag, uttryckliga eller underförstådda."
+                  }
+                ]
+              },
+              {
+                "titel": "8. Ansvarsbegränsning",
+                "inhoud": [
+                  "I den utsträckning det är tillåtet enligt lag är Företaget inte ansvarigt för någon indirekt, tillfällig, särskild, följdskada eller straffskada, eller förlust av vinst eller intäkter, direkt eller indirekt, eller någon förlust av data, användning, goodwill eller andra immateriella förluster till följd av (i) din användning eller oförmåga att använda tjänsterna; (ii) obehörig åtkomst till eller användning av våra servrar och/eller personlig information som lagras där."
+                ]
+              },
+              {
+                "titel": "9. Varaktighet och uppsägning",
+                "subsecties": [
+                  {
+                    "subtitel": "9.1 Varaktighet",
+                    "inhoud": "Detta avtal träder i kraft från det startdatum som anges i avtalet och förblir giltigt tills det sägs upp i enlighet med vad som anges här."
+                  },
+                  {
+                    "subtitel": "9.2 Uppsägning utan orsak",
+                    "inhoud": "Vardera parten kan säga upp detta avtal av vilken anledning som helst med 14 dagars skriftligt meddelande till den andra parten."
+                  },
+                  {
+                    "subtitel": "9.3 Uppsägning med orsak",
+                    "inhoud": "Vardera parten kan säga upp detta avtal omedelbart om den andra parten bryter mot någon väsentlig bestämmelse i detta avtal och inte rättar till överträdelsen inom 14 dagar efter skriftligt meddelande."
+                  }
+                ]
+              },
+              {
+                "titel": "10. Tillämplig lag och tvistlösning",
+                "subsecties": [
+                  {
+                    "subtitel": "10.1 Tillämplig lag",
+                    "inhoud": "Detta avtal ska regleras av och tolkas i enlighet med nederländsk lagstiftning, utan hänsyn till dess lagkonflikter."
+                  },
+                  {
+                    "subtitel": "10.2 Tvistlösning",
+                    "inhoud": "Eventuella tvister som uppstår från eller i samband med detta avtal ska lösas genom förhandlingar i god tro mellan parterna. Om tvisten inte kan lösas genom förhandlingar ska den hänskjutas till skiljeförfarande/medling i Stockholm."
+                  }
+                ]
+              },
+              {
+                "titel": "11. Diverse bestämmelser",
+                "subsecties": [
+                  {
+                    "subtitel": "11.1 Hela avtalet",
+                    "inhoud": "Detta avtal utgör hela avtalet mellan parterna och ersätter alla tidigare överenskommelser, skriftliga eller muntliga, som rör dess innehåll."
+                  },
+                  {
+                    "subtitel": "11.2 Ändringar",
+                    "inhoud": "Detta avtal kan endast ändras genom ett skriftligt dokument undertecknat av båda parter."
+                  },
+                  {
+                    "subtitel": "11.3 Separabilitet",
+                    "inhoud": "Om någon bestämmelse i detta avtal befinns vara ogiltig eller ogenomförbar, förblir övriga bestämmelser fullt giltiga."
+                  },
+                  {
+                    "subtitel": "11.4 Avstående",
+                    "inhoud": "Om någon part inte upprätthåller en rättighet eller bestämmelse enligt detta avtal ska detta inte anses som ett avstående från sådana rättigheter eller bestämmelser."
+                  }
+                ]
+              }
+            ],
+            "contact": {
+              "titel": "Kontakt",
+              "inhoud": "Om du har några frågor eller synpunkter, vänligen kontakta oss via:",
+              "email1": "support@junter.works",
+              "email2": "billing@junter.works"
+            }
+          }
+    }
+  },
+    "footer": {
+      "navLinks": [
+        {
+          "title": "Anställda",
+          "links": ["Hur fungerar det?", "Hitta jobb", "Kontakt"],
+          "href": ["../employees", "../sign-up", "../contact"]
+        },
+        {
+          "title": "Arbetsgivare",
+          "links": ["Prissättning", "Hitta personal", "API-integration"],
+          "href": ["../pricing", "../sign-up", "../employers"]
+        },
+        {
+          "title": "Junter",
+          "links": ["Om oss", "Karriär", "Partners"],
+          "href": ["../junter", "../junter", "../notfound"]
+        },
+        {
+          "title": "Juridiskt",
+          "links": ["Integritetspolicy", "Användarvillkor", "Kontakt"],
+          "href": ["../pp", "../tou", "../contact"]
+        }
+      ],
+      "subscriptionCTA": {
+        "headText": "Prenumerera på vårt nyhetsbrev",
+        "subText": "Få varje vecka en översikt över (nya) uppdrag i ditt område och håll dig uppdaterad med de senaste nyheterna!",
+        "placeholderText": "Ange din e-postadress",
+        "button": "Prenumerera"
+      },
+      "footerText": "© 2025 Junter. Alla rättigheter förbehållna."
+    },
+    "dashboard": {
+        "werknemersPage": {
+          "BentoGrid": {
+            "headTitle": "Lansera snabbare",
+            "subTitle": "Allt du behöver för att lansera din app",
+            "gridTitles": [
+              "Instrumentpanel",
+              "Profil",
+              "Kommande evenemang",
+              "Åtgärder",
+              "Ekonomi"
+            ],
+            "shiftsDashboard": {
+              "items": [
+                {
+                  "title": "Anmälningar",
+                  "icon": "ClockIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-teal-50",
+                  "IconForeGround": "text-teal-700"
+                },
+                {
+                  "title": "Ansökningar",
+                  "icon": "CheckBadgeIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-purple-50",
+                  "IconForeGround": "text-purple-700"
+                },
+                {
+                  "title": "Skift",
+                  "icon": "AcademicCapIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-sky-50",
+                  "IconForeGround": "text-sky-700"
+                },
+                {
+                  "title": "Tjänster",
+                  "icon": "ReceiptRefundIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-rose-50",
+                  "IconForeGround": "text-rose-700"
+                },
+                {
+                  "title": "Flexpooler",
+                  "icon": "UsersIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-indigo-50",
+                  "IconForeGround": "text-indigo-700"
+                },
+                {
+                  "title": "Fakturor",
+                  "icon": "BanknotesIcon",
+                  "functie": "",
+                  "IconBackGround": "bg-yellow-50",
+                  "IconForeGround": "text-yellow-700"
+                }
+              ],
+              "RandomTekst": "Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae."
+            },
+            "Checkouts": {
+              "zeroFoundText": "Inga tjänster eller checkouts hittades"
+            },
+            "Financien": {
+              "headTitle": "Fakturor",
+              "subtitle": "En översikt över alla dina fakturor och lönebesked.",
+              "ColumnTitles": [
+                "Faktura/Löne-ID",
+                "Vecka",
+                "Skift/Tjänst",
+                "Belopp",
+                "Status"
+              ],
+              "button": "Ladda ner"
+            },
+            "profiel": {
+              "headTitle": "Profil",
+              "subTitle": "Ditt visitkort till arbetsgivare.😉",
+              "ProfielFotoButton": "Ändra profilbild",
+              "placeholderTextButton": "JPG, GIF eller PNG. Max 1MB.",
+              "formItems": [
+                "Namn",
+                "E-postadress",
+                "Telefonnummer",
+                "Födelsedatum",
+                "Gata",
+                "Husnummer",
+                "Skattereduktion",
+                "Småföretagsregel"
+              ],
+              "werkervaring": {
+                "headTitle": "Arbetserfarenhet",
+                "subTitle": "Lägg till arbetserfarenhet",
+                "button": "Ändra"
+              },
+              "opleiding": {
+                "headTitle": "Utbildning",
+                "subTitle": "Lägg till utbildning",
+                "button": "Ändra"
+              },
+              "taalendata": {
+                "headTitle": "Språk och datum",
+                "subTitle": "Välj ditt föredragna språk och datumformat",
+                "formItems": [
+                  "Språk",
+                  "Datumformat"
+                ],
+                "button": "Ändra",
+                "dataLabel": "Automatisk tidszon"
+              }
+            },
+            "UpcomingEvents": {
+              "text1": "Starttid",
+              "text2": "Sluttid",
+              "currencySign": "SEK"
+            }
+          },
+          "Calender": {
+            "calender": {
+              "navigation": [
+                {
+                  "name": "Dag",
+                  "value": "Dag"
+                },
+                {
+                  "name": "Vecka",
+                  "value": "Vecka"
+                },
+                {
+                  "name": "Månad",
+                  "value": "Månad"
+                },
+                {
+                  "name": "År",
+                  "value": "År"
+                }
+              ],
+              "buttons": [
+                "Tillgänglighet",
+                "Idag"
+              ]
+            },
+            "Dag": {
+              "tekst1": "beläggning",
+              "tekst2": "Inga skift tillgängliga för detta skift.",
+              "button": "Ta bort"
+            },
+            "Week": {
+              "button": "Idag"
+            },
+            "Maand": {
+              "button": "Idag"
+            },
+            "Jaar": {
+              "button": "Idag"
+            }
+          },
+          "Dashboard": {
+            "DashboardingLoading": {
+              "tekst1": "Laddar...",
+              "tekst2": "Förhoppningsvis inte alltför länge 🙂🚀"
+            },
+            "headTitle": "Instrumentpanel",
+            "navigation": [
+              {
+                "name": "Hem",
+                "value": "Hem"
+              },
+              {
+                "name": "Kalender",
+                "value": "Kalender"
+              },
+              {
+                "name": "Skift",
+                "value": "Skift"
+              },
+              {
+                "name": "Flexpooler",
+                "value": "Flexpooler"
+              },
+              {
+                "name": "Ekonomi",
+                "value": "Ekonomi"
+              }
+            ],
+            "UserNavigation": [
+              {
+                "name": "Inställningar",
+                "value": "Inställningar"
+              },
+              {
+                "name": "Vanliga frågor",
+                "value": "Vanliga frågor"
+              },
+              {
+                "name": "Logga ut",
+                "value": "Logga ut"
+              }
+            ]
+          },
+          "Explore": {
+            "tabs": [
+              "Skift",
+              "Lediga tjänster"
+            ],
+            "ShiftPagina": {
+              "headTitle": "Skift",
+              "NoShifts": "Inga skift tillgängliga"
+            },
+            "VacaturePagina": {
+              "headTitle": "Lediga tjänster",
+              "NoVacatures": "Inga lediga tjänster tillgängliga"
+            },
+            "filter": [
+              "Avstånd",
+              "Pris"
+            ],
+            "buttons": [
+              "Sök",
+              "Återställ"
+            ]
+          },
+          "FAQ": {
+            "headTitle:": "Vanliga frågor"
+          },
+          "Financien": {
+            "Facturen": {
+              "headTitle": "Fakturor",
+              "noInvoices": "Inga fakturor hittades"
+            },
+            "Loonstroken": "Lönespecifikationer",
+            "noPyaslips": "Inga lönespecifikationer hittades"
+          },
+          "Flexpool": {
+            "Flexpools": {
+              "headTitle": "Flexpooler",
+              "NoFlexpools": "Inga flexpooler hittades"
+            },
+            "Favorieten": {
+              "headTitle": "Favoriter",
+              "noFavorieten": "Inga favoriter hittades"
+            }
+          },
+          "Profiel": {
+            "ProfielItems": [
+              "Namn",
+              "Födelsedatum",
+              "E-postadress",
+              "Betyg",
+              "Skift",
+              "Tjänster"
+            ]
+          },
+          "Shifts": {
+            "tabs": [
+              "Anmäld",
+              "Godkänd",
+              "Avslutad"
+            ],
+            "texts": [
+              {
+                "headTitleShifts": "Anmälda skift",
+                "headTitleVacatures": "Anmälda tjänster",
+                "NoShifts": "Inga skift tillgängliga",
+                "NoVacatures": "Inga tjänster tillgängliga"
+              },
+              {
+                "headTitleShifts": "Godkända skift",
+                "headTitleVacatures": "Godkända tjänster",
+                "NoShifts": "Inga skift tillgängliga",
+                "NoVacatures": "Inga tjänster tillgängliga"
+              },
+              {
+                "headTitleShifts": "Avslutade skift",
+                "headTitleVacatures": "Avslutade tjänster",
+                "NoShifts": "Inga skift tillgängliga",
+                "NoVacatures": "Inga tjänster tillgängliga"
+              }
+            ]
+          }
+        },
+        "werkgeversPage": {
+          "Dashboard": {
+            "headTitle": "Instrumentpanel",
+            "texts": [
+              {
+                "name": "Lediga tjänster",
+                "notFound": "Inga lediga tjänster hittades"
+              },
+              {
+                "name": "Publicerade skift",
+                "notFound": "Inga skift hittades"
+              },
+              {
+                "name": "Checkouts",
+                "notFound": "Inga checkouts hittades"
+              },
+              {
+                "name": "Opublicerade skift",
+                "notFound": "Inga skift hittades"
+              },
+              {
+                "name": "Flexpooler",
+                "notFound": "Inga flexpooler hittades",
+                "modal": {
+                  "title": "Skapa flexpool",
+                  "subTitle": "Skapa flexpool",
+                  "buttons": [
+                    "Avbryt",
+                    "Lägg till"
+                  ]
+                }
+              },
+              {
+                "name": "Fakturor",
+                "notFound": "Inga fakturor hittades"
+              },
+              {
+                "name": "Skift",
+                "attributes": [
+                  "anmälningar",
+                  "platser",
+                  "godkända"
+                ],
+                "localDateString": "sv-SE",
+                "noDate": "datum ej tillgängligt"
+              },
+              {
+                "name": "Checkouts",
+                "attributes": [
+                  { "currencySign": "SEK" },
+                  "datum",
+                  "minuters paus"
+                ],
+                "buttons": [
+                  "Acceptera",
+                  "Neka"
+                ],
+                "localDateString": "sv-SE",
+                "noDate": "datum ej tillgängligt"
+              },
+              {
+                "name": "Fakturor",
+                "attributes": [
+                  "skift",
+                  "skift",
+                  "betald",
+                  "obetalda",
+                  { "currencySign": "SEK" }
+                ],
+                "localDateString": "sv-SE",
+                "noDate": "datum ej tillgängligt"
+              }
+            ]
+          },
+          "Veelgesteldevragen": {
+            "headTitle": "Vanliga frågor"
+          },
+          "Calender": {
+            "calender": {
+              "navigation": [
+                {
+                  "name": "Dag",
+                  "value": "Dag"
+                },
+                {
+                  "name": "Vecka",
+                  "value": "Vecka"
+                },
+                {
+                  "name": "Månad",
+                  "value": "Månad"
+                },
+                {
+                  "name": "År",
+                  "value": "År"
+                }
+              ],
+              "buttons": [
+                "Publicera arbetspass",
+                "Publicera jobb",
+                "Tillgänglighet",
+                "Idag"
+              ]
+            },
+            "Dag": {
+              "tekst1": "beläggning",
+              "tekst2": "Inga skift tillgängliga för detta skift.",
+              "tekst3": "Schema för",
+              "button": "Ta bort"
+            },
+            "Week": {
+              "button": "Idag"
+            },
+            "Maand": {
+              "button": "Idag",
+              "Aanmeldingen": "anmälningar",
+              "Reserveren": "boka",
+              "Aangenomen": "accepterad"
+            },
+            "Jaar": {
+              "button": "Idag",
+              "Wijzig": "Redigera",
+              "Bekijk": "Visa",
+              "Plek": "Ledig plats",
+              "Plekken": "Lediga platser"
+            }
+          }
+        }
+    },
+    "components": {
+        "cards": {
+          "ApplicationCard": {
+            "typeJob": "Flexarbete",
+            "shifts": "tjänster",
+            "localDateString": "sv-SE",
+            "ToastMessage1": "Ansökan återtagen",
+            "Toastmessage2": "Åtgärden är inte tillåten!"
+          },
+          "CheckoutCard": {
+            "ToastMessage1": "Checkout skickad! 👍",
+            "Toastmessage2": "Åtgärden är inte tillåten! ❌",
+            "localDateString": "sv-SE",
+            "gewerkteUren": "Arbetade timmar: ",
+            "minPauze": "minuters paus",
+            "accepteren": "Acceptera",
+            "weigeren": "Neka",
+            "currencySign": "SEK",
+            "shift_statussen": [
+              "tillgänglig",
+              "anmäld",
+              "accepterad",
+              "checkout nekad",
+              "checkout accepterad",
+              "skicka checkout",
+              "avvisad"
+            ]
+          },
+          "FlexpoolCard": {
+            "hvl_freelancers": "frilansare",
+            "hvl_shifts": "skift",
+            "shift": "skift"
+          },
+          "InvoiceCard": {
+            "week": "vecka",
+            "hvl_shifts": "skift",
+            "shift": "skift",
+            "currencySign": "SEK",
+            "voldaan": "betald",
+            "openstaand": "obetalda"
+          },
+          "JobCard": {
+            "ToastMessage1": "Avanmäld från tjänsten!",
+            "Toastmessage2": "Åtgärden är inte tillåten!",
+            "localDateString": "sv-SE",
+            "currencySign": "SEK",
+            "pauze": "min paus"
+          },
+          "ShiftArrayCard": {
+            "localDateString": "sv-SE",
+            "currencySign": "SEK"
+          },
+          "ShiftCard": {
+            "ToastMessage1": "Avanmäld från skiftet!",
+            "Toastmessage2": "Åtgärden är inte tillåten!",
+            "localDateString": "sv-SE",
+            "currencySign": "SEK",
+            "shift_statussen": [
+              "tillgänglig",
+              "anmäld",
+              "accepterad",
+              "checkout nekad",
+              "checkout accepterad",
+              "skicka checkout",
+              "avvisad"
+            ]
+          },
+          "VacancyCard": {
+            "localDateString": "sv-SE",
+            "currencySign": "SEK",
+            "hvl_shifts": "tjänster",
+            "hvl_sollicitaties": "ansökningar",
+            "kledingvoorschriften": [
+              "klädkod",
+              "klädkoder"
+            ],
+            "vaardigeheden": [
+              "färdighet",
+              "färdigheter"
+            ],
+            "voor": "för",
+            "tot": "till"
+          }
+        },
+        "forms": {
+          "CompanyForm": {
+            "steps": [
+              {
+                "id": "1",
+                "name": "Uppgifter",
+                "fields": [
+                  "Förnamn",
+                  "Mellannamn",
+                  "Efternamn",
+                  "Organisationsnummer"
+                ]
+              },
+              {
+                "id": "2",
+                "name": "Profil",
+                "fields": [
+                  "Visningsnamn",
+                  "Profilbild",
+                  "Beskrivning"
+                ]
+              },
+              {
+                "id": "3",
+                "name": "Färdig"
+              }
+            ],
+            "headTitle": "Företagsuppgifter",
+            "subTitle": "Fyll i uppgifterna som ska representera företaget.",
+            "bioSubtitle": "Vad får uppdragstagare veta om företaget?",
+            "final_page_header": "Välkommen till Junter!",
+            "final_page_subtitle": "Du är klar! Klicka på 'Slutför' för att avsluta processen.",
+            "buttons": [
+              "Föregående",
+              "Nästa",
+              "Slutför"
+            ],
+            "location": "Land",
+            "formItems": [
+              "Organisationsnummer",
+              "Kontaktperson / administratörens namn",
+              "Postnummer",
+              "Husnummer",
+              "Gatuadress",
+              "Stad",
+              "E-postadress",
+              "Telefonnummer",
+              "Momsregistreringsnummer (VAT-ID)",
+              "IBAN",
+              "Visningsnamn",
+              "Beskrivning",
+              "Profilbild"
+            ],
+            "optioneel": "valfritt"
+          },
+          "EmployeeForm": {
+            "steps": [
+              {
+                "id": "1",
+                "name": "Personuppgifter",
+                "fields": [
+                  "Förnamn",
+                  "Mellannamn",
+                  "Efternamn",
+                  "Födelsedatum",
+                  "Land",
+                  "Personnummer (BSN)"
+                ]
+              },
+              {
+                "id": "2",
+                "name": "Företagsuppgifter",
+                "fields": [
+                  "Organisationsnummer",
+                  "Momsregistreringsnummer (VAT-ID)",
+                  "Postnummer",
+                  "Husnummer",
+                  "Stad",
+                  "Gatuadress"
+                ]
+              },
+              {
+                "id": "3",
+                "name": "Profil",
+                "fields": [
+                  "Beskrivning",
+                  "Profilbild",
+                  "CV"
+                ]
+              },
+              {
+                "id": "4",
+                "name": "Färdig"
+              }
+            ],
+            "headTitle": "Personuppgifter",
+  "subTtitle": "Fyll i dina personuppgifter.",
+  "head2Title": "Företagsuppgifter",
+  "sub2Title": "Fyll i dina företagsuppgifter.",
+  "head3Title": "Profil",
+  "sub3Title": "Ditt visitkort till uppdragsgivare. 😁👋",
+  "Location": "Land",
+  "final_page_header": "Du är klar! Klicka på 'Slutför' för att avsluta processen.",
+  "compleet": "Slutförd",
+  "formItems": [
+    "Förnamn",
+    "Mellannamn/prefix",
+    "Efternamn",
+    "Födelsedatum",
+    "Husnummer",
+    "Postnummer",
+    "Gatunamn",
+    "Stad",
+    "Momsregistreringsnummer",
+    "IBAN",
+    "Biografi",
+    "Profilbild"
+  ],
+            "buttons": [
+              "Föregående",
+              "Nästa",
+              "Slutför"
+            ]
+          },
+          "ShiftForm": {
+            "ToastMessage1": "Opublicerat skift skapat! 👍",
+            "Toastmessage2": "Åtgärden är inte tillåten! ❌",
+            "ToastMessage3": "Det gick inte att skapa ett opublicerat skift:",
+            "selectShifts": "Välj skift",
+            "formItems": [
+              "Titel",
+              "Roll",
+              "Bild",
+              "Timlön",
+              "Adress",
+              "Startdatum",
+              "Slutdatum",
+              "Sluttid",
+              "Starttid",
+              "Paus",
+              "Beskrivning",
+              "Färdigheter",
+              "Klädkod",
+              "Lägg till skift i flexpool"
+            ],
+            "PlaceholderTexts": [
+              "entusiastiska serveringsproffs sökes",
+              "beskrivning",
+              "adress",
+              "starttid",
+              "sluttid",
+              "14",
+              "platser",
+              "svenska, engelska, bära 3 tallrikar, servera med bricka, presentera vin, hälla upp vin, ta beställningar",
+              "svarta skor, svarta byxor/kostymbyxor, vit skjorta"
+            ],
+            "buttonsTitle": [
+              "skapar skift...",
+              "skapa skift",
+              "publicerar skift...",
+              "publicera skift",
+              "uppdaterar skift...",
+              "uppdatera skift"
+            ]
+          },
+          "VacancyForm": {
+            "steps": [
+              {
+                "id": 1,
+                "name": "Jobbdetaljer",
+                "fields": [
+                  "titel",
+                  "roll",
+                  "beskrivning",
+                  "adress",
+                  "klädkod",
+                  "färdigheter",
+                  "bild"
+                ]
+              },
+              {
+                "id": 2,
+                "name": "Adress",
+                "fields": [
+                  "postnummer",
+                  "husnummer",
+                  "gatuadress",
+                  "stad"
+                ]
+              },
+              {
+                "id": 3,
+                "name": "Datum",
+                "fields": [
+                  "startdatum",
+                  "slutdatum",
+                  "starttid",
+                  "sluttid"
+                ]
+              },
+              {
+                "id": 4,
+                "name": "Timlön",
+                "fields": [
+                  "timlön",
+                  "tillägg",
+                  "tilläggstyp",
+                  "tilläggsprocent"
+                ]
+              },
+              {
+                "id": 5,
+                "name": "Färdig"
+              }
+            ],
+            "titles": [
+              {
+                "headTitle": "Jobbdetaljer",
+                "subTitle": "Beskriv tjänsten"
+              },
+              {
+                "headTitle": "Adress",
+                "subTitle": "Var ska jobbet utföras?"
+              },
+              {
+                "headTitle": "Datum",
+                "subTitle": "Vilka dagar och tider söker du personal?"
+              },
+              {
+                "headTitle": "Lön",
+                "subTitle": "Vad kommer medarbetaren att tjäna?"
+              }
+            ],
+            "placeholderTexts": [
+              "svenska, engelska, bära 3 tallrikar, servera med bricka, presentera vin, hälla upp vin, ta beställningar",
+              "svarta skor, svarta byxor/kostymbyxor, vit skjorta"
+            ],
+            "buttons": [
+              "Föregående",
+              "Nästa",
+              "Slutför"
+            ],
+            "formItems": [
+              "titel",
+              "funktion",
+              "beskrivning",
+              "bild",
+              "färdigheter",
+              "klädkod"
+            ],
+            "locatie": {
+              "fieldLabels": [
+                "Husnummer",
+                "Postnummer",
+                "Stad",
+                "Gatunamn"
+              ]
+            },
+            "data": {
+              "fieldLabels": [
+                "Fyll i arbetstider",
+                "Startdatum",
+                "Slutdatum",
+                "Starttid",
+                "Sluttid",
+                "Paus (minuter)"
+              ],
+              "buttons": [
+                "Ta bort",
+                "Lägg till arbetstid",
+                "Skicka"
+              ]
+            },
+            "salaris": {
+              "fieldLabels": [
+                "timlön (SEK)",
+                "tillägg",
+                "Använd tillägg",
+                "Tilläggstyp",
+                "Välj",
+                "Välj en typ av tillägg",
+                "Från",
+                "Till"
+              ],
+              "typeToeslag": [
+                "Vardagar",
+                "Lördag",
+                "Söndag"
+              ],
+              "percentageToeslag": [
+                "125%",
+                "150%",
+                "200%",
+                "Procenttillägg"
+              ],
+              "currencySign": "(SEK)"
+            }
+          },
+          "AvailabilityForm": {
+            "headTitle": "Tillgänglighetssammanfattning",
+            "Dates": "Datum",
+            "Times": "Tider",
+            "Categories": "Kategorier",
+            "Distance": "Avstånd",
+            "subTitle": "Fyll i din tillgänglighet",
+            "Section1": {
+              "HeadTitles": ["Datum", "Tider"],
+              "subTitle": "När är du tillgänglig?",
+              "formItems": ["En dag", "Flera dagar"]
+            },
+            "Section2": {
+              "HeadTitles": ["Kategorier", "Avstånd"],
+              "subTitles": ["Välj kategorier", "Välj avstånd"],
+              "formItems": [
+                "Kategori",
+                "Underkategori",
+                "Min nuvarande adress",
+                "Annan adress",
+                "Spelar ingen roll"
+              ],
+              "placeholderTexts": ["Husnummer", "Postnummer", "Gata", "Stad"]
+            },
+            "CancelModal": {
+              "headText": "Avbryt ändringar",
+              "subText": "Är du säker på att du vill avbryta? Alla ändringar kommer att förloras."
+            },
+            "Buttons": [
+              "Avbryt",
+              "Skicka",
+              "Ja, avbryt ändringar",
+              "Nej, fortsätt"
+            ]
+          }
+        },
+        "navigation": {
+          "Footer": {
+            "navigation": [
+              {
+                "name": "Anställda",
+                "links": [
+                  {
+                    "name": "Hur fungerar det",
+                    "href": "/employees"
+                  },
+                  {
+                    "name": "Hitta jobb",
+                    "href": "/sign-up"
+                  },
+                  {
+                    "name": "Kontakt",
+                    "href": "/contact"
+                  }
+                ]
+              },
+              {
+                "name": "Arbetsgivare",
+                "links": [
+                  {
+                    "name": "Kostnader",
+                    "href": "/pricing"
+                  },
+                  {
+                    "name": "Hitta arbetare",
+                    "href": "/sign-up"
+                  },
+                  {
+                    "name": "FAQ",
+                    "href": "/faq"
+                  }
+                ]
+              },
+              {
+                "name": "Junter",
+                "links": [
+                  {
+                    "name": "Om oss",
+                    "href": "/junter"
+                  },
+                  {
+                    "name": "Jobba hos oss",
+                    "href": "/junter"
+                  },
+                  {
+                    "name": "Partners",
+                    "href": "/junter"
+                  }
+                ]
+              },
+              {
+                "name": "Juridik",
+                "links": [
+                  {
+                    "name": "Kontakt",
+                    "href": "/contact"
+                  },
+                  {
+                    "name": "Integritetspolicy",
+                    "href": "/pp"
+                  },
+                  {
+                    "name": "Allmänna villkor",
+                    "href": "/tou"
+                  }
+                ]
+              }
+            ]
+          },
+          "Footer4": {
+            "title": "2025 Junter. Alla rättigheter förbehållna."
+          },
+          "FooterForm": {
+            "emailadres": "e-postadress"
+          },
+          "NavBar": {
+            "inloggen": "Logga in",
+            "aanmelden": "Registrera"
+          },
+          "Navigation": {
+            "dashboard": "Instrumentpanel",
+            "terug": "Tillbaka",
+            "uitloggen": "Logga ut"
+          }
+        },
+        "shared": {
+          "ApplyConfirmation": {
+            "ToastMessage1": "Anmäld till skiftet! 👍",
+            "ToastMessage2": "Åtgärden är inte tillåten! ❌"
+          },
+          "CheckoutModal": {
+            "ToastMessage1": "Checkout skickad! 👍",
+            "ToastMessage2": "Åtgärden är inte tillåten! ❌",
+            "ToastMessage3": "Oj... åtgärden misslyckades!",
+            "buttons": [
+              "Skicka checkout",
+              "Acceptera",
+              "Skicka",
+              "Stäng",
+              "Ej närvarande"
+            ],
+            "fieldLabels": [
+              "Skift slutförda",
+              "Skiftdetaljer",
+              "minuters paus",
+              "Timlön",
+              "Rapporterade timmar",
+              "Försenad"
+            ],
+            "per_Uur": "kr/tim",
+            "currencySign": "SEK",
+            "localDateString": "sv-SE"
+          },
+          "DeleteConfirmation": {
+            "DialogText": [
+              "Är du säker på att du vill ta bort skiftet?",
+              "Denna åtgärd kommer att permanent ta bort skiftet."
+            ],
+            "buttons": [
+              "Avbryt",
+              "Tar bort...",
+              "Ta bort"
+            ],
+            "ToastMessage1": "Ogiltigt skift-ID"
+          },
+          "Dienstensectie": {
+            "ToastMessage1": "Medarbetare avanmäld från tjänsten!",
+            "ToastMessage2": "Åtgärden är inte tillåten! {{string}}",
+            "buttons": [
+              "Redigera",
+              "Avboka"
+            ],
+            "fieldLabels": [
+              "Medarbetare",
+              "Bostadsort",
+              "Uppdrag",
+              "Omdömen"
+            ],
+            "voltooid": "slutförd"
+          },
+          "Dropdown": {
+            "labels": [
+              "inga flexpooler",
+              "Skapa flexpool",
+              "Flexpool"
+            ],
+            "buttons": [
+              "Avbryt",
+              "Lägg till"
+            ]
+          },
+          "DropdownCategorie": {
+            "fields": [
+              {
+                "label": "Hotell och Restaurang",
+                "items": [
+                  { "value": "Hotell och Restaurang: restauranger", "label": "restaurang" },
+                  { "value": "Hotell och Restaurang: kaféer och barer", "label": "kafé och bar" },
+                  { "value": "Hotell och Restaurang: catering", "label": "catering" },
+                  { "value": "Hotell och Restaurang: hotell", "label": "hotell" }
+                ]
+              },
+              {
+                "label": "Detaljhandel",
+                "items": [
+                  { "value": "Detaljhandel: stormarknader", "label": "stormarknad" },
+                  { "value": "Detaljhandel: klädbutiker", "label": "klädbutik" },
+                  { "value": "Detaljhandel: elektronikbutiker", "label": "elektronikbutik" },
+                  { "value": "Detaljhandel: varuhus", "label": "varuhus" }
+                ]
+              },
+              {
+                "label": "Logistik och Lager",
+                "items": [
+                  { "value": "Logistik: distributionscenter", "label": "distributionscenter" },
+                  { "value": "Logistik: leverans", "label": "leverans" },
+                  { "value": "Logistik: lager", "label": "lager" }
+                ]
+              },
+              {
+                "label": "Kundtjänst och Callcenter",
+                "items": [
+                  { "value": "Kundtjänst: telefonstöd", "label": "telefonstöd" },
+                  { "value": "Kundtjänst: kundtjänst", "label": "kundtjänst" },
+                  { "value": "Kundtjänst: chattstöd", "label": "chattstöd" }
+                ]
+              },
+              {
+                "label": "Utbildning och Läxhjälp",
+                "items": [
+                  { "value": "Utbildning: handledning", "label": "handledning" },
+                  { "value": "Utbildning: lärarassistent", "label": "lärarassistent" },
+                  { "value": "Utbildning: läxhjälp", "label": "läxhjälp" }
+                ]
+              },
+              {
+                "label": "Vård och Omsorg",
+                "items": [
+                  { "value": "Vård: hemtjänst", "label": "hemtjänst" },
+                  { "value": "Vård: vårdbiträde", "label": "vårdbiträde" },
+                  { "value": "Vård: barnomsorg", "label": "barnomsorg" }
+                ]
+              },
+              {
+                "label": "Marknadsföring och Promotion",
+                "items": [
+                  { "value": "Marknadsföring: promotionsarbete", "label": "promotionsarbete" },
+                  { "value": "Marknadsföring: marknadsundersökning", "label": "marknadsundersökning" },
+                  { "value": "Marknadsföring: sociala medier", "label": "sociala medier" }
+                ]
+              },
+              {
+                "label": "Evenemang och Underhållning",
+                "items": [
+                  { "value": "Underhållning: festivalpersonal", "label": "festivalpersonal" },
+                  { "value": "Underhållning: säkerhet", "label": "säkerhet" },
+                  { "value": "Underhållning: företag", "label": "företag" }
+                ]
+              },
+              {
+                "label": "Kreativt arbete",
+                "items": [
+                  { "value": "Kreativt: grafisk design", "label": "grafisk design" },
+                  { "value": "Kreativt: skrivande och redigering", "label": "skrivande och redigering" },
+                  { "value": "Kreativt: fotografi", "label": "fotografi" }
+                ]
+              },
+              {
+                "label": "Teknik och IT",
+                "items": [
+                  { "value": "IT: helpdeskstöd", "label": "helpdeskstöd" },
+                  { "value": "IT: webbutveckling", "label": "webbutveckling" },
+                  { "value": "IT: apputveckling", "label": "apputveckling" }
+                ]
+              },
+              {
+                "label": "Tillverkning och Industri",
+                "items": [
+                  { "value": "Tillverkning: monteringslinjer", "label": "monteringslinjer" },
+                  { "value": "Tillverkning: livsmedelsbearbetning", "label": "livsmedelsbearbetning" },
+                  { "value": "Tillverkning: produktionsassistenter", "label": "produktionsassistenter" }
+                ]
+              },
+              {
+                "label": "Jordbruk och Säsongsarbete",
+                "items": [
+                  { "value": "Jordbruk: skördearbete", "label": "skördearbete" },
+                  { "value": "Jordbruk: fruktplockning", "label": "fruktplockning" },
+                  { "value": "Jordbruk: gårdsarbete", "label": "gårdsarbete" }
+                ]
+              },
+              {
+                "label": "Administration och Kontorsarbete",
+                "items": [
+                  { "value": "Administration: dataregistrering", "label": "dataregistrering" },
+                  { "value": "Administration: administrativ assistans", "label": "administrativ assistans" },
+                  { "value": "Administration: reception", "label": "reception" }
+                ]
+              },
+              {
+                "label": "Turism och Resor",
+                "items": [
+                  { "value": "Turism: reseledare", "label": "reseledare" },
+                  { "value": "Turism: hotellreception", "label": "hotellreception" },
+                  { "value": "Turism: resebyrå", "label": "resebyrå" }
+                ]
+              },
+              {
+                "label": "Sport och Fitness",
+                "items": [
+                  { "value": "Sport: tränare", "label": "tränare" },
+                  { "value": "Sport: siminstruktör", "label": "siminstruktör" },
+                  { "value": "Sport: sportcoachning", "label": "sportcoachning" }
+                ]
+              },
+              {
+                "label": "Städning",
+                "items": [
+                  { "value": "Städning: kontor", "label": "kontor" },
+                  { "value": "Städning: skolor och utbildningsinstitutioner", "label": "utbildningsinstitutioner" },
+                  { "value": "Städning: hotell och restaurang", "label": "hotell och restaurang" },
+                  { "value": "Städning: sjukvård", "label": "sjukvård" },
+                  { "value": "Städning: evenemangsplatser", "label": "evenemangsplatser" },
+                  { "value": "Städning: detaljhandel", "label": "detaljhandel" },
+                  { "value": "Städning: offentliga utrymmen", "label": "offentliga utrymmen" },
+                  { "value": "Städning: privata hem", "label": "privata hem" },
+                  { "value": "Städning: semesterbostäder", "label": "semesterbostäder" }
+                ]
+              }
+            ],
+            "title": "Kategori",
+            "buttons": [
+              "Avbryt",
+              "Lägg till"
+            ],
+            "placeholderText": "lägg till kategori"
+          },
+          "DropdownPauze": {
+            "placeholderText": "Paus",
+            "options": [
+              { "value": "0", "label": "Ingen paus" },
+              { "value": "15", "label": "15 minuters paus" },
+              { "value": "30", "label": "30 minuters paus" },
+              { "value": "45", "label": "45 minuters paus" },
+              { "value": "60", "label": "60 minuters paus" },
+              { "value": "90", "label": "90 minuters paus" },
+              { "value": "120", "label": "120 minuters paus" }
+            ]
+          },
+          "EmployeePage": {
+            "buttons": [
+              "Avbryt",
+              "Skicka"
+            ],
+            "fieldsItems": [
+              "Tjänster",
+              "minuters paus",
+              "Ingen paus"
+            ],
+            "currencySign": "SEK",
+            "features": [
+              {
+                "name": "Lön",
+                "description": "`SEK ${vacature.uurloon} för ${diensten.length}`",
+                "icon": "BanknotesIcon"
+              },
+              {
+                "name": "Datum",
+                "description": "` Från ${vacature.begindatum} till ${vacature.einddatum}`",
+                "icon": "CalendarDateRangeIcon"
+              },
+              {
+                "name": "Adress",
+                "description": "vacature.adres",
+                "icon": "BuildingOffice2Icon"
+              },
+              {
+                "name": "Klädkod",
+                "description": "Inga specifika krav",
+                "icon": "BriefcaseIcon"
+              },
+              {
+                "name": "Färdigheter",
+                "description": "Inga färdigheter krävs",
+                "icon": "ClipboardDocumentCheckIcon"
+              }
+            ]
+          },
+          "EmployerPage": {
+            "currencySign": "SEK",
+            "features": [
+              {
+                "name": "Lön",
+                "description": "`SEK ${vacature.uurloon} för ${diensten.length}`",
+                "icon": "BanknotesIcon"
+              },
+              {
+                "name": "Datum",
+                "description": "` Från ${vacature.begindatum} till ${vacature.einddatum}`",
+                "icon": "CalendarDateRangeIcon"
+              },
+              {
+                "name": "Adress",
+                "description": "vacature.adres",
+                "icon": "BuildingOffice2Icon"
+              },
+              {
+                "name": "Klädkod",
+                "description": "Inga specifika krav",
+                "icon": "BriefcaseIcon"
+              },
+              {
+                "name": "Färdigheter",
+                "description": "Inga färdigheter krävs",
+                "icon": "ClipboardDocumentCheckIcon"
+              }
+            ]
+          },
+          "ForbiddenPage": {
+            "headTitle": "404",
+            "subTitle": "Sidan kunde inte hittas",
+            "pagetext": "Tyvärr kunde vi inte hitta sidan du letar efter.",
+            "buttons": [
+              "Till startsidan",
+              "Kontakta support"
+            ]
+          },
+          "NotFoundPage": {
+            "headTitle": "404",
+            "subTitle": "Sidan kunde inte hittas",
+            "pagetext": "Tyvärr kunde vi inte hitta sidan du letar efter.",
+            "button": "Till startsidan"
+          },
+          "SollicitatieModal": {
+            "ToastMessage1": "Medarbetare antagen för de valda tjänsterna!",
+            "ToastMessage2": "Åtgärden är inte tillåten! {{string}}",
+            "ToastMessage3": "Ansökan avvisad!",
+            "ToastMessage4": "Åtgärden är inte tillåten! {{string}}",
+            "ToastMessage5": "Medarbetare accepterad för tjänsten!",
+            "ToastMessage6": "Åtgärden är inte tillåten! {{string}}",
+            "currencySign": "€",
+            "fiedValues": [
+              "minuters paus",
+              "Ingen paus",
+              "Medarbetare",
+              "Uppdrag",
+              "Stjärnor",
+              "Beskrivning",
+              "Bostadsort",
+              "Födelsedatum",
+              "E-postadress"
+            ],
+            "buttons": [
+              "Acceptera",
+              "Bekräfta",
+              "Avvisa",
+              "Chatta med",
+              "Blockera",
+              "Favoriter",
+              "Acceptera alla",
+              "Skicka"
+            ]
+          },
+          "Sollicitaties": {
+            "headTitle": "Ansökningar",
+            "subTitle": "En lista över alla ansökningar till tjänsten.",
+            "fieldValues": [
+              "Uppdragstagare",
+              "Arbetserfarenhet",
+              "Närvaro",
+              "Punktlighet"
+            ],
+            "attributes": [
+              "uppdrag",
+              "stjärnor",
+              "anmälningar"
+            ]
+          },
+          "UitlogModal": {
+            "headtitle": "Logga ut",
+            "subTitle": "Är du säker på att du vill logga ut?",
+            "buttons": [
+              "Avbryt",
+              "Logga ut"
+            ]
+          }
+        } 
+    },
+    "Validations": {
+      "CheckoutValidations": {
+        "Begintijd": "Ange en giltig starttid.",
+        "Eindtijd": "Ange en giltig sluttid.",
+        "Pauze": "Ange längden på pausen i minuter (0 eller mer)."
+      },
+      "EmployeeValidations": {
+        "Land": "Välj ett land.",
+        "voornaam": "Förnamn krävs.",
+        "Achternaam": "Efternamn krävs.",
+        "Geboortedatum": "Ange ett giltigt födelsedatum.",
+        "Telefoonnumer": "Ange ett giltigt telefonnummer.",
+        "Emailadres": "Ange en giltig e-postadress.",
+        "IBAN": "Ange ett giltigt IBAN-nummer.",
+        "Huisnummer": "Husnummer krävs.",
+        "Postcode": "Ange ett giltigt postnummer.",
+        "Straat": "Gatunamn krävs.",
+        "Stad": "Stad krävs."
+      },
+      "EmployerValidations": {
+        "Land": "Välj ett land.",
+        "Naam": "Företagsnamn krävs.",
+        "CompanyRN": "Organisationsnummer krävs.",
+        "IBAN": "Ange ett giltigt IBAN-nummer.",
+        "Telefoonnumer": "Ange ett giltigt telefonnummer.",
+        "Emailadres": "Ange en giltig e-postadress.",
+        "Huisnummer": "Husnummer krävs.",
+        "Postcode": "Ange ett giltigt postnummer.",
+        "Straat": "Gatunamn krävs.",
+        "Stad": "Stad krävs."
+      },
+      "VacancyValidations": {
+        "Titel": "Titel krävs.",
+        "Functie": "Tjänst krävs.",
+        "Uurtarief": "Ange ett giltigt timpris.",
+        "Begindatum": "Välj ett startdatum.",
+        "Einddatum": "Välj ett slutdatum.",
+        "Huisnummer": "Husnummer krävs.",
+        "Postcode": "Ange ett giltigt postnummer.",
+        "Straat": "Gatunamn krävs.",
+        "Stad": "Stad krävs.",
+        "begintijd": "Ange en giltig starttid.",
+        "eindtijd": "Ange en giltig sluttid.",
+        "pauze": "Ange längden på pausen i minuter (0 eller mer).",
+        "beschrijving": "Beskrivning krävs."
+      },
+      "ShiftValidations": {
+        "Titel": "Titel krävs.",
+        "Functie": "Tjänst krävs.",
+        "Uurtarief": "Ange ett giltigt timpris.",
+        "Begindatum": "Välj ett startdatum.",
+        "Einddatum": "Välj ett slutdatum.",
+        "Begintijd": "Ange en giltig starttid.",
+        "Eindtijd": "Ange en giltig sluttid.",
+        "Adres": "Adress krävs.",
+        "Pauze": "Ange längden på pausen i minuter (0 eller mer).",
+        "Plekken": "Ange antalet lediga platser.",
+        "Beschrijving": "Beskrivning krävs."
+      },
+      "AvailabilityValidations": {
+        "TypeData": "Välj om du vill ange en eller flera dagar.",
+        "Data": "Välj minst ett datum.",
+        "Tijden": "Ange tillgängliga tider."
+      }
+    }
+}

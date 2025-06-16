@@ -4,17 +4,20 @@ import { useEffect, useState, useTransition } from 'react'
 import Image from 'next/image'
 import apply from "@/app/assets/images/edit.svg"
 import spinner from "@/app/assets/images/spinner.svg"
-import { haalShiftMetId, haalShiftMetIdApply, reageerShift } from '@/app/lib/actions/shift.actions'
+import { haalShiftMetIdApply, reageerShift } from '@/app/lib/actions/shift.actions'
 import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { useUser } from '@clerk/nextjs'
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
-export const ApplyConfirmation = ({ shiftId }: { shiftId: string }) => {
+export const ApplyConfirmation = async ({ shiftId, lang }: { shiftId: string } & { lang: Locale }) => {
   let [isPending, startTransition] = useTransition()
   const [userId, setUserId] = useState(''); 
   const [shift, setShift] = useState<any>(null);
   const { toast } = useToast();
   const { user, isLoaded } = useUser();
+  const { components } = await getDictionary(lang);
  
   useEffect(() => {
     if (isLoaded && user) {
@@ -49,13 +52,13 @@ export const ApplyConfirmation = ({ shiftId }: { shiftId: string }) => {
       if (reageer.success) {
         toast({
           variant: 'succes',
-          description: "Aangemeld voor de shift! 👍"
+          description: `${components.shared.ApplyConfirmation.ToastMessage1}`
         });
       }
     } catch (error: any) {
       toast({
         variant: 'destructive',
-        description: "Actie is niet toegestaan! ❌"
+        description: `${components.shared.ApplyConfirmation.ToastMessage2}`
       });
       console.log(error)
     }

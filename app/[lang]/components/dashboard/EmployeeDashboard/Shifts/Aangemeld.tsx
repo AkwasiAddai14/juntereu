@@ -8,12 +8,16 @@ import Card from '@/app/[lang]/components/shared/cards/ShiftCard';
 import { ScrollArea } from "@/app/[lang]/components/ui/scroll-area";
 import { haalSollicitatiesFreelancer } from "@/app/lib/actions/vacancy.actions";
 import ApplicationCard from "@/app/[lang]/components/shared/cards/ApplicationCard";
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
-export default function Aangemeld () {
+export default async function Aangemeld ({ lang }: { lang: Locale }) {
     const { isLoaded, user } = useUser();
     const [freelancerId, setFreelancerId] = useState<any>(null);
     const [aangemeld, setAangemeld] = useState<any[]>([]);
     const [sollicitaties, setSollicitaties] = useState <any[]>([]);
+    const { dashboard } = await getDictionary(lang);
+
 
     useEffect(() => {
         if (isLoaded && user) {
@@ -57,31 +61,31 @@ export default function Aangemeld () {
 
     return (
             <>
-                <h1 className='mb-10 items-center justify-center text-4xl'> Aangemelde shifts </h1>
+                <h1 className='mb-10 items-center justify-center text-4xl'> {dashboard.werknemersPage.Shifts.texts[0].headTitleShifts} </h1>
             <ScrollArea>
                 {aangemeld.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {aangemeld.slice(0, aangemeld.length).map((shiftItem, index) => (
-                <Card key={index} shift={shiftItem} />
+                <Card key={index} shift={shiftItem} lang={lang}/>
                 ))}
                 </div>
               ) : ( 
-                <div>Geen shifts beschikbaar</div>
+                <div>{dashboard.werknemersPage.Shifts.texts[0].NoShifts}</div>
               )
               }
               </ScrollArea>
 
             
-            <h1 className='mb-10 items-center justify-center text-4xl'> Sollicitaties </h1>
+            <h1 className='mb-10 items-center justify-center text-4xl'> {dashboard.werknemersPage.Shifts.texts[0].headTitleVacatures} </h1>
            <ScrollArea> 
             {sollicitaties.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {sollicitaties.slice(0, sollicitaties.length).map((sollicitatiesItem, index) => (
-            <ApplicationCard key={index} sollicitatie={sollicitatiesItem} />
+            <ApplicationCard key={index} sollicitatie={sollicitatiesItem} lang={lang}/>
             ))}
             </div>
             ) : (
-            <p className="text-center text-lg text-gray-500">Geen sollicitaties</p>
+            <p className="text-center text-lg text-gray-500">{dashboard.werknemersPage.Shifts.texts[0].NoVacatures}</p>
              )
             }
              </ScrollArea>

@@ -8,8 +8,16 @@ import Image from 'next/image';
 import logo from '@/app/assets/images/178884748_padded_logo.png'; 
 import foodDelivery from '@/app/assets/images/iStock-1198049220.jpg';
 
-export default async function Example({ lang }: { lang: Locale }) {
-    const { pages, navigation, footer } = await getDictionary(lang);
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
+  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+];
+
+export default async function Example({ params }: { params: { lang: string } }) {
+  const lang = supportedLocales.includes(params.lang as Locale)
+  ? (params.lang as Locale)
+  : 'en';
+  const { pages, navigation, footer } = await getDictionary(lang);
     return (
       <>
         {/*
@@ -22,7 +30,7 @@ export default async function Example({ lang }: { lang: Locale }) {
         */}
         <div className="grid min-h-full grid-cols-1 grid-rows-[1fr,auto,1fr] bg-white lg:grid-cols-[max(50%,36rem),1fr]">
           <header className="mx-auto w-full max-w-7xl px-6 pt-6 sm:pt-10 lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:px-8">
-            <a href="/">
+            <a href={`/${lang}`}>
               <span className="sr-only">Junter</span>
               <Image className="h-32 w-auto" src={logo} alt="Junter logo" /> {/* Use Image component for optimized images */}
             </a>
@@ -37,7 +45,7 @@ export default async function Example({ lang }: { lang: Locale }) {
                 {pages.notfoundPage.subText}
               </p>
               <div className="mt-10">
-                <a href="/dashboard" className="text-sm/7 font-semibold text-sky-600">
+                <a href={`/${lang}`} className="text-sm/7 font-semibold text-sky-600">
                   <span aria-hidden="true">&larr;</span> {pages.notfoundPage.button1}
                 </a>
               </div>
@@ -46,11 +54,11 @@ export default async function Example({ lang }: { lang: Locale }) {
           <footer className="self-end lg:col-span-2 lg:col-start-1 lg:row-start-3">
             <div className="border-t border-gray-100 bg-gray-50 py-10">
               <nav className="mx-auto flex w-full max-w-7xl items-center gap-x-4 px-6 text-sm/7 text-gray-600 lg:px-8">
-                <a href="/contact">{pages.notfoundPage.button2}</a>
+                <a href={`/${lang}/contact`}>{pages.notfoundPage.button2}</a>
                 <svg viewBox="0 0 2 2" aria-hidden="true" className="size-0.5 fill-gray-300">
                   <circle r={1} cx={1} cy={1} />
                 </svg>
-                <a href="/dashboard">{pages.notfoundPage.button3}</a>
+                <a href={`/${lang}/dashboard`}>{pages.notfoundPage.button3}</a>
               </nav>
             </div>
           </footer>

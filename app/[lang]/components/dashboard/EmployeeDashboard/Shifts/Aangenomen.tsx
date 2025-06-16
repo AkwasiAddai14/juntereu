@@ -9,12 +9,15 @@ import { haalAangemeld } from "@/app/lib/actions/shift.actions"
 import Card from '@/app/[lang]/components/shared/cards/ShiftCard';
 import { ScrollArea } from "@/app/[lang]/components/ui/scroll-area";
 import { haalDienstenFreelancer } from "@/app/lib/actions/vacancy.actions";
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
-export default function Aangenomen () {
+export default async function Aangenomen ({ lang }: { lang: Locale }) {
     const { isLoaded, user } = useUser();
     const [freelancerId, setFreelancerId] = useState<any>(null);
     const [geaccepteerd, setGeaccepteerd] = useState<any[]>([]);
     const [diensten, setDiensten] = useState<any[]>([]);
+    const { dashboard } = await getDictionary(lang);
 
     useEffect(() => {
         if (isLoaded && user) {
@@ -57,32 +60,32 @@ export default function Aangenomen () {
 
     return (
         <>
-        <h1 className='mb-10 items-center justify-center text-4xl'> Aangemelde shifts </h1>
+        <h1 className='mb-10 items-center justify-center text-4xl'> {dashboard.werknemersPage.Shifts.texts[1].headTitleShifts} </h1>
         <ScrollArea>
 
         {geaccepteerd.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {geaccepteerd.slice(0, geaccepteerd.length).map((shiftItem, index) => (
-              <Card key={index} shift={shiftItem} />
+              <Card key={index} shift={shiftItem} lang={lang}/>
               ))}
               </div>
             ) : ( 
-              <div>Geen shifts beschikbaar</div>
+              <div>{dashboard.werknemersPage.Shifts.texts[1].NoShifts}</div>
                 )
         }
               </ScrollArea>
 
 
-        <h1 className='mb-10 items-center justify-center text-4xl'> Aangemelde shifts </h1>
+        <h1 className='mb-10 items-center justify-center text-4xl'> {dashboard.werknemersPage.Shifts.texts[1].headTitleVacatures} </h1>
         <ScrollArea>
     {diensten.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {diensten.slice(0, diensten.length).map((dienstenItem, index) => (
-            <JobCard key={index} dienst={dienstenItem} />
+            <JobCard key={index} dienst={dienstenItem} lang={lang}/>
              ))}
             </div>
           ) : (
-                    <p className="text-center text-lg text-gray-500">Geen diensten</p>
+                    <p className="text-center text-lg text-gray-500">{dashboard.werknemersPage.Shifts.texts[1].NoVacatures}</p>
         )} 
         </ScrollArea>
         </>  

@@ -1,8 +1,11 @@
-import { MenuButton, MenuItems, MenuItem, Field, Label, Switch } from '@headlessui/react'
-import { CodeBracketIcon, EllipsisVerticalIcon, FlagIcon, PaperClipIcon, StarIcon } from '@heroicons/react/20/solid'
-import { Menu } from 'lucide-react'
+import { MenuButton, MenuItems, MenuItem, Field, Label, Switch } from '@headlessui/react';
+import { CodeBracketIcon, EllipsisVerticalIcon, FlagIcon, PaperClipIcon, StarIcon } from '@heroicons/react/20/solid';
+import { Menu } from 'lucide-react';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
-export default function Profiel() {
+export default async function Profiel({ lang }: { lang: Locale }) {
+  const { dashboard } = await getDictionary(lang);
   return (
 <>
       <div className="px-4 sm:px-0">
@@ -12,47 +15,57 @@ export default function Profiel() {
       <div className="mt-6 border-t border-gray-100">
         <dl className="divide-y divide-gray-100">
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm/6 font-medium text-gray-900">Full name</dt>
+            <dt className="text-sm/6 font-medium text-gray-900">{dashboard.werknemersPage.Profiel.ProfielItems[0]}</dt> //Naam
             <dd className="mt-1 flex text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
               <span className="grow">Margot Foster</span>
               <span className="ml-4 shrink-0">
-                <button type="button" className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500">
+                <button type="button" className="rounded-md bg-white font-medium text-sky-600 hover:text-sky-500">
                   Update
                 </button>
               </span>
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm/6 font-medium text-gray-900">Application for</dt>
+            <dt className="text-sm/6 font-medium text-gray-900">{dashboard.werknemersPage.Profiel.ProfielItems[1]}</dt> //geboortedatum
             <dd className="mt-1 flex text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
               <span className="grow">Backend Developer</span>
               <span className="ml-4 shrink-0">
-                <button type="button" className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500">
+                <button type="button" className="rounded-md bg-white font-medium text-sky-600 hover:text-sky-500">
                   Update
                 </button>
               </span>
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm/6 font-medium text-gray-900">Email address</dt>
+            <dt className="text-sm/6 font-medium text-gray-900">{dashboard.werknemersPage.Profiel.ProfielItems[2]}</dt> /* Emaildres */
             <dd className="mt-1 flex text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
               <span className="grow">margotfoster@example.com</span>
               <span className="ml-4 shrink-0">
-                <button type="button" className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500">
+                <button type="button" className="rounded-md bg-white font-medium text-sky-600 hover:text-sky-500">
                   Update
                 </button>
               </span>
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm/6 font-medium text-gray-900">Salary expectation</dt>
+            <dt className="text-sm/6 font-medium text-gray-900">{dashboard.werknemersPage.Profiel.ProfielItems[3]}</dt> // rating
             <dd className="mt-1 flex text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
               <span className="grow">$120,000</span>
-              <span className="ml-4 shrink-0">
-                <button type="button" className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500">
-                  Update
-                </button>
-              </span>
+           
+            </dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm/6 font-medium text-gray-900">{dashboard.werknemersPage.Profiel.ProfielItems[4]}</dt> // shifts
+            <dd className="mt-1 flex text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <span className="grow">$120,000</span>
+             
+            </dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm/6 font-medium text-gray-900">{dashboard.werknemersPage.Profiel.ProfielItems[5]}</dt> // diensten
+            <dd className="mt-1 flex text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <span className="grow">$120,000</span>
+              
             </dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
@@ -64,7 +77,7 @@ export default function Profiel() {
                 nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
               </span>
               <span className="ml-4 shrink-0">
-                <button type="button" className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500">
+                <button type="button" className="rounded-md bg-white font-medium text-sky-600 hover:text-sky-500">
                   Update
                 </button>
               </span>
@@ -85,7 +98,7 @@ export default function Profiel() {
                   <div className="ml-4 flex shrink-0 space-x-4">
                     <button
                       type="button"
-                      className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500"
+                      className="rounded-md bg-white font-medium text-sky-600 hover:text-sky-500"
                     >
                       Update
                     </button>
@@ -108,7 +121,7 @@ export default function Profiel() {
                   <div className="ml-4 flex shrink-0 space-x-4">
                     <button
                       type="button"
-                      className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500"
+                      className="rounded-md bg-white font-medium text-sky-600 hover:text-sky-500"
                     >
                       Update
                     </button>

@@ -1,5 +1,7 @@
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
+import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 const faqs = [
   {
@@ -10,13 +12,14 @@ const faqs = [
   // More questions...
 ]
 
-export default function Example() {
+export default async function Example({ lang }: { lang: Locale }) {
+  const { dashboard } = await getDictionary(lang);
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Frequently asked questions
+            {dashboard.werkgeversPage.Veelgesteldevragen.headTitle}
           </h2>
           <dl className="mt-16 divide-y divide-gray-900/10">
             {faqs.map((faq) => (

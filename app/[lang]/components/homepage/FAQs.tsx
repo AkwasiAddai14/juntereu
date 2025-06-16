@@ -77,12 +77,11 @@ export async function Faqs({ lang }: { lang: Locale }) {
           <p className="mt-2 text-lg text-gray-600">
          {pages.landingsPage.faqs.subText1}{' '}
             <a
-              href="mailto:info@example.com"
+              href="mailto:info@junter.works"
               className="text-gray-900 underline"
             >
               {pages.landingsPage.faqs.subtext2}
             </a>
-            .
           </p>
         </div>
         <ul

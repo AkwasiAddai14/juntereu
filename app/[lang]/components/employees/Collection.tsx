@@ -1,10 +1,11 @@
 "use client"
 
-import { ShiftType } from '@/app/lib/models/shift.model'
-import React from 'react'
-import Card from '@/app/[lang]/components/shared/cards/ShiftArrayCard'
-import Pagination from '@/app/[lang]/components/employees/Pagination'
-import { IShiftArray } from '@/app/lib/models/shiftArray.model'
+import React from 'react';
+import Card from '@/app/[lang]/components/shared/cards/ShiftArrayCard';
+import { IShiftArray } from '@/app/lib/models/shiftArray.model';
+import Pagination from './Pagination';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 type CollectionProps = {
   data: IShiftArray[],
@@ -25,7 +26,8 @@ const Collection = ({
   totalPages = 36,
   collectionType,
   urlParamName,
-}: CollectionProps) => {
+  lang
+}: CollectionProps & { lang: Locale }) => {
   return (
     <>
       {data.length > 0 ? (
@@ -37,15 +39,15 @@ const Collection = ({
 
               return (
                 <li key={shift._id as string} className="flex justify-center">
-                  <Card shift={shift} />
+                  <Card shift={shift} lang={lang}/>
                 </li>
               )
             })}
           </ul>
 
-          {/* {totalPages > 1 && (
+          {totalPages > 1 && (
             <Pagination urlParamName={urlParamName} page={page} totalPages={totalPages} />
-          )} */}
+          )} 
         </div>
       ): (
         <div className="flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">

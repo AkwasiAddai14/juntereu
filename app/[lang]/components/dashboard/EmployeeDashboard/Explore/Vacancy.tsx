@@ -14,6 +14,8 @@ import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import { Button } from '@/app/[lang]/components/ui/button'
 import { Calendar } from "@/app/[lang]/components/ui/calender"
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 const MAX = 100;
 const MIN = 0;
@@ -40,7 +42,7 @@ const distancemarks = [
 ];
 
 
-export default function Vacancy () {
+export default async function Vacancy ({ lang }: { lang: Locale }) {
     const { isLoaded, user } = useUser();
     const [freelancerId, setFreelancerId] = useState<any>(null);
     const [vacatures, setVacatures] = useState<IVacancy[]>([]);
@@ -48,6 +50,7 @@ export default function Vacancy () {
     const [tarief, setTarief] = useState<number>(14);
     const [afstand, setAfstand] = useState<number>(5);
     const [euroVal, setEuroVal] = React.useState<number>(MIN);
+    const { dashboard } = await getDictionary(lang);
   const handleUurtariefChange = (_: Event, newValue: number | number[]) => {
     setEuroVal(newValue as number);
     setTarief(euroVal);
@@ -110,16 +113,16 @@ export default function Vacancy () {
 
     return (
       <>
-            <h1 className='mb-10 items-center justify-center text-4xl'>Vacatures</h1>
+            <h1 className='mb-10 items-center justify-center text-4xl'>{dashboard.werknemersPage.Explore.VacaturePagina.headTitle}</h1>
         <ScrollArea>
             {vacatures.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {vacatures.slice(0, Vacancy.length).map((vacaturesItem, index) => (
-        <VacancyCard key={index} vacature={vacaturesItem} />
+        <VacancyCard key={index} vacature={vacaturesItem} lang={lang}/>
       ))}
     </div>
   ) : (
-    <p className="text-center text-lg text-gray-500">Geen vacatures beschikbaar</p>
+    <p className="text-center text-lg text-gray-500">{dashboard.werknemersPage.Explore.VacaturePagina.NoVacatures}</p>
   )}
     </ScrollArea>
     <aside className="fixed bottom-0 left-20 top-16 hidden w-96 overflow-y-auto border-r border-gray-200 px-4 py-6 sm:px-6 lg:px-8 xl:block">
@@ -133,7 +136,7 @@ export default function Vacancy () {
         />
       </div>
       <div>
-        <p className="mt-20">Tarief</p>
+        <p className="mt-20">{dashboard.werknemersPage.Explore.filter[1]}</p>
         <Box sx={{ width: 250 }}>
           <Slider
             marks={euromarks}
@@ -162,7 +165,7 @@ export default function Vacancy () {
           </Box>
         </Box>
       </div>
-      <p className="mt-20">Afstand</p>
+      <p className="mt-20">{dashboard.werknemersPage.Explore.filter[1]}</p>
       <Box sx={{ width: 250 }}>
         <Slider
           marks={distancemarks}
@@ -192,10 +195,10 @@ export default function Vacancy () {
       </Box>
       <div className="justify-between">
         <Button className="mt-20 bg-white text-black border-2 border-black mr-10" onClick={() => setPosition("Shifts")}>
-          Reset
+          {dashboard.werknemersPage.Explore.buttons[1]}
         </Button>
         <Button className="mt-20 bg-sky-500" onClick={() => setPosition('Filter')}>
-          Zoek
+        {dashboard.werknemersPage.Explore.buttons[0]}
         </Button>
       </div>
     </div>

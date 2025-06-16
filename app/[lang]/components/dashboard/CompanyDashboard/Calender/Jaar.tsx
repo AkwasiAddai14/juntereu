@@ -13,6 +13,8 @@ import { fetchBedrijfByClerkId } from "@/app/lib/actions/employer.actions";
 import { IJob } from '@/app/lib/models/job.model';
 import { haalGeplaatsteDiensten } from '@/app/lib/actions/vacancy.actions';
 import LeButton from './LeButton';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(' ')
@@ -70,7 +72,7 @@ interface Event {
   href: string;
 }
 
-export default function Example() {
+export default async function Example({ lang }: { lang: Locale }) {
   const { isLoaded, user } = useUser();
   const [year, setYear] = useState(new Date().getFullYear());
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
@@ -79,7 +81,7 @@ export default function Example() {
   const [shifts, setShifts] = useState<IShiftArray[]>([]);
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
   const [bedrijfiD, setBedrijfiD] = useState<string>("");
-
+  const { dashboard } = await getDictionary(lang);
   const today = format(new Date(), 'yyyy-MM-dd');
   const startDate = startOfWeek(startOfMonth(currentMonth), { weekStartsOn: 1 })
   const endDate = endOfWeek(endOfMonth(currentMonth), { weekStartsOn: 1 })
@@ -355,16 +357,16 @@ export default function Example() {
                    
                     {event.begintijd} - {event.eindtijd}
                   </time>
-                  <p className="font-semibold text-gray-900">{event.aanmeldingen} aanmeldingen |  
+                  <p className="font-semibold text-gray-900">{event.aanmeldingen} {dashboard.werkgeversPage.Calender.Maand.Aanmeldingen} |  
                   {event.plekken === 1 ? (
-                      ` ${event.plekken} plek`
+                      ` ${event.plekken} ${dashboard.werkgeversPage.Calender.Jaar.Plek}`
                     ) : (
-                      ` ${event.plekken} plekken`
-                    )} | {event.aangenomen} aangenomen | {event.reserven} reserven                
+                      ` ${event.plekken} ${dashboard.werkgeversPage.Calender.Jaar.Plekken}`
+                    )} | {event.aangenomen} {dashboard.werkgeversPage.Calender.Maand.Aangenomen} | {event.reserven} {dashboard.werkgeversPage.Calender.Maand.Reserveren}                
                   </p> 
                 </div>
-                <LeButton link={event.href} buttonText="Wijzig" />
-                <LeButton link={`/dashboard/shift/bedrijf/${event.id}`} buttonText="Bekijk" />
+                <LeButton link={event.href} buttonText={dashboard.werkgeversPage.Calender.Jaar.Wijzig} />
+                <LeButton link={`/dashboard/shift/bedrijf/${event.id}`} buttonText={dashboard.werkgeversPage.Calender.Jaar.Bekijk} />
               </li>
             ))}
           </ol>

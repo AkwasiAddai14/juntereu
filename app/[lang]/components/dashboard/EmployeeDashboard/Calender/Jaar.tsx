@@ -11,6 +11,8 @@ import { IShiftArray } from '@/app/lib/models/shiftArray.model'
 import { haalGeplaatsteShifts } from '@/app/lib/actions/shiftArray.actions';
 import { fetchBedrijfByClerkId } from "@/app/lib/actions/employer.actions";
 import { IJob } from '@/app/lib/models/job.model';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 import { haalGeplaatsteDiensten } from '@/app/lib/actions/vacancy.actions';
 import LeButton from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/LeButton';
 
@@ -70,7 +72,7 @@ interface Event {
   href: string;
 }
 
-export default function Example() {
+export default async function Example({ lang }: { lang: Locale }) {
   const { isLoaded, user } = useUser();
   const [year, setYear] = useState(new Date().getFullYear());
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
@@ -79,6 +81,7 @@ export default function Example() {
   const [shifts, setShifts] = useState<IShiftArray[]>([]);
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
   const [bedrijfiD, setBedrijfiD] = useState<string>("");
+  const { dashboard } = await getDictionary(lang);
 
   const today = format(new Date(), 'yyyy-MM-dd');
   const startDate = startOfWeek(startOfMonth(currentMonth), { weekStartsOn: 1 })

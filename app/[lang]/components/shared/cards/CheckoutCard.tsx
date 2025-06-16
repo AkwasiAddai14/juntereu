@@ -6,16 +6,19 @@ import { ShiftType } from '@/app/lib/models/shift.model';
 import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { accepteerCheckout } from '@/app/lib/actions/checkout.actions';
 import { useRouter } from 'next/navigation';
+import { Locale } from '@/i18n.config'
+import { getDictionary } from '@/app/[lang]/dictionaries'
 
 
 type CardProps = {
   shift: ShiftType;
 };
 
-const Card = ({ shift }: CardProps) => {
+const Card = async ({ shift, lang }: CardProps & { lang: Locale }) => {
   const { toast } = useToast();
   const router = useRouter();
   const [showCheckout, setShowCheckout] = useState(false);
+  const { components } = await getDictionary(lang);
 
 
   const backgroundImageUrl = shift.employeeProfilephoto;
@@ -35,24 +38,39 @@ const Card = ({ shift }: CardProps) => {
       if (response.success) {
         toast({
           variant: 'succes',
-          description: "Checkout verstuurd! 👍"
+          description: `${components.cards.CheckoutCard.ToastMessage1}`
         });
         router.refresh();
       } else {
         toast({
           variant: 'destructive',
-          description: "Actie is niet toegestaan! ❌"
+          description: `${components.cards.CheckoutCard.Toastmessage2}`
         });
       }
     } catch (error) {
       console.error('Failed to submit checkout:', error);
   } 
 }
+
+function berekenGewerkteUren(begintijd: string, eindtijd: string, pauzeMinuten: number = 0): number {
+  const [beginUur, beginMinuut] = begintijd.split(':').map(Number);
+  const [eindUur, eindMinuut] = eindtijd.split(':').map(Number);
+
+  const beginInMinuten = beginUur * 60 + beginMinuut;
+  const eindInMinuten = eindUur * 60 + eindMinuut;
+
+  let totaalMinuten = eindInMinuten - beginInMinuten - pauzeMinuten;
+
+  if (totaalMinuten < 0) {
+    throw new Error("Eindtijd mag niet eerder zijn dan begintijd");
+  }
+
+  return Math.max(0, totaalMinuten / 60); // Afronding op uren
+}
   
 
   return (
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
-      
       <Link 
     href={`/dashboard/checkout/bedrijf/${shift._id}`}
     style={{ backgroundImage: `url(${backgroundImageUrl})` }}
@@ -61,21 +79,21 @@ const Card = ({ shift }: CardProps) => {
           <p className="p-medium-16 md:p-medium-20 line-clamp-1 flex-1 text-black">{opdrachtNemerNaam}</p>
         
       <div className="flex min-h-[230px] flex-col gap-3 py-5 px-3 md:gap-4">
-        {/* <div className="flex gap-2">
+        <div className="flex gap-2">
           <span className="p-semibold-14 w-min rounded-full line-clamp-1 bg-green-100 px-4 py-1 text-green-60">
-            €{shift.uurtarief}
+            {components.cards.CheckoutCard.currencySign}{shift.hourlyRate}
           </span>
           <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1">
-            {shift.functie}
+            {shift.function}
           </p>
-        </div> */}
+        </div>
          <p className="p-medium-16 p-medium-18 text-grey-500">
             {shift.title}
           </p> 
         <div className="flex-between w-full">
         <Link href={`/dashboard/shift/bedrijf/${shift.shiftArrayId}`}>
           <p className="p-medium-16 p-medium-18 text-grey-500">
-          {new Date(shift.startingDate).toLocaleDateString('nl-NL')}
+          {new Date(shift.startingDate).toLocaleDateString(`${components.cards.CheckoutCard.localDateString}`)}
           </p>
           </Link>
           <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-500">
@@ -85,8 +103,9 @@ const Card = ({ shift }: CardProps) => {
         
         
         <div className="flex-between w-full">
-          Gewerkte uren:
+          {components.cards.CheckoutCard.gewerkteUren}
           <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-500">
+          {berekenGewerkteUren(shift.checkoutstarting, shift.checkoutending, shift.checkoutpauze as unknown as number)} ;
           </p> 
         </div>
 
@@ -95,18 +114,18 @@ const Card = ({ shift }: CardProps) => {
           {shift.checkoutstarting} - {shift.checkoutending}
           </p> 
           <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-300">
-          {shift.checkoutpauze} minuten pauze
+          {shift.checkoutpauze} {components.cards.CheckoutCard.minPauze}
           </p> 
         </div>
 
         <div className="flex-between w-full">
-                        <button onClick={() => router.push(`/dashboard/checkout/bedrijf/${shift._id}`)} className="inline-flex ml-2 items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-green-600/20">
-                          Weigeren
-                        </button>
-        <button onClick={() => handleCheckoutAcceptance(shift._id)}
-                       className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                          Accepteren
-                        </button>
+            <button onClick={() => router.push(`/dashboard/checkout/bedrijf/${shift._id}`)} className="inline-flex ml-2 items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">
+              {components.cards.CheckoutCard.weigeren}
+            </button>
+            <button onClick={() => handleCheckoutAcceptance(shift._id)}
+              className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+              {components.cards.CheckoutCard.accepteren}
+            </button>
         </div>
       </div>
     </div>

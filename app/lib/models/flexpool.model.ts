@@ -2,21 +2,21 @@ import mongoose, { Document, Model, Schema } from 'mongoose';
 
 export interface IFlexpool extends Document {
   titel: string;
-  bedrijf: mongoose.Schema.Types.ObjectId;
-  freelancers: mongoose.Schema.Types.ObjectId[];
+  employer: mongoose.Schema.Types.ObjectId;
+  employees: mongoose.Schema.Types.ObjectId[];
   shifts: mongoose.Schema.Types.ObjectId[];
 }
 
 const flexpoolSchema: Schema<IFlexpool> = new mongoose.Schema({
   titel: { type: String, required: true },
-  bedrijf: {
+  employer: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Bedrijf',
+    ref: 'Employer',
     required: true,
   },
-  freelancers: [{
+  employees: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Freelancer',
+    ref: 'Employee',
     default: []
   }],
   shifts: [{

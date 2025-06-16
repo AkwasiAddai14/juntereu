@@ -5,17 +5,20 @@ import React, { useEffect, useState } from 'react';
 import { fetchBedrijfDetails, isBedrijf } from '@/app/lib/actions/employer.actions';
 import { Iinvoice} from '@/app/lib/models/invoice.model';
 import Link from 'next/link';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
 type CardProps = {
   factuur:  Iinvoice
 }
 
-const Card = ({ factuur }: CardProps) => {
+const Card = async ({ factuur, lang }: CardProps & { lang: Locale }) => {
   const { user } = useUser();
   const userId = user?.id as string;
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | undefined>(false);
   const [bedrijfDetails, setBedrijfsdetails] = useState<any>(null);
+  const { components } = await getDictionary(lang);
   // const [linkHref, setLinkHref] = useState<string | null>('');
 
   const bedrijfCheck = async () => {
@@ -83,25 +86,25 @@ bedrijfCheck()
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
         <div className="flex gap-2">
           <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-            Week {factuur.week} 
+            {components.cards.InvoiceCard.week} {factuur.week} 
           </p>
         </div>
         <div>
         {factuur.shifts.length === 1 ? (
                    <>
                <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-                 {factuur.shifts.length} shift 
+                 {factuur.shifts.length} {components.cards.InvoiceCard.shift} 
                </p>
              </>
             ) : (
               <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-                {factuur.shifts.length} shifts
+                {factuur.shifts.length} {components.cards.InvoiceCard.hvl_shifts}
               </p>
             )}
           </div>
         <div className="flex-between w-full">
           <p className="p-medium-14 md:p-medium-16 text-grey-600">
-            € {factuur.totalAmount}
+           {components.cards.InvoiceCard.currencySign} {factuur.totalAmount}
           </p>
           <p className="p-medium-14 md:p-medium-16 text-grey-600">
             {factuur.isCompleted ? "voldaan" : "openstaand"}

@@ -18,6 +18,8 @@ import LeButton from '@/app/[lang]/components/dashboard/CompanyDashboard/Calende
 import { PersonIcon } from '@radix-ui/react-icons';
 import { IJob } from '@/app/lib/models/job.model';
 import { haalGeplaatsteDiensten } from '@/app/lib/actions/vacancy.actions';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
 
@@ -25,13 +27,14 @@ function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-const CalenderM = () => {
+const CalenderM = async ({ lang }: { lang: Locale }) => {
   const { isLoaded, user } = useUser();
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
   const [selectedDay, setSelectedDay] = useState<Day | null>(null);
   const [shifts, setShifts] = useState<IShiftArray[]>([]);
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
   const [bedrijfiD, setBedrijfiD] = useState<string>("");
+  const { dashboard } = await getDictionary(lang);
 
   useEffect(() => {
     if (isLoaded && user) {
@@ -273,12 +276,12 @@ days.forEach((day) => {
                     {day.events.slice(0, 2).map((event) => (
                       <li key={event.id}>
                         <a href={event.href} className="group flex">
-                          <p className="flex-auto truncate font-small text-gray-900 group-hover:text-indigo-600">
+                          <p className="flex-auto truncate font-small text-gray-900 group-hover:text-sky-600">
                           {event.begintijd} - {event.eindtijd}
                           </p>
                           <time
                             dateTime={event.datetime}
-                            className="ml-3 hidden flex-none text-gray-500 group-hover:text-indigo-600 xl:block"
+                            className="ml-3 hidden flex-none text-gray-500 group-hover:text-sky-600 xl:block"
                           >
                             {event.aanmeldingen} / {event.plekken}
                           </time>

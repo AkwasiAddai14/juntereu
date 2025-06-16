@@ -22,6 +22,8 @@ import LeButton from '@/app/[lang]/components/dashboard/CompanyDashboard/Calende
 import ElButton from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/ElButton';
 import { IJob } from '@/app/lib/models/job.model';
 import { haalGeplaatsteDiensten } from '@/app/lib/actions/vacancy.actions';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
 function classNames(...classes: (string | boolean | undefined)[]) {
@@ -30,7 +32,7 @@ function classNames(...classes: (string | boolean | undefined)[]) {
 
   
 
-    const CalenderD = () => {
+    const CalenderD = async ({ lang }: { lang: Locale }) => {
 
   const { isLoaded, user } = useUser();
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
@@ -38,6 +40,7 @@ function classNames(...classes: (string | boolean | undefined)[]) {
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
   const [bedrijfiD, setBedrijfiD] = useState<string>("");
   const [selectedDay, setSelectedDay] = useState<Date>(new Date());
+  const { dashboard } = await getDictionary(lang);
   const router = useRouter()
 
   useEffect(() => {

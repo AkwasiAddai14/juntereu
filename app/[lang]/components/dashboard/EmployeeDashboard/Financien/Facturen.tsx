@@ -6,10 +6,13 @@ import { useEffect, useState } from "react";
 import { ScrollArea } from "@/app/[lang]/components/ui/scroll-area";
 import FactuurCard from '@/app/[lang]/components/shared/cards/InvoiceCard'; 
 import { haalFacturenFreelancer } from "@/app/lib/actions/invoice.actions";
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
-export default function Financien () {
+export default async function Financien ({ lang }: { lang: Locale }) {
   const { isLoaded, user } = useUser();
   const [factuur, setFactuur] = useState<any[]>([]);
+  const { dashboard } = await getDictionary(lang);
   const [freelancerId, setFreelancerId] = useState<any>(null);
 
   useEffect(() => {
@@ -33,17 +36,17 @@ export default function Financien () {
 
     return (
       <>
-      <h1 className='mb-10 items-center justify-center text-4xl'> Facturen </h1>
+      <h1 className='mb-10 items-center justify-center text-4xl'> {dashboard.werknemersPage.Financien.Facturen.headTitle} </h1>
       <ScrollArea>
               {factuur.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {factuur.slice(0, factuur.length).map((factuurItem, index) => (
-                  <FactuurCard key={index} factuur={factuurItem} />
+                  <FactuurCard key={index} factuur={factuurItem} lang={lang}/>
                   ))}
                   </div>
                 ) : ( 
                   <div>
-                 Geen facturen gevonden
+                 {dashboard.werknemersPage.Financien.Facturen.noInvoices}
                 </div> 
                 )
               } 

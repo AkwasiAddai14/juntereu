@@ -1,9 +1,9 @@
 
 
 import Image from 'next/image'; 
-import supermarkt from '@/app/assets/images/iStock-1298571081.jpg'
-import { Locale } from '@/i18n.config'
-import { getDictionary } from '@/app/[lang]/dictionaries'
+import supermarkt from '@/app/assets/images/iStock-1298571081.jpg';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 
 const stats = [
     { label: 'Opdrachtnemers', value: '4000+' },
@@ -98,7 +98,7 @@ const stats = [
                 ))}
               </dl>
               <div className="mt-10 flex">
-                <a href="../sign-up" className="text-base/7 font-semibold text-sky-600">
+                <a href={`../${lang}/sign-up`} className="text-base/7 font-semibold text-sky-600">
                   {pages.landingsPage.hero.content.ctaButton} <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>

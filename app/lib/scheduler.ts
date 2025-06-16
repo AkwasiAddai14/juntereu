@@ -1,6 +1,6 @@
 import cron from 'node-cron';
-import { connectToDB } from './mongoose.ts'// Update with your DB connection path
-import Freelancer from './models/freelancer.model'; // Update with your Freelancer model path
+import { connectToDB } from '@/app/lib/mongoose'// Update with your DB connection path
+import Employee from '@/app/lib/models/employee.model'; // Update with your Freelancer model path
 import { afrondenShift } from './actions/shift.actions'; // Update with your afrondenShift function path
 
 async function checkAndCompleteShifts() {
@@ -8,7 +8,7 @@ async function checkAndCompleteShifts() {
         await connectToDB();
 
         // Find all freelancers with shifts
-        const freelancers = await Freelancer.find({ 'shifts.0': { $exists: true } });
+        const freelancers = await Employee.find({ 'shifts.0': { $exists: true } });
 
         for (const freelancer of freelancers) {
             // Iterate through freelancer's shifts

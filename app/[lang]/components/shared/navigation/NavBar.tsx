@@ -1,48 +1,57 @@
 "use client"
 
-import Link from 'next/link'
-import { Locale } from '@/i18n.config'
-import { getDictionary } from '@/app/[lang]/dictionaries'
-import LocaleSwitcher from '@/app/[lang]/components/shared/LocaleSwitcher'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { Dialog, Disclosure, DisclosureButton, DisclosurePanel, Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/react'
-import { useState } from 'react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 import Image from 'next/image'; 
+import { useState } from 'react';
+import Flag from 'react-flagpack';
+import { Locale } from '@/i18n.config';
+import { Dialog, Disclosure, 
+  DisclosureButton, DisclosurePanel, 
+  Popover, PopoverButton, PopoverGroup, 
+  PopoverPanel } from '@headlessui/react';
+import { getDictionary } from '@/app/[lang]/dictionaries';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import LocaleSwitcher from '@/app/[lang]/components/shared/LocaleSwitcher';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from '@/app/assets/images/178884748_padded_logo.png'; 
+import  delivery  from "@/app/assets/images/iStock-1824077027.jpg";
+// import ReactCountryFlag from "react-country-flag";
 
 
 
   const countries = [
-    { name: 'United Kingdom', description: 'English', href: '/[en]', icon: '🇬🇧' },
-    { name: 'Nederland', description: 'Nederlands', href: 'https://nl.junter.eu', icon: '🇳🇱' },
-    { name: 'France', description: 'Français', href: '/[fr]', icon: '🇫🇷' },
-    { name: 'Italia', description: 'Italiano', href: '/[it]', icon: '🇮🇹' },
-    { name: 'België', description: 'Nederlands', href: 'https://nl.junter.eu', icon: '🇧🇪' },
-    { name: 'Belgique', description: 'Français', href: '/[fr]', icon: '🇧🇪' },
-    { name: 'España', description: 'Español', href: '/[es]', icon: '🇪🇸' },
-    { name: 'Portugal', description: 'Português', href: '/[pt]', icon: '🇵🇹' },
-    { name: 'Deutschland', description: 'Deutsch', href: '/[de]', icon: '🇩🇪' },
-    { name: 'Sverige', description: 'Svenska', href: '/[sw]', icon: '🇸🇪' },
-    { name: 'Danmark', description: 'Dansk', href: '/[dk]', icon: '🇩🇰' },
-    { name: 'Norge', description: 'Norsk', href: '/[no]', icon: '🇳🇴' },
-    { name: 'Suomi', description: 'Suomeksi', href: '/[fi]', icon: '🇫🇮' },
-    { name: 'الإمارات العربية المتحدة', description: 'عربي', href: '/[ar]', icon: '🇦🇪' },
+    { name: 'United Kingdom', description: 'English', href: '/en', flag: 'GBR' },
+    { name: 'Nederland', description: 'Nederlands', href: 'https://nl.junter.eu', flag: 'NLD' },
+    { name: 'France', description: 'Français', href: '/fr', flag: 'FRA' },
+    { name: 'Deutschland', description: 'Deutsch', href: '/de', flag: 'DEU' },
+    { name: 'Osterreich', description: 'Deutsch', href: '/os', flag: 'AUT' },
+    { name: 'Italia', description: 'Italiano', href: '/it', flag: 'ITA' },
+    { name: 'España', description: 'Español', href: '/es', flag: 'ESP' },
+    { name: 'Portugal', description: 'Português', href: '/pt', flag: 'PRT' },
+    { name: 'Sverige', description: 'Svenska', href: '/sw', flag: 'SWE' },
+    { name: 'Danmark', description: 'Dansk', href: '/dk', flag: 'DNK' },
+    { name: 'Norge', description: 'Norsk', href: '/no', flag: 'NOR' },
+    { name: 'Suomi', description: 'Suomeksi', href: '/fi', flag: 'FIN' },
+    { name: 'België', description: 'Nederlands', href: '/benl', flag: 'BEL' },
+    { name: 'Belgique', description: 'Français', href: '/befr', flag: '056' },
+    { name: 'Suisse', description: 'Français', href: '/sufr', flag: 'CHE' },
+    { name: 'Suisse', description: 'Italiano', href: '/suit', flag: 'CHE' },
+    { name: 'Suisse', description: 'Deutsch', href: '/sude', flag: 'CHE' },
   ]
   
   export default async function Example({ lang }: { lang: Locale }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { pages, navigation } = await getDictionary(lang);
+    const { pages, navigation, components } = await getDictionary(lang);
   
     return (
-      <header className="bg-white">
+      <div className="bg-white">
+      <header className="absolute inset-x-0 top-0 z-50">
+        <div className="mx-auto max-w-7xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8" aria-label="Global">
-          <div className="flex lg:flex-1">
-            <a href="/" className="-m-1.5 p-1.5">
+            <a href={`/${lang}`} className="-m-1.5 p-1.5">
               <span className="sr-only">Junter</span>
               <Image className="h-32 w-auto" src={logo} alt="Junter logo" /> {/* Use Image component for optimized images */}
             </a>
-          </div>
           <div className="flex lg:hidden">
           <button
             type="button"
@@ -54,9 +63,14 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
           </button>
         </div>
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+          {navigation.navLinks.map((item) => (
+            <Link href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
+            {item.name}
+            </Link>
+            ))}
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
-              {navigation.navLinks[3].name}
+              {navigation.Taal.name}
               <ChevronDownIcon aria-hidden="true" className="size-5 flex-none text-gray-400" />
             </PopoverButton>
 
@@ -71,10 +85,8 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                   >
                     <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <item.icon 
-                        // className="size-6 text-gray-600 group-hover:text-indigo-600" 
-                        aria-hidden="true" 
-                    />
+                    <Flag code={item.flag} size="L" hasDropShadow className='border-lg'/>
+                    {/* <ReactCountryFlag countryCode={item.flag} /> */}
                     </div>
                     <div className="flex-auto">
                       <a href={item.href} className="block font-semibold text-gray-900">
@@ -90,31 +102,28 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
                 {pages.landingsPage.CTA.map((item) => (
                   <a
                     key={item.name}
-                    href={item.href}
+                    href={`../${lang}/${item.href}`}
                     className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100"
                   >
-                    <item.icon aria-hidden="true" /* className="size-5 flex-none text-gray-400"  *//>
+                    {/* <item.icon aria-hidden="true"  
+                    // className="size-5 flex-none text-gray-400" 
+                    /> */}
                     {item.name}
                   </a>
                 ))}
               </div>
             </PopoverPanel>
           </Popover>
-          {navigation.navLinks.map((item) => (
-            <Link href={`/${lang}/item.link`} className="text-sm/6 font-semibold text-gray-900">
-            {item.name}
-            </Link>
-            ))}
         </PopoverGroup>
           <div className="flex flex-1 items-center justify-end gap-x-6">
-            <a href="../sign-in" className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900">
-              Inloggen
+            <a href={`../${lang}/sign-in`} className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-white">
+              {components.navigation.NavBar.inloggen}
             </a>
             <a
-              href="../sign-up"
+              href={`../${lang}/sign-up`}
               className="rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Aanmelden
+              {components.navigation.NavBar.aanmelden}
             </a>
           </div>
           <div className="flex lg:hidden">
@@ -128,6 +137,7 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
             </button>
           </div>
         </nav>
+        </div>
         <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
           <div className="fixed inset-0 z-10" />
           <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -137,14 +147,14 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
                 <Image
                   className="h-8 w-auto"
                   src={logo}
-                  alt=""
+                  alt="Junter logo"
                 />
               </a>
               <a
-                href="../sign-up"
-                className="ml-auto rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                href={`../${lang}/sign-up`}
+                className="ml-auto rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
               >
-                Aanmelden
+                {components.navigation.NavBar.aanmelden}
               </a>
               <button
                 type="button"
@@ -160,7 +170,7 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
             <div className="space-y-2 py-6">
                 <Disclosure as="div" className="-mx-3">
                   <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                  {navigation.navLinks[3].name}
+                  {navigation.Taal.name}
                     <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
@@ -177,24 +187,77 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
                   </DisclosurePanel>
                 </Disclosure>
                 {navigation.navLinks.map((item) => (
-            <Link href={`/${lang}/item.link`} className="text-sm/6 font-semibold text-gray-900">
+            <Link href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
             {item.name}
             </Link>
             ))}
               </div>
                 <div className="py-6">
                   <a
-                    href="../sign-in"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    href={`../${lang}/sign-in`}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-50"
                   >
-                    Inloggen
+                    {navigation['Log-in'].name}
                   </a>
                 </div>
             </div>
         </div>
           </Dialog.Panel>
         </Dialog>
-        <LocaleSwitcher />
+        {/* <LocaleSwitcher /> */}
       </header>
+      <div className="relative">
+<div className="mx-auto max-w-7xl">
+  <div className="relative z-10 pt-14 lg:w-1/2">
+    <svg
+      className="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-white lg:block"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <polygon points="0,0 90,0 50,100 0,100" />
+    </svg>
+
+    <div className="relative px-6 py-32 sm:py-40 lg:px-8 lg:py-56 lg:pr-0">
+      <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
+        <div className="hidden sm:mb-10 sm:flex">
+          <div className="relative rounded-full px-4 py-2 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+          {pages.landingsPage.header.Text1}{' '}
+            <a href={`../${lang}/employees`} className="whitespace-nowrap font-semibold text-sky-600">
+              <span className="absolute inset-0 justify-end" aria-hidden="true" />
+              {pages.landingsPage.CTA[1].name} <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+        {pages.landingsPage.header.headText}
+        </h1>
+        <p className="mt-6 text-lg leading-8 text-gray-600">
+        {pages.landingsPage.header.subText}
+        </p>
+        <div className="mt-10 rounded-lg flex items-center gap-x-6">
+          <a
+            href={`../${lang}/sign-up`}
+            className="rounded-lg bg-sky-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            {pages.landingsPage.CTA[0].name}
+          </a>
+          <a href={`../${lang}/employees`} className="text-sm font-semibold leading-6 text-gray-900">
+          {pages.landingsPage.CTA[1].name} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+  <Image
+    className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
+    src={delivery}
+    alt="Delivery"
+  />
+</div>
+</div>
+</div>
     )
   }
