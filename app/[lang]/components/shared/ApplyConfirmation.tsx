@@ -1,23 +1,29 @@
 'use client'
 
-import { useEffect, useState, useTransition } from 'react'
-import Image from 'next/image'
-import apply from "@/app/assets/images/edit.svg"
-import spinner from "@/app/assets/images/spinner.svg"
-import { haalShiftMetIdApply, reageerShift } from '@/app/lib/actions/shift.actions'
+import Image from 'next/image';
+import { useUser } from '@clerk/nextjs';
+import apply from "@/app/assets/images/edit.svg";
+import spinner from "@/app/assets/images/spinner.svg";
+import { useEffect, useState, useTransition } from 'react';
 import { useToast } from '@/app/[lang]/components/ui/use-toast';
-import { useUser } from '@clerk/nextjs'
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import { haalShiftMetIdApply, reageerShift } from '@/app/lib/actions/shift.actions';
 
 
-export const ApplyConfirmation = async ({ shiftId, lang }: { shiftId: string } & { lang: Locale }) => {
+export const ApplyConfirmation = ({
+  shiftId,
+  lang,
+  dictionary,
+}: {
+  shiftId: string;
+  lang: string;
+  dictionary: any;
+}) => {
   let [isPending, startTransition] = useTransition()
   const [userId, setUserId] = useState(''); 
   const [shift, setShift] = useState<any>(null);
   const { toast } = useToast();
   const { user, isLoaded } = useUser();
-  const { components } = await getDictionary(lang);
+  const components = dictionary.components;
  
   useEffect(() => {
     if (isLoaded && user) {
@@ -79,4 +85,4 @@ export const ApplyConfirmation = async ({ shiftId, lang }: { shiftId: string } &
                 }
     </button>
   )
-}
+};

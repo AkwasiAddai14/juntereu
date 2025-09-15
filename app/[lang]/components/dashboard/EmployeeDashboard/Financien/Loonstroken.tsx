@@ -4,16 +4,20 @@ import * as React from "react";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { ScrollArea } from "@/app/[lang]/components/ui/scroll-area";
-import FactuurCard from '@/app/[lang]/components/shared/cards/InvoiceCard'; 
+import FactuurCard from '@/app/[lang]/components/shared/cards/Wrappers/InvoiceWrappers'; 
 import { haalFacturenFreelancer } from "@/app/lib/actions/invoice.actions";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
-export default async function Financien ({ lang }: { lang: Locale }) {
+type Props = {
+  lang: Locale;
+  dashboard: any;
+};
+
+export default async function Financien ({ lang, dashboard }: Props) {
   const { isLoaded, user } = useUser();
   const [factuur, setFactuur] = useState<any[]>([]);
   const [freelancerId, setFreelancerId] = useState<any>(null);
-  const { dashboard } = await getDictionary(lang);
+
 
   useEffect(() => {
     if (isLoaded && user) {

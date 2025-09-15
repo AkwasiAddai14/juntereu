@@ -16,75 +16,109 @@ import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, addM
 import { IShiftArray } from '@/app/lib/models/shiftArray.model'
 import { haalGeplaatsteShifts } from '@/app/lib/actions/shiftArray.actions';
 import { fetchBedrijfByClerkId } from "@/app/lib/actions/employer.actions";
-import { verwijderShiftArray } from '@/app/lib/actions/shift.actions';
+import { haalAangemeld, verwijderShiftArray } from '@/app/lib/actions/shift.actions';
 import { useRouter } from 'next/navigation';
 import LeButton from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/LeButton';
 import ElButton from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/ElButton';
 import { IJob } from '@/app/lib/models/job.model';
-import { haalGeplaatsteDiensten } from '@/app/lib/actions/vacancy.actions';
-import { Locale } from '@/i18n.config';
+import { haalDienstenFreelancer } from "@/app/lib/actions/vacancy.actions";
 import { getDictionary } from '@/app/[lang]/dictionaries';
+import { IAvailability } from '@/app/lib/models/availability.model';
+import { haalFreelancer } from '@/app/lib/actions/employee.actions';
+import { IEmployee } from '@/app/lib/models/employee.model';
+import { vindBeschikbaarheidVanFreelancer } from '@/app/lib/actions/availability.actions';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
 
 
 function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-  
+interface CalenderDClientProps {
+  dashboard: any;
+  lang: string;
+}
 
-    const CalenderD = async ({ lang }: { lang: Locale }) => {
+
+  const CalenderD = ({ dashboard, lang }: CalenderDClientProps) => {
 
   const { isLoaded, user } = useUser();
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
-  const [shifts, setShifts] = useState<IShiftArray[]>([]);
+  const [shifts, setShifts] = useState<any[]>([]);
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
-  const [bedrijfiD, setBedrijfiD] = useState<string>("");
+  const [ beschikbaarheid, setBeschikbaarheid ] = useState<IAvailability[]>([])
+  const [freelancer, setFreelancer] = useState<IEmployee>();
   const [selectedDay, setSelectedDay] = useState<Date>(new Date());
-  const { dashboard } = await getDictionary(lang);
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     if (isLoaded && user) {
-      const getBedrijfId = async () => {
+      const getFreelancerId = async () => {
         try {
-          const bedrijf = await fetchBedrijfByClerkId(user!.id);
-          if (bedrijf && bedrijf._id) {
-            setBedrijfiD(bedrijf._id.toString());
+          const freelancer = await haalFreelancer(user!.id);
+          if (freelancer) {
+            setFreelancer(freelancer);
+          } else{
+            console.log("geen freelancerId gevonden.")
           }
         } catch (error) {
-          console.error("Error fetching bedrijf by Clerk ID:", error);
+          console.error("Error fetching freelancer by Clerk ID:", error);
         }
       };
-    
-      if (user && !bedrijfiD) {  // Only fetch if user exists and bedrijfiD is not already set
-        getBedrijfId();
+      if (user) {  // Only fetch if user exists and freelancerId is not already set
+        getFreelancerId();
       }
     }
   }, [isLoaded, user]);
 
+  useEffect(() => {
+    const fetchAangemeldeShifts = async () => {
+      try {
+            const response = await haalAangemeld(freelancer!.id);
+            if (response) {
+              // Filter and separate shifts based on their status
+              const geaccepteerdShifts = response.filter((shift: { status: string; }) => shift.status === 'aangenomen');
+              
+              // Set the state with the filtered shifts
+              setShifts(geaccepteerdShifts);
+            
+            } else {
+              // If no response or not an array, default to empty arrays
+              setShifts([]);
+           
+            }
+        
+      } catch (error) {
+        console.error('Error fetching shifts:', error);
+      }
+    };
+    fetchAangemeldeShifts();  // Call the fetchShifts function
+  }, [freelancer!.id]); 
+
   
 
   useEffect(() => {
-    if (bedrijfiD) {  // Only fetch shifts if bedrijfId is available
-      const fetchShifts = async () => {
+    if (freelancer) {  // Only fetch shifts if bedrijfId is available
+      const fetchAvailability = async () => {
         try {
-          const shifts = await haalGeplaatsteShifts({ employerId: bedrijfiD });
-          setShifts(shifts || []);  // Ensure shifts is always an array
+          const availability = await vindBeschikbaarheidVanFreelancer(freelancer.id);
+          setBeschikbaarheid(availability || []);  // Ensure shifts is always an array
         } catch (error) {
           console.error('Error fetching shifts:', error);
-          setShifts([]);  // Handle error by setting an empty array
+          setBeschikbaarheid([]);  // Handle error by setting an empty array
         }
       };
   
-      fetchShifts();
+      fetchAvailability();
     }
-  }, [bedrijfiD]); 
+  }, [freelancer!.id]); 
 
   useEffect(() => {
-    if (bedrijfiD) {  // Only fetch shifts if bedrijfId is available
+    if (freelancer) {  // Only fetch shifts if bedrijfId is available
       const fetchDiensten = async () => {
         try {
-          const diensten = await haalGeplaatsteDiensten({ bedrijfId: bedrijfiD });
+          const diensten = await haalDienstenFreelancer(freelancer.id);
           setDiensten(diensten || []);  // Ensure shifts is always an array
         } catch (error) {
           console.error('Error fetching diensten:', error);
@@ -94,7 +128,7 @@ function classNames(...classes: (string | boolean | undefined)[]) {
   
       fetchDiensten();
     }
-  }, [bedrijfiD]); 
+  }, [freelancer!.id]); 
 
 
   const startDate = startOfWeek(startOfMonth(currentMonth), { weekStartsOn: 1 })
@@ -166,6 +200,23 @@ function classNames(...classes: (string | boolean | undefined)[]) {
           time: dienst.workingtime.starting,
           datetime: new Date(dienst.date).toISOString(),
           href: `/dashboard/vacature/pagina/${dienst.vacancy}`,
+        });
+      }
+    });
+
+    beschikbaarheid.forEach((item, index) => {
+      const dienstDate = new Date(item.data[index].startingDate);
+      if (
+        dienstDate.getFullYear() === dayDate.getFullYear() &&
+        dienstDate.getMonth() === dayDate.getMonth() &&
+        dienstDate.getDate() === dayDate.getDate()
+      ) {
+        day.events.push({
+          id: item._id as string,
+          name: item.employee.employeeFirstname,
+          time: item.data[index].startingTime,
+          datetime: new Date(item.data[index].startingDate).toISOString(),
+          href: `/`,
         });
       }
     });

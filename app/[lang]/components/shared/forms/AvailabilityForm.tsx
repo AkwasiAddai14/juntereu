@@ -1,11 +1,13 @@
 'use client'
 
-import { useState } from 'react';
-import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
-import { XMarkIcon, CalendarIcon, ClockIcon } from '@heroicons/react/24/outline';
+import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import { useUser } from '@clerk/nextjs';
+import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
+import { saveAvailability } from '@/app/lib/actions/availability.actions';
+import { XMarkIcon, CalendarIcon, ClockIcon } from '@heroicons/react/24/outline';
+import { haalFreelancer } from '@/app/lib/actions/employee.actions';
+import { IEmployee } from '@/app/lib/models/employee.model';
 
 interface FormData {
   dateType: 'single' | 'multiple'
@@ -30,14 +32,17 @@ const timeOptions = Array.from({ length: 24 * 4 }, (_, i) => {
   return format(new Date().setHours(hours, minutes), 'HH:mm')
 })
 //'[]
-const mainCategories = ['Category 1', 'Category 2', 'Category 3']
-const subCategories = ['Sub 1', 'Sub 2', 'Sub 3']
-const distanceOptions = ['0 km', '5 km', '10 km', '15 km', '20 km', '50 km', '100 km']
 
-export default async function AvailabilityForm( { lang }: { lang: Locale } ) {
-  const { components } = await getDictionary(lang);
-  const [open, setOpen] = useState(true)
-  const [showCancelModal, setShowCancelModal] = useState(false)
+
+export default function AvailabilityForm({ components }: { components: any }) {
+  const { isLoaded, user } = useUser();
+const distanceOptions = ['0 km', '5 km', '10 km', '15 km', '20 km', '50 km', '100 km']
+const mainCategories = components.shared.DropdownCategorie.fields.map((field: { label: string }) => field.label);
+const subCategories: string[] = components.shared.DropdownCategorie.fields
+  .flatMap((field: any) => field.items.map((item: any) => item.label));
+  const [freelancer, setFreelancer] = useState<IEmployee>();
+  const [open, setOpen] = useState(true);
+  const [showCancelModal, setShowCancelModal] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     dateType: 'single',
     singleDate: new Date(),
@@ -55,9 +60,37 @@ export default async function AvailabilityForm( { lang }: { lang: Locale } ) {
     city: ''
   })
 
-  const handleSave = () => {
-    setOpen(false)
-  }
+  useEffect(() => {
+    if (isLoaded && user) {
+      const getFreelancerId = async () => {
+        try {
+          const freelancer = await haalFreelancer(user!.id);
+          if (freelancer) {
+            setFreelancer(freelancer);
+          } else{
+            console.log("geen freelancerId gevonden.")
+          }
+        } catch (error) {
+          console.error("Error fetching freelancer by Clerk ID:", error);
+        }
+      };
+      if (user) {  // Only fetch if user exists and freelancerId is not already set
+        getFreelancerId();
+      }
+    }
+  }, [isLoaded, user]);
+
+
+  const handleSave = async () => {
+    try {
+      
+      await saveAvailability({ formData, employee: freelancer! });
+      setOpen(false);
+    } catch (error) {
+      console.error('Fout bij opslaan:', error);
+      alert('Er is iets misgegaan bij het opslaan van je beschikbaarheid.');
+    }
+  };
 
   const handleCancel = () => {
     setShowCancelModal(true)
@@ -254,8 +287,8 @@ export default async function AvailabilityForm( { lang }: { lang: Locale } ) {
                               <div>
                                 <label className="text-sm text-gray-700">{components.forms.AvailabilityForm.Section2.formItems[0]}</label>
                                 <div className="mt-1 space-y-2">
-                                  {mainCategories.map((category) => (
-                                    <label key={category} className="flex items-center">
+                                {mainCategories.map((category: string) => (
+                                  <label key={category} className="flex items-center">
                                       <input
                                         type="checkbox"
                                         checked={formData.mainCategories.includes(category)}
@@ -275,7 +308,7 @@ export default async function AvailabilityForm( { lang }: { lang: Locale } ) {
                               <div>
                                 <label className="text-sm text-gray-700">{components.forms.AvailabilityForm.Section2.formItems[2]}</label>
                                 <div className="mt-1 space-y-2">
-                                  {subCategories.map((category) => (
+                                {subCategories.map((category: string) => (
                                     <label key={category} className="flex items-center">
                                       <input
                                         type="checkbox"
@@ -283,8 +316,8 @@ export default async function AvailabilityForm( { lang }: { lang: Locale } ) {
                                         onChange={(e) => {
                                           const newCategories = e.target.checked
                                             ? [...formData.subCategories, category]
-                                            : formData.subCategories.filter((c) => c !== category)
-                                          setFormData({ ...formData, subCategories: newCategories })
+                                            : formData.subCategories.filter((c) => c !== category);
+                                          setFormData({ ...formData, subCategories: newCategories });
                                         }}
                                         className="h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-sky-500"
                                       />
@@ -436,4 +469,4 @@ export default async function AvailabilityForm( { lang }: { lang: Locale } ) {
       </Dialog>
     </Dialog>
   )
-}
+};

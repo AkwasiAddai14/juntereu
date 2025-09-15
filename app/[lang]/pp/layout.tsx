@@ -4,13 +4,13 @@ import { Inter } from "next/font/google";
 
 
 import '@/app/[lang]/globals.css';
-import NavBar from "@/app/[lang]/components/shared/navigation/NavigationBar";
+import NavBar from "@/app/[lang]/components/shared/navigation/Wrappers/NavigationBarWrapper";
 import Footer from "@/app/[lang]/components/shared/navigation/Footer";
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 const supportedLocales: Locale[] = [
-  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
-  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
 

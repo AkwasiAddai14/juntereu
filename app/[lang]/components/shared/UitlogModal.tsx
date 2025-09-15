@@ -1,17 +1,28 @@
 'use client'
 
-import { useState } from 'react'
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react';
+import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useClerk } from '@clerk/nextjs';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
 
-export default async function UitlogModal({isVisible, onClose, lang} : {isVisible: boolean, onClose: any} & { lang: Locale }) {
+type Props = {
+  isVisible: boolean;
+  onClose: () => void;
+  components: {
+    shared: {
+      UitlogModal: {
+        headtitle: string;
+        subTitle: string;
+        buttons: string[];
+      };
+    };
+  };
+};
+
+export default function UitlogModal({ isVisible, onClose, components }: Props) {
     const [open, setOpen] = useState(true)
     if (!isVisible) return null;
     const { signOut } = useClerk();
-    const { components } = await getDictionary(lang);
 
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-10">

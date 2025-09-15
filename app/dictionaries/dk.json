@@ -337,7 +337,7 @@
           },
           "vacanciesButton": "Se alle ledige stillinger",
           "navLinks": [
-            { "name": "Hjem", "link": "/" },
+            { "name": "Hjem", "link": "../" },
             { "name": "Privatlivspolitik", "link": "../pp" },
             { "name": "Vilkår for brug", "link": "../tou" }
           ]
@@ -1159,7 +1159,201 @@
             "Plekken": "Ledige pladser"
           }
         }
-      }
+      },
+      "localDateString": "da-DK",
+  "currencySign": "€",
+  "Checkout": {
+    "employees": {
+      "ToastMessage1": "Checkout sendt! 👍",
+      "ToastMessage2": "Handling ikke tilladt! ❌",
+      "FormFieldItems": [
+        "logo",
+        "Arbejdsgivers navn",
+        "Stilling",
+        "By",
+        "Ikke mødt",
+        "Dato",
+        "Starttidspunkt",
+        "Sluttidspunkt",
+        "minutters pause",
+        "Timeløn",
+        "Bemærkning",
+        "Sender checkout...",
+        "Send"
+      ]
+    },
+    "employer": {
+      "ToastMessage1": "Ikke logget ind!",
+      "ToastMessage2": "Checkout sendt! 👍",
+      "ToastMessage3": "Handling ikke tilladt! ❌",
+      "FormFieldItems": [
+        "Profilbillede",
+        "Gennemførte vagter",
+        "Ikke mødt",
+        "Vagtdetaljer",
+        "minutters pause",
+        "Timeløn",
+        "Deklarerede timer",
+        "Starttidspunkt",
+        "Sluttidspunkt",
+        "For sent",
+        "Feedback",
+        "Afvis",
+        "Sender checkout...",
+        "Accepter",
+        "Accepterer",
+        "Send"
+      ]
+    }
+  },
+  "Flexpool": {
+    "employees": {
+      "ToastMessage1": "Du er ikke logget ind!",
+      "FormFieldItems": [
+        "Vagter",
+        "Ingen vagter i flexpoolen"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Du er ikke logget ind!",
+      "ToastMessage2": "Freelancer inviteret! 👍",
+      "ToastMessage3": "Handling ikke tilladt!",
+      "ToastMessage4": "Freelancer fjernet! 👍",
+      "FormFieldItems": [
+        "Vælg medarbejder",
+        "Invitér",
+        "Medarbejdere",
+        "Vagter",
+        "% Fremmøde",
+        "% Til tiden",
+        "Fjern",
+        "Vagter",
+        "Ingen vagter i flexpoolen"
+      ]
+    }
+  },
+  "Invoice": {
+    "employees": {
+      "ToastMessage1": "Du er ikke logget ind!",
+      "FormFieldItems": [
+        "Faktura for uge",
+        "Tilbage",
+        "Download",
+        "Vagt",
+        "Timer",
+        "Timeløn",
+        "Totalbeløb",
+        "min pause",
+        "arbejdstimer",
+        "MOMS:",
+        "Download",
+        "Subtotal",
+        "MOMS",
+        "Totalbeløb"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Du er ikke logget ind!",
+      "FormFieldItems": [
+        "Faktura",
+        "Faktura for uge",
+        "Tilbage",
+        "Download",
+        "Vagt",
+        "Arbejdstimer",
+        "Sats",
+        "Subtotal",
+        "MOMS",
+        "Totalbeløb"
+      ]
+    }
+  },
+  "Jobs": {
+    "FormFieldItems": [
+      "Adresse",
+      "Dato",
+      "Arbejdstider",
+      "Løn",
+      "Kompetencer",
+      "Dresscode"
+    ]
+  },
+  "Payslip": {
+    "moods": [
+      "Spændt",
+      "Trist",
+      "Elsket",
+      "Glad",
+      "Tommel op",
+      "Jeg føler ingenting"
+    ],
+    "FormFieldItems": [
+      "Lønseddel",
+      "Download",
+      "Send",
+      "Oversigt",
+      "Beløb",
+      "Status",
+      "Betalingsfrist",
+      "Indstillinger",
+      "Oprettet den",
+      "Arbejdsgiver",
+      "Medarbejder",
+      "Vagt",
+      "Arbejdstimer",
+      "Timeløn",
+      "Beløb",
+      "Subtotal",
+      "Fradrag",
+      "Totalbeløb",
+      "Kommentar",
+      "den",
+      "Skriv en kommentar",
+      "Skriv en kommentar...",
+      "Vedhæft en fil",
+      "Dit humør",
+      "Angiv humør",
+      "Send kommentar"
+    ]
+  },
+  "Shift": {
+    "employee": {
+      "FormFieldItems": [
+        "pladser",
+        "Ansøgninger",
+        "ikke i flexpool",
+        "Om vagten",
+        "Relateret vagt"
+      ]
+    },
+    "employer": {
+      "FormFieldItems": [
+        "Ny vagt",
+        "Om vagten",
+        "pladser",
+        "ikke i flexpool",
+        "Færdigheder",
+        "Påklædningskode",
+        "Om vagten",
+        "Rediger vagt"
+      ]
+    }
+  },
+  "Vacancies": {
+    "FormFieldItems": [
+      "Ny stilling",
+      "Faktura",
+      "Faktura for uge",
+      "Tilbage",
+      "Download",
+      "Vagt",
+      "Arbejdstimer",
+      "Sats",
+      "Subtotal",
+      "Moms",
+      "Totalbeløb"
+    ]
+  }  
     },
     "components": {
         "cards": {
@@ -2028,7 +2222,15 @@
               "Annuller",
               "Log ud"
             ]
-          }
+          },
+          "OnboardingDialog": {
+            "headTitle": "Tilmeld dig for at komme i gang.",
+            "subTitle": "Vælg nedenfor, om du vil tilmelde dig som freelancer eller som virksomhed.",
+            "buttons": [
+              "Medarbejder",
+              "Virksomhed"
+            ]
+          }          
         }
     },
     "Validations": {

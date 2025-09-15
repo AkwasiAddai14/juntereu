@@ -1,12 +1,13 @@
-import Footer from "@/app/[lang]/components/shared/navigation/Footer4";
-import NavBar from "@/app/[lang]/components/shared/navigation/NavigationBar";
 import { SignUp } from "@clerk/nextjs";
-import { Locale } from '@/i18n.config';
+import Footer from "@/app/[lang]/components/shared/navigation/Footer4";
+import NavBar from "@/app/[lang]/components/shared/navigation/Wrappers/NavigationBarWrapper";
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
 
 
 const supportedLocales: Locale[] = [
-  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
-  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
 export default function Page({ params }: { params: { lang: string } }) {

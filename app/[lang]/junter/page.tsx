@@ -1,7 +1,7 @@
 'use client' 
 
 import {  JSX, SVGProps, useState } from 'react';
-import { Locale } from '@/i18n.config';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -9,8 +9,8 @@ import Image from "next/image";
 import logo from '@/app/assets/images/178884748_padded_logo.png'; 
 
 const supportedLocales: Locale[] = [
-  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
-  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
 const navigation = [
@@ -81,14 +81,12 @@ const jobOpenings = [
 
 export default async function Example({ params }: { params: { lang: string } }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const lang = supportedLocales.includes(params.lang as Locale)
-    ? (params.lang as Locale)
-    : 'en';
+  const lang = supportedLocales.includes(params.lang as Locale) ? (params.lang as Locale) : 'en';
   const { pages, navigation, footer } = await getDictionary(lang);
 
   const footerNavigation = {
     main: [
-      { name: 'Home', href: `/${lang}` },
+      { name: 'Home', href: `${lang}` },
       { name: 'Algemene Voorwaarden', href: `../${lang}/av` },
       { name: 'Privacybeleid', href: `../${lang}/pb` },
     ],

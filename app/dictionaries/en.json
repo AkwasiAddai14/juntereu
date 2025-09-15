@@ -316,7 +316,7 @@
         },
         "vacanciesButton": "View all vacancies",
         "navLinks": [
-                {"name": "Home", "link": ""},
+                {"name": "Home", "link": "../"},
                 {"name": "Privacy Policy", "link": "../pp"},
                 {"name": "Terms of Use", "link": "../tou"}
         ]
@@ -479,7 +479,7 @@
         "tabBedrijven": "Companies",
         "termsFreelancers": {
         "header": "Terms and Conditions",
-        "title": "For Freelancers",
+        "title": "For Employees",
         "introduction": {
         "heading": "Introduction",
         "text": "Welcome to Junter. By using our platform, you agree to these terms and conditions. Please read these terms carefully before using our services."
@@ -488,7 +488,7 @@
  "sections": [
     {
       "heading": "1. Definitions",
-      "text": "Platform: The online environment of Junter, accessible via our website and/or mobile application.\nFreelancer: An individual who registers on the platform to offer services to companies.\nCompany: An entity that registers on the platform to request services from freelancers.\nUser: Both freelancers and companies who use the platform."
+      "text": "Platform: The online environment of Junter, accessible via our website and/or mobile application.\nEmployee: An individual who registers on the platform to offer services to companies.\nCompany: An entity that registers on the platform to request services from employees.\nUser: Both employees and companies who use the platform."
     },
     {
       "heading": "2. Registration and Account",
@@ -500,11 +500,11 @@
     },
     {
       "heading": "4. Services and Payments",
-      "text": "Offering Services: Freelancers can offer their services via the platform. Companies can book and use these services.\nPayments: Payments for the provided services are processed through the platform. The exact payment terms and procedures are agreed upon separately between the freelancer and the company.\nService Fees: We reserve the right to charge service fees for using the platform. These fees will be clearly stated before a service is booked."
+      "text": "Offering Services: Employees can offer their services via the platform. Companies can book and use these services.\nPayments: Payments for the provided services are processed through the platform. The exact payment terms and procedures are agreed upon separately between the employees and the company.\nService Fees: We reserve the right to charge service fees for using the platform. These fees will be clearly stated before a service is booked."
     },
     {
       "heading": "5. Cancellations and Disputes",
-      "text": "Cancellations: Cancellation terms for services are agreed upon separately between the freelancer and the company. We recommend having clear cancellation terms.\nDisputes: Disputes between freelancers and companies should be resolved between the parties themselves. We offer support in disputes but are not responsible for the outcome."
+      "text": "Cancellations: Cancellation terms for services are agreed upon separately between the employee and the company. We recommend having clear cancellation terms.\nDisputes: Disputes between employees and companies should be resolved between the parties themselves. We offer support in disputes but are not responsible for the outcome."
     },
     {
       "heading": "6. Liability",
@@ -524,7 +524,7 @@
     },
     {
       "heading": "10. Governing Law",
-      "text": "These terms and conditions are governed by and interpreted in accordance with the laws of [the Netherlands]. Disputes arising from or related to these terms will be submitted to the competent courts in [Amsterdam, the Netherlands]."
+      "text": "These terms and conditions are governed by and interpreted in accordance with the laws of the Netherlands. Disputes arising from or related to these terms will be submitted to the competent courts in Amsterdam, the Netherlands."
     }
   ],
   "contact": {
@@ -687,9 +687,9 @@
         "email1": "support@junter.works",
         "email2": "billing@junter.works"
       }
-  }
     }
-  },
+  }
+},
 
 "footer": {
     "navLinks": [
@@ -1113,7 +1113,201 @@
               "Plekken": "Open positions"
             }
           }
+    },
+    "localDateString": "en-GB",
+  "currencySign": "€",
+  "Checkout": {
+    "employees": {
+      "ToastMessage1": "Checkout submitted! 👍",
+      "ToastMessage2": "Action not allowed! ❌",
+      "FormFieldItems": [
+        "logo",
+        "Employer name",
+        "Position",
+        "City",
+        "No show",
+        "Date",
+        "Start time",
+        "End time",
+        "minutes break",
+        "Hourly rate",
+        "Comment",
+        "Submitting checkout...",
+        "Submit"
+      ]
+    },
+    "employer": {
+      "ToastMessage1": "Not logged in!",
+      "ToastMessage2": "Checkout submitted! 👍",
+      "ToastMessage3": "Action not allowed! ❌",
+      "FormFieldItems": [
+        "Profile photo",
+        "Shifts completed",
+        "No show",
+        "Shift details",
+        "minutes break",
+        "Hourly rate",
+        "Declared hours",
+        "Start time",
+        "End time",
+        "Late",
+        "Feedback",
+        "Reject",
+        "Submitting checkout...",
+        "Accept",
+        "Accepting",
+        "Send"
+      ]
     }
+  },
+  "Flexpool": {
+    "employees": {
+      "ToastMessage1": "Not logged in!",
+      "FormFieldItems": [
+        "Shifts",
+        "No shifts in the flexpool"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Not logged in!",
+      "ToastMessage2": "Freelancer invited! 👍",
+      "ToastMessage3": "Action not allowed!",
+      "ToastMessage4": "Freelancer removed! 👍",
+      "FormFieldItems": [
+        "Select employee",
+        "Invite",
+        "Employees",
+        "shifts",
+        "% Attendance",
+        "% On time",
+        "Remove",
+        "Shifts",
+        "No shifts in the flexpool"
+      ]
+    }
+  },
+  "Invoice": {
+    "employees": {
+      "ToastMessage1": "Not logged in!",
+      "FormFieldItems": [
+        "Invoice for week",
+        "Back",
+        "Download",
+        "Shift",
+        "Hours",
+        "Hourly rate",
+        "Total amount",
+        "min break",
+        "worked hours",
+        "VAT:",
+        "Download",
+        "Subtotal",
+        "VAT",
+        "Total amount"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Not logged in!",
+      "FormFieldItems": [
+        "Invoice",
+        "Invoice for week",
+        "Back",
+        "Download",
+        "Shift",
+        "Worked hours",
+        "Rate",
+        "Subtotal",
+        "VAT",
+        "Total amount"
+      ]
+    }
+  },
+  "Jobs": {
+    "FormFieldItems": [
+      "Address",
+      "Date",
+      "Working hours",
+      "Wage",
+      "Skills",
+      "Dress code"
+    ]
+  },
+  "Payslip": {
+    "moods": [
+      "Excited",
+      "Sad",
+      "Loved",
+      "Happy",
+      "Thumbsy",
+      "I feel nothing"
+    ],
+    "FormFieldItems": [
+      "Payslip",
+      "Download",
+      "Send",
+      "Summary",
+      "Amount",
+      "Status",
+      "Due date",
+      "Settings",
+      "Created on",
+      "Employer",
+      "Employee",
+      "Shift",
+      "Worked hours",
+      "Hourly wage",
+      "Amount",
+      "Subtotal",
+      "Deduction",
+      "Total amount",
+      "Comment",
+      "on",
+      "Post a comment",
+      "Post a comment...",
+      "Attach a file",
+      "Your mood",
+      "Give a mood",
+      "Post comment"
+    ]
+  },
+  "Shift": {
+    "employee": {
+      "FormFieldItems": [
+        "spots",
+        "Applications",
+        "not in flexpool",
+        "About the shift",
+        "Related shift"
+      ]
+    },
+    "employer": {
+      "FormFieldItems": [
+        "New shift",
+        "About the shift",
+        "spots",
+        "not in flexpool",
+        "Skills",
+        "Dress code",
+        "About the shift",
+        "Edit shift"
+      ]
+    }
+  },
+  "Vacancies": {
+    "FormFieldItems": [
+      "New Vacancy",
+      "Invoice",
+      "Invoice for week",
+      "Back",
+      "Download",
+      "Shift",
+      "Worked hours",
+      "Rate",
+      "Subtotal",
+      "VAT",
+      "Total amount"
+    ]
+  }
     },
 "components": {
     "cards": {
@@ -1981,6 +2175,14 @@
           "buttons": [
             "Cancel",
             "Log out"
+          ]
+        },
+        "OnboardingDialog": {
+          "headTitle": "Sign up to get started.",
+          "subTitle": "Choose below whether you want to sign up as a freelancer or a company.",
+          "buttons": [
+            "Worker",
+            "Company"
           ]
         }              
     }

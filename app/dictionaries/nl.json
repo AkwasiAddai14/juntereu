@@ -294,7 +294,7 @@
             },
             "vacanciesButton": "Bekijk alle vacatures",
             "navLinks": [
-                {"name": "Home", "link": "/"},
+                {"name": "Home", "link": "../"},
                 {"name": "Privacy Ploicy", "link": "../pp"},
                 {"name": "Terms of Use", "link": "../tou"}
             ]
@@ -1107,6 +1107,200 @@
                   "Plekken": "Plekken"
                 }
           }
+        },
+        "localDateString": "nl-NL",
+        "currencySign": "€",
+        "Checkout": {
+          "employees": {
+            "ToastMessage1": "Checkout verstuurd! 👍",
+            "ToastMessage2": "Actie is niet toegestaan! ❌",
+            "FormFieldItems": [
+              "logo",
+              "Naam werkgever",
+              "Functie",
+              "Stad",
+              "No show",
+              "Datum",
+              "Begintijd",
+              "Eindtijd",
+              "minuten pauze",
+              "Uurtarief",
+              "Opmerking",
+              "Checkout indienen...",
+              "Indienen"
+            ]
+          },
+          "employer": {
+            "ToastMessage1": "Niet ingelogd!",
+            "ToastMessage2": "Checkout verstuurd! 👍",
+            "ToastMessage3": "Actie is niet toegestaan! ❌",
+            "FormFieldItems":[
+              "Profielfoto",
+              "Shifts voltooid",
+              "No show",
+              "Shift details",
+              "minuten pauze",
+              "Uurtarief",
+              "Gedeclareerde uren",
+              "Begintijd",
+              "Eindtijd",
+              "Te laat",
+              "Feedback",
+              "Weigeren",
+              "Checkout indienen...",
+              "Accepteer",
+              "Accepteren",
+              "Versturen"
+            ]
+          }
+        },
+        "Flexpool": {
+          "employees": {
+            "ToastMessage1": "Niet ingelogd!",
+            "FormFieldItems": [
+              "Shifts",
+              "Geen shifts in de flexpool"
+            ]
+          },
+          "employers": {
+            "ToastMessage1": "Niet ingelogd!",
+            "ToastMessage2": "Freelancer uitgenodigd! 👍",
+            "ToastMessage3": "Actie is niet toegestaan!",
+            "ToastMessage4": "Freelancer verwijderd! 👍",
+            "FormFieldItems": [
+              "Selecteer werknemer",
+              "Uitnodigen",
+              "Werknemers",
+              "shifts",
+              "% Opkomst",
+              "% Op tijd",
+              "Verwijder",
+              "Shifts",
+              "Geen shifts in de flexpool"
+            ]
+          }
+        },
+        "Invoice": {
+          "employees": {
+            "ToastMessage1": "Niet ingelogd!",
+            "FormFieldItems": [
+              "Factuur voor week",
+              "Terug",
+              "Download",
+              "Shift",
+              "Uren",
+              "Uurtarief",
+              "Totaalbedrag",
+              "min pauze",
+              "gewerkte uren",
+              "BTW:",
+              "Download",
+              "Subtotaal",
+              "BTW",
+              "Totaalbedrag"
+            ]
+          },
+          "employers": {
+            "ToastMessage1": "Niet ingelogd!",
+            "FormFieldItems": [
+              "Factuur",
+              "Factuur voor week",
+              "Terug",
+              "Download",
+              "Shift",
+              "Gewerkte uren",
+              "Tarief",
+              "Subtotaal",
+              "BTW",
+              "Totaalbedrag"
+            ]
+          }
+        },
+        "Jobs": {
+          "FormFieldItems": [
+            "Adres",
+            "Datum",
+            "Werktijden",
+            "Loon",
+            "Vaardigheden",
+            "Kledingsvoorschriften"
+          ]
+        },
+        "Payslip": {
+          "moods": [
+            "Opgewonden",
+            "Droevig",
+            "Geliefd",
+            "Gelukkig",
+            "Thumbsy",
+            "Ik voel niets"
+          ],
+          "FormFieldItems": [
+            "Loonstrook",
+            "Downloaden",
+            "Versturen",
+            "Samenvatting",
+            "Bedrag",
+            "Status",
+            "Uiterlijke betaaldatum",
+            "Instellingen",
+            "Gemaakt op",
+            "Werkgever",
+            "Werknemer",
+            "Dienst",
+            "Gewerkte uren",
+            "Uurloon",
+            "Bedrag",
+            "Subtotaal",
+            "Aftrek",
+            "Totaalbedrag",
+            "Opmerking",
+            "op",
+            "Plaats een opmerking",
+            "Plaats een opmerking...",
+            "Voeg een bestand toe",
+            "Jouw mood",
+            "Geef een mood",
+            "Opmerking plaatsen"
+          ]
+        }, 
+        "Shift": {
+          "employee": {
+            "FormFieldItems": [
+              "Plekken",
+               "Aanmeldingen",
+               "niet in flexpool",
+               "Over de shift",
+               "Gerelateerde shift"
+            ]
+          },
+          "employer": {
+            "FormFieldItems": [
+              "Nieuwe shift",
+              "Over de shift",
+              "plekken",
+              "niet in flexpool",
+              "Vaardigheden",
+              "Kledingsvoorschriften",
+              "Over de shift",
+              "Wijzig shift"
+            ]
+          }
+        },
+        "Vacancies": {
+          "FormFieldItems": [
+            "Nieuwe Vacature",
+            "Factuur",
+            "Factuur voor week",
+            "Terug",
+            "Download",
+            "Shift",
+            "Gewerkte uren",
+            "Tarief",
+            "Subtotaal",
+            "BTW",
+            "Totaalbedrag"
+          ]
         }
       },
     "components": {
@@ -1979,6 +2173,14 @@
           "buttons": [
             "Annueleren",
             "Uitloggen"
+          ]
+        },
+        "OnboardingDialog": {
+          "headTitle": "Meld je aan om te beginnen.",
+          "subTitle": "Kies hieronder of u zich wilt aanmelden als freelancer of als bedrijf.",
+          "buttons": [
+            "Werknemer",
+            "Bedrijf"
           ]
         }
       }

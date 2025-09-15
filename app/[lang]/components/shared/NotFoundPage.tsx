@@ -1,4 +1,4 @@
-import { Locale } from '@/i18n.config';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries';
 
 

@@ -12,44 +12,28 @@ import { solliciteerOpVacature } from '@/app/lib/actions/vacancy.actions';
 import { CalendarDateRangeIcon, BanknotesIcon, 
 BuildingOffice2Icon, BriefcaseIcon, 
 ClipboardDocumentCheckIcon } from '@heroicons/react/20/solid';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
-interface WerknemerPageProps {
-    vacature: {
-      vactureID: any;
-      opdrachtgever: string;
-      afbeelding: string;
-      titel: string;
-      functie: string;
-      adres: string;
-      beschrijving: string;
-      kledingsvoorschriften: string[];
-      vaardigheden: string[];
-      begindatum: string;
-      einddatum: string;
-      begintijd: string;
-      uurloon: number;
-      eindtijd: string;
-      toeslag: boolean;
-      toeslagtype: number;
-      toeslagpercentage: number;
-    };
-    diensten: any[]; // Replace `any[]` with the correct type if known
-  }
+interface WerknemerPageClientProps {
+  vacature: any;
+  diensten: any[];
+  lang: string;
+  dictionary: any;
+}
+
 
 
 
   
-  export default async function WerknemerPage({ vacature, diensten }: WerknemerPageProps, { lang }: { lang: Locale }) {
-    const { components } = await getDictionary(lang);
+  export default function WerknemerPage({ vacature, diensten, lang, dictionary }: WerknemerPageClientProps) {
+    
     const { isLoaded, user } = useUser();
     const [freelancer, setFreelancer] = useState<any>(null);
     const [freelancerId, setFreelancerId] = useState<any>(null);
-      const [open, setOpen] = useState(true)
-      const [aangevinkt, setAangevinkt] = useState<IJob[]>([]);
-      const [checkedDiensten, setCheckedDiensten] = useState<{ [key: string]: boolean }>({});
+    const [open, setOpen] = useState(true)
+    const [aangevinkt, setAangevinkt] = useState<IJob[]>([]);
+    const [checkedDiensten, setCheckedDiensten] = useState<{ [key: string]: boolean }>({});
+    const components = dictionary.components;
 
       useEffect(() => {
         if (isLoaded && user) {
@@ -323,4 +307,4 @@ interface WerknemerPageProps {
     </Dialog>
     </>
   )
-}
+};

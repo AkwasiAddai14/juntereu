@@ -339,7 +339,7 @@
   },
   "vacanciesButton": "Visa alla lediga tjänster",
   "navLinks": [
-    { "name": "Hem", "link": "/" },
+    { "name": "Hem", "link": "../" },
     { "name": "Integritetspolicy", "link": "../pp" },
     { "name": "Användarvillkor", "link": "../tou" }
   ]
@@ -1160,7 +1160,202 @@
               "Plekken": "Lediga platser"
             }
           }
-        }
+        },
+        "localDateString": "sv-SE",
+  "currencySign": "€",
+  "Checkout": {
+    "employees": {
+      "ToastMessage1": "Utcheckning skickad! 👍",
+      "ToastMessage2": "Åtgärd ej tillåten! ❌",
+      "FormFieldItems": [
+        "logotyp",
+        "Arbetsgivarens namn",
+        "Tjänst",
+        "Stad",
+        "Frånvarande",
+        "Datum",
+        "Starttid",
+        "Sluttid",
+        "minuters paus",
+        "Timlön",
+        "Kommentar",
+        "Skickar utcheckning...",
+        "Skicka"
+      ]
+    },
+    "employer": {
+      "ToastMessage1": "Inte inloggad!",
+      "ToastMessage2": "Utcheckning skickad! 👍",
+      "ToastMessage3": "Åtgärd ej tillåten! ❌",
+      "FormFieldItems": [
+        "Profilbild",
+        "Slutförda pass",
+        "Frånvarande",
+        "Skiftinformation",
+        "minuters paus",
+        "Timlön",
+        "Rapporterade timmar",
+        "Starttid",
+        "Sluttid",
+        "Försenad",
+        "Feedback",
+        "Avvisa",
+        "Skickar utcheckning...",
+        "Acceptera",
+        "Accepterar",
+        "Skicka"
+      ]
+    }
+  },
+  "Flexpool": {
+    "employees": {
+      "ToastMessage1": "Du är inte inloggad!",
+      "FormFieldItems": [
+        "Skift",
+        "Inga skift i flexpoolen"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Du är inte inloggad!",
+      "ToastMessage2": "Frilansare inbjuden! 👍",
+      "ToastMessage3": "Åtgärd inte tillåten!",
+      "ToastMessage4": "Frilansare borttagen! 👍",
+      "FormFieldItems": [
+        "Välj arbetare",
+        "Bjud in",
+        "Arbetare",
+        "Skift",
+        "% Närvaro",
+        "% I tid",
+        "Ta bort",
+        "Skift",
+        "Inga skift i flexpoolen"
+      ]
+    }
+  },
+  "Invoice": {
+    "employees": {
+      "ToastMessage1": "Du är inte inloggad!",
+      "FormFieldItems": [
+        "Faktura för vecka",
+        "Tillbaka",
+        "Ladda ner",
+        "Skift",
+        "Timmar",
+        "Timpris",
+        "Totalt belopp",
+        "min paus",
+        "arbetade timmar",
+        "Moms:",
+        "Ladda ner",
+        "Delsumma",
+        "Moms",
+        "Totalt belopp"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Du är inte inloggad!",
+      "FormFieldItems": [
+        "Faktura",
+        "Faktura för vecka",
+        "Tillbaka",
+        "Ladda ner",
+        "Skift",
+        "Arbetade timmar",
+        "Pris",
+        "Delsumma",
+        "Moms",
+        "Totalt belopp"
+      ]
+    }
+  },
+  "Jobs": {
+    "FormFieldItems": [
+      "Adress",
+      "Datum",
+      "Arbetstid",
+      "Lön",
+      "Färdigheter",
+      "Klädkod"
+    ]
+  },
+  "Payslip": {
+    "moods": [
+      "Uppspelt",
+      "Ledsen",
+      "Älskad",
+      "Glad",
+      "Tummen upp",
+      "Jag känner ingenting"
+    ],
+    "FormFieldItems": [
+      "Lönebesked",
+      "Ladda ner",
+      "Skicka",
+      "Sammanfattning",
+      "Belopp",
+      "Status",
+      "Sista betalningsdag",
+      "Inställningar",
+      "Skapad",
+      "Arbetsgivare",
+      "Arbetstagare",
+      "Skift",
+      "Arbetade timmar",
+      "Timlön",
+      "Belopp",
+      "Delsumma",
+      "Avdrag",
+      "Totalsumma",
+      "Kommentar",
+      "den",
+      "Skriv en kommentar",
+      "Skriv en kommentar...",
+      "Bifoga en fil",
+      "Ditt humör",
+      "Välj ett humör",
+      "Skicka kommentar"
+    ]
+  },
+  "Shift": {
+    "employee": {
+      "FormFieldItems": [
+        "platser",
+        "Ansökningar",
+        "inte i flexpool",
+        "Om skiftet",
+        "Relaterat skift"
+      ]
+    },
+    "employer": {
+      "FormFieldItems": [
+        "Nytt skift",
+        "Om skiftet",
+        "platser",
+        "inte i flexpool",
+        "Färdigheter",
+        "Klädkod",
+        "Om skiftet",
+        "Redigera skift"
+      ]
+    }
+  },
+  "Vacancies": {
+    "FormFieldItems": [
+      "Ny tjänst",
+      "Faktura",
+      "Faktura för vecka",
+      "Tillbaka",
+      "Ladda ner",
+      "Skift",
+      "Arbetade timmar",
+      "Pris",
+      "Delsumma",
+      "Moms",
+      "Totalsumma"
+    ]
+  }
+  
     },
     "components": {
         "cards": {
@@ -2029,7 +2224,15 @@
               "Avbryt",
               "Logga ut"
             ]
-          }
+          },
+          "OnboardingDialog": {
+            "headTitle": "Registrera dig för att börja.",
+            "subTitle": "Välj nedan om du vill registrera dig som frilansare eller som företag.",
+            "buttons": [
+              "Arbetstagare",
+              "Företag"
+            ]
+          }          
         } 
     },
     "Validations": {

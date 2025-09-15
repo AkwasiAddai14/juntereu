@@ -1,22 +1,23 @@
 "use client"
 
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+import { IJob } from '@/app/lib/models/job.model';
 import React, { useEffect, useState } from 'react';
-import { DeleteConfirmation } from '@/app/[lang]/components/shared/DeleteConfirmation';
+import { getDictionary } from '@/app/[lang]/dictionaries';
 import { IVacancy } from '@/app/lib/models/vacancy.model';
 import { isBedrijf } from '@/app/lib/actions/employer.actions';
-import { IJob } from '@/app/lib/models/job.model';
 import { haalBijbehorendeDiensten } from '@/app/lib/actions/vacancy.actions';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import { DeleteConfirmation } from '@/app/[lang]/components/shared/DeleteConfirmation';
 
-type CardProps = {
+type Props = {
   vacature: IVacancy;
+  lang: Locale;
+  components: any;
 };
 
-const Card = async ({ vacature, lang }: CardProps & { lang: Locale }) => {
-  const { components } = await getDictionary(lang);
+const Card = async ({ vacature, lang, components }: Props) => {
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | undefined>(false);
   const [diensten, setDiensten] = useState<IJob[]>([]);
 
@@ -67,7 +68,7 @@ const Card = async ({ vacature, lang }: CardProps & { lang: Locale }) => {
 
       {isEenBedrijf && (
         <div className="absolute items-stretch right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
-          <DeleteConfirmation shiftId={vacature._id as string} lang={lang}/>
+          <DeleteConfirmation shiftId={vacature._id as string} lang={lang} dictionary={undefined}/>
         </div>
       ) 
 }

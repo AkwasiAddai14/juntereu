@@ -37,7 +37,7 @@ const shiftArraySchema: Schema<IShiftArray> = new mongoose.Schema({
     applications: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Employee',
+            ref: 'Applications',
             required: false
         }
     ],

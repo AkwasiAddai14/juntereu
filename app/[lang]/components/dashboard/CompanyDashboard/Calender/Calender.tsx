@@ -2,17 +2,21 @@
 
 import { Fragment } from 'react';
 import React from 'react';
-import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, EllipsisHorizontalIcon } from '@heroicons/react/20/solid';
+import { ChevronDownIcon, EllipsisHorizontalIcon } from '@heroicons/react/20/solid';
 import { Menu, Transition } from '@headlessui/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
 import { format } from 'date-fns';
-import Dag from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Dag';
-import Week from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Week';
-import Maand from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Maand';
-import Jaar from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Jaar';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import Dag from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Wrappers/DagWrapper';
+import Week from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Wrappers/WeekWrapper';
+import Maand from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Wrappers/MaandWrapper';
+import Jaar from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Wrappers/JaarWrapper';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
+];
 
 
 
@@ -27,10 +31,9 @@ function classNames(...classes: (string | boolean | undefined)[]) {
     { name: 'Jaar', value: 'Jaar' },
   ]
 
-const Calender = async ({ lang }: { lang: Locale }) => {
+const Calender =({ dashboard, lang }: { dashboard: any, lang: Locale }) => {
     const [position, setPosition] = React.useState("Maand");
     const [currentDate, setCurrentDate] = useState<Date>(new Date());
-    const { dashboard } = await getDictionary(lang);
     const router = useRouter()
     
       useEffect(() => {

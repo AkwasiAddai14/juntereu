@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react'
-import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/[lang]/components/ui/tabs";
-import Flexpool from '@/app/[lang]/components/dashboard/EmployeeDashboard/Flexpool/Flexpool';
-import Favourites from '@/app/[lang]/components/dashboard/EmployeeDashboard/Flexpool/Favourites';
+import Flexpool from '@/app/[lang]/components/dashboard/EmployeeDashboard/Flexpool/Wrappers/FlexpoolWrappers';
+import Favourites from '@/app/[lang]/components/dashboard/EmployeeDashboard/Flexpool/Wrappers/FavouritesWrapper';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
 
 
 
@@ -20,10 +21,10 @@ const page = async ({ lang }: { lang: Locale }) => {
         </TabsList>
         <section className="mt-6">
           <TabsContent value="Flexpool">
-            <Flexpool lang={'en'} />
+            <Flexpool lang={lang} />
           </TabsContent>
           <TabsContent value="Favourites">
-            <Favourites lang={'en'} />
+            <Favourites lang={lang} />
           </TabsContent>
         </section>
       </Tabs>

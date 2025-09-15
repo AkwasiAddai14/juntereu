@@ -2,10 +2,12 @@ import '@/app/[lang]/globals.css'
 
 export async function generateStaticParams() {
     return [
-        { lang: 'nl' }, 
-        { lang: 'de' },
         { lang: 'en' },
+        { lang: 'nl' }, 
         { lang: 'fr' },
+        { lang: 'de' },
+        { lang: 'frCH' },
+        { lang: 'os' },
         { lang: 'es' },
         { lang: 'it' },
         { lang: 'pt' },
@@ -14,11 +16,10 @@ export async function generateStaticParams() {
         { lang: 'fi' },
         { lang: 'no' },
         { lang: 'lu' },
-        { lang: 'benl' },
-        { lang: 'befr' },
-        { lang: 'suit' },
-        { lang: 'sufr' },
-        { lang: 'sude' },
+        { lang: 'nlBE' },
+        { lang: 'frBE' },
+        { lang: 'itCH' },
+        { lang: 'deCH' },
     ]
   }
    
@@ -27,7 +28,7 @@ export async function generateStaticParams() {
     params,
   }: Readonly<{
     children: React.ReactNode
-    params: Promise<{ lang: 'en' | 'nl' | 'fr' | 'de' | 'es' | 'it' | 'pt' | 'fi' | 'dk' | 'no' | 'sw' | 'benl' | 'befr' | 'suit' | 'sufr' | 'sude' | 'lu' }>
+    params: Promise<{ lang: 'en' | 'nl' | 'fr' | 'de' | 'es' | 'it' | 'pt' | 'fi' | 'os' | 'dk' | 'no' | 'sw' | 'nlBE' | 'frBE' | 'itCH' | 'frCH' | 'deCH' | 'lu' }>
   }>) {
     return (
       <html lang={(await params).lang}>

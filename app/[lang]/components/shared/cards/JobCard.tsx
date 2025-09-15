@@ -11,15 +11,15 @@ import { haalVacature, verwijderDienst } from '@/app/lib/actions/vacancy.actions
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/app/[lang]/dictionaries';
 
-type CardProps = {
+type Props = {
   dienst: IJob;
+  components: any;
 };
 
-const Card = async ({ dienst, lang }: CardProps & { lang: Locale }) => {
+const Card = async ({ dienst, components }: Props) => {
   const { toast } = useToast();
   const [vacature, setVacature] = useState<any>();
   const router = useRouter();
-  const { components } = await getDictionary(lang);
 
   useEffect(() => {
     const fetchVacature = async () => {

@@ -1,4 +1,4 @@
-import { Locale } from '@/i18n.config';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import Image from 'next/image'; 
 import {  JSX, SVGProps, } from 'react';
@@ -6,8 +6,8 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
 // import { useTranslation } from 'next-intl';
 
 const supportedLocales: Locale[] = [
-  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
-  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
 const footerNavigation = {
@@ -86,10 +86,8 @@ const footerNavigation = {
 
 /*   */
 export default async function Example({ params }: { params: { lang: string } }) {
-  const lang = supportedLocales.includes(params.lang as Locale)
-    ? (params.lang as Locale)
-    : 'en';
-  const { pages, footer } = await getDictionary(lang);
+  const lang = supportedLocales.includes(params.lang as Locale) ? (params.lang as Locale) : 'en';
+  const { pages } = await getDictionary(lang);
     return (
       <div className="relative bg-white">
          <div className="pl-16 flex lg:flex-1">

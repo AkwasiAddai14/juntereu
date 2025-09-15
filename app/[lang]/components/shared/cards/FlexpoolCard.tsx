@@ -9,16 +9,17 @@ import { getDictionary } from '@/app/[lang]/dictionaries'
 import { compareAsc } from 'date-fns';
 
 
-type CardProps = {
-  flexpool:  IFlexpool 
-}
+type Props = {
+  flexpool: IFlexpool;
+  components: any;
+};
 
-const Card = async ({ flexpool, lang }: CardProps & { lang: Locale }) => {
+const Card = async ({ flexpool, components }: Props) => {
   const { user } = useUser();
   const userId = user?.id as string;
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | undefined>(false);
   const [bedrijfDetails, setBedrijfsdetails] = useState<any>(null);
-  const { components } = await getDictionary(lang);
+
 
   useEffect(() => {
   const bedrijfCheck = async () => {
@@ -74,7 +75,7 @@ const Card = async ({ flexpool, lang }: CardProps & { lang: Locale }) => {
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
         <div className="flex gap-2">
           <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-            {flexpool.freelancers.length} {components.cards.FlexpoolCard.hvl_freelancers}
+            {flexpool.employees.length} {components.cards.FlexpoolCard.hvl_freelancers}
           </p>
         </div>
         <div>

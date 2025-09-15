@@ -10,15 +10,14 @@ import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
 
 
-type CardProps = {
+type CheckoutCardClientProps = {
   shift: ShiftType;
+  components: any;
 };
 
-const Card = async ({ shift, lang }: CardProps & { lang: Locale }) => {
+export default function Card ({ shift, components }: CheckoutCardClientProps) {
   const { toast } = useToast();
   const router = useRouter();
-  const [showCheckout, setShowCheckout] = useState(false);
-  const { components } = await getDictionary(lang);
 
 
   const backgroundImageUrl = shift.employeeProfilephoto;
@@ -132,5 +131,4 @@ function berekenGewerkteUren(begintijd: string, eindtijd: string, pauzeMinuten: 
   );
 };
 
-export default Card;
 

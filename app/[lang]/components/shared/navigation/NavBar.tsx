@@ -3,45 +3,49 @@
 import Link from 'next/link';
 import Image from 'next/image'; 
 import { useState } from 'react';
-import Flag from 'react-flagpack';
-import { Locale } from '@/i18n.config';
 import { Dialog, Disclosure, 
   DisclosureButton, DisclosurePanel, 
   Popover, PopoverButton, PopoverGroup, 
   PopoverPanel } from '@headlessui/react';
-import { getDictionary } from '@/app/[lang]/dictionaries';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import LocaleSwitcher from '@/app/[lang]/components/shared/LocaleSwitcher';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import logo from '@/app/assets/images/178884748_padded_logo.png'; 
-import  delivery  from "@/app/assets/images/iStock-1824077027.jpg";
-// import ReactCountryFlag from "react-country-flag";
+  import { ChevronDownIcon } from '@heroicons/react/20/solid';
+  import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+  import logo from '@/app/assets/images/178884748_padded_logo.png'; 
+  import  delivery  from "@/app/assets/images/iStock-1824077027.jpg";
+  import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 
 
-  const countries = [
-    { name: 'United Kingdom', description: 'English', href: '/en', flag: 'GBR' },
-    { name: 'Nederland', description: 'Nederlands', href: 'https://nl.junter.eu', flag: 'NLD' },
-    { name: 'France', description: 'Français', href: '/fr', flag: 'FRA' },
-    { name: 'Deutschland', description: 'Deutsch', href: '/de', flag: 'DEU' },
-    { name: 'Osterreich', description: 'Deutsch', href: '/os', flag: 'AUT' },
-    { name: 'Italia', description: 'Italiano', href: '/it', flag: 'ITA' },
-    { name: 'España', description: 'Español', href: '/es', flag: 'ESP' },
-    { name: 'Portugal', description: 'Português', href: '/pt', flag: 'PRT' },
-    { name: 'Sverige', description: 'Svenska', href: '/sw', flag: 'SWE' },
-    { name: 'Danmark', description: 'Dansk', href: '/dk', flag: 'DNK' },
-    { name: 'Norge', description: 'Norsk', href: '/no', flag: 'NOR' },
-    { name: 'Suomi', description: 'Suomeksi', href: '/fi', flag: 'FIN' },
-    { name: 'België', description: 'Nederlands', href: '/benl', flag: 'BEL' },
-    { name: 'Belgique', description: 'Français', href: '/befr', flag: '056' },
-    { name: 'Suisse', description: 'Français', href: '/sufr', flag: 'CHE' },
-    { name: 'Suisse', description: 'Italiano', href: '/suit', flag: 'CHE' },
-    { name: 'Suisse', description: 'Deutsch', href: '/sude', flag: 'CHE' },
-  ]
+
+const countries = [
+  { name: 'United Kingdom', description: 'English', href: '/en', flag: 'gb' },
+  { name: 'Deutschland', description: 'Deutsch', href: '/de', flag: 'de' },
+  { name: 'Nederland', description: 'Nederlands', href: '/nl', flag: 'nl' },
+  { name: 'België', description: 'Nederlands', href: '/nl-BE', flag: 'be' },
+  { name: 'France', description: 'Français', href: '/fr', flag: 'fr' },
+  { name: 'España', description: 'Español', href: '/es', flag: 'es' },
+  { name: 'Portugal', description: 'Português', href: '/pt', flag: 'pt' },
+  { name: 'Italia', description: 'Italiano', href: '/it', flag: 'it' },
+  { name: 'Osterreich', description: 'Deutsch', href: '/at', flag: 'at' },
+  { name: 'Schweiz', description: 'Deutsch', href: '/de-CH', flag: 'ch' },
+  { name: 'Suomi', description: 'Suomeksi', href: '/fi', flag: 'fi' },
+  { name: 'Danmark', description: 'Dansk', href: '/da', flag: 'dk' },
+  { name: 'Sverige', description: 'Svenska', href: '/sv', flag: 'se' },
+  { name: 'Norge', description: 'Norsk', href: '/no', flag: 'no' },
+  { name: 'Suisse', description: 'Français', href: '/fr-CH', flag: 'ch' },
+  { name: 'Svizzera', description: 'Italiano', href: '/it-CH', flag: 'ch' },
+  { name: 'Bégique', description: 'Français', href: '/fr-BE', flag: 'be' },
+]
+
+type Props = {
+  lang: Locale;
+  pages: any;
+  navigation: any;
+  components: any;
+};
   
-  export default async function Example({ lang }: { lang: Locale }) {
+  export default function NavBar({ lang, pages, navigation, components }: Props) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { pages, navigation, components } = await getDictionary(lang);
+   
   
     return (
       <div className="bg-white">
@@ -52,7 +56,7 @@ import  delivery  from "@/app/assets/images/iStock-1824077027.jpg";
               <span className="sr-only">Junter</span>
               <Image className="h-32 w-auto" src={logo} alt="Junter logo" /> {/* Use Image component for optimized images */}
             </a>
-          <div className="flex lg:hidden">
+           <div className="flex lg:hidden">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
@@ -61,9 +65,9 @@ import  delivery  from "@/app/assets/images/iStock-1824077027.jpg";
             <span className="sr-only">Open main menu</span>
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
-        </div>
+        </div> 
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          {navigation.navLinks.map((item) => (
+          {navigation.navLinks.map((item: {name: string, link: string}) => (
             <Link href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
             {item.name}
             </Link>
@@ -85,7 +89,8 @@ import  delivery  from "@/app/assets/images/iStock-1824077027.jpg";
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                   >
                     <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <Flag code={item.flag} size="L" hasDropShadow className='border-lg'/>
+                    <img src={`https://flagcdn.com/w320/${item.flag}.png`} alt="Spain" className="w-6 h-4" />
+                    {/* <Flag code={item.flag} size="L" hasDropShadow className='border-lg'/> */}
                     {/* <ReactCountryFlag countryCode={item.flag} /> */}
                     </div>
                     <div className="flex-auto">
@@ -99,7 +104,7 @@ import  delivery  from "@/app/assets/images/iStock-1824077027.jpg";
                 ))}
               </div>
               <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                {pages.landingsPage.CTA.map((item) => (
+                {pages.landingsPage.CTA.map((item:{ name: string, href: string}) => (
                   <a
                     key={item.name}
                     href={`../${lang}/${item.href}`}
@@ -121,12 +126,12 @@ import  delivery  from "@/app/assets/images/iStock-1824077027.jpg";
             </a>
             <a
               href={`../${lang}/sign-up`}
-              className="rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
             >
               {components.navigation.NavBar.aanmelden}
             </a>
           </div>
-          <div className="flex lg:hidden">
+          {/* <div className="flex lg:hidden">
             <button
               type="button"
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -135,14 +140,14 @@ import  delivery  from "@/app/assets/images/iStock-1824077027.jpg";
               <span className="sr-only">Open main menu</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
-          </div>
+          </div> */}
         </nav>
         </div>
         <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
           <div className="fixed inset-0 z-10" />
           <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center gap-x-6">
-              <a href="#" className="-m-1.5 p-1.5">
+              <a href="" className="-m-1.5 p-1.5">
                 <span className="sr-only">Junter</span>
                 <Image
                   className="h-8 w-auto"
@@ -174,7 +179,7 @@ import  delivery  from "@/app/assets/images/iStock-1824077027.jpg";
                     <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {[...countries, ...pages.landingsPage.CTA].map((item) => (
+                    {[...countries/* , ...pages.landingsPage.CTA */].map((item) => (
                       <DisclosureButton
                         key={item.name}
                         as="a"
@@ -186,8 +191,8 @@ import  delivery  from "@/app/assets/images/iStock-1824077027.jpg";
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
-                {navigation.navLinks.map((item) => (
-            <Link href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
+                {navigation.navLinks.map((item: {name: string, link: string}) => (
+            <Link href={`/${lang}/${item.link}`} className="-mx-3 block rounded-lg px-3 py-2 text-sm/6 font-semibold text-gray-900">
             {item.name}
             </Link>
             ))}

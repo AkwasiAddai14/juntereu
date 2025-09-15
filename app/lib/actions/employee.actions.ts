@@ -1,7 +1,7 @@
 "use server"
 
 import { connectToDB } from "../mongoose";
-import Employee from "../models/employee.model";
+import Employee, { IEmployee } from "../models/employee.model";
 import { currentUser } from "@clerk/nextjs/server";
 import mongoose, { SortOrder } from "mongoose";
 
@@ -108,31 +108,36 @@ try {
 }
 }
 
-export const haalFreelancer = async  (clerkId: string) => {
+export const haalFreelancer = async (clerkId: string): Promise<IEmployee | null> => {
   try {
     await connectToDB();
-    let freelancer;
-    if(mongoose.Types.ObjectId.isValid(clerkId)){
-      freelancer = await Employee.findById(clerkId).lean();
+
+    let freelancer: IEmployee | null = null;
+
+    if (mongoose.Types.ObjectId.isValid(clerkId)) {
+      freelancer = await Employee.findById(clerkId).lean() as IEmployee | null;;
     }
-    if (clerkId.toString() !== ""){
-      freelancer = await Employee.findOne({clerkId: clerkId}).lean();
-    } else {
+
+    if (!freelancer && clerkId) {
+      freelancer = await Employee.findOne({ clerkId }).lean() as IEmployee | null;;
+    }
+
+    if (!freelancer) {
       const user = await currentUser();
       if (user) {
-        freelancer = await Employee.findOne({clerkId: user!.id}).lean();
-      }
-      else {
-        console.log("No user logged in or found!")
+        freelancer = await Employee.findOne({ clerkId: user.id }).lean() as IEmployee | null;;
+      } else {
+        console.log("No user logged in or found!");
       }
     }
-    console.log(freelancer)
-      return freelancer;
+
+    return freelancer ?? null;
   } catch (error) {
-      console.error('Error retrieving freelancers:', error);
-      throw new Error('Error retrieving freelancers');
+    console.error('Error retrieving freelancer:', error);
+    throw new Error('Error retrieving freelancer');
   }
-}
+};
+
 
 export const haalFreelancerProfielModal = async  (Id: string) => {
 try {

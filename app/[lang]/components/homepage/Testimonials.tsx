@@ -7,7 +7,7 @@ import ahmed from '@/app/assets/images/IMG_8348.jpg';
 import sarah from '@/app/assets/images/IMG_8349.jpg';
 import emma from '@/app/assets/images/IMG_8351.jpg';
 import mariah from '@/app/assets/images/IMG_8352.jpg';
-import { Locale } from '@/i18n.config'
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries'
 
 

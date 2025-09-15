@@ -3,30 +3,56 @@
 import { useUser } from '@clerk/nextjs';
 import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { Locale } from '@/i18n.config';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
+type Props = {
+  params: {
+    lang: Locale;
+  };
+};
 
 
-export default function AuthRedirect() {
+export default function AuthRedirect({ params }: Props) {
   const { isLoaded, user } = useUser();
   const router = useRouter();
   const pathname = usePathname();
-
   const supportedLocales: Locale[] = [
-    'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
-    'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+    'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+    'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH'
   ];
+  const rawLang = params.lang
+  const { lang } = params;
+  //console.log(navigator.language.split('-')[0])
+  const href = supportedLocales.includes(params.lang as Locale)
+  ? (params.lang as Locale)
+  : '/en'
 
   useEffect(() => {
     if (isLoaded && user) {
-      router.push('/dashboard', { scroll: false });
+      router.push(`/${lang}/dashboard`, { scroll: false });
+    }
+    else {
+      router.push( `/${lang}`, { scroll: false });
     }
   }, [isLoaded, user]);
+
+
+ /*  useEffect(() => {
+    const browserLang = navigator.language.split('-')[0]; // bijv. 'nl' uit 'nl-NL'
+
+    // fallback naar 'en' als taal niet ondersteund is
+    const lang = supportedLocales.includes(browserLang as Locale) ? browserLang : 'en';
+
+    router.replace(`/${lang}`);
+  }, [router]); */
+
+  //return null; // Je toont niets tijdens de redirect
 
   
   useEffect(() => {
     const lang = pathname.split('/')[1]
     if (!supportedLocales.includes(lang as any)) {
-      router.replace(`/en${pathname}`)
+      router.replace(`/${pathname}`)
     }
   }, [pathname])
 

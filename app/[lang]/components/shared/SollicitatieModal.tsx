@@ -7,54 +7,27 @@ import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { Button } from '@/app/[lang]/components/ui/button'
 import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
-import { accepteerSollicitatieDiensten, alleDienstenAfwijzen, accepteerGeselecteerdeDiensten, solliciteerOpVacature } from '@/app/lib/actions/vacancy.actions';
+import { accepteerSollicitatieDiensten, alleDienstenAfwijzen, accepteerGeselecteerdeDiensten } from '@/app/lib/actions/vacancy.actions';
 import mongoose from 'mongoose';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+import { IApplication } from '@/app/lib/models/application.model';
 
-interface SollicitatiePageProps {
-    sollicitatie: {
-        sollicitatieId: string,
-        opdrachtgever: string,
-        vacature: string,
-        diensten: Array<{
-          dienstId: string;
-          datum: string;
-          begintijd: string;
-          eindtijd: string;
-          bedrag: number;
-          pauze: number;
-          opdrachtnemers: number;
-      }>;
-        opdrachtnemer: {
-            opdrachtnemerId: string,
-            naam: string,
-            profielfoto: string,
-            geboortedatum: string,
-            bio: string,
-            stad: string,
-            emailadres: string,
-            telefoonnumer: string,
-            klussen: string,
-            rating: number,
-        }
-    }
-}
-
-export default async function SollicitatieModal({
-  sollicitatie,
-  isVisible,
-  lang
-}: {
-  sollicitatie: SollicitatiePageProps['sollicitatie'];
+interface SollicitatieModalProps {
+  sollicitatie: IApplication;
   isVisible: boolean;
   lang: Locale;
-}) {
+  components: {
+    shared: {
+      SollicitatieModal: any;
+    };
+  };
+}
+
+export default function SollicitatieModal({ sollicitatie, isVisible, lang, components }: SollicitatieModalProps) {
   const [open, setOpen] = useState(isVisible);
   const [geaccepteerd, setGeaccepteerd] = useState<any[]>([]);
   const { toast } = useToast();
   const router = useRouter();
-  const { components } = await getDictionary(lang);
 
 
   if (!isVisible) return null;
@@ -127,27 +100,27 @@ export default async function SollicitatieModal({
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
           <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
         <ul role="list" className="divide-y divide-gray-100">
-      {sollicitatie.diensten.map((dienst) => (
-        <li key={dienst.dienstId} className="relative flex justify-between py-5">
+      {sollicitatie.jobs.map((dienst) => (
+        <li key={dienst.dienstId as unknown as string} className="relative flex justify-between py-5">
           <div className="flex gap-x-4 pr-6 sm:w-1/2 sm:flex-none">
             <div className="min-w-0 flex-auto">
               <p className="text-sm/6 font-semibold text-gray-900">
                   <span className="absolute inset-x-0 -top-px bottom-0" />
-                  {dienst.datum}
+                  {dienst.date}
               </p>
 
               <p className="mt-1 flex text-xs/5 text-gray-500">
-                {dienst.begintijd} - {dienst.eindtijd}
+                {dienst.starting} - {dienst.ending}
               </p>
 
             </div>
           </div>
           <div className="flex items-center justify-between gap-x-4 sm:w-1/2 sm:flex-none">
             <div className="hidden sm:block">
-              <p className="text-sm/6 text-gray-900">{components.shared.SollicitatieModal.currencySign}{dienst.bedrag}</p>
-              {dienst.pauze ? (
+              <p className="text-sm/6 text-gray-900">{components.shared.SollicitatieModal.currencySign}{dienst.amount}</p>
+              {dienst.break ? (
                 <p className="mt-1 text-xs/5 text-gray-500">
-                {dienst.pauze} {components.shared.SollicitatieModal.fiedValues[0]}
+                {dienst.break} {components.shared.SollicitatieModal.fiedValues[0]}
                 </p>
               ) : (
                 <div className="mt-1 flex items-center gap-x-1.5">
@@ -156,7 +129,7 @@ export default async function SollicitatieModal({
               )}
             </div>
             <button
-              onClick={() => handleAccept(dienst.dienstId)}
+              onClick={() => handleAccept(dienst.dienstId as unknown as string)}
               className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
             >
                 {geaccepteerd.includes(dienst.dienstId) ? (
@@ -164,7 +137,7 @@ export default async function SollicitatieModal({
                 ) : (
                   <p>  
                     {components.shared.SollicitatieModal.buttons[6]}
-                    <span className="sr-only">, {sollicitatie.opdrachtnemer.naam}
+                    <span className="sr-only">, {sollicitatie.employees.name}
                     </span>
                     </p>
                 )}
@@ -204,8 +177,8 @@ export default async function SollicitatieModal({
                         <div className="-m-1 flex">
                           <div className="inline-flex overflow-hidden rounded-lg border-4 border-white">
                             <img
-                              alt={`Werknemer: ${sollicitatie.opdrachtnemer.naam}`}
-                              src={sollicitatie.opdrachtnemer.profielfoto}
+                              alt={`Werknemer: ${sollicitatie.employees.name}`}
+                              src={sollicitatie.employees.profilephoto}
                               className="size-24 shrink-0 sm:size-40 lg:size-48"
                             />
                           </div>
@@ -214,24 +187,24 @@ export default async function SollicitatieModal({
                       <div className="mt-6 sm:ml-6 sm:flex-1">
                         <div>
                           <div className="flex items-center">
-                            <h3 className="text-xl font-bold text-gray-900 sm:text-2xl">{sollicitatie.opdrachtnemer.naam}</h3>
+                            <h3 className="text-xl font-bold text-gray-900 sm:text-2xl">{sollicitatie.employees.name}</h3>
                             <span className="ml-2.5 inline-block size-2 shrink-0 rounded-full bg-orange-400">
-                              <span className="sr-only">{sollicitatie.opdrachtnemer.klussen} {components.shared.SollicitatieModal.fiedValues[3]}</span>
+                              <span className="sr-only">{sollicitatie.employees.shifts} {components.shared.SollicitatieModal.fiedValues[3]}</span>
                             </span>
                           </div>
-                          <p className="text-sm text-gray-500">{sollicitatie.opdrachtnemer.rating} {components.shared.SollicitatieModal.fiedValues[4]}</p>
+                          <p className="text-sm text-gray-500">{sollicitatie.employees.rating} {components.shared.SollicitatieModal.fiedValues[4]}</p>
                         </div>
                         <div className="mt-5 flex flex-wrap space-y-3 sm:space-x-3 sm:space-y-0">
                           <button
                             type="button"
-                            onClick={() =>{alleAccepteren(sollicitatie.sollicitatieId)}}
+                            onClick={() =>{alleAccepteren(sollicitatie.id)}}
                             className="inline-flex w-full shrink-0 items-center justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 sm:flex-1"
                           >
-                            {`Accepteer alle (${sollicitatie.diensten.length})`}
+                            {`Accepteer alle (${sollicitatie.jobs.length})`}
                           </button>
                           <button
                             type="button"
-                            onClick={() => {alleAfwijzen(sollicitatie.sollicitatieId)}}
+                            onClick={() => {alleAfwijzen(sollicitatie.id)}}
                             className="inline-flex w-full flex-1 items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-red-600 shadow-sm ring-1 ring-inset ring-red-300 hover:bg-red-50"
                           >
                             {components.shared.SollicitatieModal.buttons[2]} 
@@ -253,7 +226,7 @@ export default async function SollicitatieModal({
                                       href="#"
                                       className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
                                     >
-                                       {components.shared.SollicitatieModal.buttons[3]} {sollicitatie.opdrachtnemer.naam}
+                                       {components.shared.SollicitatieModal.buttons[3]} {sollicitatie.employees.name}
                                     </a>
                                   </MenuItem>
                                   <MenuItem>
@@ -286,23 +259,23 @@ export default async function SollicitatieModal({
                         <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">{components.shared.SollicitatieModal.fiedValues[5]}</dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">
                           <p>
-                            {sollicitatie.opdrachtnemer.bio}
+                            {sollicitatie.employees.bio}
                           </p>
                         </dd>
                       </div>
                       <div className="sm:flex sm:px-6 sm:py-5">
                         <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">{components.shared.SollicitatieModal.fiedValues[6]}</dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">{sollicitatie.opdrachtnemer.stad}</dd>
+                        <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">{sollicitatie.employees.city}</dd>
                       </div>
                       <div className="sm:flex sm:px-6 sm:py-5">
                         <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">{components.shared.SollicitatieModal.fiedValues[7]}</dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">
-                          <time dateTime="1982-06-23">{sollicitatie.opdrachtnemer.geboortedatum}</time>
+                          <time dateTime="1982-06-23">{sollicitatie.employees.dateOfBirth}</time>
                         </dd>
                       </div>
                       <div className="sm:flex sm:px-6 sm:py-5">
                         <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:shrink-0 lg:w-48">{components.shared.SollicitatieModal.fiedValues[8]}</dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">{sollicitatie.opdrachtnemer.emailadres}</dd>
+                        <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">{sollicitatie.employees.email}</dd>
                       </div>
                     </dl>
                   </div>
@@ -314,10 +287,10 @@ export default async function SollicitatieModal({
       </div>
     </Dialog>
     <Button 
-    onClick={() => verstuurOfferte(sollicitatie.opdrachtnemer.opdrachtnemerId, sollicitatie.sollicitatieId, geaccepteerd)}
+    onClick={() => verstuurOfferte(sollicitatie.employees.employeeId as unknown as string, sollicitatie.id, geaccepteerd)}
     className='bg-orange-400 font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 sm:flex-1 rounded-md px-2 py-2 my-4' >
         {components.shared.SollicitatieModal.buttons[7]}
     </Button>
     </>
   )
-}
+};

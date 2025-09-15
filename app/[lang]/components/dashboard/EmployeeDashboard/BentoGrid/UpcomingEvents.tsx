@@ -7,8 +7,7 @@ import { useEffect, useState } from "react";
 import { haalAangemeld } from "@/app/lib/actions/shift.actions"
 import { haalDienstenFreelancer } from "@/app/lib/actions/vacancy.actions";
 import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 const people = [
   {
@@ -69,14 +68,30 @@ const people = [
     href: '#',
     lastSeen: null,
   },
-]
+];
 
-export default async function Events({ lang }: { lang: Locale }) {
+interface DashboardDict {
+  werknemersPage: {
+    BentoGrid: {
+      UpcomingEvents: {
+        text1: string;
+        text2: string;
+        currencySign: string;
+      };
+    };
+  };
+}
+
+interface EventsClientProps {
+  dashboard: DashboardDict;
+}
+
+export default function Events({ dashboard }: EventsClientProps) {
   const { isLoaded, user } = useUser();
   const [freelancerId, setFreelancerId] = useState<any>(null);
   const [geaccepteerd, setGeaccepteerd] = useState<any[]>([]);
   const [diensten, setDiensten] = useState<any[]>([]);
-  const { dashboard } = await getDictionary(lang);
+
 
   useEffect(() => {
     if (isLoaded && user) {

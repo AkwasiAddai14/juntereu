@@ -3,124 +3,53 @@
 import { CalendarDateRangeIcon, BanknotesIcon, 
   BuildingOffice2Icon, BriefcaseIcon, 
   ClipboardDocumentCheckIcon } from '@heroicons/react/20/solid';
-import { Sollicitaties } from '@/app/[lang]/components/shared/Sollicitaties';
-import  Dienstensectie  from '@/app/[lang]/components/shared/Dienstensectie';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import  Sollicitaties  from '@/app/[lang]/components/shared/Wrappers/Sollicitaties';
+import  Dienstensectie  from '@/app/[lang]/components/shared/Wrappers/Dienstensectie';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+import { IApplication } from '@/app/lib/models/application.model';
+import { IJob } from '@/app/lib/models/job.model';
+import { IVacancy } from '@/app/lib/models/vacancy.model';
 
 
-interface BedrijvenPageProps {
-    vacature: {
-      vactureID: any;
-      afbeelding: string;
-      titel: string;
-      functie: string;
-      adres: { 
-        straatnaam: string, 
-        huisnummer: string, 
-        postcode: string, 
-        stad: string 
-      };
-      beschrijving: string;
-      kledingsvoorschriften: string[];
-      vaardigheden: string[];
-      begindatum: string;
-      einddatum: string;
-      begintijd: string;
-      uurloon: number;
-      eindtijd: string;
-      toeslag: boolean;
-      toeslagtype: number;
-      toeslagpercentage: number;
-    };
-    diensten: [{
-    dienstId: string;
-    opdrachtgever: string;
-    vacature: string;
-    datum: string
-    werktijden: {
-        begintijd: string,
-        eindtijd: string,
-        pauze: number
-    }
-    opdrachtnemers: [{
-        freelancerId: string
-        naam: string,
-        profielfoto: string
-        rating: number;
-        geboortedatum: string;
-        emailadres: string;
-        telefoonnummer: string;
-        klussen: number;
-        stad: string;
-    }],
-    bedrag: number,
-    status: string,
-    index: number, // Replace `any[]` with the correct type if known
-}],
-
-    sollicitaties: [
-      sollicitatie: {
-        sollicitatieId: string,
-        opdrachtgever: string,
-        vacature: string,
-        diensten: [
-        {
-            dienstId: string,
-            datum:string,
-            begintijd: string,
-            eindtijd: string,
-            pauze: number,
-            opdrachtnemers: number,
-        }
-    ],
-        opdrachtnemer: {
-            opdrachtnemerId: string,
-            naam: string,
-            profielfoto: string,
-            geboortedatum: string,
-            bio: string,
-            stad: string,
-            emailadres: string,
-            telefoonnumer: string,
-            klussen: string,
-            rating: number,
-        }
-    }
-]
+interface Props {
+  vacature: IVacancy;
+  diensten: IJob[];
+  sollicitaties: IApplication[];
+  lang: Locale;
+  dictionary: any;
 }
   
 
-export default async function BedrijvenPage({vacature, diensten, sollicitaties}: BedrijvenPageProps, { lang }: { lang: Locale }) {
-  const { components } = await getDictionary(lang);
+export default function BedrijvenPage({ vacature, diensten, sollicitaties, lang, dictionary }: Props) {
+  const components = dictionary.components;
     const features = [
         {
           name: 'Loon',
-          description: `${components.forms.VacancyForm.salaris.currencySign} ${vacature.uurloon} / ${diensten.length}`,
+          description: `${components.forms.VacancyForm.salaris.currencySign} ${vacature.hourlyRate} / ${diensten.length}`,
           icon: BanknotesIcon,
         },
         {
           name: 'Data',
-          description: `${components.forms.VacancyForm.salaris.fieldLabels[6]} ${vacature.begindatum} ${components.forms.VacancyForm.salaris.fieldLabels[7]} ${vacature.einddatum}`,
+          description: `${components.forms.VacancyForm.salaris.fieldLabels[6]} ${vacature.startingDate} ${components.forms.VacancyForm.salaris.fieldLabels[7]} ${vacature.endingDate}`,
           icon: CalendarDateRangeIcon,
         },
         {
           name: 'Adres',
-          description:`${vacature.adres.straatnaam} ${vacature.adres.huisnummer} \n
-          ${vacature.adres.postcode} ${vacature.adres.stad}`,
+          description:`${vacature.adres.street} ${vacature.adres.housenumber} \n
+          ${vacature.adres.postcode} ${vacature.adres.city}`,
           icon: BuildingOffice2Icon,
         },
         {
           name: 'Kledingsvoorschriften',
-          description: vacature.kledingsvoorschriften?.length 
-          ? vacature.kledingsvoorschriften.join(', ') 
+          description: vacature.dresscode?.length 
+          ? vacature.dresscode.join(', ') 
           : 'Geen specifieke voorschriften',
           icon: BriefcaseIcon,
         },
         {
             name: 'Vaardigheden',
-            description: vacature.vaardigheden?.length 
-            ? vacature.vaardigheden.join(', ') 
+            description: vacature.skills?.length 
+            ? vacature.skills.join(', ') 
             : 'Geen vaardigheden vereist', 
             icon: ClipboardDocumentCheckIcon,
           },
@@ -133,12 +62,12 @@ export default async function BedrijvenPage({vacature, diensten, sollicitaties}:
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
           <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-              <h2 className="text-base/7 font-semibold text-sky-600">{vacature.functie}</h2>
+              <h2 className="text-base/7 font-semibold text-sky-600">{vacature.function}</h2>
               <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-              {vacature.titel}
+              {vacature.title}
               </p>
               <p className="mt-6 text-lg/8 text-gray-600">
-              {vacature.beschrijving}
+              {vacature.description}
               </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
                 {features.map((feature) => (
@@ -162,7 +91,7 @@ export default async function BedrijvenPage({vacature, diensten, sollicitaties}:
               <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
                 <img
                   alt="vacature afbeelding"
-                  src={vacature.afbeelding}
+                  src={vacature.image}
                   width={2432}
                   height={1442}
                   className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
@@ -177,7 +106,7 @@ export default async function BedrijvenPage({vacature, diensten, sollicitaties}:
         </div>
       </div>
     </div>
-    <Sollicitaties sollicitaties={sollicitaties} lang={'en'}/>
+    <Sollicitaties sollicitaties={sollicitaties} lang={lang}/>
     <Dienstensectie diensten={diensten} lang={lang}/>
     </>
   )

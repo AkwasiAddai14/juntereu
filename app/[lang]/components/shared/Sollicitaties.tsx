@@ -4,49 +4,32 @@ import { Fragment, useState } from "react";
 import { format, parse } from 'date-fns';
 import { useToast } from '../ui/use-toast';
 import Image from 'next/image';
-import SollicitatieModal from "@/app/[lang]/components/shared/SollicitatieModal";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
-
-interface SollicitatiePageProps  {
-    sollicitaties: [
-       sollicitatie: {
-      sollicitatieId: string,
-      opdrachtgever: string,
-      vacature: string,
-      diensten: [
-      {
-          dienstId: string,
-          datum:string,
-          begintijd: string,
-          eindtijd: string,
-          pauze: number,
-          opdrachtnemers: number,
-      }
-  ],
-      opdrachtnemer: {
-          opdrachtnemerId: string,
-          naam: string,
-          profielfoto: string,
-          geboortedatum: string,
-          bio: string,
-          stad: string,
-          emailadres: string,
-          telefoonnumer: string,
-          klussen: string,
-          rating: number,
-      }
-  }
-    ]
-};
+import SollicitatieModal from "@/app/[lang]/components/shared/Wrappers/SollicitatieModal";
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 
-export const Sollicitaties = async ({ sollicitaties, lang }: SollicitatiePageProps & { lang: Locale }) => {
+interface SollicitatiePageProps {
+  sollicitaties: any[];
+  lang: Locale;
+  components: {
+    shared: {
+      Sollicitaties: {
+        headTitle: string;
+        subTitle: string;
+        fieldValues: string[];
+        attributes: string[];
+      };
+    };
+  };
+}
+
+
+export const Sollicitaties = ({ sollicitaties, lang, components }: SollicitatiePageProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selected, setSelected] = useState<any>();
   const [id, setId] = useState<string>('');
   const { toast } = useToast();
-  const { components } = await getDictionary(lang);
+  
   
   const parseShiftTime = (date: Date): Date => {
     // Format the date to 'yyyy-MM-dd'
@@ -157,4 +140,4 @@ export const Sollicitaties = async ({ sollicitaties, lang }: SollicitatiePagePro
       <SollicitatieModal sollicitatie={selected} isVisible={showModal} lang={lang}/>
       </Fragment>
     )
-  }
+  };

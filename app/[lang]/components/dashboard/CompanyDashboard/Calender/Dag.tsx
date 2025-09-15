@@ -22,17 +22,23 @@ import LeButton from './LeButton';
 import ElButton from './ElButton';
 import { IJob } from '@/app/lib/models/job.model';
 import { haalGeplaatsteDiensten } from '@/app/lib/actions/vacancy.actions';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
+];
 
 
 function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-  
+interface CalenderDClientProps {
+  dashboard: any;
+}
 
-    const CalenderD = async ({ lang }: { lang: Locale }) => {
+    const CalenderD = ({ dashboard }: CalenderDClientProps) => {
 
   const { isLoaded, user } = useUser();
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
@@ -40,7 +46,6 @@ function classNames(...classes: (string | boolean | undefined)[]) {
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
   const [bedrijfiD, setBedrijfiD] = useState<string>("");
   const [selectedDay, setSelectedDay] = useState<Date>(new Date());
-  const { dashboard } = await getDictionary(lang);
   const router = useRouter()
 
   useEffect(() => {

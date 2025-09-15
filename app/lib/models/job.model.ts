@@ -4,7 +4,7 @@ export interface IJob extends Document {
     employer: mongoose.Schema.Types.ObjectId;
     vacancy: mongoose.Schema.Types.ObjectId;
     title: string;
-    date: string
+    date: string,
     workingtime: {
         starting: string,
         ending: string,
@@ -12,10 +12,12 @@ export interface IJob extends Document {
     }
     employees: {
         freelancerId: mongoose.Schema.Types.ObjectId;
+        city: string;
         name: string;
         profilephoto: string;
         rating: number;
         dateOfBirth: string;
+        ratingCount: number; 
       }[];
     amount: number,
     status: string,
@@ -47,10 +49,12 @@ const jobSchema: Schema<IJob> = new mongoose.Schema({
                 ref: 'Employee', // Referentie naar Freelancer-model
                 required: true,
               },
+          city: { type: String, required: false },
           name: { type: String, required: true },
           profilephot: { type: String, required: true },
           rating: { type: Number, required: false },
           dateOfBirth: { type: String, required: true },
+          ratingCount: { type: Number, required: false },
         },
       ],
       amount: {

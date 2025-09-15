@@ -318,7 +318,7 @@
             },
             "vacanciesButton": "Voir toutes les offres",
             "navLinks": [
-                {"name": "Accueil", "link": "/"},
+                {"name": "Accueil", "link": "../"},
                 {"name": "Politique de confidentialité", "link": "../pp"},
                 {"name": "Conditions d'utilisation", "link": "../tou"}
             ]
@@ -428,7 +428,7 @@
                 "informationRequired": [
                     "- Prénom et nom de la personne de contact",
                     "- Nom de l'entreprise",
-                    "- Numéro de registre du commerce (KVK)"
+                    "- Numéro de registre du commerce"
                 ]
             }
         },
@@ -1114,7 +1114,201 @@
                   "Plekken": "Postes vacants"
                 }
               }
-        }
+        },
+        "localDateString": "fr-FR",
+  "currencySign": "€",
+  "Checkout": {
+    "employees": {
+      "ToastMessage1": "Checkout envoyé ! 👍",
+      "ToastMessage2": "Action non autorisée ! ❌",
+      "FormFieldItems": [
+        "logo",
+        "Nom de l'employeur",
+        "Poste",
+        "Ville",
+        "Absent",
+        "Date",
+        "Heure de début",
+        "Heure de fin",
+        "minutes de pause",
+        "Taux horaire",
+        "Commentaire",
+        "Envoi du checkout...",
+        "Soumettre"
+      ]
+    },
+    "employer": {
+      "ToastMessage1": "Non connecté !",
+      "ToastMessage2": "Checkout envoyé ! 👍",
+      "ToastMessage3": "Action non autorisée ! ❌",
+      "FormFieldItems": [
+        "Photo de profil",
+        "Shifts complétés",
+        "Absent",
+        "Détails du shift",
+        "minutes de pause",
+        "Taux horaire",
+        "Heures déclarées",
+        "Heure de début",
+        "Heure de fin",
+        "En retard",
+        "Retour",
+        "Rejeter",
+        "Envoi du checkout...",
+        "Accepter",
+        "En cours d'acceptation",
+        "Envoyer"
+      ]
+    }
+  },
+  "Flexpool": {
+    "employees": {
+      "ToastMessage1": "Non connecté !",
+      "FormFieldItems": [
+        "Shifts",
+        "Aucun shift dans la flexpool"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Non connecté !",
+      "ToastMessage2": "Freelance invité ! 👍",
+      "ToastMessage3": "Action non autorisée !",
+      "ToastMessage4": "Freelance supprimé ! 👍",
+      "FormFieldItems": [
+        "Sélectionner un employé",
+        "Inviter",
+        "Employés",
+        "shifts",
+        "% Présence",
+        "% À l'heure",
+        "Supprimer",
+        "Shifts",
+        "Aucun shift dans la flexpool"
+      ]
+    }
+  },
+  "Invoice": {
+    "employees": {
+      "ToastMessage1": "Non connecté !",
+      "FormFieldItems": [
+        "Facture pour la semaine",
+        "Retour",
+        "Télécharger",
+        "Shift",
+        "Heures",
+        "Taux horaire",
+        "Montant total",
+        "min de pause",
+        "heures travaillées",
+        "TVA :",
+        "Télécharger",
+        "Sous-total",
+        "TVA",
+        "Montant total"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Non connecté !",
+      "FormFieldItems": [
+        "Facture",
+        "Facture pour la semaine",
+        "Retour",
+        "Télécharger",
+        "Shift",
+        "Heures travaillées",
+        "Tarif",
+        "Sous-total",
+        "TVA",
+        "Montant total"
+      ]
+    }
+  },
+  "Jobs": {
+    "FormFieldItems": [
+      "Adresse",
+      "Date",
+      "Horaires de travail",
+      "Salaire",
+      "Compétences",
+      "Tenue vestimentaire"
+    ]
+  },
+  "Payslip": {
+    "moods": [
+      "Excité",
+      "Triste",
+      "Aimé",
+      "Heureux",
+      "Pouce levé",
+      "Je ne ressens rien"
+    ],
+    "FormFieldItems": [
+      "Fiche de paie",
+      "Télécharger",
+      "Envoyer",
+      "Résumé",
+      "Montant",
+      "Statut",
+      "Date limite de paiement",
+      "Paramètres",
+      "Créé le",
+      "Employeur",
+      "Employé",
+      "Service",
+      "Heures travaillées",
+      "Salaire horaire",
+      "Montant",
+      "Sous-total",
+      "Déduction",
+      "Montant total",
+      "Commentaire",
+      "le",
+      "Publier un commentaire",
+      "Publier un commentaire...",
+      "Joindre un fichier",
+      "Votre humeur",
+      "Donnez une humeur",
+      "Poster le commentaire"
+    ]
+  },
+  "Shift": {
+    "employee": {
+      "FormFieldItems": [
+        "places",
+        "Candidatures",
+        "non présent dans la flexpool",
+        "À propos du shift",
+        "Shift lié"
+      ]
+    },
+    "employer": {
+      "FormFieldItems": [
+        "Nouveau shift",
+        "À propos du shift",
+        "places",
+        "non présent dans la flexpool",
+        "Compétences",
+        "Code vestimentaire",
+        "À propos du shift",
+        "Modifier le shift"
+      ]
+    }
+  },
+  "Vacancies": {
+    "FormFieldItems": [
+      "Nouvelle offre",
+      "Facture",
+      "Facture de la semaine",
+      "Retour",
+      "Télécharger",
+      "Shift",
+      "Heures travaillées",
+      "Tarif",
+      "Sous-total",
+      "TVA",
+      "Montant total"
+    ]
+  }
     },
     "components": {
       "cards": {
@@ -1984,6 +2178,14 @@
                 "Annuler",
                 "Se déconnecter"
               ]
+          },
+          "OnboardingDialog": {
+            "headTitle": "Inscrivez-vous pour commencer.",
+            "subTitle": "Choisissez ci-dessous si vous souhaitez vous inscrire en tant que freelance ou entreprise.",
+            "buttons": [
+              "Travailleur",
+              "Entreprise"
+            ]
           }
       }
   },

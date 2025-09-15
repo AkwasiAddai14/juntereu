@@ -388,7 +388,7 @@
           },
           "vacanciesButton": "Se alle stillinger",
           "navLinks": [
-            { "name": "Hjem", "link": "/" },
+            { "name": "Hjem", "link": "../" },
             { "name": "Personvernerklæring", "link": "../pp" },
             { "name": "Vilkår for bruk", "link": "../tou" }
           ]
@@ -1209,7 +1209,201 @@
               "Plekken": "Ledige plasser"
             }
           }
-        }
+        },
+        "localDateString": "nb-NO",
+  "currencySign": "€",
+  "Checkout": {
+    "employees": {
+      "ToastMessage1": "Utsjekk sendt! 👍",
+      "ToastMessage2": "Handling ikke tillatt! ❌",
+      "FormFieldItems": [
+        "logo",
+        "Arbeidsgivers navn",
+        "Stilling",
+        "By",
+        "Ikke møtt",
+        "Dato",
+        "Starttid",
+        "Sluttid",
+        "minutter pause",
+        "Timelønn",
+        "Kommentar",
+        "Sender utsjekk...",
+        "Send"
+      ]
+    },
+    "employer": {
+      "ToastMessage1": "Ikke innlogget!",
+      "ToastMessage2": "Utsjekk sendt! 👍",
+      "ToastMessage3": "Handling ikke tillatt! ❌",
+      "FormFieldItems": [
+        "Profilbilde",
+        "Fullførte skift",
+        "Ikke møtt",
+        "Skiftdetaljer",
+        "minutter pause",
+        "Timelønn",
+        "Rapporterte timer",
+        "Starttid",
+        "Sluttid",
+        "For sent",
+        "Tilbakemelding",
+        "Avslå",
+        "Sender utsjekk...",
+        "Godta",
+        "Godtar",
+        "Send"
+      ]
+    }
+  },
+  "Flexpool": {
+    "employees": {
+      "ToastMessage1": "Du er ikke logget inn!",
+      "FormFieldItems": [
+        "Skift",
+        "Ingen skift i flexpoolen"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Du er ikke logget inn!",
+      "ToastMessage2": "Frilanser invitert! 👍",
+      "ToastMessage3": "Handling ikke tillatt!",
+      "ToastMessage4": "Frilanser fjernet! 👍",
+      "FormFieldItems": [
+        "Velg arbeidstaker",
+        "Inviter",
+        "Arbeidstakere",
+        "Skift",
+        "% Oppmøte",
+        "% Presisjon",
+        "Fjern",
+        "Skift",
+        "Ingen skift i flexpoolen"
+      ]
+    }
+  },
+  "Invoice": {
+    "employees": {
+      "ToastMessage1": "Du er ikke logget inn!",
+      "FormFieldItems": [
+        "Faktura for uke",
+        "Tilbake",
+        "Last ned",
+        "Skift",
+        "Timer",
+        "Timesats",
+        "Totalbeløp",
+        "min pause",
+        "arbeidede timer",
+        "MVA:",
+        "Last ned",
+        "Delsum",
+        "MVA",
+        "Totalbeløp"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Du er ikke logget inn!",
+      "FormFieldItems": [
+        "Faktura",
+        "Faktura for uke",
+        "Tilbake",
+        "Last ned",
+        "Skift",
+        "Arbeidede timer",
+        "Sats",
+        "Delsum",
+        "MVA",
+        "Totalbeløp"
+      ]
+    }
+  },
+  "Jobs": {
+    "FormFieldItems": [
+      "Adresse",
+      "Dato",
+      "Arbeidstid",
+      "Lønn",
+      "Ferdigheter",
+      "Kleskode"
+    ]
+  },
+  "Payslip": {
+    "moods": [
+      "Spent",
+      "Trist",
+      "Elsket",
+      "Glad",
+      "Tommelen opp",
+      "Jeg føler ingenting"
+    ],
+    "FormFieldItems": [
+      "Lønnsslipp",
+      "Last ned",
+      "Send",
+      "Sammendrag",
+      "Beløp",
+      "Status",
+      "Forfallsdato",
+      "Innstillinger",
+      "Opprettet",
+      "Arbeidsgiver",
+      "Ansatt",
+      "Vakt",
+      "Arbeidede timer",
+      "Timelønn",
+      "Beløp",
+      "Delsum",
+      "Fradrag",
+      "Totalt beløp",
+      "Kommentar",
+      "den",
+      "Legg inn en kommentar",
+      "Legg inn en kommentar...",
+      "Legg ved en fil",
+      "Humøret ditt",
+      "Velg et humør",
+      "Send kommentar"
+    ]
+  },
+  "Shift": {
+    "employee": {
+      "FormFieldItems": [
+        "plasser",
+        "Søknader",
+        "ikke i fleksipool",
+        "Om vakten",
+        "Relatert vakt"
+      ]
+    },
+    "employer": {
+      "FormFieldItems": [
+        "Ny vakt",
+        "Om vakten",
+        "plasser",
+        "ikke i fleksipool",
+        "Ferdigheter",
+        "Kleskode",
+        "Om vakten",
+        "Rediger skift"
+      ]
+    }
+  },
+  "Vacancies": {
+    "FormFieldItems": [
+      "Ny stilling",
+      "Faktura",
+      "Faktura for uke",
+      "Tilbake",
+      "Last ned",
+      "Vakt",
+      "Arbeidede timer",
+      "Sats",
+      "Delsum",
+      "MVA",
+      "Totalt beløp"
+    ]
+  }  
     },
     "components": {
         "cards": {
@@ -2078,7 +2272,15 @@
               "Avbryt",
               "Logg ut"
             ]
-          }
+          },
+          "OnboardingDialog": {
+            "headTitle": "Registrer deg for å komme i gang.",
+            "subTitle": "Velg nedenfor om du vil registrere deg som frilanser eller som bedrift.",
+            "buttons": [
+              "Arbeidstaker",
+              "Bedrift"
+            ]
+          }          
         }
     },
     "Validations": {

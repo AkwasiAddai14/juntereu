@@ -9,17 +9,16 @@ import { Disclosure,  DisclosureButton,  DisclosurePanel, Menu, MenuButton,  Men
 import Loading from "@/app/[lang]/components/dashboard/EmployeeDashboard/Dashboard/DashboardLoading";
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from '@/app/assets/images/178884748_padded_logo.png';
-import UitlogModal from "../../../shared/UitlogModal";
+import UitlogModal from "../../../shared/Wrappers/UitlogModal";
 import BentoGrid from '../BentoGrid/BentoGrid';
-import Calender from '../Calender/Calender';
+import Calender from '../Calender/Wrappers/Calender';
 import Explore from '../Explore/Explore';
 import Shifts from '../Shifts/Shifts';
-import Flexpool from "../Flexpool/Flexpool";
-import Financien from '../Financien/Facturen';
-import Profiel from '../Profiel/Profile';
+import Flexpool from "../Flexpool/page";
+import Financien from '../Financien/Page';
+import Profiel from '../Profiel/ProfileWrapper';
 import FAQ from '../FAQ/FAQ';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 
 /* const navigation = [
@@ -47,21 +46,21 @@ function classNames(...classes: string[]) {
 
 
 
-export default async function EmployeeDashboard({ lang }: { lang: Locale }) {
+export default async function EmployeeDashboard({ lang, dashboard }: { lang: Locale; dashboard: any }) {
   const { isLoaded, user } = useUser();
   const [position, setPosition] = React.useState("Shifts");
   const [showLogOut, setShowLogOut] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const { dashboard } = await getDictionary(lang);
 
-  const navigation = dashboard.werknemersPage.Dashboard.navigation.map((item, index) => ({
+
+  const navigation = dashboard.werknemersPage.Dashboard.navigation.map((item: {name: string, value: string}, index: number) => ({
     name: item.name,
     value: item.value,
     href: '#',          // voeg hier eventueel dynamisch routing aan toe
     current: index === 0, // bijv. eerste item actief
   }));
 
-  const userNavigation = dashboard.werknemersPage.Dashboard.UserNavigation.map(item => ({
+  const userNavigation = dashboard.werknemersPage.Dashboard.UserNavigation.map((item: {name: string, value: string}) => ({
     name: item.name,
     value: item.value,
     href: '#',
@@ -107,7 +106,7 @@ export default async function EmployeeDashboard({ lang }: { lang: Locale }) {
                 alt="Junter logo" /> {/* Use Image component for optimized images */}
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                  {navigation.map((item) => (
+                  {navigation.map((item: {name: string, value: string}) => (
                      <button
                      onClick={() => MenuSluiten(item.value)}
                      className={classNames(
@@ -143,7 +142,7 @@ export default async function EmployeeDashboard({ lang }: { lang: Locale }) {
                     transition
                     className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                   >
-                    {userNavigation.map((item) => (
+                    {userNavigation.map((item: {name: string, value: string, href: string}) => (
                       
                       <Menu.Item key={item.name}>
                       {({ active }) => (
@@ -181,7 +180,7 @@ export default async function EmployeeDashboard({ lang }: { lang: Locale }) {
 
           <DisclosurePanel className="sm:hidden">
             <div className="space-y-1 pb-3 pt-2">
-              {navigation.map((item) => (
+              {navigation.map((item: {name: string, href: string, current: boolean}) => (
                 <DisclosureButton
                   key={item.name}
                   as="a"
@@ -217,7 +216,7 @@ export default async function EmployeeDashboard({ lang }: { lang: Locale }) {
                 </button>
               </div>
               <div className="mt-3 space-y-1">
-                {userNavigation.map((item) => (
+                {userNavigation.map((item: {name: string, href: string}) => (
                   <DisclosureButton
                     key={item.name}
                     as="a"
@@ -244,42 +243,44 @@ export default async function EmployeeDashboard({ lang }: { lang: Locale }) {
               <div className="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">{/* Main area */}
                     {
                     position === 'Home' ??
-                     <BentoGrid lang={"en"}/>
+                     <BentoGrid lang={lang}/>
                     }
                     {
                     position === 'Explore' ??
-                    <Explore/>
+                    <Explore lang={lang}/>
                     }
                     {
                     position === 'Calender' ??
-                     <Calender lang={"en"}/>
+                     <Calender lang={lang}/>
                     }
                     {
                     position === 'Shifts' ??
-                    <Shifts/>
+                    <Shifts lang={lang}/>
                     }
                     {
                     position === 'Financien' ??
-                     <Financien lang={lang}/>
+                     <Financien lang={lang} />
                     }      
                     {
                     position === 'Flexpools' ??
-                     <Flexpool lang={lang}/>
+                     <Flexpool lang={lang} />
                     } 
                     {
                     position === 'Profiel' ??
-                     <Profiel/>
+                     <Profiel lang={lang} />
                     }   
                     {
                     position === 'FAQ' ??
-                     <FAQ/>
+                     <FAQ lang={lang}/>
                     }   
             </div>
               </div>
           </main>
         </div>
       </div>
-      <UitlogModal isVisible={showLogOut} onClose={() => setShowLogOut(false)} lang={lang}/>
+      <UitlogModal params={{
+        lang: lang
+      }} />
       </Fragment>
   )
 }

@@ -10,15 +10,21 @@ import {  AlertDialog,  AlertDialogAction,
   AlertDialogTrigger 
 } from '@/app/[lang]/components/ui/alert-dialog';
 import del from "@/app/assets/images/delete.svg";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
-import { haalShiftMetIdDelete, verwijderShiftArray } from '@/app/lib/actions/shift.actions'
+import { haalShiftMetIdDelete, verwijderShiftArray } from '@/app/lib/actions/shift.actions';
 
-export const DeleteConfirmation = async ({ shiftId, lang }: { shiftId: string } & { lang: Locale }) => {
+export const DeleteConfirmation = ({
+  shiftId,
+  lang,
+  dictionary,
+}: {
+  shiftId: string;
+  lang: string;
+  dictionary: any;
+}) => {
   const pathname = usePathname()
   let [isPending, startTransition] = useTransition()
   const [shift, setShift] = useState<any>(null);
-  const { components } = await getDictionary(lang);
+  const components = dictionary.components;
 
   useEffect(() => {
     const fetchShift = async () => {
@@ -68,4 +74,4 @@ export const DeleteConfirmation = async ({ shiftId, lang }: { shiftId: string } 
       </AlertDialogContent>
     </AlertDialog>
   )
-}
+};

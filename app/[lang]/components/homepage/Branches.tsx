@@ -3,7 +3,7 @@ import foodDelivery from '@/app/assets/images/iStock-1469919334.jpg';
 import forkliftDriver from '@/app/assets/images/iStock-1308572401.jpg';
 import clothingStore from '@/app/assets/images/iStock-2149706236.jpg';
 import footballStadium from '@/app/assets/images/iStock-1936803756.jpg';
-import { Locale } from '@/i18n.config'
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries'
 
 export default async function Example({ lang }: { lang: Locale }) {

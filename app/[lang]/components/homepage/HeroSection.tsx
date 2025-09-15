@@ -2,7 +2,7 @@
 
 import Image from 'next/image'; 
 import supermarkt from '@/app/assets/images/iStock-1298571081.jpg';
-import { Locale } from '@/i18n.config';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries';
 
 const stats = [

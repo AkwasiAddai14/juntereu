@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import Card from '@/app/[lang]/components/shared/cards/ShiftArrayCard';
+import Card from '@/app/[lang]/components/shared/cards/Wrappers/ShiftArrayWrapper';
 import { IShiftArray } from '@/app/lib/models/shiftArray.model';
 import Pagination from './Pagination';
 import { Locale } from '@/i18n.config';

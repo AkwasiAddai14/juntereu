@@ -1,7 +1,7 @@
 
 
 import { Container } from '@/app/[lang]/components/shared/Container'
-import { Locale } from '@/i18n.config'
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries'
 
 const faqs = [
@@ -64,7 +64,7 @@ export async function Faqs({ lang }: { lang: Locale }) {
     <section
       id="faqs"
       aria-labelledby="faqs-title"
-      className="border-t border-gray-200 py-20 sm:py-32"
+      className="border-t border-b border-gray-200 py-20 sm:py-32"
     >
       <Container>
         <div className="mx-auto max-w-2xl lg:mx-0">

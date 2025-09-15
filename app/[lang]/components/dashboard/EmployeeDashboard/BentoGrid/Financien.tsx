@@ -4,13 +4,20 @@ import * as React from "react";
 import { useUser } from "@clerk/nextjs";
 import {  Fragment,  useEffect, useState } from "react";
 import { haalFacturenFreelancer } from "@/app/lib/actions/invoice.actions";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
+];
 
+type Props = {
+  lang: string;
+  dashboard: any;
+};
 
-export default async function Financien ({ lang }: { lang: Locale }) {
-  const { dashboard } = await getDictionary(lang);
+export default function Financien ({ lang, dashboard }: Props) {
+
   const { isLoaded, user } = useUser();
   const [facturen, setFacturen] = useState<any[]>([]);
   const [freelancerId, setFreelancerId] = useState<any>(null);

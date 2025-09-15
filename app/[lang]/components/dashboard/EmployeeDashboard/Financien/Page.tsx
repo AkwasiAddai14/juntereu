@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react'
-import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/[lang]/components/ui/tabs";
-import Loonstroken from "@/app/[lang]/components/dashboard/EmployeeDashboard/Financien/Loonstroken";
-import Facturen from "@/app/[lang]/components/dashboard/EmployeeDashboard/Financien/Facturen";
+import Loonstroken from "@/app/[lang]/components/dashboard/EmployeeDashboard/Financien/Wrappers/LoonstrokenWrapper";
+import Facturen from "@/app/[lang]/components/dashboard/EmployeeDashboard/Financien/Wrappers/FacturenWrapper";
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
 
 const page = async ({ lang }: { lang: Locale }) => {
   const { dashboard } = await getDictionary(lang);
@@ -18,10 +19,10 @@ const page = async ({ lang }: { lang: Locale }) => {
         </TabsList>
         <section className="mt-6">
           <TabsContent value={dashboard.werknemersPage.Financien.Loonstroken}>
-            <Loonstroken lang={'en'} />
+            <Loonstroken lang={lang} />
           </TabsContent>
           <TabsContent value={dashboard.werknemersPage.Financien.Facturen.headTitle}>
-            <Facturen lang={'en'} />
+            <Facturen lang={lang} />
           </TabsContent>
         </section>
       </Tabs>

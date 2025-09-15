@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react'
-import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/[lang]/components/ui/tabs";
-import Shifts from "@/app/[lang]/components/dashboard/EmployeeDashboard/Explore/Shifts";
-import Vacancies from "@/app/[lang]/components/dashboard/EmployeeDashboard/Explore/Vacancy";
+import Shifts from "@/app/[lang]/components/dashboard/EmployeeDashboard/Explore/Wrappers/ShiftsWrapper";
+import Vacancies from "@/app/[lang]/components/dashboard/EmployeeDashboard/Explore/Wrappers/VacancyWrapper";
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
 
 const page = async ({ lang }: { lang: Locale }) => {
   const { dashboard } = await getDictionary(lang);
@@ -18,10 +19,14 @@ const page = async ({ lang }: { lang: Locale }) => {
         </TabsList>
         <section className="mt-6">
           <TabsContent value={dashboard.werknemersPage.Explore.tabs[0]}>
-            <Shifts lang={'en'} />
+            <Shifts params={{
+              lang: lang
+            }} />
           </TabsContent>
           <TabsContent value={dashboard.werknemersPage.Explore.tabs[1]}>
-            <Vacancies lang={'en'} />
+            <Vacancies params={{
+              lang: lang
+            }}  />
           </TabsContent>
         </section>
       </Tabs>

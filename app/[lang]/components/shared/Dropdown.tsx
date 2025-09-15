@@ -1,43 +1,26 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/app/[lang]/components/ui/select";
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/app/[lang]/components/ui/alert-dialog";
-import { Input } from '@headlessui/react';
-import { haalAlleFlexpools, maakFlexpool } from '@/app/lib/actions/flexpool.actions';
-import { IFlexpool } from '@/app/lib/models/flexpool.model';
 import mongoose from 'mongoose';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import { Input } from '@headlessui/react';
+import React, { useEffect, useState } from 'react';
+import { IFlexpool } from '@/app/lib/models/flexpool.model';
+import { haalAlleFlexpools, maakFlexpool } from '@/app/lib/actions/flexpool.actions';
+import { Select,SelectContent,  SelectItem,  SelectTrigger,  SelectValue } from "@/app/[lang]/components/ui/select";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/app/[lang]/components/ui/alert-dialog";
 
-type DropdownProps = {
+type Props = {
   value?: string;
   onChangeHandler?: (value: string) => void;
   flexpoolsList: string[];
   userId: string;
+  components: any;
 };
 
-const Dropdown = async ({ value, onChangeHandler, flexpoolsList, userId }: DropdownProps, { lang }: { lang: Locale }) => {
-    const [flexpools, setFlexpools] = useState<IFlexpool[]>([])
+const Dropdown = ({ value, onChangeHandler, flexpoolsList, userId, components }: Props) => {
+    const [flexpools, setFlexpools] = useState<IFlexpool[]>([]);
     const [newFlexpoolTitle, setNewFlexpoolTitle] = useState('');
-    const { components } = await getDictionary(lang);
 
+    
     useEffect(() => {
       const fetchFlexpools = async () => {
         try {

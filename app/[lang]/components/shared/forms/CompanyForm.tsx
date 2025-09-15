@@ -13,12 +13,12 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { usePathname, useRouter } from 'next/navigation';
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import { maakBedrijf } from '@/app/lib/actions/employer.actions';
-import { CompanyValidation } from '@/app/lib/validations/employer';
+import { createCompanyValidation } from '@/app/lib/validations/employer';
 import { FileUploader } from "@/app/[lang]/components/shared/FileUploader";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
-type Inputs = z.infer<typeof CompanyValidation>;
+
+type Inputs = z.infer<typeof createCompanyValidation>;
 
 const steps = [
     {
@@ -54,27 +54,14 @@ const countries = [
     { name: 'Suomi', id: "Finland",  icon: '🇫🇮' },
   ]
 
-interface Props {
-    bedrijven: {
-    companyId: string;
-    name: string;
-    country: string;
-    displayname: string;
-    profilephoto: string;
-    bio: string;
-    CompanyRegistrationNumber: string;
-    VATidnr: string;
-    postcode: string;
-    housenumber: string;
-    street: string;
-    city: string;
-    phone: string;
-    email: string;
-    iban: string;
-    };
-}
+  interface ClientProps {
+    lang: Locale;
+    userId: string | null;
+    components: any,
+    validations: any
+  }
 
-const BedrijfsForm = async ({ bedrijven }: Props, { lang }: { lang: Locale }) => {
+const BedrijfsForm = ({ lang, userId, components, validations }: ClientProps) => {
     const { createOrganization } = useOrganizationList();
     const [organizationName, setOrganizationName] = useState("");
     const router = useRouter();
@@ -84,9 +71,9 @@ const BedrijfsForm = async ({ bedrijven }: Props, { lang }: { lang: Locale }) =>
     const [files, setFiles] = useState<File[]>([]);
     const { startUpload } = useUploadThing("media");
     const [loading, setLoading] = useState(false);
-    const { components } = await getDictionary(lang);
 
-    const steps = components.forms.CompanyForm.steps.map(step => ({
+
+    const steps = components.forms.CompanyForm.steps.map((step: { id: any; name: any; fields: any; }) => ({
         id: parseInt(step.id),
         name: step.name,
         fields: step.fields || []
@@ -125,7 +112,7 @@ const BedrijfsForm = async ({ bedrijven }: Props, { lang }: { lang: Locale }) =>
         return primaryPhone?.primaryPhoneNumber || "";
       };
     const { register, handleSubmit, watch, reset, trigger, setValue, formState: { errors } } = useForm<Inputs>({
-        resolver: zodResolver(CompanyValidation),
+        resolver: zodResolver(createCompanyValidation),
         defaultValues: {
             companyId:  user?.id,
             name: '',
@@ -264,7 +251,7 @@ if (files.length > 0) {
         <section className="flex flex-col justify-between p-24">
             <nav aria-label="Progress">
                 <ol role="list" className="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
-                    {steps.map((step, stepIdx) => (
+                    {steps.map((step : { id: any; name: any; fields: any; }, stepIdx: number) => (
                         <li key={step.name} className="relative md:flex md:flex-1">
                             {currentStep > stepIdx ? (
                                 <span className="flex items-center px-6 py-4 text-sm font-medium">

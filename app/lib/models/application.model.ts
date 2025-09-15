@@ -7,6 +7,8 @@ export interface IApplication extends Document {
     status: string;
     jobs: 
         {
+        date: string;
+        amount: number;
         dienstId: mongoose.Schema.Types.ObjectId
         starting: string,
         ending: string,
@@ -47,6 +49,8 @@ const ApplicationSchema: Schema<IApplication> = new mongoose.Schema({
             ref: 'Dienst', // Referentie naar Freelancer-model
             required: true,
           },
+        date: { type: String, required: false },
+        amount: { type: String, required: false },
         starting: { type: String, required: true }, // Bijvoorbeeld: "09:00"
         ending: { type: String, required: true }, // Bijvoorbeeld: "17:00"
         break: { type: Number, required: true }, // Pauze in minuten

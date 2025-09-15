@@ -13,11 +13,11 @@ import { useUploadThing } from '@/app/lib/uploadthing';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { usePathname, useRouter } from 'next/navigation';
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
-import { EmployeeValidation } from '@/app/lib/validations/employee';
+import { createEmployeeValidation } from '@/app/lib/validations/employee';
 import { createEmployee } from '@/app/lib/actions/employee.actions';
 import { FileUploader } from '@/app/[lang]/components/shared/FileUploader';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
 
 
 const steps = [
@@ -44,34 +44,17 @@ const countries = [
   { name: 'Suisse', id: "Zwitserland", icon: '🇨🇭' }
 ]
 
-type Inputs = z.infer<typeof EmployeeValidation>;
+type Inputs = z.infer<typeof createEmployeeValidation>;
 
-interface Props {
-  employee: {
-    employeeId: any;
-    country: string
-    firstname: string;
-    infix: string;
-    lastname: string;
-    dateOfBirth: Date;
-    profilephoto: string;
-    bio: string;
-    street: string;
-    city: string;
-    postcode: string;
-    housenumber: string;
-    email: string;
-    phone: string;
-    SalaryTaxDiscount: boolean;
-    taxBenefit: boolean;
-    SocialSecurity: string;
-    VATidnr: string;
-    iban: string;
-    companyRegistrationNumber: string;
-  };
-}
+type Props = {
+  lang: Locale;
+  userId: string;
+  user: any;
+  components: any;
+};
 
-const EmployeeForm = async ({ employee }: Props, { lang }: { lang: Locale }) => {
+
+const EmployeeForm = async ({ lang, userId, user, components }: Props) => {
   const [files, setFiles] = useState<File[]>([]);
   const [currentStep, setCurrentStep] = useState(0);
   const [previousStep, setPreviousStep] = useState(0);
@@ -80,11 +63,10 @@ const EmployeeForm = async ({ employee }: Props, { lang }: { lang: Locale }) => 
   const router = useRouter();
   const { startUpload } = useUploadThing("media");
   const pathname = usePathname();
-  const {user, isLoaded} = useUser();
   const [loading, setLoading] = useState(false);
-  const { components } = await getDictionary(lang);
+  
 
-  const steps = components.forms.EmployeeForm.steps.map(step => ({
+  const steps = components.forms.EmployeeForm.steps.map((step: { id: string; name: any; fields: any; }) => ({
     id: parseInt(step.id),
     name: step.name,
     fields: step.fields || []
@@ -152,7 +134,7 @@ const EmployeeForm = async ({ employee }: Props, { lang }: { lang: Locale }) => 
     setValue,
     formState: { errors }
   } = useForm<Inputs>({
-    resolver: zodResolver(EmployeeValidation),
+    resolver: zodResolver(createEmployeeValidation),
     defaultValues: {
       employeeId:  user?.id || "",
       profilephoto: user?.imageUrl || "",
@@ -252,7 +234,7 @@ if (files.length > 0) {
       <section className="flex flex-col justify-between p-24">
         <nav aria-label="Progress">
           <ol role="list" className="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
-            {steps.map((step, stepIdx) => (
+            {steps.map((step : { id: any; name: any; fields: any; }, stepIdx: number) => (
               <li key={step.name} className="relative md:flex md:flex-1">
                 {currentStep > stepIdx ? (
                   <span className="flex items-center px-6 py-4 text-sm font-medium">

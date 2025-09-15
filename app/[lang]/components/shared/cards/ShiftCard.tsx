@@ -1,25 +1,26 @@
 "use client"
 
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
+import { Locale } from '@/i18n.config';
 import React, { useState } from 'react';
-import  del  from "@/app/assets/images/delete.svg"
-import { isBedrijf } from '@/app/lib/actions/employer.actions';
+import { useRouter } from 'next/navigation';
+import  del  from "@/app/assets/images/delete.svg";
 import { ShiftType } from '@/app/lib/models/shift.model';
+import { getDictionary } from '@/app/[lang]/dictionaries';
+import { isBedrijf } from '@/app/lib/actions/employer.actions';
 import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { annuleerAanmeldingen } from '@/app/lib/actions/shift.actions';
-import { useRouter } from 'next/navigation';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
 
-type CardProps = {
+type Props = {
   shift: ShiftType;
+  lang: string;
+  components: any;
 };
 
-const Card = async ({ shift, lang }: CardProps & { lang: Locale }) => {
+const Card = async ({ shift, lang, components }: Props) => {
   const { toast } = useToast();
   const router = useRouter();
-  const { components } = await getDictionary(lang);
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | null>(null);
   const shiftStatussen = components.cards.ShiftCard.shift_statussen;
 

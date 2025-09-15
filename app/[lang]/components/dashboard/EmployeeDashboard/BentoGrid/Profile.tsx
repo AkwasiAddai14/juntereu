@@ -3,18 +3,20 @@
 
 import { useEffect, useState } from "react";
 import { Field, Label, Switch } from '@headlessui/react';
-import { haalFreelancer } from "@/app/lib/actions/employee.actions"
+import { haalFreelancer } from "@/app/lib/actions/employee.actions";
 import * as React from "react";
-import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/app/[lang]/dictionaries';
-
 import { useUser } from "@clerk/nextjs";
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 
 
-export default async function Profile({ lang }: { lang: Locale }) {
+interface ProfileClientProps {
+  dashboard: any;
+}
+
+export default function Profile({ dashboard }: ProfileClientProps) {
   const { isLoaded, user } = useUser();
-  const { dashboard } = await getDictionary(lang);
   const [freelancerId, setFreelancerId] = useState<any>(null);
   const [freelancer, setFreelancer] = useState<any>(null);
   const [automaticTimezoneEnabled, setAutomaticTimezoneEnabled] = useState(true);

@@ -341,7 +341,7 @@
   },
   "vacanciesButton": "Ver todas as vagas",
   "navLinks": [
-    { "name": "Início", "link": "/" },
+    { "name": "Início", "link": "../" },
     { "name": "Política de Privacidade", "link": "../pp" },
     { "name": "Termos de Uso", "link": "../tou" }
   ]
@@ -1126,7 +1126,202 @@
                   "Plekken": "Vagas disponíveis"
                 }
               }
-        }
+        },
+        "localDateString": "pt-PT",
+  "currencySign": "€",
+  "Checkout": {
+    "employees": {
+      "ToastMessage1": "Checkout enviado! 👍",
+      "ToastMessage2": "Ação não permitida! ❌",
+      "FormFieldItems": [
+        "logo",
+        "Nome do empregador",
+        "Cargo",
+        "Cidade",
+        "Ausente",
+        "Data",
+        "Hora de início",
+        "Hora de término",
+        "minutos de pausa",
+        "Taxa horária",
+        "Comentário",
+        "Enviando checkout...",
+        "Enviar"
+      ]
+    },
+    "employer": {
+      "ToastMessage1": "Não conectado!",
+      "ToastMessage2": "Checkout enviado! 👍",
+      "ToastMessage3": "Ação não permitida! ❌",
+      "FormFieldItems": [
+        "Foto de perfil",
+        "Turnos concluídos",
+        "Ausente",
+        "Detalhes do turno",
+        "minutos de pausa",
+        "Taxa horária",
+        "Horas declaradas",
+        "Hora de início",
+        "Hora de término",
+        "Atrasado",
+        "Comentário",
+        "Rejeitar",
+        "Enviando checkout...",
+        "Aceitar",
+        "Aceitando",
+        "Enviar"
+      ]
+    }
+  },
+  "Flexpool": {
+    "employees": {
+      "ToastMessage1": "Não está conectado!",
+      "FormFieldItems": [
+        "Turnos",
+        "Nenhum turno na flexpool"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Não está conectado!",
+      "ToastMessage2": "Freelancer convidado! 👍",
+      "ToastMessage3": "Ação não permitida!",
+      "ToastMessage4": "Freelancer removido! 👍",
+      "FormFieldItems": [
+        "Selecionar trabalhador",
+        "Convidar",
+        "Trabalhadores",
+        "Turnos",
+        "% Presença",
+        "% Pontualidade",
+        "Remover",
+        "Turnos",
+        "Nenhum turno na flexpool"
+      ]
+    }
+  },
+  "Invoice": {
+    "employees": {
+      "ToastMessage1": "Não está conectado!",
+      "FormFieldItems": [
+        "Fatura da semana",
+        "Voltar",
+        "Baixar",
+        "Turno",
+        "Horas",
+        "Tarifa horária",
+        "Valor total",
+        "min de pausa",
+        "horas trabalhadas",
+        "IVA:",
+        "Baixar",
+        "Subtotal",
+        "IVA",
+        "Valor total"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Não está conectado!",
+      "FormFieldItems": [
+        "Fatura",
+        "Fatura da semana",
+        "Voltar",
+        "Baixar",
+        "Turno",
+        "Horas trabalhadas",
+        "Tarifa",
+        "Subtotal",
+        "IVA",
+        "Valor total"
+      ]
+    }
+  },
+  "Jobs": {
+    "FormFieldItems": [
+      "Endereço",
+      "Data",
+      "Horário de trabalho",
+      "Salário",
+      "Competências",
+      "Código de vestuário"
+    ]
+  },
+  "Payslip": {
+    "moods": [
+      "Animado",
+      "Triste",
+      "Amado",
+      "Feliz",
+      "Polegar para cima",
+      "Não sinto nada"
+    ],
+    "FormFieldItems": [
+      "Holerite",
+      "Baixar",
+      "Enviar",
+      "Resumo",
+      "Valor",
+      "Status",
+      "Data limite de pagamento",
+      "Configurações",
+      "Criado em",
+      "Empregador",
+      "Empregado",
+      "Serviço",
+      "Horas trabalhadas",
+      "Salário por hora",
+      "Valor",
+      "Subtotal",
+      "Desconto",
+      "Valor total",
+      "Comentário",
+      "em",
+      "Postar um comentário",
+      "Poste um comentário...",
+      "Anexar um arquivo",
+      "Seu humor",
+      "Dê um humor",
+      "Postar comentário"
+    ]
+  },
+  "Shift": {
+    "employee": {
+      "FormFieldItems": [
+        "vagas",
+        "Candidaturas",
+        "não em grupo flexível",
+        "Sobre o turno",
+        "Turno relacionado"
+      ]
+    },
+    "employer": {
+      "FormFieldItems": [
+        "Novo turno",
+        "Sobre o turno",
+        "vagas",
+        "não em grupo flexível",
+        "Habilidades",
+        "Código de vestimenta",
+        "Sobre o turno",
+        "Editar turno"
+      ]
+    }
+  },
+  "Vacancies": {
+    "FormFieldItems": [
+      "Nova vaga",
+      "Fatura",
+      "Fatura da semana",
+      "Voltar",
+      "Baixar",
+      "Turno",
+      "Horas trabalhadas",
+      "Taxa",
+      "Subtotal",
+      "IVA",
+      "Valor total"
+    ]
+  }
+  
     },
 
     "components": {
@@ -1996,7 +2191,15 @@
                   "Cancelar",
                   "Sair"
                 ]
-              }
+              },
+              "OnboardingDialog": {
+                "headTitle": "Registe-se para começar.",
+                "subTitle": "Escolha abaixo se deseja inscrever-se como freelancer ou como empresa.",
+                "buttons": [
+                  "Trabalhador",
+                  "Empresa"
+                ]
+              }              
         }
     },
     "Validations": {

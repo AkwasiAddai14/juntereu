@@ -4,44 +4,19 @@ import { StarIcon } from '@heroicons/react/24/outline';
 import { werknemerAfzeggen } from '@/app/lib/actions/vacancy.actions';
 import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import { IJob } from '@/app/lib/models/job.model';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
-interface DienstenSectiePageProps {
-    diensten: [{
-      dienstId: string;
-    opdrachtgever: string;
-    vacature: string;
-    datum: string;
-    werktijden: {
-        begintijd: string,
-        eindtijd: string,
-        pauze: number;
-    }
-    opdrachtnemers: [{
-        freelancerId: string;
-        naam: string;
-        profielfoto: string
-        rating: number;
-        geboortedatum: string;
-        klussen: number;
-        emailadres: string;
-        telefoonnummer: string;
-        stad: string;
-    }],
-    bedrag: number,
-    status: string,
-    index: number,
-    }]
+interface DienstensectieClientProps {
+  diensten: IJob[];
+  lang: Locale;
+  dictionary: any;
 }
   
-  export default async function Dienstensectie({
-    diensten,
-    lang
-  }: DienstenSectiePageProps & { lang: Locale }) {
+  export default function Dienstensectie({ diensten, lang, dictionary }: DienstensectieClientProps) {
     const { toast } = useToast();
     const router = useRouter();
-    const { components } = await getDictionary(lang);
+    const components = dictionary.components;
 
     const afzeggenWerknemer = async (arg0: { dienstId: any; freelancerId: any; }) => {
 
@@ -65,12 +40,12 @@ interface DienstenSectiePageProps {
     return (
         <>
           {diensten.map((dienst) => (
-            <div key={dienst.datum} className="px-4 sm:px-6 lg:px-8">
+            <div key={dienst.date} className="px-4 sm:px-6 lg:px-8">
               <div className="sm:flex sm:items-center">
                 <div className="sm:flex-auto">
-                  <h1 className="text-base font-semibold text-gray-900">{dienst.datum}</h1>
+                  <h1 className="text-base font-semibold text-gray-900">{dienst.date}</h1>
                   <p className="mt-2 text-sm text-gray-700">
-                    {dienst.werktijden.begintijd} - {dienst.werktijden.eindtijd}
+                    {dienst.workingtime.starting} - {dienst.workingtime.ending}
                   </p>
                 </div>
                 <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -107,25 +82,25 @@ interface DienstenSectiePageProps {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-200 bg-white">
-                        {dienst.opdrachtnemers.map((opdrachtnemer) => (
-                          <tr key={opdrachtnemer.freelancerId}>
+                        {dienst.employees.map((opdrachtnemer) => (
+                          <tr key={opdrachtnemer.freelancerId as unknown as string}>
                             <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
                               <div className="flex items-center">
                                 <div className="size-11 shrink-0">
                                   <img
-                                    alt={opdrachtnemer.naam}
-                                    src={opdrachtnemer.profielfoto}
+                                    alt={opdrachtnemer.name}
+                                    src={opdrachtnemer.profilephoto}
                                     className="size-11 rounded-full"
                                   />
                                 </div>
                                 <div className="ml-4">
-                                  <div className="font-medium text-gray-900">{opdrachtnemer.naam}</div>
-                                  <div className="mt-1 text-gray-500">{opdrachtnemer.geboortedatum}</div>
+                                  <div className="font-medium text-gray-900">{opdrachtnemer.name}</div>
+                                  <div className="mt-1 text-gray-500">{opdrachtnemer.dateOfBirth}</div>
                                 </div>
                               </div>
                             </td>
                             <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                              {opdrachtnemer.stad}
+                              {opdrachtnemer.city}
                             </td>
                             <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                               <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
@@ -136,13 +111,13 @@ interface DienstenSectiePageProps {
                               </span>
                             </td>
                             <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                            <div className="text-gray-900">{opdrachtnemer.klussen} {components.shared.Dienstensectie.voltooid}</div>
+                            <div className="text-gray-900">{opdrachtnemer.ratingCount} {components.shared.Dienstensectie.voltooid}</div>
                             </td>
                             <td className="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                               <button 
-                              onClick={()=> {afzeggenWerknemer({ dienstId: dienst.dienstId, freelancerId: opdrachtnemer.freelancerId })}}
+                              onClick={()=> {afzeggenWerknemer({ dienstId: dienst.id, freelancerId: opdrachtnemer.freelancerId })}}
                               className="inline-flex items-center rounded-md bg-sky-50 px-2 py-1 text-xs font-medium text-sky-600 hover:text-sky-900 ring-1 ring-inset ring-sky-600/20">
-                                {components.shared.Dienstensectie.buttons[1]}<span className="sr-only">, {opdrachtnemer.naam}</span>
+                                {components.shared.Dienstensectie.buttons[1]}<span className="sr-only">, {opdrachtnemer.name}</span>
                               </button>
                             </td>
                           </tr>

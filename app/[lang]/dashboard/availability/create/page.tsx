@@ -1,12 +1,18 @@
 "use client"
 
 import { useUser } from "@clerk/nextjs";
-import VacatureForm from "@/app/[lang]/components/shared/forms/VacancyForm"
-import DashNav from "@/app/[lang]/components/shared/navigation/Navigation";
+import DashNav from "@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper";
 import Footer from "@/app/[lang]/components/shared/navigation/Footer4";
+import AvailabilityForm from "@/app/[lang]/components/shared/forms/Wrappers/AvailabilityWrapper";
+import { Locale } from '@/i18n.config';
 
 
-const MaakVacature = () => {
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
+  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+];
+const MaakVacature = ({ params }: { params: { lang: string } }) => {
+  const lang = supportedLocales.includes(params.lang as Locale) ? (params.lang as Locale): 'en';
   const { user } = useUser();
  
 
@@ -14,14 +20,14 @@ const MaakVacature = () => {
 
   return (
     <>
-    <DashNav />
+    <DashNav lang={"en"} />
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
         <h3 className="wrapper font-bold text-[28px] leading-[36px] md:text-[36px] md:leading-[44px] text-center sm:text-left">Nieuwe shift</h3>
       </section>
       <div className="wrapper my-8">
-        <VacatureForm userId={userId} type="maak" />
+        <AvailabilityForm lang={lang} />
       </div>
-    <Footer />
+    <Footer lang={lang} />
     </>
   )
 }

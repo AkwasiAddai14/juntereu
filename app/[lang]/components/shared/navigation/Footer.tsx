@@ -1,14 +1,10 @@
 
 
-import { JSX, SVGProps } from "react"
-import FooterForm from './FooterForm'
-import { Locale } from '@/i18n.config'
-import { getDictionary } from '@/app/[lang]/dictionaries'
+import { JSX, SVGProps } from "react";
+import FooterForm from './FooterForm';
+import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
-const supportedLocales: Locale[] = [
-  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
-  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
-];
 
 const navigation = {
   Werknemers: [

@@ -5,15 +5,15 @@ import mongoose from "mongoose";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { ScrollArea } from "@/app/[lang]/components/ui/scroll-area";
-import ShiftCard from '@/app/[lang]/components/shared/cards/ShiftArrayCard';
+import ShiftCard from '@/app/[lang]/components/shared/cards/Wrappers/ShiftArrayWrapper';
 import { haalShift } from "@/app/lib/actions/shiftArray.actions"
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import { Button } from '@/app/[lang]/components/ui/button'
 import { Calendar } from "@/app/[lang]/components/ui/calender"
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
 
 const MAX = 100;
 const MIN = 0;
@@ -39,7 +39,12 @@ const distancemarks = [
   },
 ];
 
-export default async function Shifts ({ lang }: { lang: Locale }){
+interface Props {
+  lang: Locale;
+  dashboard: any;
+}
+
+export default function Shifts ({ lang, dashboard }: Props){
   const { isLoaded, user } = useUser();
   const [freelancerId, setFreelancerId] = useState<any>(null);
   const [shift, setShift] = useState<any[]>([]);
@@ -47,7 +52,6 @@ export default async function Shifts ({ lang }: { lang: Locale }){
   const [tarief, setTarief] = useState<number>(14);
   const [afstand, setAfstand] = useState<number>(5);
   const [euroVal, setEuroVal] = React.useState<number>(MIN);
-  const { dashboard } = await getDictionary(lang);
   const handleUurtariefChange = (_: Event, newValue: number | number[]) => {
     setEuroVal(newValue as number);
     setTarief(euroVal);

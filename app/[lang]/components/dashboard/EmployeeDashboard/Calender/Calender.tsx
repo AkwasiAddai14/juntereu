@@ -7,12 +7,13 @@ import { Menu, Transition } from '@headlessui/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
 import { format } from 'date-fns';
-import Maand from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Maand';
-import Week from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Week';
-import Jaar from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Jaar';
-import Dag from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Dag';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import Maand from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Wrappers/MaandWrapper';
+import Week from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Wrappers/WeekWrapper';
+import Jaar from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Wrappers/JaarWrapper';
+import Dag from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Wrappers/DagWrapper';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
+
 
 
 function classNames(...classes: (string | boolean | undefined)[]) {
@@ -26,10 +27,14 @@ function classNames(...classes: (string | boolean | undefined)[]) {
     { name: 'Jaar', value: 'Jaar' },
   ]
 
-const Calender = async ({ lang }: { lang: Locale }) => {
+  interface CalenderClientProps {
+    lang: Locale;
+    dashboard: any;
+  }
+
+const Calender = ({ lang, dashboard }: CalenderClientProps) => {
     const [position, setPosition] = React.useState("Maand");
     const [currentDate, setCurrentDate] = useState<Date>(new Date());
-    const { dashboard } = await getDictionary(lang);
     const router = useRouter()
     
       useEffect(() => {
@@ -270,19 +275,19 @@ const Calender = async ({ lang }: { lang: Locale }) => {
   </div>
   <div>
   {position === "Dag"  && (
-<Dag lang={'en'}/>
+<Dag lang={lang}/>
     )
     }
 {position === "Week"  && (
-<Week lang={'en'}/>
+<Week lang={lang}/>
     )
     }
     {position === "Maand"  && (
-<Maand lang={'en'} />
+<Maand lang={lang} />
     )
     }
     {position === "Jaar"  && (
-<Jaar lang={'en'}/>
+<Jaar lang={lang}/>
     )
     }
   </div>

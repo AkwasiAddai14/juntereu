@@ -3,6 +3,8 @@ import mongoose, { Document, Model, Schema } from 'mongoose';
 export interface IFlexpool extends Document {
   titel: string;
   employer: mongoose.Schema.Types.ObjectId;
+  employerName: string;
+  imageUrl: string;
   employees: mongoose.Schema.Types.ObjectId[];
   shifts: mongoose.Schema.Types.ObjectId[];
 }
@@ -14,6 +16,8 @@ const flexpoolSchema: Schema<IFlexpool> = new mongoose.Schema({
     ref: 'Employer',
     required: true,
   },
+  employerName: { type: String, required: true },
+  imageUrl: { type: String, default: '' },
   employees: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Employee',
@@ -21,7 +25,7 @@ const flexpoolSchema: Schema<IFlexpool> = new mongoose.Schema({
   }],
   shifts: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Shift',
+    ref: 'ShiftArray',
     default: []
   }]
 });

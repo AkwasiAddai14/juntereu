@@ -4,22 +4,24 @@ import * as React from "react";
 import mongoose from "mongoose";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
-
 import { AcademicCapIcon, BanknotesIcon, CheckBadgeIcon, ClockIcon, ReceiptRefundIcon, UsersIcon } from '@heroicons/react/24/outline'
 import { haalFlexpoolFreelancer } from "@/app/lib/actions/flexpool.actions";
 import { haalFacturenFreelancer } from "@/app/lib/actions/invoice.actions";
 import { haalAangemeld } from "@/app/lib/actions/shift.actions";
 import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/actions/vacancy.actions";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
-  
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
   
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
   }
+
+  interface Props {
+    lang: Locale;
+    dictionary: any;
+  }
   
-  export default async function Dashboard ({ lang }: { lang: Locale }) {
+  export default function Dashboard ({ lang, dictionary }: Props) {
     const { isLoaded, user } = useUser();
     const [freelancerId, setFreelancerId] = useState<any>(null);
     const [geaccepteerd, setGeaccepteerd] = useState<any[]>([]);
@@ -28,7 +30,7 @@ import { getDictionary } from '@/app/[lang]/dictionaries';
     const [sollicitaties, setSollicitaties] = useState <any[]>([]);
     const [flexpool, setFlexpool] = useState<any[]>([]);
     const [factuur, setFactuur] = useState<any[]>([]);
-    const { dashboard } = await getDictionary(lang);
+    const { dashboard } = dictionary;
 
     useEffect(() => {
       if (isLoaded && user) {
@@ -228,5 +230,5 @@ import { getDictionary } from '@/app/[lang]/dictionaries';
         ))}
       </div>
     )
-  }
+  };
   

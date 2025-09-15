@@ -1,4 +1,4 @@
-import { Locale } from '@/i18n.config'
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries'
 
 import React from 'react'
@@ -43,17 +43,18 @@ const features = [
   ]
 
   const supportedLocales: Locale[] = [
-    'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
-    'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+    'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+    'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
   ];
 
 const page = async ({ params }: { params: { lang: string } }) => {
-    const lang = supportedLocales.includes(params.lang as Locale)
-    ? (params.lang as Locale)
-    : 'en';
+
+    const lang = supportedLocales.includes(params.lang as Locale) ? (params.lang as Locale): 'en';
     const { pages } = await getDictionary(lang);
+    
   return (
-    <><div className="mx-auto  pt-40 mt-20 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
+    <>
+    <div className="mx-auto  pt-40 mt-20 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
     <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{pages.employeesPage.headText}</h2>
         <div className="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
@@ -106,7 +107,8 @@ const page = async ({ params }: { params: { lang: string } }) => {
                 ))}
             </dl>
         </div>
-    </div></>
+    </div>
+    </>
   )
 }
 

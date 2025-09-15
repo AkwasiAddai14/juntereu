@@ -349,4 +349,4 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
     } catch (error) {
       console.error('Error updating shifts:', error);
     }
-  }
+  };

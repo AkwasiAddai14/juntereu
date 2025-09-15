@@ -334,7 +334,7 @@
   },
   "vacanciesButton": "Katso kaikki avoimet työpaikat",
   "navLinks": [
-    { "name": "Etusivu", "link": "/" },
+    { "name": "Etusivu", "link": "../" },
     { "name": "Tietosuojakäytäntö", "link": "../pp" },
     { "name": "Käyttöehdot", "link": "../tou" }
   ]
@@ -1119,7 +1119,201 @@
               "Plekken": "Avoimet paikat"
             }
           }
-        }
+        },
+        "localDateString": "fi-FI",
+  "currencySign": "€",
+  "Checkout": {
+    "employees": {
+      "ToastMessage1": "Uloskirjautuminen lähetetty! 👍",
+      "ToastMessage2": "Toiminto ei sallittu! ❌",
+      "FormFieldItems": [
+        "logo",
+        "Työnantajan nimi",
+        "Tehtävä",
+        "Kaupunki",
+        "Ei saapunut",
+        "Päivämäärä",
+        "Aloitusaika",
+        "Lopetusaika",
+        "taukominuuttia",
+        "Tuntipalkka",
+        "Kommentti",
+        "Lähetetään uloskirjautumista...",
+        "Lähetä"
+      ]
+    },
+    "employer": {
+      "ToastMessage1": "Ei kirjautunut sisään!",
+      "ToastMessage2": "Uloskirjautuminen lähetetty! 👍",
+      "ToastMessage3": "Toiminto ei sallittu! ❌",
+      "FormFieldItems": [
+        "Profiilikuva",
+        "Valmiit vuorot",
+        "Ei saapunut",
+        "Vuoron tiedot",
+        "taukominuuttia",
+        "Tuntipalkka",
+        "Ilmoitetut tunnit",
+        "Aloitusaika",
+        "Lopetusaika",
+        "Myöhässä",
+        "Palaute",
+        "Hylkää",
+        "Lähetetään uloskirjautumista...",
+        "Hyväksy",
+        "Hyväksytään",
+        "Lähetä"
+      ]
+    }
+  },
+  "Flexpool": {
+    "employees": {
+      "ToastMessage1": "Et ole kirjautunut sisään!",
+      "FormFieldItems": [
+        "Vuorot",
+        "Ei vuoroja joustovuorossa"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Et ole kirjautunut sisään!",
+      "ToastMessage2": "Freelanceri kutsuttu! 👍",
+      "ToastMessage3": "Toiminto ei sallittu!",
+      "ToastMessage4": "Freelanceri poistettu! 👍",
+      "FormFieldItems": [
+        "Valitse työntekijä",
+        "Kutsu",
+        "Työntekijät",
+        "Vuorot",
+        "% Osallistuminen",
+        "% Ajoissa",
+        "Poista",
+        "Vuorot",
+        "Ei vuoroja joustovuorossa"
+      ]
+    }
+  },
+  "Invoice": {
+    "employees": {
+      "ToastMessage1": "Et ole kirjautunut sisään!",
+      "FormFieldItems": [
+        "Lasku viikolle",
+        "Takaisin",
+        "Lataa",
+        "Vuoro",
+        "Tunnit",
+        "Tuntipalkka",
+        "Kokonaissumma",
+        "min tauko",
+        "tehdyt tunnit",
+        "ALV:",
+        "Lataa",
+        "Välisumma",
+        "ALV",
+        "Kokonaissumma"
+      ]
+    },
+    "employers": {
+      "ToastMessage1": "Et ole kirjautunut sisään!",
+      "FormFieldItems": [
+        "Lasku",
+        "Lasku viikolle",
+        "Takaisin",
+        "Lataa",
+        "Vuoro",
+        "Tehdyt tunnit",
+        "Hinta",
+        "Välisumma",
+        "ALV",
+        "Kokonaissumma"
+      ]
+    }
+  },
+  "Jobs": {
+    "FormFieldItems": [
+      "Osoite",
+      "Päivämäärä",
+      "Työajat",
+      "Palkka",
+      "Taidot",
+      "Pukeutumiskoodi"
+    ]
+  },
+  "Payslip": {
+    "moods": [
+      "Innoissaan",
+      "Surullinen",
+      "Rakastettu",
+      "Onnellinen",
+      "Peukku",
+      "En tunne mitään"
+    ],
+    "FormFieldItems": [
+      "Palkkalaskelma",
+      "Lataa",
+      "Lähetä",
+      "Yhteenveto",
+      "Summa",
+      "Tila",
+      "Eräpäivä",
+      "Asetukset",
+      "Luotu",
+      "Työnantaja",
+      "Työntekijä",
+      "Vuoro",
+      "Tehdyt tunnit",
+      "Tuntipalkka",
+      "Summa",
+      "Välisumma",
+      "Vähennys",
+      "Kokonaissumma",
+      "Kommentti",
+      "päivämäärä",
+      "Kirjoita kommentti",
+      "Kirjoita kommentti...",
+      "Liitä tiedosto",
+      "Mieliala",
+      "Valitse mieliala",
+      "Lähetä kommentti"
+    ]
+  },
+  "Shift": {
+    "employee": {
+      "FormFieldItems": [
+        "paikkaa",
+        "Hakemukset",
+        "ei joustotyöpoolissa",
+        "Tietoa vuorosta",
+        "Liittyvä vuoro"
+      ]
+    },
+    "employer": {
+      "FormFieldItems": [
+        "Uusi vuoro",
+        "Tietoa vuorosta",
+        "paikkaa",
+        "ei joustotyöpoolissa",
+        "Taidot",
+        "Pukeutumiskoodi",
+        "Tietoa vuorosta",
+        "Muokkaa vuoroa"
+      ]
+    }
+  },
+  "Vacancies": {
+    "FormFieldItems": [
+      "Uusi työpaikka",
+      "Lasku",
+      "Lasku viikolle",
+      "Takaisin",
+      "Lataa",
+      "Vuoro",
+      "Tehdyt tunnit",
+      "Hinta",
+      "Välisumma",
+      "ALV",
+      "Kokonaissumma"
+    ]
+  }  
     },
     "components": {
         "cards": {
@@ -1988,7 +2182,15 @@
               "Peruuta",
               "Kirjaudu ulos"
             ]
-          }
+          },
+          "OnboardingDialog": {
+            "headTitle": "Rekisteröidy aloittaaksesi.",
+            "subTitle": "Valitse alta, haluatko rekisteröityä freelanceriksi vai yritykseksi.",
+            "buttons": [
+              "Työntekijä",
+              "Yritys"
+            ]
+          }          
         }
     },
     "Validations": {

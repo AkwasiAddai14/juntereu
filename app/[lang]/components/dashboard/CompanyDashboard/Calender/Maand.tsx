@@ -18,8 +18,12 @@ import LeButton from './LeButton';
 import { PersonIcon } from '@radix-ui/react-icons';
 import { IJob } from '@/app/lib/models/job.model';
 import { haalGeplaatsteDiensten } from '@/app/lib/actions/vacancy.actions';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
+];
 
 
 
@@ -27,14 +31,21 @@ function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-const CalenderM = async ({ lang }: { lang: Locale }) => {
+
+interface Props {
+  lang: Locale;
+  dashboard: any;
+}
+
+
+const CalenderM = ({ lang, dashboard }: Props) => {
   const { isLoaded, user } = useUser();
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
   const [selectedDay, setSelectedDay] = useState<Day | null>(null);
   const [shifts, setShifts] = useState<IShiftArray[]>([]);
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
   const [bedrijfiD, setBedrijfiD] = useState<string>("");
-  const { dashboard } = await getDictionary(lang);
+  
 
   useEffect(() => {
     if (isLoaded && user) {

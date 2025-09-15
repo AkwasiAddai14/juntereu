@@ -4,19 +4,23 @@ import mongoose from "mongoose";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { haalAangemeld } from "@/app/lib/actions/shift.actions"
-import Card from '@/app/[lang]/components/shared/cards/ShiftCard';
+import Card from '@/app/[lang]/components/shared/cards/Wrappers/ShiftWrapper';
 import { ScrollArea } from "@/app/[lang]/components/ui/scroll-area";
 import { haalSollicitatiesFreelancer } from "@/app/lib/actions/vacancy.actions";
-import ApplicationCard from "@/app/[lang]/components/shared/cards/ApplicationCard";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import ApplicationCard from "@/app/[lang]/components/shared/cards/Wrappers/ApplicationWrapper";
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
-export default async function Aangemeld ({ lang }: { lang: Locale }) {
+type Props = {
+  lang: Locale;
+  dashboard: any;
+};
+
+export default function Aangemeld ({ lang, dashboard }: Props) {
     const { isLoaded, user } = useUser();
     const [freelancerId, setFreelancerId] = useState<any>(null);
     const [aangemeld, setAangemeld] = useState<any[]>([]);
     const [sollicitaties, setSollicitaties] = useState <any[]>([]);
-    const { dashboard } = await getDictionary(lang);
+    
 
 
     useEffect(() => {

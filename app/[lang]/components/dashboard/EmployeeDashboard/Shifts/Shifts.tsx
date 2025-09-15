@@ -1,12 +1,13 @@
 'use client';
 
 import React from 'react'
-import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/[lang]/components/ui/tabs";
-import Aangemeld from "@/app/[lang]/components/dashboard/EmployeeDashboard/Shifts/Aangemeld";
-import Aangenomen from "@/app/[lang]/components/dashboard/EmployeeDashboard/Shifts/Aangenomen";
-import Afgerond from "@/app/[lang]/components/dashboard/EmployeeDashboard/Shifts/Afgerond";
+import Aangemeld from "@/app/[lang]/components/dashboard/EmployeeDashboard/Shifts/Wrappers/AangemeldWrapper";
+import Aangenomen from "@/app/[lang]/components/dashboard/EmployeeDashboard/Shifts/Wrappers/AangenomenWrapper";
+import Afgerond from "@/app/[lang]/components/dashboard/EmployeeDashboard/Shifts/Wrappers/AfgerondWrapper";
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
 
 const page = async ({ lang }: { lang: Locale }) => {
   const { dashboard } = await getDictionary(lang);
@@ -20,13 +21,13 @@ const page = async ({ lang }: { lang: Locale }) => {
         </TabsList>
         <section className="mt-6">
           <TabsContent value="Aangemeld">
-            <Aangemeld lang={'en'}/>
+            <Aangemeld lang={lang}/>
           </TabsContent>
           <TabsContent value="Aangenomen">
-            <Aangenomen lang={'en'}/>
+            <Aangenomen lang={lang}/>
           </TabsContent>
           <TabsContent value="Afgerond">
-            <Afgerond lang={'en'}/>
+            <Afgerond lang={lang}/>
           </TabsContent>
         </section>
       </Tabs>

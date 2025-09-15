@@ -8,19 +8,20 @@ import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 import { IApplication } from '@/app/lib/models/application.model';
 import { berekenBedragVanAlleDiensten, haalVacature, trekSollicitatieIn } from '@/app/lib/actions/vacancy.actions';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
 
 type CardProps = {
   sollicitatie: IApplication;
+  lang: Locale;
+  components: any;
 };
 
-const Card = async ({ sollicitatie, lang }: CardProps & { lang: Locale }) => {
+const Card = ({ sollicitatie, lang, components }: CardProps) => {
   const { toast } = useToast();
   const [totaalbedrag, setTotaalBedrag] = useState<number | null>(0);
-  const [vacature, setVacature] = useState<any>();
+  const [vacature, setVacature] = useState<any>({});
   const router = useRouter();
-  const { components } = await getDictionary(lang);
 
 
   useEffect(() => {
@@ -84,7 +85,7 @@ berekenBedragvanVacature(sollicitatie.id);
 
   const backgroundImageUrl = vacature.afbeelding;
   const opdrachtgeverName = vacature.opdrachtgeverNaam || 'Junter';
-  let linkHref = `/dashboard/vacature/pagina/${sollicitatie.vacancy}`;
+  let linkHref = `/dashboard/vacancies/${sollicitatie.vacancy}`;
   let status = vacature.beschikbaar;
 
   const getStatusColor = (status: boolean) => {

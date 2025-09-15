@@ -1590,7 +1590,9 @@ export async function haalAangemeld(freelancerId: Types.ObjectId | string ) {
   } catch (error: any) {
     throw new Error(`Failed to find shift: ${error.message}`);
   }
-}
+};
+
+
   
 
  

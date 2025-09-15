@@ -13,8 +13,12 @@ import { fetchBedrijfByClerkId } from "@/app/lib/actions/employer.actions";
 import { IJob } from '@/app/lib/models/job.model';
 import { haalGeplaatsteDiensten } from '@/app/lib/actions/vacancy.actions';
 import LeButton from './LeButton';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
+];
 
 function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(' ')
@@ -72,7 +76,7 @@ interface Event {
   href: string;
 }
 
-export default async function Example({ lang }: { lang: Locale }) {
+export default function Example({ lang, dictionary }: { lang: Locale, dictionary: any }) {
   const { isLoaded, user } = useUser();
   const [year, setYear] = useState(new Date().getFullYear());
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
@@ -81,7 +85,7 @@ export default async function Example({ lang }: { lang: Locale }) {
   const [shifts, setShifts] = useState<IShiftArray[]>([]);
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
   const [bedrijfiD, setBedrijfiD] = useState<string>("");
-  const { dashboard } = await getDictionary(lang);
+  const { dashboard } = dictionary;
   const today = format(new Date(), 'yyyy-MM-dd');
   const startDate = startOfWeek(startOfMonth(currentMonth), { weekStartsOn: 1 })
   const endDate = endOfWeek(endOfMonth(currentMonth), { weekStartsOn: 1 })

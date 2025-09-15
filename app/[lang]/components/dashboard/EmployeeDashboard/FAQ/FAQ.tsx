@@ -1,7 +1,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline';
-import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/app/[lang]/dictionaries'
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 const faqs = [
   {

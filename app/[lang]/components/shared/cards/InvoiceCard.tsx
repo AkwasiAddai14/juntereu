@@ -9,16 +9,17 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
-type CardProps = {
-  factuur:  Iinvoice
-}
+type Props = {
+  factuur: Iinvoice;
+  components: any;
+};
 
-const Card = async ({ factuur, lang }: CardProps & { lang: Locale }) => {
+
+const Card = ({ factuur, components }: Props) => {
   const { user } = useUser();
   const userId = user?.id as string;
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | undefined>(false);
   const [bedrijfDetails, setBedrijfsdetails] = useState<any>(null);
-  const { components } = await getDictionary(lang);
   // const [linkHref, setLinkHref] = useState<string | null>('');
 
   const bedrijfCheck = async () => {

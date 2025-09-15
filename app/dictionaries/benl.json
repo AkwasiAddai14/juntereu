@@ -286,7 +286,7 @@
             },
             "vacanciesButton": "Bekijk alle vacatures",
             "navLinks": [
-                {"name": "Home", "link": "/"},
+                {"name": "Home", "link": "../"},
                 {"name": "Privacy Policy", "link": "../pp"},
                 {"name": "Terms of Use", "link": "../tou"}
             ]
@@ -448,11 +448,11 @@
           }
         },
         "termsofusePage": {
-            "tabFreelancers": "Werknemers",
+            "tabFreelancers": "Freelancers",
             "tabBedrijven": "Bedrijven",
             "termsFreelancers": {
                 "header": "Algemene voorwaarden",
-                "title": "Voor freelancers",
+                "title": "Voor Freelancers",
                 "introduction": {
                   "heading": "Inleiding",
                   "text": "Welkom bij Junter. Door gebruik te maken van ons platform, gaat u akkoord met deze algemene voorwaarden. Lees deze voorwaarden zorgvuldig door voordat u onze diensten gebruikt."
@@ -472,7 +472,7 @@
                   },
                   {
                     "heading": "4. Diensten en Betalingen",
-                    "text": "Diensten Aanbieden: Freelancers kunnen hun diensten aanbieden via het platform. Bedrijven kunnen deze diensten boeken en afnemen.\nBetalingen: Betalingen voor de geleverde diensten worden verwerkt via het platform. De exacte betalingsvoorwaarden en -procedures worden afzonderlijk overeengekomen tussen de freelancer en het bedrijf.\nServicekosten: Wij behouden ons het recht voor om servicekosten in rekening te brengen voor het gebruik van het platform. Deze kosten zullen duidelijk worden vermeld voordat een dienst wordt afgenomen."
+                    "text": "Diensten Aanbieden: Freelancers kunnen hun diensten aanbieden via het platform. Bedrijven kunnen deze diensten boeken en afnemen.\nBetalingen: Betalingen voor de geleverde diensten worden verwerkt via het platform. De exacte betalingsvoorwaarden en -procedures worden afzonderlijk overeengekomen tussen de freelancer en Junter, het bedrijf en Junter.\nServicekosten: Wij behouden ons het recht voor om servicekosten in rekening te brengen voor het gebruik van het platform. Deze kosten zullen duidelijk worden vermeld voordat een dienst wordt afgenomen."
                   },
                   {
                     "heading": "5. Annuleringen en Geschillen",
@@ -1098,7 +1098,200 @@
                   "Plekken": "Plekken"
                 }
           }
-        }
+        },
+        "localDateString": "nl-NL",
+        "currencySign": "€",
+        "Checkout": {
+          "employees": {
+            "ToastMessage1": "Checkout verstuurd! 👍",
+            "ToastMessage2": "Actie is niet toegestaan! ❌",
+            "FormFieldItems": [
+              "logo",
+              "Naam werkgever",
+              "Functie",
+              "Stad",
+              "No show",
+              "Datum",
+              "Begintijd",
+              "Eindtijd",
+              "minuten pauze",
+              "Uurtarief",
+              "Opmerking",
+              "Checkout indienen...",
+              "Indienen"
+            ]
+          },
+          "employer": {
+            "ToastMessage1": "Niet ingelogd!",
+            "ToastMessage2": "Checkout verstuurd! 👍",
+            "ToastMessage3": "Actie is niet toegestaan! ❌",
+            "FormFieldItems":[
+              "Profielfoto",
+              "Shifts voltooid",
+              "No show",
+              "Shift details",
+              "minuten pauze",
+              "Uurtarief",
+              "Gedeclareerde uren",
+              "Begintijd",
+              "Eindtijd",
+              "Te laat",
+              "Feedback",
+              "Weigeren",
+              "Checkout indienen...",
+              "Accepteer",
+              "Accepteren",
+              "Versturen"
+            ]
+          }
+        },
+        "Flexpool": {
+          "employees": {
+            "ToastMessage1": "Niet ingelogd!",
+            "FormFieldItems": [
+              "Shifts",
+              "Geen shifts in de flexpool"
+            ]
+          },
+          "employers": {
+            "ToastMessage1": "Niet ingelogd!",
+            "ToastMessage2": "Freelancer uitgenodigd! 👍",
+            "ToastMessage3": "Actie is niet toegestaan!",
+            "ToastMessage4": "Freelancer verwijderd! 👍",
+            "FormFieldItems": [
+              "Selecteer werknemer",
+              "Uitnodigen",
+              "Werknemers",
+              "shifts",
+              "% Opkomst",
+              "% Op tijd",
+              "Verwijder",
+              "Shifts",
+              "Geen shifts in de flexpool"
+            ]
+          }
+        },
+        "Invoice": {
+          "employees": {
+            "ToastMessage1": "Niet ingelogd!",
+            "FormFieldItems": [
+              "Factuur voor week",
+              "Terug",
+              "Download",
+              "Shift",
+              "Uren",
+              "Uurtarief",
+              "Totaalbedrag",
+              "min pauze",
+              "gewerkte uren",
+              "BTW:",
+              "Download",
+              "Subtotaal",
+              "BTW",
+              "Totaalbedrag"
+            ]
+          },
+          "employers": {
+            "ToastMessage1": "Niet ingelogd!",
+            "FormFieldItems": [
+              "Factuur",
+              "Factuur voor week",
+              "Terug",
+              "Download",
+              "Shift",
+              "Gewerkte uren",
+              "Tarief",
+              "Subtotaal",
+              "BTW",
+              "Totaalbedrag"
+            ]
+          }
+        },
+        "Jobs": {
+          "FormFieldItems": [
+            "Adres",
+            "Datum",
+            "Werktijden",
+            "Loon",
+            "Vaardigheden",
+            "Kledingsvoorschriften"
+          ]
+        },
+        "Payslip": {
+          "moods": [
+            "Opgewonden",
+            "Droevig",
+            "Geliefd",
+            "Gelukkig",
+            "Thumbsy",
+            "Ik voel niets"
+          ],
+          "FormFieldItems": [
+            "Loonstrook",
+            "Downloaden",
+            "Versturen",
+            "Samenvatting",
+            "Bedrag",
+            "Status",
+            "Uiterlijke betaaldatum",
+            "Instellingen",
+            "Gemaakt op",
+            "Werkgever",
+            "Werknemer",
+            "Dienst",
+            "Gewerkte uren",
+            "Uurloon",
+            "Bedrag",
+            "Subtotaal",
+            "Aftrek",
+            "Totaalbedrag",
+            "Opmerking",
+            "op",
+            "Plaats een opmerking",
+            "Plaats een opmerking...",
+            "Voeg een bestand toe",
+            "Jouw moed",
+            "Geef een mood",
+            "Opmerking plaatsen"
+          ]
+        }, 
+        "Shift": {
+          "employee": {
+            "FormFieldItems": [
+              "plekken",
+               "Aanmeldingen",
+               "niet in flexpool",
+               "Over de shift",
+               "Gerelateerde shift"
+            ]
+          },
+          "employer": {
+            "FormFieldItems": [
+              "Nieuwe shift",
+              "Over de shift",
+              "plekken",
+              "niet in flexpool",
+              "Vaardigheden",
+              "Kledingsvoorschriften",
+              "Over de shift"
+            ]
+          }
+        },
+        "Vacancies": {
+          "FormFieldItems": [
+            "Nieuwe Vacature",
+            "Factuur",
+            "Factuur voor week",
+            "Terug",
+            "Download",
+            "Shift",
+            "Gewerkte uren",
+            "Tarief",
+            "Subtotaal",
+            "BTW",
+            "Totaalbedrag"
+          ]
+        } 
       },
     "components": {
       "cards": {
@@ -1964,6 +2157,14 @@
           "buttons": [
             "Annueleren",
             "Uitloggen"
+          ]
+        } ,
+        "OnboardingDialog": {
+          "headTitle": "Meld je aan om te beginnen.",
+          "subTitle": "Kies hieronder of u zich wilt aanmelden als freelancer of als bedrijf.",
+          "buttons": [
+            "Werknemer",
+            "Bedrijf"
           ]
         }
       }

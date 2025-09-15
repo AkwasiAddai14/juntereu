@@ -50,11 +50,11 @@ const bedrijfSchema: Schema<IEmployer> = new mongoose.Schema({
   rating: { type: Number, default: 5 },
   invoices: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Factuur"
+    ref: "Invoice"
   }],
   filialen: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Bedrijven'
+    ref: 'Employer'
   }],
   flexpools: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -70,15 +70,15 @@ const bedrijfSchema: Schema<IEmployer> = new mongoose.Schema({
   }],
   vacancies: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Vacature'
+    ref: 'Vacancy'
   }],
   applications: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Sollicitatie'
+    ref: 'Application'
   }],
   jobs: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Dienst'
+    ref: 'Job'
   }],
 });
 

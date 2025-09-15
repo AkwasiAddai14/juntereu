@@ -1,7 +1,7 @@
 "use client";
 
 
-import { Locale } from '@/i18n.config'
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import Link from 'next/link';
 import Image from 'next/image'; 
@@ -9,8 +9,8 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
 import foodDelivery from '@/app/assets/images/iStock-1198049220.jpg';
 
 const supportedLocales: Locale[] = [
-  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
-  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
 export default async function Example({ params }: { params: { lang: string } }) {

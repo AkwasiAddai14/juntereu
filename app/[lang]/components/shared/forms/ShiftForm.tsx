@@ -6,7 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Button } from "@/app/[lang]/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/app/[lang]/components/ui/form";
 import { Input } from "@/app/[lang]/components/ui/input";
-import { ShiftValidation } from "@/app/lib/validations/shift";
+import { createShiftValidation } from "@/app/lib/validations/shift";
 import * as z from "zod";
 import { Textarea } from "@/app/[lang]/components/ui/textarea";
 import { FileUploader } from "@/app/[lang]/components/shared/FileUploader";
@@ -34,8 +34,6 @@ import { ChevronUpDownIcon } from "@heroicons/react/24/outline";
 import { CheckIcon } from "lucide-react";
 import { IShiftArray } from "@/app/lib/models/shiftArray.model";
 import { fetchUnpublishedShifts } from "@/app/lib/actions/shiftArray.actions";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
 type ShiftFormProps = {
@@ -46,7 +44,7 @@ type ShiftFormProps = {
 };
 
 
-const ShiftForm = async ({ userId, type, shift, shiftId }: ShiftFormProps, { lang }: { lang: Locale }) => {
+const ShiftForm = ({ userId, type, shift, shiftId, components }: ShiftFormProps & { components: any }) => {
   const [files, setFiles] = useState<File[]>([]);
   const [begintijd, setBegintijd] = useState<Dayjs | null>(dayjs('2022-04-17T08:00'));
   const [eindtijd, setEindtijd] = useState<Dayjs | null>(dayjs('2022-04-17T16:30'));
@@ -60,7 +58,6 @@ const ShiftForm = async ({ userId, type, shift, shiftId }: ShiftFormProps, { lan
   const router = useRouter();
   const { startUpload } = useUploadThing("media");
   const { toast } = useToast();
-  const { components } = await getDictionary(lang);
   
   const DefaultValues = selectedShift ? {
     opdrachtgever: selectedShift.employer,
@@ -171,14 +168,14 @@ const ShiftForm = async ({ userId, type, shift, shiftId }: ShiftFormProps, { lan
         }
       : DefaultValues;
 
-  const form = useForm<z.infer<typeof ShiftValidation>>({
-    resolver: zodResolver(ShiftValidation),
+  const form = useForm<z.infer<typeof createShiftValidation>>({
+    resolver: zodResolver(createShiftValidation),
     defaultValues: initialValues,
   });
 
   const { handleSubmit, control, getValues } = form;
 
-  async function onSubmit(values: z.infer<typeof ShiftValidation>) {
+  async function onSubmit(values: z.infer<typeof createShiftValidation>) {
     if (!bedrijfDetails || !bedrijfDetails._id || !bedrijfDetails.displaynaam) {
       console.error("Bedrijf details are not properly loaded.");
       return;
@@ -304,7 +301,7 @@ if (files.length > 0) {
     }
   }
 
-  async function makeUnpublishedShift(values: z.infer<typeof ShiftValidation>) {
+  async function makeUnpublishedShift(values: z.infer<typeof createShiftValidation>) {
     setLoading(true)
     try {
       const unpublished = await maakOngepubliceerdeShift({
@@ -450,9 +447,8 @@ if (files.length > 0) {
                 <FormControl>
                 <div className="flex-center  h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
                 <DropdownCategorie 
-                onChangeHandler={field.onChange} 
-                value={selectedShift ? selectedShift.function : field.value} 
-                />
+                      onChangeHandler={field.onChange}
+                      value={selectedShift ? selectedShift.function : field.value} components={undefined}                />
                 </div>
                 </FormControl>
                 <FormMessage />
@@ -623,7 +619,7 @@ if (files.length > 0) {
                 <path fillRule="evenodd" d="M7.5 5.25a3 3 0 0 1 3-3h3a3 3 0 0 1 3 3v.205c.933.085 1.857.197 2.774.334 1.454.218 2.476 1.483 2.476 2.917v3.033c0 1.211-.734 2.352-1.936 2.752A24.726 24.726 0 0 1 12 15.75c-2.73 0-5.357-.442-7.814-1.259-1.202-.4-1.936-1.541-1.936-2.752V8.706c0-1.434 1.022-2.7 2.476-2.917A48.814 48.814 0 0 1 7.5 5.455V5.25Zm7.5 0v.09a49.488 49.488 0 0 0-6 0v-.09a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5Zm-3 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" />
                 <path d="M3 18.4v-2.796a4.3 4.3 0 0 0 .713.31A26.226 26.226 0 0 0 12 17.25c2.892 0 5.68-.468 8.287-1.335.252-.084.49-.189.713-.311V18.4c0 1.452-1.047 2.728-2.523 2.923-2.12.282-4.282.427-6.477.427a49.19 49.19 0 0 1-6.477-.427C4.047 21.128 3 19.852 3 18.4Z" />
                </svg>
-               <DropdownPauze onChangeHandler={field.onChange} value={selectedShift ? selectedShift.break as unknown as string : field.value} />
+               <DropdownPauze onChangeHandler={field.onChange} value={selectedShift ? selectedShift.break as unknown as string : field.value} options={[]} />
                   </div>
                 </FormControl>
                 <FormMessage />
@@ -756,11 +752,10 @@ if (files.length > 0) {
                 <FormItem className="w-full">
                   <FormControl>
                   <Dropdown
-                    onChangeHandler={field.onChange}
-                    value={field.value}
-                    flexpoolsList={ bedrijfDetails?.flexpools || flexpools } // Pass an array of objects
-                    userId={bedrijfDetails._id}
-                  />
+                      onChangeHandler={field.onChange}
+                      value={field.value}
+                      flexpoolsList={bedrijfDetails?.flexpools || flexpools} // Pass an array of objects
+                      userId={bedrijfDetails._id} components={undefined}                  />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

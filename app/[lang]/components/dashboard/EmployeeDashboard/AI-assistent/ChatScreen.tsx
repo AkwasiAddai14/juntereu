@@ -56,31 +56,51 @@ const ChatScreen: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
-
+  
     const newMessage: Message = {
       id: Date.now().toString(),
       text: inputValue,
       isUser: true,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
-
+  
     setMessages(prev => [...prev, newMessage]);
     setInputValue('');
-
-    // Simulate bot response
-    setTimeout(() => {
+  
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [
+            ...messages.map(m => ({
+              role: m.isUser ? 'user' : 'assistant',
+              content: m.text,
+            })),
+            { role: 'user', content: inputValue }
+          ]
+        })
+      });
+  
+      const data = await res.json();
+  
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: 'This is a sample bot response',
+        text: data.reply || 'Sorry, ik begreep je niet.',
         isUser: false,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
+  
       setMessages(prev => [...prev, botResponse]);
-    }, 1000);
+  
+    } catch (error) {
+      console.error("Fout bij ophalen van AI antwoord", error);
+    }
   };
+  
 
   return (
     <ChatContainer>

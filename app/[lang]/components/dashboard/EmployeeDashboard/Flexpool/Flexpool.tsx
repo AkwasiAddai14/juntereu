@@ -5,15 +5,20 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { ScrollArea } from "@/app/[lang]/components/ui/scroll-area";
 import { haalFlexpoolFreelancer } from "@/app/lib/actions/flexpool.actions";
-import FlexpoolCard from "@/app/[lang]/components/shared/cards/FlexpoolCard";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import FlexpoolCard from "@/app/[lang]/components/shared/cards/Wrappers/FlexpoolWrapper";
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
-const page = async ({ lang }: { lang: Locale }) => {
+
+type Props = {
+  lang: Locale;
+  dashboard: any;
+};
+
+const page = ({ lang, dashboard }: Props) => {
   const { isLoaded, user } = useUser();
   const [flexpool, setFlexpool] = useState<any[]>([]);
   const [freelancerId, setFreelancerId] = useState<any>(null);
-  const { dashboard } = await getDictionary(lang);
+
 
   useEffect(() => {
     if (isLoaded && user) {

@@ -1,22 +1,22 @@
 "use client"
 
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+import  edit  from "@/app/assets/images/edit.svg";
 import React, { useEffect, useState } from 'react';
-import { DeleteConfirmation } from '@/app/[lang]/components/shared/DeleteConfirmation';
-import { ApplyConfirmation } from '@/app/[lang]/components/shared/ApplyConfirmation';
-import { IShiftArray } from '@/app/lib/models/shiftArray.model';
-import  edit  from "@/app/assets/images/edit.svg"
 import { isBedrijf } from '@/app/lib/actions/employer.actions';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import { IShiftArray } from '@/app/lib/models/shiftArray.model';
+import { ApplyConfirmation } from '@/app/[lang]/components/shared/ApplyConfirmation';
+import { DeleteConfirmation } from '@/app/[lang]/components/shared/DeleteConfirmation';
 
-type CardProps = {
+type Props = {
   shift: IShiftArray;
+  components: any;
+  lang: Locale ;
 };
 
-const Card = async ({ shift, lang }: CardProps & { lang: Locale }) => {
-  const { components } = await getDictionary(lang);
+const Card = async ({ shift, components, lang }: Props) => {
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | undefined>(false);;
 
   useEffect(() => {
@@ -57,13 +57,13 @@ const Card = async ({ shift, lang }: CardProps & { lang: Locale }) => {
           <Link href={`/dashboard/shift/bedrijf/${shift._id}/update`}>
             <Image src={edit} alt="edit" width={20} height={20} />
           </Link>
-          <DeleteConfirmation shiftId={shift._id as string} lang={lang}/>
+          <DeleteConfirmation shiftId={shift._id as string} lang={lang} dictionary={undefined}/>
         </div>
       ) :
       (
           !isEenBedrijf && (
             <div className="absolute items-stretch right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
-          <ApplyConfirmation shiftId={shift._id as string} lang={lang}/>
+          <ApplyConfirmation shiftId={shift._id as string} lang={lang} dictionary={undefined}/>
         </div>
           )
       )}

@@ -10,8 +10,12 @@ import { fetchBedrijfByClerkId } from '@/app/lib/actions/employer.actions';
 import { IShiftArray } from '@/app/lib/models/shiftArray.model';
 import { useUser } from '@clerk/nextjs';
 import { IJob } from '@/app/lib/models/job.model';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
+];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -51,7 +55,7 @@ const parseShiftTime = (date: Date | string, timeString: string): Date => {
   return parsedDate;
 };
 
-const CalenderW = async ({ lang }: { lang: Locale }) => {
+const CalenderW = ({ lang, dictionary }: { lang: Locale; dictionary: any }) => {
   const container = useRef<HTMLDivElement>(null);
   const containerNav = useRef<HTMLDivElement>(null);
   const containerOffset = useRef<HTMLDivElement>(null);
@@ -61,7 +65,7 @@ const CalenderW = async ({ lang }: { lang: Locale }) => {
   const [shifts, setShifts] = useState<IShiftArray[]>([]);
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
   const [bedrijfiD, setBedrijfiD] = useState<string>("");
-  const { dashboard } = await getDictionary(lang);
+  const { dashboard } = dictionary.dashboard
 
   useEffect(() => {
     if (isLoaded && user) {

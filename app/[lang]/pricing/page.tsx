@@ -1,12 +1,12 @@
 "use client";
 
 import { CheckIcon } from '@heroicons/react/20/solid';
-import { Locale } from '@/i18n.config';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries';
 
 const supportedLocales: Locale[] = [
-  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
-  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
 const tiers = [
@@ -35,10 +35,11 @@ const tiers = [
 ]
 
 export default async function Example({ params }: { params: { lang: string } }) {
-  const lang = supportedLocales.includes(params.lang as Locale)
-  ? (params.lang as Locale)
-  : 'en';
-  const { pages, navigation, footer } = await getDictionary(lang);
+  
+  const lang = supportedLocales.includes(params.lang as Locale) ? (params.lang as Locale) : 'en';
+  const { pages } = await getDictionary(lang);
+
+
   return (
     <div className="isolate overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-6 pb-96 pt-32 text-center sm:pt-32 lg:px-8">

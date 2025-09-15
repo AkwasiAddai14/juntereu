@@ -1,41 +1,49 @@
 "use client"
 
 import Link from 'next/link';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { Dialog, Disclosure, DisclosureButton, DisclosurePanel, Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/react'
-import { useState } from 'react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image'; 
+import { useState } from 'react';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import logo from '@/app/assets/images/178884748_padded_logo.png'; 
-import Flag from 'react-flagpack';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Dialog, Disclosure, 
+  DisclosureButton, DisclosurePanel, 
+  Popover, 
+  PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/react';
 
 
 
   const countries = [
-    { name: 'United Kingdom', description: 'English', href: '/en', flag: 'GBR' },
-    { name: 'Nederland', description: 'Nederlands', href: 'https://nl.junter.eu', flag: 'NLD' },
-    { name: 'France', description: 'Français', href: '/fr', flag: 'FRA' },
-    { name: 'Deutschland', description: 'Deutsch', href: '/de', flag: 'DEU' },
-    { name: 'Osterreich', description: 'Deutsch', href: '/os', flag: 'AUT' },
-    { name: 'Italia', description: 'Italiano', href: '/it', flag: 'ITA' },
-    { name: 'España', description: 'Español', href: '/es', flag: 'ESP' },
-    { name: 'Portugal', description: 'Português', href: '/pt', flag: 'PRT' },
-    { name: 'Sverige', description: 'Svenska', href: '/sw', flag: 'SWE' },
-    { name: 'Danmark', description: 'Dansk', href: '/dk', flag: 'DNK' },
-    { name: 'Norge', description: 'Norsk', href: '/no', flag: 'NOR' },
-    { name: 'Suomi', description: 'Suomeksi', href: '/fi', flag: 'FIN' },
-    { name: 'België', description: 'Nederlands', href: '/benl', flag: 'BEL' },
-    { name: 'Belgique', description: 'Français', href: '/befr', flag: 'BEL' },
-    { name: 'Suisse', description: 'Français', href: '/sufr', flag: 'CHE' },
-    { name: 'Suisse', description: 'Italiano', href: '/suit', flag: 'CHE' },
-    { name: 'Suisse', description: 'Deutsch', href: '/sude', flag: 'CHE' },
+    { name: 'United Kingdom', description: 'English', href: '/en', flag: 'gb' },
+    { name: 'Deutschland', description: 'Deutsch', href: '/de', flag: 'de' },
+    { name: 'Nederland', description: 'Nederlands', href: '/nl', flag: 'nl' },
+    { name: 'België', description: 'Nederlands', href: '/nl-BE', flag: 'be' },
+    { name: 'France', description: 'Français', href: '/fr', flag: 'fr' },
+    { name: 'España', description: 'Español', href: '/es', flag: 'es' },
+    { name: 'Portugal', description: 'Português', href: '/pt', flag: 'pt' },
+    { name: 'Italia', description: 'Italiano', href: '/it', flag: 'it' },
+    { name: 'Osterreich', description: 'Deutsch', href: '/at', flag: 'at' },
+    { name: 'Schweiz', description: 'Deutsch', href: '/de-CH', flag: 'ch' },
+    { name: 'Suomi', description: 'Suomeksi', href: '/fi', flag: 'fi' },
+    { name: 'Danmark', description: 'Dansk', href: '/da', flag: 'dk' },
+    { name: 'Sverige', description: 'Svenska', href: '/sv', flag: 'se' },
+    { name: 'Norge', description: 'Norsk', href: '/no', flag: 'no' },
+    { name: 'Suisse', description: 'Français', href: '/fr-CH', flag: 'ch' },
+    { name: 'Svizzera', description: 'Italiano', href: '/it-CH', flag: 'ch' },
+    { name: 'Bégique', description: 'Français', href: '/fr-BE', flag: 'be' },
   ]
+
+  type Props = {
+    lang: Locale;
+    pages: any;
+    navigation: any;
+    components: any;
+  };
   
-  export default async function Example({ lang }: { lang: Locale }) {
+  export default function Example({ lang, pages, navigation, components }: Props) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { pages, navigation, components } = await getDictionary(lang);
+    
   
     return (
       <header className="bg-white">
@@ -57,7 +65,7 @@ import Flag from 'react-flagpack';
           </button>
         </div>
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          {navigation.navLinks.map((item) => (
+          {navigation.navLinks.map((item: {name: string, link: string}) => (
             <Link href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
             {item.name}
             </Link>
@@ -79,7 +87,16 @@ import Flag from 'react-flagpack';
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                   >
                     <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <Flag code={item.flag} size="L" hasDropShadow className='border-lg'/>
+                    <img src={`https://flagcdn.com/w320/${item.flag}.png`} alt="Spain" className="w-6 h-4" />
+                    {/* <Flag code={item.flag} size="L" hasDropShadow className='border-lg'/>
+                    <FlagComponent
+                      code="ESP"
+                      size="L"
+                      hasBorder={false}
+                      hasDropShadow={false}
+                      cdnUrl="https://flagpack.xyz"
+                      alt="Spain"
+                    /> */}
                     </div>
                     <div className="flex-auto">
                       <a href={item.href} className="block font-semibold text-gray-900">
@@ -92,7 +109,7 @@ import Flag from 'react-flagpack';
                 ))}
               </div>
               <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                {pages.landingsPage.CTA.map((item) => (
+                {pages.landingsPage.CTA.map((item: {name: string, link: string, href: string}) => (
                   <a
                     key={item.name}
                     href={item.href}
@@ -139,7 +156,7 @@ import Flag from 'react-flagpack';
                 <Image
                   className="h-8 w-auto"
                   src={logo}
-                  alt=""
+                  alt="Junter logo"
                 />
               </a>
               <a
@@ -166,7 +183,7 @@ import Flag from 'react-flagpack';
                     <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {[...countries, ...pages.landingsPage.CTA].map((item) => (
+                    {[...countries/* , ...pages.landingsPage.CTA */].map((item) => (
                       <DisclosureButton
                         key={item.name}
                         as="a"
@@ -178,8 +195,8 @@ import Flag from 'react-flagpack';
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
-                {navigation.navLinks.map((item) => (
-            <Link href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
+                {navigation.navLinks.map((item: {name: string, link: string}) => (
+            <Link href={`/${lang}/${item.link}`} className="-mx-3 block rounded-lg px-3 py-2 text-sm/6 font-semibold text-gray-900">
             {item.name}
             </Link>
             ))}

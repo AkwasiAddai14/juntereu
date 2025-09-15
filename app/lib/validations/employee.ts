@@ -1,5 +1,29 @@
 import { z } from 'zod';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+
+export const createEmployeeValidation = z.object({
+  employeeId: z.string(),
+  country: z.string(),
+  firstname: z.string(),
+  infix: z.string().optional(),
+  lastname: z.string(),
+  dateOfBirth: z.date(),
+  phone: z.string(),
+  email: z.string(),
+  taxBenefit: z.boolean().optional(),
+  SalaryTaxDiscount: z.boolean().optional(),
+  VATidnr: z.string().optional(),
+  SocialSecurity: z.string().optional(),
+  iban: z.string(),
+  postcode: z.string(),
+  housenumber: z.string(),
+  street: z.string(),
+  city: z.string(),
+  profilephoto: z.string().optional(),
+  bio: z.string().optional(),
+  companyRegistrationNumber: z.string().optional()
+});
+
+/* import { getDictionary } from '@/app/[lang]/dictionaries';
 import { Locale } from '@/i18n.config';
 
 export const createEmployeeValidation = async (lang: Locale) => {
@@ -30,3 +54,4 @@ export const createEmployeeValidation = async (lang: Locale) => {
     companyRegistrationNumber: z.string().optional()
   });
 };
+ */

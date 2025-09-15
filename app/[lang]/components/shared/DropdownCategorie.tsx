@@ -19,23 +19,27 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/app/[lang]/components/ui/alert-dialog"
-  import type { ICategory } from '@/app/lib/models/categorie.model'
+import type { ICategory } from '@/app/lib/models/categorie.model'
 import { Input } from '@headlessui/react'
 import { getAllCategories, voegAangepast } from '@/app/lib/actions/shift.actions';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
 
 
-  type DropdownProps = {
-    value?: string,
-    onChangeHandler? : () => void
-  }
+type Option = {
+  value: string;
+  label: string;
+};
+
+type Props = {
+  value?: string;
+  onChangeHandler?: (value: string) => void;
+  components: any;
+};
 
 
-const DropdownCategorie = async ({value, onChangeHandler}: DropdownProps, { lang }: { lang: Locale }) => {
+const DropdownCategorie = ({ value, onChangeHandler, components }: Props) => {
      const [categorie, setCategorie] = useState<ICategory[]>([])
      const [aangepast, setAangepast] = useState('');
-     const { components } = await getDictionary(lang);
+
 
      const voegCategorieToe = () => {
         voegAangepast({
@@ -65,14 +69,45 @@ const fields = components.shared.DropdownCategorie.fields
     <SelectContent>
 
 
-    {fields.map((group, groupIdx) => (
+    {fields.map((group: { label: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; items: any[] }, groupIdx: React.Key | null | undefined) => (
   <SelectGroup key={groupIdx}>
     <SelectLabel>{group.label}</SelectLabel>
-    {group.items.map((item, itemIdx) => (
+    {group.items.map((item: { value: string; label: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined }, itemIdx: React.Key | null | undefined) => (
       <SelectItem key={itemIdx} value={item.value}>{item.label}</SelectItem>
     ))}
   </SelectGroup>
 ))}
+
+      {categorie.length > 0 && categorie.map((categorie) => (
+          <SelectItem key={categorie._id} value={categorie._id} className="select-item p-regular-14">
+            {categorie.name}
+          </SelectItem>
+        ))}
+
+
+      <AlertDialog>
+          <AlertDialogTrigger className="p-medium-14 flex w-full rounded-sm py-3 pl-8 text-primary-500 hover:bg-primary-50 focus:text-primary-500">{components.shared.DropdownCategorie.title}</AlertDialogTrigger>
+          <AlertDialogContent className="bg-white">
+            <AlertDialogHeader>
+              <AlertDialogTitle>{components.shared.DropdownCategorie.title}</AlertDialogTitle>
+              <AlertDialogDescription>
+                <Input type="text" placeholder={components.shared.DropdownCategorie.placeholderText} className="input-field mt-3" onChange={(e) => setAangepast(e.target.value)} />
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>{components.shared.DropdownCategorie.buttons[0]}</AlertDialogCancel>
+              <AlertDialogAction onClick={() => startTransition(voegCategorieToe)}>{components.shared.DropdownCategorie.buttons[1]}</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+    </SelectContent>
+  </Select>
+  </div>
+  )
+}
+
+export default DropdownCategorie
 
     {/* <SelectGroup>
       <SelectLabel>Horeca</SelectLabel>
@@ -198,36 +233,3 @@ const fields = components.shared.DropdownCategorie.fields
       <SelectItem value="Schoonmaak: privewoningen">privewoningen</SelectItem>
       <SelectItem value="Schoonmaak: vakantiehuizen">vakantiehuizen</SelectItem>
       </SelectGroup> */}
-      
-
-
-      {categorie.length > 0 && categorie.map((categorie) => (
-          <SelectItem key={categorie._id} value={categorie._id} className="select-item p-regular-14">
-            {categorie.name}
-          </SelectItem>
-        ))}
-
-
-      <AlertDialog>
-          <AlertDialogTrigger className="p-medium-14 flex w-full rounded-sm py-3 pl-8 text-primary-500 hover:bg-primary-50 focus:text-primary-500">{components.shared.DropdownCategorie.title}</AlertDialogTrigger>
-          <AlertDialogContent className="bg-white">
-            <AlertDialogHeader>
-              <AlertDialogTitle>{components.shared.DropdownCategorie.title}</AlertDialogTitle>
-              <AlertDialogDescription>
-                <Input type="text" placeholder={components.shared.DropdownCategorie.placeholderText} className="input-field mt-3" onChange={(e) => setAangepast(e.target.value)} />
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>{components.shared.DropdownCategorie.buttons[0]}</AlertDialogCancel>
-              <AlertDialogAction onClick={() => startTransition(voegCategorieToe)}>{components.shared.DropdownCategorie.buttons[1]}</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-
-    </SelectContent>
-  </Select>
-  </div>
-  )
-}
-
-export default DropdownCategorie

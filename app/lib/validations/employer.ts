@@ -1,5 +1,23 @@
 import { z } from 'zod';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+
+export const createCompanyValidation = z.object({
+    companyId: z.string(),
+    name: z.string(),
+    country: z.string(),
+    displayname: z.string(),
+    profilephoto: z.string(),
+    bio: z.string(),
+    CompanyRegistrationNumber: z.string().optional(),
+    VATidnr: z.string(),
+    postcode: z.string(),
+    housenumber: z.string(),
+    street: z.string(),
+    city: z.string(),
+    phone: z.string(),
+    email: z.string(),
+    iban: z.string()
+});
+/* import { getDictionary } from '@/app/[lang]/dictionaries';
 import { Locale } from '@/i18n.config';
 
 export const createCompanyValidation = async (lang: Locale) => {
@@ -22,4 +40,4 @@ return z.object({
     email: z.string({ required_error: Validations.EmployerValidations.Emailadres }),
     iban: z.string({ required_error: Validations.EmployerValidations.IBAN })
 });
-}
+} */

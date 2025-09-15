@@ -3,7 +3,7 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import { haalGeplaatsteShifts } from '@/app/lib/actions/shiftArray.actions';
-import { haalGeplaatsteDiensten } from '@/app/lib/actions/vacancy.actions';
+import { haalDienstenFreelancer, haalGeplaatsteDiensten } from '@/app/lib/actions/vacancy.actions';
 import { format, startOfWeek, endOfWeek, addDays, isToday, differenceInMinutes, parseISO, parse } from 'date-fns';
 import React from 'react';
 import { fetchBedrijfByClerkId } from '@/app/lib/actions/employer.actions';
@@ -12,6 +12,11 @@ import { useUser } from '@clerk/nextjs';
 import { IJob } from '@/app/lib/models/job.model';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/app/[lang]/dictionaries';
+import { vindBeschikbaarheidVanFreelancer } from '@/app/lib/actions/availability.actions';
+import { haalFreelancer } from '@/app/lib/actions/employee.actions';
+import { haalAangemeld } from '@/app/lib/actions/shift.actions';
+import { IAvailability } from '@/app/lib/models/availability.model';
+import { IEmployee } from '@/app/lib/models/employee.model';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -51,60 +56,87 @@ const parseShiftTime = (date: Date | string, timeString: string): Date => {
   return parsedDate;
 };
 
-const CalenderW = async ({ lang }: { lang: Locale }) => {
+const CalenderW = ({ dashboard }: { dashboard: any }) => {
   const container = useRef<HTMLDivElement>(null);
   const containerNav = useRef<HTMLDivElement>(null);
   const containerOffset = useRef<HTMLDivElement>(null);
   const { isLoaded, user } = useUser();
   const [currentWeek, setCurrentWeek] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [shifts, setShifts] = useState<IShiftArray[]>([]);
+  const [shifts, setShifts] = useState<any[]>([]);
   const [ diensten, setDiensten ] = useState<IJob[]>([]);
-  const [bedrijfiD, setBedrijfiD] = useState<string>("");
-  const { dashboard } = await getDictionary(lang);
+  const [ beschikbaarheid, setBeschikbaarheid ] = useState<IAvailability[]>([])
+  const [freelancer, setFreelancer] = useState<IEmployee>();
 
+
+ 
   useEffect(() => {
     if (isLoaded && user) {
-      const getBedrijfId = async () => {
+      const getFreelancerId = async () => {
         try {
-          const bedrijf = await fetchBedrijfByClerkId(user!.id);
-          if (bedrijf && bedrijf._id) {
-            setBedrijfiD(bedrijf._id.toString());
+          const freelancer = await haalFreelancer(user!.id);
+          if (freelancer) {
+            setFreelancer(freelancer);
+          } else{
+            console.log("geen freelancerId gevonden.")
           }
         } catch (error) {
-          console.error("Error fetching bedrijf by Clerk ID:", error);
+          console.error("Error fetching freelancer by Clerk ID:", error);
         }
       };
-    
-      if (user && !bedrijfiD) {  // Only fetch if user exists and bedrijfiD is not already set
-        getBedrijfId();
+      if (user) {  // Only fetch if user exists and freelancerId is not already set
+        getFreelancerId();
       }
     }
   }, [isLoaded, user]);
 
+  useEffect(() => {
+    const fetchAangemeldeShifts = async () => {
+      try {
+            const response = await haalAangemeld(freelancer!.id);
+            if (response) {
+              // Filter and separate shifts based on their status
+              const geaccepteerdShifts = response.filter((shift: { status: string; }) => shift.status === 'aangenomen');
+              
+              // Set the state with the filtered shifts
+              setShifts(geaccepteerdShifts);
+            
+            } else {
+              // If no response or not an array, default to empty arrays
+              setShifts([]);
+           
+            }
+        
+      } catch (error) {
+        console.error('Error fetching shifts:', error);
+      }
+    };
+    fetchAangemeldeShifts();  // Call the fetchShifts function
+  }, [freelancer!.id]); 
+
   
 
   useEffect(() => {
-    if (bedrijfiD) {  // Only fetch shifts if bedrijfId is available
-      const fetchShifts = async () => {
+    if (freelancer) {  // Only fetch shifts if bedrijfId is available
+      const fetchAvailability = async () => {
         try {
-          const shifts = await haalGeplaatsteShifts({ employerId: bedrijfiD });
-          setShifts(shifts || []);  // Ensure shifts is always an array
+          const availability = await vindBeschikbaarheidVanFreelancer(freelancer.id);
+          setBeschikbaarheid(availability || []);  // Ensure shifts is always an array
         } catch (error) {
           console.error('Error fetching shifts:', error);
-          setShifts([]);  // Handle error by setting an empty array
+          setBeschikbaarheid([]);  // Handle error by setting an empty array
         }
       };
   
-      fetchShifts();
+      fetchAvailability();
     }
-  }, [bedrijfiD]); 
+  }, [freelancer!.id]); 
 
   useEffect(() => {
-    if (bedrijfiD) {  // Only fetch shifts if bedrijfId is available
+    if (freelancer) {  // Only fetch shifts if bedrijfId is available
       const fetchDiensten = async () => {
         try {
-          const diensten = await haalGeplaatsteDiensten({ bedrijfId: bedrijfiD });
+          const diensten = await haalDienstenFreelancer(freelancer.id);
           setDiensten(diensten || []);  // Ensure shifts is always an array
         } catch (error) {
           console.error('Error fetching diensten:', error);
@@ -114,7 +146,7 @@ const CalenderW = async ({ lang }: { lang: Locale }) => {
   
       fetchDiensten();
     }
-  }, [bedrijfiD]); 
+  }, [freelancer!.id]); 
 
   const startDate = startOfWeek(currentWeek, { weekStartsOn: 1 });
   const endDate = endOfWeek(currentWeek, { weekStartsOn: 1 });

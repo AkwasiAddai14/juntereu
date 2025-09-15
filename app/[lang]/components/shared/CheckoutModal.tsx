@@ -13,11 +13,10 @@ import { haalcheckout, noShowCheckout, weigerCheckout, } from '@/app/lib/actions
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import dayjs, { Dayjs } from 'dayjs';
 import ReactStars from "react-rating-stars-component";
-import DropdownPauze from '@/app/[lang]/components/shared/DropdownPauze';
+import DropdownPauze from '@/app/[lang]/components/shared/Wrappers/DropdownPauze';
 import { useRouter } from 'next/navigation';
-import DashNav from '@/app/[lang]/components/shared/navigation/Navigation';
+import DashNav from '@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/nl';
 import { haalFreelancerVoorCheckout } from '@/app/lib/actions/employee.actions';
@@ -25,8 +24,8 @@ import { StarIcon } from '@heroicons/react/24/outline';
 import { toast } from '@/app/[lang]/components/ui/use-toast';
 import Checkbox from '@mui/material/Checkbox';
 import React from 'react';
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider';
 
 export type SearchParamProps = {
   params: { id: string };
@@ -35,9 +34,20 @@ export type SearchParamProps = {
   onClose: () => void;
 }
 
-export default async function Checkoutgegevens({ params: { id }, isVisible, onClose, lang }: SearchParamProps & { lang: Locale }) {
+export default async function Checkoutgegevens({
+  shiftId,
+  lang,
+  isVisible,
+  onClose,
+  components
+}: {
+  shiftId: string;
+  lang: Locale;
+  isVisible: boolean;
+  onClose: () => void;
+  components: any;
+}) {
     if (!isVisible) return null;
-    const { components } = await getDictionary(lang);
     const router = useRouter()
     const { control } = useForm();
     const [begintijd, setBegintijd] = useState<Dayjs | null>(dayjs('2022-04-17T15:30'));
@@ -52,7 +62,7 @@ export default async function Checkoutgegevens({ params: { id }, isVisible, onCl
         const fetchCheckout = async () => {
           try {
             setLoading(true);
-            const data = await haalcheckout({ shiftId: id });
+            const data = await haalcheckout({ shiftId: shiftId });
             setCheckout(data);
           } catch (error) {
             console.error('Failed to fetch checkout data:', error);
@@ -61,7 +71,7 @@ export default async function Checkoutgegevens({ params: { id }, isVisible, onCl
           }
         };
         fetchCheckout();
-      }, [id]);
+      }, [shiftId]);
 
   useEffect(() => {
     const fetchCheckout = async () => {
@@ -77,7 +87,7 @@ export default async function Checkoutgegevens({ params: { id }, isVisible, onCl
     }
 };
     fetchCheckout();
-}, [id, checkout]);
+}, [shiftId, checkout]);
 
 
 const DefaultValues = {
@@ -113,7 +123,7 @@ const DefaultValues = {
       try {
         const response = await weigerCheckout(
           {
-            shiftId: id, 
+            shiftId: shiftId, 
             rating: values.rating || 5,
             begintijd: values.begintijd || checkout?.begintijd || begintijd,
             eindtijd: values.eindtijd || checkout?.eindtijd || eindtijd,
@@ -150,7 +160,7 @@ if (loading) return <p>Loading...</p>;
   return (
     <>
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="nl">
-    <DashNav lang={'en'} />
+    <DashNav lang={lang} />
     <Form {...form}>
   <form
     onSubmit={form.handleSubmit(onSubmit)}
@@ -176,7 +186,7 @@ if (loading) return <p>Loading...</p>;
                 <StarIcon aria-hidden="true" className="h-4 w-5 text-gray-400" />
           </dd>
         </div>
-        <Button className="bg-red-500 text-white border-2 border-red-500 hover:text-black" onClick={() => handleNoShow(id)}>
+        <Button className="bg-red-500 text-white border-2 border-red-500 hover:text-black" onClick={() => handleNoShow(shiftId)}>
           {components.shared.CheckoutModal.buttons[4]}
         </Button>
       </div>

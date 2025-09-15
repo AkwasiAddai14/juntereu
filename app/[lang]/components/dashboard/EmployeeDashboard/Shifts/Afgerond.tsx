@@ -4,19 +4,24 @@ import * as React from "react";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { haalDienstenFreelancer } from "@/app/lib/actions/vacancy.actions";
-import JobCard from "@/app/[lang]/components/shared/cards/JobCard";
-import Card from '@/app/[lang]/components/shared/cards/ShiftCard';
+import JobCard from "@/app/[lang]/components/shared/cards/Wrappers/JobWrapper";
+import Card from '@/app/[lang]/components/shared/cards/Wrappers/ShiftWrapper';
 import { ScrollArea } from "@/app/[lang]/components/ui/scroll-area";
 import { haalCheckouts, haalCheckoutsMetClerkId } from "@/app/lib/actions/checkout.actions";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
-export default async function Afgerond ({ lang }: { lang: Locale }) {
+
+type Props = {
+  lang: Locale;
+  dashboard: any;
+};
+
+export default function Afgerond({ lang, dashboard }: Props) { 
   const { isLoaded, user } = useUser();
   const [freelancerId, setFreelancerId] = useState<any>(null);
   const [checkout, setCheckout] = useState<any[]>([]);
   const [ diensten, setDiensten] = useState<any[]>([]);
-  const { dashboard } = await getDictionary(lang);
+
 
   useEffect(() => {
     if (isLoaded && user) {
@@ -89,4 +94,4 @@ export default async function Afgerond ({ lang }: { lang: Locale }) {
                   </ScrollArea>
       </>
     )
-}
+};

@@ -2,9 +2,8 @@
 
 import { useId } from 'react'
 import { Container } from '@/app/[lang]/components/shared/Container'
-import { Locale } from '@/i18n.config'
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries'
-import LocaleSwitcher from '@/app/[lang]/components/shared/LocaleSwitcher'
 
 
 const features = [

@@ -6,17 +6,23 @@ import { useEffect, useState } from "react";
 import { haalDienstenFreelancer } from "@/app/lib/actions/vacancy.actions";
 import { haalCheckouts, haalCheckoutsMetClerkId } from "@/app/lib/actions/checkout.actions";
 import forkliftDriver from '@/app/assets/images/iStock-1308572401.jpg';
-import { IJob } from "@/app/lib/models/job.model";
-import { ShiftType } from "@/app/lib/models/shift.model";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
+const supportedLocales: Locale[] = [
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
+];
+
+interface CheckoutClientProps {
+  dashboard: any;
+}
   
-  export default async function Checkout({ lang }: { lang: Locale }) {
+  export default function Checkout({ dashboard }: CheckoutClientProps) {
     const { isLoaded, user } = useUser();
     const [freelancerId, setFreelancerId] = useState<any>(null);
     const [checkout, setCheckout] = useState<any[]>([]);
     const [diensten, setDiensten] = useState<any[]>([]);
-    const { dashboard } = await getDictionary(lang);
+
 
     useEffect(() => {
       if (isLoaded && user) {

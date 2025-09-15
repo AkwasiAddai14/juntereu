@@ -26,8 +26,14 @@ export async function maakFlexpool({
   try {
     // Create a new Flexpool instance
     await connectToDB();
+    const berijf = await Employer.findById(bedrijfId);
+    if(!berijf){
+      throw new Error(`Company with ID ${bedrijfId} not found`);
+    }
     const newFlexpool = new Flexpool({
       titel,
+      employerName: berijf.displayname,
+      imageUrl: berijf.profilephoto || '',
       bedrijf: bedrijfId,
       freelancers,
       shifts
@@ -73,7 +79,7 @@ export async function voegAanFlexpool({
     }
 
     // Add freelancers to the flexpool
-    flexpool.freelancers.push(freelancer._id);
+    flexpool.employees.push(freelancer._id);
     freelancer.flexpools.push(flexpool._id);
     await freelancer.save();
     // Save the updated flexpool
@@ -104,7 +110,7 @@ export const verwijderUitFlexpool = async ({
       }
   
       // Remove the freelancer from the flexpool
-      flexpool.freelancers = flexpool.freelancers.filter(
+      flexpool.employees = flexpool.employees.filter(
         (id) => id.toString() !== freelancerId.toString()
       );
   

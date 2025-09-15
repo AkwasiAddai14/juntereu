@@ -585,6 +585,8 @@ import Job from '../models/job.model';
         const freelancerData = {
           freelancerId: freelancer._id,
           name: freelancer.name,
+          city: freelancer.city,
+          ratingCount: freelancer.ratingCount,
           profilephoto: freelancer.profilephoto,
           rating: freelancer.rating || 5, // Standaard 0 als er geen rating is
           dateOfBirth: freelancer.dateOfBirth

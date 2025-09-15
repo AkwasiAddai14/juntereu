@@ -8,15 +8,20 @@ import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { useClerk } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
-import { Locale } from '@/i18n.config';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries';
 
-export default async function Example({ lang }: { lang: Locale }) {
+type Props = {
+  lang: Locale;
+  components: any; // of specifieker type als je die hebt
+};
+
+export default function Example({ lang, components }: Props) {
   const { isLoaded, user } = useUser();
   const [profilePhoto, setProfilePhoto] = useState("");
   const router = useRouter();
   const { signOut } = useClerk();
-  const { components } = await getDictionary(lang);
+  
 
 
 

@@ -19,8 +19,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { IVacancy } from '@/app/lib/models/vacancy.model';
 import { createVacature } from '@/app/lib/actions/vacancy.actions';
 import { fetchBedrijfDetails } from "@/app/lib/actions/employer.actions";
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+
 
 const steps = [
   { id: 1, name: 'Vacature details', fields: ['titel', 'functie', 'beschrijving', 'adres', 'kledingsvoorschriften', 'vaardigheden', 'afbeelding'] },
@@ -62,7 +61,21 @@ type VacatureFormProps = {
   vacatureId?: string;
 };
 
-const  VacatureForm = async ({ userId, type, vacature, vacatureId }: VacatureFormProps, { lang }: { lang: Locale }) => {
+const  VacatureForm = ({
+  userId,
+  type,
+  vacature,
+  vacatureId,
+  components,
+  validations
+}: {
+  userId: string;
+  type: "maak" | "update";
+  vacature?: any;
+  vacatureId?: string;
+  components: any;
+  validations: any;
+}) => {
   const [files, setFiles] = useState<File[]>([]);
   const [currentStep, setCurrentStep] = useState(0);
   const [previousStep, setPreviousStep] = useState(0);
@@ -81,9 +94,9 @@ const  VacatureForm = async ({ userId, type, vacature, vacatureId }: VacatureFor
   const [startDate, setStartDate] = useState<Date | null>(new Date('2025-01-01'));
   const [endDate, setEndDate] = useState<Date | null>(new Date('2025-01-01'));
   const [bedrijfDetails, setBedrijfDetails] = useState<any>(null);
-  const { components } = await getDictionary(lang);
 
-  const steps = components.forms.VacancyForm.steps.map(step => ({
+
+  const steps = components.forms.VacancyForm.steps.map((step: { id: any; name: any; fields: any; }) => ({
     id: step.id,
     name: step.name,
     fields: step.fields || []
@@ -217,7 +230,7 @@ return (
     <section className="flex flex-col justify-between p-24">
       <nav aria-label="Progress">
         <ol role="list" className="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
-          {steps.map((step, stepIdx) => (
+          {steps.map((step : { id: any; name: any; fields: any; }, stepIdx: number) => (
             <li key={step.name} className="relative md:flex md:flex-1">
               {currentStep > stepIdx ? (
                 <span className="flex items-center px-6 py-4 text-sm font-medium">

@@ -8,14 +8,14 @@ import { IVacancy } from '@/app/lib/models/vacancy.model';
 import { haalFreelancer } from "@/app/lib/actions/employee.actions"
 import { ScrollArea } from "@/app/[lang]/components/ui/scroll-area";
 import { haalRelevanteVacatures} from "@/app/lib/actions/vacancy.actions";
-import VacancyCard from "@/app/[lang]/components/shared/cards/VacancyCard";
+import VacancyCard from "@/app/[lang]/components/shared/cards/Wrappers/VacancyWrapper";
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import { Button } from '@/app/[lang]/components/ui/button'
 import { Calendar } from "@/app/[lang]/components/ui/calender"
-import { Locale } from '@/i18n.config';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
 
 const MAX = 100;
 const MIN = 0;
@@ -41,8 +41,13 @@ const distancemarks = [
   },
 ];
 
+interface Props {
+  lang: Locale;
+  dashboard: any;
+}
 
-export default async function Vacancy ({ lang }: { lang: Locale }) {
+
+export default function Vacancy ({ lang, dashboard }: Props) {
     const { isLoaded, user } = useUser();
     const [freelancerId, setFreelancerId] = useState<any>(null);
     const [vacatures, setVacatures] = useState<IVacancy[]>([]);
@@ -50,7 +55,7 @@ export default async function Vacancy ({ lang }: { lang: Locale }) {
     const [tarief, setTarief] = useState<number>(14);
     const [afstand, setAfstand] = useState<number>(5);
     const [euroVal, setEuroVal] = React.useState<number>(MIN);
-    const { dashboard } = await getDictionary(lang);
+
   const handleUurtariefChange = (_: Event, newValue: number | number[]) => {
     setEuroVal(newValue as number);
     setTarief(euroVal);
