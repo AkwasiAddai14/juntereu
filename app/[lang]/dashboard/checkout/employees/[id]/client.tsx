@@ -39,6 +39,8 @@ const supportedLocales: Locale[] = [
 export type SearchParamProps = {
   params: { id: string }
   searchParams: { [key: string]: string | string[] | undefined }
+  lang: Locale;
+  id: string;
 }
 
 
