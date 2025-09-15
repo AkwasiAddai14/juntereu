@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import '@/app/styles/globals.css'
+import '@/app/[lang]/globals.css'
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/app/[lang]/components/ui/toaster"
 

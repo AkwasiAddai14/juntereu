@@ -16,7 +16,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import ReactStars from "react-rating-stars-component";
 import DropdownPauze from '@/app/[lang]/components/shared/Wrappers/DropdownPauze';
 import { useRouter } from 'next/navigation';
-import DashNav from '@/app/[lang]/components/shared/navigation/Navigation';
+import DashNav from '@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/nl';
@@ -27,8 +27,8 @@ import Checkbox from '@mui/material/Checkbox';
 import React from 'react';
 import { useUser } from "@clerk/nextjs";
 import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
-import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries';
 
 
 export type SearchParamProps = {
@@ -37,11 +37,11 @@ export type SearchParamProps = {
 }
 
 const supportedLocales: Locale[] = [
-  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
-  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
-export default function Checkoutgegevens({ params: { id }, searchParams }: SearchParamProps) {
+export default async function Checkoutgegevens({ params: { id }, searchParams }: SearchParamProps) {
     const lang = supportedLocales.includes(searchParams.lang as Locale) ? (searchParams.lang as Locale): 'en';
     const { dashboard, components } = await getDictionary(lang);
     const router = useRouter()

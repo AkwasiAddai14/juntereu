@@ -5,14 +5,14 @@ import type { Locale } from '@/app/[lang]/dictionaries'; // define this type bas
 
 
 export default async function EmployeeFormServer({ lang }: { lang: Locale }) {
-  const { userId } = await auth();
+  //const { userId } = await auth();
   const user = await currentUser();
   const dictionary = await getDictionary(lang);
 
   return (
     <EmployeeFormClient
       lang={lang}
-      userId={userId ?? ""}
+      userId={user!.id ?? ""}
       user={user}
       components={dictionary.components}
     />
