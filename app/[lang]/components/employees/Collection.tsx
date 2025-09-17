@@ -4,8 +4,13 @@ import React from 'react';
 import Card from '@/app/[lang]/components/shared/cards/Wrappers/ShiftArrayWrapper';
 import { IShiftArray } from '@/app/lib/models/shiftArray.model';
 import Pagination from './Pagination';
-import { Locale } from '@/i18n.config';
+//import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from "@/app/[lang]/dictionaries";
+const supportedLocales: Locale[] = [
+  "en","nl","fr","de","es","it","pt","fi","da","no","lu","sv","at","nlBE","frBE","itCH","frCH","deCH",
+];
+
 
 type CollectionProps = {
   data: IShiftArray[],

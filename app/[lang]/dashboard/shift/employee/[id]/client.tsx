@@ -1,26 +1,28 @@
 "use client"
 
-import AanmeldButton from '@/app/[lang]/components/employees/AanmeldButton';
-import Collection from '@/app/[lang]/components/employees/Collection';
-import { checkAlreadyApplied } from '@/app/lib/actions/shift.actions'
 import Image from 'next/image';
+import { useUser } from "@clerk/nextjs"
+import { UserIcon } from '@heroicons/react/20/solid';
 import calendar from '@/app/assets/images/calendar.svg';
 import location from '@/app/assets/images/location-grey.svg'
-import { UserIcon } from '@heroicons/react/20/solid';
+import Collection from '@/app/[lang]/components/employees/Collection';
+import { checkAlreadyApplied } from '@/app/lib/actions/shift.actions'
+import AanmeldButton from '@/app/[lang]/components/employees/AanmeldButton';
+import { haalFreelancerVoorAdres } from '@/app/lib/actions/employee.actions';
 import DashNav from '@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper';
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Key, useState, useEffect } from 'react';
-import { useUser } from "@clerk/nextjs"
-import { haalFreelancerVoorAdres } from '@/app/lib/actions/employee.actions';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 
+type Props = {
+  lang: Locale;
+  dashboard: any;
+  shift: any;
+  relatedEvents: { data: any[]; totalPages: number };
+};
 
-export type SearchParamProps = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
 
-const shiftDetails = ({ lang, dashboard, shift, relatedEvents }: any) => {
+const shiftDetails = ({ lang, dashboard, shift, relatedEvents }: Props) => {
   
   const [hasApplied, setHasApplied] = useState(false);
   const { isLoaded, user } = useUser();
