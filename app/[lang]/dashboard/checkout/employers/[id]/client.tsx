@@ -1,3 +1,4 @@
+import { accepteerCheckout, haalcheckout, noShowCheckout, weigerCheckout, } from '@/app/lib/actions/checkout.actions';
 "use client"
 
 
@@ -10,7 +11,6 @@ import { CheckoutValidation } from "@/app/lib/validations/checkout";
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod';
 import { Textarea } from '@/app/[lang]/components/ui/textarea';
-import { accepteerCheckout, haalcheckout, noShowCheckout, weigerCheckout, } from '@/app/lib/actions/checkout.actions';
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import dayjs, { Dayjs } from 'dayjs';
 import ReactStars from "react-rating-stars-component";
@@ -31,23 +31,26 @@ import { getDictionary } from '@/app/[lang]/dictionaries';
 import type { Locale } from '@/app/[lang]/dictionaries';
 
 
-export type SearchParamProps = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+type Props = {
+  id: string;
   lang: Locale;
-    dashboard: any;
-    components: any;
-}
+  dashboard: any;
+  components: any;
+  // pass anything you fetched on the server
+  shiftData?: any;
+};
 
-const supportedLocales: Locale[] = [
-  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
-  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
-];
+type FormValues = z.infer<typeof CheckoutValidation>;
 
-export default async function Checkoutgegevens({ params: { id }, searchParams }: SearchParamProps) {
-    const lang = supportedLocales.includes(searchParams.lang as Locale) ? (searchParams.lang as Locale): 'en';
-    const { dashboard, components } = await getDictionary(lang);
-    const router = useRouter()
+export default async function Checkoutgegevens({
+  id,
+  lang,
+  dashboard,
+  components,
+  shiftData,
+}: Props) {
+    
+    const router = useRouter();
     const { control } = useForm();
     const [begintijd, setBegintijd] = useState<Dayjs | null>(dayjs('2022-04-17T15:30'));
     const [eindtijd, setEindtijd] = useState<Dayjs | null>(dayjs('2022-04-17T16:30'));

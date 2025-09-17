@@ -1,40 +1,50 @@
-// app/[lang]/dashboard/checkout/CheckoutCardServer.tsx
-import { getDictionary } from '@/app/[lang]/dictionaries';
-import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
-import { haalShiftMetIdCard } from '@/app/lib/actions/shift.actions';
+// app/[lang]/dashboard/checkout/employers/[id]/page.tsx
 import CheckoutCardClient from '@/app/[lang]/dashboard/checkout/employers/[id]/client';
-import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+import { getDictionary } from "@/app/[lang]/dictionaries";
+import { AuthorisatieCheck } from "@/app/[lang]/dashboard/AuthorisatieCheck";
+import { haalShiftMetIdCard } from "@/app/lib/actions/shift.actions";
+import type { Locale } from "@/app/[lang]/dictionaries";
+
+// Make this route request-bound so Clerk/headers() have context
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+export const fetchCache = "force-no-store";
 
 const supportedLocales: Locale[] = [
-  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
-  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
+  "en","nl","fr","de","es","it","pt","fi","da","no","lu","sv","at","nlBE","frBE","itCH","frCH","deCH",
 ];
 
-interface Props {
-  params: { id: string };
+interface PageProps {
+  params: { lang: string; id: string };
   searchParams: { [key: string]: string | string[] | undefined };
-  lang: Locale;
-    dashboard: any;
-    components: any;
 }
 
-interface CheckoutPageClientProps {
-    id: string;
-  }
+export default async function Page({ params, searchParams }: PageProps) {
+  const { id } = params;
 
-export default async function CheckoutCardServer({ params, searchParams }: Props) {
-  const id = params.id;
-  const lang = supportedLocales.includes(searchParams.lang as Locale) ? (searchParams.lang as Locale): 'en'
+  const rawLang =
+    (searchParams.lang as string | undefined) ??
+    (params.lang as Locale | undefined) ??
+    "en";
 
-  const toegang = await AuthorisatieCheck(id, 3);
+  const lang: Locale = supportedLocales.includes(rawLang as Locale)
+    ? (rawLang as Locale)
+    : "en";
+
+  // 4 = "Bedrijf is opdrachtgever for checkout" (per your switch)
+  const toegang = await AuthorisatieCheck(id, 4);
   if (!toegang) return <h1>403 - Forbidden</h1>;
 
-  const dictionary = await getDictionary(lang);
+  const dict = await getDictionary(lang);
   const shiftData = await haalShiftMetIdCard(id);
 
   return (
-    <CheckoutCardClient params={{
-      id: ''
-    }} searchParams={{}} lang={'en'} dashboard={dictionary.dashboard} components={dictionary.components}  />
+    <CheckoutCardClient
+      id={id}
+      lang={lang}
+      dashboard={dict.dashboard}
+      components={dict.components}
+      shiftData={shiftData}
+    />
   );
 }
