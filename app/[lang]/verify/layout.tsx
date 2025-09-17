@@ -35,7 +35,7 @@ export default function RootLayout({
     ? (params.lang as Locale)
     : 'en'; // fallback
   return (
-    <ClerkProvider>
+    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
     <html lang="en">
     <NavBar lang={lang} />
       <body className={inter.className}>
