@@ -26,7 +26,7 @@ import { toast } from '@/app/[lang]/components/ui/use-toast';
 import Checkbox from '@mui/material/Checkbox';
 import React from 'react';
 import { useUser } from "@clerk/nextjs";
-import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
+//import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import type { Locale } from '@/app/[lang]/dictionaries';
 
@@ -34,6 +34,9 @@ import type { Locale } from '@/app/[lang]/dictionaries';
 export type SearchParamProps = {
   params: { id: string }
   searchParams: { [key: string]: string | string[] | undefined }
+  lang: Locale;
+    dashboard: any;
+    components: any;
 }
 
 const supportedLocales: Locale[] = [
@@ -56,16 +59,16 @@ export default async function Checkoutgegevens({ params: { id }, searchParams }:
     const { isLoaded, isSignedIn, user } = useUser();
     const [geauthoriseerd, setGeauthoriseerd] = useState<Boolean>(false);
 
-    const isGeAuthorizeerd = async (id:string) => {
+    /* const isGeAuthorizeerd = async (id:string) => {
       const toegang = await AuthorisatieCheck(id, 4);
       setGeauthoriseerd(toegang);
-    }
+    } */
   
-    isGeAuthorizeerd(id);
+    /* isGeAuthorizeerd(id);
   
     if(!geauthoriseerd){
       return <h1>403 - Forbidden</h1>
-    }
+    } */
 
 
 useEffect(() => {

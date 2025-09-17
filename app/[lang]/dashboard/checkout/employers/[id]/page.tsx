@@ -13,7 +13,14 @@ const supportedLocales: Locale[] = [
 interface Props {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
+  lang: Locale;
+    dashboard: any;
+    components: any;
 }
+
+interface CheckoutPageClientProps {
+    id: string;
+  }
 
 export default async function CheckoutCardServer({ params, searchParams }: Props) {
   const id = params.id;
@@ -26,6 +33,8 @@ export default async function CheckoutCardServer({ params, searchParams }: Props
   const shiftData = await haalShiftMetIdCard(id);
 
   return (
-    <CheckoutCardClient lang={lang} shiftData={shiftData} id={id} dictionary={dictionary} />
+    <CheckoutCardClient params={{
+      id: ''
+    }} searchParams={{}} lang={'en'} dashboard={dictionary.dashboard} components={dictionary.components}  />
   );
 }
