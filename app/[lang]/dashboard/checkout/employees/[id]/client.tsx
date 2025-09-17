@@ -20,7 +20,7 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
 import { CheckoutValidation } from "@/app/lib/validations/checkout";
 import { haalShiftMetIdCard } from '@/app/lib/actions/shift.actions';
 import DashNav from '@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper';
-import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
+//import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { noShowCheckout, vulCheckout } from '@/app/lib/actions/checkout.actions';
 import DropdownPauze from '@/app/[lang]/components/shared/Wrappers/DropdownPauze';
@@ -56,7 +56,7 @@ export default async function CheckoutCard({ params: { id }, searchParams }: Sea
     const { isLoaded, isSignedIn, user } = useUser();
     const [geauthoriseerd, setGeauthoriseerd] = useState<Boolean>(false);
 
-    const isGeAuthorizeerd = async (id:string) => {
+    /* const isGeAuthorizeerd = async (id:string) => {
       const toegang = await AuthorisatieCheck(id, 3);
       setGeauthoriseerd(toegang);
     }
@@ -65,7 +65,7 @@ export default async function CheckoutCard({ params: { id }, searchParams }: Sea
   
     if(!geauthoriseerd){
       return <h1>403 - Forbidden</h1>
-    }
+    } */
 
     useEffect(() => {
       if (!isLoaded) return;
