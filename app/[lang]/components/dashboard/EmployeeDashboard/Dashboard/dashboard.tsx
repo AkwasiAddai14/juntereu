@@ -46,7 +46,7 @@ function classNames(...classes: string[]) {
 
 
 
-export default async function EmployeeDashboard({ lang, dashboard }: { lang: Locale; dashboard: any }) {
+export default function EmployeeDashboard({ lang, dashboard }: { lang: Locale; dashboard: any }) {
   const { isLoaded, user } = useUser();
   const [position, setPosition] = React.useState("Shifts");
   const [showLogOut, setShowLogOut] = useState(false);

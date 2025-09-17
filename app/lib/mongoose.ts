@@ -2,8 +2,6 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { determineLocation } from './country';
 
-const connectionString = await determineLocation();
-
 // Load environment variables from .env file
 dotenv.config();
 
@@ -22,6 +20,7 @@ export const connectToDB = async () => {
     }
 
     try {
+        const connectionString = await determineLocation();
         await mongoose.connect(connectionString!);
         isConnected = true;
         console.log("Connected to MONGODB");

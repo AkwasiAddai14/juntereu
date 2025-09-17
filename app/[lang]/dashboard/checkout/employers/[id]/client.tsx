@@ -42,7 +42,7 @@ type Props = {
 
 type FormValues = z.infer<typeof CheckoutValidation>;
 
-export default async function Checkoutgegevens({
+export default function Checkoutgegevens({
   id,
   lang,
   dashboard,

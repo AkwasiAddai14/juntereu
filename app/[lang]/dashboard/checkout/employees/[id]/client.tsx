@@ -45,7 +45,7 @@ type Props = {
 };
 
 
-export default async function CheckoutCard({ id, lang, dashboard, components }: Props) {
+export default function CheckoutCard({ id, lang, dashboard, components }: Props) {
   /* const lang = supportedLocales.includes(searchParams.lang as Locale) ? (searchParams.lang as Locale): 'en';
   const { dashboard, components } = await getDictionary(lang) */
     const router = useRouter();
