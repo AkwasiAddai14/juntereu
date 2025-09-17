@@ -36,17 +36,18 @@ const supportedLocales: Locale[] = [
 
 
 
-export type SearchParamProps = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-  lang: Locale;
+type Props = {
   id: string;
-}
+  lang: Locale;
+  dashboard: any;
+  components: any;
+  initialShift?: any; // optional; you load again via API if needed
+};
 
 
-export default async function CheckoutCard({ params: { id }, searchParams }: SearchParamProps) {
-  const lang = supportedLocales.includes(searchParams.lang as Locale) ? (searchParams.lang as Locale): 'en';
-  const { dashboard, components } = await getDictionary(lang)
+export default async function CheckoutCard({ id, lang, dashboard, components }: Props) {
+  /* const lang = supportedLocales.includes(searchParams.lang as Locale) ? (searchParams.lang as Locale): 'en';
+  const { dashboard, components } = await getDictionary(lang) */
     const router = useRouter();
     const { control } = useForm();
     const [begintijd, setBegintijd] = useState<Dayjs | null>(dayjs('2022-04-17T08:00'));
