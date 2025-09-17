@@ -1,4 +1,4 @@
-// app/[lang]/dashboard/checkout/employees/[id]/page.tsx
+/* // app/[lang]/dashboard/checkout/employees/[id]/page.tsx
 import { getDictionary, type Locale } from "@/app/[lang]/dictionaries";
 import CheckoutCardClient from "./client";
 import { AuthorisatieCheck } from "@/app/[lang]/dashboard/AuthorisatieCheck";
@@ -41,4 +41,13 @@ export default async function Page({
       initialShift={shiftData}
     />
   );
+} */
+
+  export const dynamic = "force-dynamic";
+export const revalidate = 0;
+export const fetchCache = "force-no-store";
+
+export default function Page() {
+  return <div>OK</div>;
 }
+
