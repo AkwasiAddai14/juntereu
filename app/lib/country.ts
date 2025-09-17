@@ -1,10 +1,10 @@
 import { currentUser } from "@clerk/nextjs/server";
 
-const user = await currentUser();
-
-const userCountry = user?.unsafeMetadata.country
 
 export const determineLocation = async () => {
+    const user = await currentUser();
+    
+    const userCountry = user?.unsafeMetadata.country
     switch (userCountry) {
         case 'Nederland':
             return process.env.MONGODB_NL_URL!;

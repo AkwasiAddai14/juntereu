@@ -5,9 +5,7 @@ import Employee, { IEmployee } from "../models/employee.model";
 import { currentUser } from "@clerk/nextjs/server";
 import mongoose, { SortOrder } from "mongoose";
 
-const CurrentUser = await currentUser();
-const metadata = CurrentUser?.unsafeMetadata.country
-connectToDB();
+
 
 type Experience = {
     bedrijf: string;
@@ -156,6 +154,9 @@ try {
 
 export const haalFreelancerVoorAdres = async  (clerkId: string) => {
 try {
+  const CurrentUser = await currentUser();
+const metadata = CurrentUser?.unsafeMetadata.country
+//connectToDB();
   await connectToDB();
   let freelancer;
   if(mongoose.Types.ObjectId.isValid(clerkId)){
