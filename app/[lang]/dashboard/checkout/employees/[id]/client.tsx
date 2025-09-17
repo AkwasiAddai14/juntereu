@@ -20,7 +20,7 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
 import { CheckoutValidation } from "@/app/lib/validations/checkout";
 import { haalShiftMetIdCard } from '@/app/lib/actions/shift.actions';
 import DashNav from '@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper';
-//import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
+import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { noShowCheckout, vulCheckout } from '@/app/lib/actions/checkout.actions';
 import DropdownPauze from '@/app/[lang]/components/shared/Wrappers/DropdownPauze';
@@ -57,16 +57,10 @@ export default async function CheckoutCard({ id, lang, dashboard, components }: 
     const { isLoaded, isSignedIn, user } = useUser();
     const [geauthoriseerd, setGeauthoriseerd] = useState<Boolean>(false);
 
-    /* const isGeAuthorizeerd = async (id:string) => {
+    const isGeAuthorizeerd = async (id:string) => {
       const toegang = await AuthorisatieCheck(id, 3);
       setGeauthoriseerd(toegang);
     }
-  
-    isGeAuthorizeerd(id);
-  
-    if(!geauthoriseerd){
-      return <h1>403 - Forbidden</h1>
-    } */
 
     useEffect(() => {
       if (!isLoaded) return;
@@ -80,10 +74,24 @@ export default async function CheckoutCard({ id, lang, dashboard, components }: 
   
       const userType = user?.organizationMemberships.length ?? 0;
       setIsBedrijf(userType >= 1);
-    }, [isLoaded, isSignedIn, router, user]);
+      
+      // Check authorization after user is loaded
+      if (isSignedIn && user) {
+        isGeAuthorizeerd(id);
+      }
+    }, [isLoaded, isSignedIn, router, user, id]);
   
     if(isBedrijf){
       router.push('/dashboard');
+    }
+
+    // Show loading or unauthorized message
+    if (!isLoaded) {
+      return <div>Loading...</div>;
+    }
+
+    if (!geauthoriseerd) {
+      return <h1>403 - Forbidden</h1>;
     }
 
     useEffect(() => {

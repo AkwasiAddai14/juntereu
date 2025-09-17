@@ -31,10 +31,6 @@ export default async function Page({ params, searchParams }: PageProps) {
     ? (rawLang as Locale)
     : "en";
 
-  // 4 = "Bedrijf is opdrachtgever for checkout" (per your switch)
-  const toegang = await AuthorisatieCheck(id, 4);
-  if (!toegang) return <h1>403 - Forbidden</h1>;
-
   const dict = await getDictionary(lang);
   const shiftData = await haalShiftMetIdCard(id);
 

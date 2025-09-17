@@ -26,7 +26,7 @@ import { toast } from '@/app/[lang]/components/ui/use-toast';
 import Checkbox from '@mui/material/Checkbox';
 import React from 'react';
 import { useUser } from "@clerk/nextjs";
-//import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
+import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import type { Locale } from '@/app/[lang]/dictionaries';
 
@@ -62,16 +62,10 @@ export default async function Checkoutgegevens({
     const { isLoaded, isSignedIn, user } = useUser();
     const [geauthoriseerd, setGeauthoriseerd] = useState<Boolean>(false);
 
-    /* const isGeAuthorizeerd = async (id:string) => {
+    const isGeAuthorizeerd = async (id:string) => {
       const toegang = await AuthorisatieCheck(id, 4);
       setGeauthoriseerd(toegang);
-    } */
-  
-    /* isGeAuthorizeerd(id);
-  
-    if(!geauthoriseerd){
-      return <h1>403 - Forbidden</h1>
-    } */
+    }
 
 
 useEffect(() => {
@@ -86,10 +80,24 @@ useEffect(() => {
 
     const userType = user?.organizationMemberships.length ?? 0;
     setIsBedrijf(userType >= 1);
-  }, [isLoaded, isSignedIn, router, user]);
+    
+    // Check authorization after user is loaded
+    if (isSignedIn && user) {
+      isGeAuthorizeerd(id);
+    }
+  }, [isLoaded, isSignedIn, router, user, id]);
 
   if(!isBedrijf){
     router.push('/dashboard');
+  }
+
+  // Show loading or unauthorized message
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
+
+  if (!geauthoriseerd) {
+    return <h1>403 - Forbidden</h1>;
   }
 
     useEffect(() => {

@@ -29,10 +29,6 @@ export default async function Page({ params, searchParams }: PageProps) {
     ? (rawLang as Locale)
     : "en";
 
-  // Must be a signed-in freelancer (case 1 in your switch)
-  const toegang = await AuthorisatieCheck(id, 1);
-  if (!toegang) return <h1>403 - Forbidden</h1>;
-
   const { dashboard } = await getDictionary(lang);
 
   const shift = await haalShiftMetId(id);

@@ -23,10 +23,6 @@ export default async function Page({
   const hinted = (searchParams.lang as Locale) ?? params.lang;
   const lang = (supportedLocales as readonly string[]).includes(hinted) ? (hinted as Locale) : "en";
 
-  // employee/freelancer-only (3 or adjust to your intended case)
-  const toegang = await AuthorisatieCheck(params.id, 3);
-  if (!toegang) return <h1>403 - Forbidden</h1>;
-
   const [dict, shiftData] = await Promise.all([
     getDictionary(lang),
     haalShiftMetIdCard(params.id),

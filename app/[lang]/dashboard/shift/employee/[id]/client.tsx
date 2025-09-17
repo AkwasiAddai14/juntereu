@@ -12,6 +12,7 @@ import { haalFreelancerVoorAdres } from '@/app/lib/actions/employee.actions';
 import DashNav from '@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper';
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Key, useState, useEffect } from 'react';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
 
 
 type Props = {
@@ -28,13 +29,21 @@ const shiftDetails = ({ lang, dashboard, shift, relatedEvents }: Props) => {
   const { isLoaded, user } = useUser();
   const [freelancerId, setFreelancerId] = useState<string>("");
   const [profielfoto, setProfilePhoto] = useState<string>("");
+  const [geauthoriseerd, setGeauthoriseerd] = useState<Boolean>(false);
+
+  const isGeAuthorizeerd = async (id:string) => {
+    const toegang = await AuthorisatieCheck(id, 1);
+    setGeauthoriseerd(toegang);
+  }
   
 
   useEffect(() => {
     if (isLoaded && user) {
-      setProfilePhoto(user?.imageUrl)
+      setProfilePhoto(user?.imageUrl);
+      // Check authorization after user is loaded
+      isGeAuthorizeerd(shift.id);
     }
-  }, [isLoaded, user]);
+  }, [isLoaded, user, shift.id]);
 
   useEffect(() => {
     const getFreelancerId = async () => {
@@ -64,7 +73,14 @@ const shiftDetails = ({ lang, dashboard, shift, relatedEvents }: Props) => {
     fetchApplied();
   }, [freelancerId])
   
-  
+  // Show loading or unauthorized message
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
+
+  if (!geauthoriseerd) {
+    return <h1>403 - Forbidden</h1>;
+  }
  
   return (
     <>
