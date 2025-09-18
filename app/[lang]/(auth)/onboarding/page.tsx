@@ -11,8 +11,6 @@ import { Locale } from '@/i18n.config'
 
 // Make this route request-bound so Clerk has context
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
-export const fetchCache = "force-no-store";
 
 const supportedLocales: Locale[] = [
   'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',

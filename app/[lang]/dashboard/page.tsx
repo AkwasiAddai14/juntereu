@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from '@clerk/nextjs';
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { checkOnboardingStatusEmployer } from '@/app/lib/actions/employer.actions';
@@ -10,15 +10,13 @@ import type { Locale } from '@/app/[lang]/dictionaries'; // define this type bas
 
 // Make this route request-bound so Clerk has context
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
-export const fetchCache = "force-no-store";
 
 const supportedLocales: Locale[] = [
   'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
   'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
-const EmployeeDashboard = dynamic(() => import('@/app/[lang]/components/dashboard/EmployeeDashboard/Dashboard/DashboardWrapper'));
-const EmployerDashboard = dynamic(() => import('@/app/[lang]/components/dashboard/CompanyDashboard/Dashboard/DashboardWrapper'));
+const EmployeeDashboard = dynamicImport(() => import('@/app/[lang]/components/dashboard/EmployeeDashboard/Dashboard/DashboardWrapper'));
+const EmployerDashboard = dynamicImport(() => import('@/app/[lang]/components/dashboard/CompanyDashboard/Dashboard/DashboardWrapper'));
 
 /* const supportedLocales: Locale[] = [
   'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
