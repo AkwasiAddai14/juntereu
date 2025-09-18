@@ -10,80 +10,72 @@ runConfig:
   # Environment variables and secrets
   env:
     - variable: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-      value: pk_live_Y2xlcmsuanVudGVyLmV1JA
+      valueFrom: { secretKeyRef: { name: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, key: latest } }
     - variable: CLERK_SECRET_KEY
-      value: sk_live_hEUWpfMYNnfUlApiG6l6b8uJLEatla9vrl3lyhvssW
-    - variable: NEXT_PUBLIC_CLERK_SIGN_IN_URL
-      value: /${lang}/sign-in
-    - variable: NEXT_PUBLIC_CLERK_SIGN_UP_URL
-      value: /${lang}/sign-up
-    - variable: NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL
-      value: ../${lang}/dashboard
-    - variable: NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL
-      value: ../${lang}/onboarding
+      valueFrom: { secretKeyRef: { name: CLERK_SECRET_KEY, key: latest } }
     - variable: WEBHOOK_SECRET
-      value: whsec_PzZNJKnhGfzd89aTlvk/Q57ogmR24Hgm
+      valueFrom: { secretKeyRef: { name: WEBHOOK_SECRET, key: latest } }
     - variable: MONGODB_URL
-      value: mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/?retryWrites=true&w=majority&appName=thejunter
+      valueFrom: { secretKeyRef: { name: MONGODB_URL, key: latest } }
     - variable: NEXT_PUBLIC_KVK_API_KEY
-      value: l7119ed6bde5474075bfa02bb7507d9d28
+      valueFrom: { secretKeyRef: { name: NEXT_PUBLIC_KVK_API_KEY, key: latest } }
     - variable: NEXT_PUBLIC_POSTCODE_API_KEY
-      value: VKORFv9vT86rFHlV80MgGaDVPE3BdEnq7jD7cMl8
+      valueFrom: { secretKeyRef: { name: NEXT_PUBLIC_POSTCODE_API_KEY, key: latest } }
     - variable: NEXT_PUBLIC_GEOCODE_API_KEY
-      value: AIzaSyA1tkEQeFSZ0ZXlw8sixTBxjcIdaOA2O0g
+      valueFrom: { secretKeyRef: { name: NEXT_PUBLIC_GEOCODE_API_KEY, key: latest } }
     - variable: UPLOADTHING_SECRET
-      value: sk_live_55bd572286d9a692f24c756638be4f61c79871fb87126f461a02a913e031efa3
+      valueFrom: { secretKeyRef: { name: UPLOADTHING_SECRET, key: latest } }
     - variable: UPLOADTHING_APP_ID
-      value: 4hsuaee5tl
+      valueFrom: { secretKeyRef: { name: UPLOADTHING_APP_ID, key: latest } }
     - variable: UPLOADTHING_TOKEN
-      value: eyJhcGlLZXkiOiJza19saXZlXzU1YmQ1NzIyODZkOWE2OTJmMjRjNzU2NjM4YmU0ZjYxYzc5ODcxZmI4NzEyNmY0NjFhMDJhOTEzZTAzMWVmYTMiLCJhcHBJZCI6IjRoc3VhZWU1dGwiLCJyZWdpb25zIjpbInNlYTEiXX0=
+      valueFrom: { secretKeyRef: { name: UPLOADTHING_TOKEN, key: latest } }
     - variable: EMAIL_HOST
-      value: smtp.gmail.com
+      valueFrom: { secretKeyRef: { name: EMAIL_HOST, key: latest } }
     - variable: EMAIL_PORT
-      value: "587"
+      valueFrom: { secretKeyRef: { name: EMAIL_PORT, key: latest } }
     - variable: EMAIL_USER
-      value: info@junter.works
+      valueFrom: { secretKeyRef: { name: EMAIL_USER, key: latest } }
     - variable: EMAIL_PASS
-      value: hvrq olaj zeqr pdkx
+      valueFrom: { secretKeyRef: { name: EMAIL_PASS, key: latest } }
     - name: OPENAI_API_KEY
-      value: "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"
+      valueFrom: { secretKeyRef: { name: OPENAI_API_KEY, key: latest } }
 
     - name: MONGODB_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_URL, key: latest } }
     - name: MONGODB_NL_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Nederland?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_NL_URL, key: latest } }
     - name: MONGODB_BE_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Belgie?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_BE_URL, key: latest } }
     - name: MONGODB_VK_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/VerenigdKoninkrijk?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_VK_URL, key: latest } }
     - name: MONGODB_DE_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Duitsland?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_DE_URL, key: latest } }
     - name: MONGODB_FR_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Frankrijk?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_FR_URL, key: latest } }
     - name: MONGODB_ES_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Spanje?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_ES_URL, key: latest } }
     - name: MONGODB_PT_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Portugal?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_PT_URL, key: latest } }
     - name: MONGODB_IT_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Italie?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_IT_URL, key: latest } }
     - name: MONGODB_OS_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Oostenrijk?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_OS_URL, key: latest } }
     - name: MONGODB_CHF_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Zwitserland?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_CHF_URL, key: latest } }
     - name: MONGODB_DK_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Denemarken?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_DK_URL, key: latest } }
     - name: MONGODB_NO_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Noorwegen?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_NO_URL, key: latest } }
     - name: MONGODB_FI_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Finland?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_FI_URL, key: latest } }
     - name: MONGODB_ZW_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Zweden?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_ZW_URL, key: latest } }
     - name: MONGODB_AS_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Australie?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_AS_URL, key: latest } }
     - name: MONGODB_US_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Amerika?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_US_URL, key: latest } }
     - name: MONGODB_CA_URL
-      value: "mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Canada?retryWrites=true&w=majority&appName=thejunter"
+      valueFrom: { secretKeyRef: { name: MONGODB_CA_URL, key: latest } }
 
     - name: FIREBASE_API_KEY
-      value: "AIzaSyDipsD5OWV6bR9Tlz9GXgf4wy1Vsg_16ZI"
+      valueFrom: { secretKeyRef: { name: FIREBASE_API_KEY, key: latest } }
