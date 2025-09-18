@@ -11,71 +11,171 @@ runConfig:
   env:
     - variable: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
       valueFrom: { secretKeyRef: { name: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: CLERK_SECRET_KEY
       valueFrom: { secretKeyRef: { name: CLERK_SECRET_KEY, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: WEBHOOK_SECRET
       valueFrom: { secretKeyRef: { name: WEBHOOK_SECRET, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: MONGODB_URL
       valueFrom: { secretKeyRef: { name: MONGODB_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: NEXT_PUBLIC_KVK_API_KEY
       valueFrom: { secretKeyRef: { name: NEXT_PUBLIC_KVK_API_KEY, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: NEXT_PUBLIC_POSTCODE_API_KEY
       valueFrom: { secretKeyRef: { name: NEXT_PUBLIC_POSTCODE_API_KEY, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: NEXT_PUBLIC_GEOCODE_API_KEY
       valueFrom: { secretKeyRef: { name: NEXT_PUBLIC_GEOCODE_API_KEY, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: UPLOADTHING_SECRET
       valueFrom: { secretKeyRef: { name: UPLOADTHING_SECRET, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: UPLOADTHING_APP_ID
       valueFrom: { secretKeyRef: { name: UPLOADTHING_APP_ID, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: UPLOADTHING_TOKEN
       valueFrom: { secretKeyRef: { name: UPLOADTHING_TOKEN, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: EMAIL_HOST
       valueFrom: { secretKeyRef: { name: EMAIL_HOST, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: EMAIL_PORT
       valueFrom: { secretKeyRef: { name: EMAIL_PORT, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: EMAIL_USER
       valueFrom: { secretKeyRef: { name: EMAIL_USER, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - variable: EMAIL_PASS
       valueFrom: { secretKeyRef: { name: EMAIL_PASS, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: OPENAI_API_KEY
       valueFrom: { secretKeyRef: { name: OPENAI_API_KEY, key: latest } }
-
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_URL
       valueFrom: { secretKeyRef: { name: MONGODB_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_NL_URL
       valueFrom: { secretKeyRef: { name: MONGODB_NL_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_BE_URL
       valueFrom: { secretKeyRef: { name: MONGODB_BE_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_VK_URL
       valueFrom: { secretKeyRef: { name: MONGODB_VK_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_DE_URL
       valueFrom: { secretKeyRef: { name: MONGODB_DE_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_FR_URL
       valueFrom: { secretKeyRef: { name: MONGODB_FR_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_ES_URL
       valueFrom: { secretKeyRef: { name: MONGODB_ES_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_PT_URL
       valueFrom: { secretKeyRef: { name: MONGODB_PT_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_IT_URL
       valueFrom: { secretKeyRef: { name: MONGODB_IT_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_OS_URL
       valueFrom: { secretKeyRef: { name: MONGODB_OS_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_CHF_URL
       valueFrom: { secretKeyRef: { name: MONGODB_CHF_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_DK_URL
       valueFrom: { secretKeyRef: { name: MONGODB_DK_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_NO_URL
       valueFrom: { secretKeyRef: { name: MONGODB_NO_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_FI_URL
       valueFrom: { secretKeyRef: { name: MONGODB_FI_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_ZW_URL
       valueFrom: { secretKeyRef: { name: MONGODB_ZW_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_AS_URL
       valueFrom: { secretKeyRef: { name: MONGODB_AS_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_US_URL
       valueFrom: { secretKeyRef: { name: MONGODB_US_URL, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
     - name: MONGODB_CA_URL
       valueFrom: { secretKeyRef: { name: MONGODB_CA_URL, key: latest } }
-
+      availability:
+      - BUILD
+      - RUNTIME
     - name: FIREBASE_API_KEY
       valueFrom: { secretKeyRef: { name: FIREBASE_API_KEY, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
