@@ -36,7 +36,7 @@ export async function generateStaticParams() {
       { lang: 'sude' },
   ]
 }
-
+const clerkPubKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_live_Y2xlcmsuanVudGVyLmV1JA';
 export default async function RootLayout({
   children,
   params,
@@ -45,7 +45,7 @@ export default async function RootLayout({
   params: Promise<{ lang: 'en' | 'nl' | 'fr' | 'de' | 'es' | 'it' | 'pt' | 'fi' | 'dk' | 'no' | 'sw' | 'benl' | 'befr' | 'suit' | 'sufr' | 'sude' | 'lu' }>
 }>) {
   return (
-    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_live_Y2xlcmsuanVudGVyLmV1JA' || 'pk_test_Y29tbXVuYWwtc2hlZXBkb2ctNzEuY2xlcmsuYWNjb3VudHMuZGV2JA' || clerkPubKey}>
     <html lang={(await params).lang}>
       <body className={inter.className}>
         {children}

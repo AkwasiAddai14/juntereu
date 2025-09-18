@@ -33,10 +33,10 @@ export default function AuthLayout({
 }){
 
   const selectedLocalization = localeMap[params.lang] || nlNL;
-
+  const clerkPubKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_live_Y2xlcmsuanVudGVyLmV1JA';
   return(
     <ClerkProvider 
-    publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY} 
+    publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_live_Y2xlcmsuanVudGVyLmV1JA' || 'pk_test_Y29tbXVuYWwtc2hlZXBkb2ctNzEuY2xlcmsuYWNjb3VudHMuZGV2JA' || clerkPubKey} 
     localization={selectedLocalization}
     >
       <html lang="en">
