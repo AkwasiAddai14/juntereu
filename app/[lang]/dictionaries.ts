@@ -14,6 +14,7 @@ const dictionaries = {
   lu: () => import('@/app/dictionaries/lu.json').then((module) => module.default),
   sv: () => import('@/app/dictionaries/sw.json').then((module) => module.default),
   at: () => import('@/app/dictionaries/os.json').then((module) => module.default),
+  os: () => import('@/app/dictionaries/os.json').then((module) => module.default),
   nlBE: () => import('@/app/dictionaries/benl.json').then((module) => module.default),
   frBE: () => import('@/app/dictionaries/befr.json').then((module) => module.default),
   itCH: () => import('@/app/dictionaries/suit.json').then((module) => module.default),
