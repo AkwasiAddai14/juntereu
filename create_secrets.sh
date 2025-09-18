@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# Required input
 : "${PROJECT_ID:?Set PROJECT_ID, e.g. export PROJECT_ID='my-gcp-project'}"
 ENV_FILE="${1:-.env.secrets}"
 
-# Enable the API once
+# Enable Secret Manager
 gcloud services enable secretmanager.googleapis.com --project "$PROJECT_ID" >/dev/null
 
 create_or_update () {
@@ -26,43 +25,56 @@ create_or_update () {
 }
 
 echo "==> Reading $ENV_FILE"
-# Strip CRLF, read KEY=VALUE (keep everything after first '=' as the value)
-while IFS='=' read -r raw_key rest; do
-  # remove Windows \r endings
-  rest="${rest%$'\r'}"
-  raw_key="${raw_key%$'\r'}"
+# Read tolerant of: export KEY=VALUE, spaces, quotes, CRLF, and '=' inside value
+while IFS= read -r line || [ -n "$line" ]; do
+  # strip CR and trim outer whitespace
+  line="${line%$'\r'}"
+  line="${line#"${line%%[![:space:]]*}"}"
+  line="${line%"${line##*[![:space:]]}"}"
 
   # skip blanks/comments
-  [[ -z "${raw_key// }" || "${raw_key}" =~ ^# ]] && continue
+  [[ -z "$line" || "$line" == \#* ]] && continue
 
-  # normalize key (no spaces)
-  key="$(echo -n "$raw_key" | tr -d '[:space:]')"
+  # drop leading "export " if present
+  [[ "$line" == export* ]] && line="${line#export }"
 
-  # trim leading spaces from value
-  value="${rest#"${rest%%[![:space:]]*}"}"
-  # strip surrounding quotes if present
-  [[ "$value" =~ ^\".*\"$ ]] && value="${value:1:-1}"
+  # split at first '='
+  key="${line%%=*}"
+  value="${line#*=}"
+
+  # trim key spaces
+  key="${key#"${key%%[![:space:]]*}"}"
+  key="${key%"${key##*[![:space:]]}"}"
+  [[ -z "$key" ]] && continue
+
+  # trim value outer spaces
+  value="${value#"${value%%[![:space:]]*}"}"
+  value="${value%"${value##*[![:space:]]}"}"
+
+  # safely strip one leading and/or trailing double-quote
+  [[ "$value" == \"* ]] && value="${value#\"}"
+  [[ "$value" == *\" ]] && value="${value%\"}"
 
   create_or_update "$key" "$value"
 done < <(sed -e 's/\r$//' "$ENV_FILE")
 
 # ---- IAM grants ----
 PROJECT_NUMBER="$(gcloud projects describe "$PROJECT_ID" --format='value(projectNumber)')"
-# Default Cloud Run SA unless you override RUNTIME_SA in the env
 RUNTIME_SA="${RUNTIME_SA:-${PROJECT_NUMBER}-compute@developer.gserviceaccount.com}"
-# Cloud Build SA (only used if GRANT_CLOUD_BUILD is set)
 CLOUD_BUILD_SA="${CLOUD_BUILD_SA:-${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com}"
 
 echo "==> Granting roles/secretmanager.secretAccessor to $RUNTIME_SA"
 gcloud projects add-iam-policy-binding "$PROJECT_ID" \
   --member="serviceAccount:${RUNTIME_SA}" \
-  --role="roles/secretmanager.secretAccessor" >/dev/null
+  --role="roles/secretmanager.secretAccessor" \
+  --condition=None >/dev/null
 
 if [[ -n "${GRANT_CLOUD_BUILD:-}" ]]; then
   echo "==> Granting Secret Manager access to Cloud Build SA: $CLOUD_BUILD_SA"
   gcloud projects add-iam-policy-binding "$PROJECT_ID" \
     --member="serviceAccount:${CLOUD_BUILD_SA}" \
-    --role="roles/secretmanager.secretAccessor" >/dev/null
+    --role="roles/secretmanager.secretAccessor" \
+    --condition=None >/dev/null
 fi
 
 echo "✅ All done."
