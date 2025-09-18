@@ -1,4 +1,5 @@
-import { Locale } from '@/i18n.config';
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
 import { getDictionary } from '../../dictionaries';

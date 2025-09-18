@@ -7,14 +7,14 @@ import BedrijfsForm from '@/app/[lang]/components/shared/forms/Wrappers/Employer
 import Footer from "@/app/[lang]/components/shared/navigation/Footer4";
 import OnboardingDialog from "@/app/[lang]/components/shared/Onboarding";
 import { useRouter } from 'next/navigation';
-import { Locale } from '@/i18n.config'
+import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 // Make this route request-bound so Clerk has context
 export const dynamic = "force-dynamic";
 
 const supportedLocales: Locale[] = [
-  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'dk', 'no', 'lu',
-  'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
+  'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
+  'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
 function Page({ params }: { params: { lang: string } }) {
