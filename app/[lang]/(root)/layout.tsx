@@ -43,9 +43,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
   params: Promise<{ lang: 'en' | 'nl' | 'fr' | 'de' | 'es' | 'it' | 'pt' | 'fi' | 'dk' | 'no' | 'sw' | 'benl' | 'befr' | 'suit' | 'sufr' | 'sude' | 'lu' }>
-}>) {
+}>) {// Directly get the value from process.env
+  const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+  // IMPORTANT: Add a check here to ensure the key is present.
+  // If this throws, it means the variable is NOT being passed during the build process.
+  if (!clerkPublishableKey) {
+    throw new Error('Clerk: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY is not defined. Please check your environment variables or apphosting.yaml.');
+  }
+
   return (
-    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_live_Y2xlcmsuanVudGVyLmV1JA' || 'pk_test_Y29tbXVuYWwtc2hlZXBkb2ctNzEuY2xlcmsuYWNjb3VudHMuZGV2JA' || clerkPubKey}>
+    <ClerkProvider publishableKey={clerkPublishableKey}>
     <html lang={(await params).lang}>
       <body className={inter.className}>
         {children}
