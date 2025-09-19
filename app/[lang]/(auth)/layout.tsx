@@ -33,7 +33,7 @@ export default function AuthLayout({
 }){
 
   const selectedLocalization = localeMap[params.lang] || nlNL;
-  const clerkPubKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_live_Y2xlcmsuanVudGVyLmV1JA';
+
    // Directly get the value from process.env
   const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
@@ -55,4 +55,6 @@ export default function AuthLayout({
       </html>
     </ClerkProvider>
   )
-}
+};
+
+//  const clerkPubKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_live_Y2xlcmsuanVudGVyLmV1JA';
