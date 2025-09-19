@@ -69,6 +69,28 @@ export const createEmployee = async (user:Employee) => {
       }
 }
 
+
+export const updateFreelancer = async  (user: Employee ) => {
+
+    try {
+         const newEmployee = await Employee.create(user);
+      await Employee.findOneAndUpdate({clerkId: user.clerkId}, {
+        onboarded:false
+      },
+      {
+        upsert:true, new: true 
+      });
+      
+        //return JSON.parse(JSON.stringify(newEmployee))
+        
+        return { success: true, message: 'Freelancer successfully updated.' };
+    } catch (error) {
+        console.error('Error updating freelancer:', error);
+        throw new Error('Error updating freelancer');
+    }
+    
+   } 
+
 export const checkOnboardingStatusEmployee = async (clerkId:string) => {
   try {
     await connectToDB();

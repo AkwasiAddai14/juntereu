@@ -1,8 +1,8 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent, clerkClient, UserJSON, OrganizationJSON } from '@clerk/nextjs/server'
-import { maakFreelancer, updateFreelancer, verwijderFreelancer } from '@/app/lib/actions/freelancer.actions'
-import { maakBedrijf, updateBedrijf, verwijderBedrijf } from '@/app/lib/actions/bedrijven.actions'
+import { createEmployee, updateFreelancer, verwijderFreelancer } from '@/app/lib/actions/employee.actions'
+import { maakBedrijf, updateBedrijf, verwijderBedrijf } from '@/app/lib/actions/employer.actions'
 import { maakFlexpool, voegAanFlexpool, verwijderUitFlexpool, verwijderFlexpool } from '@/app/lib/actions/flexpool.actions'
 import { NextResponse } from 'next/server'
 
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   }
 
   // Get the headers
-  const headerPayload = headers();
+  const headerPayload = await headers();
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
   const svix_signature = headerPayload.get("svix-signature");
@@ -80,23 +80,23 @@ export async function POST(req: Request) {
     const { id, profielfoto, naam, kvknr, btwnr, postcode, huisnummer, stad, straat, emailadres, telefoonnummer, displaynaam, iban, path} = evt.data as Bedrijf
     const organization = {
         clerkId: id,
-        profielfoto: profielfoto,
-        naam: naam,
-        displaynaam: displaynaam,
-        kvknr: kvknr,
-        btwnr: btwnr,
+        profilephoto: profielfoto,
+        name: naam,
+        displayname: displaynaam,
+        CompanyRegistrationNumber: kvknr,
+        VATidnr: btwnr,
         postcode: postcode,
-        huisnummer: huisnummer,
-        stad: stad,
-        straat: straat,
-        emailadres: emailadres,
-        telefoonnummer: telefoonnummer,
+        housenumber: huisnummer,
+        city: stad,
+        street: straat,
+        email: emailadres,
+        phone: telefoonnummer,
         iban: iban,
         path: path
     }
     const newOrganization = await maakBedrijf(organization);
     if(newOrganization){
-        await clerkClient.organizations.updateOrganizationMetadata(id, {
+        await (await clerkClient()).organizations.updateOrganizationMetadata(id, {
             publicMetadata: {
                 userId: organization.clerkId,
                 naam,
@@ -123,23 +123,23 @@ export async function POST(req: Request) {
     const { id, profielfoto, naam, kvknr, btwnr, postcode, huisnummer, straat, stad, emailadres, telefoonnummer, displaynaam, iban, path} = evt.data as Bedrijf
     const organization = {
         clerkId: id,
-        profielfoto: profielfoto,
-        naam: naam,
-        kvknr: kvknr,
-        btwnr: btwnr,
-        displaynaam: displaynaam,
+        profilephoto: profielfoto,
+        name: naam,
+        displayname: displaynaam,
+        CompanyRegistrationNumber: kvknr,
+        VATidnr: btwnr,
         postcode: postcode,
-        huisnummer: huisnummer,
-        stad: stad,
-        straat: straat,
-        emailadres: emailadres,
-        telefoonnummer: telefoonnummer,
+        housenumber: huisnummer,
+        city: stad,
+        street: straat,
+        email: emailadres,
+        phone: telefoonnummer,
         iban: iban,
         path: path
     }
     const newOrganization = await updateBedrijf(organization);
     if(newOrganization){
-        await clerkClient.organizations.updateOrganizationMetadata(id, {
+        await (await clerkClient()).organizations.updateOrganizationMetadata(id, {
             publicMetadata: {
                 userId: organization.clerkId,
                 naam,
@@ -166,23 +166,23 @@ export async function POST(req: Request) {
     const { id, profielfoto, naam, kvknr, btwnr, postcode, huisnummer, stad, straat, emailadres, displaynaam, telefoonnummer, iban, path} = evt.data as unknown as Bedrijf
     const organization = {
         clerkId: id,
-        profielfoto: profielfoto,
-        displaynaam: displaynaam,
-        naam: naam,
-        kvknr: kvknr,
-        btwnr: btwnr,
+        profilephoto: profielfoto,
+        name: naam,
+        displayname: displaynaam,
+        CompanyRegistrationNumber: kvknr,
+        VATidnr: btwnr,
         postcode: postcode,
-        huisnummer: huisnummer,
-        straat: straat,
-        stad: stad,
-        emailadres: emailadres,
-        telefoonnummer: telefoonnummer,
+        housenumber: huisnummer,
+        city: stad,
+        street: straat,
+        email: emailadres,
+        phone: telefoonnummer,
         iban: iban,
         path: path
     }
     const newOrganization = await verwijderBedrijf(organization);
     if(newOrganization){
-        await clerkClient.organizations.updateOrganizationMetadata(id, {
+        await (await clerkClient()).organizations.updateOrganizationMetadata(id, {
             publicMetadata: {
                 userId: organization.clerkId,
                 naam,
@@ -249,60 +249,64 @@ export async function POST(req: Request) {
   if (eventType === 'user.created') {
     const { id, voornaam, tussenvoegsel, achternaam, geboortedatum, emailadres, telefoonnummer, postcode, huisnummer, stad, straat, onboarded, btwid, iban, bsn, profielfoto, korregeling, werkervaring, cv, vaardigheden, opleidingen, bio, kvk, path } = evt.data as Freelancer;
 
-    const user = {
+    const employee = {
       clerkId: id,
-      voornaam,
-      tussenvoegsel,
-      achternaam,
-      geboortedatum,
-      emailadres,
-      telefoonnummer,
-      postcode,
-      huisnummer,
-      btwid,
-      iban,
-      onboarded,
-      profielfoto,
-      korregeling,
-      werkervaring,
-      vaardigheden,
-      opleidingen,
-      cv,
-      path,
-      straat,
-      stad,
-      bio,
-      bsn,
-      kvk,
+      firstname: voornaam,
+      infix: tussenvoegsel || "",
+      lastname: achternaam,
+      dateOfBirth: geboortedatum,
+      country: stad || "", // Assuming 'stad' as country, adjust if needed
+      email: emailadres,
+      phone: telefoonnummer,
+      postcode: postcode,
+      housenumber: huisnummer,
+      street: straat,
+      city: stad,
+      SalaryTaxDiscount: false,
+      taxBenefit: false,
+      VATidnr: btwid || "",
+      iban: iban,
+      onboarded: onboarded,
+      profilephoto: profielfoto,
+      experience: werkervaring || [],
+      skills: vaardigheden || [],
+      education: opleidingen || [],
+      bio: bio || "",
+      companyRegistrationNumber: kvk || "",
+      SocialSecurity: bsn || "",
+      cv: cv,
+      path: path
     };
 
     try {
-      const newUser = await maakFreelancer(user);
+      const newUser = await createEmployee(employee);
       if (newUser) {
-        await clerkClient.users.updateUserMetadata(id, {
+        await (await clerkClient()).users.updateUserMetadata(id, {
           publicMetadata: {
-            userId: user.clerkId,
-            voornaam,
-            tussenvoegsel,
-            achternaam,
-            geboortedatum,
-            emailadres,
-            telefoonnummer,
-            postcode,
-            huisnummer,
-            straat: user.straat,
-            stad: user.stad,
-            btwid,
-            iban,
-            onboarded,
-            profielfoto,
-            korregeling,
-            werkervaring,
-            vaardigheden,
-            opleidingen,
-            cv,
-            bsn,
-            path,
+            userId: employee.clerkId,
+            firstname: employee.firstname,
+            infix: employee.infix,
+            lastname: employee.lastname,
+            dateOfBirth: employee.dateOfBirth,
+            country: employee.country,
+            email: employee.email,
+            phone: employee.phone,
+            postcode: employee.postcode,
+            housenumber: employee.housenumber,
+            street: employee.street,
+            city: employee.city,
+            VATidnr: employee.VATidnr,
+            iban: employee.iban,
+            onboarded: employee.onboarded,
+            profilephoto: employee.profilephoto,
+            experience: employee.experience,
+            skills: employee.skills,
+            education: employee.education,
+            bio: employee.bio,
+            companyRegistrationNumber: employee.companyRegistrationNumber,
+            SocialSecurity: employee.SocialSecurity,
+            cv: employee.cv,
+            path: employee.path,
           },
         });
       }
@@ -315,59 +319,62 @@ export async function POST(req: Request) {
 
   if(eventType === 'user.updated'){
     const { id, voornaam, tussenvoegsel, achternaam, geboortedatum, emailadres, telefoonnummer, postcode, huisnummer, stad, straat, btwid, bsn, onboarded, iban, profielfoto, korregeling, werkervaring, cv, vaardigheden, opleidingen, kvk, bio, path} = evt.data as Freelancer
-    const user = {
+    const employee = {
         clerkId: id,
-        voornaam: voornaam,
-        tussenvoegsel: tussenvoegsel,
-        achternaam: achternaam,
-        geboortedatum: geboortedatum,
-        emailadres: emailadres,
-        telefoonnummer: telefoonnummer,
+        firstname: voornaam,
+        infix: tussenvoegsel || "",
+        lastname: achternaam,
+        dateOfBirth: geboortedatum,
+        country: stad || "",
+        email: emailadres,
+        phone: telefoonnummer,
         postcode: postcode,
-        huisnummer: huisnummer,
-        stad: stad,
-        straat: straat,
-        btwid: btwid,
+        housenumber: huisnummer,
+        street: straat,
+        city: stad,
+        SalaryTaxDiscount: false,
+        taxBenefit: false,
+        VATidnr: btwid || "",
         iban: iban,
         onboarded: onboarded,
-        profielfoto: profielfoto,
-        korregeling: korregeling,
-        werkervaring: werkervaring,
-        vaardigheden: vaardigheden,
-        opleidingen: opleidingen,
-        kvk: kvk,
-        bio: bio,
+        profilephoto: profielfoto,
+        experience: werkervaring || [],
+        skills: vaardigheden || [],
+        education: opleidingen || [],
+        bio: bio || "",
+        companyRegistrationNumber: kvk || "",
+        SocialSecurity: bsn || "",
         cv: cv,
-        bsn: bsn,
         path: path
-    }
-    const newUser = await updateFreelancer(user);
+    };
+    const newUser = await updateFreelancer(employee);
     if(newUser){
-        await clerkClient.users.updateUserMetadata(id, {
+        await (await clerkClient()).users.updateUserMetadata(id, {
             publicMetadata: {
-                userId: user.clerkId,
-                voornaam,
-                tussenvoegsel,
-                achternaam,
-                geboortedatum,
-                emailadres,
-                telefoonnummer,
-                postcode,
-                huisnummer,
-                stad,
-                straat,
-                btwid,
-                iban,
-                onboarded,
-                profielfoto,
-                korregeling,
-                werkervaring,
-                vaardigheden,
-                opleidingen,
-                kvk,
-                bio,
-                cv,
-                path
+                userId: employee.clerkId,
+                firstname: employee.firstname,
+                infix: employee.infix,
+                lastname: employee.lastname,
+                dateOfBirth: employee.dateOfBirth,
+                country: employee.country,
+                email: employee.email,
+                phone: employee.phone,
+                postcode: employee.postcode,
+                housenumber: employee.housenumber,
+                street: employee.street,
+                city: employee.city,
+                VATidnr: employee.VATidnr,
+                iban: employee.iban,
+                onboarded: employee.onboarded,
+                profilephoto: employee.profilephoto,
+                experience: employee.experience,
+                skills: employee.skills,
+                education: employee.education,
+                bio: employee.bio,
+                companyRegistrationNumber: employee.companyRegistrationNumber,
+                SocialSecurity: employee.SocialSecurity,
+                cv: employee.cv,
+                path: employee.path,
             }
         })
     }
@@ -399,7 +406,7 @@ export async function POST(req: Request) {
     }
     const newUser = await verwijderFreelancer(user.clerkId);
     if(newUser){
-        await clerkClient.users.updateUserMetadata(id, {
+        await (await clerkClient()).users.updateUserMetadata(id, {
             publicMetadata: {
                 userId: user.clerkId,
                 voornaam,

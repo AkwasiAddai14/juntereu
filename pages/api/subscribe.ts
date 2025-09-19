@@ -2,7 +2,7 @@
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDB } from '@/app/lib/mongoose';
-import Email from '@/app/lib/models/email.model';
+import Email from '../../app/lib/models/email.model';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {

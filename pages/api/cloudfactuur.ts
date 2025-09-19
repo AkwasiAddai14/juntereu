@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDB } from '@/app/lib/mongoose';
-import { cloudFacturen } from '@/app/lib/actions/factuur.actions';
+import { cloudFacturen } from '@/app/lib/actions/invoice.actions';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await connectToDB();

@@ -1,6 +1,6 @@
 // pages/api/sendEmail.ts
 
-import { haalFreelancer } from '@/app/lib/actions/freelancer.actions';
+import { haalFreelancer } from '@/app/lib/actions/employee.actions';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 

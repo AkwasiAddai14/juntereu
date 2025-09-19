@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDB } from '@/app/lib/mongoose';
-import { haalFreelancer, maakFreelancer, updateAdres, updateBio, updateKorregeling, updateOpleiding, updateProfielfoto, updateTelefoonnummer, updateWerkervaring } from '@/app/lib/actions/freelancer.actions';
+import { haalFreelancer, createEmployee, updateAdres, updateBio, updateKorregeling, updateOpleiding, updateProfielfoto, updateTelefoonnummer, updateWerkervaring } from '@/app/lib/actions/employee.actions';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await connectToDB();
@@ -97,7 +97,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             case 'maakFreelancer':
                 try {
-                    const shifts = await maakFreelancer(value);
+                    const shifts = await createEmployee(value);
                     res.status(200).json(shifts);
                     console.log(shifts)
                 } catch (error) {

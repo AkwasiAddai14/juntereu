@@ -2,8 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDB } from '@/app/lib/mongoose';
 import { currentUser } from '@clerk/nextjs/server';
 
-import { haalAfgerondeShifts, haalFacturenFreelancer, haalInShiftsFacturen } from '@/app/lib/actions/factuur.actions';
-import { haalFreelancer } from '@/app/lib/actions/freelancer.actions';
+import { haalAfgerondeShifts, haalFacturenFreelancer, haalInShiftsFacturen } from '@/app/lib/actions/invoice.actions';
+import { haalFreelancer } from '@/app/lib/actions/employee.actions';
 import { Types } from 'mongoose';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

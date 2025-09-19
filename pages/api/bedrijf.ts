@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDB } from '@/app/lib/mongoose';
-import { fetchBedrijfByClerkId } from '@/app/lib/actions/bedrijven.actions';
+import { fetchBedrijfByClerkId } from '@/app/lib/actions/employer.actions';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await connectToDB();
