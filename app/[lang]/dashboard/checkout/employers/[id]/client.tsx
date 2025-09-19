@@ -1,34 +1,34 @@
 "use client"
 
 
-import { useEffect, useState } from 'react';
-import { Button } from '@/app/[lang]/components/ui/button';
-import Image from 'next/image';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/app/[lang]/components/ui/form";
-import { Controller, useForm } from 'react-hook-form';
-import { CheckoutValidation } from "@/app/lib/validations/checkout";
-import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod';
-import { Textarea } from '@/app/[lang]/components/ui/textarea';
-import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import dayjs, { Dayjs } from 'dayjs';
-import ReactStars from "react-rating-stars-component";
-import DropdownPauze from '@/app/[lang]/components/shared/Wrappers/DropdownPauze';
-import { useRouter } from 'next/navigation';
-import { accepteerCheckout, haalcheckout, noShowCheckout, weigerCheckout, } from '@/app/lib/actions/checkout.actions';
-import DashNav from '@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/nl';
-import { haalFreelancerVoorCheckout } from '@/app/lib/actions/employee.actions';
-import { StarIcon } from '@heroicons/react/24/outline';
-import { toast } from '@/app/[lang]/components/ui/use-toast';
-import Checkbox from '@mui/material/Checkbox';
 import React from 'react';
+import Image from 'next/image';
+import dayjs, { Dayjs } from 'dayjs';
 import { useUser } from "@clerk/nextjs";
-import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Checkbox from '@mui/material/Checkbox';
+import { Controller, useForm } from 'react-hook-form';
+import { zodResolver } from "@hookform/resolvers/zod";
+import ReactStars from "react-rating-stars-component";
+import { StarIcon } from '@heroicons/react/24/outline';
 import type { Locale } from '@/app/[lang]/dictionaries';
+import { getDictionary } from '@/app/[lang]/dictionaries';
+import { Button } from '@/app/[lang]/components/ui/button';
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import { toast } from '@/app/[lang]/components/ui/use-toast';
+import { Textarea } from '@/app/[lang]/components/ui/textarea';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { CheckoutValidation } from "@/app/lib/validations/checkout";
+import { AuthorisatieCheck } from '@/app/[lang]/dashboard/AuthorisatieCheck';
+import { haalFreelancerVoorCheckout } from '@/app/lib/actions/employee.actions';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import DropdownPauze from '@/app/[lang]/components/shared/Wrappers/DropdownPauze';
+import DashNav from '@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/app/[lang]/components/ui/form";
+import { accepteerCheckout, haalcheckout, noShowCheckout, weigerCheckout, } from '@/app/lib/actions/checkout.actions';
 
 
 type Props = {
