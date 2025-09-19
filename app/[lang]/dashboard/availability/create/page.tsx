@@ -1,4 +1,4 @@
-"use client"
+/* "use client"
 
 import { useUser } from "@clerk/nextjs";
 import DashNav from "@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper";
@@ -36,4 +36,4 @@ const MaakVacature = ({ params }: { params: { lang: string } }) => {
   )
 }
 
-export default MaakVacature;
+export default MaakVacature; */
