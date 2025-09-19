@@ -1,4 +1,4 @@
-/* "use client"
+"use client"
 
 import { useUser } from "@clerk/nextjs";
 import DashNav from "@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper";
@@ -8,6 +8,14 @@ import type { Locale } from '@/app/[lang]/dictionaries'; // define this type bas
 
 // Make this route request-bound so Clerk has context
 export const dynamic = "force-dynamic";
+let publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+if (!publishableKey) {
+  throw new Error('Clerk: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY is not defined. Please check your environment variables or apphosting.yaml.');
+}
+
+export { publishableKey };
+
 
 const supportedLocales: Locale[] = [
   'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
@@ -36,4 +44,5 @@ const MaakVacature = ({ params }: { params: { lang: string } }) => {
   )
 }
 
-export default MaakVacature; */
+export default MaakVacature;
+
