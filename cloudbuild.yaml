@@ -1,0 +1,10 @@
+steps:
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['ci']
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['run', 'build']
+  env:
+  - 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsuanVudGVyLmV1JA'
+#  - 'CLERK_SECRET_KEY=${_CLERK_SECRET_KEY}'
+#  - 'MONGODB_NL_URL=${_MONGODB_NL_URL}'
+#  - 'MONGODB_BE_URL=${_MONGODB_BE_URL}'       
