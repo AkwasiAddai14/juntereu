@@ -9,6 +9,7 @@ import emma from '@/app/assets/images/IMG_8351.jpg';
 import mariah from '@/app/assets/images/IMG_8352.jpg';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries'
+import { FadeInUp, SimpleStaggerContainer, SimpleStaggerItem } from '@/app/[lang]/components/shared/animations/AnimationUtils'
 
 
 
@@ -74,19 +75,19 @@ const testimonials = [
     return (
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-xl text-center">
+          <FadeInUp className="mx-auto max-w-xl text-center">
             <h2 className="text-lg font-semibold leading-8 tracking-tight text-sky-600">{pages.landingsPage.testimonials.headTitle}</h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             {pages.landingsPage.testimonials.subText}
             </p>
-          </div>
+          </FadeInUp>
           <div className="mx-auto mt-16 flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
-            <div className="-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3">
+            <SimpleStaggerContainer className="-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3">
               {pages.landingsPage.testimonials.testimonials.map((testimonial) => (
-                <div key={testimonial.name} className="pt-8 sm:inline-block sm:w-full sm:px-4">
+                <SimpleStaggerItem key={testimonial.name} className="pt-8 sm:inline-block sm:w-full sm:px-4">
                   <figure className="rounded-2xl bg-gray-50 p-8 text-sm leading-6">
                     <blockquote className="text-gray-900">
-                      <p>{`“${testimonial.testimonial}”`}</p>
+                      <p>{`"${testimonial.testimonial}"`}</p>
                     </blockquote>
                     <figcaption className="mt-6 flex items-center gap-x-4">
                       <Image className="h-10 w-10 rounded-full bg-gray-50" src={testimonial.name === 'Lisa' ? ahmed : testimonial.name === 'George' ? george : testimonial.name === 'Ahmed' ? lisa : testimonial.name === "Solomon" ? emma : testimonial.name === 'Maria' ? mariah : testimonial.name === 'Eva' ? sarah : ''} alt="testimonial" width={32} />
@@ -96,9 +97,9 @@ const testimonials = [
                       </div>
                     </figcaption>
                   </figure>
-                </div>
+                </SimpleStaggerItem>
               ))}
-            </div>
+            </SimpleStaggerContainer>
           </div>
         </div>
       </div>

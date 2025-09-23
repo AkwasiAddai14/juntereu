@@ -185,7 +185,91 @@
                         "icon": "CurrencyEuroIcon"
                     }
                 ]
-            }
+            },
+            "Xedular": {
+      "hrmSection": {
+      "eyebrow": "Workforce Management",
+      "title": "Plan. Registreer. Communiceer.",
+      "subtitle": "Xedular is de HRM-app voor teams met wisselende roosters. Met AI-planning, slimme urenregistratie via kiosk of telefoon en ingebouwde communicatiekanalen houd je alles real-time bij.",
+      "bullets": [
+        { "title": "AI-planning", "desc": "Genereer roosters op basis van beschikbaarheid, skills, regels en verwachte drukte.", "icon":"CalendarDateRangeIcon" },
+        { "title": "Urenregistratie (kiosk & mobiel)", "desc": "In-/uitklokken via tablet, QR of app; automatische validatie tegen planning.", "icon": "Clock3" },
+        { "title": "Communicatiekanalen", "desc": "Berichten per kanaal, pushmeldingen en e-mails vanuit één plek.", "icon": "UserGroupIcon" },
+        { "title": "POS & API-koppelingen", "desc": "Koppel kassasystemen en tools; synchroniseer omzet, uren en kosten.", "icon": "PlugZap" }
+      ],
+      "ctas": { "demo": "Plan een demo", "download": "Download de app" }
+    },
+    "allInOne": {
+      "title": "All-in-one HRM-platform",
+      "intro": "Alles wat je nodig hebt om je workforce te plannen, uren te registreren en teams op de hoogte te houden—in één workflow.",
+      "cards": [
+        { "title": "AI-planning", "desc": "Houd rekening met beschikbaarheid, skills, CAO en piekmomenten." },
+        { "title": "Teamroosters & wissels", "desc": "Publiceer roosters, laat ruilverzoeken toe en keur snel goed." },
+        { "title": "Urenregistratie", "desc": "Kiosk, QR en mobiel klokken met automatische controles." },
+        { "title": "Verlof & beschikbaarheid", "desc": "Aanvragen, codes en impact op bezetting direct zichtbaar." },
+        { "title": "Communicatiekanalen", "desc": "Kanalen per team/locatie, push & e-mail met status en rapportage." },
+        { "title": "Integraties & webhooks", "desc": "Koppel POS, payroll en BI. Open REST API & webhooks." }
+      ]
+    },
+    "pricing": {
+      "plans": {
+        "headText": "Eenvoudige, transparante prijzen",
+        "subText": "Betaal alleen voor wat je gebruikt. Geen verborgen kosten, geen verrassingen.",
+        "starter": {
+          "title": "Starter",
+          "desc": "Voor kleine teams die snel willen beginnen.",
+          "features": [
+            "Basisroosters & publicatie",
+            "Mobiel in-/uitklokken",
+            "Teamkanalen + pushmeldingen",
+            "Basisrapportages"
+            
+          ]
+        },
+        "enterprise": {
+          "title": "Enterprise",
+          "desc": "Schaalbaar en compliant.",
+          "features": [
+            "Multi-locatie & rechtenstructuur",
+            "Aangepaste regels/CAO-logica",
+            "Geavanceerde webhooks & SSO",
+            "SLA & dedicated support",
+            "Export naar payroll/finance",
+            "AI-planning & skill-matching",
+            "Kiosk-klok (tablet) + QR",
+            "Verlof & beschikbaarheid",
+            "POS-koppeling en open API",
+            "Goedkeuringsflows & auditlog",
+            "Teamkanalen + pushmeldingen",
+            "E-mailnotificaties",
+            "Basisrapportages",
+            "25 gebruikers (werknemers inbegrepen)"
+          ]
+        },
+        "Monthly": {
+          "Maandelijks": "Maandelijks",
+          "Prijs": "€100/maand + €4/gebruiker/maand"
+          },
+        "Yearly": {
+          "Jaarlijks": "Jaarlijks",
+           "Prijs": "€1.000/jaar + €40/gebruiker/jaar (2 maanden gratis)"
+          }
+      },
+      "usp": [
+        "Facturen en exports beschikbaar",
+        "Data-eigendom bij jou",
+        "Gratis onboarding"
+      ]
+    },
+    "integrations": {
+      "title": "Werkt met je favoriete tools",
+      "desc": "Koppel populaire POS-systemen, boekhouding en BI. Synchroniseer omzet, uren en kosten—zonder dubbel werk."
+    },
+    "storeSnippet": {
+      "oneLiner": "Plan slimmer met AI, registreer uren via kiosk of mobiel en bereik je team met push en e-mail—alles in Xedular.",
+      "bullets": ["AI-planning & roosters", "Kiosk + mobiel in-/uitklokken", "Kanalen, push & e-mail"]
+    } 
+       }
         },
         "employeesPage": {
             "headText": "Make Money Fast",
@@ -236,6 +320,13 @@
                     "elaboration": "Bouw een sterke reputatie op door positieve beoordelingen en feedback te verzamelen van tevreden opdrachtgevers, waardoor je jouw kansen op toekomstige opdrachten vergroot."
                 }
             ]
+        },
+        "PhoneHero": {
+          "CVtekst":"Snel met een CV aanmelden?",
+          "sendMessage": "stuur een bericht via WhatsApp",
+          "HeadTekst": "Werk flexibel. Verdien slim.",
+          "SubTekst": "Met Junter ontdek je snel betaalde shifts en klussen bij betrouwbare bedrijven. Kies zelf waar en wanneer je werkt, en word direct uitbetaald."
+
         }
         },
         "junterPage": {

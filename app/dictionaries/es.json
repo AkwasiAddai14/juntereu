@@ -208,6 +208,83 @@
               "icon": "CurrencyEuroIcon"
             }
           ]
+        },
+        "Xedular": {
+          "hrmSection": {
+      "eyebrow": "Gestión de personal",
+      "title": "Planifica. Registra. Comunica.",
+      "subtitle": "Xedular es la app de RR. HH. para equipos dinámicos: planificación con IA, fichaje por kiosco o móvil y canales integrados para todo en tiempo real.",
+      "bullets": [
+        { "title": "Planificación con IA", "desc": "Crea turnos según disponibilidad, habilidades, normas y demanda.", "icon":"CalendarDateRangeIcon" },
+        { "title": "Registro de horas (kiosco y móvil)", "desc": "Entrada/salida por tablet, QR o app; validación automática.", "icon": "Clock3" },
+        { "title": "Canales de comunicación", "desc": "Canales por equipo con notificaciones push y correo en un solo lugar." , "icon": "UserGroupIcon"},
+        { "title": "Integraciones POS y API", "desc": "Conecta TPV y herramientas; sincroniza ingresos, horas y costes." , "icon": "PlugZap"}
+      ],
+      "ctas": { "demo": "Solicitar demo", "download": "Descargar la app" }
+    },
+    "allInOne": {
+      "title": "Plataforma RR. HH. todo-en-uno",
+      "intro": "Planificación, control horario y comunicación en un único flujo.",
+      "cards": [
+        { "title": "Planificación con IA", "desc": "Tiene en cuenta disponibilidad, habilidades y normativa." },
+        { "title": "Turnos y cambios", "desc": "Publica turnos, permite cambios y aprueba con un clic." },
+        { "title": "Registro de horas", "desc": "Kiosco, QR y móvil con comprobaciones automáticas." },
+        { "title": "Ausencias y disponibilidad", "desc": "Solicitudes, códigos e impacto en la cobertura de un vistazo." },
+        { "title": "Canales de comunicación", "desc": "Canales por equipo/sede, push y correo con analítica." },
+        { "title": "Integraciones y webhooks", "desc": "Conecta TPV, nómina y BI. API REST abierta y webhooks." }
+      ]
+    },
+    "pricing": {
+      "plans": {
+      "headText": "Precios simples y transparentes",
+      "subText": "Paga solo por lo que usas. Sin cargos ocultos ni sorpresas.",
+      "starter": {
+        "title": "Starter",
+        "desc": "Para equipos pequeños que quieren empezar rápido.",
+        "features": [
+          "Turnos básicos y publicación",
+          "Fichaje móvil (entrada/salida)"
+        ]
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "desc": "Escalable y conforme.",
+        "features": [
+          "Multisede y estructura de permisos",
+          "Reglas personalizadas / lógica de convenios",
+          "Webhooks avanzados y SSO",
+          "SLA y soporte dedicado",
+          "Exportación a nómina/finanzas",
+          "Planificación con IA y asignación por habilidades",
+          "Reloj kiosco (tablet) + QR",
+          "Ausencias y disponibilidad",
+          "Integración POS y API abierta",
+          "Flujos de aprobación y registro de auditoría",
+          "25 usuarios (Empleadores) incluidos",
+          "Canales de equipo + notificaciones push",
+          "Notificaciones por correo",
+          "Informes básicos"
+        ]
+      },
+      "Monthly": {
+        "Maandelijks": "Mensual",
+        "Prijs": "100 €/mes + 4 €/usuario/mes"
+      },
+      "Yearly": {
+        "Jaarlijks": "Anual",
+        "Prijs": "1.000 €/año + 40 €/usuario/año (2 meses gratis)"
+      }
+    },
+      "usp": ["Facturas y exportaciones", "Tú eres dueño de tus datos", "Onboarding gratuito"]
+    },
+    "integrations": {
+      "title": "Funciona con tus herramientas",
+      "desc": "Conecta TPV, contabilidad y BI. Sincroniza ingresos, horas y costes sin duplicados."
+    },
+    "storeSnippet": {
+      "oneLiner": "Planifica con IA, registra horas por kiosco o móvil y comunica por push y correo—todo en Xedular.",
+      "bullets": ["Planificación con IA", "Kiosco + móvil", "Canales, push y correo"]
+    }
         }
       },
       "employeesPage": {
@@ -258,7 +335,13 @@
               "elaboration": "Construye una reputación sólida obteniendo buenas valoraciones y comentarios de clientes satisfechos, lo que aumenta tus posibilidades de obtener más trabajos."
             }
           ]
-        }
+        },
+    "PhoneHero": {
+      "CVtekst": "¿Registrarte rápidamente con un CV?",
+      "sendMessage": "enviar un mensaje por WhatsApp",
+      "HeadTekst": "Trabaja con flexibilidad. Gana de forma inteligente.",
+      "SubTekst": "Con Junter descubres rápidamente turnos y encargos pagados en empresas de confianza. Elige dónde y cuándo trabajar y cobra al instante."
+    }
       },
     "junterPage": {
         "headText": "Somos un grupo apasionado de personas.",

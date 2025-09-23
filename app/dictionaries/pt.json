@@ -233,7 +233,85 @@
                       "icon": "CurrencyEuroIcon"
                     }
                   ]
-                }
+                },
+                "Xedular": { 
+                  "hrmSection": {
+      "eyebrow": "Gestão de equipes",
+      "title": "Planeje. Registre. Comunique.",
+      "subtitle": "O Xedular é o app de RH para equipes dinâmicas: escala com IA, ponto via quiosque ou celular e canais integrados para tudo em tempo real.",
+      "bullets": [
+        { "title": "Escalas com IA", "desc": "Crie escalas com base em disponibilidade, skills, regras e demanda.", "icon":"CalendarDateRangeIcon" },
+        { "title": "Registro de horas (quiosque e mobile)", "desc": "Bater ponto por tablet, QR ou app; validação automática.", "icon": "Clock3" },
+        { "title": "Canais de comunicação", "desc": "Canais por equipe com push e e-mail em um só lugar." , "icon": "UserGroupIcon"},
+        { "title": "Integrações com POS & API", "desc": "Conecte PDV e ferramentas; sincronize receita, horas e custos." , "icon": "PlugZap"}
+      ],
+      "ctas": { "demo": "Agendar demo", "download": "Baixar o app" }
+    },
+    "allInOne": {
+      "title": "Plataforma de RH tudo-em-um",
+      "intro": "Planejamento, controle de ponto e comunicação em um único fluxo.",
+      "cards": [
+        { "title": "Escalas com IA", "desc": "Considera disponibilidade, skills e regras trabalhistas." },
+        { "title": "Escalas & trocas", "desc": "Publique escalas, permita trocas e aprove rápido." },
+        { "title": "Registro de horas", "desc": "Quiosque, QR e mobile com checagens automáticas." },
+        { "title": "Férias & disponibilidade", "desc": "Solicitações, códigos e impacto na equipe em um clique." },
+        { "title": "Canais de comunicação", "desc": "Canais por equipe/local, push e e-mail com métricas." },
+        { "title": "Integrações & webhooks", "desc": "Conecte PDV, folha e BI. REST API aberta e webhooks." }
+      ]
+    },
+    "pricing": {
+       "plans": {
+      "headText": "Preços simples e transparentes",
+      "subText": "Pague apenas pelo que usar. Sem taxas ocultas, sem surpresas.",
+      "starter": {
+        "title": "Starter",
+        "desc": "Para equipes pequenas que querem começar rápido.",
+        "features": [
+          "Escalas básicas & publicação",
+          "Ponto móvel (entrada/saída)"
+        ]
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "desc": "Escalável e em conformidade.",
+        "features": [
+          "Multiunidade & estrutura de permissões",
+          "Regras personalizadas / lógica de acordos",
+          "Webhooks avançados & SSO",
+          "SLA & suporte dedicado",
+          "Exportação para folha/finanças",
+          "Escalonamento com IA & correspondência de habilidades",
+          "Relógio de ponto kiosk (tablet) + QR",
+          "Férias & disponibilidade",
+          "Integração com POS e API aberta",
+          "Fluxos de aprovação & auditoria",
+          "25 usuários (Empregadores) incluídos",
+          "Canais da equipe + notificações push",
+          "Notificações por e-mail",
+          "Relatórios básicos"
+        ]
+      },
+      "Monthly": {
+        "Maandelijks": "Mensal",
+        "Prijs": "€100/mês + €4/usuário/mês"
+      },
+      "Yearly": {
+        "Jaarlijks": "Anual",
+        "Prijs": "€1.000/ano + €40/usuário/ano (2 meses grátis)"
+      }
+    },
+      "usp": ["Faturas & exportações", "Você é dono dos dados", "Onboarding gratuito"]
+    },
+    "integrations": {
+      "title": "Funciona com suas ferramentas",
+      "desc": "Conecte POS, contabilidade e BI. Sincronize receita, horas e custos—sem retrabalho."
+    },
+    "storeSnippet": {
+      "oneLiner": "Escalas com IA, ponto por quiosque ou celular e comunicação por push e e-mail—tudo no Xedular.",
+      "bullets": ["Escalas com IA", "Quiosque + mobile", "Canais, push & e-mail"]
+    }
+                 }
+
         },
         "employeesPage": {
             "headText": "Ganhe Dinheiro Rápido",
@@ -283,7 +361,13 @@
         "elaboration": "Construa uma reputação sólida coletando avaliações positivas e feedback de contratantes satisfeitos, aumentando suas chances de futuras tarefas."
       }
     ]
-  }
+  },
+   "PhoneHero": {
+      "CVtekst": "Regista-te rapidamente com um CV?",
+      "sendMessage": "enviar mensagem pelo WhatsApp",
+      "HeadTekst": "Trabalha de forma flexível. Ganha de forma inteligente.",
+      "SubTekst": "Com a Junter, descobres rapidamente turnos e tarefas pagas em empresas de confiança. Escolhe onde e quando trabalhar e recebe o pagamento de imediato."
+    }
         },
         "junterPage": {
             "headText": "Somos um grupo de pessoas apaixonadas.",

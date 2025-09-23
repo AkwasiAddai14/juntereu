@@ -31,8 +31,6 @@ export async function generateStaticParams() {
     params: Promise<{ lang: 'en' | 'nl' | 'fr' | 'de' | 'es' | 'it' | 'pt' | 'fi' | 'os' | 'dk' | 'no' | 'sw' | 'nlBE' | 'frBE' | 'itCH' | 'frCH' | 'deCH' | 'lu' }>
   }>) {
     return (
-      <html lang={(await params).lang}>
-        <body>{children}</body>
-      </html>
+      <>{children}</>
     )
   }

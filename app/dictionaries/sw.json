@@ -231,6 +231,77 @@
         "icon": "CurrencyEuroIcon"
       }
     ]
+  },
+  "Xedular": {
+  "hrmSection": {
+      "eyebrow": "Workforce Management",
+      "title": "Planera. Registrera. Kommunicera.",
+      "subtitle": "Xedular är HR-appen för dynamiska team: AI-schemaläggning, tidregistrering via kiosk eller mobil och inbyggda kanaler för realtid.",
+      "bullets": [
+        { "title": "AI-schemaläggning", "desc": "Skapa scheman efter tillgänglighet, kompetens, regler och efterfrågan.", "icon":"CalendarDateRangeIcon" },
+        { "title": "Tidsregistrering (kiosk & mobil)", "desc": "Stämpla in/ut med surfplatta, QR eller app; automatisk validering.", "icon": "Clock3" },
+        { "title": "Kommunikationskanaler", "desc": "Teamkanaler med push och e-post på ett ställe." , "icon": "UserGroupIcon"},
+        { "title": "POS- & API-integrationer", "desc": "Koppla kassasystem och verktyg; synka intäkter, timmar och kostnader." , "icon": "PlugZap"}
+      ],
+      "ctas": { "demo": "Boka en demo", "download": "Ladda ned appen" }
+    },
+    "allInOne": {
+      "title": "Allt-i-ett HRM-plattform",
+      "intro": "Scheman, tid och kommunikation i ett enda flöde.",
+      "cards": [
+        { "title": "AI-schemaläggning", "desc": "Tar hänsyn till tillgänglighet, kompetens och regler." },
+        { "title": "Teamscheman & byten", "desc": "Publicera, tillåt byten och godkänn snabbt." },
+        { "title": "Tidsregistrering", "desc": "Kiosk, QR och mobil med automatiska kontroller." },
+        { "title": "Ledighet & tillgänglighet", "desc": "Ansökningar, koder och bemanningspåverkan direkt." },
+        { "title": "Kommunikationskanaler", "desc": "Kanaler per team/plats, push & e-post med analys." },
+        { "title": "Integrationer & webhooks", "desc": "Koppla POS, lön och BI. Öppen REST-API & webhooks." }
+      ]
+    },
+    "pricing": {
+      "plans": {
+      "headText": "Enkla, transparenta priser",
+      "subText": "Betala bara för det du använder. Inga dolda avgifter, inga överraskningar.",
+      "starter": {
+        "title": "Starter",
+        "desc": "För små team som vill komma igång snabbt.",
+        "features": [
+          "Grundscheman & publicering",
+          "Mobil stämpling in/ut"
+        ]
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "desc": "Skalbart och regeluppfyllande.",
+        "features": [
+          "Flera platser & behörighetsstruktur",
+          "Anpassade regler/kollektivavtalslogik",
+          "Avancerade webhooks & SSO",
+          "SLA & dedikerad support",
+          "Export till lön/finans",
+          "AI-planering & kompetensmatchning",
+          "Kioskklocka (surfplatta) + QR",
+          "Ledighet & tillgänglighet",
+          "POS-integration och öppet API",
+          "Godkännandeflöden & revisionslogg",
+          "25 användare ingår",
+          "Teamkanaler + pushnotiser",
+          "E-postaviseringar",
+          "Grundrapporter"
+        ]
+      },
+      "Monthly": {
+        "Maandelijks": "Månadsvis",
+        "Prijs": "1 098,87 SEK/mån + 43,95 SEK/användare/mån"
+      },
+      "Yearly": {
+        "Jaarlijks": "Årsvis",
+        "Prijs": "10 988,70 SEK/år + 439,55 SEK/användare/år (2 månader gratis)"
+      }
+    },
+      "usp": ["Fakturor & exporter", "Du äger dina data", "Gratis onboarding"]
+    },
+    "integrations": { "title": "Fungerar med dina verktyg", "desc": "Koppla POS, bokföring och BI. Synka intäkter, timmar och kostnader utan dubbelarbete." },
+    "storeSnippet": { "oneLiner": "Schemalägg med AI, registrera tid via kiosk eller mobil och nå teamet med push och e-post—allt i Xedular.", "bullets": ["AI-scheman", "Kiosk + mobil", "Kanaler, push & e-post"] }
   }
         },
         "employeesPage": {
@@ -281,7 +352,13 @@
         "elaboration": "Bygg upp ett starkt rykte genom att samla positiva omdömen och feedback från nöjda uppdragsgivare – vilket ökar dina chanser till framtida uppdrag."
       }
     ]
-  }
+  },
+  "PhoneHero": {
+      "CVtekst": "Registrera dig snabbt med CV?",
+      "sendMessage": "skicka ett meddelande via WhatsApp",
+      "HeadTekst": "Arbeta flexibelt. Tjäna smart.",
+      "SubTekst": "Med Junter hittar du snabbt betalda pass och uppdrag hos pålitliga företag. Välj själv var och när du jobbar och få betalt direkt."
+    }
         },
         "junterPage": {
           "headText": "Vi är en passionerad grupp människor.",

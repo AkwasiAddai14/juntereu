@@ -229,6 +229,113 @@
         "icon": "CurrencyEuroIcon"
       }
     ]
+  }, 
+  "Xedular": {
+    "hrmSection": {
+      "eyebrow": "Workforce Management",
+      "title": "Planlæg. Registrér. Kommunikér.",
+      "subtitle": "Xedular er HR-appen til dynamiske teams: AI-planlægning, tidsregistrering via kiosk eller mobil og indbyggede kanaler i realtid.",
+      "bullets": [
+        { "title": "AI-planlægning", "desc": "Opret vagter ud fra tilgængelighed, kompetencer, regler og efterspørgsel.", "icon":"CalendarDateRangeIcon" },
+        { "title": "Tidsregistrering (kiosk & mobil)", "desc": "Tjek ind/ud via tablet, QR eller app; automatisk validering.", "icon": "Clock3" },
+        { "title": "Kommunikationskanaler", "desc": "Teamkanaler med push og e-mail samlet ét sted." , "icon": "UserGroupIcon"},
+        { "title": "POS- & API-integrationer", "desc": "Forbind POS og værktøjer; synk omsætning, timer og omkostninger." , "icon": "PlugZap"}
+      ],
+      "ctas": { "demo": "Book en demo", "download": "Download appen" }
+    },
+    "allInOne": {
+      "title": "Alt-i-én HRM-platform",
+      "intro": "Planlægning, tid og kommunikation i én strømlinet arbejdsgang.",
+      "cards": [
+        { "title": "AI-planlægning", "desc": "Tager højde for tilgængelighed, kompetencer og regler." },
+        { "title": "Vagtplan & bytte", "desc": "Udgiv planer, tillad bytte og godkend hurtigt." },
+        { "title": "Tidsregistrering", "desc": "Kiosk, QR og mobil med automatiske tjek." },
+        { "title": "Ferie & tilgængelighed", "desc": "Anmodninger, koder og bemandingspåvirkning med det samme." },
+        { "title": "Kommunikationskanaler", "desc": "Kanaler pr. team/lokation, push & e-mail med statistik." },
+        { "title": "Integrationer & webhooks", "desc": "Forbind POS, løn og BI. Åben REST-API & webhooks." }
+      ]
+    },
+    "pricing": {
+"plans": {
+      "headText": "Enkel, gennemsigtig pris",
+      "subText": "Betal kun for det, du bruger. Ingen skjulte gebyrer, ingen overraskelser.",
+      "starter": {
+        "title": "Starter",
+        "desc": "Til små teams, der vil hurtigt i gang.",
+        "features": [
+          "Basale vagtplaner & publicering",
+          "Mobil ind-/udstempling"
+        ]
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "desc": "Skalerbar og i overensstemmelse med reglerne.",
+        "features": [
+          "Flere lokationer & rettighedsstruktur",
+          "Tilpassede regler/overenskomstlogik",
+          "Avancerede webhooks & SSO",
+          "SLA & dedikeret support",
+          "Eksport til løn/økonomi",
+          "AI-planlægning & kompetencematch",
+          "Kiosk-ur (tablet) + QR",
+          "Ferie & tilgængelighed",
+          "POS-integration og åben API",
+          "Godkendelsesflows & revisionslog",
+          "25 brugere inkluderet",
+          "Teamkanaler + push-beskeder",
+          "E-mailnotifikationer",
+          "Basisrapporter"
+        ]
+      },
+      "Monthly": {
+        "Maandelijks": "Månedligt",
+        "Prijs": "746,43 DKK/md. + 29,86 DKK/bruger/md."
+      },
+      "Yearly": {
+        "Jaarlijks": "Årligt",
+        "Prijs": "7 464,30 DKK/år + 298,57 DKK/bruger/år (2 måneder gratis)"
+      }
+    },
+      "usp": ["Fakturaer & eksport", "Du ejer dine data", "Gratis onboarding"]
+    },
+    "integrations": { "title": "Virker med dine værktøjer", "desc": "Forbind POS, bogholderi og BI. Synk omsætning, timer og omkostninger—uden dobbeltarbejde." },
+    "storeSnippet": { "oneLiner": "Planlæg med AI, registrér tid via kiosk eller mobil og nå teamet med push og e-mail—alt i Xedular.", "bullets": ["AI-planlægning", "Kiosk + mobil", "Kanaler, push & e-mail"] }
+  },
+  "no": {
+    "hrmSection": {
+      "eyebrow": "Workforce Management",
+      "title": "Planlegg. Registrer. Kommuniser.",
+      "subtitle": "Junter er HR-appen for dynamiske team: KI-planlegging, tidsregistrering via kiosk eller mobil og innebygde kanaler i sanntid.",
+      "bullets": [
+        { "title": "KI-planlegging", "desc": "Lag vaktplaner etter tilgjengelighet, ferdigheter, regler og etterspørsel." },
+        { "title": "Tidsregistrering (kiosk & mobil)", "desc": "Stemple inn/ut via nettbrett, QR eller app; automatisk validering." },
+        { "title": "Kommunikasjonskanaler", "desc": "Teamkanaler med push-varsler og e-post samlet på ett sted." },
+        { "title": "POS- & API-integrasjoner", "desc": "Koble kassesystemer og verktøy; synkroniser omsetning, timer og kostnader." }
+      ],
+      "ctas": { "demo": "Book en demo", "download": "Last ned appen" }
+    },
+    "allInOne": {
+      "title": "Alt-i-ett HRM-plattform",
+      "intro": "Planlegging, tid og kommunikasjon i én sømløs arbeidsflyt.",
+      "cards": [
+        { "title": "KI-planlegging", "desc": "Tar hensyn til tilgjengelighet, ferdigheter og regler." },
+        { "title": "Vaktplan & bytte", "desc": "Publiser planer, tillat bytter og godkjenn raskt." },
+        { "title": "Tidsregistrering", "desc": "Kiosk, QR og mobil med automatiske kontroller." },
+        { "title": "Ferie & tilgjengelighet", "desc": "Søknader, koder og bemanningspåvirkning umiddelbart synlig." },
+        { "title": "Kommunikasjonskanaler", "desc": "Kanaler per team/sted, push & e-post med innsikt." },
+        { "title": "Integrasjoner & webhooks", "desc": "Koble POS, lønn og BI. Åpen REST-API & webhooks." }
+      ]
+    },
+    "pricing": {
+      "plans": {
+        "starter": { "title": "Starter", "desc": "For små team som vil i gang raskt.", "features": ["Grunnleggende planer & publisering", "Mobil inn/ut-stempling", "Teamkanaler + push", "E-postvarsler", "Grunnrapporter"] },
+        "pro": { "title": "Pro", "desc": "Mer automatisering og kontroll.", "features": ["KI-planlegging & ferdighetsmatching", "Kiosk (nettbrett) + QR", "Ferie & tilgjengelighet", "POS-integrasjon og åpen API", "Godkjenningsflyt & revisjonslogg"] },
+        "enterprise": { "title": "Enterprise", "desc": "Skalerbart og compliant.", "features": ["Flerlokasjon & rettigheter", "Tilpassede regler", "Avanserte webhooks & SSO", "SLA & dedikert support", "Eksport til lønn/økonomi"] }
+      },
+      "usp": ["Fakturaer & eksporter", "Du eier dataene dine", "Gratis onboarding"]
+    },
+    "integrations": { "title": "Fungerer med dine verktøy", "desc": "Koble POS, regnskap og BI. Synkroniser omsetning, timer og kostnader—uten dobbeltarbeid." },
+    "storeSnippet": { "oneLiner": "Planlegg med KI, registrer tid via kiosk eller mobil og nå teamet med push og e-post—alt i Junter.", "bullets": ["KI-planlegging", "Kiosk + mobil", "Kanaler, push & e-post"] }
   }
         },
         "employeesPage": {
@@ -279,7 +386,13 @@
                 "elaboration": "Opbyg et stærkt omdømme ved at indsamle positive anmeldelser og feedback fra tilfredse arbejdsgivere – og øg dine chancer for fremtidige opgaver."
               }
             ]
-          }
+          },
+          "PhoneHero": {
+      "CVtekst": "Tilmeld dig hurtigt med et CV?",
+      "sendMessage": "send en besked via WhatsApp",
+      "HeadTekst": "Arbejd fleksibelt. Tjen smart.",
+      "SubTekst": "Med Junter finder du hurtigt betalte vagter og opgaver hos pålidelige virksomheder. Vælg selv hvor og hvornår du arbejder, og få løn med det samme."
+    }
         },
         "junterPage": {
           "headText": "Vi er en passioneret gruppe mennesker.",

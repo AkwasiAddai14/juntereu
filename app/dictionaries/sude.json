@@ -208,6 +208,83 @@
                   "icon": "CurrencyEuroIcon"
                 }
               ]
+            },
+             "Xedular": {
+              "hrmSection": {
+      "eyebrow": "Workforce Management",
+      "title": "Planen. Erfassen. Kommunizieren.",
+      "subtitle": "Xedular ist die HRM-App für dynamische Teams: KI-Dienstplanung, Zeiterfassung per Kiosk oder Smartphone und integrierte Kanäle für Echtzeit-Transparenz.",
+      "bullets": [
+        { "title": "KI-Dienstplanung", "desc": "Pläne nach Verfügbarkeit, Skills, Regeln und Nachfrage erstellen.", "icon":"CalendarDateRangeIcon" },
+        { "title": "Zeiterfassung (Kiosk & mobil)", "desc": "Ein/Aus-Stempeln via Tablet, QR oder App; automatische Validierung.", "icon": "Clock3" },
+        { "title": "Kommunikationskanäle", "desc": "Team-Kanäle mit Push-Benachrichtigungen und E-Mails zentral steuern." , "icon": "UserGroupIcon"},
+        { "title": "POS & API-Integrationen", "desc": "Kassensysteme und Tools verbinden; Umsatz, Stunden und Kosten synchronisieren." , "icon": "PlugZap"}
+      ],
+      "ctas": { "demo": "Demo buchen", "download": "App herunterladen" }
+    },
+    "allInOne": {
+      "title": "All-in-one HRM-Plattform",
+      "intro": "Alles für Planung, Zeiterfassung und Team-Kommunikation—in einem Workflow.",
+      "cards": [
+        { "title": "KI-Dienstplanung", "desc": "Berücksichtigt Verfügbarkeit, Skills, Arbeitsregeln und Peaks." },
+        { "title": "Dienstpläne & Tausche", "desc": "Pläne veröffentlichen, Schichten tauschen und schnell freigeben." },
+        { "title": "Zeiterfassung", "desc": "Kiosk, QR und mobil mit automatischen Checks." },
+        { "title": "Urlaub & Verfügbarkeit", "desc": "Anträge, Codes und Besetzungswirkung sofort sichtbar." },
+        { "title": "Kommunikationskanäle", "desc": "Kanäle pro Team/Standort, Push & E-Mail mit Reporting." },
+        { "title": "Integrationen & Webhooks", "desc": "POS, Payroll und BI anbinden. Offene REST-API & Webhooks." }
+      ]
+    },
+    "pricing": {
+      "plans": {
+      "headText": "Einfache, transparente Preise",
+      "subText": "Zahlen Sie nur für das, was Sie nutzen. Keine versteckten Gebühren, keine Überraschungen.",
+      "starter": {
+        "title": "Starter",
+        "desc": "Für kleine Teams, die schnell loslegen möchten.",
+        "features": [
+          "Basispläne & Veröffentlichung",
+          "Mobiles Ein-/Ausstempeln"
+        ]
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "desc": "Skalierbar und konform.",
+        "features": [
+          "Multi-Standort & Rechteverwaltung",
+          "Individuelle Regeln / Tariflogik",
+          "Erweiterte Webhooks & SSO",
+          "SLA & dedizierter Support",
+          "Export zu Lohnbuchhaltung/Finanzen",
+          "KI-Planung & Skill-Matching",
+          "Kiosk-Uhr (Tablet) + QR",
+          "Urlaub & Verfügbarkeit",
+          "POS-Integration und offene API",
+          "Freigabeprozesse & Audit-Log",
+          "25 Nutzer (Mitarbeiter) inklusive",
+          "Teamkanäle + Push-Benachrichtigungen",
+          "E-Mail-Benachrichtigungen",
+          "Basisberichte"
+        ]
+      },
+      "Monthly": {
+        "Maandelijks": "Monatlich",
+        "Prijs": "100 €/Monat + 4 €/Nutzer/Monat"
+      },
+      "Yearly": {
+        "Jaarlijks": "Jährlich",
+        "Prijs": "1.000 €/Jahr + 40 €/Nutzer/Jahr (2 Monate gratis)"
+      }
+    },
+      "usp": ["Rechnungen & Exporte", "Datenhoheit bei euch", "Kostenloses Onboarding"]
+    },
+    "integrations": {
+      "title": "Funktioniert mit euren Tools",
+      "desc": "Beliebte POS, Buchhaltung und BI anbinden. Umsatz, Stunden und Kosten ohne Doppelerfassung synchronisieren."
+    },
+    "storeSnippet": {
+      "oneLiner": "Mit KI planen, Zeiten per Kiosk oder mobil erfassen und Teams via Push & E-Mail erreichen—alles in Xedular.",
+      "bullets": ["KI-Planung & Pläne", "Kiosk + mobiles Stempeln", "Kanäle, Push & E-Mail"]
+    }
             }
           },
           "employeesPage": {
@@ -258,7 +335,13 @@
                   "elaboration": "Bauen Sie sich einen soliden Ruf auf, indem Sie positive Bewertungen und Feedback von zufriedenen Auftraggebern erhalten, wodurch Sie Ihre Chancen auf zukünftige Aufträge erhöhen."
                 }
               ]
-            }
+            },
+            "PhoneHero": {
+      "CVtekst": "Schnell mit Lebenslauf anmelden?",
+      "sendMessage": "eine Nachricht über WhatsApp senden",
+      "HeadTekst": "Arbeite flexibel. Verdiene smart.",
+      "SubTekst": "Mit Junter findest du schnell bezahlte Schichten und Jobs bei vertrauenswürdigen Unternehmen. Du entscheidest, wo und wann du arbeitest – und wirst sofort bezahlt."
+    }
           },
         "junterPage": {
             "headText": "Wir sind eine leidenschaftliche Gruppe von Menschen.",

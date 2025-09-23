@@ -226,6 +226,77 @@
         "icon": "CurrencyEuroIcon"
       }
     ]
+  },
+  "Xedular": {
+    "hrmSection": {
+      "eyebrow": "Työvoiman hallinta",
+      "title": "Suunnittele. Kirjaa. Viesti.",
+      "subtitle": "Xedular on HR-sovellus dynaamisille tiimeille: tekoälyllä tehty työvuorosuunnittelu, työajan kirjaus kioskilla tai puhelimella sekä sisäänrakennetut kanavat reaaliaikaan.",
+      "bullets": [
+        { "title": "AI-vuorosuunnittelu", "desc": "Luo vuorot saatavuuden, taitojen, sääntöjen ja kysynnän perusteella.", "icon":"CalendarDateRangeIcon"},
+        { "title": "Työajanseuranta (kioski & mobiili)", "desc": "Leimaukset tabletilla, QR:llä tai sovelluksella; automaattinen validointi.", "icon": "Clock3"  },
+        { "title": "Viestintäkanavat", "desc": "Tiimikanavat push-ilmoituksilla ja sähköpostilla yhdessä paikassa." , "icon": "UserGroupIcon"},
+        { "title": "POS- & API-integraatiot", "desc": "Yhdistä kassajärjestelmät ja työkalut; synkronoi liikevaihto, tunnit ja kulut." , "icon": "PlugZap"}
+      ],
+      "ctas": { "demo": "Varaa esittely", "download": "Lataa sovellus" }
+    },
+    "allInOne": {
+      "title": "Kaikki yhdessä HRM-alustassa",
+      "intro": "Vuorot, työaika ja viestintä yhdessä selkeässä työnkulussa.",
+      "cards": [
+        { "title": "AI-vuorosuunnittelu", "desc": "Huomioi saatavuuden, taidot ja työehdot." },
+        { "title": "Vuorot & vaihdot", "desc": "Julkaise vuorot, salli vaihdot ja hyväksy nopeasti." },
+        { "title": "Työajanseuranta", "desc": "Kioski, QR ja mobiili automaattisilla tarkistuksilla." },
+        { "title": "Lomat & saatavuus", "desc": "Hakemukset, koodit ja miehityksen vaikutus heti näkyvillä." },
+        { "title": "Viestintäkanavat", "desc": "Kanavat tiimeille/toimipaikoille, push & sähköposti analytiikalla." },
+        { "title": "Integraatiot & webhooks", "desc": "Yhdistä POS, palkanlaskenta ja BI. Avoin REST-API & webhooks." }
+      ]
+    },
+    "pricing": {
+      "plans": {
+      "headText": "Yksinkertainen, läpinäkyvä hinnoittelu",
+      "subText": "Maksa vain käytöstä. Ei piilokuluja, ei yllätyksiä.",
+      "starter": {
+        "title": "Starter",
+        "desc": "Pienille tiimeille nopeaan aloitukseen.",
+        "features": [
+          "Perusvuorot & julkaisu",
+          "Mobiilileimaus (sisään/ulos)"
+        ]
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "desc": "Skaalautuva ja vaatimustenmukainen.",
+        "features": [
+          "Useita toimipaikkoja & oikeusrakenne",
+          "Mukautetut säännöt/työehtosopimuslogiikka",
+          "Edistyneet webhooks & SSO",
+          "SLA & dedikoitu tuki",
+          "Vienti palkka-/talousjärjestelmiin",
+          "AI-suunnittelu & taitomatchaus",
+          "Kioskkikello (tabletti) + QR",
+          "Lomat & saatavuus",
+          "POS-integraatio ja avoin API",
+          "Hyväksyntäprosessit & audit-loki",
+          "25 käyttäjää sisältyy",
+          "Tiimikanavat + push-ilmoitukset",
+          "Sähköposti-ilmoitukset",
+          "Perusraportit"
+        ]
+      },
+      "Monthly": {
+        "Maandelijks": "Kuukausittain",
+        "Prijs": "100 €/kk + 4 €/käyttäjä/kk"
+      },
+      "Yearly": {
+        "Jaarlijks": "Vuosittain",
+        "Prijs": "1 000 €/vuosi + 40 €/käyttäjä/vuosi (2 kk ilmaiseksi)"
+      }
+    },
+      "usp": ["Laskut & viennit", "Omistat omat tietosi", "Maksuton käyttöönotto"]
+    },
+    "integrations": { "title": "Toimii suosikkityökaluiesi kanssa", "desc": "Yhdistä POS, kirjanpito ja BI. Synkronoi liikevaihto, tunnit ja kulut—ilman tuplakirjauksia." },
+    "storeSnippet": { "oneLiner": "Suunnittele AI:lla, kirjaa aika kioskilla tai mobiililla ja tavoita tiimi pushilla ja sähköpostilla—kaikki Xedularissa.", "bullets": ["AI-suunnittelu", "Kioski + mobiili", "Kanavat, push & sähköposti"] }
   }
         },
         "employeesPage": {
@@ -276,7 +347,13 @@
         "elaboration": "Rakenna vahvaa mainetta keräämällä positiivisia arvioita ja palautetta tyytyväisiltä toimeksiantajilta – näin parannat mahdollisuuksiasi tuleviin tehtäviin."
       }
     ]
-  }
+  },
+  "PhoneHero": {
+      "CVtekst": "Rekisteröidy nopeasti CV:llä?",
+      "sendMessage": "lähetä viesti WhatsAppissa",
+      "HeadTekst": "Työskentele joustavasti. Tienaa fiksusti.",
+      "SubTekst": "Junterin avulla löydät nopeasti palkallisia vuoroja ja keikkoja luotettavilta yrityksiltä. Valitse itse missä ja milloin työskentelet – saat palkan heti."
+    }
         },
         "junterPage": {
             "headText": "Olemme intohimoinen joukko ihmisiä.",

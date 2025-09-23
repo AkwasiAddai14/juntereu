@@ -4,6 +4,7 @@ import Image from 'next/image';
 import supermarkt from '@/app/assets/images/iStock-1298571081.jpg';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries';
+import { FadeInLeft, FadeInRight, StaggerContainer, StaggerItem, TextReveal } from '@/app/[lang]/components/shared/animations/AnimationUtils';
 
 const stats = [
     { label: 'Opdrachtnemers', value: '4000+' },
@@ -18,7 +19,7 @@ const stats = [
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-            <div className="lg:pr-4">
+            <FadeInLeft className="lg:pr-4">
               <div className="relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
                 <Image
                   alt=""
@@ -57,25 +58,23 @@ const stats = [
                     className="h-12 w-auto"
                   /> */}
                   <blockquote className="mt-6 text-xl/8 font-semibold text-white">
-                    <p>
-                    {pages.landingsPage.hero.image.testimonial}
-                    </p>
+                    <TextReveal text={pages.landingsPage.hero.image.testimonial} />
                   </blockquote>
                   <figcaption className="mt-6 text-sm/6 text-gray-300">
                     <strong className="font-semibold text-white">{pages.landingsPage.hero.image.person}</strong> {pages.landingsPage.hero.image.personFunction}
                   </figcaption>
                 </figure>
               </div>
-            </div>
-            <div>
+            </FadeInLeft>
+            <FadeInRight>
               <div className="text-base/7 text-gray-700 lg:max-w-lg">
                 <p className="text-base/7 font-semibold text-sky-600">Junter platform</p>
                 <h1 className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                {pages.landingsPage.hero.content.headText}
+                  <TextReveal text={pages.landingsPage.hero.content.headText} />
                 </h1>
                 <div className="max-w-xl">
                   <p className="mt-6">
-                  {pages.landingsPage.hero.content.subText}
+                    <TextReveal text={pages.landingsPage.hero.content.subText} delay={0.2} />
                   </p>
                  {/*  <p className="mt-8">
                     Et vitae blandit facilisi magna lacus commodo. Vitae sapien duis odio id et. Id blandit molestie
@@ -89,20 +88,20 @@ const stats = [
                   </p> */}
                 </div>
               </div>
-              <dl className="mt-10 grid grid-cols-2 gap-8 border-t border-gray-900/10 pt-10 sm:grid-cols-4">
+              <StaggerContainer className="mt-10 grid grid-cols-2 gap-8 border-t border-gray-900/10 pt-10 sm:grid-cols-4">
                 {pages.landingsPage.hero.content.statistics.map((stat, statIdx) => (
-                  <div key={statIdx}>
+                  <StaggerItem key={statIdx}>
                     <dt className="text-sm/6 font-semibold text-gray-600">{stat.name}</dt>
                     <dd className="mt-2 text-3xl/10 font-bold tracking-tight text-gray-900">{stat.description}</dd>
-                  </div>
+                  </StaggerItem>
                 ))}
-              </dl>
+              </StaggerContainer>
               <div className="mt-10 flex">
                 <a href={`../${lang}/sign-up`} className="text-base/7 font-semibold text-sky-600">
                   {pages.landingsPage.hero.content.ctaButton} <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
-            </div>
+            </FadeInRight>
           </div>
         </div>
       </div>

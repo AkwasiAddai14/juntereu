@@ -207,6 +207,84 @@
               "icon": "CurrencyEuroIcon"
             }
           ]
+        },
+        "Xedular": {
+          "hrmSection": {
+      "eyebrow": "Workforce Management",
+      "title": "Plan. Track. Communicate.",
+      "subtitle": "Xedular is the HRM app for dynamic teams. AI scheduling, time tracking via kiosk or phone, and built-in channels keep everything in sync in real time.",
+      "bullets": [
+        { "title": "AI Scheduling", "desc": "Create rosters based on availability, skills, rules and demand.", "icon":"CalendarDateRangeIcon" },
+        { "title": "Time Tracking (kiosk & mobile)", "desc": "Clock in/out via tablet, QR or app; auto-validation against the schedule.", "icon": "Clock3" },
+        { "title": "Communication Channels", "desc": "Team channels with push notifications and email—managed in one place." , "icon": "UserGroupIcon"},
+        { "title": "POS & API Integrations", "desc": "Connect POS and tools; sync revenue, hours and costs." , "icon": "PlugZap"}
+      ],
+      "ctas": { "demo": "Book a demo", "download": "Download the app" }
+    },
+    "allInOne": {
+      "title": "All-in-one HRM platform",
+      "intro": "Everything you need to schedule, track time and keep teams informed—in a single workflow.",
+      "cards": [
+        { "title": "AI Scheduling", "desc": "Considers availability, skills, labor rules and peaks." },
+        { "title": "Team Rosters & Swaps", "desc": "Publish rosters, allow swaps and approve in one click." },
+        { "title": "Time Tracking", "desc": "Kiosk, QR and mobile clocking with automatic checks." },
+        { "title": "Leave & Availability", "desc": "Requests, codes and staffing impact at a glance." },
+        { "title": "Communication Channels", "desc": "Channels per team/location, push & email with analytics." },
+        { "title": "Integrations & Webhooks", "desc": "Connect POS, payroll and BI. Open REST API & webhooks." }
+      ]
+    },
+    "pricing": {
+    "plans": {
+      "headText": "Simple, transparent pricing",
+      "subText": "Pay only for what you use. No hidden fees, no surprises.",
+      "starter": {
+        "title": "Starter",
+        "desc": "For small teams that want to get started quickly.",
+        "features": [
+          "Basic rosters & publishing",
+          "Mobile clock-in/out"
+          
+        ]
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "desc": "Scalable and compliant.",
+        "features": [
+          "Multi-site & permissions structure",
+          "Custom rules/collective agreement logic",
+          "Advanced webhooks & SSO",
+          "SLA & dedicated support",
+          "Export to payroll/finance",
+          "AI scheduling & skill matching",
+          "Kiosk clock (tablet) + QR",
+          "Leave & availability",
+          "POS integration and open API",
+          "Approval flows & audit log",
+          "Email notifications",
+          "Team channels + push notifications",
+          "Basic reports",
+          "25 users (employees) included"
+        ]
+      },
+      "Monthly": {
+        "Maandelijks": "Monthly",
+        "Prijs": "£100/month + £4/user/month"
+      },
+      "Yearly": {
+        "Jaarlijks": "Annually",
+        "Prijs": "£1,000/year + £40/user/year (2 months free)"
+      }
+    },
+      "usp": ["Invoices & exports available", "You own your data", "Free onboarding"]
+    },
+    "integrations": {
+      "title": "Works with your favorite tools",
+      "desc": "Connect popular POS, accounting and BI. Sync revenue, hours and costs—no double entry."
+    },
+    "storeSnippet": {
+      "oneLiner": "Schedule with AI, track time via kiosk or mobile, and reach your team via push and email—all in Xedular.",
+      "bullets": ["AI scheduling & rosters", "Kiosk + mobile clocking", "Channels, push & email"]
+    }
         }
       },
       "employeesPage": {
@@ -257,9 +335,14 @@
               "elaboration": "Build a strong reputation by gathering positive reviews and feedback from satisfied clients, increasing your chances for future jobs."
             }
           ]
-        }
+        },
+         "PhoneHero": {
+      "CVtekst": "Sign up quickly with a CV?",
+      "sendMessage": "send a message via WhatsApp",
+      "HeadTekst": "Work flexibly. Earn smart.",
+      "SubTekst": "With Junter, you quickly discover paid shifts and gigs at trusted companies. Choose where and when you work, and get paid instantly."
+    }
       },
-      
     "junterPage": {
         "headText": "We are a passionate group of people.",
         "subText": "Our diversity and shared vision drive us to create innovative solutions that transform the way businesses and customers interact.",

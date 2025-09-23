@@ -4,6 +4,7 @@ import { useId } from 'react'
 import { Container } from '@/app/[lang]/components/shared/Container'
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries'
+import { FadeInUp, SimpleStaggerContainer, SimpleStaggerItem } from '@/app/[lang]/components/shared/animations/AnimationUtils'
 
 
 const features = [
@@ -227,42 +228,42 @@ switch (pages.landingsPage.features.features[0].icon) {
       className="py-10 sm:py-32"
     >
       <Container>
-        <div className="mx-auto max-w-2xl sm:text-center">
+        <FadeInUp className="mx-auto max-w-2xl sm:text-center">
           <h2 className="text-3xl font-medium tracking-tight text-gray-900">
           {pages.landingsPage.features.headText}
           </h2>
           <p className="mt-2 text-lg text-gray-600"> 
           {pages.landingsPage.features.subText}
           </p>
-        </div>
-        <ul
-  role="list"
-  className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 text-sm sm:mt-20 sm:grid-cols-2 md:gap-y-10 lg:max-w-none lg:grid-cols-3"
->
-  {pages.landingsPage.features.features.map((feature) => {
-    const IconComponent = {
-      DeviceListIcon,
-      DeviceArrowIcon,
-      DeviceClockIcon,
-      DeviceCardsIcon,
-      DeviceLockIcon,
-      DeviceChartIcon,
-    }[feature.icon] || null;
+        </FadeInUp>
+        <SimpleStaggerContainer
+          role="list"
+          className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 text-sm sm:mt-20 sm:grid-cols-2 md:gap-y-10 lg:max-w-none lg:grid-cols-3"
+        >
+          {pages.landingsPage.features.features.map((feature) => {
+            const IconComponent = {
+              DeviceListIcon,
+              DeviceArrowIcon,
+              DeviceClockIcon,
+              DeviceCardsIcon,
+              DeviceLockIcon,
+              DeviceChartIcon,
+            }[feature.icon] || null;
 
-    return (
-      <li
-        key={feature.name}
-        className="rounded-2xl border border-neutral-900 p-8"
-      >
-        {IconComponent && <IconComponent className="h-8 w-8" />}
-        <h3 className="mt-6 font-semibold text-gray-900">
-          {feature.name}
-        </h3>
-        <p className="mt-2 text-gray-700">{feature.description}</p>
-      </li>
-    );
-  })}
-</ul>
+            return (
+              <SimpleStaggerItem
+                key={feature.name}
+                className="rounded-2xl border border-neutral-900 p-8"
+              >
+                {IconComponent && <IconComponent className="h-8 w-8" />}
+                <h3 className="mt-6 font-semibold text-gray-900">
+                  {feature.name}
+                </h3>
+                <p className="mt-2 text-gray-700">{feature.description}</p>
+              </SimpleStaggerItem>
+            );
+          })}
+        </SimpleStaggerContainer>
       </Container>
     </section>
   )

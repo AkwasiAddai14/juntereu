@@ -3,6 +3,7 @@
 import { Container } from '@/app/[lang]/components/shared/Container'
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries'
+import { FadeInUp, SimpleStaggerContainer, SimpleStaggerItem } from '@/app/[lang]/components/shared/animations/AnimationUtils'
 
 const faqs = [
   [
@@ -67,7 +68,7 @@ export async function Faqs({ lang }: { lang: Locale }) {
       className="border-t border-b border-gray-200 py-20 sm:py-32"
     >
       <Container>
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <FadeInUp className="mx-auto max-w-2xl lg:mx-0">
           <h2
             id="faqs-title"
             className="text-3xl font-medium tracking-tight text-gray-900"
@@ -83,14 +84,14 @@ export async function Faqs({ lang }: { lang: Locale }) {
               {pages.landingsPage.faqs.subtext2}
             </a>
           </p>
-        </div>
-        <ul
+        </FadeInUp>
+        <SimpleStaggerContainer
           role="list"
           className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-3"
         >
          {Array.isArray(pages.landingsPage.faqs.FAQ) &&
   pages.landingsPage.faqs.FAQ.map((column, columnIndex) => (
-    <li key={columnIndex}>
+    <SimpleStaggerItem key={columnIndex}>
       <ul role="list" className="space-y-10">
         {Array.isArray(column) &&
           column.map((faq, faqIndex) => (
@@ -102,9 +103,9 @@ export async function Faqs({ lang }: { lang: Locale }) {
             </li>
           ))}
       </ul>
-    </li>
+    </SimpleStaggerItem>
       ))}
-        </ul>
+        </SimpleStaggerContainer>
       </Container>
     </section>
   )

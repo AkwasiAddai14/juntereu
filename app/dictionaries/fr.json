@@ -208,9 +208,85 @@
                   "icon": "CurrencyEuroIcon"
                 }
               ]
+            },
+            "Xedular": {
+               "hrmSection": {
+      "eyebrow": "Gestion des effectifs",
+      "title": "Planifier. Suivre. Communiquer.",
+      "subtitle": "Xedular est l’app RH pour les équipes dynamiques : planning avec IA, pointage via borne ou mobile et canaux intégrés pour tout synchroniser en temps réel.",
+      "bullets": [
+        { "title": "Planning IA", "desc": "Créez des plannings selon disponibilités, compétences, règles et affluence.", "icon":"CalendarDateRangeIcon" },
+        { "title": "Suivi du temps (borne & mobile)", "desc": "Pointage sur tablette, QR ou app avec validation automatique.", "icon": "Clock3" },
+        { "title": "Canaux de communication", "desc": "Canaux d’équipe avec notifications push et e-mails, au même endroit." , "icon": "UserGroupIcon"},
+        { "title": "Intégrations POS & API", "desc": "Connectez les caisses et outils ; synchronisez chiffre d’affaires, heures et coûts." , "icon": "PlugZap"}
+      ],
+      "ctas": { "demo": "Demander une démo", "download": "Télécharger l’app" }
+    },
+    "allInOne": {
+      "title": "Plateforme RH tout-en-un",
+      "intro": "Planification, suivi du temps et communication d’équipe dans un seul flux.",
+      "cards": [
+        { "title": "Planning IA", "desc": "Prend en compte disponibilités, compétences et règles sociales." },
+        { "title": "Plannings & échanges", "desc": "Publiez, autorisez les échanges et validez en un clic." },
+        { "title": "Suivi du temps", "desc": "Borne, QR et mobile avec contrôles automatiques." },
+        { "title": "Congés & disponibilités", "desc": "Demandes, codes et impact sur la couverture en un coup d’œil." },
+        { "title": "Canaux de communication", "desc": "Canaux par équipe/site, push & e-mail avec statistiques." },
+        { "title": "Intégrations & webhooks", "desc": "Connectez POS, paie et BI. API REST ouverte et webhooks." }
+      ]
+    },
+    "pricing": {
+      "plans": {
+      "headText": "Tarification simple et transparente",
+      "subText": "Payez uniquement ce que vous utilisez. Pas de frais cachés, pas de surprises.",
+      "starter": {
+        "title": "Starter",
+        "desc": "Pour les petites équipes qui veulent démarrer rapidement.",
+        "features": [
+          "Plannings de base & publication",
+          "Pointage mobile (entrée/sortie)",
+          "Canaux d’équipe + notifications push",
+          "Notifications e-mail",
+          "Rapports de base"
+        ]
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "desc": "Évolutif et conforme.",
+        "features": [
+          "Multi-site & gestion des droits",
+          "Règles personnalisées / logique de conventions",
+          "Webhooks avancés & SSO",
+          "SLA & support dédié",
+          "Export vers paie/finance",
+          "Planification IA & appariement des compétences",
+          "Horodateur kiosque (tablette) + QR",
+          "Congés & disponibilités",
+          "Intégration POS et API ouverte",
+          "Flux d’approbation & journal d’audit",
+          "25 utilisateurs (Employeurs) inclus"
+        ]
+      },
+      "Monthly": {
+        "Maandelijks": "Mensuel",
+        "Prijs": "100 € / mois + 4 € / utilisateur / mois"
+      },
+      "Yearly": {
+        "Jaarlijks": "Annuel",
+        "Prijs": "1 000 € / an + 40 € / utilisateur / an (2 mois offerts)"
+      }
+    },
+      "usp": ["Factures & exports", "Vos données vous appartiennent", "Onboarding gratuit"]
+    },
+    "integrations": {
+      "title": "Compatible avec vos outils",
+      "desc": "Connectez POS, comptabilité et BI. Synchronisez CA, heures et coûts—sans double saisie."
+    },
+    "storeSnippet": {
+      "oneLiner": "Planification IA, pointage sur borne ou mobile et messages push/e-mail—le tout dans Xedular.",
+      "bullets": ["Planning IA & plannings", "Pointage borne + mobile", "Canaux, push & e-mail"]
+    }
             }
           },
-      
           "employeesPage": {
             "headText": "Gagnez de l'argent rapidement",
             "Benefits": [
@@ -259,7 +335,13 @@
                   "elaboration": "Construisez une solide réputation en obtenant des avis positifs et des retours de clients satisfaits, ce qui augmente vos chances de futures missions."
                 }
               ]
-            }
+            },
+            "PhoneHero": {
+      "CVtekst": "Inscription rapide avec un CV ?",
+      "sendMessage": "envoyer un message via WhatsApp",
+      "HeadTekst": "Travaillez en toute flexibilité. Gagnez intelligemment.",
+      "SubTekst": "Avec Junter, découvrez rapidement des shifts et des missions payés chez des entreprises de confiance. Choisissez où et quand vous travaillez et soyez payé immédiatement."
+    }
           },
         "junterPage": {
             "headText": "Nous sommes un groupe de personnes passionnées.",

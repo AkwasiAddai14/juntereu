@@ -67,8 +67,8 @@ type Props = {
           </button>
         </div> 
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          {navigation.navLinks.map((item: {name: string, link: string}) => (
-            <Link href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
+          {navigation.navLinks.map((item: {name: string, link: string}, index: number) => (
+            <Link key={`nav-${index}-${item.name}`} href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
             {item.name}
             </Link>
             ))}
@@ -191,8 +191,8 @@ type Props = {
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
-                {navigation.navLinks.map((item: {name: string, link: string}) => (
-            <Link href={`/${lang}/${item.link}`} className="-mx-3 block rounded-lg px-3 py-2 text-sm/6 font-semibold text-gray-900">
+                {navigation.navLinks.map((item: {name: string, link: string}, index: number) => (
+            <Link key={`mobile-nav-${index}-${item.name}`} href={`/${lang}/${item.link}`} className="-mx-3 block rounded-lg px-3 py-2 text-sm/6 font-semibold text-gray-900">
             {item.name}
             </Link>
             ))}

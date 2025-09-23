@@ -229,6 +229,83 @@
         "icon": "CurrencyEuroIcon"
       }
     ]
+  },
+  "Xedular": {
+    "hrmSection": {
+      "eyebrow": "Gestione del personale",
+      "title": "Pianifica. Rileva. Comunica.",
+      "subtitle": "Xedular è l’app HR per team dinamici: pianificazione con IA, timbratura via chiosco o smartphone e canali integrati per il tempo reale.",
+      "bullets": [
+        { "title": "Pianificazione IA", "desc": "Crea turni in base a disponibilità, competenze, regole e domanda.", "icon":"CalendarDateRangeIcon" },
+        { "title": "Rilevazione ore (chiosco & mobile)", "desc": "Entrata/uscita con tablet, QR o app; validazione automatica.", "icon": "Clock3" },
+        { "title": "Canali di comunicazione", "desc": "Canali di team con push ed e-mail in un’unica piattaforma." , "icon": "UserGroupIcon"},
+        { "title": "Integrazioni POS & API", "desc": "Collega POS e strumenti; sincronizza ricavi, ore e costi." , "icon": "PlugZap"}
+      ],
+      "ctas": { "demo": "Prenota una demo", "download": "Scarica l’app" }
+    },
+    "allInOne": {
+      "title": "Piattaforma HR tutto-in-uno",
+      "intro": "Pianificazione, rilevazione ore e comunicazione in un unico flusso.",
+      "cards": [
+        { "title": "Pianificazione IA", "desc": "Considera disponibilità, competenze e normative." },
+        { "title": "Turni & cambi", "desc": "Pubblica turni, consenti scambi e approva al volo." },
+        { "title": "Rilevazione ore", "desc": "Chiosco, QR e mobile con controlli automatici." },
+        { "title": "Ferie & disponibilità", "desc": "Richieste, codici e impatto sulla copertura immediati." },
+        { "title": "Canali di comunicazione", "desc": "Canali per team/sede, push ed e-mail con analytics." },
+        { "title": "Integrazioni & webhooks", "desc": "Collega POS, payroll e BI. REST API aperta e webhooks." }
+      ]
+    },
+    "pricing": {
+      "plans": {
+      "headText": "Prezzi semplici e trasparenti",
+      "subText": "Paghi solo ciò che usi. Nessun costo nascosto, nessuna sorpresa.",
+      "starter": {
+        "title": "Starter",
+        "desc": "Per team piccoli che vogliono partire subito.",
+        "features": [
+          "Turni di base & pubblicazione",
+          "Timbratura mobile (entrata/uscita)"
+        ]
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "desc": "Scalabile e conforme.",
+        "features": [
+          "Multi-sede & struttura dei permessi",
+          "Regole personalizzate / logica CCNL",
+          "Webhooks avanzati & SSO",
+          "SLA & supporto dedicato",
+          "Export verso payroll/finance",
+          "Pianificazione IA & skill matching",
+          "Orologio kiosk (tablet) + QR",
+          "Ferie & disponibilità",
+          "Integrazione POS e API aperta",
+          "Flussi di approvazione & audit log",
+          "25 utenti (Datori di lavoro) inclusi",
+          "Canali del team + notifiche push",
+          "Notifiche e-mail",
+          "Report di base"
+        ]
+      },
+      "Monthly": {
+        "Maandelijks": "Mensile",
+        "Prijs": "€100/mese + €4/utente/mese"
+      },
+      "Yearly": {
+        "Jaarlijks": "Annuale",
+        "Prijs": "€1.000/anno + €40/utente/anno (2 mesi gratis)"
+      }
+    },
+      "usp": ["Fatture & export", "Proprietà dei dati", "Onboarding gratuito"]
+    },
+    "integrations": {
+      "title": "Funziona con i tuoi strumenti",
+      "desc": "Collega POS, contabilità e BI. Sincronizza ricavi, ore e costi senza doppio inserimento."
+    },
+    "storeSnippet": {
+      "oneLiner": "Pianifica con IA, rileva le ore via chiosco o mobile e raggiungi il team con push ed e-mail—tutto in Xedular.",
+      "bullets": ["Pianificazione IA & turni", "Chiosco + mobile", "Canali, push & e-mail"]
+    }
   }
         },
         "employeesPage": {
@@ -279,7 +356,13 @@
         "elaboration": "Costruisci una solida reputazione raccogliendo valutazioni positive e feedback dai clienti soddisfatti, aumentando così le tue possibilità di ottenere nuovi incarichi."
       }
     ]
-  }
+  },
+   "PhoneHero": {
+      "CVtekst": "Iscriviti velocemente con un CV?",
+      "sendMessage": "invia un messaggio via WhatsApp",
+      "HeadTekst": "Lavora in modo flessibile. Guadagna in modo intelligente.",
+      "SubTekst": "Con Junter trovi rapidamente turni e lavori retribuiti presso aziende affidabili. Scegli dove e quando lavorare e vieni pagato subito."
+    }
         },
         "junterPage": {
             "headText": "Siamo un gruppo di persone appassionate.",
