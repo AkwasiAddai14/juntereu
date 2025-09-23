@@ -7,10 +7,10 @@ runConfig:
   cpu: 8
   memoryMiB: 16384
 
-  # Environment variables and secrets From: { secretKeyRef: { name: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, key: latest } }
+  # Environment variables and secrets 
   env:
     - variable: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-      value: pk_live_Y2xlcmsuanVudGVyLmV1JA
+      valueFrom: { secretKeyRef: { name: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, key: latest } }
       availability:
       - BUILD
       - RUNTIME

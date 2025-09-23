@@ -14,6 +14,14 @@ import { ArrowPathIcon, CalendarDateRangeIcon, CloudArrowUpIcon, Cog6ToothIcon, 
 import { CheckIcon } from '@heroicons/react/20/solid';
 
 import { Check, Bell, Clock3, Cpu, PlugZap, MessageSquare, CreditCardIcon, UserPlusIcon } from "lucide-react"; // voorbeeldicons
+import { 
+  FadeInUp, 
+  FadeInLeft, 
+  FadeInRight, 
+  SimpleStaggerContainer, 
+  SimpleStaggerItem, 
+  SimpleFadeIn 
+} from '../components/shared/animations/AnimationUtils';
 
 type Bullet = { title: string; desc: string; icon?: IconName; } // optional if some items have no icon 
 type IconName = 'Cpu' | 'Clock3' | 'MessageSquare' | 'PlugZap' | 'CalendarDateRangeIcon' | 'UserPlusIcon' | 'UserGroupIcon' | 'CreditCardIcon' | 'CheckIcon' | 'LockClosedIcon'; // voeg meer icon namen toe indien nodig};
@@ -113,19 +121,19 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
     <div className="bg-white">
           <div className="mx-auto max-w-7xl py-4 sm:px-2 sm:py-32 lg:px-4">
               <div className="mx-auto max-w-2xl px-4 lg:max-w-none">
-                  <div className="border-b border-gray-200 pb-10 sm:mt-16 sm:pt-16 ">
+                  <FadeInUp className="border-b border-gray-200 pb-10 sm:mt-16 sm:pt-16 ">
                       <h2 className="font-semibold text-gray-500">{pages.employersPage.title}</h2>
                       <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{pages.employersPage.headText}</p>
                       <p className="mt-4 text-gray-500">
                           {pages.employersPage.subText}
                       </p>
-                  </div>
-                  <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+                  </FadeInUp>
+                  <SimpleStaggerContainer className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
           {pages.employersPage.EmployTypes.map((feature) => {
   const IconComponent = iconMapping[feature.icon];
   return (
-    <div key={feature.type} className="relative pl-16">
+    <SimpleStaggerItem key={feature.type} className="relative pl-16">
       <dt className="text-base font-semibold text-gray-900">
         <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600">
           {IconComponent ? (
@@ -137,49 +145,49 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
         {feature.type}
       </dt>
       <dd className="mt-2 text-base text-gray-600">{feature.explanation}</dd>
-    </div>
+    </SimpleStaggerItem>
   );
 })}
           </dl>
-        </div>
-                  <div className="mt-10 space-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16">
-                  {pages.employersPage.Benefits.map((feature) => {
+        </SimpleStaggerContainer>
+                  <SimpleStaggerContainer className="mt-10 space-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16">
+                  {pages.employersPage.Benefits.map((feature, index) => {
   const imageSrc = imageMapping[feature.imageSrc]; // Haal de juiste afbeelding op
   return (
-    <div key={feature.benefit} className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
-      <div className="mt-6 lg:col-span-5 lg:mt-0 xl:col-span-4">
+    <SimpleStaggerItem key={feature.benefit} className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
+      <FadeInLeft className="mt-6 lg:col-span-5 lg:mt-0 xl:col-span-4">
         <h3 className="text-lg font-medium text-gray-900">{feature.benefit}</h3>
         <p className="mt-2 text-sm text-gray-500">{feature.explanation}</p>
-      </div>
-      <div className="flex-auto lg:col-span-7 xl:col-span-8">
+      </FadeInLeft>
+      <FadeInRight className="flex-auto lg:col-span-7 xl:col-span-8">
         <div className="aspect-h-2 aspect-w-5 overflow-hidden rounded-lg bg-gray-100">
           {imageSrc && <Image src={imageSrc} alt={feature.imageAlt} className="object-cover object-center" />}
         </div>
-      </div>
-    </div>
+      </FadeInRight>
+    </SimpleStaggerItem>
   );
 })}
-                  </div>
+                  </SimpleStaggerContainer>
               </div>
           </div>
       </div>
       <div className="bg-white py-24 sm:py-32">
               <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                  <div className="mx-auto max-w-2xl lg:mx-0">
+                  <FadeInUp className="mx-auto max-w-2xl lg:mx-0">
                       <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                           {pages.employersPage.Features.headText}
                       </h2>
                       <p className="mt-6 text-lg leading-8 text-gray-600">
                           {pages.employersPage.Features.subText}
                       </p>
-                  </div>
-                  <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+                  </FadeInUp>
+                  <SimpleStaggerContainer className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
                       <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
                       {pages.employersPage.Features.features.map((feature) => {
                   const IconComponent = iconMapping[feature.icon]; // Haal de juiste icon-component op
   
   return (
-    <div key={feature.feature} className="flex flex-col">
+    <SimpleStaggerItem key={feature.feature} className="flex flex-col">
       <dt className="text-base font-semibold leading-7 text-gray-900">
         <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600">
         {IconComponent ? (
@@ -193,12 +201,12 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
       <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600">
         <p className="flex-auto">{feature.explanation}</p>
       </dd>
-    </div>
+    </SimpleStaggerItem>
   );
 })}
 
                       </dl>
-                  </div>
+                  </SimpleStaggerContainer>
               </div>
           </div> 
 
@@ -208,7 +216,7 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
     <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-stretch">
 
       {/* LEFT: two screenshots stacked */}
-      <div className="self-stretch">
+      <FadeInLeft className="self-stretch">
         {/* two crop boxes that share the column height */}
         <div className="h-full flex flex-col gap-6">
           <div className="flex-1 overflow-hidden rounded-xl shadow-xl ring-1 ring-gray-400/10">
@@ -226,9 +234,9 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
             />
           </div>
         </div>
-      </div>
+      </FadeInLeft>
          
-          <div className="lg:pt-4 lg:pl-4">
+          <FadeInRight className="lg:pt-4 lg:pl-4">
             <div className="lg:max-w-lg">
               <h2 className="text-base/7 font-semibold text-sky-600">{pages.employersPage.Xedular.hrmSection.eyebrow}</h2>
               <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
@@ -238,13 +246,13 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
               <p className="mt-6 text-lg/8 text-gray-600">
                 {pages.employersPage.Xedular.hrmSection.subtitle}
               </p>
-            <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+            <SimpleStaggerContainer className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
   {pages.employersPage.Xedular.hrmSection.bullets.map((feature) => {
     const IconComponent =
       feature.icon ? icon2Mapping[feature.icon as IconName] : undefined;
 
     return (
-      <div key={feature.title} className="relative pl-9">
+      <SimpleStaggerItem key={feature.title} className="relative pl-9">
         <dt className="inline font-semibold text-gray-900">
           {IconComponent ? (
             <IconComponent
@@ -260,47 +268,47 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
           {feature.title}
         </dt>{" "}
         <dd className="inline">{feature.desc}</dd>
-      </div>
+      </SimpleStaggerItem>
     );
   })}
-</dl>
+</SimpleStaggerContainer>
             </div>
-          </div>
+          </FadeInRight>
         </div>
       </div>
     </div>
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <FadeInUp className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
             {pages.employersPage.Xedular.allInOne.title}
           </h2>
           <p className="mt-6 text-lg/8 text-gray-700">
             {pages.employersPage.Xedular.allInOne.intro}
           </p>
-        </div>
-        <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base/7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        </FadeInUp>
+        <SimpleStaggerContainer className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base/7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {pages.employersPage.Xedular.allInOne.cards.map((feature) => (
-            <div key={feature.title}>
+            <SimpleStaggerItem key={feature.title}>
               <dt className="font-semibold text-gray-900">{feature.title}</dt>
               <dd className="mt-1 text-gray-600">{feature.desc}</dd>
-            </div>
+            </SimpleStaggerItem>
           ))}
-        </dl>
+        </SimpleStaggerContainer>
       </div>
     </div>
 
      <form className="group/tiers bg-white py-24 sm:py-32">
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl sm:text-center">
+        <FadeInUp className="mx-auto max-w-4xl sm:text-center">
           <h2 className="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-6xl sm:text-balance">
             Simple no-tricks pricing
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
            {pages.employersPage.Xedular.storeSnippet.oneLiner}
           </p>
-        </div>
+        </FadeInUp>
         <div className="mt-16 flex justify-center">
     <fieldset aria-label="Payment frequency">
       <div className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs/5 font-semibold ring-1 ring-gray-200">
@@ -333,26 +341,26 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
       </div>
     </fieldset>
   </div>
-        <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
-          <div className="p-8 sm:p-10 lg:flex-auto">
+        <SimpleFadeIn className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
+          <FadeInLeft className="p-8 sm:p-10 lg:flex-auto">
             <h3 className="text-3xl font-semibold tracking-tight text-gray-900">{pages.employersPage.Xedular.pricing.plans.headText}</h3>
             <p className="mt-6 text-base/7 text-gray-600">
               {pages.employersPage.Xedular.pricing.plans.subText}
             </p>
             <div className="mt-10 flex items-center gap-x-4">
-              <h4 className="flex-none text-sm/6 font-semibold text-sky-600">What’s included</h4>
+              <h4 className="flex-none text-sm/6 font-semibold text-sky-600">What's included</h4>
               <div className="h-px flex-auto bg-gray-100" />
             </div>
-            <ul role="list" className="mt-8 grid grid-cols-1 gap-4 text-sm/6 text-gray-600 sm:grid-cols-2 sm:gap-6">
+            <SimpleStaggerContainer className="mt-8 grid grid-cols-1 gap-4 text-sm/6 text-gray-600 sm:grid-cols-2 sm:gap-6">
               {pages.employersPage.Xedular.pricing.plans.enterprise.features.map((feature) => (
-                <li key={feature} className="flex gap-x-3">
+                <SimpleStaggerItem key={feature} className="flex gap-x-3">
                   <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-sky-600" />
                   {feature}
-                </li>
+                </SimpleStaggerItem>
               ))}
-            </ul>
-          </div>
-          <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:shrink-0">
+            </SimpleStaggerContainer>
+          </FadeInLeft>
+          <FadeInRight className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:shrink-0">
             <div className="rounded-2xl bg-gray-50 py-10 text-center inset-ring inset-ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
               <div className="mx-auto max-w-xs px-8">
                 {/* <p className="text-base font-semibold text-gray-600">Pay once, own it forever</p> */}
@@ -388,18 +396,18 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
                 <p className="mt-6 text-xs/5 text-gray-600">
                   Invoices and receipts available for easy company reimbursement
                 </p>
-                 <ul role="list" className="mt-8 grid grid-cols-1 gap-4 text-sm/6 text-gray-600 sm:grid-cols-2 sm:gap-6">
+                 <SimpleStaggerContainer className="mt-8 grid grid-cols-1 gap-4 text-sm/6 text-gray-600 sm:grid-cols-2 sm:gap-6">
               {pages.employersPage.Xedular.pricing.usp.map((feature) => (
-                <li key={feature} className="flex gap-x-3">
+                <SimpleStaggerItem key={feature} className="flex gap-x-3">
                   <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-sky-600" />
                   {feature}
-                </li>
+                </SimpleStaggerItem>
               ))}
-            </ul>
+            </SimpleStaggerContainer>
               </div>
             </div>
-          </div>
-        </div>
+          </FadeInRight>
+        </SimpleFadeIn>
       </div>
     </div>
     </form>
