@@ -14,6 +14,7 @@ steps:
   args: ['run', 'build']
   env:
   - 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsuanVudGVyLmV1JA'
+  - 'CLERK_SECRET_KEY=sk_live_hEUWpfMYNnfUlApiG6l6b8uJLEatla9vrl3lyhvssW'
 #  - 'CLERK_SECRET_KEY=${_CLERK_SECRET_KEY}'
 #  - 'MONGODB_NL_URL=${_MONGODB_NL_URL}'
 #  - 'MONGODB_BE_URL=${_MONGODB_BE_URL}'       

@@ -179,3 +179,10 @@ runConfig:
       availability:
       - BUILD
       - RUNTIME
+    - name: ROJECT_ID
+      value: { secretKeyRef: { name: PROJECT_ID, key: latest } }
+      availability:
+      - BUILD
+      - RUNTIME
+
+
