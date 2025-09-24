@@ -66,7 +66,7 @@ import { Dialog, Disclosure,
         </div>
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           {navigation.navLinks.map((item: {name: string, link: string}) => (
-            <Link href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
+            <Link href={`/${lang}/${item.link}`} key={item.name} className="text-sm/6 font-semibold text-gray-900">
             {item.name}
             </Link>
             ))}
@@ -196,7 +196,8 @@ import { Dialog, Disclosure,
                   </DisclosurePanel>
                 </Disclosure>
                 {navigation.navLinks.map((item: {name: string, link: string}) => (
-            <Link href={`/${lang}/${item.link}`} className="-mx-3 block rounded-lg px-3 py-2 text-sm/6 font-semibold text-gray-900">
+                  
+            <Link key={item.name} href={`/${lang}/${item.link}`} className="-mx-3 block rounded-lg px-3 py-2 text-sm/6 font-semibold text-gray-900">
             {item.name}
             </Link>
             ))}

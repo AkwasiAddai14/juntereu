@@ -52,9 +52,9 @@ type Props = {
       <header className="absolute inset-x-0 top-0 z-50">
         <div className="mx-auto max-w-7xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8" aria-label="Global">
-            <a href={`/${lang}`} className="-m-1.5 p-1.5">
+            <a href={`/${lang}`} className="-m-1.5 p-1.5 flex-shrink-0">
               <span className="sr-only">Junter</span>
-              <Image className="h-32 w-auto" src={logo} alt="Junter logo" /> {/* Use Image component for optimized images */}
+              <Image className="h-16 w-auto lg:h-20" src={logo} alt="Junter logo" /> {/* Use Image component for optimized images */}
             </a>
            <div className="flex lg:hidden">
           <button
@@ -66,14 +66,14 @@ type Props = {
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div> 
-          <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+          <PopoverGroup className="hidden lg:flex lg:gap-x-8 lg:items-center">
           {navigation.navLinks.map((item: {name: string, link: string}, index: number) => (
-            <Link key={`nav-${index}-${item.name}`} href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900">
+            <Link key={`nav-${index}-${item.name}`} href={`/${lang}/${item.link}`} className="text-sm/6 font-semibold text-gray-900 hover:text-sky-600 transition-colors">
             {item.name}
             </Link>
             ))}
           <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
+            <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 hover:text-sky-600 transition-colors">
               {navigation.Taal.name}
               <ChevronDownIcon aria-hidden="true" className="size-5 flex-none text-gray-400" />
             </PopoverButton>
@@ -120,13 +120,13 @@ type Props = {
             </PopoverPanel>
           </Popover>
         </PopoverGroup>
-          <div className="flex flex-1 items-center justify-end gap-x-6">
-            <a href={`../${lang}/sign-in`} className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-white">
+          <div className="flex flex-1 items-center justify-end gap-x-4">
+            <a href={`../${lang}/sign-in`} className="hidden lg:block text-sm font-semibold text-orange-600 hover:text-sky-600 transition-colors">
               {components.navigation.NavBar.inloggen}
             </a>
             <a
               href={`../${lang}/sign-up`}
-              className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+              className="hidden lg:block rounded-md bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 transition-colors"
             >
               {components.navigation.NavBar.aanmelden}
             </a>
@@ -147,10 +147,10 @@ type Props = {
           <div className="fixed inset-0 z-10" />
           <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center gap-x-6">
-              <a href="" className="-m-1.5 p-1.5">
+              <a href={`/${lang}`} className="-m-1.5 p-1.5">
                 <span className="sr-only">Junter</span>
                 <Image
-                  className="h-8 w-auto"
+                  className="h-12 w-auto"
                   src={logo}
                   alt="Junter logo"
                 />
@@ -192,7 +192,7 @@ type Props = {
                   </DisclosurePanel>
                 </Disclosure>
                 {navigation.navLinks.map((item: {name: string, link: string}, index: number) => (
-            <Link key={`mobile-nav-${index}-${item.name}`} href={`/${lang}/${item.link}`} className="-mx-3 block rounded-lg px-3 py-2 text-sm/6 font-semibold text-gray-900">
+            <Link key={`mobile-nav-${index}-${item.name}`} href={`/${lang}/${item.link}`} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:text-sky-600 transition-colors">
             {item.name}
             </Link>
             ))}
@@ -200,7 +200,7 @@ type Props = {
                 <div className="py-6">
                   <a
                     href={`../${lang}/sign-in`}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 hover:text-sky-600 transition-colors"
                   >
                     {navigation['Log-in'].name}
                   </a>
