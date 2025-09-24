@@ -1,6 +1,7 @@
 'use client' 
 
-import {  JSX, SVGProps, useState } from 'react';
+import { JSX, SVGProps, useState, useEffect } from 'react';
+import { use } from 'react';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import { Dialog, DialogPanel } from '@headlessui/react';
@@ -79,10 +80,32 @@ const jobOpenings = [
 ]
 
 
-export default async function Example({ params }: { params: { lang: string } }) {
+export default function Example({ params }: { params: Promise<{ lang: string }> }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const lang = supportedLocales.includes(params.lang as Locale) ? (params.lang as Locale) : 'en';
-  const { pages, navigation, footer } = await getDictionary(lang);
+  const [pages, setPages] = useState<any>(null);
+  const [navigation, setNavigation] = useState<any>(null);
+  const [footer, setFooter] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  
+  const resolvedParams = use(params);
+  const lang = supportedLocales.includes(resolvedParams.lang as Locale) ? (resolvedParams.lang as Locale) : 'en';
+
+  useEffect(() => {
+    const fetchDictionary = async () => {
+      try {
+        const dict = await getDictionary(lang);
+        setPages(dict.pages);
+        setNavigation(dict.navigation);
+        setFooter(dict.footer);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error loading dictionary:', error);
+        setLoading(false);
+      }
+    };
+    
+    fetchDictionary();
+  }, [lang]);
 
   const footerNavigation = {
     main: [
@@ -155,6 +178,17 @@ export default async function Example({ params }: { params: { lang: string } }) 
     ],
   }
 
+  if (loading || !pages || !navigation || !footer) {
+    return (
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-sky-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white">
       {/* Header */}
@@ -183,7 +217,7 @@ export default async function Example({ params }: { params: { lang: string } }) 
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.navLinks.map((item) => (
+            {navigation.navLinks.map((item:{ name: string, href: string, link: string}) => (
               <a key={item.name} href={item.link} className="text-sm font-semibold leading-6 text-gray-900">
                 {item.name}
               </a>
@@ -228,7 +262,7 @@ export default async function Example({ params }: { params: { lang: string } }) 
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  {navigation.navLinks.map((item) => (
+                  {navigation.navLinks.map((item: { name: string, href: string, link: string}) => (
                     <a
                       key={item.name}
                       href={item.link}
@@ -284,7 +318,7 @@ export default async function Example({ params }: { params: { lang: string } }) 
         {/* Timeline section */}
         <div className="mx-auto -mt-8 max-w-7xl px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 overflow-hidden lg:mx-0 lg:max-w-none lg:grid-cols-4">
-            {pages.junterPage.strategyPlan.map((item) => (
+            {pages.junterPage.strategyPlan.map((item:{ name: string, href: string, link: string, activity: string, date: string, elaboration: string}) => (
               <div key={item.activity}>
                 <time
                   dateTime={item.date}
@@ -477,7 +511,7 @@ export default async function Example({ params }: { params: { lang: string } }) 
             <div className="w-full lg:max-w-xl lg:flex-auto">
               <h3 className="sr-only">Job openings</h3>
               <ul className="-my-8 divide-y divide-gray-100">
-                {pages.junterPage.vacancies.vacancies.map((opening) => (
+                {pages.junterPage.vacancies.vacancies.map((opening: { title: string, description: string, salary: string, location: string}) => (
                   <li key={opening.title} className="py-8">
                     <dl className="relative flex flex-wrap gap-x-3">
                       <dt className="sr-only">Role</dt>
@@ -515,7 +549,7 @@ export default async function Example({ params }: { params: { lang: string } }) 
       {/* Footer */}
       <footer className="mt-32 sm:mt-40" aria-labelledby="footer-heading">
       <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
-          {pages.junterPage.navLinks.map((item) => (
+          {pages.junterPage.navLinks.map((item :{ name: string, href: string, link: string}) => (
             <div key={item.name} className="pb-6">
               <a href={`${lang}/${item.link}`}>
                 <h3 className="text-lg leading-6 text-gray-600 hover:text-gray-900">
