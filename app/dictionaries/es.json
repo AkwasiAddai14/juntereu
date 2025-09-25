@@ -2261,7 +2261,7 @@
               },
               "OnboardingDialog": {
                 "headTitle": "Regístrate para comenzar.",
-                "subTitle": "Elige abajo si deseas registrarte como trabajador independiente o como empresa.",
+                "subTitle": "Elige abajo si deseas registrarte como trabajador o como empresa.",
                 "buttons": [
                   "Trabajador",
                   "Empresa"

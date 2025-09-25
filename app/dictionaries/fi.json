@@ -2262,7 +2262,7 @@
           },
           "OnboardingDialog": {
             "headTitle": "Rekisteröidy aloittaaksesi.",
-            "subTitle": "Valitse alta, haluatko rekisteröityä freelanceriksi vai yritykseksi.",
+            "subTitle": "Valitse alta, haluatko rekisteröityä työntekijä vai yritykseksi.",
             "buttons": [
               "Työntekijä",
               "Yritys"

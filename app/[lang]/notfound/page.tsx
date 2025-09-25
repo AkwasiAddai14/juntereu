@@ -1,6 +1,7 @@
 "use client";
 
-
+import { useEffect, useState } from 'react';
+import { use } from 'react';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import Link from 'next/link';
@@ -13,11 +14,40 @@ const supportedLocales: Locale[] = [
   'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
-export default async function Example({ params }: { params: { lang: string } }) {
-  const lang = supportedLocales.includes(params.lang as Locale)
-  ? (params.lang as Locale)
+export default function Example({ params }: { params: Promise<{ lang: string }> }) {
+  const resolvedParams = use(params);
+  const lang = supportedLocales.includes(resolvedParams.lang as Locale)
+  ? (resolvedParams.lang as Locale)
   : 'en';
-  const { pages, navigation, footer } = await getDictionary(lang);
+  const [dictionary, setDictionary] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDictionary = async () => {
+      try {
+        const dict = await getDictionary(lang);
+        setDictionary(dict);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching dictionary:', error);
+        setLoading(false);
+      }
+    };
+    fetchDictionary();
+  }, [lang]);
+
+  if (loading || !dictionary) {
+    return (
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-sky-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const { pages, navigation, footer } = dictionary;
     return (
       <>
         {/*

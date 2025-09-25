@@ -2262,7 +2262,7 @@
         },
         "OnboardingDialog": {
           "headTitle": "Sign up to get started.",
-          "subTitle": "Choose below whether you want to sign up as a freelancer or a company.",
+          "subTitle": "Choose below whether you want to sign up as a employee or a company.",
           "buttons": [
             "Worker",
             "Company"

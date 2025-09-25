@@ -4,6 +4,7 @@ import { useUser } from '@clerk/nextjs';
 import dynamicImport from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { use } from 'react';
 import { checkOnboardingStatusEmployer } from '@/app/lib/actions/employer.actions';
 import { checkOnboardingStatusEmployee } from '@/app/lib/actions/employee.actions';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
@@ -23,8 +24,9 @@ const EmployerDashboard = dynamicImport(() => import('@/app/[lang]/components/da
   'sw', 'os', 'benl', 'befr', 'suit', 'sufr', 'sude',
 ]; */
 
-const DashboardPage = ({ params }: { params: { lang: string } }) => {
-  const lang = supportedLocales.includes(params.lang as Locale) ? (params.lang as Locale): 'en';
+const DashboardPage = ({ params }: { params: Promise<{ lang: string }> }) => {
+  const resolvedParams = use(params);
+  const lang = supportedLocales.includes(resolvedParams.lang as Locale) ? (resolvedParams.lang as Locale): 'en';
   const { isLoaded, isSignedIn, user } = useUser();
   const [isOnboarded, setIsOnboarded] = useState<boolean | null>(null);
   const [isBedrijf, setIsBedrijf] = useState<boolean | null>(null);
@@ -71,7 +73,14 @@ const DashboardPage = ({ params }: { params: { lang: string } }) => {
   }, [isLoaded, isSignedIn, isOnboarded, router]);
 
   if (!isLoaded || isLoading) {
-    return <div>Loading...</div>;
+     return (
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-sky-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
   }
 
   return (

@@ -82,5 +82,5 @@ const bedrijfSchema: Schema<IEmployer> = new mongoose.Schema({
   }],
 });
 
-const Employer: Model<IEmployer> = mongoose.models.Bedrijf || mongoose.model<IEmployer>('Employer', bedrijfSchema);
+const Employer: Model<IEmployer> = mongoose.models.Employer || mongoose.model<IEmployer>('Employer', bedrijfSchema);
 export default Employer;

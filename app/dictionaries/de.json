@@ -2263,7 +2263,7 @@
             },
             "OnboardingDialog": {
               "headTitle": "Registriere dich, um zu starten.",
-              "subTitle": "Wähle unten, ob du dich als Freelancer oder als Unternehmen registrieren möchtest.",
+              "subTitle": "Wähle unten, ob du dich als arbeitnehmer oder als Unternehmen registrieren möchtest.",
               "buttons": [
                 "Arbeitnehmer",
                 "Unternehmen"

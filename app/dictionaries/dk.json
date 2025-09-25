@@ -2338,7 +2338,7 @@
           },
           "OnboardingDialog": {
             "headTitle": "Tilmeld dig for at komme i gang.",
-            "subTitle": "Vælg nedenfor, om du vil tilmelde dig som freelancer eller som virksomhed.",
+            "subTitle": "Vælg nedenfor, om du vil tilmelde dig som medarbejder eller som virksomhed.",
             "buttons": [
               "Medarbejder",
               "Virksomhed"

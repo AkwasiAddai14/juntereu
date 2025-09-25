@@ -19,7 +19,14 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       <NavBar lang={lang} />
       <div className="flex flex-col justify-center items-center min-h-screen bg-white">
       <div className="flex items-center justify-center w-full">
-          <SignIn />
+          <SignIn
+           /* appearance={{
+          variables: {
+            colorPrimary: '#0000ff', // blue
+            colorBackground: '#000000', // black
+          },
+        }} */
+          />
         </div>
       </div>
       <Footer lang={lang} />

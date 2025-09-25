@@ -2353,7 +2353,7 @@
           },
           "OnboardingDialog": {
             "headTitle": "Registrer deg for å komme i gang.",
-            "subTitle": "Velg nedenfor om du vil registrere deg som frilanser eller som bedrift.",
+            "subTitle": "Velg nedenfor om du vil registrere deg som arbeidstaker eller som bedrift.",
             "buttons": [
               "Arbeidstaker",
               "Bedrift"

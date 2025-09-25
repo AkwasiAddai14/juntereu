@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { use } from 'react';
 import NavBar from "@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper";
 import FreelancerForm from "@/app/[lang]/components/shared/forms/Wrappers/EmployeeWrapper";
 import BedrijfsForm from '@/app/[lang]/components/shared/forms/Wrappers/EmployersWrapper';
@@ -17,11 +18,29 @@ const supportedLocales: Locale[] = [
   'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
-function Page({ params }: { params: { lang: string } }) {
-
+function Page({ params }: { params: Promise<{ lang: string }> }) {
   const [showDialog, setShowDialog] = useState(true);
   const [isFreelancer, setIsFreelancer] = useState(true);
-  const lang = supportedLocales.includes(params.lang as Locale) ? (params.lang as Locale) : 'en';
+  const [lang, setLang] = useState<Locale>('en');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const resolveParams = async () => {
+      try {
+        const resolvedParams = await params;
+        const resolvedLang = supportedLocales.includes(resolvedParams.lang as Locale) 
+          ? (resolvedParams.lang as Locale) 
+          : 'en';
+        setLang(resolvedLang);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error resolving params:', error);
+        setLoading(false);
+      }
+    };
+    
+    resolveParams();
+  }, [params]);
 
   const handleFreelancerSelected = () => {
     setIsFreelancer(true);
@@ -32,6 +51,17 @@ function Page({ params }: { params: { lang: string } }) {
     setIsFreelancer(false);
     setShowDialog(false); // Close the dialog after user selection
   };
+
+  if (loading) {
+    return (
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-sky-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

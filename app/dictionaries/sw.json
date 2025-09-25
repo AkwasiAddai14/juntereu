@@ -2304,7 +2304,7 @@
           },
           "OnboardingDialog": {
             "headTitle": "Registrera dig för att börja.",
-            "subTitle": "Välj nedan om du vill registrera dig som frilansare eller som företag.",
+            "subTitle": "Välj nedan om du vill registrera dig som arbetstagare eller som företag.",
             "buttons": [
               "Arbetstagare",
               "Företag"

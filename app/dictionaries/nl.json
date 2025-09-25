@@ -2268,7 +2268,7 @@
         },
         "OnboardingDialog": {
           "headTitle": "Meld je aan om te beginnen.",
-          "subTitle": "Kies hieronder of u zich wilt aanmelden als freelancer of als bedrijf.",
+          "subTitle": "Kies hieronder of u zich wilt aanmelden als werknemer of als bedrijf.",
           "buttons": [
             "Werknemer",
             "Bedrijf"

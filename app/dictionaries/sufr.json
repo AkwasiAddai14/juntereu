@@ -3,9 +3,9 @@
     "navLinks": [
                      {"name": "Employés", "link": "employees"},
                      {"name": "Employeurs", "link": "employers"},
-                     {"name": "Contact", "link": "contact"}     
+                     {"name": "Contact", "link": "contact"}
     ],
-    "Taal": {"name": "Langue", "link": ""},       
+    "Taal":   {"name": "Langue", "link": ""},
     "Log-in":  {"name": "Se connecter", "link": "sign-in"}
 },
     "pages": {
@@ -170,7 +170,7 @@
             "Benefits": [
               {
                 "benefit": "Coûts",
-                "explanation": "En choisissant notre plateforme, vous bénéficiez d'un modèle de coûts transparent et simple, où vous ne payez que pour les heures réellement travaillées par les flex travailleurs que vous invitez. Invitez des flex travailleurs illimités à partir de CHF24,50 de l'heure.",
+                "explanation": "En choisissant notre plateforme, vous bénéficiez d'un modèle de coûts transparent et simple, où vous ne payez que pour les heures réellement travaillées par les flex travailleurs que vous invitez. Invitez des flex travailleurs illimités à partir de 16,50 € de l'heure.",
                 "imageSrc": "euroBillsLogo",
                 "imageAlt": "Bills flying around."
               },
@@ -216,7 +216,7 @@
       "bullets": [
         { "title": "Planning IA", "desc": "Créez des plannings selon disponibilités, compétences, règles et affluence.", "icon":"CalendarDateRangeIcon" },
         { "title": "Suivi du temps (borne & mobile)", "desc": "Pointage sur tablette, QR ou app avec validation automatique.", "icon": "Clock3" },
-        { "title": "Canaux de communication", "desc": "Canaux d’équipe avec notifications push et e-mails, au même endroit." , "icon": "UserGroupIcon" },
+        { "title": "Canaux de communication", "desc": "Canaux d’équipe avec notifications push et e-mails, au même endroit." , "icon": "UserGroupIcon"},
         { "title": "Intégrations POS & API", "desc": "Connectez les caisses et outils ; synchronisez chiffre d’affaires, heures et coûts." , "icon": "PlugZap"}
       ],
       "ctas": { "demo": "Demander une démo", "download": "Télécharger l’app" }
@@ -243,6 +243,7 @@
         "features": [
           "Plannings de base & publication",
           "Pointage mobile (entrée/sortie)"
+          
         ]
       },
       "enterprise": {
@@ -379,21 +380,22 @@
                 "vacancies": [
                     {
                         "title": "Account Manager",
-                        "description": "En tant que Senior Account Manager, vous serez responsable de la gestion des comptes clients clés, du développement de relations solides et de la croissance des revenus. Vous travaillerez en étroite collaboration avec les clients pour comprendre leurs besoins, proposer des solutions adaptées et garantir leur satisfaction.",
-                        "salary": "CHF65.000 - CHF92.000",
-                        "location": "🇨🇭 Remote - Bern, CHF"
+                        "description": "En tant que Senior Account Manager, vous serez responsable de la gestion des comptes clients clés, du développement de relations solides et de la croissance des revenus. Vous travaillerez en étroite collaboration avec les clients pour comprendre leurs besoins, proposer des solutions adaptées et garantir leur satisfaction."
+    ,
+                        "salary": "42 000 € - 76 000 €",
+                        "location": "🇧🇪 Remote - Brussel, BE"
                     },
                     {
                         "title": "Responsable Marketing Global",
                         "description": "Le Responsable Marketing Global dirigera le développement et l'exécution de stratégies marketing mondiales afin d'accroître la notoriété de la marque et la part de marché. Vous gérerez une équipe de professionnels du marketing, superviserez les campagnes mondiales et travaillerez en collaboration avec d'autres départements pour atteindre les objectifs de l'entreprise.",
-                        "salary": "€56 000  - €84 000 ",
+                        "salary": "56 000 € - 84 000 €",
                         "location": "🇳🇱 Hoofddorp, NL"
                     },
                     {
                         "title": "Agent de support",
                         "description": "En tant qu'Agent de support, vous serez le premier point de contact pour les freelances et les entreprises. Vous fournirez une assistance et résoudrez les problèmes. Vous traiterez les demandes et garantirez une satisfaction client élevée en offrant un support rapide et efficace.",
-                        "salary": "CHF34.000 - CHF52.000",
-                        "location": "🇨🇭 Remote - Bern, CHF"
+                        "salary": "28 000 € - 34 000 €",
+                        "location": "🇧🇪 Remote - Brussel, BE"
                     }
                 ]
             },
@@ -418,10 +420,10 @@
             "expectedBudget": {
                 "title": "Budget attendu",
                 "budgetButtons": [
-                    "Moins de 25K CHF",
-                    "25K CHF – 50K CHF",
-                    "50K CHF – 100K CHF",
-                    "100K CHF+",
+                    "Moins de 25K €",
+                    "25K € – 50K €",
+                    "50K € – 100K €",
+                    "100K €+",
                     "Non applicable"
                 ]
             },
@@ -434,8 +436,8 @@
            
             "pricingCards": [
              {  "naam": "Freelancers",
-                "prijs": "CHF24,50",
-                "prijsUitleg": "CHF20 + CHF4,50 (frais)",
+                "prijs": "€16.50",
+                "prijsUitleg": "€14 + €2.50 (frais)",
                 "features": [
                     "Moins de charge administrative",
                     "Aucune obligation d'employeur",
@@ -444,8 +446,8 @@
                 "button": "Publier des services"
             },
            {    "naam": "Travailleurs temporaires",
-                "prijs": "CHF26,60",
-                "prijsUitleg": "CHF19 x 1,4 (facteur de conversion)",
+                "prijs": "€19.20",
+                "prijsUitleg": "€12 x 1.6 (facteur de conversion)",
                 "features": [
                     "Moins de charge administrative",
                     "Disponibilité immédiate",
@@ -509,49 +511,49 @@
                 "informationRequired": [
                     "- Prénom et nom de la personne de contact",
                     "- Nom de l'entreprise",
-                    "- Numéro de registre du commerce (KVK)"
+                    "- Numéro de registre du commerce"
                 ]
             }
         },
         "privacypolicyPage": {
           "privacyPolicyEmployee": {
             "title": "Politique de confidentialité",
-            "subtitle": "Pour les employés",
+            "subtitle": "Pour les travailleurs",
             "introduction": {
               "heading": "Introduction",
               "text": "Bienvenue chez Junter. Nous apprécions votre confiance et prenons votre vie privée très au sérieux. Cette politique de confidentialité vise à vous informer sur la manière dont nous collectons, utilisons, partageons et protégeons vos données personnelles lorsque vous utilisez notre plateforme."
             },
             "section1": {
               "heading": "1. Données que nous collectons",
-              "text": "Nous collectons différents types de données afin de fournir et d'améliorer nos services.\n\nDonnées personnelles : Prénom, nom, date de naissance, adresse e-mail, numéro de téléphone, adresse, numéro AVS (numéro d’assuré), numéro d’identification des entreprises (IDE / numéro de TVA) et coordonnées bancaires (IBAN).\nDonnées professionnelles : Expérience professionnelle, compétences, formations, photo de profil et évaluations.\nUtilisation de la plateforme : Informations concernant vos interactions avec notre plateforme, telles que les services que vous proposez ou demandez, la communication avec les entreprises et votre participation à des projets."
+              "text": "Nous collectons différents types de données afin de fournir et d'améliorer nos services.\n\nDonnées personnelles : Prénom, nom, date de naissance, adresse e-mail, numéro de téléphone, adresse, numéro de registre national, numéro d’entreprise (TVA) et numéro de compte bancaire (IBAN).\nDonnées professionnelles : Expérience professionnelle, compétences, formations, photo de profil et évaluations.\nUtilisation de la plateforme : Informations sur vos interactions avec notre plateforme, comme les services que vous proposez ou demandez, vos communications avec les entreprises et votre participation à des projets."
             },
             "section2": {
               "heading": "2. Comment nous utilisons vos données",
-              "text": "Nous utilisons vos données aux fins suivantes :\n\nPrestation de services : Pour vous permettre de trouver et d’accepter des projets, et pour permettre aux entreprises de réserver vos services.\nCommunication : Pour vous contacter concernant votre compte, vos projets et d'autres sujets pertinents.\nAmélioration de la plateforme : Pour analyser et améliorer notre plateforme et nos services.\nObligations légales : Pour satisfaire aux exigences légales et réglementaires en vigueur."
+              "text": "Nous utilisons vos données aux fins suivantes :\n\nPrestation de services : Pour vous permettre de trouver et d’accepter des projets, et pour permettre aux entreprises de réserver vos services.\nCommunication : Pour vous contacter concernant votre compte, vos projets et d'autres sujets pertinents.\nAmélioration de la plateforme : Pour analyser et améliorer notre plateforme et nos services.\nObligations légales : Pour répondre à nos obligations légales et réglementaires."
             },
             "section3": {
               "heading": "3. Partage de vos données",
-              "text": "Nous partageons vos données uniquement avec des tiers lorsque cela est nécessaire à la prestation de nos services, notamment :\n\nEntreprises : Pour leur permettre de vous contacter et de réserver vos services.\nFournisseurs de services : Pour fournir une assistance technique et d'autres services essentiels au fonctionnement de notre plateforme.\nAutorités légales : Si nous sommes légalement tenus de communiquer vos données."
+              "text": "Nous partageons vos données avec des tiers uniquement lorsque cela est nécessaire à l’exécution de nos services, notamment :\n\nEntreprises : Pour leur permettre de vous contacter et de réserver vos services.\nPrestataires de services : Pour fournir un support technique et d'autres services nécessaires au fonctionnement de notre plateforme.\nAutorités légales : Si nous sommes légalement tenus de divulguer vos données."
             },
             "section4": {
               "heading": "4. Sécurité de vos données",
-              "text": "Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, perte, destruction ou altération. Malgré nos efforts, nous ne pouvons pas garantir la sécurité totale des transmissions de données sur Internet."
+              "text": "Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, perte, destruction ou altération. Malgré nos efforts, nous ne pouvons garantir la sécurité totale de la transmission des données via Internet."
             },
             "section5": {
               "heading": "5. Durée de conservation",
-              "text": "Nous conservons vos données personnelles uniquement pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées, sauf si une obligation légale nous impose une durée plus longue."
+              "text": "Nous conservons vos données personnelles uniquement pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées, sauf si une durée de conservation plus longue est exigée par la loi."
             },
             "section6": {
               "heading": "6. Vos droits",
-              "text": "Vous avez le droit de :\n\nDemander l'accès à vos données personnelles.\nDemander la rectification de données inexactes ou incomplètes.\nDemander la suppression de vos données personnelles.\nDemander la limitation du traitement de vos données.\nVous opposer au traitement de vos données.\nDemander la portabilité de vos données.\nPour exercer l’un de ces droits, veuillez nous contacter à l’adresse support@junter.works."
+              "text": "Vous avez le droit de :\n\nDemander l’accès à vos données personnelles.\nDemander la rectification de données incorrectes ou incomplètes.\nDemander la suppression de vos données personnelles.\nDemander la limitation du traitement de vos données.\nVous opposer au traitement de vos données.\nDemander la portabilité de vos données.\nSi vous souhaitez exercer l’un de ces droits, veuillez nous contacter à l’adresse suivante : support@junter.works."
             },
             "section7": {
               "heading": "7. Modifications de cette politique de confidentialité",
-              "text": "Nous pouvons modifier cette politique de confidentialité de temps à autre. Nous vous informerons des modifications importantes en publiant une notification sur notre plateforme ou en vous contactant directement."
+              "text": "Nous pouvons modifier cette politique de confidentialité de temps à autre. Nous vous informerons des changements importants par une notification sur notre plateforme ou en vous contactant directement."
             },
             "section8": {
               "heading": "8. Contact",
-              "text": "Si vous avez des questions ou des commentaires concernant cette politique de confidentialité, veuillez nous contacter via :",
+              "text": "Si vous avez des questions ou des remarques concernant cette politique de confidentialité, veuillez nous contacter à l’adresse suivante :",
               "email": "support@junter.works"
             }
           }
@@ -605,7 +607,7 @@
             },
             {
               "heading": "10. Droit applicable",
-              "text": "Ces conditions générales sont régies par et interprétées conformément au droit Suisse. Tout litige relatif à ces conditions sera porté devant les tribunaux compétents de Bern, Suisse."
+              "text": "Ces conditions générales sont régies par et interprétées conformément au droit Bégique. Tout litige relatif à ces conditions sera porté devant les tribunaux compétents de Brussel, Bégique."
             }
           ],
           "contact": {
@@ -736,7 +738,7 @@
                     },
                     {
                       "subtitel": "10.2 Règlement des litiges",
-                      "inhoud": "Les litiges liés à ce Contrat seront d’abord soumis à des négociations de bonne foi. Si elles échouent, ils seront résolus par arbitrage/médiation à Bern."
+                      "inhoud": "Les litiges liés à ce Contrat seront d’abord soumis à des négociations de bonne foi. Si elles échouent, ils seront résolus par arbitrage/médiation à Amsterdam."
                     }
                   ]
                 },
@@ -901,7 +903,7 @@
                 "UpcomingEvents": {
                   "text1": "Heure de début",
                   "text2": "Heure de fin",
-                  "currencySign": "CHF"
+                  "currencySign": "€"
                 }
               },
               "Calender": {
@@ -1117,7 +1119,7 @@
                   {
                     "name": "Paiements",
                     "attributes": [
-                      {"currencySign": "CHF"},
+                      {"currencySign": "€"},
                       "date",
                       "minutes de pause"
                     ],
@@ -1408,7 +1410,7 @@
             "minPauze": "minutes de pause",
             "accepteren": "Accepter",
             "weigeren": "Refuser",
-            "currencySign": "CHF",
+            "currencySign": "€",
             "shift_statussen": [
               "disponible",
               "inscrit",
@@ -1428,7 +1430,7 @@
             "week": "semaine",
             "hvl_shifts": "shifts",
             "shift": "shift",
-            "currencySign": "CHF",
+            "currencySign": "€",
             "voldaan": "payé",
             "openstaand": "en attente"
           },
@@ -1436,18 +1438,18 @@
             "ToastMessage1": "Désinscrit du service !",
             "Toastmessage2": "Action non autorisée !",
             "localDateString": "fr-FR",
-            "currencySign": "CHF",
+            "currencySign": "€",
             "pauze": "min de pause"
           },
           "ShiftArrayCard": {
             "localDateString": "fr-FR",
-            "currencySign": "CHF"
+            "currencySign": "€"
           },
           "ShiftCard": {
             "ToastMessage1": "Désinscrit du shift !",
             "Toastmessage2": "Action non autorisée !",
             "localDateString": "fr-FR",
-            "currencySign": "CHF",
+            "currencySign": "€",
             "shift_statussen": [
               "disponible",
               "inscrit",
@@ -1460,7 +1462,7 @@
           },
           "VacancyCard": {
             "localDateString": "fr-FR",
-            "currencySign": "CHF",
+            "currencySign": "€",
             "hvl_shifts": "services",
             "hvl_sollicitaties": "candidatures",
             "kledingvoorschriften": [
@@ -1750,7 +1752,7 @@
               },
               "salaris": {
                 "fieldLabels": [
-                  "salaire horaire (CHF)",
+                  "salaire horaire",
                   "prime",
                   "Appliquer une prime",
                   "Type de prime",
@@ -1770,7 +1772,7 @@
                   "200%",
                   "Pourcentage de majoration"
                 ],
-                "currencySign": "(CHF)"
+                "currencySign": "(€)"
               }
             },
             "AvailabilityForm": {
@@ -1817,15 +1819,15 @@
                 "links": [
                   {
                     "name": "Comment ça marche",
-                    "href": "/employees"
+                    "href": "../employees"
                   },
                   {
                     "name": "Trouver du travail",
-                    "href": "/sign-up"
+                    "href": "../sign-up"
                   },
                   {
                     "name": "Contact",
-                    "href": "/contact"
+                    "href": "../contact"
                   }
                 ]
               },
@@ -1834,15 +1836,15 @@
                 "links": [
                   {
                     "name": "Tarifs",
-                    "href": "/pricing"
+                    "href": "../pricing"
                   },
                   {
                     "name": "Trouver des travailleurs",
-                    "href": "/sign-up"
+                    "href": "../sign-up"
                   },
                   {
                     "name": "FAQ",
-                    "href": "/faq"
+                    "href": "../faq"
                   }
                 ]
               },
@@ -1851,15 +1853,15 @@
                 "links": [
                   {
                     "name": "À propos de nous",
-                    "href": "/junter"
+                    "href": "../junter"
                   },
                   {
                     "name": "Carrières",
-                    "href": "/junter"
+                    "href": "../junter"
                   },
                   {
                     "name": "Partenaires",
-                    "href": "/junter"
+                    "href": "../junter"
                   }
                 ]
               },
@@ -1868,15 +1870,15 @@
                 "links": [
                   {
                     "name": "Contact",
-                    "href": "/contact"
+                    "href": "../contact"
                   },
                   {
                     "name": "Politique de confidentialité",
-                    "href": "/pp"
+                    "href": "../pp"
                   },
                   {
                     "name": "Conditions générales",
-                    "href": "/tou"
+                    "href": "../tou"
                   }
                 ]
               }
@@ -1922,8 +1924,8 @@
                 "Heures déclarées",
                 "En retard"
               ],
-              "per_Uur": "CHF/h",
-              "currencySign": "CHF",
+              "per_Uur": "€/h",
+              "currencySign": "€",
               "localDateString": "fr-FR"
             },
             "DeleteConfirmation": {
@@ -2136,7 +2138,7 @@
               "features": [
                 {
                   "name": "Salaire",
-                  "description": "`CHF ${vacature.uurloon} pour ${diensten.length}`",
+                  "description": "`€ ${vacature.uurloon} pour ${diensten.length}`",
                   "icon": "BanknotesIcon"
                 },
                 {
@@ -2162,11 +2164,11 @@
               ]
             },
             "EmployerPage": {
-              "currencySign": "CHF",
+              "currencySign": "€",
               "features": [
                 {
                   "name": "Salaire",
-                  "description": "`CHF ${vacature.uurloon} pour ${diensten.length}`",
+                  "description": "`€ ${vacature.uurloon} pour ${diensten.length}`",
                   "icon": "BanknotesIcon"
                 },
                 {
@@ -2261,7 +2263,7 @@
           },
           "OnboardingDialog": {
             "headTitle": "Inscrivez-vous pour commencer.",
-            "subTitle": "Choisissez ci-dessous si vous souhaitez vous inscrire en tant que freelance ou entreprise.",
+            "subTitle": "Choisissez ci-dessous si vous souhaitez vous inscrire en tant que travailleur ou entreprise.",
             "buttons": [
               "Travailleur",
               "Entreprise"

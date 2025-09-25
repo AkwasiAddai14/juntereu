@@ -4,6 +4,7 @@ import type { Locale } from '@/app/[lang]/dictionaries'; // define this type bas
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import Example from './VerifyForm';
 import { useEffect, useState } from 'react';
+import { use } from 'react';
 
 // Make this route request-bound so Clerk has context
 export const dynamic = "force-dynamic";
@@ -14,18 +15,19 @@ const supportedLocales: Locale[] = [
 ];
 
 type Props = {
-  params: { lang: Locale };
+  params: Promise<{ lang: Locale }>;
 };
 
 export default function VerifyPage({ params }: Props) {
+  const resolvedParams = use(params);
   const [dictionary, setDictionary] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDictionary = async () => {
       try {
-        if (params.lang && supportedLocales.includes(params.lang)) {
-          const dict = await getDictionary(params.lang);
+        if (resolvedParams.lang && supportedLocales.includes(resolvedParams.lang)) {
+          const dict = await getDictionary(resolvedParams.lang);
           setDictionary(dict);
         } else {
           // Fallback to English if locale not supported
@@ -46,7 +48,7 @@ export default function VerifyPage({ params }: Props) {
       }
     };
     fetchDictionary();
-  }, [params.lang]);
+  }, [resolvedParams.lang]);
 
   if (loading || !dictionary) {
     return <div>Loading...</div>;
@@ -55,6 +57,6 @@ export default function VerifyPage({ params }: Props) {
   const { pages, navigation, footer } = dictionary;
 
   return <Example pages={pages} navigation={navigation} footer={footer} params={{
-    lang: params.lang
+    lang: resolvedParams.lang
   }} />;
 }

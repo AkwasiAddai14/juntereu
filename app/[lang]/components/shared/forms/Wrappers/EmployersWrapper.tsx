@@ -4,22 +4,48 @@ import { useUser } from '@clerk/nextjs';
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import BedrijfsFormClient from '@/app/[lang]/components/shared/forms/CompanyForm';
+import { useEffect, useState } from 'react';
 
 interface Props {
   lang: Locale;
 }
 
-const BedrijfsFormWrapper = async ({ lang }: Props) => {
+const BedrijfsFormWrapper = ({ lang }: Props) => {
   const { user, isLoaded } = useUser();
-  if (!isLoaded) return null; // or a small skeleton
-  const { components, Validations } = await getDictionary(lang);
+  const [components, setComponents] = useState<any>(null);
+  const [validations, setValidations] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDictionary = async () => {
+      try {
+        const dict = await getDictionary(lang);
+        setComponents(dict.components);
+        setValidations(dict.Validations);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error loading dictionary:', error);
+        setLoading(false);
+      }
+    };
+    
+    fetchDictionary();
+  }, [lang]);
+
+  if (!isLoaded || loading || !components || !validations) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-sky-600"></div>
+      </div>
+    );
+  }
 
   return (
     <BedrijfsFormClient
       lang={lang}
       userId={user!.id}
       components={components}
-      validations={Validations}
+      validations={validations}
     />
   );
 };

@@ -4,7 +4,7 @@
                      {"name": "Mitarbeiter", "link": "employees"},
                      {"name": "Arbeitgeber", "link": "employers"},
                      {"name": "Kontakt", "link": "contact"}
-        ],
+                    ],
         "Taal":  {"name": "Sprache", "link": ""},
         "Log-in":  {"name": "Einloggen", "link": "sign-in"}
     },
@@ -171,7 +171,7 @@
             "Benefits": [
               {
                 "benefit": "Kosten",
-                "explanation": "Mit unserer Plattform profitieren Sie von einem transparenten und einfachen Preismodell, bei dem Sie nur für die tatsächlich geleisteten Stunden der Flex-Arbeiter zahlen, die Sie einladen. Laden Sie unbegrenzt Flex-Arbeiter ab 14,00 € pro Stunde ein.",
+                "explanation": "Mit unserer Plattform profitieren Sie von einem transparenten und einfachen Preismodell, bei dem Sie nur für die tatsächlich geleisteten Stunden der Flex-Arbeiter zahlen, die Sie einladen. Laden Sie unbegrenzt Flex-Arbeiter ab 16,50 € pro Stunde ein.",
                 "imageSrc": "euroBillsLogo",
                 "imageAlt": "Bills flying around."
               },
@@ -209,7 +209,7 @@
                 }
               ]
             },
-             "Xedular": {
+            "Xedular": {
               "hrmSection": {
       "eyebrow": "Workforce Management",
       "title": "Planen. Erfassen. Kommunizieren.",
@@ -378,10 +378,10 @@
               "subText": "Hast du eine Leidenschaft für Innovation und den Drang, etwas zu bewegen? Dann werde Teil unseres Teams und hilf uns, gemeinsam zu wachsen und erfolgreich zu sein.",
                 "vacancies": [
                     {
-                        "title": "Senior Account Manager",
+                        "title": "Account Manager",
                         "description": "Als Senior Account Manager sind Sie verantwortlich für die Betreuung wichtiger Kunden, den Aufbau starker Beziehungen und die Steigerung des Umsatzes. Sie arbeiten eng mit Kunden zusammen, um deren Bedürfnisse zu verstehen, maßgeschneiderte Lösungen anzubieten und deren Zufriedenheit mit unseren Dienstleistungen sicherzustellen.",
                         "salary": "€42.000 - €76.000",
-                        "location": "🇳🇱 Hoofddorp, NL"
+                        "location": "🇩🇪 Remote - Berlin, DE"
                     },
                     {
                         "title": "Global Marketing Manager",
@@ -393,7 +393,7 @@
                         "title": "Support-Mitarbeiter",
                         "description": "Als Support-Mitarbeiter sind Sie die erste Anlaufstelle für Freelancer und Unternehmen. Sie leisten Unterstützung, lösen Probleme und sorgen für eine hohe Kundenzufriedenheit, indem Sie Anfragen schnell und effizient bearbeiten.",
                         "salary": "€28.000 - €34.000",
-                        "location": "🇳🇱 Hoofddorp, NL"
+                        "location": "🇩🇪 Remote - Berlin, DE"
                     }
                 ]
             },
@@ -445,8 +445,8 @@
             },
           
             {   "naam": "Zeitarbeiter",
-                "prijs": "€14,00",
-                "prijsUitleg": "€10 x 1,4 (Umrechnungsfaktor)",
+                "prijs": "€19,20",
+                "prijsUitleg": "€12 x 1,6 (Umrechnungsfaktor)",
                 "features": [
                     "Weniger Verwaltungsaufwand",
                     "Sofortige Verfügbarkeit",
@@ -515,41 +515,42 @@
             "button3": "Status"
         
         },
+
         "privacypolicyPage": {
           "privacyPolicyEmployee": {
             "title": "Datenschutzrichtlinie",
             "subtitle": "Für Arbeitnehmer",
             "introduction": {
               "heading": "Einleitung",
-              "text": "Willkommen bei Junter. Wir schätzen Ihr Vertrauen in uns und nehmen den Schutz Ihrer Privatsphäre sehr ernst. Diese Datenschutzrichtlinie soll Sie darüber informieren, wie wir Ihre personenbezogenen Daten erfassen, verwenden, weitergeben und schützen, wenn Sie unsere Plattform nutzen."
+              "text": "Willkommen bei Junter. Wir schätzen Ihr Vertrauen in uns und nehmen Ihren Datenschutz sehr ernst. Diese Datenschutzrichtlinie soll Sie darüber informieren, wie wir Ihre personenbezogenen Daten erfassen, verwenden, weitergeben und schützen, wenn Sie unsere Plattform nutzen."
             },
             "section1": {
-              "heading": "1. Daten, die wir erfassen",
-              "text": "Wir erfassen verschiedene Arten von Daten, um unsere Dienstleistungen bereitstellen und verbessern zu können.\n\nPersonenbezogene Daten: Vorname, Nachname, Geburtsdatum, E-Mail-Adresse, Telefonnummer, Anschrift, Sozialversicherungsnummer (SV-Nummer), Umsatzsteuer-Identifikationsnummer (UID-Nummer) und Bankverbindung (IBAN).\nBerufliche Daten: Berufserfahrung, Fähigkeiten, Ausbildung, Profilbild und Bewertungen.\nPlattformnutzung: Informationen über Ihre Interaktionen mit unserer Plattform, wie die angebotenen oder angeforderten Dienste, Kommunikation mit Unternehmen und Ihre Teilnahme an Projekten."
+              "heading": "1. Daten, die wir erheben",
+              "text": "Wir erfassen verschiedene Arten von Daten, um unsere Dienste bereitzustellen und zu verbessern.\n\nPersonenbezogene Daten: Vorname, Nachname, Geburtsdatum, E-Mail-Adresse, Telefonnummer, Anschrift, Steueridentifikationsnummer (Steuer-ID), Umsatzsteuer-Identifikationsnummer (USt-IdNr.) und Bankverbindung (IBAN).\nBerufliche Daten: Berufserfahrung, Fähigkeiten, Ausbildung, Profilbild und Bewertungen.\nNutzung der Plattform: Informationen über Ihre Interaktionen mit unserer Plattform, wie die von Ihnen angebotenen oder angeforderten Dienstleistungen, Kommunikation mit Unternehmen und Ihre Teilnahme an Projekten."
             },
             "section2": {
               "heading": "2. Wie wir Ihre Daten verwenden",
-              "text": "Wir verwenden Ihre Daten zu folgenden Zwecken:\n\nDienstleistungserbringung: Um es Ihnen zu ermöglichen, Projekte zu finden und anzunehmen und damit Unternehmen Ihre Dienste buchen können.\nKommunikation: Um Sie in Bezug auf Ihr Konto, Ihre Projekte und andere relevante Themen zu kontaktieren.\nPlattformverbesserung: Um unsere Plattform und Dienstleistungen zu analysieren und zu verbessern.\nGesetzliche Verpflichtungen: Zur Erfüllung gesetzlicher und behördlicher Anforderungen."
+              "text": "Wir verwenden Ihre Daten zu folgenden Zwecken:\n\nDienstleistungen: Um Ihnen die Suche und Annahme von Projekten zu ermöglichen und Unternehmen die Buchung Ihrer Dienstleistungen zu erlauben.\nKommunikation: Um Sie bezüglich Ihres Kontos, Ihrer Projekte und anderen relevanten Angelegenheiten zu kontaktieren.\nPlattformverbesserung: Um unsere Plattform und Dienstleistungen zu analysieren und zu verbessern.\nGesetzliche Verpflichtungen: Um gesetzlichen und regulatorischen Anforderungen zu entsprechen."
             },
             "section3": {
               "heading": "3. Weitergabe Ihrer Daten",
-              "text": "Wir geben Ihre Daten nur dann an Dritte weiter, wenn dies zur Durchführung unserer Dienste erforderlich ist, wie zum Beispiel:\n\nUnternehmen: Damit sie Sie kontaktieren und Ihre Dienste buchen können.\nDienstleister: Für technischen Support und andere notwendige Dienstleistungen für den Betrieb unserer Plattform.\nBehörden: Wenn wir gesetzlich verpflichtet sind, Ihre Daten weiterzugeben."
+              "text": "Wir geben Ihre Daten nur dann an Dritte weiter, wenn dies zur Erbringung unserer Dienste erforderlich ist, z. B.:\n\nUnternehmen: Damit diese mit Ihnen in Kontakt treten und Ihre Dienstleistungen buchen können.\nDienstleister: Zur technischen Unterstützung und anderen notwendigen Dienstleistungen für den Betrieb unserer Plattform.\nBehörden: Wenn wir gesetzlich verpflichtet sind, Ihre Daten weiterzugeben."
             },
             "section4": {
               "heading": "4. Schutz Ihrer Daten",
-              "text": "Wir ergreifen geeignete technische und organisatorische Maßnahmen, um Ihre Daten vor unbefugtem Zugriff, Verlust, Zerstörung oder Veränderung zu schützen. Trotz unserer Bemühungen können wir die vollständige Sicherheit der Datenübertragung über das Internet nicht garantieren."
+              "text": "Wir ergreifen geeignete technische und organisatorische Maßnahmen, um Ihre Daten vor unbefugtem Zugriff, Verlust, Zerstörung oder Veränderung zu schützen. Trotz unserer Bemühungen können wir die Sicherheit der Datenübertragung über das Internet nicht vollständig garantieren."
             },
             "section5": {
               "heading": "5. Aufbewahrungsfristen",
-              "text": "Wir speichern Ihre personenbezogenen Daten nicht länger als für die Zwecke notwendig, für die sie erhoben wurden, es sei denn, eine längere Speicherfrist ist gesetzlich vorgeschrieben."
+              "text": "Wir bewahren Ihre personenbezogenen Daten nicht länger auf, als es für die Zwecke, für die sie erhoben wurden, erforderlich ist, es sei denn, eine längere Aufbewahrung ist gesetzlich vorgeschrieben."
             },
             "section6": {
               "heading": "6. Ihre Rechte",
-              "text": "Sie haben das Recht:\n\nZugang zu Ihren personenbezogenen Daten zu verlangen.\nBerichtigung unrichtiger oder unvollständiger Daten zu verlangen.\nLöschung Ihrer personenbezogenen Daten zu verlangen.\nEinschränkung der Verarbeitung Ihrer Daten zu verlangen.\nWiderspruch gegen die Verarbeitung Ihrer Daten einzulegen.\nÜbertragbarkeit Ihrer Daten zu verlangen.\nWenn Sie eines dieser Rechte ausüben möchten, kontaktieren Sie uns bitte unter support@junter.works."
+              "text": "Sie haben das Recht:\n\nZugang zu Ihren personenbezogenen Daten zu verlangen.\nBerichtigung unrichtiger oder unvollständiger Daten zu verlangen.\nLöschung Ihrer personenbezogenen Daten zu verlangen.\nEinschränkung der Verarbeitung Ihrer Daten zu verlangen.\nWiderspruch gegen die Verarbeitung Ihrer Daten einzulegen.\nDatenübertragbarkeit zu verlangen.\nWenn Sie eines dieser Rechte ausüben möchten, kontaktieren Sie uns bitte unter support@junter.works."
             },
             "section7": {
-              "heading": "7. Änderungen an dieser Datenschutzrichtlinie",
-              "text": "Wir können diese Datenschutzrichtlinie von Zeit zu Zeit ändern. Wir werden Sie über wesentliche Änderungen durch eine Mitteilung auf unserer Plattform oder durch direkte Benachrichtigung informieren."
+              "heading": "7. Änderungen dieser Datenschutzrichtlinie",
+              "text": "Wir können diese Datenschutzrichtlinie von Zeit zu Zeit ändern. Wir werden Sie über wesentliche Änderungen durch eine Mitteilung auf unserer Plattform oder direkt informieren."
             },
             "section8": {
               "heading": "8. Kontakt",
@@ -738,7 +739,7 @@
                     },
                     {
                       "subtitel": "10.2 Streitbeilegung",
-                      "inhoud": "Streitigkeiten aus oder im Zusammenhang mit diesem Vertrag werden zunächst durch Verhandlungen in gutem Glauben beigelegt. Falls dies fehlschlägt, werden sie durch Schieds-/Mediationsverfahren in Salzburg entschieden."
+                      "inhoud": "Streitigkeiten aus oder im Zusammenhang mit diesem Vertrag werden zunächst durch Verhandlungen in gutem Glauben beigelegt. Falls dies fehlschlägt, werden sie durch Schieds-/Mediationsverfahren in Berlin entschieden."
                     }
                   ]
                 },
@@ -771,9 +772,8 @@
                 "email2": "billing@junter.works"
               }
             }
-      }
-    },
-   
+          }
+        },
  
     "footer": {
         "navLinks": [
@@ -1430,7 +1430,9 @@
               "week": "Woche",
               "hvl_shifts": "Schichten",
               "shift": "Schicht",
-              "currencySign": "€"
+              "currencySign": "€",
+              "voldaan": "bezahlt",
+              "openstaand": "offen"
             },
             "JobCard": {
               "ToastMessage1": "Vom Dienst abgemeldet!",
@@ -2261,15 +2263,14 @@
             },
             "OnboardingDialog": {
               "headTitle": "Registriere dich, um zu starten.",
-              "subTitle": "Wähle unten, ob du dich als Freelancer oder als Unternehmen registrieren möchtest.",
+              "subTitle": "Wähle unten, ob du dich als arbeitnehmer oder als Unternehmen registrieren möchtest.",
               "buttons": [
                 "Arbeitnehmer",
                 "Unternehmen"
               ]
-            }
-            
+            }            
       }
-  } ,
+  }  ,
   "Validations": {
     "CheckoutValidations": {
       "Begintijd": "Geben Sie eine gültige Startzeit ein.",

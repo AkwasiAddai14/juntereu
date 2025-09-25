@@ -2263,7 +2263,7 @@
           },
           "OnboardingDialog": {
             "headTitle": "Inscrivez-vous pour commencer.",
-            "subTitle": "Choisissez ci-dessous si vous souhaitez vous inscrire en tant que freelance ou entreprise.",
+            "subTitle": "Choisissez ci-dessous si vous souhaitez vous inscrire en tant que travailleur ou entreprise.",
             "buttons": [
               "Travailleur",
               "Entreprise"

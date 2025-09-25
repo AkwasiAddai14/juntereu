@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
@@ -10,8 +13,38 @@ interface OnboardingDialogProps {
   lang: Locale
 }
 
-export default async function OnboardingDialog({ onFreelancerSelected, onCompanySelected, lang }: OnboardingDialogProps) {
-    const { components } = await getDictionary(lang);
+export default function OnboardingDialog({ onFreelancerSelected, onCompanySelected, lang }: OnboardingDialogProps) {
+  const [components, setComponents] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDictionary = async () => {
+      try {
+        const dict = await getDictionary(lang);
+        setComponents(dict.components);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error loading dictionary:', error);
+        setLoading(false);
+      }
+    };
+    
+    fetchDictionary();
+  }, [lang]);
+
+  if (loading || !components) {
+    return (
+      <Dialog open onClose={() => {}} className="fixed inset-0 z-10" as="div">
+        <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        <div className="fixed inset-0 z-10 flex items-center justify-center">
+          <DialogPanel className="relative overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl sm:max-w-lg sm:p-6">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto"></div>
+            <p className="mt-4 text-center text-gray-600">Loading...</p>
+          </DialogPanel>
+        </div>
+      </Dialog>
+    );
+  }
     
   return (
     <Dialog open onClose={() => {}} className="fixed inset-0 z-10" as="div">

@@ -2278,7 +2278,7 @@
               },
               "OnboardingDialog": {
                 "headTitle": "Registe-se para começar.",
-                "subTitle": "Escolha abaixo se deseja inscrever-se como freelancer ou como empresa.",
+                "subTitle": "Escolha abaixo se deseja inscrever-se como trabalhador ou como empresa.",
                 "buttons": [
                   "Trabalhador",
                   "Empresa"

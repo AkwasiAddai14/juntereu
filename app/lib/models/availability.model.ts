@@ -72,4 +72,4 @@ const AvailabilitySchema = new Schema<IAvailability>({
 });
 
 // Create and export the model
-export const Availability = mongoose.model<IAvailability>('Availability', AvailabilitySchema);
+export const Availability = mongoose.models.Availability || mongoose.model<IAvailability>('Availability', AvailabilitySchema);
