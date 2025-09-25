@@ -1,6 +1,6 @@
 import { ClerkProvider } from '@clerk/nextjs'
 import { Inter } from 'next/font/google'
-import { frFR, svSE, esES, ptPT, nbNO, itIT, deDE, fiFI, nlNL, daDK, arSA } from '@clerk/localizations'
+import { frFR, svSE, esES, ptPT, nbNO, itIT, deDE, fiFI, nlNL, daDK, arSA, enGB } from '@clerk/localizations'
 import '@/app/[lang]/globals.css';
 
 export const metadata = {
@@ -19,7 +19,8 @@ const localeMap: Record<string, any> = {
   fi: fiFI,
   nl: nlNL,
   da: daDK,
-  ar: arSA
+  ar: arSA,
+  en: enGB
 }
 
 const inter = Inter({subsets: ["latin"]})
