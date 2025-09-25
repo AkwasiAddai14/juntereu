@@ -312,7 +312,7 @@
         },
         "PhoneHero": {
           "CVtekst":"Snel met een CV aanmelden?",
-          "sendMessage": "stuur een bericht via WhatsApp",
+          "sendMessage": "Stuur een bericht via WhatsApp",
           "HeadTekst": "Werk flexibel. Verdien slim.",
           "SubTekst": "Met Junter ontdek je snel betaalde shifts en klussen bij betrouwbare bedrijven. Kies zelf waar en wanneer je werkt, en word direct uitbetaald."
 
@@ -774,7 +774,7 @@
             }
         ],
         "subscriptionCTA": {
-            "headText":  "Aboneer op onze nieuwsbrief",
+            "headText":  "Abonneer op onze nieuwsbrief",
             "subText": "Ontvang wekelijks een overzicht van (nieuwe) klussen bij jou in de buurt en blijf op de hoogte van het laatste nieuws!",
             "placeholderText": "Vul je emailadres in",
             "button": "Aboneer"

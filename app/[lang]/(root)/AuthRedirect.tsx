@@ -36,7 +36,7 @@ export default function AuthRedirect({ params }: Props) {
     }
   }, [isLoaded, user]);
 
-
+console.log("user: ", user)
  /*  useEffect(() => {
     const browserLang = navigator.language.split('-')[0]; // bijv. 'nl' uit 'nl-NL'
 
@@ -50,8 +50,8 @@ export default function AuthRedirect({ params }: Props) {
 
   
   useEffect(() => {
-    const lang = pathname.split('/')[1]
-    if (!supportedLocales.includes(lang as any)) {
+    const lang = pathname ? pathname.split('/')[1] : '';
+    if (pathname && !supportedLocales.includes(lang as any)) {
       router.replace(`/${pathname}`)
     }
   }, [pathname])

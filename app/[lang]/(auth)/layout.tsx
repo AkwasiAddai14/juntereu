@@ -24,15 +24,16 @@ const localeMap: Record<string, any> = {
 
 const inter = Inter({subsets: ["latin"]})
 
-export default function AuthLayout({
+export default async function AuthLayout({
   children, params
 } : 
 {
   children : React.ReactNode
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }){
 
-  const selectedLocalization = localeMap[params.lang] || nlNL;
+  const resolvedParams = await params;
+  const selectedLocalization = localeMap[resolvedParams.lang] || nlNL;
 
    // Directly get the value from process.env
   const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;

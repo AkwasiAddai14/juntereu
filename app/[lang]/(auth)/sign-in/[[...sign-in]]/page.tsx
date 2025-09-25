@@ -11,14 +11,15 @@ const supportedLocales: Locale[] = [
   'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
-export default function Page({ params }: { params: { lang: string } }) {
-  const lang = supportedLocales.includes(params.lang as Locale) ? (params.lang as Locale) : 'en';
+export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
+  const resolvedParams = await params;
+  const lang = supportedLocales.includes(resolvedParams.lang as Locale) ? (resolvedParams.lang as Locale) : 'en';
   return (
     <>
       <NavBar lang={lang} />
       <div className="flex flex-col justify-center items-center min-h-screen bg-white">
       <div className="flex items-center justify-center w-full">
-          <SignIn path="/sign-in" />
+          <SignIn />
         </div>
       </div>
       <Footer lang={lang} />
