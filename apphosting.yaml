@@ -89,7 +89,7 @@ runConfig:
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_NL_URL
+    - variable: MONGODB_NL_URL
       valueFrom: { secretKeyRef: { name: MONGODB_NL_URL, key: latest } }
       availability:
       - BUILD
@@ -174,7 +174,7 @@ runConfig:
       availability:
       - BUILD
       - RUNTIME
-    - name: DB_NAME
+    - variable: DB_NAME
       valueFrom: { secretKeyRef: { name: DB_NAME, key: latest } }
       availability:
       - BUILD
