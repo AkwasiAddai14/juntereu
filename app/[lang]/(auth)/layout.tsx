@@ -37,7 +37,7 @@ export default async function AuthLayout({
   const selectedLocalization = localeMap[resolvedParams.lang] || nlNL;
 
    // Directly get the value from process.env
-  const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE;
+  const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
   // IMPORTANT: Add a check here to ensure the key is present.
   // If this throws, it means the variable is NOT being passed during the build process.
