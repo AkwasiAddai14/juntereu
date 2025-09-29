@@ -9,6 +9,11 @@ type ShiftArray = Record<string, any>;
 async function getDb() {
   if (!client) {
     const mongoUrl = process.env.MONGODB_NL_URL;
+    console.log('Environment variables check:');
+    console.log('MONGODB_NL_URL:', mongoUrl ? 'SET' : 'NOT SET');
+    console.log('DB_NAME:', process.env.DB_NAME ? 'SET' : 'NOT SET');
+    console.log('All env vars:', Object.keys(process.env).filter(key => key.includes('MONGODB') || key.includes('DB')));
+    
     if (!mongoUrl) {
       throw new Error('MONGODB_NL_URL environment variable is not set');
     }
