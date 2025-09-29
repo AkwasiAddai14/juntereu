@@ -8,10 +8,20 @@ type ShiftArray = Record<string, any>;
 
 async function getDb() {
   if (!client) {
-    client = new MongoClient(process.env.MONGODB_NL_URL!);
+    const mongoUrl = process.env.MONGODB_NL_URL;
+    if (!mongoUrl) {
+      throw new Error('MONGODB_NL_URL environment variable is not set');
+    }
+    client = new MongoClient(mongoUrl);
     await client.connect();
   }
-  const db = client.db(process.env.DB_NAME);
+  
+  const dbName = process.env.DB_NAME;
+  if (!dbName) {
+    throw new Error('DB_NAME environment variable is not set');
+  }
+  
+  const db = client.db(dbName);
   if (!initialized) {
     initialized = true;
     // Unieke index op hash (dedupe). 'sparse' zodat docs zonder hash niet falen.

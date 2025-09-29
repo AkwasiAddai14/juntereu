@@ -8,17 +8,22 @@ import { match as matchLocale } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 
 function getLocale(request: NextRequest): string | undefined {
-  const negotiatorHeaders: Record<string, string> = {}
-  request.headers.forEach((value, key) => {
-    negotiatorHeaders[key] = value
-  })
-  // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages()
-  const locale = matchLocale(languages, locales, i18n.defaultLocale)
-  console.log('Negotiator languages:', languages)
-  console.log('Matched locale:', locale)
-  return locale
+  try {
+    const negotiatorHeaders: Record<string, string> = {}
+    request.headers.forEach((value, key) => {
+      negotiatorHeaders[key] = value
+    })
+    // @ts-ignore locales are readonly
+    const locales: string[] = i18n.locales
+    const languages = new Negotiator({ headers: negotiatorHeaders }).languages()
+    const locale = matchLocale(languages, locales, i18n.defaultLocale)
+    console.log('Negotiator languages:', languages)
+    console.log('Matched locale:', locale)
+    return locale
+  } catch (error) {
+    console.error('Error in getLocale:', error)
+    return i18n.defaultLocale
+  }
 };
 
 function isLocale(locale: string): locale is typeof i18n.locales[number] {
@@ -26,10 +31,15 @@ function isLocale(locale: string): locale is typeof i18n.locales[number] {
 };
 
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname
+  const pathname = request.nextUrl.pathname || ''
   
   // Skip middleware for API routes
   if (pathname.startsWith('/api/')) {
+    return NextResponse.next();
+  }
+  
+  // Additional safety check for empty pathname
+  if (!pathname || pathname === '/') {
     return NextResponse.next();
   }
   
