@@ -73,11 +73,22 @@ function sanitizeEmployer(input: any) {
 
 // ---------- handler ----------
 export default async function handler(req: any, res: any) {
-  if (req.headers["x-api-key"] !== process.env.API_KEY) {
+  // Enable CORS for n8n requests
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-api-key, x-country');
+
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  // Check for API key (optional for development)
+  if (process.env.API_KEY && req.headers["x-api-key"] !== process.env.API_KEY) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
-  if (req.method === "GET") return res.json({ ok: true });
+  if (req.method === "GET") return res.json({ ok: true, timestamp: new Date().toISOString() });
 
   try {
     
@@ -99,7 +110,11 @@ export default async function handler(req: any, res: any) {
       if (!hasClerk) return res.status(400).json({ error: "clerkId is required for insert" });
       doc.createdAt = new Date();
       const r = await col.insertOne(doc);
-      return res.status(201).json({ insertedId: r.insertedId });
+      return res.status(201).json({ 
+        success: true,
+        insertedId: r.insertedId,
+        message: "Employer created successfully"
+      });
     }
 
     if (req.method === "PUT") {
@@ -114,14 +129,29 @@ export default async function handler(req: any, res: any) {
         { $set: doc, $setOnInsert: { createdAt: new Date() } },
         { upsert: true, returnDocument: "after" }
       );
-      return res.json(r!.value);
+      return res.json({
+        success: true,
+        data: r!.value,
+        message: "Employer updated successfully"
+      });
     }
 
     return res.status(405).json({ error: "Method Not Allowed" });
   } catch (e: any) {
+    console.error('Employers API Error:', e);
+    
     if (e?.code === 11000) {
       return res.status(409).json({ error: "Duplicate key (clerkId or CompanyRegistrationNumber)" });
     }
-    return res.status(400).json({ error: e?.message || String(e) });
+    
+    // MongoDB connection errors
+    if (e?.name === 'MongoNetworkError' || e?.message?.includes('connection')) {
+      return res.status(503).json({ error: "Database connection failed" });
+    }
+    
+    return res.status(500).json({ 
+      error: e?.message || String(e),
+      type: e?.name || 'UnknownError'
+    });
   }
 }

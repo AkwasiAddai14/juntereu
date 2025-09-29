@@ -4,6 +4,8 @@ import { MongoClient, ObjectId } from "mongodb";
 let client: MongoClient | null = null;
 let initialized = false;
 
+type ShiftArray = Record<string, any>;
+
 async function getDb() {
   if (!client) {
     client = new MongoClient(process.env.MONGODB_NL_URL!);
@@ -41,52 +43,97 @@ function makeHash(doc: any) {
 
 // ----- Handler -----
 export default async function handler(req: any, res: any) {
-  // Eenvoudige header-auth
-  if (req.headers["x-api-key"] !== process.env.API_KEY) {
+  // Enable CORS for n8n requests
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-api-key, x-country');
+
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  // Check for API key (optional for development)
+  if (process.env.API_KEY && req.headers["x-api-key"] !== process.env.API_KEY) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
   try {
+    // Ensure body is an object
+    if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body)) {
+      return res.status(400).json({ error: 'Body must be a JSON object (the shiftArray doc).' });
+    }
+
+    // Accept both {doc: {...}} and raw {...}
+    const doc: ShiftArray = (req.body.doc && typeof req.body.doc === 'object')
+      ? req.body.doc
+      : req.body;
+
+    // Very light normalization (keep server strictness minimal)
+    if (!doc.title || !doc.function || !doc.employerName) {
+      return res.status(400).json({ error: 'Missing required fields: title, function, employerName' });
+    }
+
+    // Connectie met DB en collectie  
     const db = await getDb();
-    const col = db.collection("shiftArrays");
+    const col = db.collection("shiftarrays");
 
     if (req.method === "GET") {
       // Healthcheck
-      return res.json({ ok: true });
+      return res.json({ ok: true, timestamp: new Date().toISOString() });
     }
 
     // Payload klonen en casten
-    const doc = { ...(req.body || {}) };
-    doc.employer = toOid(doc.employer);
-    doc.startingDate = toDate(doc.startingDate);
-    doc.endingDate = toDate(doc.endingDate);
+    const processedDoc = { ...doc };
+    processedDoc.employer = toOid(processedDoc.employer);
+    processedDoc.startingDate = toDate(processedDoc.startingDate);
+    processedDoc.endingDate = toDate(processedDoc.endingDate);
 
     // Hash voor dedupe (title+adres+startdatum+starttijd)
-    if (!doc.hash) doc.hash = makeHash(doc);
+    if (!processedDoc.hash) processedDoc.hash = makeHash(processedDoc);
 
     if (req.method === "POST") {
       // Insert (faalt bij duplicaat hash)
-      doc.createdAt = new Date();
-      const r = await col.insertOne(doc);
-      return res.status(201).json({ insertedId: r.insertedId });
+      processedDoc.createdAt = new Date();
+      const r = await col.insertOne(processedDoc);
+      return res.status(201).json({ 
+        success: true,
+        insertedId: r.insertedId,
+        message: "Shift array created successfully"
+      });
     }
 
     if (req.method === "PUT") {
       // Upsert (aanrader): update of insert wanneer nieuw
       const r = await col.findOneAndUpdate(
-        { hash: doc.hash },
-        { $set: doc, $setOnInsert: { createdAt: new Date() } },
+        { hash: processedDoc.hash },
+        { $set: processedDoc, $setOnInsert: { createdAt: new Date() } },
         { upsert: true, returnDocument: "after" }
       );
-      return res.json(r!.value);
+      return res.json({
+        success: true,
+        data: r!.value,
+        message: "Shift array updated successfully"
+      });
     }
 
     return res.status(405).json({ error: "Method Not Allowed" });
   } catch (e: any) {
+    console.error('API Error:', e);
+    
     // Duplicate key error netjes teruggeven
     if (e?.code === 11000) {
       return res.status(409).json({ error: "Duplicate (hash already exists)" });
     }
-    return res.status(400).json({ error: e?.message || String(e) });
+    
+    // MongoDB connection errors
+    if (e?.name === 'MongoNetworkError' || e?.message?.includes('connection')) {
+      return res.status(503).json({ error: "Database connection failed" });
+    }
+    
+    return res.status(500).json({ 
+      error: e?.message || String(e),
+      type: e?.name || 'UnknownError'
+    });
   }
 }
