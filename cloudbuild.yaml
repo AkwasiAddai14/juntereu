@@ -1,15 +1,4 @@
 steps:
-- id: 'fetch-secrets'
-  name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    export NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$$(gcloud secrets versions access latest --secret=CLERK_PK --format='ge' | tr -d '\n' | base64 --decode)
-    export MONGODB_NL_URL=$$(gcloud secrets versions access latest --secret=MONGODB_NL_URL --format='ge' | tr -d '\n' | base64 --decode)
-    export DB_NAME=$$(gcloud secrets versions access latest --secret=DB_NAME --format='ge' | tr -d '\n' | base64 --decode)
-
-steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['ci']
 - name: 'gcr.io/cloud-builders/npm'
@@ -17,5 +6,5 @@ steps:
   env:
   - 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsuanVudGVyLmV1JA'
   - 'CLERK_SECRET_KEY=sk_live_hEUWpfMYNnfUlApiG6l6b8uJLEatla9vrl3lyhvssW'
-  - 'MONGODB_NL_URL=${_MONGODB_NL_URL}'
-  - 'DB_NAME=${_DB_NAME}'       
+  - 'MONGODB_NL_URL=mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Nederland?retryWrites=true&w=majority&appName=thejunter'
+  - 'DB_NAME=juntereu'       
