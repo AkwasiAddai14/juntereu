@@ -10,7 +10,7 @@ async function getDb() {
   if (!client) {
     // Use fallback values if environment variables are not available
     const mongoUrl = process.env.MONGODB_NL_URL || 'mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Nederland?retryWrites=true&w=majority&appName=thejunter';
-    const dbName = process.env.DB_NAME || 'juntereu';
+    const dbName = process.env.DB_NAME || 'Nederland';
     
     console.log('Environment variables check:');
     console.log('MONGODB_NL_URL:', process.env.MONGODB_NL_URL ? 'SET' : 'NOT SET (using fallback)');
@@ -21,7 +21,7 @@ async function getDb() {
     await client.connect();
   }
   
-  const dbName = process.env.DB_NAME || 'juntereu';
+  const dbName = process.env.DB_NAME || 'Nederland';
   const db = client.db(dbName);
   if (!initialized) {
     initialized = true;
