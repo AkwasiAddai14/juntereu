@@ -101,15 +101,15 @@ const BedrijfsForm = ({ lang, userId, components, validations }: ClientProps) =>
         }
     };
     const getUserPhoneNumber = (user: any) => {
-        if (user?.primaryPhoneNumber) {
-          return user.primaryPhoneNumber;
+        if (user?.primaryPhoneNumber?.phoneNumber) {
+          return user.primaryPhoneNumber.phoneNumber;
         }
         
         const primaryPhone = user?.phoneNumbers?.find(
           (phoneNumber: any) => phoneNumber.id === user?.primaryPhoneNumberId
         );
       
-        return primaryPhone?.primaryPhoneNumber || "";
+        return primaryPhone?.phoneNumber || "";
       };
     const { register, handleSubmit, watch, reset, trigger, setValue, formState: { errors } } = useForm<Inputs>({
         resolver: zodResolver(createCompanyValidation),
@@ -303,39 +303,31 @@ if (files.length > 0) {
             <div className="border-b border-gray-900/10 pb-12">
                 <h2 className="text-base font-semibold mt-10 leading-7 text-gray-900">{components.forms.CompanyForm.headTitle}</h2>
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div>
-                            <label htmlFor="location" className="block text-sm/6 font-medium text-gray-900">
-                              {components.forms.CompanyForm.location}
-                            </label>
-                            <div className="mt-2 grid grid-cols-1">
-                              {countries.map((item) => (
-                  <div
-                    key={item.name}
-                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
-                  >
-                    <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <item.icon 
-                        // className="size-6 text-gray-600 group-hover:text-indigo-600" 
-                        aria-hidden="true" 
-                    />
-                    </div>
-                    <select
-                                id={item.id}
-                                name={item.name}
-                                defaultValue={countries[0].name}
-                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                              >
-                                <option>{item.name}</option>
-                               
-                              </select>
-                  </div>
-                ))}
-                              <ChevronDownIcon
+                <div className="sm:col-span-6">
+                    <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
+                        {components.forms.CompanyForm.location}
+                    </label>
+                    <div className="mt-2">
+                        <div className="relative">
+                            <select
+                                id="country"
+                                {...register('country', { required: true })}
+                                className="block w-full appearance-none rounded-md border-0 py-1.5 pl-3 pr-8 text-base text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            >
+                                {countries.map((country) => (
+                                    <option key={country.name} value={country.name}>
+                                        {country.icon} {country.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <ChevronDownIcon
+                                className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500"
                                 aria-hidden="true"
-                               className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-                             />
-                           </div>
-                         </div>
+                            />
+                        </div>
+                        {errors.country && <p className="mt-2 text-sm text-red-600">{errors.country.message}</p>}
+                    </div>
+                </div>
                     <div className="sm:col-span-6">
                         <label htmlFor="kvk" className="block text-sm font-medium leading-6 text-gray-900">
                             {components.forms.CompanyForm.formItems[0]}
@@ -495,20 +487,21 @@ if (files.length > 0) {
                     </div>
 
                     <div className="sm:col-span-6">
-                        <label htmlFor="iban" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="vatid" className="block text-sm font-medium leading-6 text-gray-900">
                             {components.forms.CompanyForm.formItems[8]}
                         </label>
                         <p className="text-sm text-slate-400">({components.forms.CompanyForm.optioneel})</p>
                         <div className="mt-2">
                             <input
-                                id="btwnr"
+                                id="vatid"
                                 {...register('VATidnr')}
                                 type="text"
-                                autoComplete="btwid"
+                                autoComplete="vat-id"
+                                placeholder="Enter your VAT ID number"
                                 className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
-                            {errors.iban && (
-                                <p className="text-red-500 text-sm">{errors.iban.message}</p>
+                            {errors.VATidnr && (
+                                <p className="text-red-500 text-sm">{errors.VATidnr.message}</p>
                             )}
                         </div>
                     </div>
@@ -524,6 +517,7 @@ if (files.length > 0) {
                                 {...register('iban')}
                                 type="text"
                                 autoComplete="iban"
+                                placeholder="Enter your IBAN"
                                 className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
                             {errors.iban && (

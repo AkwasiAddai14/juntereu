@@ -54,7 +54,7 @@ type Props = {
 };
 
 
-const EmployeeForm = async ({ lang, userId, user, components }: Props) => {
+const EmployeeForm = ({ lang, userId, user, components }: Props) => {
   const [files, setFiles] = useState<File[]>([]);
   const [currentStep, setCurrentStep] = useState(0);
   const [previousStep, setPreviousStep] = useState(0);
@@ -289,40 +289,32 @@ if (files.length > 0) {
                     <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
                       {components.forms.EmployeeForm.subTtitle}
                     </p>
-                    <div className="mt-10 space-y-8  pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
-                    <div>
-                            <label htmlFor="location" className="block text-sm/6 font-medium text-gray-900">
-                              {components.forms.EmployeeForm.Location}
-                            </label>
-                            <div className="mt-2 grid grid-cols-1">
-                              {countries.map((item) => (
-                  <div
-                    key={item.name}
-                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
-                  >
-                    <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <item.icon 
-                        // className="size-6 text-gray-600 group-hover:text-sky-600" 
-                        aria-hidden="true" 
-                    />
-                    </div>
-                    <select
-                                id={item.name}
-                                name={item.name}
-                                defaultValue={countries[0].name}
-                                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600 sm:text-sm/6"
-                              >
-                                <option>{item.name}</option>
-                               
-                              </select>
-                  </div>
-                ))}
-                              <ChevronDownIcon
-                                aria-hidden="true"
-                               className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-                             />
-                           </div>
-                         </div>
+                    <div className="mt-10 space-y-8 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
+                      <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                        <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                          {components.forms.EmployeeForm.Location}
+                        </label>
+                        <div className="mt-2 sm:col-span-2 sm:mt-0">
+                          <div className="relative">
+                            <select
+                              id="country"
+                              {...register('country', { required: true })}
+                              className="block w-full appearance-none rounded-md border-0 py-1.5 pl-3 pr-8 text-base text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                            >
+                              {countries.map((country) => (
+                                <option key={country.name} value={country.name}>
+                                  {country.icon} {country.name}
+                                </option>
+                              ))}
+                            </select>
+                            <ChevronDownIcon
+                              className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500"
+                              aria-hidden="true"
+                            />
+                          </div>
+                          {errors.country && <p className="mt-2 text-sm text-red-600">{errors.country.message}</p>}
+                        </div>
+                      </div>
                       <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                         <label htmlFor="voornaam" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
                           {components.forms.EmployeeForm.formItems[0]}
