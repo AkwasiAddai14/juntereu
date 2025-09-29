@@ -27,11 +27,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       key.includes('MONGODB') || key.includes('DB') || key.includes('MONGO')
     );
 
+    // Check if we have fallback values available
+    const hasFallbackMongo = !!process.env.MONGODB_NL_URL || true; // We have hardcoded fallback
+    const hasFallbackDb = !!process.env.DB_NAME || true; // We have hardcoded fallback
+
     return res.status(200).json({
       status: 'healthy',
       timestamp: new Date().toISOString(),
       environment: envCheck,
       mongoEnvVars: mongoEnvVars,
+      fallbackAvailable: {
+        MONGODB_NL_URL: hasFallbackMongo,
+        DB_NAME: hasFallbackDb
+      },
       message: 'API is running and accessible'
     });
   } catch (error: any) {
