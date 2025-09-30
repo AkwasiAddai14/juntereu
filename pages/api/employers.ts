@@ -10,10 +10,20 @@ let initialized = false;
 
 async function getDb() {
   if (!client) {
-    client = new MongoClient(process.env.MONGO_URI!);
+    // Use fallback values if environment variables are not available
+    const mongoUrl = process.env.MONGO_URI || process.env.MONGODB_NL_URL || 'mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Nederland?retryWrites=true&w=majority&appName=thejunter';
+    
+    console.log('Employers API - Environment variables check:');
+    console.log('MONGO_URI:', process.env.MONGO_URI ? 'SET' : 'NOT SET');
+    console.log('MONGODB_NL_URL:', process.env.MONGODB_NL_URL ? 'SET' : 'NOT SET');
+    console.log('Using fallback:', !process.env.MONGO_URI && !process.env.MONGODB_NL_URL);
+    
+    client = new MongoClient(mongoUrl);
     await client.connect();
   }
-  const db = client.db(process.env.DB_NAME);
+  
+  const dbName = process.env.DB_NAME || 'Nederland';
+  const db = client.db(dbName);
   if (!initialized) {
     initialized = true;
     // Unieke indexen voor dedupe en snelle lookups
