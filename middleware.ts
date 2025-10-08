@@ -27,6 +27,12 @@ function isLocale(locale: string): locale is typeof i18n.locales[number] {
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
+  
+  // Skip middleware for API routes - let them pass through without language prefix
+  if (pathname.startsWith('/api/')) {
+    return NextResponse.next();
+  }
+  
   //const { pathname } = request.nextUrl;
   const pathnameLocale = pathname.split('/')[1]; // haalt 'en' uit '/en/nlBE'
   const isValidLocale = i18n.locales.includes(pathnameLocale as Locale);
@@ -73,7 +79,7 @@ export const config = {
     // Skip Next.js internals and all static files, unless found in search params
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
     '/((?!api|_next/static|_next/image|favicon.ico).*)',
-    // Always run for API routes
-    '/(api|trpc)(.*)',
+    // Skip API routes completely - they don't need language routing
+    '/((?!api).*)',
   ],
 };
