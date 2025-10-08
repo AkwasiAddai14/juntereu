@@ -1,0 +1,9 @@
+@tailwind base; /* Preflight will be injected here */
+
+@tailwind components;
+
+@tailwind utilities;
+
+:root {
+    --radius: 0.5rem; /* of elke andere waarde zoals 8px, 1rem, etc. */
+  }

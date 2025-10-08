@@ -190,8 +190,8 @@ const page = async ({ params }: { params: { lang: string } }) => {
                 <dl className="w-64 space-y-8 xl:w-80">
                     {pages.employeesPage.Benefits.map((stat) => (
                         <div key={stat.benefit} className="flex flex-col-reverse gap-y-4">
-                            <dt className="text-base leading-7 text-gray-600">{stat.subText}</dt>
-                            <dd className="text-5xl font-semibold tracking-tight text-gray-900">{stat.benefit}</dd>
+                            <dt className="text-base leading-7 text-gray-600">{stat.benefit}</dt>
+                            <dd className="text-5xl font-semibold tracking-tight text-gray-900">{stat.subText}</dd>
                         </div>
                     ))}
                 </dl>
