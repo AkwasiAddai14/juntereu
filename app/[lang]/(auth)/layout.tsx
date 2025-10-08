@@ -1,5 +1,4 @@
 import { ClerkProvider } from '@clerk/nextjs'
-import { Inter } from 'next/font/google'
 import { frFR, svSE, esES, ptPT, nbNO, itIT, deDE, fiFI, nlNL, daDK, arSA, enGB } from '@clerk/localizations'
 import '@/app/[lang]/globals.css';
 
@@ -23,7 +22,6 @@ const localeMap: Record<string, any> = {
   en: enGB
 }
 
-const inter = Inter({subsets: ["latin"]})
 
 export default async function AuthLayout({
   children, params
@@ -50,11 +48,9 @@ export default async function AuthLayout({
     publishableKey={clerkPublishableKey}
     localization={selectedLocalization}
     >
-      <html lang="en">
-       <body className={`${inter.className} bg-dark-1`}>
+      <div className="bg-dark-1 min-h-screen">
         {children}
-       </body>
-      </html>
+      </div>
     </ClerkProvider>
   )
 };
