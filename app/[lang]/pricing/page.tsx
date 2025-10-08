@@ -100,7 +100,7 @@ export default function Example({ params }: { params: Promise<{ lang: string }> 
         <div className="-mt-80">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto grid max-w-md grid-cols-1 gap-8 lg:max-w-4xl lg:grid-cols-2">
-              {pages.pricingPage.pricingCards.map((tier) => (
+              {pages.pricingPage.pricingCards.map((tier: { naam: string, prijs: string, prijsUitleg: string, features: string[], button: string}) => (
                 <div
                   key={tier.naam}
                   className="flex flex-col justify-between rounded-3xl bg-white p-8 shadow-xl ring-1 ring-gray-900/10 sm:p-10"
@@ -115,7 +115,7 @@ export default function Example({ params }: { params: Promise<{ lang: string }> 
                     </div>
                     <p className="mt-6 text-base/7 text-gray-600">{tier.prijsUitleg}</p>
                     <ul role="list" className="mt-10 space-y-4 text-sm/6 text-gray-600">
-                      {tier.features.map((feature) => (
+                      {tier.features.map((feature: string) => (
                         <li key={feature} className="flex gap-x-3">
                           <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-sky-600" />
                           {feature}

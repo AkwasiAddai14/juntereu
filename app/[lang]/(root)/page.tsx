@@ -5,7 +5,7 @@ import type { Locale } from '@/app/[lang]/dictionaries'; // define this type bas
 import { Faqs }  from "@/app/[lang]/components/homepage/FAQs";
 import Branches from "@/app/[lang]/components/homepage/Branches";
 import BranchesSimple from "@/app/[lang]/components/homepage/BranchesSimple";
-import  Hero  from "@/app/[lang]/components/homepage/HeroSection";
+import Hero from "@/app/[lang]/components/homepage/HeroSection";
 import { Features }  from "@/app/[lang]/components/homepage/Features";
 import Footer from '@/app/[lang]/components/shared/navigation/HFooter';
 import Testimonials from "@/app/[lang]/components/homepage/Testimonials";
