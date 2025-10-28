@@ -1,8 +1,29 @@
+"use client";
+
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { getDictionary } from '@/app/[lang]/dictionaries';
+import { useEffect, useState } from 'react';
 
-export default async function Example({ lang }: { lang: Locale }) {
-  const { components } = await getDictionary(lang);
+export default function ForbiddenPage({ lang }: { lang: Locale }) {
+  const [components, setComponents] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchDictionary = async () => {
+      try {
+        const dict = await getDictionary(lang);
+        setComponents(dict.components);
+      } catch (error) {
+        console.error('Error fetching dictionary:', error);
+        setComponents({});
+      }
+    };
+
+    fetchDictionary();
+  }, [lang]);
+
+  if (!components) {
+    return <div>Loading...</div>;
+  }
     return (
       <>
         {/*

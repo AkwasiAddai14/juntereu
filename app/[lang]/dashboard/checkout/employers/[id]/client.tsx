@@ -62,9 +62,56 @@ export default function Checkoutgegevens({
     const { isLoaded, isSignedIn, user } = useUser();
     const [geauthoriseerd, setGeauthoriseerd] = useState<Boolean>(false);
 
-    const isGeAuthorizeerd = async (id:string) => {
-      const toegang = await AuthorisatieCheck(id, 4);
-      setGeauthoriseerd(toegang);
+    const isGeAuthorizeerd = async (id: string) => {
+      try {
+        console.log('Checking authorization for checkout ID:', id);
+        
+        // First, get the checkout data to check the employer
+        const response = await fetch(`/api/checkout/${id}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch checkout data');
+        }
+        const checkoutData = await response.json();
+        console.log('Checkout data:', checkoutData);
+        
+        if (!checkoutData) {
+          console.log('Checkout not found');
+          setGeauthoriseerd(false);
+          return;
+        }
+        
+        // Check if the current user is the employer of this checkout
+        if (user && checkoutData.employer) {
+          // Get the current user's employer record
+          const employerResponse = await fetch('/api/get-employer-by-clerk-id', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ clerkId: user.id }),
+          });
+          
+          if (employerResponse.ok) {
+            const employerData = await employerResponse.json();
+            console.log('Current user employer data:', employerData);
+            console.log('Checkout employer ID:', checkoutData.employer);
+            console.log('Current user employer ID:', employerData._id);
+            
+            const isAuthorized = employerData._id === checkoutData.employer;
+            console.log('Authorization result:', isAuthorized);
+            setGeauthoriseerd(isAuthorized);
+          } else {
+            console.log('Failed to get employer data');
+            setGeauthoriseerd(false);
+          }
+        } else {
+          console.log('No user or checkout employer found');
+          setGeauthoriseerd(false);
+        }
+      } catch (error) {
+        console.error('Authorization check failed:', error);
+        setGeauthoriseerd(false);
+      }
     }
 
 

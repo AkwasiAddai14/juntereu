@@ -1,5 +1,3 @@
-'use client'
-
 import ShiftForm from "@/app/[lang]/components/shared/forms/Wrappers/ShiftWrapper";
 import { haalShiftMetId } from "@/app/lib/actions/shift.actions"
 import Footer from "@/app/[lang]/components/shared/navigation/Footer4";
@@ -19,12 +17,14 @@ const DashNav = dynamic(() => import('@/app/[lang]/components/shared/navigation/
 
 
 type UpdateEventProps = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ id: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-const UpdateEvent = async ({ params: { id }, searchParams }: UpdateEventProps) => {
-  const lang = supportedLocales.includes(searchParams.lang as Locale) ? (searchParams.lang as Locale): 'en';
+const UpdateEvent = async ({ params, searchParams }: UpdateEventProps) => {
+  const { id } = await params;
+  const resolvedSearchParams = await searchParams;
+  const lang = supportedLocales.includes(resolvedSearchParams.lang as Locale) ? (resolvedSearchParams.lang as Locale): 'en';
   const { dashboard } = await getDictionary(lang);
   const shift = await haalShiftMetId(id);
   const bedrijf = await fetchBedrijfClerkId(shift.employer as unknown as string)

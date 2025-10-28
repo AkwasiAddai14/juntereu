@@ -38,7 +38,7 @@ const Card = async ({ dienst, components }: Props) => {
 
 const backgroundImageUrl = vacature.afbeelding;
 const opdrachtgeverName = vacature.opdrachtgeverNaam || 'Junter';
-let linkHref = `/dashboard/vacature/pagina/${dienst.vacancy}`;
+let linkHref = `/dashboard/vacancies/${dienst.vacancy}`;
 let status = vacature.beschikbaar;
 
 const getStatusColor = (status: boolean) => {

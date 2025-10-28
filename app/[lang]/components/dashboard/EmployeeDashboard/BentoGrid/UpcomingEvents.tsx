@@ -83,10 +83,10 @@ interface DashboardDict {
 }
 
 interface EventsClientProps {
-  dashboard: DashboardDict;
+  dashboard: any;
 }
 
-export default function Events({ dashboard }: EventsClientProps) {
+export default function Events({ dashboard }: EventsClientProps ) {
   const { isLoaded, user } = useUser();
   const [freelancerId, setFreelancerId] = useState<any>(null);
   const [geaccepteerd, setGeaccepteerd] = useState<any[]>([]);
@@ -132,12 +132,20 @@ useEffect(() => {
     fetchDiensten();
   }, [freelancerId]);
 
+  if((!geaccepteerd || geaccepteerd.length === 0) && (!diensten || diensten.length === 0)){
+      return (
+        <div className="flex h-full items-center justify-center text-gray-400 text-center">
+          {dashboard.werknemersPage.BentoGrid.Checkouts.zeroFoundText}
+        </div>
+      )
+    }
+
   return (
     <ul
       role="list"
       className="divide-y divide-gray-100 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
     >
-      {geaccepteerd.map((shift) => (
+      {geaccepteerd && geaccepteerd.length > 0 && geaccepteerd.map((shift) => (
         <li key={shift._id} className="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6">
           <div className="flex min-w-0 gap-x-4">
             <img alt="" src={shift.image} className="size-12 flex-none rounded-full bg-gray-50" />
@@ -178,44 +186,30 @@ useEffect(() => {
         </li>
       ))}
 
-{people.map((person) => (
-        <li key={person.email} className="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6">
+      {diensten && Array.isArray(diensten) && diensten.map((items) => (
+        <li key={items._id} className="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6">
           <div className="flex min-w-0 gap-x-4">
-            <img alt="" src={person.imageUrl} className="size-12 flex-none rounded-full bg-gray-50" />
+            <img alt="" src={items.image} className="size-12 flex-none rounded-full bg-gray-50" />
             <div className="min-w-0 flex-auto">
               <p className="text-sm/6 font-semibold text-gray-900">
-                <a href={person.href}>
+                <a href={`@/app/[lang]/dashboard/vacancy/employee/${items._id}`}>
                   <span className="absolute inset-x-0 -top-px bottom-0" />
-                  {person.name}
+                  {items.function}
                 </a>
               </p>
               <p className="mt-1 flex text-xs/5 text-gray-500">
-                <a href={`mailto:${person.email}`} className="relative truncate hover:underline">
-                  {person.email}
-                </a>
+                  {items.title}
               </p>
             </div>
           </div>
-          <div className="flex shrink-0 items-center gap-x-4">
-            <div className="hidden sm:flex sm:flex-col sm:items-end">
-              <p className="text-sm/6 text-gray-900">{person.role}</p>
-              {person.lastSeen ? (
-                <p className="mt-1 text-xs/5 text-gray-500">
-                  Last seen <time dateTime={person.lastSeenDateTime}>{person.lastSeen}</time>
-                </p>
-              ) : (
-                <div className="mt-1 flex items-center gap-x-1.5">
-                  <div className="flex-none rounded-full bg-emerald-500/20 p-1">
-                    <div className="size-1.5 rounded-full bg-emerald-500" />
-                  </div>
-                  <p className="text-xs/5 text-gray-500">Online</p>
-                </div>
-              )}
-            </div>
-            <ChevronRightIcon aria-hidden="true" className="size-5 flex-none text-gray-400" />
-          </div>
         </li>
       ))}
+
+      {(!diensten || diensten.length === 0) && (
+        <li className="flex h-32 items-center justify-center text-gray-400 text-center px-4 py-5">
+          {dashboard.werknemersPage.BentoGrid.Checkouts.zeroFoundText}
+        </li>
+      )}
     </ul>
   )
 }

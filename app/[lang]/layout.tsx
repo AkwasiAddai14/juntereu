@@ -23,7 +23,7 @@ export async function generateStaticParams() {
     ]
   }
    
-  export default async function RootLayout({
+  export default async function LangLayout({
     children,
     params,
   }: Readonly<{

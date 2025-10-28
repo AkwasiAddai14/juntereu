@@ -15,16 +15,17 @@ const supportedLocales: Locale[] = [
 ];
 
 interface PageProps {
-  params: { lang: string; id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ lang: string; id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
-  const { id } = params;
+  const { id, lang: paramLang } = await params;
+  const resolvedSearchParams = await searchParams;
 
   const rawLang =
-    (searchParams.lang as string | undefined) ??
-    (params.lang as Locale | undefined) ??
+    (resolvedSearchParams.lang as string | undefined) ??
+    (paramLang as Locale | undefined) ??
     "en";
 
   const lang: Locale = supportedLocales.includes(rawLang as Locale)

@@ -6,7 +6,7 @@ import EmployeeFormClient from "@/app/[lang]/components/shared/forms/EmployeeFor
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { useEffect, useState } from 'react';
 
-export default function EmployeeFormServer({ lang }: { lang: Locale }) {
+export default function EmployeeWrapper({ lang }: { lang: Locale }) {
   const { user, isLoaded } = useUser();
   const [components, setComponents] = useState<any>(null);
   const [validations, setValidations] = useState<any>(null);

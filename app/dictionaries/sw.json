@@ -295,7 +295,7 @@
       },
       "Yearly": {
         "Jaarlijks": "Årsvis",
-        "Prijs": "10 988,70 SEK/år + 439,55 SEK/användare/år (2 månader gratis)"
+        "Prijs": "10 988,70 SEK/år + 439,55 SEK/användare/år"
       }
     },
       "usp": ["Fakturor & exporter", "Du äger dina data", "Gratis onboarding"]
@@ -833,8 +833,8 @@
     "dashboard": {
         "werknemersPage": {
           "BentoGrid": {
-            "headTitle": "Lansera snabbare",
-            "subTitle": "Allt du behöver för att lansera din app",
+            "headTitle": "Your Work Hub",
+  "subTitle": "Everything you need to manage your career",
             "gridTitles": [
               "Instrumentpanel",
               "Profil",
@@ -995,23 +995,27 @@
             "navigation": [
               {
                 "name": "Hem",
-                "value": "Hem"
+                "value": "Home"
+              },
+              {
+                "name": "Board",
+                "value": "Board"
               },
               {
                 "name": "Kalender",
-                "value": "Kalender"
+                "value": "Calendar"
               },
               {
                 "name": "Skift",
-                "value": "Skift"
+                "value": "Shifts"
               },
               {
                 "name": "Flexpooler",
-                "value": "Flexpooler"
+                "value": "Flexpools"
               },
               {
                 "name": "Ekonomi",
-                "value": "Ekonomi"
+                "value": "Finances"
               }
             ],
             "UserNavigation": [

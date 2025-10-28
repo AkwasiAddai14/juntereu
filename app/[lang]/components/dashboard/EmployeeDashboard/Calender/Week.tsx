@@ -17,6 +17,7 @@ import { haalFreelancer } from '@/app/lib/actions/employee.actions';
 import { haalAangemeld } from '@/app/lib/actions/shift.actions';
 import { IAvailability } from '@/app/lib/models/availability.model';
 import { IEmployee } from '@/app/lib/models/employee.model';
+import { showErrorToast } from '@/app/[lang]/lib/errorHandler';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -91,9 +92,11 @@ const CalenderW = ({ dashboard }: { dashboard: any }) => {
   }, [isLoaded, user]);
 
   useEffect(() => {
+    if (!freelancer?.id) return; // Guard clause: don't run if freelancer is undefined
+    
     const fetchAangemeldeShifts = async () => {
       try {
-            const response = await haalAangemeld(freelancer!.id);
+            const response = await haalAangemeld(freelancer.id);
             if (response) {
               // Filter and separate shifts based on their status
               const geaccepteerdShifts = response.filter((shift: { status: string; }) => shift.status === 'aangenomen');
@@ -108,11 +111,12 @@ const CalenderW = ({ dashboard }: { dashboard: any }) => {
             }
         
       } catch (error) {
-        console.error('Error fetching shifts:', error);
+        showErrorToast("Failed to load shifts. Please try again.");
+        setShifts([]);
       }
     };
     fetchAangemeldeShifts();  // Call the fetchShifts function
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
   
 
@@ -123,14 +127,14 @@ const CalenderW = ({ dashboard }: { dashboard: any }) => {
           const availability = await vindBeschikbaarheidVanFreelancer(freelancer.id);
           setBeschikbaarheid(availability || []);  // Ensure shifts is always an array
         } catch (error) {
-          console.error('Error fetching shifts:', error);
+          showErrorToast("Failed to load availability. Please try again.");
           setBeschikbaarheid([]);  // Handle error by setting an empty array
         }
       };
   
       fetchAvailability();
     }
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
   useEffect(() => {
     if (freelancer) {  // Only fetch shifts if bedrijfId is available
@@ -139,14 +143,14 @@ const CalenderW = ({ dashboard }: { dashboard: any }) => {
           const diensten = await haalDienstenFreelancer(freelancer.id);
           setDiensten(diensten || []);  // Ensure shifts is always an array
         } catch (error) {
-          console.error('Error fetching diensten:', error);
+          showErrorToast("Failed to load services. Please try again.");
           setDiensten([]);  // Handle error by setting an empty array
         }
       };
   
       fetchDiensten();
     }
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
   const startDate = startOfWeek(currentWeek, { weekStartsOn: 1 });
   const endDate = endOfWeek(currentWeek, { weekStartsOn: 1 });
@@ -180,8 +184,21 @@ const CalenderW = ({ dashboard }: { dashboard: any }) => {
     }
   }, []);
 
+  // Show loading state when freelancer is not yet loaded
+  if (!freelancer) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto"></div>
+          <p className="mt-2 text-gray-600">Loading calendar...</p>
+          <p className="mt-1 text-sm text-gray-500">Setting up your profile...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex lg:pl-96 lg:w-auto md:pl-0 sm:pl-0 h-full flex-col">
+    <div className="flex w-full h-full flex-col">
       <header className="flex items-center justify-between border-b border-gray-200 px-6 py-4 lg:flex-none">
         <h1 className="text-base font-semibold leading-6 text-gray-900">
           <time dateTime={format(currentWeek, 'yyyy-MM-dd')}>{format(currentWeek, 'MMMM yyyy')}</time>

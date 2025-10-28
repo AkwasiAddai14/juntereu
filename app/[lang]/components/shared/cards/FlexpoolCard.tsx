@@ -1,6 +1,8 @@
+"use client";
+
 import { useUser } from '@clerk/nextjs';
 import React, { useEffect, useState } from 'react';
-import { fetchBedrijfDetails, isBedrijf } from '@/app/lib/actions/employer.actions';
+import { fetchBedrijfDetails } from '@/app/lib/actions/employer.actions';
 import { IFlexpool } from '@/app/lib/models/flexpool.model';
 import Link from 'next/link';
 import { encodePath } from '@/app/lib/utils';
@@ -14,7 +16,7 @@ type Props = {
   components: any;
 };
 
-const Card = async ({ flexpool, components }: Props) => {
+const Card = ({ flexpool, components }: Props) => {
   const { user } = useUser();
   const userId = user?.id as string;
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | undefined>(false);
@@ -22,12 +24,12 @@ const Card = async ({ flexpool, components }: Props) => {
 
 
   useEffect(() => {
-  const bedrijfCheck = async () => {
-    const isEventCreator = await isBedrijf(); // Assuming isBedrijf is a function that returns a boolean
-    setIsEenBedrijf(isEventCreator);
-    };
-        bedrijfCheck()
-    }, []);
+    if (user) {
+      // Check if user has organization memberships (indicating they're an employer)
+      const userType = user?.organizationMemberships?.length ?? 0;
+      setIsEenBedrijf(userType >= 1);
+    }
+  }, [user]);
 
 
   useEffect(() => {
@@ -51,15 +53,15 @@ const Card = async ({ flexpool, components }: Props) => {
     return str.replace(/[\r\n]+/g, ''); // Remove carriage returns and newlines
   };
   const basePath = isEenBedrijf 
-  ? cleanString(`/dashboard/flexpool/bedrijf/${flexpool._id}`) 
-  : cleanString(`/dashboard/flexpool/freelancer/${flexpool._id}`);
+  ? cleanString(`/dashboard/flexpool/employer/${flexpool._id}`) 
+  : cleanString(`/dashboard/flexpool/employee/${flexpool._id}`);
   const encodedPath = encodePath(basePath);
 
  
 
 
   return (
-    <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
+    <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 transform cursor-pointer md:min-h-[438px]">
       { isEenBedrijf ? (
           <Link 
           href={`/dashboard/view/${encodedPath}`}
@@ -75,19 +77,23 @@ const Card = async ({ flexpool, components }: Props) => {
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
         <div className="flex gap-2">
           <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-            {flexpool.employees.length} {components.cards.FlexpoolCard.hvl_freelancers}
+            {flexpool.employees?.length || 0} {components?.cards?.FlexpoolCard?.hvl_freelancers || 'employees'}
           </p>
         </div>
         <div>
-        {flexpool.shifts.length === 1 ? (
+        {flexpool.shifts && flexpool.shifts.length === 1 ? (
                    <>
                <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-                 {flexpool.shifts.length} {components.cards.FlexpoolCard.shift} 
+                 {flexpool.shifts.length} {components?.cards?.FlexpoolCard?.shift || 'shift'} 
                </p>
              </>
+            ) : flexpool.shifts && flexpool.shifts.length > 1 ? (
+              <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
+                {flexpool.shifts.length} {components?.cards?.FlexpoolCard?.hvl_shifts || 'shifts'}
+              </p>
             ) : (
               <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-                {flexpool.shifts.length} {components.cards.FlexpoolCard.hvl_shifts}
+                0 {components?.cards?.FlexpoolCard?.shift || 'shift'}
               </p>
             )}
           </div>

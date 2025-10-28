@@ -7,10 +7,10 @@ import { Menu, Transition } from '@headlessui/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
 import { format } from 'date-fns';
-import Dag from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Wrappers/DagWrapper';
-import Week from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Wrappers/WeekWrapper';
-import Maand from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Wrappers/MaandWrapper';
-import Jaar from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Wrappers/JaarWrapper';
+import Dag from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Dag';
+import Week from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Week';
+import Maand from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Maand';
+import Jaar from '@/app/[lang]/components/dashboard/CompanyDashboard/Calender/Jaar';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 const supportedLocales: Locale[] = [
@@ -34,7 +34,24 @@ function classNames(...classes: (string | boolean | undefined)[]) {
 const Calender =({ dashboard, lang }: { dashboard: any, lang: Locale }) => {
     const [position, setPosition] = React.useState("Maand");
     const [currentDate, setCurrentDate] = useState<Date>(new Date());
-    const router = useRouter()
+    const router = useRouter();
+
+        // Create a mapping from position strings to navigation indices
+    const getNavigationIndex = (pos: string) => {
+      const navigation = dashboard.werknemersPage.Calender.calender.navigation;
+      switch(pos) {
+        case "Dag": return 0;
+        case "Week": return 1;
+        case "Maand": return 2;
+        case "Jaar": return 3;
+        default: return 2; // Default to Maand
+      }
+    };
+
+    const getCurrentNavigationItem = () => {
+      const index = getNavigationIndex(position);
+      return dashboard.werknemersPage.Calender.calender.navigation[index];
+    };
     
       useEffect(() => {
         const intervalId = setInterval(() => {
@@ -69,7 +86,7 @@ const Calender =({ dashboard, lang }: { dashboard: any, lang: Locale }) => {
                 type="button"
                 className="flex items-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
               >
-                {position}
+                {getCurrentNavigationItem()?.value || position}
                 <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
               </Menu.Button>
 
@@ -153,14 +170,14 @@ const Calender =({ dashboard, lang }: { dashboard: any, lang: Locale }) => {
             <button
               type="button"
               className="ml-6 rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
-              onClick={() => router.push("../dashboard/shift/maak")}
+              onClick={() => router.push("../dashboard/shift/create")}
             >
               {dashboard.werkgeversPage.Calender.calender.buttons[0]}
             </button>
             <button
               type="button"
               className="ml-6 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
-              onClick={() => router.push("../dashboard/vacature/maak")}
+              onClick={() => router.push("../dashboard/vacancies/create")}
             >
                {dashboard.werkgeversPage.Calender.calender.buttons[1]}
             </button>
@@ -185,7 +202,7 @@ const Calender =({ dashboard, lang }: { dashboard: any, lang: Locale }) => {
                   <Menu.Item>
                     {({ active }) => (
                       <a
-                        href="../dashboard/shift/maak"
+                        href="../dashboard/shift/create"
                         className={classNames(
                           active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                           'block px-4 py-2 text-sm'
@@ -281,19 +298,19 @@ const Calender =({ dashboard, lang }: { dashboard: any, lang: Locale }) => {
   </div>
   <div>
   {position === "Dag"  && (
-<Dag lang={'en'}/>
+<Dag dashboard={dashboard}/>
     )
     }
 {position === "Week"  && (
-<Week lang={'en'}/>
+<Week lang={lang} dictionary={dashboard}/>
     )
     }
     {position === "Maand"  && (
-<Maand lang={'en'} />
+<Maand lang={lang} dashboard={dashboard} />
     )
     }
     {position === "Jaar"  && (
-<Jaar lang={'en'}/>
+<Jaar lang={lang} dictionary={dashboard}/>
     )
     }
   </div>

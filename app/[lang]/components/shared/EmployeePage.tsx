@@ -12,12 +12,14 @@ import { solliciteerOpVacature } from '@/app/lib/actions/vacancy.actions';
 import { CalendarDateRangeIcon, BanknotesIcon, 
 BuildingOffice2Icon, BriefcaseIcon, 
 ClipboardDocumentCheckIcon } from '@heroicons/react/20/solid';
+import DashNav from '@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper';
 
+import type { Locale } from '@/app/[lang]/dictionaries';
 
 interface WerknemerPageClientProps {
   vacature: any;
   diensten: any[];
-  lang: string;
+  lang: Locale;
   dictionary: any;
 }
 
@@ -138,6 +140,7 @@ interface WerknemerPageClientProps {
 
   return (
     <>
+    <DashNav lang={lang}/>
     <div className="overflow-hidden bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">

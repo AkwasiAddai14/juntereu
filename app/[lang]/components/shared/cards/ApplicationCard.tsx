@@ -137,7 +137,7 @@ berekenBedragvanVacature(sollicitatie.id);
        
         
        
-          <Link href={`/dashboard/vacature/pagina/${sollicitatie.vacancy}`}>
+          <Link href={`/${lang}/dashboard/vacancies/${sollicitatie.vacancy}`}>
           <p className="p-medium-16 md:p-medium-20 line-clamp-1 flex-1 text-black">{vacature.titel}</p>
         </Link>
       

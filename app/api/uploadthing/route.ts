@@ -1,13 +1,25 @@
-// app/api/uploadthing/route.ts
+import { createUploadthing, type FileRouter } from "uploadthing/server";
 import { createRouteHandler } from "uploadthing/next";
-import { ourFileRouter } from "./core";
+// import { auth } from "@clerk/nextjs"; // als je auth wil; optioneel
 
-// Never call auth()/headers() at module top-level here.
-// Just wire the router to the handler:
-export const { GET, POST } = createRouteHandler({ router: ourFileRouter });
+const f = createUploadthing();
 
-// Make sure this route is always request-bound (no prerender)
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-// If you run into edge/runtime issues, you can force Node:
-export const runtime = "nodejs";
+export const ourFileRouter = {
+  media: f({ image: { maxFileSize: "4MB" } })
+    .middleware(async ({ req }) => {
+      // const userId = auth().userId ?? "dev"; // optioneel
+      return { userId: "dev" };
+    })
+    .onUploadComplete(async ({ file /*, metadata*/ }) => {
+      // Belangrijk: geef URL terug (UploadThing host → utfs.io)
+      return {
+        url: file.url,    // bv. https://utfs.io/f/<key>
+        key: file.key,
+      };
+    }),
+} satisfies FileRouter;
+
+export type OurFileRouter = typeof ourFileRouter;
+
+export const { POST, GET } = createRouteHandler({ router: ourFileRouter });
+

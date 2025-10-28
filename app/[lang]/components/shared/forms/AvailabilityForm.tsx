@@ -8,6 +8,7 @@ import { saveAvailability } from '@/app/lib/actions/availability.actions';
 import { XMarkIcon, CalendarIcon, ClockIcon } from '@heroicons/react/24/outline';
 import { haalFreelancer } from '@/app/lib/actions/employee.actions';
 import { IEmployee } from '@/app/lib/models/employee.model';
+import { useRouter } from 'next/navigation';
 
 interface FormData {
   dateType: 'single' | 'multiple'
@@ -35,14 +36,25 @@ const timeOptions = Array.from({ length: 24 * 4 }, (_, i) => {
 
 
 export default function AvailabilityForm({ components }: { components: any }) {
-  const { isLoaded, user } = useUser();
+const { isLoaded, user } = useUser();
 const distanceOptions = ['0 km', '5 km', '10 km', '15 km', '20 km', '50 km', '100 km']
 const mainCategories = components.shared.DropdownCategorie.fields.map((field: { label: string }) => field.label);
-const subCategories: string[] = components.shared.DropdownCategorie.fields
-  .flatMap((field: any) => field.items.map((item: any) => item.label));
+const router = useRouter();
+const [mounted, setMounted] = useState(false);
+
+// Helper function to get subcategories for selected main categories
+const getSubCategoriesForSelected = (selectedMainCategories: string[]) => {
+  return components.shared.DropdownCategorie.fields
+    .filter((field: any) => selectedMainCategories.includes(field.label))
+    .flatMap((field: any) => field.items.map((item: any) => item.label));
+};
   const [freelancer, setFreelancer] = useState<IEmployee>();
   const [open, setOpen] = useState(true);
   const [showCancelModal, setShowCancelModal] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const [formData, setFormData] = useState<FormData>({
     dateType: 'single',
     singleDate: new Date(),
@@ -97,8 +109,21 @@ const subCategories: string[] = components.shared.DropdownCategorie.fields
   }
 
   const handleConfirmCancel = () => {
-    setShowCancelModal(false)
-    setOpen(false)
+    router.back();
+    console.log('Navigating back');
+    setShowCancelModal(false);
+    setOpen(false);
+  }
+
+  const handleContinue = () => {
+    router.refresh();
+    console.log('Continuing editing');
+    setShowCancelModal(false);
+    setOpen(true);
+  }
+
+  if (!isLoaded || !mounted) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -110,10 +135,10 @@ const subCategories: string[] = components.shared.DropdownCategorie.fields
 
       <div className="fixed inset-0 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+          <div className="pointer-events-none fixed inset-0 flex">
             <DialogPanel
               transition
-              className="pointer-events-auto relative w-screen max-w-2xl transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
+              className="pointer-events-auto relative w-full transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
             >
               <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                 <div className="flex-1">
@@ -164,7 +189,7 @@ const subCategories: string[] = components.shared.DropdownCategorie.fields
                         <h2 className="text-lg font-medium text-gray-900">{components.forms.AvailabilityForm.subTitle}</h2>
                         <button
                           type="button"
-                          onClick={() => setOpen(false)}
+                          onClick={handleConfirmCancel}
                           className="rounded-md text-gray-400 hover:text-gray-500"
                         >
                           <XMarkIcon className="h-6 w-6" />
@@ -296,7 +321,16 @@ const subCategories: string[] = components.shared.DropdownCategorie.fields
                                           const newCategories = e.target.checked
                                             ? [...formData.mainCategories, category]
                                             : formData.mainCategories.filter((c) => c !== category)
-                                          setFormData({ ...formData, mainCategories: newCategories })
+                                          
+                                          // Clear subcategories that are no longer valid for selected main categories
+                                          const validSubCategories = getSubCategoriesForSelected(newCategories)
+                                          const filteredSubCategories = formData.subCategories.filter(sub => validSubCategories.includes(sub))
+                                          
+                                          setFormData({ 
+                                            ...formData, 
+                                            mainCategories: newCategories,
+                                            subCategories: filteredSubCategories
+                                          })
                                         }}
                                         className="h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-sky-500"
                                       />
@@ -306,24 +340,42 @@ const subCategories: string[] = components.shared.DropdownCategorie.fields
                                 </div>
                               </div>
                               <div>
-                                <label className="text-sm text-gray-700">{components.forms.AvailabilityForm.Section2.formItems[2]}</label>
-                                <div className="mt-1 space-y-2">
-                                {subCategories.map((category: string) => (
-                                    <label key={category} className="flex items-center">
-                                      <input
-                                        type="checkbox"
-                                        checked={formData.subCategories.includes(category)}
-                                        onChange={(e) => {
-                                          const newCategories = e.target.checked
-                                            ? [...formData.subCategories, category]
-                                            : formData.subCategories.filter((c) => c !== category);
-                                          setFormData({ ...formData, subCategories: newCategories });
-                                        }}
-                                        className="h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-sky-500"
-                                      />
-                                      <span className="ml-2 text-sm text-gray-700">{category}</span>
-                                    </label>
-                                  ))}
+                                <label className="text-sm text-gray-700">{components.forms.AvailabilityForm.Section2.formItems[1]}</label>
+                                <div className="mt-1 space-y-4">
+                                  {formData.mainCategories.length === 0 ? (
+                                    <p className="text-sm text-gray-500 italic">
+                                      Select main categories first to see subcategories
+                                    </p>
+                                  ) : (
+                                    formData.mainCategories.map((mainCategory: string) => {
+                                      const mainCategoryData = components.shared.DropdownCategorie.fields.find((field: any) => field.label === mainCategory);
+                                      const subCategories = mainCategoryData?.items.map((item: any) => item.label) || [];
+                                      
+                                      return (
+                                        <div key={mainCategory} className="border-l-2 border-sky-200 pl-3">
+                                          <h5 className="text-xs font-medium text-sky-600 mb-2">{mainCategory}</h5>
+                                          <div className="space-y-2">
+                                            {subCategories.map((subCategory: string) => (
+                                              <label key={subCategory} className="flex items-center">
+                                                <input
+                                                  type="checkbox"
+                                                  checked={formData.subCategories.includes(subCategory)}
+                                                  onChange={(e) => {
+                                                    const newCategories = e.target.checked
+                                                      ? [...formData.subCategories, subCategory]
+                                                      : formData.subCategories.filter((c) => c !== subCategory);
+                                                    setFormData({ ...formData, subCategories: newCategories });
+                                                  }}
+                                                  className="h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-sky-500"
+                                                />
+                                                <span className="ml-2 text-sm text-gray-700">{subCategory}</span>
+                                              </label>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      );
+                                    })
+                                  )}
                                 </div>
                               </div>
                             </div>
@@ -451,14 +503,14 @@ const subCategories: string[] = components.shared.DropdownCategorie.fields
             <div className="mt-4 flex justify-end space-x-3">
               <button
                 type="button"
-                onClick={() => setShowCancelModal(false)}
+                onClick={handleConfirmCancel}
                 className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
               >
                 {components.forms.AvailabilityForm.Buttons[2]}
               </button>
               <button
                 type="button"
-                onClick={handleConfirmCancel}
+                onClick={handleContinue}
                 className="rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
               >
                 {components.forms.AvailabilityForm.Buttons[3]}

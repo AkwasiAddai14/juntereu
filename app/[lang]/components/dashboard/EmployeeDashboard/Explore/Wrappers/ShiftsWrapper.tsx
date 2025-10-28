@@ -1,11 +1,35 @@
-// Servercomponent: app/[lang]/(routes)/shifts/page.tsx
+'use client';
+
+import { useEffect, useState } from 'react';
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import ShiftsClient from '@/app/[lang]/components/dashboard/EmployeeDashboard/Explore/Shifts';
-import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+import type { Locale } from '@/app/[lang]/dictionaries';
 
+type Props = {
+  lang: Locale;
+  dashboard?: any;
+};
 
-export default async function ShiftsPage({ params }: { params: { lang: Locale } }) {
-  const dictionary = await getDictionary(params.lang);
+export default function ShiftsPage({ lang, dashboard: propDashboard }: Props) {
+  const [dashboard, setDashboard] = useState<any>(propDashboard);
 
-  return <ShiftsClient lang={params.lang} dashboard={dictionary.dashboard} />;
+  useEffect(() => {
+    if (propDashboard) {
+      setDashboard(propDashboard);
+    } else {
+      const fetchDictionary = async () => {
+        if (lang) {
+          const dict = await getDictionary(lang);
+          setDashboard(dict.dashboard);
+        }
+      };
+      fetchDictionary();
+    }
+  }, [lang, propDashboard]);
+
+  if (!dashboard) {
+    return <div>Loading...</div>;
+  }
+
+  return <ShiftsClient lang={lang} dashboard={dashboard} />;
 }

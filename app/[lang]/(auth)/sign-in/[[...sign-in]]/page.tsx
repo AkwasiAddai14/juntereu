@@ -20,6 +20,8 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       <div className="flex flex-col justify-center items-center min-h-screen bg-white">
       <div className="flex items-center justify-center w-full">
           <SignIn
+            fallbackRedirectUrl={`/${lang}/dashboard`}
+            forceRedirectUrl={`/${lang}/dashboard`}
            /* appearance={{
           variables: {
             colorPrimary: '#0000ff', // blue

@@ -7,9 +7,9 @@ import { IJob } from '@/app/lib/models/job.model';
 import React, { useEffect, useState } from 'react';
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import { IVacancy } from '@/app/lib/models/vacancy.model';
-import { isBedrijf } from '@/app/lib/actions/employer.actions';
+import { useUser } from '@clerk/nextjs';
 import { haalBijbehorendeDiensten } from '@/app/lib/actions/vacancy.actions';
-import { DeleteConfirmation } from '@/app/[lang]/components/shared/DeleteConfirmation';
+import { VacancyDeleteConfirmation } from '@/app/[lang]/components/shared/VacancyDeleteConfirmation';
 
 type Props = {
   vacature: IVacancy;
@@ -17,15 +17,16 @@ type Props = {
   components: any;
 };
 
-const Card = async ({ vacature, lang, components }: Props) => {
+const Card = ({ vacature, lang, components }: Props) => {
+  const { user } = useUser();
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | undefined>(false);
   const [diensten, setDiensten] = useState<IJob[]>([]);
 
   useEffect(() => {
-    if (vacature && vacature.id) {  // Only fetch shifts if bedrijfId is available
+    if (vacature && vacature._id) {  // Only fetch shifts if vacatureId is available
       const fetchDiensten = async () => {
         try {
-          const diensten = await haalBijbehorendeDiensten({ vacatureId: vacature.id });
+          const diensten = await haalBijbehorendeDiensten({ vacatureId: vacature._id!.toString() });
           setDiensten(diensten || []);  // Ensure diensten is always an array
         } catch (error) {
           console.error('Error fetching diensten:', error);
@@ -37,17 +38,12 @@ const Card = async ({ vacature, lang, components }: Props) => {
   }, [vacature.id]);
 
   useEffect(() => {
-    const bedrijfCheck = async () => {
-      try {
-        const isEventCreator = await isBedrijf();
-        setIsEenBedrijf(isEventCreator);
-      } catch (error) {
-        console.error("Error checking if user is a bedrijf:", error);
-      }
-    };
-  
-    bedrijfCheck();
-  }, []);
+    if (user) {
+      // Check if user has organization memberships (indicating they're an employer)
+      const userType = user?.organizationMemberships?.length ?? 0;
+      setIsEenBedrijf(userType >= 1);
+    }
+  }, [user]);
 
   const calculateTotalBedrag = (diensten: IJob[]): number => {
     return diensten.reduce((total, dienst) => total + (dienst.amount || 0), 0);
@@ -59,99 +55,98 @@ const Card = async ({ vacature, lang, components }: Props) => {
 
 
   return (
-    <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
-        <Link 
-      href={`/dashboard/vacture/${vacature._id}`}
-      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-      className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
-    />
-
-      {isEenBedrijf && (
-        <div className="absolute items-stretch right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
-          <DeleteConfirmation shiftId={vacature._id as string} lang={lang} dictionary={undefined}/>
-        </div>
-      ) 
-}
-
-      <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
-        <div className="flex gap-2">
-            { isEenBedrijf ?  (
-                 <span className="p-semibold-14 w-min rounded-full line-clamp-1 bg-green-100 px-4 py-1 text-green-60">
-                 {components.cards.VacancyCard.currencySign}{vacature.hourlyRate}
-               </span>
-            ) : (
-                <span className="p-semibold-14 w-min rounded-full line-clamp-1 bg-green-100 px-4 py-1 text-green-60">
-                {components.cards.VacancyCard.currencySign}{totaalbedrag} {components.cards.VacancyCard.voor} {vacature.jobs?.length || 0} {components.cards.VacancyCard.hvl_shifts} 
-              </span>
-            )
-        }
-          <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1">
-            {vacature.function}
-          </p> 
-          
-          {
-            isEenBedrijf && (
-                <p className="text-sm md:p-medium-16 text-grey-600 line-clamp-1">
-                {vacature.jobs?.length || 0} {components.cards.VacancyCard.hvl_shifts} 
-               </p>
-            )
-          }
-          <p className="text-sm md:p-medium-16 text-grey-600 line-clamp-1">
-           {vacature.applications?.length || 0} {components.cards.VacancyCard.hvl_sollicitaties} 
-          </p>
-        </div>
-
-
-        {
-        vacature.available && (
-             <div className="flex-between w-full">
-                <p className="p-medium-16 p-medium-18 text-grey-500">
-                  {new Intl.DateTimeFormat(`${components.cards.VacancyCard.localDateString}`, { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(vacature.startingDate))} {components.cards.VacancyCard.tot} 
-                </p>
-                <p className="p-medium-16 p-medium-18 text-grey-500">
-                {new Intl.DateTimeFormat(`${components.cards.VacancyCard.localDateString}`, { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(vacature.endingDate))}
-                </p>
-            </div>
-                  )
-                }
-          
+    <div className="group relative flex w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
+        <Link href={`/${lang}/dashboard/vacancies/${vacature._id}`} className="block h-full w-full">
+      {/* Image Section */}
+      <div className="relative h-40 w-full overflow-hidden">
+        <Image
+          src={backgroundImageUrl || '/placeholder-image.svg'}
+          alt={vacature.title || 'Vacancy Image'}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          onError={(e) => {
+            // Fallback to placeholder if image fails to load
+            e.currentTarget.src = '/placeholder-image.svg';
+          }}
+        />
         
-          <Link href={`/dashboard/vacture/${vacature._id}`}>
-          <p className="p-medium-16 md:p-medium-20 line-clamp-1 flex-1 text-black">{vacature.title}</p>
-        </Link>
-      
-
-        <div className="flex-between w-full"></div>
-        <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-          {vacature.adres.street} {vacature.adres.housenumber}
-          {vacature.adres.postcode} {vacature.adres.city}
-          </p> 
-          
-          {!isEenBedrijf && (
-               <div className="flex-between w-full">
-               {vacature.dresscode?.length === 1 ? (
-                    <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-                   {vacature.dresscode.length} {components.cards.VacancyCard.kledingvoorschriften[0]}
-                   </p>
-               ) : (
-                   <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-                   {vacature.dresscode?.length || 0} {components.cards.VacancyCard.kledingvoorschriften[1]}
-                   </p>
-               )}
-              
-              {vacature.dresscode?.length === 1 ? (
-                    <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-                   {vacature.skills?.length} {components.cards.VacancyCard.vaardigeheden[0]}
-                   </p>
-               ) : (
-                   <p className="line-clamp-1 p-medium-14 md:p-medium-16 text-grey-600">
-                   {vacature.skills?.length || 0} {components.cards.VacancyCard.vaardigeheden[1]}
-                   </p>
-               )}
-           </div>
-          )}
-     
+        {/* Delete Button for Employers */}
+        {isEenBedrijf && (
+          <div className="absolute items-stretch right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
+            <VacancyDeleteConfirmation vacancyId={vacature._id as string} lang={lang} dictionary={{ components }}/>
+          </div>
+        )}
       </div>
+
+      {/* Content Section */}
+      <div className="flex-1 p-4 space-y-3">
+        {/* Top Row - Rate, Category, and Stats */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="flex items-center rounded-full bg-green-100 px-2.5 py-1">
+              <span className="text-green-800 font-semibold text-sm">
+                {components?.cards?.VacancyCard?.currencySign || '€'}{vacature.hourlyRate}
+              </span>
+            </div>
+            <span className="text-sm text-gray-600 truncate">
+              {vacature.function}
+            </span>
+          </div>
+          {/* <div className="text-sm text-gray-500">
+            {vacature.applications?.length || 0} {components?.cards?.VacancyCard?.applicants || 'applicants'}
+          </div> */}
+        </div>
+
+        {/* Date */}
+        <div className='flex items-center justify-between'>
+        <div className="text-sm text-gray-600">
+          {new Intl.DateTimeFormat(`${components?.cards?.VacancyCard?.localDateString || 'en-US'}`, { 
+            day: '2-digit', 
+            month: '2-digit', 
+            year: 'numeric' 
+          }).format(new Date(vacature.startingDate))}
+        </div>
+
+        {/* Time Range */}
+        <div className="text-sm text-gray-600">
+          {vacature.times[0].starting || '08:00'} - {vacature.times[0].ending || '16:30'}
+        </div>
+        </div>
+
+        {/* Job Title */}
+        <div className="text-base font-medium text-gray-900">
+          {vacature.title}
+        </div>
+
+        {/* Location */}
+        <div className="text-sm text-gray-600">
+          {vacature.adres?.street} {vacature.adres?.housenumber}
+        </div>
+
+        {/* Employer Name */}
+        {
+          !isEenBedrijf && 
+           <div className="text-sm text-gray-600">
+          {vacature.employerName}
+        </div>
+        }
+       
+
+        {/* Flexpool Status */}
+        {vacature.applications && (
+          <div className="flex items-center gap-1.5">
+            <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
+              <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="text-sm text-gray-500">
+            {vacature.applications?.length || 0} {components?.cards?.VacancyCard?.applicants || 'applicants'}
+          </div>
+          </div>
+        )}
+      </div>
+      </Link>
     </div>
   );
 };

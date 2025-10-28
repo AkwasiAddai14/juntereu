@@ -272,7 +272,7 @@
       },
       "Yearly": {
         "Jaarlijks": "Annually",
-        "Prijs": "£1,000/year + £40/user/year (2 months free)"
+        "Prijs": "£1,000/year + £40/user/year"
       }
     },
       "usp": ["Invoices & exports available", "You own your data", "Free onboarding"]
@@ -792,8 +792,8 @@
 "dashboard": {
     "werknemersPage": {
         "BentoGrid": {
-            "headTitle": "Deploy faster",
-  "subTitle": "Everything you need to deploy your app",
+            "headTitle": "Your Work Hub",
+  "subTitle": "Everything you need to manage your career",
   "gridTitles": [
     "Dashboard",
     "Profile",
@@ -909,7 +909,7 @@
             "calender": {
               "navigation": [
                 {
-                  "name": "Day",
+                  "name": "Dag",
                   "value": "Day"
                 },
                 {
@@ -917,11 +917,11 @@
                   "value": "Week"
                 },
                 {
-                  "name": "Month",
+                  "name": "Maand",
                   "value": "Month"
                 },
                 {
-                  "name": "Year",
+                  "name": "Jaar",
                   "value": "Year"
                 }
               ],
@@ -956,8 +956,12 @@
                 "name": "Home",
                 "value": "Home"
               },
+               {
+                "name": "Board",
+                "value": "Board"
+              },
               {
-                "name": "Calendar",
+                "name": "Calender",
                 "value": "Calendar"
               },
               {
@@ -976,15 +980,17 @@
             "UserNavigation": [
               {
                 "name": "Settings",
-                "value": "Settings"
+                "value": "Settings",
+                "href": "../dashboard/profile"
               },
               {
                 "name": "Frequently Asked Questions",
-                "value": "Frequently Asked Questions"
+                "value": "FAQ",
+                "href": "../dashboard/FAQ"
               },
               {
                 "name": "Logout",
-                "value": "Logout"
+                "value": "Uitloggen"
               }
             ]
           },
@@ -1075,11 +1081,15 @@
             "texts": [
               {
                 "name": "Vacancies",
-                "notFound": "No vacancies found"
+                "notFound": "No vacancies found",
+                "status": "active",
+                "emptyDescription": "There are currently no vacancies published."
               },
               {
                 "name": "Published shifts",
-                "notFound": "No shifts found"
+                "notFound": "No shifts found",
+                "status": "active",
+                "emptyDescription": "There are currently no shifts published."
               },
               {
                 "name": "Checkouts",
@@ -1087,17 +1097,21 @@
               },
               {
                 "name": "Unpublished shifts",
-                "notFound": "No shifts found"
+                "notFound": "No shifts found",
+                "status": "draft",
+                "emptyDescription": "There are currently no unpublished shifts."
               },
               {
                 "name": "Flexpools",
                 "notFound": "No flexpools found",
                 "modal": {
                   "title": "Create flexpool",
-                  "subTitle": "Create Flexpool",
+                  "subTitle": "Flexpool Name",
+                  "description": "Choose a clear name for your flexpool",
+                  "emptyState": "Start by creating your first flexpool",
                   "buttons": [
                     "Cancel",
-                    "Add"
+                    "Create"
                   ]
                 }
               },
@@ -1107,6 +1121,7 @@
               },
               {
                 "name": "Shifts",
+                "description": "Active shifts currently published",
                 "attributes": [
                   "applications",
                   "spots",
@@ -1117,6 +1132,7 @@
               },
               {
                 "name": "Checkouts",
+                "description": "Pending checkouts awaiting approval",
                 "attributes": [
                   { "currencySign": "£" },
                   "date",
@@ -1131,6 +1147,7 @@
               },
               {
                 "name": "Invoices",
+                "description": "Weekly invoices and payment summaries",
                 "attributes": [
                   "shift",
                   "shifts",
@@ -1141,7 +1158,13 @@
                 "localDateString": "en-US",
                 "noDate": "date not available"
               }
-            ]
+            ],
+            "statistics": {
+              "totalShifts": "Total Shifts",
+              "activeVacancies": "Active Vacancies", 
+              "pendingCheckouts": "Pending Checkouts",
+              "totalInvoices": "Total Invoices"
+            }
           },
           "Veelgesteldevragen": {
             "headTitle": "Frequently Asked Questions"
@@ -1175,7 +1198,7 @@
             },
             "Dag": {
               "tekst1": "occupancy",
-              "tekst2": "No shift(s) available for this shift.",
+              "tekst2": "No shift(s) available for this day.",
               "tekst3": "Schedule for",
               "button": "Remove"
             },
@@ -1616,6 +1639,7 @@
               "End Time",
               "Start Time",
               "Break",
+              "Spots",
               "Description",
               "Skills",
               "Dress Code",
@@ -1899,6 +1923,11 @@
         "uitloggen": "Log out"
       }
     },
+    "Applications": {
+      "title": "Applications",
+      "noApplications": "No Applications Yet",
+      "noApplicationsDescription": "No one has applied for this shift yet."
+    },
     "shared": {
       "ApplyConfirmation": {
           "ToastMessage1": "Successfully applied for the shift! 👍",
@@ -1938,6 +1967,18 @@
             "Delete"
           ],
           "ToastMessage1": "Invalid Shift ID"
+        },
+        "VacancyDeleteConfirmation": {
+          "DialogText": [
+            "Are you sure you want to delete this vacancy?",
+            "This action will permanently delete the vacancy and all related jobs and applications. This cannot be undone."
+          ],
+          "buttons": [
+            "Cancel",
+            "Deleting...",
+            "Delete Vacancy"
+          ],
+          "ToastMessage1": "Invalid Vacancy ID"
         },
         "Dienstensectie": {
           "ToastMessage1": "Worker unsubscribed from the service!",

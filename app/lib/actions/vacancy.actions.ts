@@ -3,29 +3,30 @@
 import mongoose, { Types } from 'mongoose';
 import { connectToDB } from '../mongoose';
 import Vacancy, { IVacancy } from "../models/vacancy.model";
-import Jobs, { IJob } from "../models/job.model";
+import Job, { IJob } from "../models/job.model";
 import Application, { IApplication } from "../models/application.model";
 import Employer from "../models/employer.model";
 import Employee from "../models/employee.model";
 import Invoice from "../models/invoice.model";
+import Image from "../models/image.model";
 import { currentUser } from '@clerk/nextjs/server'
+import { serializeData } from '@/app/lib/utils/serialization';
 import cron from 'node-cron';
 import nodemailer from 'nodemailer';
-import Job from '../models/job.model';
 
  export const haalgebruikerMetId = async (clerkId: any) => {
     try {
         await connectToDB();
       // Controleer eerst of de gebruiker een bedrijf is
-      const bedrijf = await Employer.findOne({ clerkId });
+      const bedrijf = await Employer.findOne({ clerkId }).lean();
       if (bedrijf) {
-        return { type: 'bedrijf', data: bedrijf };
+        return { type: 'bedrijf', data: serializeData(bedrijf) };
       }
   
       // Controleer daarna of de gebruiker een freelancer is
-      const freelancer = await Employee.findOne({ clerkId });
+      const freelancer = await Employee.findOne({ clerkId }).lean();
       if (freelancer) {
-        return { type: 'employee', data: freelancer };
+        return { type: 'employee', data: serializeData(freelancer) };
       }
   
       // Als de gebruiker niet bestaat in beide collecties
@@ -46,13 +47,13 @@ import Job from '../models/job.model';
   
     try {
         await connectToDB();
-      const vacature = await Vacancy.findById(id).exec(); // Haal het volledige document op
+      const vacature = await Vacancy.findById(id).lean(); // Use .lean() for plain objects
   
       if (!vacature) {
         return null; // Vacature niet gevonden
       }
   
-      return vacature;
+      return JSON.parse(JSON.stringify(vacature)); // Ensure proper serialization
     } catch (error) {
       console.error('Fout bij ophalen van vacature:', error);
       throw new Error('Er is een fout opgetreden bij het ophalen van de vacature.');
@@ -68,9 +69,9 @@ import Job from '../models/job.model';
 
       await connectToDB();
 
-      const diensten = await Jobs.find({ vacancy: vacatureId }).exec(); // Haal alle diensten op die bij de vacature horen
+      const diensten = await Job.find({ vacancy: vacatureId }).lean(); // Use .lean() for plain objects
   
-      return diensten; // Retourneer de lijst met diensten
+      return JSON.parse(JSON.stringify(diensten)); // Ensure proper serialization
     } catch (error) {
       console.error('Fout bij ophalen van diensten:', error);
       throw new Error('Er is een fout opgetreden bij het ophalen van de diensten.');
@@ -86,9 +87,9 @@ import Job from '../models/job.model';
 
       await connectToDB();
 
-      const sollicitaties = await Application.find({ vacancy: vacatureId }).exec(); // Haal alle sollicitaties op die bij de vacature horen
+      const sollicitaties = await Application.find({ vacancy: vacatureId }).lean(); // Use .lean() for plain objects
   
-      return sollicitaties; // Retourneer de lijst met sollicitaties
+      return JSON.parse(JSON.stringify(sollicitaties)); // Ensure proper serialization
     } catch (error) {
       console.error('Fout bij ophalen van sollicitaties:', error);
       throw new Error('Er is een fout opgetreden bij het ophalen van de sollicitaties.');
@@ -151,7 +152,7 @@ import Job from '../models/job.model';
 
       await connectToDB();
 
-      const sollicitatie = await Application.findById(sollicitatieId);
+      const sollicitatie = await Application.findById(sollicitatieId).lean();
 
     if (!sollicitatie) {
       throw new Error("Sollicitatie niet gevonden.");
@@ -161,7 +162,7 @@ import Job from '../models/job.model';
 
     // 2️⃣ Loop door de diensten in de sollicitatie
     for (const dienstData of sollicitatie.jobs) {
-      const dienst = await Jobs.findById(dienstData.dienstId);
+      const dienst = await Job.findById(dienstData.dienstId).lean();
 
       if (!dienst) {
         console.warn(`Dienst met ID ${dienstData.dienstId} niet gevonden, wordt overgeslagen.`);
@@ -185,22 +186,33 @@ import Job from '../models/job.model';
     try {
       await connectToDB();
   
-      const { vacature, datum, werktijden, uurloon, toeslagen } = input;
+      const { vacature, datum, werktijden, uurloon, toeslagen, index } = input;
       const bedrag = berekenBedrag(uurloon, datum, werktijden, toeslagen);
   
-      const nieuweDienst = new Jobs({
-        opdrachtgever: new mongoose.Types.ObjectId(), // Moet worden vervangen door de echte opdrachtgever
-        vacature,
-        datum,
-        werktijden,
-        opdrachtnemers: [],
-        bedrag,
+      // Get the vacancy to get the employer and title
+      const vacancy = await Vacancy.findById(vacature).lean();
+      if (!vacancy) {
+        throw new Error('Vacancy not found');
+      }
+  
+      const nieuweDienst = new Job({
+        employer: vacancy.employer, // Use the employer from the vacancy
+        vacancy: vacature,
+        title: vacancy.title, // Use the title from the vacancy
+        date: datum,
+        workingtime: {
+          starting: werktijden.begintijd,
+          ending: werktijden.eindtijd,
+          break: werktijden.pauze || 30, // Default to 30 minutes if not provided
+        },
+        employees: [], // Empty array initially
+        amount: bedrag,
         status: 'open',
-        index: 0, // Kan eventueel automatisch gegenereerd worden
+        index: index,
       });
   
       await nieuweDienst.save();
-      return nieuweDienst;
+      return JSON.parse(JSON.stringify(nieuweDienst.toObject()));
     } catch (error: any) {
       console.error('Fout bij het aanmaken van de dienst:', error);
       return null;
@@ -228,23 +240,41 @@ import Job from '../models/job.model';
     try {
       await connectToDB();
   
-      // Nieuwe vacature aanmaken
+      // Nieuwe vacature aanmaken - map Dutch field names to English field names
       const nieuweVacature = new Vacancy({
-        opdrachtgever: input.opdrachtgever,
-        titel: input.titel,
-        opdrachtgeverNaam: input.opdrachtgeverNaam,
-        functie: input.functie,
-        afbeelding: input.afbeelding,
-        uurloon: input.uurloon,
-        adres: input.adres,
-        begindatum: input.begindatum,
-        einddatum: input.einddatum,
-        tijden: input.tijden,
-        beschrijving: input.beschrijving,
-        vaardigheden: input.vaardigheden,
-        kledingsvoorschriften: input.kledingsvoorschriften,
-        beschikbaar: true,
-        diensten: [], // Diensten array toevoegen
+        employer: input.opdrachtgever,
+        title: input.titel,
+        employerName: input.opdrachtgeverNaam,
+        function: input.functie,
+        image: input.afbeelding,
+        hourlyRate: input.uurloon,
+        adres: {
+          street: input.adres.straatnaam,
+          housenumber: input.adres.huisnummer,
+          postcode: input.adres.postcode,
+          city: input.adres.stad,
+        },
+        startingDate: input.begindatum,
+        endingDate: input.einddatum,
+        times: input.tijden.map(tijd => ({
+          starting: tijd.begintijd,
+          ending: tijd.eindtijd,
+          break: tijd.pauze,
+        })),
+        description: input.beschrijving,
+        skills: input.vaardigheden,
+        dresscode: input.kledingsvoorschriften,
+        available: true,
+        surcharges: input.toeslagen.map(toeslag => ({
+          surcharge: toeslag.toeslag,
+          surchargeType: toeslag.toeslagType,
+          surchargePercentage: toeslag.toeslagPercentage,
+          surchargeVan: toeslag.toeslagVan,
+          surchargeTot: toeslag.toeslagTot,
+        })),
+        applications: [],
+        jobs: [],
+        label: input.titel, // Use title as label
       });
   
       // ✅ BEREKEN ALLE DATA VAN BEGIN- TOT EINDDATUM
@@ -279,10 +309,79 @@ import Job from '../models/job.model';
       // ✅ OPSLAAN VAN DIENSTEN IN VACATURE
       nieuweVacature.jobs = dienstenIDs;
       const opgeslagenVacature = await nieuweVacature.save();
-  
-      return opgeslagenVacature;
+
+      // ✅ UPDATE EMPLOYER'S VACANCIES ARRAY
+      await Employer.findByIdAndUpdate(
+        input.opdrachtgever,
+        { $push: { vacancies: opgeslagenVacature._id } },
+        { new: true }
+      );
+
+      // Create image document if afbeelding (image URL) is provided
+      if (input.afbeelding && input.afbeelding.trim() !== '') {
+        try {
+          const imageRecord = new Image({
+            user: new mongoose.Types.ObjectId(input.opdrachtgever), // Using employer ID as the user
+            url: input.afbeelding,
+            filename: input.titel ? `${input.titel}-vacancy-image` : 'vacancy-image',
+            metadata: {
+              alt: input.titel ? `Image for vacancy: ${input.titel}` : 'Vacancy image',
+              description: `Image uploaded for vacancy: ${input.titel || 'Untitled vacancy'}`
+            }
+          });
+          
+          await imageRecord.save();
+          console.log('Image record created successfully for vacancy:', imageRecord._id);
+        } catch (imageError) {
+          console.error('Error creating image record for vacancy:', imageError);
+          // Don't throw error here as vacancy creation should still succeed
+        }
+      }
+
+      // Convert to plain object to avoid serialization issues
+      return JSON.parse(JSON.stringify(opgeslagenVacature));
     } catch (error: any) {
       throw new Error('Er is iets misgegaan bij het aanmaken van de vacature: ' + error.message);
+    }
+  };
+
+  // Function to fix existing vacancies that weren't added to employer's vacancies array
+  export const fixEmployerVacancies = async () => {
+    try {
+      await connectToDB();
+      
+      // Find all vacancies
+      const allVacancies = await Vacancy.find({}).lean();
+      console.log(`Found ${allVacancies.length} total vacancies`);
+      
+      let fixedCount = 0;
+      
+      for (const vacancy of allVacancies) {
+        // Check if this vacancy is in the employer's vacancies array
+        const employer = await Employer.findById(vacancy.employer);
+        if (employer) {
+          const isInVacanciesArray = employer.vacancies.some(
+            (vacancyId: any) => vacancyId.toString() === vacancy._id.toString()
+          );
+          
+          if (!isInVacanciesArray) {
+            // Add the vacancy to the employer's vacancies array
+            await Employer.findByIdAndUpdate(
+              vacancy.employer,
+              { $push: { vacancies: vacancy._id } },
+              { new: true }
+            );
+            fixedCount++;
+            console.log(`Added vacancy ${vacancy._id} to employer ${vacancy.employer}`);
+          }
+        }
+      }
+      
+      console.log(`Fixed ${fixedCount} employer-vacancy relationships`);
+      return fixedCount;
+    } catch (error) {
+      console.error('Error fixing employer vacancies:', error);
+      throw error;
     }
   };
   
@@ -317,22 +416,37 @@ import Job from '../models/job.model';
 
 
         try {
-
+          console.log("Fetching vacancies for employer:", bedrijfId);
           await connectToDB();
-          const bedrijf = await Employer.findById(bedrijfId);
+          const bedrijf = await Employer.findById(bedrijfId).lean();
+          console.log("Found employer:", bedrijf ? "Yes" : "No");
       
-          if (!bedrijf || !bedrijf.shifts) {
-            throw new Error(`Bedrijf with ID ${bedrijfId} not found or shifts not available`);
+          if (!bedrijf) {
+            throw new Error(`Bedrijf with ID ${bedrijfId} not found`);
           }
       
-          const vacatures = await Vacancy.find({ _id: { $in: bedrijf.vacancies }, beschikbaar: true });
-             
-          console.log("ShiftArrays: ", JSON.stringify(vacatures, null, 2)); // Pretty print the objects for better readability
+          console.log("Employer vacancies:", bedrijf.vacancies);
+          // If no vacancies array or empty array, return empty array
+          if (!bedrijf.vacancies || bedrijf.vacancies.length === 0) {
+            console.log("No vacancies found for employer");
+            return [];
+          }
       
-          return vacatures;
+          // First, let's check what vacancies exist without the available filter
+          const allVacancies = await Vacancy.find({ _id: { $in: bedrijf.vacancies } }).lean();
+          console.log("All vacancies count:", allVacancies.length);
+          console.log("All vacancies:", JSON.stringify(allVacancies, null, 2));
+          
+          // Then filter by available: true
+          const vacatures = await Vacancy.find({ _id: { $in: bedrijf.vacancies }, available: true }).lean();
+             
+          console.log("Vacatures: ", JSON.stringify(vacatures, null, 2)); // Pretty print the objects for better readability
+      
+          // Ensure proper serialization by converting to JSON and back
+          return serializeData(vacatures);
         } catch (error) {
-          console.error('Error fetching geplaatste shifts:', error);
-          throw new Error('Failed to fetch geplaatste shifts');
+          console.error('Error fetching geplaatste vacatures:', error);
+          throw new Error('Failed to fetch geplaatste vacatures');
         }
       };
 
@@ -342,17 +456,18 @@ import Job from '../models/job.model';
         try {
 
           await connectToDB();
-          const vacature = await Vacancy.findById(vacatureId);
+          const vacature = await Vacancy.findById(vacatureId).lean();
       
           if (!vacature || !vacature.jobs) {
             throw new Error(`No diensten for vacature with ID ${vacatureId} or diensten not available`);
           }
       
-          const diensten = await Job.find({ _id: { $in: vacature.jobs }, beschikbaar: true });
+          const diensten = await Job.find({ _id: { $in: vacature.jobs }, beschikbaar: true }).lean();
              
           console.log("Diensten: ", JSON.stringify(diensten, null, 2)); // Pretty print the objects for better readability
       
-          return diensten;
+          // Ensure proper serialization by converting to JSON and back
+          return serializeData(diensten);
 
         } catch (error) {
           console.error('Error fetching geplaatste shifts:', error);
@@ -934,33 +1049,71 @@ export const verwijderDienstenZonderOpdrachtnemers = async () => {
 export const haalDienstenFreelancer =async (freelancerId:string) => {
   try {
     await connectToDB();
-    const freelancer = await Employee.findById(freelancerId);
+    let freelancer;
+
+    // Try to find by ObjectId first
+    if (mongoose.Types.ObjectId.isValid(freelancerId)) {
+      freelancer = await Employee.findById(freelancerId);
+    }
+
+    // If not found by ObjectId, try to find by clerkId
+    if (!freelancer) {
+      freelancer = await Employee.findOne({ clerkId: freelancerId });
+    }
+
+    // If still not found, try to get current user
+    if (!freelancer) {
+      const user = await currentUser();
+      if (user) {
+        freelancer = await Employee.findOne({ clerkId: user.id });
+      }
+    }
 
     if(!freelancer){
-      throw new Error("Freelancer niet gevonden.");
-    };
-    const diensten = freelancer.diensten;
-
-    return diensten;
+      console.log("Freelancer niet gevonden voor ID:", freelancerId);
+      return []; // Return empty array instead of throwing error
+    }
+    
+    const diensten = freelancer.diensten || [];
+    return serializeData(diensten);
   } catch (error: any) {
     console.error('Fout bij het verwerken van diensten:', error);
-    return { success: false, message: 'Er ging iets mis bij het verwerken van de diensten.' };
+    return []; // Return empty array instead of error object
   }
 }
 export const haalSollicitatiesFreelancer =async (freelancerId:string) => {
   try {
     await connectToDB();
-    const freelancer = await Employee.findById(freelancerId);
+    let freelancer;
+
+    // Try to find by ObjectId first
+    if (mongoose.Types.ObjectId.isValid(freelancerId)) {
+      freelancer = await Employee.findById(freelancerId);
+    }
+
+    // If not found by ObjectId, try to find by clerkId
+    if (!freelancer) {
+      freelancer = await Employee.findOne({ clerkId: freelancerId });
+    }
+
+    // If still not found, try to get current user
+    if (!freelancer) {
+      const user = await currentUser();
+      if (user) {
+        freelancer = await Employee.findOne({ clerkId: user.id });
+      }
+    }
 
     if(!freelancer){
-      throw new Error("Freelancer niet gevonden.");
-    };
-    const sollicitaties = freelancer.sollicitaties;
-
-    return sollicitaties
+      console.log("Freelancer niet gevonden voor ID:", freelancerId);
+      return []; // Return empty array instead of throwing error
+    }
+    
+    const sollicitaties = freelancer.sollicitaties || [];
+    return serializeData(sollicitaties);
   } catch (error: any) {
     console.error('Fout bij het verwerken van sollicitaties:', error);
-    return { success: false, message: 'Er ging iets mis bij het verwerken van de sollicitaties.' };
+    return []; // Return empty array instead of error object
   }
 }
 
@@ -1191,5 +1344,37 @@ export const checkLoonheffingskorting = async (freelancerId:string) => {
   } catch (error: any) {
     console.error('Fout bij het verwerken van loonheffingskorting:', error);
     return { success: false, message: 'Er ging iets mis bij het verwerken van de loonheffingskorting.' };
+  }
+}
+
+export const verwijderVacature = async (vacatureId: string) => {
+  try {
+    await connectToDB();
+    
+    // Find the vacancy first
+    const vacature = await Vacancy.findById(vacatureId).lean();
+    if (!vacature) {
+      throw new Error('Vacature niet gevonden');
+    }
+
+    // Delete all related jobs (diensten)
+    await Job.deleteMany({ vacancy: vacatureId });
+
+    // Delete all related applications (sollicitaties)
+    await Application.deleteMany({ vacancy: vacatureId });
+
+    // Remove the vacancy from the employer's vacancies array
+    await Employer.updateOne(
+      { _id: vacature.employer },
+      { $pull: { vacancies: vacatureId } }
+    );
+
+    // Finally, delete the vacancy itself
+    await Vacancy.findByIdAndDelete(vacatureId);
+
+    return { success: true, message: 'Vacature succesvol verwijderd' };
+  } catch (error: any) {
+    console.error('Fout bij het verwijderen van vacature:', error);
+    return { success: false, message: 'Er ging iets mis bij het verwijderen van de vacature.' };
   }
 }

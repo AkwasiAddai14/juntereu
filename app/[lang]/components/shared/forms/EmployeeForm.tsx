@@ -16,6 +16,7 @@ import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import { createEmployeeValidation } from '@/app/lib/validations/employee';
 import { createEmployee } from '@/app/lib/actions/employee.actions';
 import { FileUploader } from '@/app/[lang]/components/shared/FileUploader';
+import { ensureDatabaseConnection } from '@/app/lib/utils/database-utils';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 
@@ -113,15 +114,15 @@ const EmployeeForm = ({ lang, userId, user, components }: Props) => {
   const delta = currentStep - previousStep;
 
   const getUserPhoneNumber = (user: any) => {
-    if (user?.primaryPhoneNumber) {
-      return user.primaryPhoneNumber;
+    if (user?.primaryPhoneNumber?.phoneNumber) {
+      return user.primaryPhoneNumber.phoneNumber;
     }
     
     const primaryPhone = user?.phoneNumbers?.find(
       (phoneNumber: any) => phoneNumber.id === user?.primaryPhoneNumberId
     );
   
-    return primaryPhone?.primaryPhoneNumber || "";
+    return primaryPhone?.phoneNumber || "";
   };
 
 
@@ -138,7 +139,7 @@ const EmployeeForm = ({ lang, userId, user, components }: Props) => {
     defaultValues: {
       employeeId:  user?.id || "",
       profilephoto: user?.imageUrl || "",
-      country: "United Kingdom",
+      country: "Nederland",
       firstname:  user?.firstName || user?.fullName || "",
       infix:  "",
       lastname:  user?.lastName ||"",
@@ -147,7 +148,8 @@ const EmployeeForm = ({ lang, userId, user, components }: Props) => {
       phone:  getUserPhoneNumber(user) || "",
       VATidnr:  "",
       iban:  "",
-      bio: ""
+      bio: "",
+      SocialSecurity: ""
     }
   });
 
@@ -166,52 +168,113 @@ const EmployeeForm = ({ lang, userId, user, components }: Props) => {
   const selectedDate = watch('dateOfBirth') as unknown as Date | undefined;
 
   const processForm: SubmitHandler<Inputs> = async (data) => {
+    try {
+      console.log('Form submission started');
+      console.log('Form data:', data);
+      console.log('Current step:', currentStep);
+      console.log('Country value from form:', data.country);
+      
+      // Only allow submission on the final step
+      if (currentStep !== steps.length - 1) {
+        console.log('Form not on final step, cannot submit');
+        return;
+      }
 
-    let uploadedImageUrl = data.profilephoto;
+      // Validate country value
+      if (!data.country) {
+        alert('Please select a country before proceeding.');
+        setLoading(false);
+        return;
+      }
 
-// Check if there are files to upload
-if (files.length > 0) {
-  try {
-    // Start the upload and wait for the response
-    const uploadedImages = await startUpload(files);
+      // Ensure proper database connection for the country
+      const dbInfo = await ensureDatabaseConnection(data.country);
+      if (!dbInfo.connected) {
+        console.error('Database connection failed:', dbInfo.error);
+        alert('Database connection failed. Please try again.');
+        setLoading(false);
+        return;
+      }
 
-    // Check if the upload was successful
-    if (!uploadedImages || uploadedImages.length === 0) {
-      console.error('Failed to upload images');
-      return;
-    }
+      console.log(`Connected to database for ${dbInfo.country} with functions:`, dbInfo.functions);
+      
+      setLoading(true);
 
-    // Use the URL provided by the upload service
-    uploadedImageUrl = uploadedImages[0].url;
-    console.log("Final URL:", uploadedImageUrl);
-  } catch (error) {
-    console.error('Error uploading image:', error);
-    return;
-  }
-}
-    setLoading(true)
-    user?.update({
-      unsafeMetadata: { country: data.country },
-    })
-    await createEmployee({
+      let uploadedImageUrl = data.profilephoto;
 
+      // Check if there are files to upload
+      if (files.length > 0) {
+        try {
+          // Start the upload and wait for the response
+          const uploadedImages = await startUpload(files);
 
+          // Check if the upload was successful
+          if (!uploadedImages || uploadedImages.length === 0) {
+            console.error('Failed to upload images');
+            setLoading(false);
+            return;
+          }
+
+          // Use the URL provided by the upload service
+          uploadedImageUrl = uploadedImages[0].url;
+          console.log("Final URL:", uploadedImageUrl);
+        } catch (error) {
+          console.error('Error uploading image:', error);
+          setLoading(false);
+          return;
+        }
+      }
+
+      // Update user metadata first
+      try {
+        await user?.update({
+          unsafeMetadata: { country: data.country },
+        });
+        
+        console.log('Country value being passed:', data.country);
+        console.log('User metadata updated with country:', data.country);
+        
+        // Verify the metadata was set
+        const updatedUser = await user?.reload();
+        console.log('Updated user metadata:', updatedUser?.unsafeMetadata);
+        
+        // Small delay to ensure metadata is processed
+        await new Promise(resolve => setTimeout(resolve, 500));
+      } catch (error) {
+        console.error('Error updating user metadata:', error);
+        alert('Error updating user profile. Please try again.');
+        setLoading(false);
+        return;
+      }
+
+      // Validate required fields
+      const requiredFields = ['postcode', 'housenumber', 'iban'];
+      const missingFields = requiredFields.filter(field => !data[field as keyof Inputs]);
+      
+      if (missingFields.length > 0) {
+        alert(`Please fill in the following required fields: ${missingFields.join(', ')}`);
+        setLoading(false);
+        return;
+      }
+
+      console.log('Creating employee with data:', data);
+      const result = await createEmployee({
       clerkId: user?.id || "0000",
       firstname: data.firstname || user?.firstName || user?.fullName ||"",
       infix: data.infix || "",
       lastname: data.lastname || user?.lastName || "",
       dateOfBirth: data.dateOfBirth || new Date("01/01/2000"),
-      country: data.country,
+      country: data.country || "Nederland",
       email: data.email ||  user?.emailAddresses[0].emailAddress || "",
       phone: data.phone || getUserPhoneNumber(user) || "",
-      postcode: data.postcode || "",
-      housenumber: data.housenumber || "",
+      postcode: data.postcode,
+      housenumber: data.housenumber,
       street: data.street || "",
       city: data.city,
       SalaryTaxDiscount: false,
       taxBenefit: false,
       VATidnr: data.VATidnr || "",
-      iban: data.iban || "",
+      iban: data.iban,
       onboarded: false,
       profilephoto: data.profilephoto || user?.imageUrl,
       experience: [], // Pass an empty array
@@ -219,10 +282,18 @@ if (files.length > 0) {
       education: [], // Pass an empty array
       bio: data.bio || "",
       companyRegistrationNumber: data.companyRegistrationNumber || '',
-      SocialSecurity: ""  // Ensure bsn is provided
+      SocialSecurity: data.SocialSecurity || ""  // Ensure bsn is provided
     });
-    setLoading(false)
-    router.push("../dashboard")
+
+      console.log('Employee created successfully:', result);
+      setLoading(false);
+      router.push("../dashboard");
+    } catch (error) {
+      console.error('Error creating employee:', error);
+      setLoading(false);
+      // You could add a toast notification here to show the error to the user
+      alert('Error creating employee. Please try again.');
+    }
   };
 
   if (loading) {
@@ -302,7 +373,7 @@ if (files.length > 0) {
                               className="block w-full appearance-none rounded-md border-0 py-1.5 pl-3 pr-8 text-base text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                             >
                               {countries.map((country) => (
-                                <option key={country.name} value={country.name}>
+                                <option key={country.name} value={country.id}>
                                   {country.icon} {country.name}
                                 </option>
                               ))}
@@ -390,20 +461,32 @@ if (files.length > 0) {
                     {components.forms.EmployeeForm.sub2Title}
                   </p>
                   <div className="mt-10 space-y-8  pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
-                    <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                      <label htmlFor="btwid" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
-                        {components.forms.EmployeeForm.formItems[8]}
-                      </label>
-                      <p className="text-sm text-slate-400">({components.forms.CompanyForm.optioneel})</p>
-                      <div className="mt-2 sm:col-span-2 sm:mt-0">
-                        <input
-                          type="text"
-                          {...register('VATidnr', { required: true })}
-                          id="btwid"
-                          className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6" />
-                        {errors.VATidnr && <p className="mt-2 text-sm text-red-600">{errors.VATidnr.message}</p>}
+                      <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                        <label htmlFor="btwid" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                          {components.forms.EmployeeForm.formItems[8]} <span className="text-sm text-slate-400">({components.forms.CompanyForm.optioneel})</span>
+                        </label>
+                        <div className="mt-2 sm:col-span-2 sm:mt-0">
+                          <input
+                            type="text"
+                            {...register('VATidnr')}
+                            id="btwid"
+                            className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6" />
+                          {errors.VATidnr && <p className="mt-2 text-sm text-red-600">{errors.VATidnr.message}</p>}
+                        </div>
                       </div>
-                    </div>
+                      <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                        <label htmlFor="socialsecurity" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                          Social Security Number
+                        </label>
+                        <div className="mt-2 sm:col-span-2 sm:mt-0">
+                          <input
+                            type="text"
+                            {...register('SocialSecurity')}
+                            id="socialsecurity"
+                            className="block w-full px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6" />
+                          {errors.SocialSecurity && <p className="mt-2 text-sm text-red-600">{errors.SocialSecurity.message}</p>}
+                        </div>
+                      </div>
                     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                       <label htmlFor="iban" className="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
                       {components.forms.EmployeeForm.formItems[9]}
@@ -566,6 +649,7 @@ if (files.length > 0) {
           {currentStep === steps.length - 1 && (
       <button
         type="submit"
+        onClick={() => console.log('Finish button clicked, current step:', currentStep, 'steps length:', steps.length)}
         className="inline-flex justify-center rounded-md border border-transparent bg-sky-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
       >
         {components.forms.EmployeeForm.buttons[2]}

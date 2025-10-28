@@ -8,28 +8,49 @@ import { match as matchLocale } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 
 function getLocale(request: NextRequest): string | undefined {
-  const negotiatorHeaders: Record<string, string> = {}
-  request.headers.forEach((value, key) => {
-    negotiatorHeaders[key] = value
-  })
-  // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages()
-  const locale = matchLocale(languages, locales, i18n.defaultLocale)
-  console.log('Negotiator languages:', languages)
-  console.log('Matched locale:', locale)
-  return locale
+  try {
+    const negotiatorHeaders: Record<string, string> = {}
+    request.headers.forEach((value, key) => {
+      negotiatorHeaders[key] = value
+    })
+    
+    // @ts-ignore locales are readonly
+    const locales: string[] = i18n.locales
+    const languages = new Negotiator({ headers: negotiatorHeaders }).languages()
+    
+    // Filter out invalid locales and ensure we have valid data
+    const validLanguages = languages.filter(lang => {
+      try {
+        return Intl.getCanonicalLocales(lang).length > 0
+      } catch {
+        return false
+      }
+    })
+    
+    if (validLanguages.length === 0) {
+      console.log('No valid languages found, using default locale')
+      return i18n.defaultLocale
+    }
+    
+    const locale = matchLocale(validLanguages, locales, i18n.defaultLocale)
+    console.log('Negotiator languages:', validLanguages)
+    console.log('Matched locale:', locale)
+    return locale
+  } catch (error) {
+    console.error('Error in getLocale:', error)
+    return i18n.defaultLocale
+  }
 };
 
 function isLocale(locale: string): locale is typeof i18n.locales[number] {
   return i18n.locales.includes(locale as any);
 };
 
-export function middleware(request: NextRequest) {
+export default clerkMiddleware((auth, request) => {
   const pathname = request.nextUrl.pathname
   
-  // Skip middleware for API routes - let them pass through without language prefix
-  if (pathname.startsWith('/api/')) {
+  // Skip middleware for API routes and UploadThing callbacks - let them pass through without language prefix
+  if (pathname.startsWith('/api/') || pathname.includes('uploadthing') || pathname.includes('utfs.io')) {
     return NextResponse.next();
   }
   
@@ -70,9 +91,7 @@ export function middleware(request: NextRequest) {
   }
   
   return NextResponse.next();
-};
-
-export default clerkMiddleware();
+});
 
 export const config = {
   matcher: [

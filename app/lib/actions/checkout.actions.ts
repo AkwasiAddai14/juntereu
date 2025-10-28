@@ -314,21 +314,32 @@ export const noShowCheckout = async ({ shiftId }: { shiftId: string }) => {
 export const haalBedrijvenCheckouts = async (bedrijfId: string) => {
   try {
     await connectToDB();
-    const bedrijf = await Employer.findById(bedrijfId)
+    const bedrijf = await Employer.findById(bedrijfId).lean()
     if(bedrijf){
-      const checkouts = await Shift.find({_id: {$in: bedrijf.checkouts}, status: 'checkout ingevuld'})
-      return checkouts;
+      // If no checkouts array or empty array, return empty array
+      if (!bedrijf.checkouts || bedrijf.checkouts.length === 0) {
+        return [];
+      }
+      const checkouts = await Shift.find({_id: {$in: bedrijf.checkouts}, status: 'checkout ingevuld'}).lean()
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(checkouts));
     }
     else {
       const user = await currentUser();
       if(user){
-        const bedrijf = await Employer.findOne({clerkId: user.id});
+        const bedrijf = await Employer.findOne({clerkId: user.id}).lean();
         if(bedrijf) {
-          const checkouts = await Shift.find({_id: {$in: bedrijf.checkouts}})
-          return checkouts;
+          // If no checkouts array or empty array, return empty array
+          if (!bedrijf.checkouts || bedrijf.checkouts.length === 0) {
+            return [];
+          }
+          const checkouts = await Shift.find({_id: {$in: bedrijf.checkouts}}).lean()
+          // Ensure proper serialization by converting to JSON and back
+          return JSON.parse(JSON.stringify(checkouts));
         }  
       }
     }
+    return [];
   } catch (error:any) {
     throw new Error(`Failed to find shift: ${error.message}`);
   }
@@ -383,7 +394,7 @@ export const haalCheckouts = async (freelancerId: Types.ObjectId | string ) => {
     console.log("No user or freelancer found");
     return [];
   } catch (error: any) {
-    throw new Error(`Failed to find shift: ${error.message}`);
+    console.log(`Failed to find shift: ${error.message}`);
   }
 };
 

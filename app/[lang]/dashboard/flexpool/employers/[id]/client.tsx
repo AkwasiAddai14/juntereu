@@ -49,13 +49,68 @@ export default function FlexpoolPage({ id, lang, dashboard }: { id: string, lang
   const [geauthoriseerd, setGeauthoriseerd] = useState<Boolean>(false);
   
 
-    const isGeAuthorizeerd = async (id:string) => {
-      const toegang = await AuthorisatieCheck(id, 6);
-      setGeauthoriseerd(toegang);
+    useEffect(() => {
+      const checkAuthorization = async () => {
+        if (isLoaded && user && id) {
+          try {
+            console.log('Checking authorization for flexpool ID:', id);
+            
+            // First, get the flexpool data to check the employer
+            const response = await fetch(`/api/flexpool/${id}`);
+            if (!response.ok) {
+              throw new Error('Failed to fetch flexpool data');
+            }
+            const flexpoolData = await response.json();
+            console.log('Flexpool data:', flexpoolData);
+            
+            if (!flexpoolData) {
+              console.log('Flexpool not found');
+              setGeauthoriseerd(false);
+              return;
+            }
+            
+            // Check if the current user is the employer of this flexpool
+            if (user && flexpoolData.employer) {
+              // Get the current user's employer record
+              const employerResponse = await fetch('/api/get-employer-by-clerk-id', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ clerkId: user.id }),
+              });
+              
+              if (employerResponse.ok) {
+                const employerData = await employerResponse.json();
+                console.log('Current user employer data:', employerData);
+                console.log('Flexpool employer ID:', flexpoolData.employer);
+                console.log('Current user employer ID:', employerData._id);
+                
+                const isAuthorized = employerData._id === flexpoolData.employer;
+                console.log('Authorization result:', isAuthorized);
+                setGeauthoriseerd(isAuthorized);
+              } else {
+                console.log('Failed to get employer data');
+                setGeauthoriseerd(false);
+              }
+            } else {
+              console.log('No user or flexpool employer found');
+              setGeauthoriseerd(false);
+            }
+          } catch (error) {
+            console.error('Authorization check failed:', error);
+            setGeauthoriseerd(false);
+          }
+        }
+      };
+
+      checkAuthorization();
+    }, [isLoaded, user, id]);
+
+    if (geauthoriseerd === null) {
+      return <h1>Loading...</h1>;
     }
-  
-    isGeAuthorizeerd(id);
-  
+
     if(!geauthoriseerd){
       return <h1>403 - Forbidden</h1>
     }

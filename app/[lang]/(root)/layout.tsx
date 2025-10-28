@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { frFR, svSE, esES, ptPT, nbNO, itIT, deDE, fiFI, nlNL, daDK, arSA, enGB } from '@clerk/localizations'
 import { Toaster } from "@/app/[lang]/components/ui/toaster"
 import '@/app/[lang]/globals.css'
-
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Junter | Make Money Fast",
@@ -36,14 +33,32 @@ export async function generateStaticParams() {
       { lang: 'sude' },
   ]
 }
-const clerkPubKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_live_Y2xlcmsuanVudGVyLmV1JA';
+const localeMap: Record<string, any> = {
+  fr: frFR,
+  sv: svSE,
+  es: esES,
+  pt: ptPT,
+  nb: nbNO,
+  it: itIT,
+  de: deDE,
+  fi: fiFI,
+  nl: nlNL,
+  da: daDK,
+  ar: arSA,
+  en: enGB
+}
+
 export default async function RootLayout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode;
   params: Promise<{ lang: 'en' | 'nl' | 'fr' | 'de' | 'es' | 'it' | 'pt' | 'fi' | 'dk' | 'no' | 'sw' | 'benl' | 'befr' | 'suit' | 'sufr' | 'sude' | 'lu' }>
-}>) {// Directly get the value from process.env
+}>) {
+  const resolvedParams = await params;
+  const selectedLocalization = localeMap[resolvedParams.lang] || nlNL;
+  
+  // Directly get the value from process.env
   const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
   // IMPORTANT: Add a check here to ensure the key is present.
@@ -53,13 +68,12 @@ export default async function RootLayout({
   }
 
   return (
-    <ClerkProvider publishableKey={clerkPublishableKey}>
-    <html lang={(await params).lang}>
-      <body className={inter.className}>
-        {children}
-        <Toaster />
-        </body>
-    </html>
+    <ClerkProvider 
+      publishableKey={clerkPublishableKey}
+      localization={selectedLocalization}
+    >
+      {children}
+      <Toaster />
     </ClerkProvider>
   );
 }

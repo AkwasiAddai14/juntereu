@@ -34,20 +34,17 @@ export default function OnboardingDialog({ onFreelancerSelected, onCompanySelect
 
   if (loading || !components) {
     return (
-      <Dialog open onClose={() => {}} className="fixed inset-0 z-10" as="div">
-        <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-        <div className="fixed inset-0 z-10 flex items-center justify-center">
-          <DialogPanel className="relative overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl sm:max-w-lg sm:p-6">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto"></div>
-            <p className="mt-4 text-center text-gray-600">Loading...</p>
-          </DialogPanel>
+      <div className="fixed inset-0 z-10 flex items-center justify-center">
+        <div className="relative overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl sm:max-w-lg sm:p-6">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto"></div>
+          <p className="mt-4 text-center text-gray-600">Loading...</p>
         </div>
-      </Dialog>
+      </div>
     );
   }
     
   return (
-    <Dialog open onClose={() => {}} className="fixed inset-0 z-10" as="div">
+    <Dialog open onClose={() => {}} className="fixed inset-0 z-10">
       <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
 
       <div className="fixed inset-0 z-10 flex items-center justify-center">

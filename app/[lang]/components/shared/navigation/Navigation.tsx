@@ -76,7 +76,7 @@ export default function Example({ lang, components }: Props) {
                   <span className="sr-only">Open user menu</span>
                   <Image
                     alt={user?.fullName ?? "The Junter"}
-                    src={profilePhoto}
+                    src={profilePhoto || "/placeholder-avatar.svg"}
                     className="rounded-full"
                     width={32}
                     height={32}

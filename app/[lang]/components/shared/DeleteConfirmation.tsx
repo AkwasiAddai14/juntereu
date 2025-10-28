@@ -24,7 +24,7 @@ export const DeleteConfirmation = ({
   const pathname = usePathname()
   let [isPending, startTransition] = useTransition()
   const [shift, setShift] = useState<any>(null);
-  const components = dictionary.components;
+  const components = dictionary?.components || {};
 
   useEffect(() => {
     const fetchShift = async () => {
@@ -49,14 +49,14 @@ export const DeleteConfirmation = ({
 
       <AlertDialogContent className="bg-white">
         <AlertDialogHeader>
-          <AlertDialogTitle>{components.shared.DeleteConfirmation.DialogText[0]}</AlertDialogTitle>
+          <AlertDialogTitle>{components?.shared?.DeleteConfirmation?.DialogText?.[0] || 'Delete Confirmation'}</AlertDialogTitle>
           <AlertDialogDescription className="p-regular-16 text-grey-600">
-            {components.shared.DeleteConfirmation.DialogText[1]}
+            {components?.shared?.DeleteConfirmation?.DialogText?.[1] || 'Are you sure you want to delete this item?'}
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogCancel>{components.shared.DeleteConfirmation.buttons[0]}</AlertDialogCancel>
+          <AlertDialogCancel>{components?.shared?.DeleteConfirmation?.buttons?.[0] || 'Cancel'}</AlertDialogCancel>
 
           {shiftArrayId ? (
             <AlertDialogAction
@@ -65,10 +65,10 @@ export const DeleteConfirmation = ({
                   await verwijderShiftArray({ shiftArrayId, forceDelete: true, path: pathname || "/dashboard" })
                 })
               }>
-              {isPending ? `${components.shared.DeleteConfirmation.buttons[1]}` : `${components.shared.DeleteConfirmation.buttons[2]}`}
+              {isPending ? `${components?.shared?.DeleteConfirmation?.buttons?.[1] || 'Deleting...'}` : `${components?.shared?.DeleteConfirmation?.buttons?.[2] || 'Delete'}`}
             </AlertDialogAction>
           ) : (
-            <p>{components.shared.DeleteConfirmation.ToastMessage1}</p>
+            <p>{components?.shared?.DeleteConfirmation?.ToastMessage1 || 'No shift found'}</p>
           )}
         </AlertDialogFooter>
       </AlertDialogContent>

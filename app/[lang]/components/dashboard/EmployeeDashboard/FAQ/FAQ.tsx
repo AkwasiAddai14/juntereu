@@ -1,3 +1,5 @@
+"use client";
+
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline';
 import { getDictionary } from '@/app/[lang]/dictionaries'
@@ -12,8 +14,7 @@ const faqs = [
   // More questions...
 ]
 
-export default async function VeelgesteldeVragen({ lang }: { lang: Locale }) {
-  const { dashboard } = await getDictionary(lang);
+export default function VeelgesteldeVragen({ lang, dashboard }: { lang: Locale; dashboard: any }) {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">

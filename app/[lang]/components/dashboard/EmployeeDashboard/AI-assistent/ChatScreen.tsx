@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import styled from 'styled-components';
 import ChatMessage from './ChatMessage';
 
 interface Message {
@@ -8,40 +7,6 @@ interface Message {
   isUser: boolean;
   timestamp: string;
 }
-
-const ChatContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background-color: #F5F5F5;
-`;
-
-const MessagesContainer = styled.div`
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px 0;
-  display: flex;
-  flex-direction: column;
-`;
-
-const InputContainer = styled.div`
-  padding: 16px;
-  background-color: white;
-  border-top: 1px solid #E0E0E0;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #E0E0E0;
-  border-radius: 20px;
-  outline: none;
-  font-size: 16px;
-
-  &:focus {
-    border-color: #007AFF;
-  }
-`;
 
 const ChatScreen: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -103,29 +68,56 @@ const ChatScreen: React.FC = () => {
   
 
   return (
-    <ChatContainer>
-      <MessagesContainer>
-        {messages.map((message) => (
-          <ChatMessage
-            key={message.id}
-            message={message.text}
-            isUser={message.isUser}
-            timestamp={message.timestamp}
-          />
-        ))}
+    <div className="flex flex-col h-full bg-gray-50">
+      {/* Messages Area */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {messages.length === 0 ? (
+          <div className="flex flex-col items-center justify-center h-full text-center">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+              <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Welcome to AI Assistant</h3>
+            <p className="text-gray-500 text-sm max-w-xs">I'm here to help you with your business questions. How can I assist you today?</p>
+          </div>
+        ) : (
+          messages.map((message) => (
+            <ChatMessage
+              key={message.id}
+              message={message.text}
+              isUser={message.isUser}
+              timestamp={message.timestamp}
+            />
+          ))
+        )}
         <div ref={messagesEndRef} />
-      </MessagesContainer>
-      <InputContainer>
-        <form onSubmit={handleSendMessage}>
-          <Input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Type a message..."
-          />
+      </div>
+      
+      {/* Input Area */}
+      <div className="bg-white border-t border-gray-200 p-4">
+        <form onSubmit={handleSendMessage} className="flex items-center space-x-3">
+          <div className="flex-1 relative">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Type a message..."
+              className="w-full px-4 py-3 pr-12 bg-gray-100 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            />
+            <button
+              type="submit"
+              disabled={!inputValue.trim()}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-200"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </div>
         </form>
-      </InputContainer>
-    </ChatContainer>
+      </div>
+    </div>
   );
 };
 

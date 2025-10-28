@@ -37,52 +37,22 @@ const DropdownPauze = ({ value, onChangeHandler, options }: Props) => {
   return (
     <div>
     <Select onValueChange={onChangeHandler} defaultValue={value}>
-    <SelectTrigger className="w-[180px]">
-      <SelectValue placeholder="Pauze" />
+    <SelectTrigger className="w-full h-12 px-4 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+      <SelectValue placeholder="Break" />
     </SelectTrigger>
-    <SelectContent>
+    <SelectContent className="bg-gray-50 border border-gray-200">
       {options.map((opt) => (
-        <SelectItem key={opt.value} value={opt.value}>
+        <SelectItem key={opt.value} value={opt.value} className="text-gray-800 hover:bg-blue-50 focus:bg-blue-600 focus:text-white">
           {opt.label}
         </SelectItem>
       ))}
 
       {pauze.map((p) => (
-        <SelectItem key={p._id} value={p._id}>
+        <SelectItem key={p._id} value={p._id} className="text-gray-800 hover:bg-blue-50 focus:bg-blue-600 focus:text-white">
           {p.name}
         </SelectItem>
       ))}
 
-      {/* <SelectItem value="0">Geen pauze</SelectItem>
-      <SelectItem value="15">15 minuten pauze</SelectItem>
-      <SelectItem value="30">30 minuten pauze</SelectItem>
-      <SelectItem value="45">45 minuten pauze</SelectItem>
-      <SelectItem value="60">60 minuten pauze</SelectItem>
-      <SelectItem value="90">90 minuten pauze</SelectItem>
-      <SelectItem value="120">120 minuten pauze</SelectItem> */}
-
-      {/* {pauze.length > 0 && pauze.map((pauze) => (
-          <SelectItem key={pauze._id} value={pauze._id} className="select-item p-regular-14">
-            {pauze.name}
-          </SelectItem>
-        ))}
-
-
-      <AlertDialog>
-          <AlertDialogTrigger className="p-medium-14 flex w-full rounded-sm py-3 pl-8 text-primary-500 hover:bg-primary-50 focus:text-primary-500">Aangepast</AlertDialogTrigger>
-          <AlertDialogContent className="bg-white">
-            <AlertDialogHeader>
-              <AlertDialogTitle>Aangepast</AlertDialogTitle>
-              <AlertDialogDescription>
-                <Input type="text" placeholder="aangepaste pauze" className="input-field mt-3" onChange={(e) => setAangepast(e.target.value)} />
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Annuleer</AlertDialogCancel>
-              <AlertDialogAction onClick={() => startTransition(voegPauzeToe)}>Toevoegen</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog> */}
 
     </SelectContent>
   </Select>

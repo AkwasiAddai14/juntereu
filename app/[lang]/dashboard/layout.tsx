@@ -1,12 +1,9 @@
 
 import { ClerkProvider } from "@clerk/nextjs";
+import { frFR, svSE, esES, ptPT, nbNO, itIT, deDE, fiFI, nlNL, daDK, arSA, enGB } from '@clerk/localizations'
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import '@/app/[lang]/globals.css';
 import { Toaster } from "@/app/[lang]/components/ui/toaster"
-
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Junter",
@@ -16,19 +13,34 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+const localeMap: Record<string, any> = {
+  fr: frFR,
+  sv: svSE,
+  es: esES,
+  pt: ptPT,
+  nb: nbNO,
+  it: itIT,
+  de: deDE,
+  fi: fiFI,
+  nl: nlNL,
+  da: daDK,
+  ar: arSA,
+  en: enGB
+}
+
+export default function DashboardLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }>) {
   return (
-    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY_TEST}>
-    <html lang="en">
-      <body className={inter.className}>
-        {children}
-        <Toaster />
-      </body>
-      
-      </html>        
+    <ClerkProvider 
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!}
+    >
+      {children}
+      <Toaster />
     </ClerkProvider>
-      )};
+  );
+};

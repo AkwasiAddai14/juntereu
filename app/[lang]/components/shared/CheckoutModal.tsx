@@ -34,7 +34,7 @@ export type SearchParamProps = {
   onClose: () => void;
 }
 
-export default async function Checkoutgegevens({
+export default function Checkoutgegevens({
   shiftId,
   lang,
   isVisible,

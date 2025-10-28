@@ -15,6 +15,7 @@ import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import { maakBedrijf } from '@/app/lib/actions/employer.actions';
 import { createCompanyValidation } from '@/app/lib/validations/employer';
 import { FileUploader } from "@/app/[lang]/components/shared/FileUploader";
+import { ensureDatabaseConnection } from '@/app/lib/utils/database-utils';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 
@@ -153,69 +154,117 @@ const BedrijfsForm = ({ lang, userId, components, validations }: ClientProps) =>
     }, [kvkNummer, setValue]);
 
     const processForm: SubmitHandler<Inputs> = async (data) => {
+        console.log('Company form submission started');
+        console.log('Form data:', data);
+        console.log('Current step:', currentStep);
+        console.log('Country value from form:', data.country);
+        
+        // Only allow submission on the final step
+        if (currentStep !== steps.length - 1) {
+            console.log('Form not on final step, cannot submit');
+            return;
+        }
+
+        // Validate country value
+        if (!data.country) {
+            alert('Please select a country before proceeding.');
+            setLoading(false);
+            return;
+        }
+
+        // Ensure proper database connection for the country
+        const dbInfo = await ensureDatabaseConnection(data.country);
+        if (!dbInfo.connected) {
+            console.error('Database connection failed:', dbInfo.error);
+            alert('Database connection failed. Please try again.');
+            setLoading(false);
+            return;
+        }
+
+        console.log(`Connected to database for ${dbInfo.country} with functions:`, dbInfo.functions);
 
         let uploadedImageUrl = data.profilephoto;
 
-// Check if there are files to upload
-if (files.length > 0) {
-    try {
-      // Start the upload and wait for the response
-      const uploadedImages = await startUpload(files);
-  
-      // Check if the upload was successful
-      if (!uploadedImages || uploadedImages.length === 0) {
-        console.error('Failed to upload images');
-        return;
-      }
-  
-      // Use the URL provided by the upload service
-      uploadedImageUrl = uploadedImages[0].url;
-      console.log("Final URL:", uploadedImageUrl);
-    } catch (error) {
-      console.error('Error uploading image:', error);
-      return;
-    }
-  }
-        user?.update({
-                     unsafeMetadata: { country: data.country },
-                     })
-        
-            setLoading(true)
-            console.log(data)
+        // Check if there are files to upload
+        if (files.length > 0) {
             try {
-                const result =  await maakBedrijf({
-                    clerkId: user?.id || "bedrijf",
-                    name: data.name || user?.firstName || user?.fullName ||"",
-                    profilephoto: data.profilephoto || user?.imageUrl || "",
-                    displayname: data.displayname,
-                    CompanyRegistrationNumber: data.CompanyRegistrationNumber || '',
-                    VATidnr: data.VATidnr,
-                    postcode: data.postcode,
-                    housenumber: data.housenumber,
-                    city: data.city,
-                    street: data.street,
-                    email: data.email ||  user?.emailAddresses[0].emailAddress || "",
-                    phone: data.phone || getUserPhoneNumber(user) || "",
-                    iban: data.iban,
-                });
-                console.log("Submission Result:", result);
-                if (createOrganization) {
-                    await createOrganization({ name: data.displayname });
-                    setOrganizationName(data.displayname);
-                } else {
-                    console.error("createOrganization function is undefined");
+                // Start the upload and wait for the response
+                const uploadedImages = await startUpload(files);
+            
+                // Check if the upload was successful
+                if (!uploadedImages || uploadedImages.length === 0) {
+                    console.error('Failed to upload images');
+                    return;
                 }
-                if (pathname === 'profiel/wijzigen') {
-                    router.back();
-                } else {
-                    setLoading(false)
-                    router.push('../dashboard');
-                }
-            } catch (error:any) {
-                console.error('Error processing form:', error);
-                console.log(error);
+            
+                // Use the URL provided by the upload service
+                uploadedImageUrl = uploadedImages[0].url;
+                console.log("Final URL:", uploadedImageUrl);
+            } catch (error) {
+                console.error('Error uploading image:', error);
+                return;
             }
+        }
+
+        // Update user metadata with country
+        try {
+            await user?.update({
+                unsafeMetadata: { country: data.country },
+            });
+            console.log('Country value being passed:', data.country);
+            console.log('User metadata updated with country:', data.country);
+            
+            // Verify the metadata was set
+            const updatedUser = await user?.reload();
+            console.log('Updated user metadata:', updatedUser?.unsafeMetadata);
+            
+            // Small delay to ensure metadata is processed
+            await new Promise(resolve => setTimeout(resolve, 500));
+        } catch (error) {
+            console.error('Error updating user metadata:', error);
+            alert('Error updating user profile. Please try again.');
+            setLoading(false);
+            return;
+        }
         
+        setLoading(true)
+        console.log(data)
+        try {
+            const result = await maakBedrijf({
+                clerkId: user?.id || "bedrijf",
+                name: data.name || user?.firstName || user?.fullName ||"",
+                profilephoto: data.profilephoto || user?.imageUrl || "",
+                displayname: data.displayname,
+                country: data.country || "Nederland",
+                CompanyRegistrationNumber: data.CompanyRegistrationNumber || '',
+                VATidnr: data.VATidnr,
+                postcode: data.postcode,
+                housenumber: data.housenumber,
+                city: data.city,
+                street: data.street,
+                email: data.email ||  user?.emailAddresses[0].emailAddress || "",
+                phone: data.phone || getUserPhoneNumber(user) || "",
+                iban: data.iban,
+            });
+            console.log("Submission Result:", result);
+            if (createOrganization) {
+                await createOrganization({ name: data.displayname });
+                setOrganizationName(data.displayname);
+            } else {
+                console.error("createOrganization function is undefined");
+            }
+            if (pathname === 'profiel/wijzigen') {
+                router.back();
+            } else {
+                setLoading(false)
+                router.push('../dashboard');
+            }
+        } catch (error:any) {
+            console.error('Error processing form:', error);
+            console.log(error);
+            setLoading(false);
+            alert('Error creating company. Please try again.');
+        }
     };
 
     const [previousStep, setPreviousStep] = useState(0);
@@ -315,7 +364,7 @@ if (files.length > 0) {
                                 className="block w-full appearance-none rounded-md border-0 py-1.5 pl-3 pr-8 text-base text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             >
                                 {countries.map((country) => (
-                                    <option key={country.name} value={country.name}>
+                                    <option key={country.name} value={country.id}>
                                         {country.icon} {country.name}
                                     </option>
                                 ))}
@@ -641,6 +690,7 @@ if (files.length > 0) {
                 ) : (
                     <button
                         type="submit"
+                        onClick={() => console.log('Company Finish button clicked, current step:', currentStep, 'steps length:', steps.length)}
                         className="rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                     >
                         {components.forms.CompanyForm.buttons[2]}

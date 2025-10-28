@@ -26,6 +26,7 @@ import { getDictionary } from '@/app/[lang]/dictionaries';
 import { IAvailability } from '@/app/lib/models/availability.model';
 import { haalFreelancer } from '@/app/lib/actions/employee.actions';
 import { IEmployee } from '@/app/lib/models/employee.model';
+import { showErrorToast } from '@/app/[lang]/lib/errorHandler';
 import { vindBeschikbaarheidVanFreelancer } from '@/app/lib/actions/availability.actions';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
@@ -73,9 +74,11 @@ interface CalenderDClientProps {
   }, [isLoaded, user]);
 
   useEffect(() => {
+    if (!freelancer?.id) return; // Guard clause: don't run if freelancer is undefined
+    
     const fetchAangemeldeShifts = async () => {
       try {
-            const response = await haalAangemeld(freelancer!.id);
+            const response = await haalAangemeld(freelancer.id);
             if (response) {
               // Filter and separate shifts based on their status
               const geaccepteerdShifts = response.filter((shift: { status: string; }) => shift.status === 'aangenomen');
@@ -90,11 +93,12 @@ interface CalenderDClientProps {
             }
         
       } catch (error) {
-        console.error('Error fetching shifts:', error);
+        showErrorToast("Failed to load shifts. Please try again.");
+        setShifts([]);
       }
     };
     fetchAangemeldeShifts();  // Call the fetchShifts function
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
   
 
@@ -105,14 +109,14 @@ interface CalenderDClientProps {
           const availability = await vindBeschikbaarheidVanFreelancer(freelancer.id);
           setBeschikbaarheid(availability || []);  // Ensure shifts is always an array
         } catch (error) {
-          console.error('Error fetching shifts:', error);
+          showErrorToast("Failed to load availability. Please try again.");
           setBeschikbaarheid([]);  // Handle error by setting an empty array
         }
       };
   
       fetchAvailability();
     }
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
   useEffect(() => {
     if (freelancer) {  // Only fetch shifts if bedrijfId is available
@@ -121,14 +125,14 @@ interface CalenderDClientProps {
           const diensten = await haalDienstenFreelancer(freelancer.id);
           setDiensten(diensten || []);  // Ensure shifts is always an array
         } catch (error) {
-          console.error('Error fetching diensten:', error);
+          showErrorToast("Failed to load services. Please try again.");
           setDiensten([]);  // Handle error by setting an empty array
         }
       };
   
       fetchDiensten();
     }
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
 
   const startDate = startOfWeek(startOfMonth(currentMonth), { weekStartsOn: 1 })
@@ -241,6 +245,19 @@ interface CalenderDClientProps {
   );
 
 
+
+  // Show loading state when freelancer is not yet loaded
+  if (!freelancer) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto"></div>
+          <p className="mt-2 text-gray-600">Loading calendar...</p>
+          <p className="mt-1 text-sm text-gray-500">Setting up your profile...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="pl-96 mt-10 md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">

@@ -45,8 +45,8 @@ export default async function AuthLayout({
 
   return(
     <ClerkProvider 
-    publishableKey={clerkPublishableKey}
-    localization={selectedLocalization}
+      publishableKey={clerkPublishableKey}
+      localization={selectedLocalization}
     >
       <div className="bg-dark-1 min-h-screen">
         {children}

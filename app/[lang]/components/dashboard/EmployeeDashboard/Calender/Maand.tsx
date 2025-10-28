@@ -17,6 +17,7 @@ import { haalFreelancer } from '@/app/lib/actions/employee.actions';
 import { haalAangemeld } from '@/app/lib/actions/shift.actions';
 import { IAvailability } from '@/app/lib/models/availability.model';
 import { IEmployee } from '@/app/lib/models/employee.model';
+import { handleError, withErrorHandling, showErrorToast } from '@/app/[lang]/lib/errorHandler';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 
@@ -49,11 +50,13 @@ const CalenderM = ({
           const freelancer = await haalFreelancer(user!.id);
           if (freelancer) {
             setFreelancer(freelancer);
-          } else{
-            console.log("geen freelancerId gevonden.")
+          } else {
+            showErrorToast("User profile not found. Please complete your profile setup.");
+            setFreelancer(undefined);
           }
         } catch (error) {
-          console.error("Error fetching freelancer by Clerk ID:", error);
+          showErrorToast("Failed to load user profile. Please try again.");
+          setFreelancer(undefined);
         }
       };
       if (user) {  // Only fetch if user exists and freelancerId is not already set
@@ -63,9 +66,11 @@ const CalenderM = ({
   }, [isLoaded, user]);
 
   useEffect(() => {
+    if (!freelancer?.id) return; // Guard clause: don't run if freelancer is undefined
+    
     const fetchAangemeldeShifts = async () => {
       try {
-            const response = await haalAangemeld(freelancer!.id);
+            const response = await haalAangemeld(freelancer.id);
             if (response) {
               // Filter and separate shifts based on their status
               const geaccepteerdShifts = response.filter((shift: { status: string; }) => shift.status === 'aangenomen');
@@ -80,11 +85,12 @@ const CalenderM = ({
             }
         
       } catch (error) {
-        console.error('Error fetching shifts:', error);
+        showErrorToast("Failed to load shifts. Please try again.");
+        setShifts([]);
       }
     };
     fetchAangemeldeShifts();  // Call the fetchShifts function
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
   
 
@@ -95,14 +101,14 @@ const CalenderM = ({
           const availability = await vindBeschikbaarheidVanFreelancer(freelancer.id);
           setBeschikbaarheid(availability || []);  // Ensure shifts is always an array
         } catch (error) {
-          console.error('Error fetching shifts:', error);
+          showErrorToast("Failed to load availability. Please try again.");
           setBeschikbaarheid([]);  // Handle error by setting an empty array
         }
       };
   
       fetchAvailability();
     }
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
   useEffect(() => {
     if (freelancer) {  // Only fetch shifts if bedrijfId is available
@@ -111,14 +117,14 @@ const CalenderM = ({
           const diensten = await haalDienstenFreelancer(freelancer.id);
           setDiensten(diensten || []);  // Ensure shifts is always an array
         } catch (error) {
-          console.error('Error fetching diensten:', error);
+          showErrorToast("Failed to load services. Please try again.");
           setDiensten([]);  // Handle error by setting an empty array
         }
       };
   
       fetchDiensten();
     }
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
   const startDate = startOfWeek(startOfMonth(currentMonth), { weekStartsOn: 1 })
   const endDate = endOfWeek(endOfMonth(currentMonth), { weekStartsOn: 1 })
@@ -228,8 +234,23 @@ days.forEach((day) => {
 
   const selectedDayObject = days.find((day) => day.isSelected);
 
+  // Show loading state when freelancer is not yet loaded
+  if (!freelancer) {
+    return (
+      <div className="lg:flex w-full lg:h-full lg:flex-col">
+        <div className="flex items-center justify-center h-64">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto"></div>
+            <p className="mt-2 text-gray-600">Loading calendar...</p>
+            <p className="mt-1 text-sm text-gray-500">Setting up your profile...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="lg:flex lg:pl-96 md:w-auto lg:w-auto lg:h-full lg:flex-col">
+    <div className="lg:flex w-full lg:h-full lg:flex-col">
       <header className="flex items-center justify-between border-b border-gray-200 px-6 py-4 lg:flex-none">
         <h1 className="text-base font-semibold leading-6 text-gray-900">
           <time dateTime={format(currentMonth, 'MM-yyyy')}>{format(currentMonth, 'MMMM yyyy')}</time>

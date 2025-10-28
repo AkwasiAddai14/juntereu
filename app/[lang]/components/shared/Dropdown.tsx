@@ -65,17 +65,17 @@ const Dropdown = ({ value, onChangeHandler, flexpoolsList, userId, components }:
     return (
         <div>
             <Select onValueChange={onChangeHandler} defaultValue={value}>
-                <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="flexpool" />
+                <SelectTrigger className="w-full h-12 px-4 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                    <SelectValue placeholder="Select flexpool" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-gray-50 border border-gray-200">
                   
                       {flexpools.length > 0 ? (
                         flexpools.map((flexpool: IFlexpool) => (
                           <SelectItem
                             key={flexpool._id as string}
                             value={flexpool._id as string}
-                            className="select-item p-regular-14"
+                            className="text-gray-800 hover:bg-blue-50 focus:bg-blue-600 focus:text-white"
                           >
                             {flexpool.titel.toString()}
                           </SelectItem>

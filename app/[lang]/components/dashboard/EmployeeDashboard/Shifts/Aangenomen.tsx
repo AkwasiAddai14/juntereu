@@ -74,7 +74,7 @@ export default function Aangenomen ({ lang, dashboard }: Props) {
               ))}
               </div>
             ) : ( 
-              <div>{dashboard.werknemersPage.Shifts.texts[1].NoShifts}</div>
+              <p className="text-center text-lg text-gray-500">{dashboard.werknemersPage.Shifts.texts[1].NoShifts}</p>
                 )
         }
               </ScrollArea>

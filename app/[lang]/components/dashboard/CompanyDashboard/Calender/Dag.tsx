@@ -152,7 +152,7 @@ interface CalenderDClientProps {
           name: shift.title,
           time: shift.starting,
           datetime: new Date(shift.startingDate).toISOString(),
-          href: `/dashboard/shift/bedrijf/${shift._id}`,
+          href: `/${lang}/dashboard/shift/employer/${shift._id}`,
         });
       }
     });
@@ -170,7 +170,7 @@ interface CalenderDClientProps {
           name: dienst.title,
           time: dienst.workingtime.starting,
           datetime: new Date(dienst.date).toISOString(),
-          href: `/dashboard/vacature/pagina/${dienst.vacancy}`,
+          href: `/${lang}/dashboard/vacancies/${dienst.vacancy}`,
         });
       }
     });
@@ -191,7 +191,7 @@ interface CalenderDClientProps {
   const selectedDayObject = days.find((day) => day.isSelected);
 
   const filteredShifts = shifts.filter((shift) =>
-    isSameDay(parseISO(shift.startingDate.toISOString()), selectedDay)
+    isSameDay(parseISO(new Date(shift.startingDate).toISOString()), selectedDay)
   );
 
 

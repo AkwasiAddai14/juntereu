@@ -9,14 +9,16 @@ const supportedLocales: Locale[] = [
 ];
 
 export type SearchParamProps = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ id: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 
-export default async function FlexpoolPage({ params: { id }, searchParams }: SearchParamProps) {
-  const lang = supportedLocales.includes(searchParams.lang as Locale)
-    ? (searchParams.lang as Locale)
+export default async function FlexpoolPage({ params, searchParams }: SearchParamProps) {
+  const { id } = await params;
+  const resolvedSearchParams = await searchParams;
+  const lang = supportedLocales.includes(resolvedSearchParams.lang as Locale)
+    ? (resolvedSearchParams.lang as Locale)
     : 'en';
     
   const dictionary = await getDictionary(lang);

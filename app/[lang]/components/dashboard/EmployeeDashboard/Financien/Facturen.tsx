@@ -14,7 +14,7 @@ type Props = {
   dashboard: any;
 };
 
-export default function Financien ({ lang, dashboard }: Props) {
+export default function Facturen ({ lang, dashboard }: Props) {
   const { isLoaded, user } = useUser();
   const [factuur, setFactuur] = useState<any[]>([]);
   const [freelancerId, setFreelancerId] = useState<any>(null);
@@ -49,9 +49,9 @@ export default function Financien ({ lang, dashboard }: Props) {
                   ))}
                   </div>
                 ) : ( 
-                  <div>
+                  <p className="text-center text-lg text-gray-500">
                  {dashboard.werknemersPage.Financien.Facturen.noInvoices}
-                </div> 
+                </p> 
                 )
               } 
          </ScrollArea>

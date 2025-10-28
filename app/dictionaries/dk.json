@@ -293,7 +293,7 @@
       },
       "Yearly": {
         "Jaarlijks": "Årligt",
-        "Prijs": "7 464,30 DKK/år + 298,57 DKK/bruger/år (2 måneder gratis)"
+        "Prijs": "7 464,30 DKK/år + 298,57 DKK/bruger/år"
       }
     },
       "usp": ["Fakturaer & eksport", "Du ejer dine data", "Gratis onboarding"]
@@ -868,8 +868,8 @@
     "dashboard": {
         "werknemersPage": {
           "BentoGrid": {
-            "headTitle": "Implementér hurtigere",
-            "subTitle": "Alt hvad du behøver for at implementere din app",
+            "headTitle": "Your Work Hub",
+            "subTitle": "Everything you need to manage your career",
             "gridTitles": [
               "Dashboard",
               "Profil",
@@ -1030,15 +1030,19 @@
           "navigation": [
             {
               "name": "Hjem",
-              "value": "Hjem"
+              "value": "Home"
+            },
+            {
+              "name": "Board",
+              "value": "Board"
             },
             {
               "name": "Kalender",
-              "value": "Kalender"
+              "value": "Calendar"
             },
             {
               "name": "Vagter",
-              "value": "Vagter"
+              "value": "Shifts"
             },
             {
               "name": "Fleksible puljer",
@@ -1046,7 +1050,7 @@
             },
             {
               "name": "Finanser",
-              "value": "Finanser"
+              "value": "Finances"
             }
           ],
           "UserNavigation": [

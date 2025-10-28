@@ -32,7 +32,7 @@ const jobSchema: Schema<IJob> = new mongoose.Schema({
     },
     vacancy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Vacancies',
+        ref: 'Vacancy',
         required: true
     },
     title:{ type: String, required: true },
@@ -51,7 +51,7 @@ const jobSchema: Schema<IJob> = new mongoose.Schema({
               },
           city: { type: String, required: false },
           name: { type: String, required: true },
-          profilephot: { type: String, required: true },
+          profilephoto: { type: String, required: true },
           rating: { type: Number, required: false },
           dateOfBirth: { type: String, required: true },
           ratingCount: { type: Number, required: false },

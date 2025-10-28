@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from 'react';
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { Iinvoice } from '@/app/lib/models/invoice.model';
@@ -8,8 +11,26 @@ type Props = {
   lang: Locale;
 };
 
-export default async function InvoiceCardServer({ factuur, lang }: Props) {
-  const { components } = await getDictionary(lang);
+export default function InvoiceCardWrapper({ factuur, lang }: Props) {
+  const [components, setComponents] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchDictionary = async () => {
+      try {
+        const { components: dictComponents } = await getDictionary(lang);
+        setComponents(dictComponents);
+      } catch (error) {
+        console.error('Error fetching dictionary:', error);
+        setComponents({});
+      }
+    };
+
+    fetchDictionary();
+  }, [lang]);
+
+  if (!components) {
+    return <div>Loading...</div>;
+  }
 
   return <InvoiceCardClient factuur={factuur} components={components} />;
 }

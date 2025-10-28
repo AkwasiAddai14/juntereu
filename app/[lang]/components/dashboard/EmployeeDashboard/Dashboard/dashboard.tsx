@@ -6,22 +6,25 @@ import Image from 'next/image';
 import { Fragment, useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { Disclosure,  DisclosureButton,  DisclosurePanel, Menu, MenuButton,  MenuItem,  MenuItems } from '@headlessui/react';
-import Loading from "@/app/[lang]/components/dashboard/EmployeeDashboard/Dashboard/DashboardLoading";
+import ClientLoading from "@/app/[lang]/components/dashboard/EmployeeDashboard/Dashboard/ClientLoading";
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from '@/app/assets/images/178884748_padded_logo.png';
-import UitlogModal from "../../../shared/Wrappers/UitlogModal";
+import UitlogModal from "../../../shared/UitlogModal";
 import BentoGrid from '../BentoGrid/BentoGrid';
-import Calender from '../Calender/Wrappers/Calender';
+import Calender from '../Calender/Calender';
 import Explore from '../Explore/Explore';
 import Shifts from '../Shifts/Shifts';
 import Flexpool from "../Flexpool/page";
 import Financien from '../Financien/Page';
-import Profiel from '../Profiel/ProfileWrapper';
+import Profiel from '../Profiel/Profile';
 import FAQ from '../FAQ/FAQ';
+import SharedFilters from '../Explore/SharedFilters';
+import ChatBotIcon from '../AI-assistent/ChatBot';
+import ChatScreen from '../AI-assistent/ChatScreen';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
 
-/* const navigation = [
+ const navigation = [
   { name: 'Home', value: 'Home',  href: '#' , current: true},
   { name: 'Calender', value: 'Calender', href: '#' , current: false },
   { name: 'Shifts', value: 'Shifts', href: '#' , current: false },
@@ -34,7 +37,7 @@ const userNavigation = [
   { name: 'Profiel', value: 'Profiel', href: '#' },
   { name: 'Uitloggen', value: 'Uitloggen', href: '#' },
   { name: 'FAQ', value: 'FAQ', href: '#' },
-] */
+] 
 
 
 
@@ -48,29 +51,57 @@ function classNames(...classes: string[]) {
 
 export default function EmployeeDashboard({ lang, dashboard }: { lang: Locale; dashboard: any }) {
   const { isLoaded, user } = useUser();
-  const [position, setPosition] = React.useState("Shifts");
+  const [position, setPosition] = React.useState("Home");
   const [showLogOut, setShowLogOut] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [showChat, setShowChat] = useState(false);
 
 
-  const navigation = dashboard.werknemersPage.Dashboard.navigation.map((item: {name: string, value: string}, index: number) => ({
-    name: item.name,
-    value: item.value,
-    href: '#',          // voeg hier eventueel dynamisch routing aan toe
-    current: index === 0, // bijv. eerste item actief
-  }));
-
-  const userNavigation = dashboard.werknemersPage.Dashboard.UserNavigation.map((item: {name: string, value: string}) => ({
-    name: item.name,
-    value: item.value,
-    href: '#',
-  }));
-  
   useEffect(() => {
     if (isLoaded && user) {
       setIsLoading(false);
     }
   }, [isLoaded, user]);
+
+  // Update navigation when user is loaded
+  const navigation = dashboard.werknemersPage.Dashboard.navigation.map((item: {name: string, value: string, href?: string}, index: number) => {
+    let href = item.href || '#';
+    
+    // Fix routing issues - only if href exists and is a string
+    if (item.href && typeof item.href === 'string') {
+      if (item.href.includes('/dashboard/profile') && user?.id) {
+        href = `/dashboard/profile/${user.id}`;
+      } else if (item.href.includes('/dashboard/FAQ')) {
+        href = '/dashboard/faq';
+      }
+    }
+    
+    return {
+      name: item.name,
+      value: item.value,
+      href: href,
+      current: index === 0,
+    };
+  });
+
+  const userNavigation = dashboard.werknemersPage.Dashboard.UserNavigation.map((item: {name: string, value: string, href?: string}) => {
+    let href = item.href || '#';
+    
+    // Fix routing issues - only if href exists and is a string
+    if (item.href && typeof item.href === 'string') {
+      if (item.href.includes('/dashboard/profile') && user?.id) {
+        href = `/dashboard/profile/${user.id}`;
+      } else if (item.href.includes('/dashboard/FAQ')) {
+        href = '/dashboard/faq';
+      }
+    }
+    
+    return {
+      name: item.name,
+      value: item.value,
+      href: href,
+    };
+  });
   const MenuSluiten = (value: string) => {
     setPosition(value);
   }
@@ -79,7 +110,7 @@ export default function EmployeeDashboard({ lang, dashboard }: { lang: Locale; d
   if(isLoading){
     return (
       <div>
-       <Loading lang={"en"}/> 
+       <ClientLoading lang={"en"}/> 
       </div>
     )
   }
@@ -88,30 +119,29 @@ export default function EmployeeDashboard({ lang, dashboard }: { lang: Locale; d
    <Fragment>
       <div className="min-h-full">
         <Disclosure as="nav" className="border-b border-gray-200 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 justify-between">
               <div className="flex">
                 <div className="flex shrink-0 items-center">
                   <Image 
-                className="block h-8 w-auto lg:hidden"
-                width={8}
-                height={8} 
+                className="h-10 w-auto"
+                width={40}
+                height={40} 
                 src={logo} 
-                alt="Junter logo" /> {/* Use Image component for optimized images */}
-                <Image 
-                className="hidden h-8 w-auto lg:block"
-                width={8}
-                height={8} 
-                src={logo} 
-                alt="Junter logo" /> {/* Use Image component for optimized images */}
+                alt="Junter logo"
+                priority
+                quality={100} />
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                  {navigation.map((item: {name: string, value: string}) => (
+                  {navigation.map((item: {name: string, value: string}, index: number) => (
                      <button
+                     key={index}
                      onClick={() => MenuSluiten(item.value)}
                      className={classNames(
-                       position === item.value ? 'bg-gray-800 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white',
-                       'group flex w-full items-center gap-x-3 rounded-md p-2 text-sm font-semibold'
+                       position === item.value 
+                         ? 'bg-sky-600 text-white shadow-lg border-b-2 border-sky-400' 
+                         : 'text-gray-600 hover:bg-gray-100 hover:text-sky-600',
+                       'group flex w-full items-center gap-x-3 rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200'
                        )}
                        >
                      {item.name}
@@ -147,13 +177,13 @@ export default function EmployeeDashboard({ lang, dashboard }: { lang: Locale; d
                       <Menu.Item key={item.name}>
                       {({ active }) => (
                         <a
-                        href={item.href}
+                        href={item.value === 'Uitloggen' ? '#' : item.href}
                         className={classNames(
                           active ? 'bg-gray-100' : '',
                           'block px-3 py-1 text-sm leading-6 text-gray-900'
                           )}
                           onClick={() => {
-                            if (item.name === 'Uitloggen') {
+                            if (item.value === 'Uitloggen') {
                               setShowLogOut(true);
                             }
                           }}
@@ -187,10 +217,10 @@ export default function EmployeeDashboard({ lang, dashboard }: { lang: Locale; d
                   href={item.href}
                   aria-current={item.current ? 'page' : undefined}
                   className={classNames(
-                    item.current
-                      ? 'border-sky-500 bg-indigo-50 text-sky-700'
-                      : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800',
-                    'block border-l-4 py-2 pl-3 pr-4 text-base font-medium',
+                    position === item.name
+                      ? 'border-sky-500 bg-sky-50 text-sky-700 font-semibold'
+                      : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-sky-600',
+                    'block border-l-4 py-3 pl-4 pr-4 text-base font-medium transition-all duration-200',
                   )}
                 >
                   {item.name}
@@ -233,54 +263,79 @@ export default function EmployeeDashboard({ lang, dashboard }: { lang: Locale; d
 
         <div className="py-10">
           <header>
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="px-6">
               <h1 className="text-3xl font-bold tracking-tight text-gray-900">{dashboard.werknemersPage.Dashboard.headTitle}</h1>
             </div>
           </header>
-          <main className={`${['Geaccepteerde shifts','Aanmeldingen', 'Checkouts', 'Facturen', 'Flexpools'].includes(position) ? 'xl:pl-0' : 'xl:pl-96'}`}>
-            <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <main className={`${['Home','Geaccepteerde shifts','Aanmeldingen', 'Checkouts', 'Facturen', 'Flexpools', 'Shifts', 'Finances', 'Board'].includes(position) ? 'xl:pl-0' : 'xl:pl-96'}`}>
+            <div className="w-full py-8 h-full">
               {/* Your content */}
-              <div className="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">{/* Main area */}
+              <div className="h-full">{/* Main area */}
                     {
-                    position === 'Home' ??
-                     <BentoGrid lang={lang}/>
+                    position === 'Home' &&
+                     <BentoGrid lang={lang} dashboard={dashboard}/>
                     }
                     {
-                    position === 'Explore' ??
-                    <Explore lang={lang}/>
+                    position === 'Board' &&
+                     <Explore lang={lang} dashboard={dashboard}/>
                     }
                     {
-                    position === 'Calender' ??
-                     <Calender lang={lang}/>
+                    position === 'Calendar' &&
+                     <Calender lang={lang} dashboard={dashboard}/>
                     }
                     {
-                    position === 'Shifts' ??
-                    <Shifts lang={lang}/>
+                    position === 'Shifts' &&
+                    <Shifts lang={lang} dashboard={dashboard}/>
                     }
                     {
-                    position === 'Financien' ??
-                     <Financien lang={lang} />
-                    }      
-                    {
-                    position === 'Flexpools' ??
-                     <Flexpool lang={lang} />
+                    position === 'Flexpools' &&
+                     <Flexpool lang={lang} dashboard={dashboard} />
                     } 
                     {
-                    position === 'Profiel' ??
-                     <Profiel lang={lang} />
+                    position === 'Finances' &&
+                     <Financien lang={lang} dashboard={dashboard} />
+                    }      
+                    {
+                    position === 'Profile' &&
+                     <Profiel dashboard={dashboard} />
                     }   
                     {
-                    position === 'FAQ' ??
-                     <FAQ lang={lang}/>
+                    position === 'FAQ' &&
+                     <FAQ lang={lang} dashboard={dashboard}/>
                     }   
             </div>
               </div>
           </main>
         </div>
       </div>
-      <UitlogModal params={{
-        lang: lang
-      }} />
+      <UitlogModal 
+        isVisible={showLogOut} 
+        onClose={() => setShowLogOut(false)} 
+        components={dashboard?.components || dashboard} 
+      />
+      
+      {/* ChatBot Icon - Fixed to bottom right - Hidden when chat is open */}
+      {!showChat && <ChatBotIcon onClick={() => setShowChat(!showChat)} />}
+      
+      {/* ChatScreen - Conditional rendering */}
+      {showChat && (
+        <div className="fixed inset-0 z-50 flex items-end justify-end p-4">
+          <div className="w-full max-w-md h-96 bg-white rounded-lg shadow-2xl border">
+            <div className="flex justify-between items-center p-4 border-b">
+              <h3 className="text-lg font-semibold">AI Assistant</h3>
+              <button
+                onClick={() => setShowChat(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <XMarkIcon className="h-6 w-6" />
+              </button>
+            </div>
+            <div className="h-80">
+              <ChatScreen />
+            </div>
+          </div>
+        </div>
+      )}
       </Fragment>
   )
 }

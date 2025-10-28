@@ -1,11 +1,14 @@
 "use server"
 
-import { connectToDB} from "../mongoose";
+import { connectToDB } from "../mongoose";
 import mongoose from "mongoose";
 import Employer from "../models/employer.model";
 import { currentUser } from "@clerk/nextjs/server";
 import nodemailer from 'nodemailer';
 import Employee from "../models/employee.model";
+import { maakGLBedrijf } from "../onboarding";
+import { redirect } from "next/navigation";
+import { getDatabaseConnection, getCountryFunctions } from "../database-connection";
 
 // Nodemailer configuration
 const transporter = nodemailer.createTransport({
@@ -24,17 +27,17 @@ const transporter = nodemailer.createTransport({
   function generateEmailContent(bedrijfDetails: any): EmailContent {
 
     return {
-        subject: `Gefeliciteerd! Een nieuw bedrijf heeft zich aangemeld: ${bedrijfDetails.displaynaam}`,
+        subject: `Gefeliciteerd! Een nieuw bedrijf heeft zich aangemeld: ${bedrijfDetails.displayname}`,
         text: `
         Gefeliciteerd! Een nieuw bedrijf heeft zich aangemeld:
-        Contactpersoon: ${bedrijfDetails.naam}
+        Contactpersoon: ${bedrijfDetails.displayname}
         emailadres: ${bedrijfDetails.emailadres}
         telefoonnummer: ${bedrijfDetails.telefoonnummer}
-        KVK-nummmer: ${bedrijfDetails.kvknr}
-        Straat: ${bedrijfDetails.straat}
-        Huisnummer: ${bedrijfDetails.huisnummer}
+        KVK-nummmer: ${bedrijfDetails.CompanyRegistrationNumber}
+        Straat: ${bedrijfDetails.steet}
+        Huisnummer: ${bedrijfDetails.housenumber}
         postcode: ${bedrijfDetails.postcode}
-        stad: ${bedrijfDetails.stad}
+        stad: ${bedrijfDetails.city}
         Maak ze helemaal wegwijs op het platform!
         `,
     };
@@ -62,6 +65,7 @@ type company = {
     clerkId: string,
     profilephoto: string,
     name: string,
+    country: string,
     displayname: string,
     CompanyRegistrationNumber: string,
     VATidnr: string,
@@ -78,9 +82,30 @@ type company = {
 
 export async function maakBedrijf(organization: company) {
     try {
-        await connectToDB();
+        const userInfo = await currentUser();
+        const country = userInfo?.unsafeMetadata?.country as string;
+        
+        // Connect to the appropriate database based on country
+        const connected = await getDatabaseConnection( organization.country ?? country ?? 'Nederland' );
+        
+        if (!connected) {
+            console.error('Failed to connect to database');
+            throw new Error('Database connection failed');
+        }
+
+        // Get country-specific functions
+        const countryFunctions = await getCountryFunctions(country || 'Nederland');
+        console.log(`Using functions for ${country}:`, countryFunctions);
+
+        // Call country-specific function if available
+        if (country && countryFunctions.createEmployer === 'maakGLBedrijf') {
+            console.log(`Calling country-specific function for ${country}`);
+            return await maakGLBedrijf(organization);
+        }
+        
+        // Default database operations
         if (mongoose.connection.readyState === 1) {
-            console.log("Connected to db");
+            console.log("Connected to database");
         } else {
             console.log("DB connection attempt failed");
             throw new Error("DB connection attempt failed");
@@ -92,7 +117,10 @@ export async function maakBedrijf(organization: company) {
         await newBedrijf.save();
         console.log("Document saved successfully:", newBedrijf);
         await sendEmailBasedOnStatus('akwasivdsm@gmail.com', newBedrijf);
-        return newBedrijf;
+        
+        // Convert to plain object for serialization
+        const plainBedrijf = newBedrijf.toObject();
+        return plainBedrijf;
     } catch (error) {
         console.error('Error creating bedrijf:', error);
         throw new Error('Error creating bedrijf');
@@ -215,11 +243,11 @@ export const fetchBedrijfDetails = async (clerkId: string) => {
         const bedrijf = await Employer.findOne({ clerkId: clerkId }).lean();
     if (bedrijf) {
       console.log('Found Bedrijf: ', JSON.stringify(bedrijf, null, 2));  // Log the entire bedrijf object
-      return bedrijf;
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(bedrijf));
     } else {
-      const bedrijf = await Employer.findById(clerkId).lean();
-      console.log(bedrijf);
-      return bedrijf;
+      console.log('No bedrijf found for clerkId:', clerkId);
+      return null;
     }
   } catch (error) {
     console.error('Error fetching bedrijf details:', error);
@@ -231,15 +259,21 @@ export const fetchBedrijfDetails = async (clerkId: string) => {
     try {
       await connectToDB();
       const gebruiker = await currentUser();
-      const bedrijf = await Employer.findOne({ clerkId: gebruiker!.id }).exec();
+      
+      // Check if user is authenticated
+      if (!gebruiker || !gebruiker.id) {
+        console.log('No authenticated user found');
+        return false;
+      }
+      
+      const bedrijf = await Employer.findOne({ clerkId: gebruiker.id }).exec();
       if (bedrijf) {
         return true;
       }
-      if(!bedrijf) {
-        return false;
-      }
+      return false;
     } catch (error) {
       console.error('Error fetching bedrijf details:', error);
+      return false;
     }
   };
 
@@ -257,7 +291,7 @@ export const fetchBedrijfDetails = async (clerkId: string) => {
       throw new Error('Bedrijf not found');
     } catch (error) {
       console.error('Error fetching bedrijf details:', error);
-      throw error;
+      redirect('/[lang]/onboarding');
     }
   };
 

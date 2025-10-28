@@ -71,7 +71,7 @@ function berekenGewerkteUren(begintijd: string, eindtijd: string, pauzeMinuten: 
   return (
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
       <Link 
-    href={`/dashboard/checkout/bedrijf/${shift._id}`}
+    href={`/dashboard/checkout/employer/${shift._id}`}
     style={{ backgroundImage: `url(${backgroundImageUrl})` }}
     className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
       />
@@ -90,7 +90,7 @@ function berekenGewerkteUren(begintijd: string, eindtijd: string, pauzeMinuten: 
             {shift.title}
           </p> 
         <div className="flex-between w-full">
-        <Link href={`/dashboard/shift/bedrijf/${shift.shiftArrayId}`}>
+         <Link href={`/dashboard/shift/employer/${shift.shiftArrayId}`}> {/* /${lang} */}
           <p className="p-medium-16 p-medium-18 text-grey-500">
           {new Date(shift.startingDate).toLocaleDateString(`${components.cards.CheckoutCard.localDateString}`)}
           </p>
@@ -118,7 +118,7 @@ function berekenGewerkteUren(begintijd: string, eindtijd: string, pauzeMinuten: 
         </div>
 
         <div className="flex-between w-full">
-            <button onClick={() => router.push(`/dashboard/checkout/bedrijf/${shift._id}`)} className="inline-flex ml-2 items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">
+            <button onClick={() => router.push(`/dashboard/checkout/employer/${shift._id}`)} className="inline-flex ml-2 items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">
               {components.cards.CheckoutCard.weigeren}
             </button>
             <button onClick={() => handleCheckoutAcceptance(shift._id)}

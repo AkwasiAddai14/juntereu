@@ -1,7 +1,7 @@
 'use client'
 
 import { Dialog, Input, Transition } from '@headlessui/react';
-import {  Bars3Icon,  CalendarIcon,  HomeIcon,  UserGroupIcon,  XMarkIcon,  DocumentCheckIcon,  BanknotesIcon } from '@heroicons/react/24/outline';
+import {  Bars3Icon,  CalendarIcon,  HomeIcon,  UserGroupIcon,  XMarkIcon,  DocumentCheckIcon,  BanknotesIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { useUser } from "@clerk/nextjs";
 import { Fragment, useEffect, useState } from "react";
@@ -40,6 +40,7 @@ const supportedLocales: Locale[] = [
 const navigation = [
   { name: 'Dashboard', value: 'Dashboard', icon: HomeIcon, current: true },
   { name: 'Geplaatste shifts', value: 'Shifts', icon: CalendarIcon, current: false },
+  { name: 'Vacatures', value: 'Vacatures', icon: DocumentTextIcon, current: false },
   { name: 'Checkouts', value: 'Checkouts', icon: DocumentCheckIcon, current: false },
   { name: 'Facturen', value: 'Facturen', icon: BanknotesIcon, current: false },
   { name: 'Flexpools', value: 'Flexpools', icon: UserGroupIcon, current: false },
@@ -300,7 +301,7 @@ const Dashboard =  () => {
              } >
             <Image
               alt="Your Company"
-              src={profilePhoto}
+              src={profilePhoto || "/placeholder-avatar.svg"}
               className="h-8 w-auto rounded-full"
               width={8}
               height={8}
@@ -340,7 +341,7 @@ const Dashboard =  () => {
              } >
             <Image
               alt="Your Company"
-              src={profilePhoto}
+              src={profilePhoto || "/placeholder-avatar.svg"}
               className="h-8 w-auto rounded-full"
               width={8}
               height={8}
@@ -380,7 +381,7 @@ const Dashboard =  () => {
             <span className="sr-only">{fullName}</span>
             <Image
               className="h-8 w-8 rounded-full bg-gray-800"
-              src={profilePhoto}
+              src={profilePhoto || "/placeholder-avatar.svg"}
               alt="Profielfoto"
               width={8}
               height={8}
@@ -395,82 +396,281 @@ const Dashboard =  () => {
 
           
             <div className="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
-            {position === 'Dashboard' && ( <Calender/> )}
+            {position === 'Dashboard' && ( <Calender dashboard={undefined} lang={'at'}/> )}
             </div>
 
             <div className="lg:pl-96 ml-6 h-full overflow-hidden px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
             { position === 'Shifts' ? (
                     shift.length > 0 ? (
-                      <>
+                      <div className="space-y-12">
+                        {/* Vacancies Section */}
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                          <div className="flex items-center justify-between mb-6">
+                            <h1 className="text-3xl font-bold text-gray-900">Vacatures</h1>
+                            <div className="flex items-center space-x-2">
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                {vacatures.length} actief
+                              </span>
+                            </div>
+                          </div>
+                          
+                          {vacatures.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                              {vacatures.map((vacaturesItem, index) => (
+                                <VacatureCard 
+                                  key={index} 
+                                  vacature={vacaturesItem} 
+                                  lang={'at'} 
+                                  components={undefined} 
+                                />
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="text-center py-12">
+                              <div className="mx-auto h-12 w-12 text-gray-400">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                              </div>
+                              <h3 className="mt-2 text-sm font-medium text-gray-900">Geen vacatures beschikbaar</h3>
+                              <p className="mt-1 text-sm text-gray-500">Er zijn momenteel geen vacatures gepubliceerd.</p>
+                            </div>
+                          )}
+                        </div>
 
+                        {/* Published Shifts Section */}
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                          <div className="flex items-center justify-between mb-6">
+                            <h1 className="text-3xl font-bold text-gray-900">Gepubliceerde Shifts</h1>
+                            <div className="flex items-center space-x-2">
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                {shift.length} actief
+                              </span>
+                            </div>
+                          </div>
+                          
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {shift.map((shiftItem, index) => (
+                              <ShiftCard 
+                                key={index} 
+                                shift={shiftItem} 
+                                components={undefined} 
+                                lang={'at'} 
+                              />
+                            ))}
+                          </div>
+                        </div>
 
-                      <ScrollArea>
-                  <h1 className='mb-10 items-center justify-center text-4xl'>Vacatures</h1>
-                  {vacatures.length > 0 ? (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {vacatures.slice(0, shift.length).map((vacaturesItem, index) => (
-        <VacatureCard key={index} vacature={vacaturesItem} />
-      ))}
-    </div>
-  ) : (
-    <p className="text-center text-lg text-gray-500">Geen vacatures beschikbaar</p>
-  )}
-                    </ScrollArea>
-
-
-                  <ScrollArea>
-                  <h1 className='mb-10 items-center justify-center text-4xl'>Gepubliceerde shifts</h1>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                      {shift.slice(0, shift.length).map((shiftItem, index) => (
-                        <ShiftCard key={index} shift={shiftItem} />
-                      ))}
+                        {/* Unpublished Shifts Section */}
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                          <div className="flex items-center justify-between mb-6">
+                            <h1 className="text-3xl font-bold text-gray-900">Ongepubliceerde Shifts</h1>
+                            <div className="flex items-center space-x-2">
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                {unpublished.length} concept
+                              </span>
+                            </div>
+                          </div>
+                          
+                          {unpublished.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                              {unpublished.map((unpublishedItem, index) => (
+                                <ShiftCard 
+                                  key={index} 
+                                  shift={unpublishedItem} 
+                                  components={undefined} 
+                                  lang={'at'} 
+                                />
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="text-center py-12">
+                              <div className="mx-auto h-12 w-12 text-gray-400">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                              </div>
+                              <h3 className="mt-2 text-sm font-medium text-gray-900">Geen concepten beschikbaar</h3>
+                              <p className="mt-1 text-sm text-gray-500">Er zijn momenteel geen ongepubliceerde shifts.</p>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </ScrollArea>
-
-                    <ScrollArea>
-                      <h1 className='my-10 items-center justify-center text-4xl'>Ongepubliceerde shifts</h1>
-                    <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-4">
-                      {unpublished.slice(0, unpublished.length).map((unpublishedItem, index) => (
-                          <ShiftCard key={index} shift={unpublishedItem} />
-                        ))}
-                    </div>
-                  </ScrollArea>
-
-
-                    </>
                     ) : (
-                      <>
+                      <div className="space-y-12">
+                        {/* Vacancies Section - Empty State */}
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                          <div className="flex items-center justify-between mb-6">
+                            <h1 className="text-3xl font-bold text-gray-900">Vacatures</h1>
+                            <div className="flex items-center space-x-2">
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                0 actief
+                              </span>
+                            </div>
+                          </div>
+                          
+                          {vacatures.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                              {vacatures.map((vacaturesItem, index) => (
+                                <VacatureCard 
+                                  key={index} 
+                                  vacature={vacaturesItem} 
+                                  lang={'at'} 
+                                  components={undefined} 
+                                />
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="text-center py-12">
+                              <div className="mx-auto h-12 w-12 text-gray-400">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                              </div>
+                              <h3 className="mt-2 text-sm font-medium text-gray-900">Geen vacatures beschikbaar</h3>
+                              <p className="mt-1 text-sm text-gray-500">Er zijn momenteel geen vacatures gepubliceerd.</p>
+                            </div>
+                          )}
+                        </div>
 
-                      <ScrollArea>
-
-                  <h1 className='mb-10 items-center justify-center text-4xl'>Vacatures</h1>
-                  
-                  {vacatures.length > 0 ? (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {vacatures.slice(0, shift.length).map((vacaturesItem, index) => (
-        <VacatureCard key={index} vacature={vacaturesItem} />
-      ))}
-    </div>
-  ) : (
-    <p className="text-center text-lg text-gray-500">Geen vacatures beschikbaar</p>
-  )}
-
-                    </ScrollArea>
-
-                  <div className="lg:pl-96 h-full overflow-hidden">Geen shifts beschikbaar</div>
-
-
-                        </>
+                        {/* Empty Shifts State */}
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                          <div className="text-center py-12">
+                            <div className="mx-auto h-12 w-12 text-gray-400">
+                              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                            </div>
+                            <h3 className="mt-2 text-sm font-medium text-gray-900">Geen shifts beschikbaar</h3>
+                            <p className="mt-1 text-sm text-gray-500">Er zijn momenteel geen shifts gepubliceerd.</p>
+                          </div>
+                        </div>
+                      </div>
                     )
                   ) : null
                 } 
+
+              {position === 'Vacatures' ? (
+                <div className="space-y-8">
+                  {/* Vacancies Header */}
+                  <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <div className="flex items-center justify-between mb-6">
+                      <div>
+                        <h1 className="text-3xl font-bold text-gray-900">Vacatures Beheer</h1>
+                        <p className="mt-2 text-sm text-gray-600">Beheer al je gepubliceerde vacatures op één plek</p>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                          </svg>
+                          Nieuwe Vacature
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                      <div className="bg-blue-50 rounded-lg p-4">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0">
+                            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                              <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className="ml-3">
+                            <p className="text-sm font-medium text-blue-900">Totaal Vacatures</p>
+                            <p className="text-2xl font-bold text-blue-600">{vacatures.length}</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-green-50 rounded-lg p-4">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0">
+                            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                              <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className="ml-3">
+                            <p className="text-sm font-medium text-green-900">Actief</p>
+                            <p className="text-2xl font-bold text-green-600">{vacatures.length}</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-yellow-50 rounded-lg p-4">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0">
+                            <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                              <svg className="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className="ml-3">
+                            <p className="text-sm font-medium text-yellow-900">In Concept</p>
+                            <p className="text-2xl font-bold text-yellow-600">0</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Vacancies List */}
+                  <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <div className="flex items-center justify-between mb-6">
+                      <h2 className="text-xl font-semibold text-gray-900">Alle Vacatures</h2>
+                      <div className="flex items-center space-x-2">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                          {vacatures.length} vacatures
+                        </span>
+                      </div>
+                    </div>
+                    
+                    {vacatures.length > 0 ? (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {vacatures.map((vacaturesItem, index) => (
+                          <VacatureCard 
+                            key={index} 
+                            vacature={vacaturesItem} 
+                            lang={'at'} 
+                            components={undefined} 
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-12">
+                        <div className="mx-auto h-12 w-12 text-gray-400">
+                          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                        </div>
+                        <h3 className="mt-2 text-sm font-medium text-gray-900">Geen vacatures beschikbaar</h3>
+                        <p className="mt-1 text-sm text-gray-500">Begin met het maken van je eerste vacature.</p>
+                        <div className="mt-6">
+                          <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                            Eerste Vacature Maken
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ) : null}
 
               {position === 'Checkouts' ? 
               checkout.length > 0 ? (
                 <ScrollArea>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {checkout.slice(0, 9).map((checkoutItem, index) => (
-                      <Card key={index} shift={checkoutItem} />
+                      <Card key={index} shift={checkoutItem} components={undefined} />
                     ))}
                   </div>
                 </ScrollArea>
@@ -485,7 +685,7 @@ const Dashboard =  () => {
                 <ScrollArea>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {factuur.slice(0, 9).map((factuurItem, index) => (
-                      <FactuurCard key={index} factuur={factuurItem} /> // ****
+                      <FactuurCard key={index} factuur={factuurItem} components={undefined} /> // ****
                     ))}
                   </div>
                 </ScrollArea>
@@ -517,7 +717,7 @@ const Dashboard =  () => {
                     </AlertDialog>
                   <div className="grid grid-cols-3 gap-4">
                     {flexpool.slice(0, 9).map((flexpoolItem, index) => (
-                      <FlexpoolCard key={index} flexpool={flexpoolItem} />
+                      <FlexpoolCard key={index} flexpool={flexpoolItem} components={undefined} />
                     ))}
                   </div>
                 </ScrollArea>
@@ -657,9 +857,9 @@ const Dashboard =  () => {
                         <div className="flex flex-1 items-center justify-between">
                         <p className="text-gray-500">€{factuurItem.totaalbedrag} </p>
                         {factuurItem.isVoltooid ? (
-                        <p className="text-green-600">Betaald</p>
+                        <p className="text-green-600">Paid</p>
                         ) : (
-                          <p className="text-gray-500">Openstaand</p>
+                          <p className="text-gray-500">Unpaid</p>
                         )}
                         </div>
                       </div>
@@ -675,14 +875,21 @@ const Dashboard =  () => {
 
     </div>
   </>
-    <UitlogModal isVisible={showLogOut} onClose={() => setShowLogOut(false)}/>
+    <UitlogModal isVisible={showLogOut} onClose={() => setShowLogOut(false)} components={{
+        shared: {
+          UitlogModal: {
+            headtitle: '',
+            subTitle: '',
+            buttons: []
+          }
+        }
+      }}/>
     <CheckoutModal 
         isVisible={showCheckout}
         onClose={() => setShowCheckout(false)} 
-        params={{
-          id: checkoutId
-        }} 
-        searchParams={{}}    />
+        shiftId={checkoutId}
+        lang={'at'}
+        components={undefined}    />
     </Fragment>
   )
 }

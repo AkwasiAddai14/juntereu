@@ -20,6 +20,7 @@ import { vindBeschikbaarheidVanFreelancer } from '@/app/lib/actions/availability
 import { haalAangemeld } from '@/app/lib/actions/shift.actions';
 import { IAvailability } from '@/app/lib/models/availability.model';
 import { IEmployee } from '@/app/lib/models/employee.model';
+import { showErrorToast } from '@/app/[lang]/lib/errorHandler';
 
 function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(' ')
@@ -183,9 +184,11 @@ export default function Example({ lang, dashboard }: Props) {
   }, [isLoaded, user]);
 
   useEffect(() => {
+    if (!freelancer?.id) return; // Guard clause: don't run if freelancer is undefined
+    
     const fetchAangemeldeShifts = async () => {
       try {
-            const response = await haalAangemeld(freelancer!.id);
+            const response = await haalAangemeld(freelancer.id);
             if (response) {
               // Filter and separate shifts based on their status
               const geaccepteerdShifts = response.filter((shift: { status: string; }) => shift.status === 'aangenomen');
@@ -200,11 +203,12 @@ export default function Example({ lang, dashboard }: Props) {
             }
         
       } catch (error) {
-        console.error('Error fetching shifts:', error);
+        showErrorToast("Failed to load shifts. Please try again.");
+        setShifts([]);
       }
     };
     fetchAangemeldeShifts();  // Call the fetchShifts function
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
   
 
@@ -215,14 +219,14 @@ export default function Example({ lang, dashboard }: Props) {
           const availability = await vindBeschikbaarheidVanFreelancer(freelancer.id);
           setBeschikbaarheid(availability || []);  // Ensure shifts is always an array
         } catch (error) {
-          console.error('Error fetching shifts:', error);
+          showErrorToast("Failed to load availability. Please try again.");
           setBeschikbaarheid([]);  // Handle error by setting an empty array
         }
       };
   
       fetchAvailability();
     }
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
   useEffect(() => {
     if (freelancer) {  // Only fetch shifts if bedrijfId is available
@@ -231,14 +235,14 @@ export default function Example({ lang, dashboard }: Props) {
           const diensten = await haalDienstenFreelancer(freelancer.id);
           setDiensten(diensten || []);  // Ensure shifts is always an array
         } catch (error) {
-          console.error('Error fetching diensten:', error);
+          showErrorToast("Failed to load services. Please try again.");
           setDiensten([]);  // Handle error by setting an empty array
         }
       };
   
       fetchDiensten();
     }
-  }, [freelancer!.id]); 
+  }, [freelancer?.id]); 
 
     // Add events to days within the appropriate months
     useEffect(() => {
@@ -304,9 +308,22 @@ export default function Example({ lang, dashboard }: Props) {
     setSelectedDay(selectedDayObject || null);
   };
 
+  // Show loading state when freelancer is not yet loaded
+  if (!freelancer) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto"></div>
+          <p className="mt-2 text-gray-600">Loading calendar...</p>
+          <p className="mt-1 text-sm text-gray-500">Setting up your profile...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <div className="bg-white md:w-auto lg:pl-96 lg:w-auto">
+      <div className="bg-white w-full">
         <div className="flex items-center justify-between p-4">
           <button onClick={handlePreviousYear}>
             <ChevronLeftIcon className="h-5 w-5 text-gray-500" />

@@ -34,7 +34,7 @@ export default function Afgerond({ lang, dashboard }: Props) {
       try {
         if(freelancerId !== ""){
           const response = await haalCheckouts(freelancerId);
-          setCheckout(response);
+          setCheckout(response! ?? []);
         } else {
           if(user && user.id){
             const response = await haalCheckoutsMetClerkId(user.id);
@@ -73,7 +73,7 @@ export default function Afgerond({ lang, dashboard }: Props) {
                   ))}
                   </div>
                 ) : ( 
-                <div>{dashboard.werknemersPage.Shifts.texts[2].NoShifts}</div>
+                <p className="text-center text-lg text-gray-500">{dashboard.werknemersPage.Shifts.texts[2].NoShifts}</p>
                 )
                   }
                 </ScrollArea>

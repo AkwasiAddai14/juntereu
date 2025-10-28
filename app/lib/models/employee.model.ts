@@ -6,7 +6,7 @@ export interface IEmployee extends Document {
     checkouts: mongoose.Types.ObjectId[];
     invoices: mongoose.Types.ObjectId[]; 
     applications: mongoose.Types.ObjectId[],
-    job: mongoose.Types.ObjectId[],
+    jobs: mongoose.Types.ObjectId[],
     clerkId: string;
     firstname: string;
     infix?: string;
@@ -30,8 +30,21 @@ export interface IEmployee extends Document {
     ratingCount?: number;
     rating?: number;
     attendance?: number;
-    punctualiy?: number;
+    punctuality?: number;
     bio?: string;
+    experience?: Array<{
+        bedrijf: string;
+        functie: string;
+        duur: string;
+    }>;
+    skills?: Array<{
+        vaardigheid: string;
+    }>;
+    education?: Array<{
+        naam: string;
+        school: string;
+        niveau?: string;
+    }>;
   }
 
 const employeeSchema = new mongoose.Schema({
@@ -105,7 +118,7 @@ const employeeSchema = new mongoose.Schema({
             ref: "Invoice"
         }
     ],
-    sollicitaties: [
+    applications: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Application",

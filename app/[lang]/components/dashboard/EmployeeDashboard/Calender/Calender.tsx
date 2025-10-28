@@ -1,17 +1,18 @@
 "use client"
 
-import { Fragment } from 'react';
 import React from 'react';
-import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, EllipsisHorizontalIcon } from '@heroicons/react/20/solid';
-import { Menu, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
+import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
-import { format } from 'date-fns';
-import Maand from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Wrappers/MaandWrapper';
-import Week from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Wrappers/WeekWrapper';
-import Jaar from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Wrappers/JaarWrapper';
-import Dag from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Wrappers/DagWrapper';
+import { Menu, Transition } from '@headlessui/react';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+import { ChevronDownIcon, ChevronLeftIcon, 
+  ChevronRightIcon, EllipsisHorizontalIcon } from '@heroicons/react/20/solid';
+import Maand from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Maand';
+import Week from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Week';
+import Jaar from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Jaar';
+import Dag from '@/app/[lang]/components/dashboard/EmployeeDashboard/Calender/Dag';
 
 
 
@@ -32,10 +33,27 @@ function classNames(...classes: (string | boolean | undefined)[]) {
     dashboard: any;
   }
 
-const Calender = ({ lang, dashboard }: CalenderClientProps) => {
+  const Calender = ({ lang, dashboard }: CalenderClientProps) => {
     const [position, setPosition] = React.useState("Maand");
     const [currentDate, setCurrentDate] = useState<Date>(new Date());
     const router = useRouter()
+
+    // Create a mapping from position strings to navigation indices
+    const getNavigationIndex = (pos: string) => {
+      const navigation = dashboard.werknemersPage.Calender.calender.navigation;
+      switch(pos) {
+        case "Dag": return 0;
+        case "Week": return 1;
+        case "Maand": return 2;
+        case "Jaar": return 3;
+        default: return 2; // Default to Maand
+      }
+    };
+
+    const getCurrentNavigationItem = () => {
+      const index = getNavigationIndex(position);
+      return dashboard.werknemersPage.Calender.calender.navigation[index];
+    };
     
       useEffect(() => {
         const intervalId = setInterval(() => {
@@ -48,7 +66,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
 
   return (
     <>
-    <div className="flex flex-none lg:pl-96 md:w-auto md:pl-0 sm:pl-0 lg:w-auto">
+    <div className="flex flex-none w-full">
       <header className="items-center justify-between flex flex-1 min-w-0 md:w-auto md:pl-0 sm:pl-0 lg:w-auto border-b border-gray-200 px-6 py-4">
       <div>
       <h1 className="text-base font-semibold leading-6 text-gray-900">
@@ -70,7 +88,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
                 type="button"
                 className="flex items-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
               >
-                {position}
+                {getCurrentNavigationItem()?.value || position}
                 <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
               </Menu.Button>
 
@@ -88,7 +106,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
                   <Menu.Item>
                       {({ active }) => (
                         <button
-                        key={'Week'}
+                        key={'Dag'}
                         onClick={() => setPosition('Dag')}
                         className={classNames(
                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -96,7 +114,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
                         )}
                       >
                         <span className="sr-only">Dag</span>
-                       {dashboard.werknemersPage.Calender.calender.navigation[0].name}
+                       {dashboard.werknemersPage.Calender.calender.navigation[0].value}
                       </button>
                       )}
                     </Menu.Item>
@@ -104,14 +122,14 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
                       {({ active }) => (
                         <button
                         key={'Week'}
-                        /* onClick={() => setPosition('Week')} */
+                         onClick={() => setPosition('Week')} 
                         className={classNames(
                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                             'block px-4 py-2 text-sm'
                         )}
                       >
                         <span className="sr-only">Week</span>
-                        {dashboard.werknemersPage.Calender.calender.navigation[1].name}
+                        {dashboard.werknemersPage.Calender.calender.navigation[1].value}
                       </button>
                       )}
                     </Menu.Item>
@@ -126,7 +144,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
                         )}
                       >
                         <span className="sr-only">Maand</span>
-                        {dashboard.werknemersPage.Calender.calender.navigation[2].name}
+                        {dashboard.werknemersPage.Calender.calender.navigation[2].value}
                       </button>
                       )}
                     </Menu.Item>
@@ -142,7 +160,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
                       >
 
                         <span className="sr-only">Jaar</span>
-                        {dashboard.werknemersPage.Calender.calender.navigation[3].name}
+                        {dashboard.werknemersPage.Calender.calender.navigation[3].value}
                       </button>
                       )}
                     </Menu.Item>
@@ -154,7 +172,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
             <button
               type="button"
               className="ml-6 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
-              onClick={() => router.push("../dashboard/beschikbaarheid/maak")}
+              onClick={() => router.push("../dashboard/availability/create")}
             >
               {dashboard.werknemersPage.Calender.calender.buttons[0]}
             </button>
@@ -209,7 +227,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
                 <Menu.Item>
                     {({ active }) => (
                       <button
-                      key={"Week"}
+                      key={"Dag"}
                       onClick={() => setPosition("Dag")}
                       className={classNames(
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -217,7 +235,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
                       )}
                     >
                       <span className="sr-only">Dag</span>
-                      {dashboard.werknemersPage.Calender.calender.navigation[0].name}
+                      {dashboard.werknemersPage.Calender.calender.navigation[0].value}
                     </button>
                     )}
                   </Menu.Item>
@@ -232,7 +250,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
                       )}
                     >
                       <span className="sr-only">Week</span>
-                      {dashboard.werknemersPage.Calender.calender.navigation[1].name}
+                      {dashboard.werknemersPage.Calender.calender.navigation[1].value}
                     </button>
                     )}
                   </Menu.Item>
@@ -247,7 +265,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
                       )}
                     >
                       <span className="sr-only">Maand</span>
-                      {dashboard.werknemersPage.Calender.calender.navigation[2].name}
+                      {dashboard.werknemersPage.Calender.calender.navigation[2].value}
                     </button>
                     )}
                   </Menu.Item>
@@ -262,7 +280,7 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
                       )}
                     >
                       <span className="sr-only">Jaar</span>
-                      {dashboard.werknemersPage.Calender.calender.navigation[3].name}
+                      {dashboard.werknemersPage.Calender.calender.navigation[3].value}
                     </button>
                     )}
                   </Menu.Item>
@@ -274,20 +292,20 @@ const Calender = ({ lang, dashboard }: CalenderClientProps) => {
   </header>
   </div>
   <div>
-  {position === "Dag"  && (
-<Dag lang={lang}/>
+    {position === "Dag"  && (
+<Dag lang={lang} dashboard={dashboard}/>
     )
     }
 {position === "Week"  && (
-<Week lang={lang}/>
+<Week dashboard={dashboard}/>
     )
     }
     {position === "Maand"  && (
-<Maand lang={lang} />
+<Maand lang={lang} dictionary={dashboard} />
     )
     }
     {position === "Jaar"  && (
-<Jaar lang={lang}/>
+<Jaar lang={lang} dashboard={dashboard}/>
     )
     }
   </div>

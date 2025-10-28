@@ -3,12 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Locale } from '@/i18n.config';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import  del  from "@/app/assets/images/delete.svg";
 import { ShiftType } from '@/app/lib/models/shift.model';
 import { getDictionary } from '@/app/[lang]/dictionaries';
-import { isBedrijf } from '@/app/lib/actions/employer.actions';
+import { useUser } from '@clerk/nextjs';
 import { useToast } from '@/app/[lang]/components/ui/use-toast';
 import { annuleerAanmeldingen } from '@/app/lib/actions/shift.actions';
 
@@ -18,25 +18,20 @@ type Props = {
   components: any;
 };
 
-const Card = async ({ shift, lang, components }: Props) => {
+const Card = ({ shift, lang, components }: Props) => {
+  const { user } = useUser();
   const { toast } = useToast();
   const router = useRouter();
   const [isEenBedrijf, setIsEenBedrijf] = useState<boolean | null>(null);
   const shiftStatussen = components.cards.ShiftCard.shift_statussen;
 
-
-  const bedrijfCheck = async () => {
- 
-    const isEventCreator = await isBedrijf() // Assuming isBedrijf is a function that returns a boolean
-    if(isEventCreator){
-    setIsEenBedrijf(isEventCreator); // Set the state with the boolean result
-    } else {
-      setIsEenBedrijf(false)
-  }
-    
-};
-
-bedrijfCheck();
+  useEffect(() => {
+    if (user) {
+      // Check if user has organization memberships (indicating they're an employer)
+      const userType = user?.organizationMemberships?.length ?? 0;
+      setIsEenBedrijf(userType >= 1);
+    }
+  }, [user]);
 
   const backgroundImageUrl = shift.image;
   const opdrachtgeverName = shift.employerName || 'Junter';
@@ -89,11 +84,11 @@ bedrijfCheck();
   let linkHref;
 
   if (isEenBedrijf) {
-    linkHref = `/dashboard/shift/bedrijf/${shift.shiftArrayId}`;
+    linkHref = `/dashboard/shift/employer/${shift.shiftArrayId}`;
   } else if (shift.status === 'voltooi checkout' || shift.status === 'Checkout geweigerd') {
-    linkHref = `/dashboard/checkout/freelancer/${shift._id}`;
+    linkHref = `/dashboard/checkout/employee/${shift._id}`;
   } else {
-    linkHref = `/dashboard/shift/freelancer/${shift.shiftArrayId}`;
+    linkHref = `/dashboard/shift/employee/${shift.shiftArrayId}`;
   }
   
 
@@ -134,10 +129,10 @@ bedrijfCheck();
        
         
         { isEenBedrijf  ? (
-          <Link href={`/dashboard/shift/bedrijf/${shift.shiftArrayId}`}>
+          <Link href={`/${lang}/dashboard/shift/employer/${shift.shiftArrayId}`}>
           <p className="p-medium-16 md:p-medium-20 line-clamp-1 flex-1 text-black">{shift.title}</p>
         </Link>
-      ):   <Link href={`/dashboard/shift/freelancer/${shift.shiftArrayId}`}>
+      ):   <Link href={`/${lang}/dashboard/shift/employee/${shift.shiftArrayId}`}>
       <p className="p-medium-16 md:p-medium-20 line-clamp-1 flex-1 text-black">{shift.title}</p>
     </Link>}
         <div className="flex-between w-full">
@@ -153,7 +148,7 @@ bedrijfCheck();
                     }{/* //<p className="p-medium-14 md:p-medium-16 text-grey-600">{flexpoolTitle}</p> */}
                  <div className={`rounded-md px-4 py-2 ${getStatusColor(shift.status)}`}>
                   {shift.status === 'voltooi checkout' || shift.status === 'Checkout geweigerd' ? 
-                  <Link href={`/dashboard/checkout/freelancer/${shift.shiftArrayId}`}>
+                  <Link href={`/${lang}/dashboard/checkout/employee/${shift.shiftArrayId}`}>
                   <p className="p-medium-14 md:p-medium-16 text-grey-600">
                   {shift.status === 'Checkout geweigerd' 
               ? shiftStatussen[3] 

@@ -21,7 +21,10 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
     <NavBar lang={lang} />
     <div className="flex flex-col justify-center items-center min-h-screen bg-white">
       <div className="flex items-center justify-center w-full">
-        <SignUp />
+        <SignUp 
+          fallbackRedirectUrl={`/${lang}/onboarding`}
+          forceRedirectUrl={`/${lang}/onboarding`}
+        />
       </div>
     </div>
     <Footer lang={lang}/>

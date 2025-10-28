@@ -9,37 +9,8 @@ import { haalFreelancer } from "@/app/lib/actions/employee.actions"
 import { ScrollArea } from "@/app/[lang]/components/ui/scroll-area";
 import { haalRelevanteVacatures} from "@/app/lib/actions/vacancy.actions";
 import VacancyCard from "@/app/[lang]/components/shared/cards/Wrappers/VacancyWrapper";
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
-import Typography from '@mui/material/Typography';
-import { Button } from '@/app/[lang]/components/ui/button'
-import { Calendar } from "@/app/[lang]/components/ui/calender"
-import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
-
-
-const MAX = 100;
-const MIN = 0;
-const euromarks = [
-  {
-    value: MIN,
-    label: '',
-  },
-  {
-    value: MAX,
-    label: '',
-  },
-];
-
-const distancemarks = [
-  {
-    value: MIN,
-    label: '',
-  },
-  {
-    value: MAX,
-    label: '',
-  },
-];
+import type { Locale } from '@/app/[lang]/dictionaries';
+import SharedFilters from "./SharedFilters";
 
 interface Props {
   lang: Locale;
@@ -51,24 +22,6 @@ export default function Vacancy ({ lang, dashboard }: Props) {
     const { isLoaded, user } = useUser();
     const [freelancerId, setFreelancerId] = useState<any>(null);
     const [vacatures, setVacatures] = useState<IVacancy[]>([]);
-    const [position, setPosition] = React.useState("Shifts");
-    const [tarief, setTarief] = useState<number>(14);
-    const [afstand, setAfstand] = useState<number>(5);
-    const [euroVal, setEuroVal] = React.useState<number>(MIN);
-
-  const handleUurtariefChange = (_: Event, newValue: number | number[]) => {
-    setEuroVal(newValue as number);
-    setTarief(euroVal);
-  };
-  const [distanceVal, setDistanceVal] = React.useState<number>(MIN);
-  const handleAfstandChange = (_: Event, newValue: number | number[]) => {
-    setDistanceVal(newValue as number);
-    setAfstand(distanceVal);
-  };
-  const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
-    from: undefined,
-    to: undefined,
-  });
 
     useEffect(() => {
         if (isLoaded && user) {
@@ -117,97 +70,31 @@ export default function Vacancy ({ lang, dashboard }: Props) {
     }, [freelancerId]); 
 
     return (
-      <>
-            <h1 className='mb-10 items-center justify-center text-4xl'>{dashboard.werknemersPage.Explore.VacaturePagina.headTitle}</h1>
-        <ScrollArea>
+      <div className="flex gap-6">
+        {/* Left Sidebar - Filters */}
+        <div className="w-80 flex-shrink-0">
+          <SharedFilters dashboard={dashboard} />
+        </div>
+        
+        {/* Main Content Area */}
+        <div className="flex-1">
+          <h1 className='mb-10 items-center justify-center text-4xl'>{dashboard?.werknemersPage?.Explore?.VacaturePagina?.headTitle || 'Vacancies'}</h1>
+          <ScrollArea>
             {vacatures.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {vacatures.slice(0, Vacancy.length).map((vacaturesItem, index) => (
-        <VacancyCard key={index} vacature={vacaturesItem} lang={lang}/>
-      ))}
-    </div>
-  ) : (
-    <p className="text-center text-lg text-gray-500">{dashboard.werknemersPage.Explore.VacaturePagina.NoVacatures}</p>
-  )}
-    </ScrollArea>
-    <aside className="fixed bottom-0 left-20 top-16 hidden w-96 overflow-y-auto border-r border-gray-200 px-4 py-6 sm:px-6 lg:px-8 xl:block">
-    {/* Secondary column (hidden on smaller screens) */}
-    <div>
-      <div>
-        <Calendar
-          mode="range"
-          selectedRange={dateRange}
-          onDateRangeChange={(range: React.SetStateAction<{ from: Date | undefined; to: Date | undefined }>) => setDateRange(range)}
-        />
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {vacatures.slice(0, vacatures.length).map((vacaturesItem, index) => (
+                  <VacancyCard key={index} vacature={vacaturesItem} lang={lang}/>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-12">
+                <div className="text-gray-500 text-lg">
+                  {dashboard?.werknemersPage?.Explore?.VacaturePagina?.NoVacatures || 'No vacancies available'}
+                </div>
+              </div>
+            )}
+          </ScrollArea>
+        </div>
       </div>
-      <div>
-        <p className="mt-20">{dashboard.werknemersPage.Explore.filter[1]}</p>
-        <Box sx={{ width: 250 }}>
-          <Slider
-            marks={euromarks}
-            step={10}
-            value={euroVal}
-            valueLabelDisplay="auto"
-            min={MIN}
-            max={MAX}
-            onChange={handleUurtariefChange}
-          />
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography
-              variant="body2"
-              onClick={() => setEuroVal(MIN)}
-              sx={{ cursor: 'pointer' }}
-            >
-              €{MIN} min
-            </Typography>
-            <Typography
-              variant="body2"
-              onClick={() => setEuroVal(MAX)}
-              sx={{ cursor: 'pointer' }}
-            >
-              €{MAX}
-            </Typography>
-          </Box>
-        </Box>
-      </div>
-      <p className="mt-20">{dashboard.werknemersPage.Explore.filter[1]}</p>
-      <Box sx={{ width: 250 }}>
-        <Slider
-          marks={distancemarks}
-          step={10}
-          value={distanceVal}
-          valueLabelDisplay="auto"
-          min={MIN}
-          max={MAX}
-          onChange={handleAfstandChange}
-        />
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Typography
-            variant="body2"
-            onClick={() => setDistanceVal(MIN)}
-            sx={{ cursor: 'pointer' }}
-          >
-            {MIN} km
-          </Typography>
-          <Typography
-            variant="body2"
-            onClick={() => setDistanceVal(MAX)}
-            sx={{ cursor: 'pointer' }}
-          >
-            {MAX} km
-          </Typography>
-        </Box>
-      </Box>
-      <div className="justify-between">
-        <Button className="mt-20 bg-white text-black border-2 border-black mr-10" onClick={() => setPosition("Shifts")}>
-          {dashboard.werknemersPage.Explore.buttons[1]}
-        </Button>
-        <Button className="mt-20 bg-sky-500" onClick={() => setPosition('Filter')}>
-        {dashboard.werknemersPage.Explore.buttons[0]}
-        </Button>
-      </div>
-    </div>
-  </aside>
-    </>
     )
 }

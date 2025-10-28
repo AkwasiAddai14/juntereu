@@ -2,7 +2,7 @@
 
 import { useUser } from '@clerk/nextjs';
 import React, { useEffect, useState } from 'react';
-import { fetchBedrijfDetails, isBedrijf } from '@/app/lib/actions/employer.actions';
+import { fetchBedrijfDetails } from '@/app/lib/actions/employer.actions';
 import { Iinvoice} from '@/app/lib/models/invoice.model';
 import Link from 'next/link';
 import { Locale } from '@/i18n.config';
@@ -22,16 +22,13 @@ const Card = ({ factuur, components }: Props) => {
   const [bedrijfDetails, setBedrijfsdetails] = useState<any>(null);
   // const [linkHref, setLinkHref] = useState<string | null>('');
 
-  const bedrijfCheck = async () => {
-  try {
-    const isEventCreator = await isBedrijf() // Assuming isBedrijf is a function that returns a boolean
-    setIsEenBedrijf(isEventCreator); // Set the state with the boolean result
-  } catch (error) {
-    console.error("Error checking if user is a bedrijf:", error);
-  }
-};
-
-bedrijfCheck()
+  useEffect(() => {
+    if (user) {
+      // Check if user has organization memberships (indicating they're an employer)
+      const userType = user?.organizationMemberships?.length ?? 0;
+      setIsEenBedrijf(userType >= 1);
+    }
+  }, [user]);
   
 
   useEffect(() => {
@@ -59,15 +56,15 @@ bedrijfCheck()
   
   if (isOpdrachtnemer) {
     if (isFreelancerFactuur) {
-      linkHref = `/dashboard/factuur/freelancer/${factuur._id}`;
+      linkHref = `/dashboard/invoice/employee/${factuur._id}`;
     } else if (isUitzendkrachtFactuur) {
-      linkHref = `/dashboard/loonstrook/pagina/${factuur._id}`;
+      linkHref = `/dashboard/payslip/${factuur._id}`;
     }
   } else if (isOpdrachtgever) {
     if (isFreelancerFactuur) {
-      linkHref = `/dashboard/factuur/bedrijf/${factuur._id}`;
+      linkHref = `/dashboard/factuur/employer/${factuur._id}`;
     } else if (isUitzendkrachtFactuur) {
-      linkHref = `/dashboard/vacature/factuur/${factuur._id}`;
+      linkHref = `/dashboard/vacancies/invoice/${factuur._id}`;
     }
   } else {
     // Wanneer zowel opdrachtgever als opdrachtnemer leeg zijn
@@ -87,25 +84,29 @@ bedrijfCheck()
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
         <div className="flex gap-2">
           <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-            {components.cards.InvoiceCard.week} {factuur.week} 
+            {components?.cards?.InvoiceCard?.week || 'Week'} {factuur.week} 
           </p>
         </div>
         <div>
-        {factuur.shifts.length === 1 ? (
+        {factuur.shifts && factuur.shifts.length === 1 ? (
                    <>
                <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-                 {factuur.shifts.length} {components.cards.InvoiceCard.shift} 
+                 {factuur.shifts.length} {components?.cards?.InvoiceCard?.shift || 'shift'} 
                </p>
              </>
+            ) : factuur.shifts && factuur.shifts.length > 1 ? (
+              <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
+                {factuur.shifts.length} {components?.cards?.InvoiceCard?.hvl_shifts || 'shifts'}
+              </p>
             ) : (
               <p className="p-semibold-14 w-full py-1 text-grey-500 line-clamp-2">
-                {factuur.shifts.length} {components.cards.InvoiceCard.hvl_shifts}
+                0 {components?.cards?.InvoiceCard?.shift || 'shift'}
               </p>
             )}
           </div>
         <div className="flex-between w-full">
           <p className="p-medium-14 md:p-medium-16 text-grey-600">
-           {components.cards.InvoiceCard.currencySign} {factuur.totalAmount}
+           {components?.cards?.InvoiceCard?.currencySign || '€'} {factuur.totalAmount}
           </p>
           <p className="p-medium-14 md:p-medium-16 text-grey-600">
             {factuur.isCompleted ? "voldaan" : "openstaand"}

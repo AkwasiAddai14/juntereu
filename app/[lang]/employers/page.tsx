@@ -14,6 +14,8 @@ import { ArrowPathIcon, CalendarDateRangeIcon, CloudArrowUpIcon, Cog6ToothIcon, 
 import { CheckIcon } from '@heroicons/react/20/solid';
 
 import { Check, Bell, Clock3, Cpu, PlugZap, MessageSquare, CreditCardIcon, UserPlusIcon } from "lucide-react"; // voorbeeldicons
+import WhatsAppButton from '../components/shared/WhatsAppButton';
+import ScrollStickyWhatsAppButton from '../components/shared/ScrollStickyWhatsAppButton';
 import { 
   FadeInUp, 
   FadeInLeft, 
@@ -127,6 +129,14 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
                       <p className="mt-4 text-gray-500">
                           {pages.employersPage.subText}
                       </p>
+                      <div className="mt-8 flex justify-center">
+                        <ScrollStickyWhatsAppButton
+                          type="employer"
+                          lang={lang}
+                          size="lg"
+                          variant="primary"
+                        />
+                      </div>
                   </FadeInUp>
                   <SimpleStaggerContainer className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
@@ -411,6 +421,7 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
       </div>
     </div>
     </form>
+
 
           </>
   )

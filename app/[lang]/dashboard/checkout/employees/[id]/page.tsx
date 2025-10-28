@@ -13,24 +13,26 @@ const supportedLocales = [
   "sv","at","nlBE","frBE","itCH","frCH","deCH",
 ] as const;
 
-type Params = { lang: Locale; id: string };
-type Search = { lang?: string };
+type Params = Promise<{ lang: Locale; id: string }>;
+type Search = Promise<{ lang?: string }>;
 
 export default async function Page({
   params,
   searchParams,
 }: { params: Params; searchParams: Search }) {
-  const hinted = (searchParams.lang as Locale) ?? params.lang;
+  const { id, lang: paramLang } = await params;
+  const resolvedSearchParams = await searchParams;
+  const hinted = (resolvedSearchParams.lang as Locale) ?? paramLang;
   const lang = (supportedLocales as readonly string[]).includes(hinted) ? (hinted as Locale) : "en";
 
   const [dict, shiftData] = await Promise.all([
     getDictionary(lang),
-    haalShiftMetIdCard(params.id),
+    haalShiftMetIdCard(id),
   ]);
 
   return (
     <CheckoutCardClient
-      id={params.id}
+      id={id}
       lang={lang}
       dashboard={dict.dashboard}
       components={dict.components}

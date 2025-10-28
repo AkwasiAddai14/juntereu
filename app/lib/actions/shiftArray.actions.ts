@@ -11,19 +11,80 @@ import { currentUser } from '@clerk/nextjs/server'
 import cron from 'node-cron';
 
 
-export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string }) => {
+export const haalActieveShifts = async ({ employerId }: { employerId: string }) => {
     try {
-      const employer = await Employer.findById(employerId);
+      await connectToDB();
+      console.log("Fetching active shifts for employer:", employerId);
+      const employer = await Employer.findById( employerId ).lean();
+      console.log("Found employer:", employer ? "Yes" : "No");
   
-      if (!employer || !employer.shifts) {
-        throw new Error(`Bedrijf with ID ${employerId} not found or shifts not available`);
+      if (!employer) {
+        throw new Error(`Bedrijf with ID ${employerId} not found`);
       }
   
-      const shiftArrays = await ShiftArray.find({ _id: { $in: employer.shifts }, beschikbaar: true });
+      console.log("Employer shifts:", employer.shifts);
+      // If no shifts array or empty array, return empty array
+      if (!employer.shifts || employer.shifts.length === 0) {
+        console.log("No shifts found for employer");
+        return [];
+      }
+  
+      // Get only active shifts (available: true and status: 'beschikbaar')
+      const activeShiftArrays = await ShiftArray.find({ 
+        _id: { $in: employer.shifts }, 
+        available: true, 
+        status: 'beschikbaar' 
+      }).lean();
+      
+      console.log("Active shiftArrays count:", activeShiftArrays.length);
+      
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(activeShiftArrays));
+    } catch (error) {
+      console.error('Error fetching active shifts:', error);
+      throw new Error('Failed to fetch active shifts');
+    }
+  };
+
+export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string }) => {
+    try {
+      await connectToDB();
+      console.log("Fetching shifts for employer:", employerId);
+      const employer = await Employer.findById( employerId ).lean();
+      console.log("Found employer:", employer ? "Yes" : "No");
+  
+      if (!employer) {
+        throw new Error(`Bedrijf with ID ${employerId} not found`);
+      }
+  
+      console.log("Employer shifts:", employer.shifts);
+      // If no shifts array or empty array, return empty array
+      if (!employer.shifts || employer.shifts.length === 0) {
+        console.log("No shifts found for employer");
+        return [];
+      }
+  
+      // Get all shiftArrays for the employer
+      const allShiftArrays = await ShiftArray.find({ _id: { $in: employer.shifts } }).lean();
+      console.log("All shiftArrays count:", allShiftArrays.length);
+      
+      // Filter by different statuses for better organization
+      const activeShiftArrays = allShiftArrays.filter(shift => shift.available === true && shift.status === 'beschikbaar');
+      const expiredShiftArrays = allShiftArrays.filter(shift => shift.status === 'verlopen');
+      const draftShiftArrays = allShiftArrays.filter(shift => shift.available === false && shift.status !== 'verlopen');
+      
+      console.log("Active shifts count:", activeShiftArrays.length);
+      console.log("Expired shifts count:", expiredShiftArrays.length);
+      console.log("Draft shifts count:", draftShiftArrays.length);
+      
+      // Return only active shifts (available: true AND status: 'beschikbaar')
+      const shiftArrays = activeShiftArrays;
+      console.log("Returning active shiftArrays count:", shiftArrays.length);
          
       console.log("ShiftArrays: ", JSON.stringify(shiftArrays, null, 2)); // Pretty print the objects for better readability
-  
-      return shiftArrays;
+
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(shiftArrays));
     } catch (error) {
       console.error('Error fetching geplaatste shifts:', error);
       throw new Error('Failed to fetch geplaatste shifts');
@@ -42,13 +103,14 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
           const freelancerShiftArrayIds = freelancer.shifts.map((shift: any) => shift.shiftArrayId.toString());
           console.log(freelancerShiftArrayIds)
           // Find all ShiftArray documents
-          const allShiftArrays = await ShiftArray.find();
+          const allShiftArrays = await ShiftArray.find().lean();
       
           // Filter ShiftArrays that do not match any shiftArrayId in the freelancer's shifts
           const filteredShiftArrays = allShiftArrays.filter((shiftArray: any) => 
             !freelancerShiftArrayIds.includes(shiftArray._id.toString())
           );
-          return filteredShiftArrays;
+          // Ensure proper serialization by converting to JSON and back
+          return JSON.parse(JSON.stringify(filteredShiftArrays));
     } catch (error) {
       console.error('Error fetching shifts:', error);
       throw new Error('Failed to fetch shifts');
@@ -59,9 +121,10 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
     try {
       await connectToDB();
   
-      const allShiftArrays = await ShiftArray.find();
+      const allShiftArrays = await ShiftArray.find().lean();
   
-      return allShiftArrays;
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(allShiftArrays));
     } catch (error) {
       console.error('Error fetching shifts:', error);
       throw new Error('Failed to fetch shifts');
@@ -99,14 +162,15 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
       }   
   }
       // Find all ShiftArray documents
-      const allShiftArrays = await ShiftArray.find({beschikbaar: true});
+      const allShiftArrays = await ShiftArray.find({beschikbaar: true}).lean();
   
       // Filter ShiftArrays that do not match any shiftArrayId in the freelancer's shifts
       const filteredShiftArrays = allShiftArrays.filter((shiftArray: any) => 
         !shiftsArrayIds.includes(shiftArray._id.toString())
       );
       console.log("filtered shifts: ", filteredShiftArrays)
-      return filteredShiftArrays;
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(filteredShiftArrays));
     } 
   } catch (error) {
     console.error('Error fetching shifts:', error);
@@ -116,24 +180,50 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
 
   export const haalOngepubliceerdeShifts = async ({ bedrijfId }: { bedrijfId: string }) => {
     try {
-      const bedrijf = await Employer.findById(bedrijfId);
+      await connectToDB();
+      const bedrijf = await Employer.findById( bedrijfId  ).lean(); //as unknown as Types.ObjectId
   
-      if (!bedrijf || !bedrijf.shifts) {
-        throw new Error(`Bedrijf with ID ${bedrijfId} not found or shifts not available`);
+      if (!bedrijf) {
+        throw new Error(`Bedrijf with ID ${bedrijfId} not found`);
       }
   
-      const shiftArrays = await ShiftArray.find({ _id: { $in: bedrijf.shifts }, status: 'container' }) // Use lean to return plain JS objects
-      console.log("ShiftArrays: ", JSON.stringify(shiftArrays, null, 2)); // Pretty print the objects for better readability
-      return shiftArrays;
+      // If no shifts array or empty array, return empty array
+      if (!bedrijf.shifts || bedrijf.shifts.length === 0) {
+        return [];
+      }
+  
+       // Get unpublished shifts (available: false OR status: 'draft' OR status: 'concept')
+       const shiftArrays = await ShiftArray.find({ 
+         _id: { $in: bedrijf.shifts }, 
+         $or: [
+           { available: false },
+           { status: 'draft' },
+           { status: 'concept' }
+         ]
+       }).lean();
+       
+       console.log("Unpublished shifts query conditions:", { 
+         _id: { $in: bedrijf.shifts }, 
+         $or: [
+           { available: false },
+           { status: 'draft' },
+           { status: 'concept' }
+         ]
+       });
+       console.log("Found unpublished shiftArrays count:", shiftArrays.length);
+       console.log("Unpublished ShiftArrays: ", JSON.stringify(shiftArrays, null, 2));
+      
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(shiftArrays));
     } catch (error) {
-      console.error('Error fetching geplaatste shifts:', error);
-      throw new Error('Failed to fetch geplaatste shifts');
+      console.error('Error fetching ongepubliceerde shifts:', error);
+      throw new Error('Failed to fetch ongepubliceerde shifts');
     }
   };
   
   export const fetchUnpublishedShifts = async (bedrijfId: string) => {
     try {
-      const bedrijf = await Employer.findOne({ clerkId: bedrijfId });
+      const bedrijf = await Employer.findOne({ clerkId: bedrijfId }).lean();
       let shiftArrays: (mongoose.FlattenMaps<IShiftArray> & Required<{ _id: mongoose.FlattenMaps<unknown>; }>)[] = [];
   
       if (bedrijf) {
@@ -144,7 +234,8 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
         ).lean();
       }
   
-      return shiftArrays;
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(shiftArrays));
     } catch (error: any) {
       console.error('Error fetching unpublished shifts:', error);
       throw error;
@@ -157,15 +248,16 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
       await connectToDB();
       
       // Find the company by its ObjectId
-      const bedrijf = await Employer.findOne({ clerkId }).exec();
+      const bedrijf = await Employer.findOne({ clerkId }).lean();
       
       if (bedrijf) {
         const shiftArrays = await ShiftArray.find({ _id: { $in: bedrijf.shifts }, status: 'beschikbaar', beschikbaar: true })
         .lean(); // Use lean to return plain JS objects
   
       console.log("ShiftArrays: ", JSON.stringify(shiftArrays, null, 2)); // Pretty print the objects for better readability
-  
-      return shiftArrays;
+
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(shiftArrays));
       }
       
       throw new Error('Bedrijf not found');
@@ -189,7 +281,8 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
         _id: { $in: shift.applications }
       });
       console.log(freelancers)
-      return freelancers;
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(freelancers));
     } catch (error: any) {
       console.error(error);
       throw new Error(`Failed to fetch aanmeldingen: ${error.message}`);
@@ -208,7 +301,8 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
         _id: { $in: shift.accepted }
       });
       console.log(freelancers)
-      return freelancers;
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(freelancers));
     } catch (error: any) {
       console.error(error);
       throw new Error(`Failed to fetch aangenomen ${error.message}`);
@@ -227,7 +321,8 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
         _id: { $in: shift.reserves }
       });
       console.log(freelancers)
-      return freelancers;
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(freelancers));
     } catch (error: any) {
       console.error(error);
       throw new Error(`Failed to fetch reserves: ${error.message}`);
@@ -256,20 +351,22 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
   };
   
   export const cloudShift = async () => {
-  
-  cron.schedule('0 * * * *', async () => {
     try {
-      const currentDate = new Date();
-      const currentTimeString = currentDate.toTimeString().slice(0, 5); // Get current time in HH:MM format
+      const now = new Date();
+      const currentTimeString = now.toTimeString().slice(0, 5); // Get current time in HH:MM format
+      
+      // Create proper date boundaries without mutating the original date
+      const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+      const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
   
       // Find shifts where the date is today and time has passed
       const shiftsToUpdate = await ShiftArray.find({
-        begindatum: {
-          $gte: new Date(currentDate.setHours(0, 0, 0, 0)), // today's date at midnight
-          $lte: new Date(currentDate.setHours(23, 59, 59, 999)) // today's date at 23:59:59
+        startingDate: {
+          $gte: todayStart, // today's date at midnight
+          $lte: todayEnd // today's date at 23:59:59
         },
-        begintijd: { $lte: currentTimeString }, // shifts where begintijd has passed
-        beschikbaar: true // only update if still available
+        starting: { $lte: currentTimeString }, // shifts where starting time has passed
+        available: true // only update if still available
       });
   
       // Update shifts
@@ -283,22 +380,55 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
     } catch (error) {
       console.error('Error updating shifts:', error);
     }
-  })
+  };
+
+  // Function to fix incorrectly expired future shifts
+  export const fixExpiredFutureShifts = async () => {
+    try {
+      await connectToDB();
+      const now = new Date();
+      
+      // Find shifts that are marked as expired but have future dates
+      const futureShifts = await ShiftArray.find({
+        startingDate: { $gt: now }, // Future dates
+        status: "verlopen", // Currently marked as expired
+        available: false // Currently marked as unavailable
+      });
+      
+      console.log(`Found ${futureShifts.length} future shifts incorrectly marked as expired`);
+      
+      // Reset them to active status
+      await Promise.all(futureShifts.map(async (shift) => {
+        shift.available = true;
+        shift.status = "beschikbaar";
+        await shift.save();
+      }));
+      
+      console.log(`Fixed ${futureShifts.length} future shifts - reset to active status`);
+      return futureShifts.length;
+    } catch (error) {
+      console.error('Error fixing expired future shifts:', error);
+      throw error;
+    }
   };
   
   cron.schedule('0 * * * *', async () => {
     try {
-      const currentDate = new Date();
-      const currentTimeString = currentDate.toTimeString().slice(0, 5); // Get current time in HH:MM format
+      const now = new Date();
+      const currentTimeString = now.toTimeString().slice(0, 5); // Get current time in HH:MM format
+      
+      // Create proper date boundaries without mutating the original date
+      const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+      const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
   
       // Find shifts where the date is today and time has passed
       const shiftsToUpdate = await ShiftArray.find({
-        begindatum: {
-          $gte: new Date(currentDate.setHours(0, 0, 0, 0)), // today's date at midnight
-          $lte: new Date(currentDate.setHours(23, 59, 59, 999)) // today's date at 23:59:59
+        startingDate: {
+          $gte: todayStart, // today's date at midnight
+          $lte: todayEnd // today's date at 23:59:59
         },
-        begintijd: { $lte: currentTimeString }, // shifts where begintijd has passed
-        beschikbaar: true // only update if still available
+        starting: { $lte: currentTimeString }, // shifts where starting time has passed
+        available: true // only update if still available
       });
   
       // Update shifts
@@ -316,17 +446,21 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
   
   export const cloudShifts = async () => {
     try {
-      const currentDate = new Date();
-      const currentTimeString = currentDate.toTimeString().slice(0, 5); // Get current time in HH:MM format
+      const now = new Date();
+      const currentTimeString = now.toTimeString().slice(0, 5); // Get current time in HH:MM format
+      
+      // Create proper date boundaries without mutating the original date
+      const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+      const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
   
       // Find shifts where the date is today and time has passed
       const shiftsToUpdate = await ShiftArray.find({
-        begindatum: {
-          $gte: new Date(currentDate.setHours(0, 0, 0, 0)), // today's date at midnight
-          $lte: new Date(currentDate.setHours(23, 59, 59, 999)) // today's date at 23:59:59
+        startingDate: {
+          $gte: todayStart, // today's date at midnight
+          $lte: todayEnd // today's date at 23:59:59
         },
-        begintijd: { $lte: currentTimeString }, // shifts where begintijd has passed
-        beschikbaar: true // only update if still available
+        starting: { $lte: currentTimeString }, // shifts where starting time has passed
+        available: true // only update if still available
       });
   
       const shiftsToDelete = await Shift.find({

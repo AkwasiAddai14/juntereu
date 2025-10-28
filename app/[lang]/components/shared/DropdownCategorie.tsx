@@ -63,23 +63,23 @@ const fields = components.shared.DropdownCategorie.fields
   return (
     <div>
         <Select onValueChange={onChangeHandler} defaultValue={value}>
-    <SelectTrigger className="w-[180px]">
+    <SelectTrigger className="w-full h-12 px-4 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
       <SelectValue placeholder={components.shared.DropdownCategorie.title} />
     </SelectTrigger>
-    <SelectContent>
+    <SelectContent className="bg-gray-50 border border-gray-200">
 
 
     {fields.map((group: { label: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; items: any[] }, groupIdx: React.Key | null | undefined) => (
   <SelectGroup key={groupIdx}>
     <SelectLabel>{group.label}</SelectLabel>
     {group.items.map((item: { value: string; label: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined }, itemIdx: React.Key | null | undefined) => (
-      <SelectItem key={itemIdx} value={item.value}>{item.label}</SelectItem>
+      <SelectItem key={itemIdx} value={item.value} className="text-gray-800 hover:bg-blue-50 focus:bg-blue-600 focus:text-white">{item.label}</SelectItem>
     ))}
   </SelectGroup>
 ))}
 
       {categorie.length > 0 && categorie.map((categorie) => (
-          <SelectItem key={categorie._id} value={categorie._id} className="select-item p-regular-14">
+          <SelectItem key={categorie._id} value={categorie._id} className="text-gray-800 hover:bg-blue-50 focus:bg-blue-600 focus:text-white p-regular-14">
             {categorie.name}
           </SelectItem>
         ))}

@@ -35,13 +35,26 @@ import type { Locale } from '@/app/[lang]/dictionaries'; // define this type bas
     const { isLoaded, isSignedIn, user } = useUser();
     const [geauthoriseerd, setGeauthoriseerd] = useState<Boolean>(false);
 
-    const isGeAuthorizeerd = async (id:string) => {
-      const toegang = await AuthorisatieCheck(id, 5);
-      setGeauthoriseerd(toegang);
+    useEffect(() => {
+      const checkAuthorization = async () => {
+        if (isLoaded && user && id) {
+          try {
+            const toegang = await AuthorisatieCheck(id, 5);
+            setGeauthoriseerd(toegang);
+          } catch (error) {
+            console.error('Authorization check failed:', error);
+            setGeauthoriseerd(false);
+          }
+        }
+      };
+
+      checkAuthorization();
+    }, [isLoaded, user, id]);
+
+    if (geauthoriseerd === null) {
+      return <h1>Loading...</h1>;
     }
-  
-    isGeAuthorizeerd(id);
-  
+
     if(!geauthoriseerd){
       return <h1>403 - Forbidden</h1>
     }

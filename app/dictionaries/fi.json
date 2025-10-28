@@ -290,7 +290,7 @@
       },
       "Yearly": {
         "Jaarlijks": "Vuosittain",
-        "Prijs": "1 000 €/vuosi + 40 €/käyttäjä/vuosi (2 kk ilmaiseksi)"
+        "Prijs": "1 000 €/vuosi + 40 €/käyttäjä/vuosi"
       }
     },
       "usp": ["Laskut & viennit", "Omistat omat tietosi", "Maksuton käyttöönotto"]
@@ -828,8 +828,8 @@
     "dashboard": {
         "werknemersPage": {
           "BentoGrid": {
-            "headTitle": "Julkaise nopeammin",
-            "subTitle": "Kaikki, mitä tarvitset sovelluksesi julkaisuun",
+            "headTitle": "Your Work Hub",
+  "subTitle": "Everything you need to manage your career",
             "gridTitles": [
               "Hallintapaneeli",
               "Profiili",
@@ -976,11 +976,12 @@
             },
             "headTitle": "Hallintapaneeli",
             "navigation": [
-              { "name": "Etusivu", "value": "Etusivu" },
-              { "name": "Kalenteri", "value": "Kalenteri" },
-              { "name": "Vuorot", "value": "Vuorot" },
+              { "name": "Etusivu", "value": "Home" },
+              {"name": "Board","value": "Board" },
+              { "name": "Kalenteri", "value": "Calendar" },
+              { "name": "Vuorot", "value": "Shifts" },
               { "name": "Joustavat tiimit", "value": "Joustavat tiimit" },
-              { "name": "Talous", "value": "Talous" }
+              { "name": "Talous", "value": "Finances" }
             ],
             "UserNavigation": [
               { "name": "Asetukset", "value": "Asetukset" },

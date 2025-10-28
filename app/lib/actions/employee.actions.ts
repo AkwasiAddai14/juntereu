@@ -4,6 +4,11 @@ import { connectToDB } from "../mongoose";
 import Employee, { IEmployee } from "../models/employee.model";
 import { currentUser } from "@clerk/nextjs/server";
 import mongoose, { SortOrder } from "mongoose";
+import { createNCEmployee } from "../onboarding";
+import navigation from "next/navigation";
+import { redirect as nextRedirect } from "next/navigation";
+import { serializeData } from '@/app/lib/utils/serialization';
+import { getDatabaseConnection, getCountryFunctions } from "../database-connection";
 
 
 
@@ -53,27 +58,81 @@ type Experience = {
 
 export const createEmployee = async (user:Employee) => {
     try {
-      const newEmployee = await Employee.create(user);
-      await Employee.findOneAndUpdate({clerkId: user.clerkId}, {
-        onboarded:false
-      },
-      {
-        upsert:true, new: true 
-      });
+      console.log("Starting createEmployee with data:", user);
       
-        return JSON.parse(JSON.stringify(newEmployee))
-        
-        } 
-    catch (error: any) {
-          throw new Error(`Failed to create or update user: ${error.message}`);
+      const userInfo = await currentUser();
+      const country = userInfo?.unsafeMetadata?.country as string;
+      
+      // Connect to the appropriate database based on country
+      const connected = await getDatabaseConnection((user.country ?? country) ?? 'Nederland' );
+      
+      if (!connected) {
+        console.error('Failed to connect to database');
+        throw new Error('Database connection failed');
       }
+
+      // Get country-specific functions
+      const countryFunctions = await getCountryFunctions(country || 'Nederland');
+      console.log(`Using functions for ${country}:`, countryFunctions);
+
+      // Call country-specific function if available
+      if (country && countryFunctions.createEmployee === 'createNCEmployee') {
+        console.log(`Calling country-specific function for ${country}`);
+        return await createNCEmployee(user);
+      }
+      
+      if(user.clerkId){
+        console.log("clerkId found:", user.clerkId);
+      }
+      
+      console.log("Connected to database");
+      
+      // Use findOneAndUpdate with upsert to create or update the employee
+      const newEmployee = await Employee.findOneAndUpdate(
+        { clerkId: user.clerkId }, 
+        {
+          ...user,
+          onboarded: true  // Set onboarded to true when creating/updating
+        },
+        {
+          upsert: true, 
+          new: true,
+          runValidators: true
+        }
+      );
+      
+      console.log("Employee created/updated successfully:", newEmployee);
+      return serializeData(newEmployee);
+        
+    } catch (error: any) {
+      console.error("Error in createEmployee:", error);
+      throw new Error(`Failed to create or update user: ${error.message}`);
+    }
 }
 
 
 export const updateFreelancer = async  (user: Employee ) => {
-
+        const userInfo = await currentUser();
     try {
-         const newEmployee = await Employee.create(user);
+      if(!userInfo?.unsafeMetadata.country){
+        console.log('User country is not set in metadata');
+      } else {
+        createNCEmployee(user);
+      }
+      if(user.clerkId){
+        console.log("clerkId found:", user.clerkId);
+      }
+      await connectToDB();
+      // Find the freelancer by clerkId and update their details
+      // Set onboarded to true during the update
+      // Use upsert to create a new document if one doesn't exist
+      // Return the updated or newly created document
+      // Log the user object to verify its contents
+      console.log("Updating freelancer with data:", user);
+      
+      // Create a new employee document
+      //
+      const newEmployee = await Employee.create(user);
       await Employee.findOneAndUpdate({clerkId: user.clerkId}, {
         onboarded:false
       },
@@ -83,7 +142,7 @@ export const updateFreelancer = async  (user: Employee ) => {
       
         //return JSON.parse(JSON.stringify(newEmployee))
         
-        return { success: true, message: 'Freelancer successfully updated.' };
+        return { success: true, message: `Freelancer successfully updated. ==> ${newEmployee}` };
     } catch (error) {
         console.error('Error updating freelancer:', error);
         throw new Error('Error updating freelancer');
@@ -99,8 +158,9 @@ export const checkOnboardingStatusEmployee = async (clerkId:string) => {
     
      return employee?.onboarded ?? null;
   } catch (error) {
-    console.error('failed to find stauts:', error);
-    throw new Error('Failed to find status');
+    console.error('failed to find status:', error);
+    //throw new Error('Failed to find status');
+    return null;
   }
 };
 
@@ -121,7 +181,7 @@ export const haalFreelancerVoorCheckout = async (id: string) => {
 try {
   await connectToDB();
   const freelancer = await Employee.findById(id).lean();
-  return freelancer;
+  return serializeData(freelancer);
 } catch (error:any) {
   console.error('Error retrieving freelancers:', error);
   throw new Error('Error retrieving freelancers');
@@ -151,10 +211,11 @@ export const haalFreelancer = async (clerkId: string): Promise<IEmployee | null>
       }
     }
 
-    return freelancer ?? null;
+    return freelancer ? serializeData(freelancer) : null;
   } catch (error) {
     console.error('Error retrieving freelancer:', error);
-    throw new Error('Error retrieving freelancer');
+    redirect('../[lang]/onboarding');
+    return null;
   }
 };
 
@@ -166,7 +227,7 @@ try {
   const freelancer = await Employee.findById(Id).lean();
 
   console.log(freelancer)
-    return freelancer;
+    return serializeData(freelancer);
     
 } catch (error) {
     console.error('Error retrieving freelancers:', error);
@@ -177,7 +238,7 @@ try {
 export const haalFreelancerVoorAdres = async  (clerkId: string) => {
 try {
   const CurrentUser = await currentUser();
-const metadata = CurrentUser?.unsafeMetadata.country
+  const metadata = CurrentUser?.unsafeMetadata.country
 //connectToDB();
   await connectToDB();
   let freelancer;
@@ -196,7 +257,7 @@ const metadata = CurrentUser?.unsafeMetadata.country
     }
   }
   console.log(freelancer)
-    return freelancer.toObject();
+    return serializeData(freelancer);
 } catch (error) {
     console.error('Error retrieving freelancers:', error);
     throw new Error('Error retrieving freelancers');
@@ -207,7 +268,7 @@ export const haalFreelancerFlexpool = async  (clerkId: string) => {
   
 try {
     const freelancer = await Employee.findById(clerkId);
-    return freelancer;
+    return serializeData(freelancer);
 } catch (error) {
     console.error('Error retrieving freelancers:', error);
     throw new Error('Error retrieving freelancers');
@@ -256,7 +317,7 @@ export const haalFreelancers = async ({
 
       // Return the result with pagination info
       return {
-          freelancers,
+          freelancers: serializeData(freelancers),
           totalFreelancers,
           totalPages: Math.ceil(totalFreelancers / pageSize),
           currentPage: pageNumber
@@ -275,7 +336,7 @@ export const haalAlleFreelancers = async (): Promise<Employee[]> => {
       const opdrachtnemers = await Employee.find();
       
       console.log(opdrachtnemers)
-      return opdrachtnemers || []; // Return an array with 'naam' property
+      return serializeData(opdrachtnemers) || []; // Return an array with 'naam' property
   } catch (error) {
       console.error('Error fetching freelancers:', error);
       throw new Error('Failed to fetch freelancers');
@@ -359,7 +420,196 @@ export const updateOpleiding = async (clerkId: string, value: any) => {
   console.error('Error updating freelancer:', error);
   throw new Error('Failed to update freelancer');
 }
-} 
+}
+
+// Enhanced functions for work experience and education management
+export const addWorkExperience = async (clerkId: string, workExperience: any) => {
+  try {
+    await connectToDB();
+    
+    const freelancer = await Employee.findOneAndUpdate(
+      { clerkId: clerkId },
+      { 
+        $push: { 
+          experience: {
+            ...workExperience,
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }
+        }
+      },
+      { 
+        new: true,
+        runValidators: true
+      }
+    );
+
+    if (!freelancer) {
+      throw new Error('Freelancer not found');
+    }
+
+    return serializeData(freelancer);
+  } catch (error) {
+    console.error('Error adding work experience:', error);
+    throw new Error('Failed to add work experience');
+  }
+};
+
+export const updateWorkExperience = async (clerkId: string, experienceId: string, workExperience: any) => {
+  try {
+    await connectToDB();
+    
+    const freelancer = await Employee.findOneAndUpdate(
+      { 
+        clerkId: clerkId,
+        'experience._id': experienceId
+      },
+      { 
+        $set: { 
+          'experience.$.bedrijf': workExperience.company,
+          'experience.$.functie': workExperience.position,
+          'experience.$.duur': workExperience.startDate + ' - ' + workExperience.endDate,
+          'experience.$.updatedAt': new Date()
+        }
+      },
+      { 
+        new: true,
+        runValidators: true
+      }
+    );
+
+    if (!freelancer) {
+      throw new Error('Freelancer or work experience not found');
+    }
+
+    return serializeData(freelancer);
+  } catch (error) {
+    console.error('Error updating work experience:', error);
+    throw new Error('Failed to update work experience');
+  }
+};
+
+export const deleteWorkExperience = async (clerkId: string, experienceId: string) => {
+  try {
+    await connectToDB();
+    
+    const freelancer = await Employee.findOneAndUpdate(
+      { clerkId: clerkId },
+      { 
+        $pull: { 
+          experience: { _id: experienceId }
+        }
+      },
+      { 
+        new: true,
+        runValidators: true
+      }
+    );
+
+    if (!freelancer) {
+      throw new Error('Freelancer not found');
+    }
+
+    return serializeData(freelancer);
+  } catch (error) {
+    console.error('Error deleting work experience:', error);
+    throw new Error('Failed to delete work experience');
+  }
+};
+
+export const addEducation = async (clerkId: string, education: any) => {
+  try {
+    await connectToDB();
+    
+    const freelancer = await Employee.findOneAndUpdate(
+      { clerkId: clerkId },
+      { 
+        $push: { 
+          education: {
+            ...education,
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }
+        }
+      },
+      { 
+        new: true,
+        runValidators: true
+      }
+    );
+
+    if (!freelancer) {
+      throw new Error('Freelancer not found');
+    }
+
+    return serializeData(freelancer);
+  } catch (error) {
+    console.error('Error adding education:', error);
+    throw new Error('Failed to add education');
+  }
+};
+
+export const updateEducation = async (clerkId: string, educationId: string, education: any) => {
+  try {
+    await connectToDB();
+    
+    const freelancer = await Employee.findOneAndUpdate(
+      { 
+        clerkId: clerkId,
+        'education._id': educationId
+      },
+      { 
+        $set: { 
+          'education.$.naam': education.institution,
+          'education.$.school': education.degree,
+          'education.$.niveau': education.field,
+          'education.$.updatedAt': new Date()
+        }
+      },
+      { 
+        new: true,
+        runValidators: true
+      }
+    );
+
+    if (!freelancer) {
+      throw new Error('Freelancer or education not found');
+    }
+
+    return serializeData(freelancer);
+  } catch (error) {
+    console.error('Error updating education:', error);
+    throw new Error('Failed to update education');
+  }
+};
+
+export const deleteEducation = async (clerkId: string, educationId: string) => {
+  try {
+    await connectToDB();
+    
+    const freelancer = await Employee.findOneAndUpdate(
+      { clerkId: clerkId },
+      { 
+        $pull: { 
+          education: { _id: educationId }
+        }
+      },
+      { 
+        new: true,
+        runValidators: true
+      }
+    );
+
+    if (!freelancer) {
+      throw new Error('Freelancer not found');
+    }
+
+    return serializeData(freelancer);
+  } catch (error) {
+    console.error('Error deleting education:', error);
+    throw new Error('Failed to delete education');
+  }
+}; 
 export const updateProfielfoto  = async (clerkId: string, value: any) => {
   try {
       const freelancer = await Employee.findOneAndUpdate({clerkId : clerkId},
@@ -379,6 +629,34 @@ export const updateProfielfoto  = async (clerkId: string, value: any) => {
   throw new Error('Failed to update freelancer');
 }
 }
+
+// Enhanced photo upload function with UploadThing integration
+export const updateProfilePhoto = async (clerkId: string, photoUrl: string) => {
+  try {
+    await connectToDB();
+    
+    const freelancer = await Employee.findOneAndUpdate(
+      { clerkId: clerkId },
+      { 
+        profilephoto: photoUrl,
+        updatedAt: new Date()
+      },
+      { 
+        new: true,
+        runValidators: true
+      }
+    );
+
+    if (!freelancer) {
+      throw new Error('Freelancer not found');
+    }
+
+    return serializeData(freelancer);
+  } catch (error) {
+    console.error('Error updating profile photo:', error);
+    throw new Error('Failed to update profile photo');
+  }
+};
 export const updateAdres = async (clerkId: string, value: any) => {
   try {
       const freelancer = await Employee.findOneAndUpdate({clerkId : clerkId},
@@ -417,3 +695,6 @@ export const updateTelefoonnummer = async (clerkId: string, value: any) => {
   throw new Error('Failed to update freelancer');
 }
 } 
+function redirect(url: string) {
+  nextRedirect(url);
+}

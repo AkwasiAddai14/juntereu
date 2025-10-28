@@ -31,19 +31,27 @@ const shiftDetails = ({ lang, dashboard, shift, relatedEvents }: Props) => {
   const [profielfoto, setProfilePhoto] = useState<string>("");
   const [geauthoriseerd, setGeauthoriseerd] = useState<Boolean>(false);
 
-  const isGeAuthorizeerd = async (id:string) => {
-    const toegang = await AuthorisatieCheck(id, 1);
-    setGeauthoriseerd(toegang);
-  }
-  
-
   useEffect(() => {
     if (isLoaded && user) {
       setProfilePhoto(user?.imageUrl);
-      // Check authorization after user is loaded
-      isGeAuthorizeerd(shift.id);
     }
-  }, [isLoaded, user, shift.id]);
+  }, [isLoaded, user]);
+
+  useEffect(() => {
+    const checkAuthorization = async () => {
+      if (isLoaded && user && shift?.id) {
+        try {
+          const toegang = await AuthorisatieCheck(shift.id, 1);
+          setGeauthoriseerd(toegang);
+        } catch (error) {
+          console.error('Authorization check failed:', error);
+          setGeauthoriseerd(false);
+        }
+      }
+    };
+
+    checkAuthorization();
+  }, [isLoaded, user, shift?.id]);
 
   useEffect(() => {
     const getFreelancerId = async () => {
@@ -62,7 +70,7 @@ const shiftDetails = ({ lang, dashboard, shift, relatedEvents }: Props) => {
     if (user && !freelancerId) {  // Only fetch if user exists and freelancerId is not already set
       getFreelancerId();
     }
-  })
+  }, [user, freelancerId])
 
   useEffect(()=>{
     const fetchApplied = async () => {
@@ -75,125 +83,302 @@ const shiftDetails = ({ lang, dashboard, shift, relatedEvents }: Props) => {
   
   // Show loading or unauthorized message
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white mx-auto mb-4"></div>
+          <p className="text-white text-xl font-medium">Loading shift details...</p>
+        </div>
+      </div>
+    );
   }
 
   if (!geauthoriseerd) {
-    return <h1>403 - Forbidden</h1>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-red-900 via-red-800 to-pink-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4">🚫</div>
+          <h1 className="text-4xl font-bold text-white mb-4">Access Denied</h1>
+          <p className="text-red-100 text-xl">You don't have permission to view this shift.</p>
+        </div>
+      </div>
+    );
   }
  
   return (
     <>
+    <style jsx>{`
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      @keyframes slideUp {
+        from { 
+          opacity: 0; 
+          transform: translateY(30px); 
+        }
+        to { 
+          opacity: 1; 
+          transform: translateY(0); 
+        }
+      }
+      
+      .animate-fade-in {
+        animation: fadeIn 0.8s ease-out;
+      }
+      
+      .animate-slide-up {
+        animation: slideUp 0.6s ease-out forwards;
+        opacity: 0;
+      }
+    `}</style>
     <DashNav lang={lang}/>
-    <section className="flex flex-col justify-center bg-primary-50 bg-dotted-pattern bg-contain">
-      <div className="lg:grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl sm:flex xs:flex flex-col">
-        <Image 
-          src={shift.afbeelding}
-          alt="hero image"
-          width={1000}
-          height={1000}
-          className="h-full min-h-[300px] object-cover object-center"
-        />
-        <div className="flex w-full flex-col gap-8 p-5 md:p-10">
-          <div className="flex flex-col gap-6">
-            <h2 className='h2-bold'>{shift.titel}</h2>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <div className="flex-between w-full flex gap-3">
-                <p className="p-medium-16 rounded-full bg-grey-500/10 px-4 py-2.5 text-grey-500 line-clamp-1">
+    
+    {/* Hero Section */}
+    <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 min-h-[500px] overflow-hidden animate-fade-in">
+      {/* Animated background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Image */}
+          <div className="relative group">
+            <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+            <div className="relative">
+              <Image 
+                src={shift.afbeelding}
+                alt="hero image"
+                width={600}
+                height={400}
+                className="rounded-2xl shadow-2xl object-cover w-full h-[350px] lg:h-[450px] transform group-hover:scale-105 transition duration-700"
+              />
+              <div className="absolute top-6 right-6">
+                <span className={`px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm border ${
+                  shift.inFlexpool 
+                    ? 'bg-green-500/20 text-green-100 border-green-400/30' 
+                    : 'bg-gray-500/20 text-gray-100 border-gray-400/30'
+                }`}>
+                  {shift.inFlexpool ? '✨ Flexpool' : '🔒 Private'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="space-y-8 text-white">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-medium border border-white/20">
                   {shift.opdrachtgeverNaam}
-                </p>
-                <p className="p-bold-20 rounded-full items-center bg-green-500/10 px-5 py-2 text-green-700">
-                {dashboard.currencySign}{shift.uurtarief}
-                </p>
-                <p className="p-medium-16 rounded-full bg-grey-500/10 px-4 py-2.5 text-grey-500">
+                </span>
+                <span className="px-4 py-2 bg-green-500/20 backdrop-blur-sm text-green-100 rounded-full text-sm font-medium border border-green-400/30">
                   {shift.functie}
-                </p>
+                </span>
+              </div>
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                {shift.titel}
+              </h1>
+              <p className="text-xl text-blue-100 leading-relaxed">
+                {shift.beschrijving?.substring(0, 120)}...
+              </p>
+            </div>
+
+            {/* Key Info Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition duration-300">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-green-500/20 rounded-xl">
+                    <span className="text-green-300 font-bold text-2xl">€</span>
+                  </div>
+                  <div>
+                    <p className="text-blue-200 text-sm font-medium">Hourly Rate</p>
+                    <p className="text-3xl font-bold text-white">{shift.uurtarief}</p>
+                  </div>
+                </div>
               </div>
 
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-5">
-            <div className='flex gap-2 md:gap-3'>
-              <Image src={calendar} alt="calendar" width={32} height={32} className='sm:hidden'/>
-              <div className="flex-between w-full p-medium-16 lg:p-regular-20 flex flex-wrap items-center">
-                <p>
-                {new Date(shift.begindatum).toLocaleDateString('nl-NL')}
-                </p>
-                <p>
-                  {shift.begintijd} -  {' '}
-                  {shift.eindtijd}
-                </p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition duration-300">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-blue-500/20 rounded-xl">
+                    <UserIcon className="w-6 h-6 text-blue-300" />
+                  </div>
+                  <div>
+                    <p className="text-blue-200 text-sm font-medium">Available Spots</p>
+                    <p className="text-3xl font-bold text-white">
+                      {shift.plekken - shift.aanmeldingen.length} / {shift.plekken}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="p-regular-20 flex items-center gap-3">
-            <Image src={location} alt="location" width={32} height={32} />
-              <p className="p-medium-16 lg:p-regular-20"> {shift.adres}</p>
-              {/* <p className="p-medium-16 lg:p-regular-20"> {shift.stad}</p> */}
-            </div>
-
-
-            <div className='flex-between w-full '>
-            <div className="p-regular-20 flex items-center gap-3">
-              <UserIcon className='w-8 h-8'/>
-              <p className="p-medium-16 lg:p-regular-20">{shift.plekken} {dashboard.Shift.employee.FormFieldItems[0]}</p>
-            </div>
-            <div className="p-regular-20 flex items-center gap-3">
-              <p className="p-medium-16 lg:p-regular-20">{shift.aanmeldingen.length} {dashboard.Shift.employee.FormFieldItems[1]}</p>
-            </div>
-            <p className="p-medium-16 lg:p-regular-18 truncate text-primary-500">{shift.inFlexpool ? '✅ Flexpool' : `${dashboard.Shift.employee.FormFieldItems[2]}`}</p>
-            </div>
-           
+            {/* Apply Button */}
             {shift.status === "beschikbaar" && shift.beschikbaar && !hasApplied && (
-              <AanmeldButton shift={shift} />
-              )}
-              
-          
-          </div>
-          <div className="flex justify-between items-center">
-            <div className="">
-              <h3>{dashboard.Shift.employer.FormFieldItems[4]}</h3>
-            <ul className="rounded-md bg-blue-300 px-3 py-3 gap-y-2">
-              {shift.vaardigheden?.map((vaardigheid: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined, index: Key | null | undefined) => (
-                 <li key={index}>• {vaardigheid}</li>
-                  ))}
-            </ul>
-            </div>
-
-
-            <div className="">
-            <h3>{dashboard.Shift.employer.FormFieldItems[5]}</h3>
-              <ul className="rounded-md bg-orange-300 px-3 py-3 gap-y-2">
-                  {shift.kledingsvoorschriften?.map((kleding: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined, index: Key | null | undefined) => (
-                    <li key={index}>• {kleding}</li>
-                  ))}
-              </ul>
-            </div>
-
-
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="p-bold-20 text-grey-600">{dashboard.Shift.employee.FormFieldItems[3]}</p>
-            <p className="p-medium-16 lg:p-regular-18 line-clamp-9">
-              {shift.beschrijving} 
-            </p>
+              <div className="pt-6">
+                <AanmeldButton shift={shift} />
+              </div>
+            )}
           </div>
         </div>
       </div>
     </section>
 
-      <section className="wrapper my-8 flex flex-col gap-8 md:gap-12 xs:gap-20">
-      <h2 className="h2-bold">{dashboard.Shift.employee.FormFieldItems[4]}</h2>
-      <Collection 
-          data={relatedEvents?.data}
-          emptyTitle="Geen relevante shifts gevonden"
-          emptyStateSubtext="Kom later nog eens terug"
-          collectionType="All_Events"
-          limit={36}
-          page={1}
-          totalPages={relatedEvents?.totalPages} 
-          lang={lang}        />
+    {/* Main Content */}
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        {/* Left Column - Details */}
+        <div className="lg:col-span-2 space-y-8">
+          {/* Shift Details */}
+          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-slide-up">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl">
+                <Image src={calendar} alt="calendar" width={28} height={28} className="text-white" />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900">Shift Details</h2>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="flex items-center gap-6 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100 hover:shadow-md transition duration-300">
+                <div className="p-4 bg-blue-500 rounded-2xl shadow-lg">
+                  <Image src={calendar} alt="calendar" width={28} height={28} />
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-gray-900 mb-1">
+                    {new Date(shift.begindatum).toLocaleDateString('nl-NL', { 
+                      weekday: 'long', 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}
+                  </p>
+                  <p className="text-blue-600 font-medium text-lg">
+                    {shift.begintijd} - {shift.eindtijd}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-6 p-6 bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl border border-red-100 hover:shadow-md transition duration-300">
+                <div className="p-4 bg-red-500 rounded-2xl shadow-lg">
+                  <Image src={location} alt="location" width={28} height={28} />
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-gray-900 mb-1">Location</p>
+                  <p className="text-red-600 font-medium text-lg">{shift.adres}</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-6 p-6 bg-gradient-to-r from-purple-50 to-violet-50 rounded-2xl border border-purple-100 hover:shadow-md transition duration-300">
+                <div className="p-4 bg-purple-500 rounded-2xl shadow-lg">
+                  <UserIcon className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-gray-900 mb-1">Applications</p>
+                  <p className="text-purple-600 font-medium text-lg">
+                    {shift.aanmeldingen.length} {dashboard.Shift.employee.FormFieldItems[1]}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Description */}
+          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-slide-up" style={{animationDelay: '0.2s'}}>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl">
+                <span className="text-white font-bold text-xl">📝</span>
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900">
+                {dashboard.Shift.employee.FormFieldItems[3]}
+              </h2>
+            </div>
+            <div className="prose prose-lg max-w-none">
+              <p className="text-gray-700 leading-relaxed text-lg">
+                {shift.beschrijving}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column - Skills & Requirements */}
+        <div className="space-y-8">
+          {/* Skills */}
+          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-slide-up" style={{animationDelay: '0.4s'}}>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl">
+                <span className="text-white font-bold text-xl">🎯</span>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900">
+                {dashboard.Shift.employer.FormFieldItems[4]}
+              </h3>
+            </div>
+            <div className="space-y-3">
+              {shift.vaardigheden?.map((vaardigheid: string, index: number) => (
+                <div key={index} className="flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-100 hover:shadow-md transition duration-300">
+                  <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-sm"></div>
+                  <span className="text-gray-800 font-medium text-lg">{vaardigheid}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Dress Code */}
+          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-slide-up" style={{animationDelay: '0.6s'}}>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl">
+                <span className="text-white font-bold text-xl">👔</span>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900">
+                {dashboard.Shift.employer.FormFieldItems[5]}
+              </h3>
+            </div>
+            <div className="space-y-3">
+              {shift.kledingsvoorschriften?.map((kleding: string, index: number) => (
+                <div key={index} className="flex items-center gap-4 p-4 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl border border-orange-100 hover:shadow-md transition duration-300">
+                  <div className="w-3 h-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-sm"></div>
+                  <span className="text-gray-800 font-medium text-lg">{kleding}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Related Shifts */}
+    <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl">
+              <span className="text-white font-bold text-2xl">🔍</span>
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900">
+              {dashboard.Shift.employee.FormFieldItems[4]}
+            </h2>
+          </div>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Discover more opportunities like this one and expand your professional network
+          </p>
+        </div>
+        
+        <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8">
+          <Collection 
+            data={relatedEvents?.data}
+            emptyTitle="Geen relevante shifts gevonden"
+            emptyStateSubtext="Kom later nog eens terug"
+            collectionType="All_Events"
+            limit={36}
+            page={1}
+            totalPages={relatedEvents?.totalPages} 
+            lang={lang}
+          />
+        </div>
+      </div>
     </section>
     </>
   )

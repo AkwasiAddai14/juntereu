@@ -12,22 +12,40 @@ import ShiftArray from "@/app/lib/models/shiftArray.model";
 
 export const AuthorisatieCheck = async (id: string, nummer: number) => {/*  */
   try {
+    console.log('Starting authorization check for ID:', id, 'Number:', nummer);
+    
     // Connect to the database
     await connectToDB();
+    console.log('Database connected successfully');
+    
     let freelancer;
     let bedrijf;
+    
     // Get the current user
     const gebruiker = await currentUser();
+    
+    // Check if user is authenticated
+    if (!gebruiker) {
+        console.log('No authenticated user found');
+        return false;
+    }
+    
+    console.log('User authenticated:', gebruiker.id);
+    
     if (nummer === 1 || nummer === 3 || nummer === 5 || nummer ===7 ){
-         freelancer = await Employee.findOne({ clerkId: gebruiker!.id }).exec();
+         freelancer = await Employee.findOne({ clerkId: gebruiker.id }).exec();
          if(!freelancer){
             /* redirect('/NotFound'); */ // Redirect to NotFound if not a freelancer
             return false;
          }
     } else {
          // Fetch the associated entities for the user
-     bedrijf = await Employer.findOne({ clerkId: gebruiker!.id }).exec();
+     bedrijf = await Employer.findOne({ clerkId: gebruiker.id }).exec();
+     console.log('Authorization check - User ID:', gebruiker.id);
+     console.log('Authorization check - Bedrijf found:', !!bedrijf);
+     console.log('Authorization check - Bedrijf ID:', bedrijf?._id);
      if(!bedrijf){
+        console.log('Authorization check - No bedrijf found for user');
         /* redirect('/NotFound'); */ // Redirect to NotFound if not a freelancer
             return false;
      }
@@ -43,15 +61,35 @@ export const AuthorisatieCheck = async (id: string, nummer: number) => {/*  */
         }
         /* redirect('/NotFound'); */
 
-      case 2: // Bedrijf is opdrachtgever for shift
-        if (bedrijf) {
-          const shift = await ShiftArray.findById(id).exec();
-          if (shift && shift.employer === bedrijf._id) {
-            return true;
+        case 2: // Bedrijf is opdrachtgever for shift
+          if (bedrijf) {
+            try {
+              const shift = await ShiftArray.findById(id).exec();
+              console.log('Authorization check - Shift found:', !!shift);
+              console.log('Authorization check - Shift employer:', shift?.employer);
+              console.log('Authorization check - Shift employer type:', typeof shift?.employer);
+              console.log('Authorization check - Bedrijf ID:', bedrijf._id);
+              console.log('Authorization check - Bedrijf ID type:', typeof bedrijf._id);
+              console.log('Authorization check - Bedrijf ID toString:', (bedrijf._id as any).toString());
+              console.log('Authorization check - Shift employer toString:', shift?.employer?.toString());
+              console.log('Authorization check - Match:', shift && shift.employer && shift.employer.toString() === (bedrijf._id as any).toString());
+              
+              if (shift && shift.employer && shift.employer.toString() === (bedrijf._id as any).toString()) {
+                console.log('Authorization check - SUCCESS: User is authorized');
+                return true;
+              } else {
+                console.log('Authorization check - FAILED: IDs do not match');
+                console.log('Authorization check - Shift employer string:', shift?.employer?.toString());
+                console.log('Authorization check - Bedrijf ID string:', (bedrijf._id as any).toString());
+              }
+            } catch (error) {
+              console.error('Error in authorization check for shift:', error);
+            }
+          } else {
+            console.log('Authorization check failed - no bedrijf found for user');
           }
-        }
-        /* redirect('/NotFound'); */
-        return false;
+          console.log('Authorization check failed - returning false');
+          return false;
 
       case 3: // Freelancer is opdrachtnemer for checkout
         if (freelancer) {
@@ -119,6 +157,12 @@ export const AuthorisatieCheck = async (id: string, nummer: number) => {/*  */
     }
   } catch (error) {
     console.error('Error during authorisation check:', error);
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      id,
+      nummer
+    });
     return false;
   }
 };

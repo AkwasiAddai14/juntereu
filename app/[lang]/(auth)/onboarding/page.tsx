@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { use } from 'react';
-import NavBar from "@/app/[lang]/components/shared/navigation/Wrappers/NavigationWrapper";
+import NavBar from "@/app/[lang]/components/shared/navigation/Wrappers/NavigationBarWrapper";
 import FreelancerForm from "@/app/[lang]/components/shared/forms/Wrappers/EmployeeWrapper";
 import BedrijfsForm from '@/app/[lang]/components/shared/forms/Wrappers/EmployersWrapper';
 import Footer from "@/app/[lang]/components/shared/navigation/Footer4";

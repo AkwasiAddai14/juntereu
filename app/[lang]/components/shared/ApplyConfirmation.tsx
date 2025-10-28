@@ -23,7 +23,7 @@ export const ApplyConfirmation = ({
   const [shift, setShift] = useState<any>(null);
   const { toast } = useToast();
   const { user, isLoaded } = useUser();
-  const components = dictionary.components;
+  const components = dictionary?.components || {};
  
   useEffect(() => {
     if (isLoaded && user) {
@@ -58,13 +58,13 @@ export const ApplyConfirmation = ({
       if (reageer.success) {
         toast({
           variant: 'succes',
-          description: `${components.shared.ApplyConfirmation.ToastMessage1}`
+          description: `${components?.shared?.ApplyConfirmation?.ToastMessage1 || 'Application submitted successfully'}`
         });
       }
     } catch (error: any) {
       toast({
         variant: 'destructive',
-        description: `${components.shared.ApplyConfirmation.ToastMessage2}`
+        description: `${components?.shared?.ApplyConfirmation?.ToastMessage2 || 'Failed to submit application'}`
       });
       console.log(error)
     }

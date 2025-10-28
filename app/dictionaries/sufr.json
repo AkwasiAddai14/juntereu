@@ -272,7 +272,7 @@
       },
       "Yearly": {
         "Jaarlijks": "Annuel",
-        "Prijs": "1 000 € / an + 40 € / utilisateur / an (2 mois offerts)"
+        "Prijs": "1 000 € / an + 40 € / utilisateur / an"
       }
     },
       "usp": ["Factures & exports", "Vos données vous appartiennent", "Onboarding gratuit"]
@@ -955,11 +955,15 @@
                 "navigation": [
                   {
                     "name": "Accueil",
-                    "value": "Accueil"
+                    "value": "Home"
+                  },
+                  {
+                "name": "Board",
+                "value": "Board"
                   },
                   {
                     "name": "Calendrier",
-                    "value": "Calendrier"
+                    "value": "Calendar"
                   },
                   {
                     "name": "Shifts",

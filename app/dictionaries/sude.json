@@ -272,7 +272,7 @@
       },
       "Yearly": {
         "Jaarlijks": "Jährlich",
-        "Prijs": "1.000 €/Jahr + 40 €/Nutzer/Jahr (2 Monate gratis)"
+        "Prijs": "1.000 €/Jahr + 40 €/Nutzer/Jahr"
       }
     },
       "usp": ["Rechnungen & Exporte", "Datenhoheit bei euch", "Kostenloses Onboarding"]
@@ -793,8 +793,8 @@
     "dashboard":{
         "werknemersPage": {
             "BentoGrid": {
-                "headTitle": "Schneller bereitstellen",
-                "subTitle": "Alles, was du brauchst, um deine App bereitzustellen",
+                "headTitle": "Dein Arbeits-Hub",
+                "subTitle": "Alles, was du brauchst, um deine Karriere zu verwalten",
                 "gridTitles": [
                   "Dashboard",
                   "Profil",
@@ -955,15 +955,19 @@
                 "navigation": [
                   {
                     "name": "Startseite",
-                    "value": "Startseite"
+                    "value": "Home"
+                  },
+                  {
+                "name": "Board",
+                "value": "Board"
                   },
                   {
                     "name": "Kalender",
-                    "value": "Kalender"
+                    "value": "Calendar"
                   },
                   {
                     "name": "Schichten",
-                    "value": "Schichten"
+                    "value": "Shifts"
                   },
                   {
                     "name": "Flexpools",
@@ -971,7 +975,7 @@
                   },
                   {
                     "name": "Finanzen",
-                    "value": "Finanzen"
+                    "value": "Finances"
                   }
                 ],
                 "UserNavigation": [

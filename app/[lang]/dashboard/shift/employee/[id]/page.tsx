@@ -14,16 +14,17 @@ const supportedLocales: Locale[] = [
 ];
 
 interface PageProps {
-  params: { lang: string; id: string };
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Promise<{ lang: string; id: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
-  const { id } = params;
+  const { id, lang: paramLang } = await params;
+  const resolvedSearchParams = await searchParams;
 
   const rawLang =
-    (searchParams.lang as string | undefined) ??
-    (params.lang as Locale | undefined) ??
+    (resolvedSearchParams.lang as string | undefined) ??
+    (paramLang as Locale | undefined) ??
     "en";
   const lang: Locale = supportedLocales.includes(rawLang as Locale)
     ? (rawLang as Locale)
@@ -38,7 +39,7 @@ export default async function Page({ params, searchParams }: PageProps) {
     // Use the same property you render in the client (functie) — adjust if your schema differs
     categoryId: shift.function, 
     shiftId: shiftId!,
-    page: (searchParams.page as string) || "1",
+    page: (resolvedSearchParams.page as string) || "1",
   });
 
   const relatedEvents = relatedEventsRaw
@@ -48,12 +49,19 @@ export default async function Page({ params, searchParams }: PageProps) {
       }
     : { data: [], totalPages: 0 };
 
+  // Properly serialize the shift data to avoid serialization errors
+  const serializedShift = shift ? JSON.parse(JSON.stringify(shift)) : null;
+  const serializedRelatedEvents = {
+    data: relatedEvents.data.map(item => JSON.parse(JSON.stringify(item))),
+    totalPages: relatedEvents.totalPages
+  };
+
   return (
     <ShiftDetailsClient
       lang={lang}
       dashboard={dashboard}
-      shift={shift}
-      relatedEvents={relatedEvents}
+      shift={serializedShift}
+      relatedEvents={serializedRelatedEvents}
     />
   );
 }

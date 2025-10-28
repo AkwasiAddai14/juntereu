@@ -297,7 +297,7 @@
       },
       "Yearly": {
         "Jaarlijks": "Anual",
-        "Prijs": "€1.000/ano + €40/usuário/ano (2 meses grátis)"
+        "Prijs": "€1.000/ano + €40/usuário/ano"
       }
     },
       "usp": ["Faturas & exportações", "Você é dono dos dados", "Onboarding gratuito"]
@@ -842,8 +842,8 @@
     "dashboard": {
         "werknemersPage": {
             "BentoGrid": {
-                "headTitle": "Implante mais rápido",
-                "subTitle": "Tudo o que você precisa para lançar seu aplicativo",
+                "headTitle": "Your Work Hub",
+  "subTitle": "Everything you need to manage your career",
                 "gridTitles": [
                   "Painel",
                   "Perfil",
@@ -990,11 +990,12 @@
                 },
                 "headTitle": "Painel",
                 "navigation": [
-                  { "name": "Início", "value": "Início" },
-                  { "name": "Calendário", "value": "Calendário" },
-                  { "name": "Turnos", "value": "Turnos" },
-                  { "name": "Pools flexíveis", "value": "Pools flexíveis" },
-                  { "name": "Finanças", "value": "Finanças" }
+                  { "name": "Início", "value": "Home" },
+                  { "name": "Board", "value": "Board" },
+                  { "name": "Calendário", "value": "Calendar" },
+                  { "name": "Turnos", "value": "Shifts" },
+                  { "name": "Pools flexíveis", "value": "Flexpools" },
+                  { "name": "Finanças", "value": "Finances" }
                 ],
                 "UserNavigation": [
                   { "name": "Configurações", "value": "Configurações" },

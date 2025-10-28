@@ -9,6 +9,7 @@ import { haalFlexpoolFreelancer } from "@/app/lib/actions/flexpool.actions";
 import { haalFacturenFreelancer } from "@/app/lib/actions/invoice.actions";
 import { haalAangemeld } from "@/app/lib/actions/shift.actions";
 import { haalSollicitatiesFreelancer, haalDienstenFreelancer } from "@/app/lib/actions/vacancy.actions";
+import { useAISummary } from "@/app/lib/ai-summary";
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
   
@@ -29,8 +30,25 @@ import type { Locale } from '@/app/[lang]/dictionaries'; // define this type bas
     const [aangemeld, setAangemeld] = useState<any[]>([]);
     const [sollicitaties, setSollicitaties] = useState <any[]>([]);
     const [flexpool, setFlexpool] = useState<any[]>([]);
-    const [factuur, setFactuur] = useState<any[]>([]);
-    const { dashboard } = dictionary;
+  const [factuur, setFactuur] = useState<any[]>([]);
+  const { dashboard } = dictionary;
+
+  // AI Summary for the dashboard
+  const userData = {
+    aangemeld,
+    sollicitaties,
+    geaccepteerd,
+    diensten,
+    flexpool,
+    factuur,
+    user: user ? { 
+      firstName: user.firstName || undefined, 
+      lastName: user.lastName || undefined, 
+      email: user.emailAddresses?.[0]?.emailAddress || undefined 
+    } : undefined
+  };
+  
+  const { summary: aiSummary, loading: summaryLoading } = useAISummary(userData, 'overview');
 
     useEffect(() => {
       if (isLoaded && user) {
@@ -131,54 +149,67 @@ import type { Locale } from '@/app/[lang]/dictionaries'; // define this type bas
         fetchFlexpool();
       }, [freelancerId]);
 
+      // AI Summaries for each statistic
+      const { summary: shiftsSummary } = useAISummary(userData, 'shifts');
+      const { summary: applicationsSummary } = useAISummary(userData, 'applications');
+      const { summary: workSummary } = useAISummary(userData, 'work');
+      const { summary: educationSummary } = useAISummary(userData, 'education');
+      const { summary: overviewSummary } = useAISummary(userData, 'overview');
+
       const statistics = [
         {
           length: aangemeld.length,
-          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[0].title}`,
+          title: `${dictionary.werknemersPage.BentoGrid.shiftsDashboard.items[0].title}`,
           href: '#',
           icon: ClockIcon,
           iconForeground: 'text-teal-700',
           iconBackground: 'bg-teal-50',
+          summary: shiftsSummary,
         },
         {
           length: sollicitaties.length,
-          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[1].title}`,
+          title: `${dictionary.werknemersPage.BentoGrid.shiftsDashboard.items[1].title}`,
           href: '#',
           icon: CheckBadgeIcon,
           iconForeground: 'text-purple-700',
           iconBackground: 'bg-purple-50',
+          summary: applicationsSummary,
         },
         {
           length: geaccepteerd.length,
-          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[2].title}`,
+          title: `${dictionary.werknemersPage.BentoGrid.shiftsDashboard.items[2].title}`,
           href: '#',
           icon: AcademicCapIcon,
           iconForeground: 'text-sky-700',
           iconBackground: 'bg-sky-50',
+          summary: workSummary,
         },
         {
           length: diensten.length,
-          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[3].title}`,
+          title: `${dictionary.werknemersPage.BentoGrid.shiftsDashboard.items[3].title}`,
           href: '#',
           icon: ReceiptRefundIcon,
           iconForeground: 'text-rose-700',
           iconBackground: 'bg-rose-50',
+          summary: educationSummary,
         },
         {
           length: flexpool.length,
-          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[4].title}`,
+          title: `${dictionary.werknemersPage.BentoGrid.shiftsDashboard.items[4].title}`,
           href: '#',
           icon: UsersIcon ,
           iconForeground: 'text-indigo-700',
           iconBackground: 'bg-indigo-50',
+          summary: overviewSummary,
         },
         {
           length: factuur.length,
-          title: `${dashboard.werknemersPage.BentoGrid.shiftsDashboard.items[5].title}`,
+          title: `${dictionary.werknemersPage.BentoGrid.shiftsDashboard.items[5].title}`,
           href: '#',
           icon: BanknotesIcon,
           iconForeground: 'text-yellow-700',
           iconBackground: 'bg-yellow-50',
+          summary: overviewSummary,
         },
       ]
 
@@ -215,7 +246,7 @@ import type { Locale } from '@/app/[lang]/dictionaries'; // define this type bas
                 </a>
               </h3>
               <p className="mt-2 text-sm text-gray-500">
-                {dashboard.werknemersPage.BentoGrid.shiftsDashboard.RandomTekst}
+                {statistic.summary}
               </p>
             </div>
             <span

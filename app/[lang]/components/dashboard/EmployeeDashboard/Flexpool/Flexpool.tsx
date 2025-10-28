@@ -51,7 +51,7 @@ const page = ({ lang, dashboard }: Props) => {
                   ))}
                   </div>
               ) : ( 
-                  <div>{dashboard.werknemersPage.Flexpool.Flexpools.NoFlexpools}</div>
+                  <p className="text-center text-lg text-gray-500">{dashboard.werknemersPage.Flexpool.Flexpools.NoFlexpools}</p>
               )
                 } 
             </ScrollArea>

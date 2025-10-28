@@ -155,7 +155,7 @@ days.forEach((day) => {
         name: shift.title,
         begintijd: shift.starting,
         eindtijd: shift.ending,
-        datetime: shift.startingDate.toISOString(),
+        datetime: new Date(shift.startingDate).toISOString(),
         plekken: shift.spots,
         aanmeldingen: shift.applications.length,
         aangenomen: shift.accepted.length,

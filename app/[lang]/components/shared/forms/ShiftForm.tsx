@@ -7,6 +7,7 @@ import { Button } from "@/app/[lang]/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/app/[lang]/components/ui/form";
 import { Input } from "@/app/[lang]/components/ui/input";
 import { createShiftValidation } from "@/app/lib/validations/shift";
+import { forwardRef, useImperativeHandle } from 'react';
 import * as z from "zod";
 import { Textarea } from "@/app/[lang]/components/ui/textarea";
 import { FileUploader } from "@/app/[lang]/components/shared/FileUploader";
@@ -24,6 +25,8 @@ import Dropdown from "@/app/[lang]/components/shared/Dropdown";
 import DropdownPauze from "@/app/[lang]/components/shared/DropdownPauze";
 import DropdownCategorie from "@/app/[lang]/components/shared/DropdownCategorie";
 import { fetchBedrijfDetails } from "@/app/lib/actions/employer.actions";
+import { getUserImages } from '@/app/lib/actions/image.actions';
+import { useAIFill } from '@/app/lib/hooks/useAIFill';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/nl';
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -43,18 +46,24 @@ type ShiftFormProps = {
   shiftId?: string;
 };
 
+export type AIActions = { fillWithAI: () => void };
 
-const ShiftForm = ({ userId, type, shift, shiftId, components }: ShiftFormProps & { components: any }) => {
+
+const ShiftForm = forwardRef<AIActions, ShiftFormProps & { components: any }>(({ userId, type, shift, shiftId, components }, ref) => {
   const [files, setFiles] = useState<File[]>([]);
   const [begintijd, setBegintijd] = useState<Dayjs | null>(dayjs('2022-04-17T08:00'));
   const [eindtijd, setEindtijd] = useState<Dayjs | null>(dayjs('2022-04-17T16:30'));
   const [flexpools, setFlexpools] = useState<IFlexpool[]>([]);
   const [isInFlexpool, setIsInFlexpool] = useState(false);
   const [bedrijfDetails, setBedrijfDetails] = useState<any>(null);
+  const [bedrijfLoading, setBedrijfLoading] = useState(true);
   const [query, setQuery] = useState('');
   const [shifts, setShifts] = useState<any[]>([]);
   const [selectedShift, setSelectedShift] = useState<IShiftArray | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [storedImages, setStoredImages] = useState<any[]>([]);
+  const [selectedStoredImage, setSelectedStoredImage] = useState<string>('');
+  const [existingShifts, setExistingShifts] = useState<any[]>([]);
   const router = useRouter();
   const { startUpload } = useUploadThing("media");
   const { toast } = useToast();
@@ -125,12 +134,16 @@ const ShiftForm = ({ userId, type, shift, shiftId, components }: ShiftFormProps 
   
   useEffect(() => {
     if (userId) {
+      setBedrijfLoading(true);
       fetchBedrijfDetails(userId)
         .then((details) => {
           setBedrijfDetails(details);
         })
         .catch((error) => {
           console.error(error);
+        })
+        .finally(() => {
+          setBedrijfLoading(false);
         });
     }
   }, [userId]);
@@ -168,18 +181,78 @@ const ShiftForm = ({ userId, type, shift, shiftId, components }: ShiftFormProps 
         }
       : DefaultValues;
 
-  const form = useForm<z.infer<typeof createShiftValidation>>({
+  const form = useForm({
     resolver: zodResolver(createShiftValidation),
-    defaultValues: initialValues,
+    defaultValues: {
+      ...initialValues,
+      image: (initialValues as any).afbeelding || '',
+      title: (initialValues as any).titel || '',
+      function: (initialValues as any).functie || '',
+      adres: (initialValues as any).adres || '',
+      starting: (initialValues as any).begintijd || '',
+      ending: (initialValues as any).eindtijd || '',
+      hourlyRate: (initialValues as any).uurtarief || 0,
+      spots: (initialValues as any).plekken || 0,
+      description: (initialValues as any).beschrijving || '',
+      skills: (initialValues as any).vaardigheden || '',
+      dresscode: (initialValues as any).kledingsvoorschriften || '',
+    },
   });
 
-  const { handleSubmit, control, getValues } = form;
+  const { handleSubmit, control, getValues, setValue, watch, trigger } = form;
+  
+  // Monitor image field changes
+  const imageValue = watch('image');
+  useEffect(() => {
+    console.log('ShiftForm - image field changed to:', imageValue);
+  }, [imageValue]);
+  
+  // Force form field update when image changes
+  const [forceUpdate, setForceUpdate] = useState(0);
+  useEffect(() => {
+    if (imageValue && imageValue !== '') {
+      console.log('ShiftForm - Forcing update for image:', imageValue);
+      setForceUpdate(prev => prev + 1);
+    }
+  }, [imageValue]);
+
+  // Expose AI fill function to parent
+  useImperativeHandle(ref, () => ({
+    fillWithAI: () => {
+      if (!bedrijfDetails?._id) {
+        toast({
+          title: "Company Data Required",
+          description: "Please wait for company data to load before using AI fill.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      generateAIFillData();
+    }
+  }));
 
   async function onSubmit(values: z.infer<typeof createShiftValidation>) {
-    if (!bedrijfDetails || !bedrijfDetails._id || !bedrijfDetails.displaynaam) {
-      console.error("Bedrijf details are not properly loaded.");
+    if (bedrijfLoading) {
+      toast({
+        title: "Bedrijfsgegevens worden geladen",
+        description: "Wacht even terwijl de bedrijfsgegevens worden geladen.",
+        variant: "default",
+      });
       return;
     }
+    
+    if (!bedrijfDetails || !bedrijfDetails._id) {
+      console.error("Bedrijf details are not properly loaded.");
+      toast({
+        title: "Bedrijfsgegevens ontbreken",
+        description: "Er zijn geen bedrijfsgegevens gevonden. Probeer opnieuw in te loggen.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    setLoading(true);
     let uploadedImageUrl = values.image;
 
 // Check if there are files to upload
@@ -206,19 +279,39 @@ if (files.length > 0) {
       try {
         const newShift = await maakShift({
           opdrachtgever: bedrijfDetails._id,
-          opdrachtgeverNaam: bedrijfDetails.displaynaam,
-          titel: values.title,
-          functie: values.function,
-          afbeelding: values.image,
-          uurtarief: Number(values.hourlyRate),
-          plekken: Number(values.spots), // Convert to number
-          adres:  `${bedrijfDetails.straat} ${bedrijfDetails.huisnummer}, ${bedrijfDetails.stad}` || values.adres,
+          opdrachtgeverNaam: bedrijfDetails.displayname || 'Company',
+          titel: values.title || 'Nieuwe shift',
+          functie: values.function || 'Allround medewerker',
+          afbeelding: uploadedImageUrl || values.image || '',
+          uurtarief: Number(values.hourlyRate) || 14,
+          plekken: Number(values.spots) || 3,
+          adres: values.adres || (() => {
+            console.log('BedrijfDetails for address construction:', bedrijfDetails);
+            const street = bedrijfDetails.street || bedrijfDetails.straat || '';
+            const housenumber = bedrijfDetails.housenumber || bedrijfDetails.huisnummer || '';
+            const city = bedrijfDetails.city || bedrijfDetails.stad || '';
+            const postcode = bedrijfDetails.postcode || '';
+            
+            console.log('Address components:', { street, housenumber, city, postcode });
+            
+            const addressParts = [street, housenumber].filter(Boolean);
+            const locationParts = [postcode, city].filter(Boolean);
+            
+            if (addressParts.length > 0 && locationParts.length > 0) {
+              return `${addressParts.join(' ')}, ${locationParts.join(' ')}`;
+            } else if (addressParts.length > 0) {
+              return addressParts.join(' ');
+            } else if (locationParts.length > 0) {
+              return locationParts.join(' ');
+            }
+            return 'Adres niet beschikbaar';
+          })(),
           begindatum: values.startingDate,
           einddatum: values.endingDate,
-          begintijd: values.starting,
-          eindtijd: values.ending,
-          pauze: values.break,
-          beschrijving: values.description,
+          begintijd: values.starting || '08:00',
+          eindtijd: values.ending || '16:30',
+          pauze: values.break || '30 minuten',
+          beschrijving: values.description || 'Shift beschrijving',
           vaardigheden: typeof values.skills === 'string'
           ? values.skills.split(", ") // If it's a string, split it into an array
           : Array.isArray(values.skills)
@@ -241,10 +334,16 @@ if (files.length > 0) {
 
         if (newShift) {
           form.reset();
+          setLoading(false);
           router.back();
         }
       } catch (error) {
-        console.log(error);
+        console.error('Error creating shift:', error);
+        toast({
+          variant: 'destructive',
+          description: 'Er is een fout opgetreden bij het aanmaken van de shift. Probeer het opnieuw.'
+        });
+        setLoading(false);
       }
     }
 
@@ -258,7 +357,7 @@ if (files.length > 0) {
         
         const updatedShift = await updateShift({
           opdrachtgever: bedrijfDetails._id,
-          opdrachtgeverNaam: bedrijfDetails.displaynaam,
+          opdrachtgeverNaam: bedrijfDetails.displayname,
           titel: values.title,
           functie: values.function,
           afbeelding: bedrijfDetails.profielfoto || values.image,
@@ -293,10 +392,16 @@ if (files.length > 0) {
 
         if (updatedShift) {
           form.reset();
+          setLoading(false);
           router.push("/dashboard");
         }
       } catch (error) {
-        console.log(error);
+        console.error('Error updating shift:', error);
+        toast({
+          variant: 'destructive',
+          description: 'Er is een fout opgetreden bij het bijwerken van de shift. Probeer het opnieuw.'
+        });
+        setLoading(false);
       }
     }
   }
@@ -306,13 +411,33 @@ if (files.length > 0) {
     try {
       const unpublished = await maakOngepubliceerdeShift({
         opdrachtgever: bedrijfDetails._id,
-        opdrachtgeverNaam: bedrijfDetails.displaynaam,
+        opdrachtgeverNaam: bedrijfDetails.displayname || 'Company',
         titel: values.title,
         functie: values.function,
         afbeelding: bedrijfDetails.profielfoto || values.image,
         uurtarief: values.hourlyRate,
         plekken: Number(values.spots), // Convert to number
-        adres: `${bedrijfDetails.stad}, ${bedrijfDetails.straat}, ${bedrijfDetails.huisnummer}` || values.adres,
+        adres: values.adres || (() => {
+          console.log('BedrijfDetails for unpublished shift address:', bedrijfDetails);
+          const street = bedrijfDetails.street || bedrijfDetails.straat || '';
+          const housenumber = bedrijfDetails.housenumber || bedrijfDetails.huisnummer || '';
+          const city = bedrijfDetails.city || bedrijfDetails.stad || '';
+          const postcode = bedrijfDetails.postcode || '';
+          
+          console.log('Unpublished shift address components:', { street, housenumber, city, postcode });
+          
+          const addressParts = [street, housenumber].filter(Boolean);
+          const locationParts = [postcode, city].filter(Boolean);
+          
+          if (addressParts.length > 0 && locationParts.length > 0) {
+            return `${addressParts.join(' ')}, ${locationParts.join(' ')}`;
+          } else if (addressParts.length > 0) {
+            return addressParts.join(' ');
+          } else if (locationParts.length > 0) {
+            return locationParts.join(' ');
+          }
+          return 'Adres niet beschikbaar';
+        })(),
         begindatum: values.startingDate || new Date(),
         einddatum: values.endingDate || new Date(),
         begintijd: values.starting,
@@ -339,13 +464,15 @@ if (files.length > 0) {
           variant: 'destructive',
           description: `${components.forms.ShiftForm.Toastmessage2}`
         });
+        setLoading(false);
       }
     } catch (error: any) {
-      console.error(`${components.forms.ShiftForm.ToastMessage3}`, error);
+      console.error('Error creating unpublished shift:', error);
       toast({
         variant: 'destructive',
-        description: `${error}`
+        description: 'Er is een fout opgetreden bij het aanmaken van de shift. Probeer het opnieuw.'
       });
+      setLoading(false);
     }
   }
 
@@ -355,19 +482,126 @@ if (files.length > 0) {
 
   useEffect(() => {
     const fetchShifts = async () => {
+      try {
       const shifts = await fetchUnpublishedShifts(userId);
-      if(shifts){
+        console.log("Fetched shifts:", shifts);
+        if(shifts && Array.isArray(shifts)){
         setShifts(shifts)
       } else {
         setShifts([])
+        }
+      } catch (error) {
+        console.error("Error fetching shifts:", error);
+        setShifts([]);
       }
     }
     fetchShifts();
-  }, [shifts, bedrijfDetails])
+  }, [userId, bedrijfDetails])
 
-  const filteredShifts = shifts.filter(shifts => {
-    const shiftTitel = `${shifts.titel.toLowerCase()}`;
-    return shiftTitel.includes(query.toLowerCase());
+  useEffect(() => {
+    const fetchStoredImages = async () => {
+      if (userId) {
+        try {
+          console.log('🔍 ShiftForm - Fetching stored images for userId:', userId);
+          console.log('🔍 ShiftForm - UserId type:', typeof userId);
+          const images = await getUserImages(userId);
+          console.log('🔍 ShiftForm - Received images:', images);
+          console.log('🔍 ShiftForm - Images count:', images.length);
+          setStoredImages(images);
+        } catch (error) {
+          console.error('❌ ShiftForm - Error fetching stored images:', error);
+          setStoredImages([]); // Set empty array on error
+        }
+      } else {
+        console.log('⚠️ ShiftForm - No userId available for fetching images');
+        setStoredImages([]);
+      }
+    };
+    fetchStoredImages();
+  }, [userId]);
+
+  // AI Fill functionality
+  const { generateAIFillData, isLoading: aiLoading, error: aiError } = useAIFill({
+    employer: bedrijfDetails || {},
+    documentType: 'shift',
+    existingDocuments: existingShifts,
+    onSuccess: (data) => {
+      console.log('🤖 AI Fill Success - Shift data:', data);
+      
+      // Fill form with AI-generated data
+      setValue('title', data.title);
+      setValue('function', data.function);
+      setValue('description', data.description);
+      setValue('skills', Array.isArray(data.skills) ? data.skills.join(', ') : data.skills);
+      setValue('dresscode', Array.isArray(data.dresscode) ? data.dresscode.join(', ') : data.dresscode);
+      setValue('hourlyRate', data.hourlyRate);
+      setValue('spots', data.spots || 3);
+      
+      // Set address
+      if (data.address) {
+        setValue('adres', data.address);
+      }
+      
+      // Set dates
+      if (data.startingDate) {
+        setValue('startingDate', new Date(data.startingDate));
+      }
+      if (data.endingDate) {
+        setValue('endingDate', new Date(data.endingDate));
+      }
+      
+      // Set times
+      if (data.starting) {
+        setValue('starting', data.starting);
+        setBegintijd(dayjs(data.starting));
+      }
+      if (data.ending) {
+        setValue('ending', data.ending);
+        setEindtijd(dayjs(data.ending));
+      }
+      if (data.break) {
+        setValue('break', data.break);
+      }
+      
+      // Set flexpool data
+      if (data.inFlexpool !== undefined) {
+        setValue('inFlexpool', data.inFlexpool);
+        setIsInFlexpool(data.inFlexpool);
+      }
+      if (data.flexpoolId) {
+        setValue('flexpoolId', data.flexpoolId);
+      }
+      
+      // Set image if available
+      if (data.image) {
+        setValue('image', data.image);
+      }
+      
+      toast({
+        title: "AI Fill Complete",
+        description: data.reasoning || "Form filled with AI-generated data based on your company profile.",
+        variant: "default",
+      });
+    },
+    onError: (error) => {
+      console.error('❌ AI Fill Error:', error);
+      toast({
+        title: "AI Fill Failed",
+        description: error.message || "Failed to generate AI data. Please try again.",
+        variant: "destructive",
+      });
+    }
+  });
+
+  const filteredShifts = shifts.filter(shift => {
+    if (!shift || !shift.title) return false;
+    try {
+      const shiftTitle = `${shift.title.toLowerCase()}`;
+      return shiftTitle.includes(query.toLowerCase());
+    } catch (error) {
+      console.error("Error filtering shift:", error, shift);
+      return false;
+    }
   });
 
 
@@ -375,6 +609,13 @@ if (files.length > 0) {
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="nl">
     <Form {...form}>
       {type === 'maak' && (
+        <div className="bg-white rounded-lg border border-gray-200 p-8 mt-4 shadow-sm mb-8">
+          <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+            <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+            Select Existing Shift
+          </h3>
               <Combobox
               as="div"
               value={selectedShift}
@@ -382,34 +623,37 @@ if (files.length > 0) {
                 setQuery('');
                 setSelectedShift(shift);
               }}
-              className="mb-10"
-            >
-              <Label className="block text-sm font-medium leading-6 text-gray-900">{components.forms.ShiftForm.selectShifts}</Label>
-              <div className="relative mt-2">
+            className="w-full"
+          >
+            <Label className="block text-sm font-medium text-gray-700 mb-3">
+              {components.forms.ShiftForm.selectShifts || 'Choose a shift to use as template'}
+            </Label>
+            <div className="relative">
                 <ComboboxInput
-                  className="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                className="h-12 w-full rounded-lg border border-gray-300 bg-white py-3 pl-4 pr-12 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                   onChange={(event) => setQuery(event.target.value)}
                   onBlur={() => setQuery('')}
-                  displayValue={(shift: any) => shift ? `${shift.titel} ` : ''}
+                displayValue={(shift: any) => shift ? `${shift.title}` : ''}
+                placeholder="Search for existing shifts..."
                 />
-                <ComboboxButton className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+              <ComboboxButton className="absolute inset-y-0 right-0 flex items-center rounded-r-lg px-3 focus:outline-none">
                   <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                 </ComboboxButton>
       
                 {filteredShifts.length > 0 && (
-                  <ComboboxOptions className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                <ComboboxOptions className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-lg bg-gray-50 border border-gray-200 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                     {filteredShifts.map((shift) => (
                       <ComboboxOption
-                        key={shift.titel}
+                      key={shift.title}
                         value={shift}
-                        className="group relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 data-[focus]:bg-sky-600 data-[focus]:text-white"
+                      className="group relative cursor-default select-none py-3 pl-4 pr-9 text-gray-800 hover:bg-blue-50 data-[focus]:bg-blue-600 data-[focus]:text-white transition-colors"
                       >
                         <div className="flex items-center">
-                          <img src={shift.afbeelding} alt="profielfoto" className="h-6 w-6 flex-shrink-0 rounded-full" />
-                          <span className="ml-3 truncate group-data-[selected]:font-semibold">{shift.titel}</span>
+                        <img src={shift.image || "/placeholder-avatar.svg"} alt="profielfoto" className="h-6 w-6 flex-shrink-0 rounded-full" />
+                        <span className="ml-3 truncate group-data-[selected]:font-semibold">{shift.title}</span>
                         </div>
       
-                        <span className="absolute inset-y-0 right-0 hidden items-center pr-4 text-sky-600 group-data-[selected]:flex group-data-[focus]:text-white">
+                      <span className="absolute inset-y-0 right-0 hidden items-center pr-4 text-blue-600 group-data-[selected]:flex group-data-[focus]:text-white">
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
                         </span>
                       </ComboboxOption>
@@ -418,21 +662,31 @@ if (files.length > 0) {
                 )}
               </div>
             </Combobox>
+        </div>
       )}
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
-        <div className="flex flex-col gap-5 md:flex-row">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-6">
+        {/* Basic Information Section */}
+        <div className="bg-white rounded-lg border border-gray-200 p-8 shadow-sm">
+          <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+            <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Basic Information
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <FormField
             control={form.control}
             name="title"
             render={({ field }) => (
               <FormItem className="w-full">
-                 <FormLabel className="justify-end font-semibold">{components.forms.ShiftForm.formItems[0]}</FormLabel>
+                  <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                    {components.forms.ShiftForm.formItems[0]}
+                  </FormLabel>
                 <FormControl>
                   <Input 
                   placeholder={selectedShift ? selectedShift.title : `${components.forms.ShiftForm.PlaceholderTexts[0]}`}
-                  defaultValue={selectedShift ? selectedShift.title : undefined} 
                   {...field} 
-                  className="input-field" />
+                      className="h-12 px-4 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -443,32 +697,47 @@ if (files.length > 0) {
             name="function"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>{components.forms.ShiftForm.formItems[1]}</FormLabel>
+                  <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                    {components.forms.ShiftForm.formItems[1]}
+                  </FormLabel>
                 <FormControl>
-                <div className="flex-center  h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <div className="h-12 w-full overflow-hidden rounded-lg bg-white border border-gray-300 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-colors">
                 <DropdownCategorie 
                       onChangeHandler={field.onChange}
-                      value={selectedShift ? selectedShift.function : field.value} components={undefined}                />
+                        value={selectedShift ? selectedShift.function : field.value} 
+                        components={components} 
+                      />
                 </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+          </div>
         </div>
 
-        <div className="flex flex-col gap-5 md:flex-row">
+        {/* Description and Media Section */}
+        <div className="bg-white rounded-lg border border-gray-200 p-8 shadow-sm">
+          <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+            <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Description & Media
+          </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <FormField
             control={form.control}
             name="description"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormControl className="h-72">
+                  <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                    {components.forms.ShiftForm.formItems[11] || 'Description'}
+                  </FormLabel>
+                  <FormControl>
                   <Textarea 
                   {...field}
                   placeholder={selectedShift ? selectedShift.description : `${components.forms.ShiftForm.PlaceholderTexts[1]}`}
-                  defaultValue={selectedShift ? selectedShift.description : undefined } 
-                  className="textarea rounded-2xl" 
+                      className="min-h-[200px] px-4 py-3 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none" 
                   />
                 </FormControl>
                 <FormMessage />
@@ -478,33 +747,129 @@ if (files.length > 0) {
           <FormField
             control={form.control}
             name="image"
-            render={({ field }) => (
+              render={({ field }) => {
+                console.log('FormField - field.value:', field.value);
+                console.log('FormField - field.onChange:', typeof field.onChange);
+                return (
               <FormItem className="w-full">
-                <FormControl className="h-72">
-                  <FileUploader onFieldChange={field.onChange} imageUrl={selectedShift ? selectedShift.image : field.value} setFiles={setFiles} />
+                    <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                      Shift Image
+                    </FormLabel>
+                    <FormControl>
+                      <div className="space-y-4">
+                        {/* Stored Images Dropdown */}
+                        <div>
+                          <label htmlFor="stored-images" className="block text-sm font-medium text-gray-700 mb-2">
+                            Select from stored images
+                          </label>
+                          <select
+                            id="stored-images"
+                            value={selectedStoredImage}
+                            onChange={(e) => {
+                              setSelectedStoredImage(e.target.value);
+                              if (e.target.value) {
+                                setValue('image', e.target.value, { shouldValidate: true, shouldDirty: true });
+                                field.onChange(e.target.value);
+                              }
+                            }}
+                            className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          >
+                            <option value="">
+                              {storedImages.length > 0 ? 'Choose a stored image...' : 'No stored images available'}
+                            </option>
+                            {storedImages.map((image) => (
+                              <option key={image._id} value={image.url}>
+                                {image.filename || image.metadata?.alt || 'Untitled Image'}
+                              </option>
+                            ))}
+                          </select>
+                          {storedImages.length === 0 && (
+                            <p className="text-xs text-gray-500 mt-1">
+                              Upload images first to see them in this dropdown
+                            </p>
+                          )}
+                        </div>
+                        
+                        {/* Current Image Uploader */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Or upload a new image
+                          </label>
+                          <div className="pl-60 pt-20 items-center justify-center min-h-[200px] border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 transition-colors">
+                            <FileUploader 
+                              key={`${field.value || 'empty'}-${forceUpdate}`} // Force re-render when imageUrl changes
+                              onFieldChange={(url) => {
+                                console.log('FormField - onFieldChange called with URL:', url);
+                                console.log('FormField - Current field.value before update:', field.value);
+                                
+                                // Multiple approaches to ensure update
+                                setValue('image', url, { shouldValidate: true, shouldDirty: true });
+                                console.log('FormField - setValue called with URL:', url);
+                                
+                                field.onChange(url);
+                                console.log('FormField - field.onChange called');
+                                
+                                trigger('image');
+                                console.log('FormField - trigger called');
+                                
+                                setSelectedStoredImage(''); // Clear stored image selection
+                                
+                                // Force a re-render
+                                setTimeout(() => {
+                                  setValue('image', url, { shouldValidate: true, shouldDirty: true });
+                                  console.log('FormField - setTimeout setValue called with URL:', url);
+                                  console.log('FormField - Field value after timeout:', field.value);
+                                }, 50);
+                              }} 
+                              imageUrl={field.value || ''} 
+                              setFiles={setFiles}
+                              // Debug: Log the imageUrl prop being passed
+                              {...(() => {
+                                console.log('ShiftForm - Passing imageUrl to FileUploader:', field.value || '');
+                                return {};
+                              })()} 
+                            />
+                          </div>
+                        </div>
+                      </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
-            )}
+                );
+              }}
           />
+          </div>
         </div>
 
-        <div className="flex flex-col gap-5 md:flex-row">
+        {/* Location Section */}
+        <div className="bg-white rounded-lg border border-gray-200 p-8 shadow-sm">
+          <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+            <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Location
+          </h3>
           <FormField
             control={form.control}
             name="adres"
             render={({ field }) => (
               <FormItem className="w-full">
+                <FormLabel className="text-sm font-medium text-gray-700 mb-2 block">
+                  Address
+                </FormLabel>
                 <FormControl>
-                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-                  <path fillRule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clipRule="evenodd" />
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
+                    </div>
                     <Input
                      placeholder={selectedShift ? selectedShift.adres : `${components.forms.ShiftForm.PlaceholderTexts[2]}`} 
-                     defaultValue={selectedShift ? selectedShift.adres : undefined}
                      {...field} 
-                     className="input-field" />
+                      className="h-12 pl-10 pr-4 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" />
                   </div>
                 </FormControl>
                 <FormMessage />
@@ -519,17 +884,23 @@ if (files.length > 0) {
             name="startingDate"
             render={({ field }) => (
               <FormItem className="w-full">
+                <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                  {components.forms.ShiftForm.formItems[5] || 'Start Date'}
+                </FormLabel>
                 <FormControl>
-                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5m.002-2.25h.005v.006H12v-.006Zm-.001 4.5h.006v.006h-.006v-.005Zm-2.25.001h.005v.006H9.75v-.006Zm-2.25 0h.005v.005h-.006v-.005Zm6.75-2.247h.005v.005h-.005v-.005Zm0 2.247h.006v.006h-.006v-.006Zm2.25-2.248h.006V15H16.5v-.005Z" />
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                    <p className="whitespace-nowrap text-grey-600">{components.forms.ShiftForm.formItems[6]}</p>
+                    </div>
                     <DatePicker
                       selected={field.value}
                       onChange={(date: Date | null) => field.onChange(date)}
                       dateFormat="dd/MM/yyyy"
-                      wrapperClassName="datePicker"
+                      wrapperClassName="w-full"
+                      className="h-12 pl-10 pr-4 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholderText="Select start date"
                     />
                   </div>
                 </FormControl>
@@ -543,18 +914,23 @@ if (files.length > 0) {
             name="endingDate"
             render={({ field }) => (
               <FormItem className="w-full">
+                <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                  {components.forms.ShiftForm.formItems[6] || 'End Date'}
+                </FormLabel>
                 <FormControl>
-                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5m.002-2.25h.005v.006H12v-.006Zm-.001 4.5h.006v.006h-.006v-.005Zm-2.25.001h.005v.006H9.75v-.006Zm-2.25 0h.005v.005h-.006v-.005Zm6.75-2.247h.005v.005h-.005v-.005Zm0 2.247h.006v.006h-.006v-.006Zm2.25-2.248h.006V15H16.5v-.005Z" />
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-
-                    <p className="whitespace-nowrap text-grey-600">{components.forms.ShiftForm.formItems[7]}</p>
+                    </div>
                     <DatePicker
                       selected={field.value}
                       onChange={(date: Date | null) => field.onChange(date)}
                       dateFormat="dd/MM/yyyy"
-                      wrapperClassName="datePicker"
+                      wrapperClassName="w-full"
+                      className="h-12 pl-10 pr-4 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholderText="Select end date"
                     />
                   </div>
                 </FormControl>
@@ -574,7 +950,6 @@ if (files.length > 0) {
         label={`${components.forms.ShiftForm.formItems[8]}`}
         value={selectedShift ? dayjs(selectedShift.starting) : begintijd}
         onChange={(newValue) => {
-          console.log("Selected Time:", newValue ? newValue.format("HH:mm") : "08:00");
           const formattedTime = newValue ? newValue.format("HH:mm") : "08:00";
           setBegintijd(newValue); // Update local state for display
           field.onChange(formattedTime); // Update form state
@@ -591,10 +966,9 @@ if (files.length > 0) {
               <div className="w-full">
                 <div className="">
                 <TimePicker
-          label={`${components.forms.ShiftForm.formItems[9]}`}
+          label={`${components.forms.ShiftForm.formItems[7]}`}
           value={selectedShift ? dayjs(selectedShift.ending) : eindtijd}
           onChange={(newValue) => {
-            console.log("Selected Time:", newValue ? newValue.format("HH:mm") : "08:00");
             const formattedTime = newValue ? newValue.format("HH:mm") : "08:00";
             setEindtijd(newValue);
             field.onChange(formattedTime); // Convert to ISO string
@@ -612,14 +986,24 @@ if (files.length > 0) {
             name="break"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>{components.forms.ShiftForm.formItems[10]}</FormLabel>
+                <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                  {components.forms.ShiftForm.formItems[9] || 'Break Duration'}
+                </FormLabel>
                 <FormControl>
-                <div className="flex-center  h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 mr-3">
-                <path fillRule="evenodd" d="M7.5 5.25a3 3 0 0 1 3-3h3a3 3 0 0 1 3 3v.205c.933.085 1.857.197 2.774.334 1.454.218 2.476 1.483 2.476 2.917v3.033c0 1.211-.734 2.352-1.936 2.752A24.726 24.726 0 0 1 12 15.75c-2.73 0-5.357-.442-7.814-1.259-1.202-.4-1.936-1.541-1.936-2.752V8.706c0-1.434 1.022-2.7 2.476-2.917A48.814 48.814 0 0 1 7.5 5.455V5.25Zm7.5 0v.09a49.488 49.488 0 0 0-6 0v-.09a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5Zm-3 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" />
-                <path d="M3 18.4v-2.796a4.3 4.3 0 0 0 .713.31A26.226 26.226 0 0 0 12 17.25c2.892 0 5.68-.468 8.287-1.335.252-.084.49-.189.713-.311V18.4c0 1.452-1.047 2.728-2.523 2.923-2.12.282-4.282.427-6.477.427a49.19 49.19 0 0 1-6.477-.427C4.047 21.128 3 19.852 3 18.4Z" />
-               </svg>
-               <DropdownPauze onChangeHandler={field.onChange} value={selectedShift ? selectedShift.break as unknown as string : field.value} options={[]} />
+                  <div className="h-12 w-full border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-colors">
+                    <DropdownPauze 
+                      onChangeHandler={field.onChange} 
+                      value={selectedShift ? selectedShift.break as unknown as string : field.value} 
+                      options={[
+                        { value: "0", label: `${components.shared.DropdownPauze.options[0].label}` },
+                        { value: "15", label: `${components.shared.DropdownPauze.options[1].label}` },
+                        { value: "30", label: `${components.shared.DropdownPauze.options[2].label}` },
+                        { value: "45", label: `${components.shared.DropdownPauze.options[3].label}` },
+                        { value: "60", label: `${components.shared.DropdownPauze.options[4].label}` },
+                        { value: "90", label: `${components.shared.DropdownPauze.options[5].label}` },
+                        { value: "120", label: `${components.shared.DropdownPauze.options[6].label}` }
+                      ]} 
+                    />
                   </div>
                 </FormControl>
                 <FormMessage />
@@ -631,18 +1015,21 @@ if (files.length > 0) {
             name="hourlyRate"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>{components.forms.ShiftForm.formItems[4]}</FormLabel>
+                <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                  {components.forms.ShiftForm.formItems[3] || 'Hourly Rate'}
+                </FormLabel>
                 <FormControl>
-                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 mr-3">
-                  <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.902 7.098a3.75 3.75 0 0 1 3.903-.884.75.75 0 1 0 .498-1.415A5.25 5.25 0 0 0 8.005 9.75H7.5a.75.75 0 0 0 0 1.5h.054a5.281 5.281 0 0 0 0 1.5H7.5a.75.75 0 0 0 0 1.5h.505a5.25 5.25 0 0 0 6.494 2.701.75.75 0 1 0-.498-1.415 3.75 3.75 0 0 1-4.252-1.286h3.001a.75.75 0 0 0 0-1.5H9.075a3.77 3.77 0 0 1 0-1.5h3.675a.75.75 0 0 0 0-1.5h-3c.105-.14.221-.274.348-.402Z" clipRule="evenodd" />
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                   </svg>
+                    </div>
                     <Input
                       type="number"
                       placeholder={selectedShift ? selectedShift.hourlyRate as unknown as string : `${components.forms.ShiftForm.PlaceholderTexts[5]}`}
-                      { ...field}
-                      defaultValue={selectedShift ? selectedShift.hourlyRate : undefined}
-                      className="p-regular-16 border-0 bg-grey-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      {...field}
+                      className="h-12 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                       onChange={(e) => field.onChange(Number(e.target.value))}
                     />
                   </div>
@@ -656,18 +1043,21 @@ if (files.length > 0) {
             name="spots"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>{components.forms.ShiftForm.formItems[11]}</FormLabel>
+                <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                  {components.forms.ShiftForm.formItems[10] || 'Available Spots'}
+                </FormLabel>
                 <FormControl>
-                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 mr-3">
-                  <path d="M5.25 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM2.25 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM18.75 7.5a.75.75 0 0 0-1.5 0v2.25H15a.75.75 0 0 0 0 1.5h2.25v2.25a.75.75 0 0 0 1.5 0v-2.25H21a.75.75 0 0 0 0-1.5h-2.25V7.5Z" />
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
+                    </div>
                     <Input
                       {...field}
                       type="number"
                       placeholder={selectedShift ? selectedShift.spots as unknown as string : `${components.forms.ShiftForm.PlaceholderTexts[6]}`}
-                      defaultValue={selectedShift ? selectedShift.spots : undefined}
-                      className="p-regular-16 border-0 bg-grey-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      className="h-12 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                       onChange={(e) => field.onChange(Number(e.target.value))}
                     />
                   </div>
@@ -678,19 +1068,36 @@ if (files.length > 0) {
           />
         </div>
 
-        <div className="flex flex-col gap-5 md:flex-row">
+        {/* Skills and Requirements Section */}
+        <div className="bg-white rounded-lg border border-gray-200 p-8 shadow-sm">
+          <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+            <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            Skills & Requirements
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <FormField
             control={form.control}
             name="skills"
             render={({ field }) => (
-              <FormItem className="w-full justify-end">
-                 <FormLabel className="justify-end font-semibold">{components.forms.ShiftForm.formItems[13]}</FormLabel>
+                <FormItem className="w-full">
+                  <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                    {components.forms.ShiftForm.formItems[12] || 'Required Skills'}
+                  </FormLabel>
                 <FormControl>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                      </div>
                   <Input
                     placeholder={components.forms.ShiftForm.PlaceholderTexts[7]}
                     {...field}
-                    className="input-field"
+                        className="h-12 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                   />
+                    </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -701,32 +1108,46 @@ if (files.length > 0) {
             name="dresscode"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>{components.forms.ShiftForm.formItems[14]}</FormLabel>
+                  <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                    {components.forms.ShiftForm.formItems[13] || 'Dress Code'}
+                  </FormLabel>
                 <FormControl>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
                   <Input
                     placeholder={components.forms.ShiftForm.PlaceholderTexts[8]}
                     {...field}
-                    className="input-field"
+                        className="h-12 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                   />
+                    </div>
                 </FormControl>
                 <FormMessage />
-               
               </FormItem>
             )}
           />
+          </div>
         </div>
 
-        <div className="flex flex-col gap-5 md:flex-row">
+        {/* Flexpool Section */}
+        <div className="bg-white rounded-lg border border-gray-200 p-8 shadow-sm">
+          <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+            <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            Flexpool Options
+          </h3>
+          <div className="space-y-6">
           <FormField
             control={form.control}
             name="inFlexpool"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <div className="flex items-center">
-                    <label htmlFor="Flexpool" className="whitespace-nowrap pr-3 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                      {components.forms.ShiftForm.formItems[15]}
-                    </label>
+                    <div className="flex items-center space-x-3">
                     <Checkbox
                       onCheckedChange={(checked) => {
                         if (typeof checked === "boolean") {
@@ -736,8 +1157,11 @@ if (files.length > 0) {
                       }}
                       checked={field.value}
                       id="Flexpool"
-                      className="mr-2 h-5 w-5 border-2 border-primary-500"
+                        className="h-5 w-5 border-2 border-blue-500 rounded focus:ring-2 focus:ring-blue-500"
                     />
+                      <label htmlFor="Flexpool" className="text-sm font-medium text-gray-700 cursor-pointer">
+                        {components.forms.ShiftForm.formItems[14] || 'Add shift to flexpool'}
+                      </label>
                   </div>
                 </FormControl>
                 <FormMessage />
@@ -750,43 +1174,69 @@ if (files.length > 0) {
               name="flexpoolId"
               render={({ field }) => (
                 <FormItem className="w-full">
+                    <FormLabel className="text-sm font-medium text-gray-700 mb-3 block">
+                      Select Flexpool
+                    </FormLabel>
                   <FormControl>
+                      <div className="w-full">
                   <Dropdown
                       onChangeHandler={field.onChange}
                       value={field.value}
-                      flexpoolsList={bedrijfDetails?.flexpools || flexpools} // Pass an array of objects
-                      userId={bedrijfDetails._id} components={undefined}                  />
+                          flexpoolsList={bedrijfDetails?.flexpools || flexpools}
+                          userId={bedrijfDetails._id} 
+                          components={components} 
+                        />
+                      </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           )}
+          </div>
         </div>
 
+        {/* Action Buttons Section */}
+        <div className="bg-white rounded-lg border border-gray-200 p-8 shadow-sm">
+          <div className="flex flex-col sm:flex-row gap-4">
                 {type === 'maak' ? (
                   <>
-            <Button type="button" onClick={() => {
-              const values = getValues(); // Get form values
-              makeUnpublishedShift(values);}} size="lg" disabled={loading} className="button col-span-2 w-full">
+                <Button 
+                  type="button" 
+                  onClick={() => {
+                    const values = getValues();
+                    makeUnpublishedShift(values);
+                  }} 
+                  disabled={loading} 
+                  className="flex-1 h-12 bg-gray-100 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+                >
               {loading ? `${components.forms.ShiftForm.buttonsTitle[0]}` : `${components.forms.ShiftForm.buttonsTitle[1]}`}
             </Button>
             
-            <Button type="submit" size="lg" disabled={form.formState.isSubmitting} className="button col-span-2 w-full bg-white text-sky-500 border-sky-500 border-2">
+                <Button 
+                  type="submit" 
+                  disabled={form.formState.isSubmitting || bedrijfLoading || !bedrijfDetails} 
+                  className="flex-1 h-12 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-medium"
+                >
                 {form.formState.isSubmitting ? `${components.forms.ShiftForm.buttonsTitle[2]}` : `${components.forms.ShiftForm.buttonsTitle[3]}`}
             </Button>
-
               </>
                 ) : (
-              <Button type="submit" size="lg" disabled={form.formState.isSubmitting} className="button col-span-2 w-full">
+              <Button 
+                type="submit" 
+                disabled={form.formState.isSubmitting || bedrijfLoading || !bedrijfDetails} 
+                className="w-full h-12 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-medium"
+              >
                 {form.formState.isSubmitting ? `${components.forms.ShiftForm.buttonsTitle[4]}` : `${components.forms.ShiftForm.buttonsTitle[5]}`}
               </Button>
               )}
+          </div>
+        </div>
 
       </form>
     </Form>
     </LocalizationProvider>
   )
-}
+});
 
 export default ShiftForm;

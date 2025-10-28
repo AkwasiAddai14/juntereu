@@ -344,7 +344,7 @@
       },
       "Yearly": {
         "Jaarlijks": "Årlig",
-        "Prijs": "11 702,50 NOK/år + 468,10 NOK/bruker/år (2 måneder gratis)"
+        "Prijs": "11 702,50 NOK/år + 468,10 NOK/bruker/år"
       }
     },
       "usp": ["Fakturaer & eksporter", "Du eier dataene dine", "Gratis onboarding"]
@@ -883,8 +883,8 @@
     "dashboard": {
         "werknemersPage": {
           "BentoGrid": {
-            "headTitle": "Raskere utrulling",
-            "subTitle": "Alt du trenger for å lansere appen din",
+            "headTitle": "Your Work Hub",
+  "subTitle": "Everything you need to manage your career",
             "gridTitles": [
               "Dashbord",
               "Profil",
@@ -1045,23 +1045,27 @@
             "navigation": [
               {
                 "name": "Hjem",
-                "value": "Hjem"
+                "value": "Home"
+              },
+              {
+                "name": "Board",
+                "value": "Board"
               },
               {
                 "name": "Kalender",
-                "value": "Kalender"
+                "value": "Calendar"
               },
               {
                 "name": "Skift",
-                "value": "Skift"
+                "value": "Shifts"
               },
               {
                 "name": "Fleksible grupper",
-                "value": "Fleksible grupper"
+                "value": "Flexpools"
               },
               {
                 "name": "Økonomi",
-                "value": "Økonomi"
+                "value": "Finances"
               }
             ],
             "UserNavigation": [

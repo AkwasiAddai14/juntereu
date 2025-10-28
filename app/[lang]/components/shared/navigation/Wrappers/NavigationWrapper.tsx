@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
-import NavClient from '@/app/[lang]/components/shared/navigation/NavigationBar';
+import NavClient from '@/app/[lang]/components/shared/navigation/Navigation';
 
 export default function NavWrapper({ lang }: { lang: Locale }) {
   const [components, setComponents] = useState<any>(null);
@@ -29,7 +29,7 @@ export default function NavWrapper({ lang }: { lang: Locale }) {
     fetchDictionary();
   }, [lang]);
 
-  if (loading || !components || !pages || !navigation) {
+  if (loading || !components) {
     return (
       <div className="bg-white">
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -50,5 +50,5 @@ export default function NavWrapper({ lang }: { lang: Locale }) {
     );
   }
 
-  return <NavClient lang={lang} components={components} pages={pages} navigation={navigation} />;
+  return <NavClient lang={lang} components={components} />;
 }

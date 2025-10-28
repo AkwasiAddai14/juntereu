@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 interface ChatBotIconProps {
   messageCount?: number;
+  onClick?: () => void;
 }
 
 const ChatBotContainer = styled.div`
@@ -77,9 +78,9 @@ const MessageBadge = styled.div`
   font-weight: bold;
 `;
 
-const ChatBotIcon: React.FC<ChatBotIconProps> = ({ messageCount }) => {
+const ChatBotIcon: React.FC<ChatBotIconProps> = ({ messageCount, onClick }) => {
   return (
-    <ChatBotContainer>
+    <ChatBotContainer onClick={onClick}>
       <ChatBotWrapper>
         <SunBackground>
           <BotIcon />

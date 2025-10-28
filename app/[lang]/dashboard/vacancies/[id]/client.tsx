@@ -40,7 +40,7 @@ const vacaturePagina = ({ id, lang, dictionary }: Props) => {
 
   useEffect(() => {
     const bepaalGebruiker = async () => {
-      if (!id) return; // Voorkom onnodige aanroepen
+      if (!id || !userId) return; // Wait for both id and userId
   
       try {
         const result = await haalgebruikerMetId(userId);
@@ -58,7 +58,7 @@ const vacaturePagina = ({ id, lang, dictionary }: Props) => {
     };
   
     bepaalGebruiker();
-  }, [id]);
+  }, [id, userId]); // Added userId to dependencies
 
 
   useEffect(() => {
@@ -103,9 +103,12 @@ const vacaturePagina = ({ id, lang, dictionary }: Props) => {
     fetchVacvatureDetails();
   }, [id]);
 
-    if (vacature && gebruiker !== 3){
-        setLoading(false)
+  // Handle loading state properly
+  useEffect(() => {
+    if (vacature && gebruiker !== 3 && gebruiker !== 0) {
+      setLoading(false);
     }
+  }, [vacature, gebruiker]);
 
     if (loading) {
         return  <div>Loading...</div>

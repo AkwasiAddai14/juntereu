@@ -30,18 +30,14 @@ export default function RootLayout({
     ? (params.lang as Locale)
     : 'en'; // fallback
   return (
-   
-    <html lang='en'>
-    <body className={inter.className}>
-    <NavBar lang={lang} />
+    <>
+      <NavBar lang={lang} />
       <main>
         <section>
           <div>{children}</div>
         </section>
       </main>
       <Footer lang={lang} />
-    </body>
-  </html>
-
+    </>
   );
 };

@@ -74,7 +74,7 @@ export default function Aangemeld ({ lang, dashboard }: Props) {
                 ))}
                 </div>
               ) : ( 
-                <div>{dashboard.werknemersPage.Shifts.texts[0].NoShifts}</div>
+                <p className="text-center text-lg text-gray-500">{dashboard.werknemersPage.Shifts.texts[0].NoShifts}</p>
               )
               }
               </ScrollArea>

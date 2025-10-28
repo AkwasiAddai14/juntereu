@@ -6,6 +6,7 @@ import Employer, { IEmployer } from "../models/employer.model";
 import Employee, { IEmployee } from "../models/employee.model";
 import mongoose, { Types } from "mongoose";
 import { currentUser } from "@clerk/nextjs/server";
+import { serializeData } from '@/app/lib/utils/serialization';
 import Shift from "../models/shift.model";
 import ShiftArray from "../models/shiftArray.model";
 
@@ -34,8 +35,8 @@ export async function maakFlexpool({
       titel,
       employerName: berijf.displayname,
       imageUrl: berijf.profilephoto || '',
-      bedrijf: bedrijfId,
-      freelancers,
+      employer: bedrijfId,
+      employees: freelancers,
       shifts
     });
 
@@ -51,7 +52,7 @@ export async function maakFlexpool({
     company.flexpools.push(savedFlexpool._id as unknown as mongoose.Types.ObjectId); // Ensure the ID is of correct type
     await company.save(); // Save the updated company document
 
-    return [savedFlexpool._id, savedFlexpool.titel];
+    return [savedFlexpool._id.toString(), savedFlexpool.titel];
   } catch (error) {
     console.error('Error creating flexpool:', error);
     throw new Error('Error creating flexpool');
@@ -148,50 +149,44 @@ export const verwijderFlexpool = async (flexpoolId: mongoose.Types.ObjectId) => 
 export const haalFlexpoolFreelancer = async (userId: Types.ObjectId | string ): Promise<IFlexpool[] | []> => {
     try {
       await connectToDB();
-        // Zoek de freelancer op basis van het gegeven ID
-        let freelancer;
-        let flexpools;
-    if(mongoose.Types.ObjectId.isValid(userId)){
-         freelancer = await Employee.findById(userId)
-        if (freelancer && freelancer.flexpools && freelancer.flexpools.length > 0) {
-          // Fetch the related Flexpool documents
-          flexpools = await Flexpool.find({ _id: { $in: freelancer.flexpools } })
-          console.log(flexpools)
-          console.log("Flexpools fetched successfully.");
-          return flexpools;
+      let freelancer;
+
+      // Try to find by ObjectId first
+      if(mongoose.Types.ObjectId.isValid(userId)){
+        freelancer = await Employee.findById(userId);
+      }
+
+      // If not found by ObjectId, try to find by clerkId
+      if (!freelancer && userId.toString() !== ""){
+        freelancer = await Employee.findOne({ clerkId: userId });
+      }
+
+      // If still not found, try to get current user
+      if (!freelancer) {
+        const user = await currentUser();
+        if (user) {
+          freelancer = await Employee.findOne({ clerkId: user.id });
         }
+      }
+
+      if (!freelancer) {
+        console.log("Freelancer niet gevonden voor ID:", userId);
+        return [];
+      }
+
+      if (freelancer.flexpools && freelancer.flexpools.length > 0) {
+        // Fetch the related Flexpool documents
+        const flexpools = await Flexpool.find({ _id: { $in: freelancer.flexpools } });
+        console.log("Flexpools fetched successfully.");
+        return serializeData(flexpools);
+      } else {
+        console.log('No flexpools found for this freelancer.');
+        return [];
+      }
+    } catch (error) {
+      console.error('Error fetching flexpools:', error);
+      return [];
     }
-        // Case 2: If freelancerId is not provided, use the logged-in user (Clerk)
-        if(userId.toString() !== ""){
-          freelancer = await Employee.findOne({clerkId : userId});
-          if (freelancer && freelancer.flexpools && freelancer.flexpools.length > 0) {
-            // Fetch the related Flexpool documents
-            flexpools = await Flexpool.find({ _id: { $in: freelancer.flexpools } })
-            console.log(flexpools)
-            console.log("Flexpools fetched successfully.");
-            return flexpools;
-          }
-        } else {
-          const user = await currentUser();
-          if (user) {
-             freelancer = await Employee.findOne({ clerkId: user.id });
-            if (freelancer && freelancer.flexpools && freelancer.flexpools.length > 0) {
-              // Fetch the related Flexpool documents
-              flexpools = await Flexpool.find({ _id: { $in: freelancer.flexpools } })
-              console.log(flexpools)
-              console.log("Flexpools fetched successfully.");
-              return flexpools;
-            }
-        } else {
-          console.log('No flexpools found for this freelancer.');
-          return [];
-        }   
-    }
-    return flexpools || [];// Retourneer de flexpools van de freelancer
-  } catch (error) {
-  console.error('Error fetching flexpools:', error);
-  throw new Error('Failed to fetch flexpools');
-  }
 }
 
 export const haalShiftsInFlexpool = async (flexpoolId: Types.ObjectId | string) => {
@@ -199,12 +194,13 @@ export const haalShiftsInFlexpool = async (flexpoolId: Types.ObjectId | string) 
     await connectToDB();
     if(mongoose.Types.ObjectId.isValid(flexpoolId)){
     console.log('function called')
-    const flexpool = await Flexpool.findById(flexpoolId);
+    const flexpool = await Flexpool.findById(flexpoolId).lean();
     console.log(flexpool)
 if (flexpool) {
-    const shifts = await Shift.find({ _id: { $in: flexpool.shifts } });
+    const shifts = await Shift.find({ _id: { $in: flexpool.shifts } }).lean();
     console.log(shifts)
-    return shifts;
+    // Ensure proper serialization by converting to JSON and back
+    return JSON.parse(JSON.stringify(shifts));
    }   // Now you can safely use `shifts`
     } else {
     console.error('Flexpool not found');
@@ -236,7 +232,8 @@ export const haalFlexpool = async (flexpoolId: string) => {
       }
       console.log(flexpool)
       // Retourneer de flexpools van de freelancer
-      return flexpool;
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(flexpool));
   } catch (error) {
       console.error('Error fetching flexpools:', error);
       throw new Error('Failed to fetch flexpools');
@@ -313,7 +310,8 @@ export const haalFlexpools = async (bedrijfId: string): Promise<IFlexpool[]> => 
 
       console.log("Flexpools fetched successfully.");
 
-      return flexpools;
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(flexpools));
     } else {
       console.log('No flexpools found for this Bedrijf.');
       return [];
@@ -330,9 +328,10 @@ export const haalAlleFlexpools = async (objectIds: string[]): Promise<IFlexpool[
   try {
     await connectToDB()
     // Fetch all Flexpools matching the given array of IDs
-    const flexpools: IFlexpool[] = await Flexpool.find({ _id: { $in: objectIds } });
+    const flexpools: IFlexpool[] = await Flexpool.find({ _id: { $in: objectIds } }).lean();
     if (flexpools.length > 0) {
-      return flexpools;
+      // Ensure proper serialization by converting to JSON and back
+      return JSON.parse(JSON.stringify(flexpools));
     } else {
       console.log('No flexpools found for the provided IDs.');
       return [];

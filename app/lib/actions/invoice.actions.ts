@@ -7,6 +7,7 @@ import { Options } from 'nodemailer/lib/mailer';
 import fs from 'fs';
 import path from 'path';
 import Factuur from '../models/invoice.model';
+import { serializeData } from '@/app/lib/utils/serialization';
 import cron from 'node-cron';
 import { connectToDB } from '../mongoose';
 import Shift, { ShiftType } from '../models/shift.model';
@@ -470,12 +471,14 @@ export async function haalFacturen(id: string) {
         // Find all facturen
         const facturen = await Factuur.find({
             opdrachtgever: { $in: [id] }  // Checks if the id is within the opdrachtgever array
-        })
+        }).lean()
         
-        return facturen;
+        // Ensure proper serialization by converting to JSON and back
+        return JSON.parse(JSON.stringify(facturen));
     } catch (error:any) {
         console.error('Error retrieving facturen:', error);
-        throw new Error(`Failed to retrieve facturen: ${error.message}`);
+        // Return empty array instead of throwing error
+        return [];
     }
 }
 
@@ -484,11 +487,13 @@ export async function haalFacturenFreelancer(id: string) {
         await connectToDB();
         const facturen = await Factuur.find({
             opdrachtnemers: { $in: [id] }  // Checks if the id is within the opdrachtgever array
-        })
-        return facturen;
+        }).lean()
+        // Serialize Mongoose documents to plain objects
+        return serializeData(facturen);
     } catch (error: any) {
         console.error('Error retrieving facturen:', error);
-        throw new Error(`Failed to retrieve facturen: ${error.message}`);
+        // Return empty array instead of throwing error
+        return [];
     }
 }
 
@@ -510,14 +515,14 @@ export async function haalAfgerondeShifts(clerkId: string){
         const freelancer = await Employee.findOne({clerkId: clerkId})
 
         const shifts = await Shift.find(
-            {opdrachtnemer: freelancer._id},
-            { status: 'afgerond'}
+            {opdrachtnemer: freelancer._id, status: 'afgerond'}
         )
 
         return shifts;
     } catch (error: any) {
         console.error('Error retrieving shifts:', error);
-        throw new Error(`Failed to retrieve shifts: ${error.message}`);
+        // Return empty array instead of throwing error
+        return [];
     }
 };
 
@@ -529,7 +534,7 @@ export async function haalInShiftsFacturen(factuurId: any){
         const shifts = await Shift.find({ _id: { $in: shiftIds } });
         return shifts;
     } catch (error) {
-        
+        console.error('Error retrieving facturen:', error);
     }
 };
 
@@ -543,7 +548,7 @@ export async function haalFactuur (id: string){
     } catch (error: any) {
 
         console.error('Error retrieving facturen:', error);
-        throw new Error(`Failed to retrieve facturen: ${error.message}`);
+        //throw new Error(`Failed to retrieve facturen: ${error.message}`);
 
     }
     

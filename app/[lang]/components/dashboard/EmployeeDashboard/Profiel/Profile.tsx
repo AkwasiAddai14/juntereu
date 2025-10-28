@@ -1,3 +1,5 @@
+"use client";
+
 import { MenuButton, MenuItems, MenuItem, Field, Label, Switch } from '@headlessui/react';
 import { CodeBracketIcon, EllipsisVerticalIcon, FlagIcon, PaperClipIcon, StarIcon } from '@heroicons/react/20/solid';
 import { Menu } from 'lucide-react';
@@ -99,7 +101,7 @@ export default function Profiel({ dashboard }: Props) {
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm/6 font-medium text-gray-900">{dashboard.werknemersPage.Profiel.ProfielItems[5]}</dt> 
             <dd className="mt-1 flex text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-              <span className="grow">{freelancer?.job.length} jobs</span>
+              <span className="grow">{freelancer?.jobs.length} jobs</span>
               
             </dd>
           </div>

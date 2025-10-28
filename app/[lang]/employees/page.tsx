@@ -12,6 +12,7 @@ import logo from '@/app/assets/images/178884748_padded_logo.png';
 
 import { AppStoreLink } from '../components/shared/AppStoreLink';
 import { PlayStoreLink } from '../components/shared/PlayStoreLink';
+import WhatsAppButton from '../components/shared/WhatsAppButton';
 
 
 import { 
@@ -112,17 +113,27 @@ const page = async ({ params }: { params: { lang: string } }) => {
         </svg> */}
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
           <FadeInLeft className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
-            <div className="flex">
-               <div className="relative flex items-center gap-x-4 rounded-full bg-white px-4 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                <span className="font-semibold text-orange-600">{pages.employeesPage.PhoneHero.CVtekst}</span>
-                <span aria-hidden="true" className="h-4 w-px bg-gray-900/10" />
-                <a href="#" className="flex items-center gap-x-1">
-                  <span aria-hidden="true" className="absolute inset-0" />
-                  {pages.employeesPage.PhoneHero.sendMessage}
-                 <ChevronRightIcon aria-hidden="true" className="-mr-2 size-5 text-gray-400" /> 
-                  {/* <FaWhatsapp className="h-5 w-5 text-green-600" /> */}
-                </a>
-              </div> 
+            {/* Sign-up options section */}
+            <div className="mb-8">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-6 bg-gradient-to-r from-gray-50 to-orange-50 rounded-2xl border border-gray-200/50 shadow-sm">
+                <div className="flex items-center gap-x-4 text-sm/6 text-gray-600">
+                  <span className="font-semibold text-orange-600">{pages.employeesPage.PhoneHero.CVtekst}</span>
+                  <span aria-hidden="true" className="h-4 w-px bg-gray-300" />
+                  <span className="text-gray-600">
+                    {pages.employeesPage.PhoneHero.sendMessage}
+                  </span>
+                </div>
+                <div className="flex-shrink-0">
+                  <WhatsAppButton
+                    type="employee"
+                    lang={lang}
+                    size="lg"
+                    variant="primary"
+                    iconOnly={true}
+                    className="shadow-lg hover:shadow-xl ring-2 ring-green-400/50 hover:ring-green-500/50"
+                  />
+                </div>
+              </div>
             </div>
             <h1 className="mt-10 text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-7xl">
              {pages.employeesPage.PhoneHero.HeadTekst}

@@ -4,8 +4,8 @@ import { getDictionary } from '@/app/[lang]/dictionaries';
 import FlexpoolPageClient from '@/app/[lang]/dashboard/flexpool/employers/[id]/client';
 
 export type SearchParamProps = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 const supportedLocales: Locale[] = [
@@ -14,8 +14,10 @@ const supportedLocales: Locale[] = [
 ];
 
 export default async function FlexpoolPageServer({ params, searchParams }: SearchParamProps) {
-  const lang = supportedLocales.includes(searchParams.lang as Locale) ? (searchParams.lang as Locale) : 'en';
+  const { id } = await params;
+  const resolvedSearchParams = await searchParams;
+  const lang = supportedLocales.includes(resolvedSearchParams.lang as Locale) ? (resolvedSearchParams.lang as Locale) : 'en';
   const { dashboard } = await getDictionary(lang);
 
-  return <FlexpoolPageClient id={params.id} lang={lang} dashboard={dashboard} />;
+  return <FlexpoolPageClient id={id} lang={lang} dashboard={dashboard} />;
 }

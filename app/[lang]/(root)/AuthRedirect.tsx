@@ -28,13 +28,14 @@ export default function AuthRedirect({ params }: Props) {
   : '/en'
 
   useEffect(() => {
-    if (isLoaded && user) {
-      router.push(`/${lang}/dashboard`, { scroll: false });
+    if (isLoaded) {
+      if (user) {
+        router.push(`/${lang}/dashboard`, { scroll: false });
+      } else {
+        router.push(`/${lang}`, { scroll: false });
+      }
     }
-    else {
-      router.push( `/${lang}`, { scroll: false });
-    }
-  }, [isLoaded, user]);
+  }, [isLoaded, user, lang, router]);
 
 console.log("user: ", user)
  /*  useEffect(() => {
