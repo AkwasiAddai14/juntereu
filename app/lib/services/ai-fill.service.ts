@@ -4,10 +4,16 @@ import OpenAI from 'openai';
 import { getActiveBudget } from '@/app/lib/actions/budget.actions';
 import { searchWeb, getMarketData, getIndustryInsights } from './web-search.service';
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Function to get OpenAI client with proper error handling
+function getOpenAIClient(): OpenAI {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error('OPENAI_API_KEY environment variable is not set');
+  }
+  return new OpenAI({
+    apiKey: apiKey,
+  });
+}
 
 export interface EmployerData {
   _id: string;
@@ -380,6 +386,7 @@ export async function generateAIFillData(
       // Generate AI response
       const systemPrompt = createSystemPrompt(context);
       
+      const openai = getOpenAIClient();
       const completion = await openai.chat.completions.create({
         model: "gpt-4o",
         messages: [
