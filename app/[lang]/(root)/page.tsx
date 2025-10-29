@@ -31,7 +31,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   
   return (
     <main>
-      <AuthRedirect params={{lang: resolvedParams.lang}}/>
+      <AuthRedirect params={{lang: lang}}/>
       <NavBar lang={lang}/>
       <Hero lang={lang}/> 
       <Features lang={lang}/>
