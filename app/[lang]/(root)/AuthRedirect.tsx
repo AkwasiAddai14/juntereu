@@ -1,7 +1,7 @@
 'use client';
 
 import { useUser } from '@clerk/nextjs';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 
@@ -20,7 +20,7 @@ export default function AuthRedirect({ params }: Props) {
     'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
     'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH'
   ];
-  const rawLang = params.lang
+  
   const { lang } = params;
   //console.log(navigator.language.split('-')[0])
   const href = supportedLocales.includes(params.lang as Locale)

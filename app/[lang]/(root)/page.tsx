@@ -18,19 +18,20 @@ const supportedLocales: Locale[] = [
 ];
 
 
-export default async function Home({ params }: { params: { lang: string } }) {
+export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
+  const resolvedParams = await params;
   
-  const lang = supportedLocales.includes(params.lang as Locale)
-  ? (params.lang as Locale)
+  const lang = supportedLocales.includes(resolvedParams.lang as Locale)
+  ? (resolvedParams.lang as Locale)
   : 'en'
   
-  if (!supportedLocales.includes(params.lang as Locale)) {
+  if (!supportedLocales.includes(resolvedParams.lang as Locale)) {
     redirect(`/${lang}`);
   }
   
   return (
     <main>
-      <AuthRedirect params={{lang}}/>
+      <AuthRedirect params={{lang: resolvedParams.lang}}/>
       <NavBar lang={lang}/>
       <Hero lang={lang}/> 
       <Features lang={lang}/>
