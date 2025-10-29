@@ -68,6 +68,13 @@ export default function DashboardPage({ params }: DashboardPageProps) {
         }
         
         const response = await fetch('/api/check-organization');
+        
+        if (!response.ok) {
+          console.error('Organization API failed:', response.status, response.statusText);
+          setIsInOrganization(false);
+          return;
+        }
+        
         const data = await response.json();
         console.log('Organization API response:', data);
         setIsInOrganization(data.isInOrganization);

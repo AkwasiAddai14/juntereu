@@ -35,9 +35,15 @@ export default function DashboardLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }>) {
+  const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  
+  if (!clerkPublishableKey) {
+    throw new Error('Clerk: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY is not defined. Please check your environment variables or apphosting.yaml.');
+  }
+
   return (
     <ClerkProvider 
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!}
+      publishableKey={clerkPublishableKey}
     >
       {children}
       <Toaster />
