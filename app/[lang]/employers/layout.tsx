@@ -19,15 +19,16 @@ export const metadata: Metadata = {
   description: "Empowering progress , enabling growth",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params
 }: {
   children: React.ReactNode 
 } &
-{ params: { lang: string }}) {
-  const lang = supportedLocales.includes(params.lang as Locale)
-    ? (params.lang as Locale)
+{ params: Promise<{ lang: string }>}) {
+  const resolvedParams = await params;
+  const lang = supportedLocales.includes(resolvedParams.lang as Locale)
+    ? (resolvedParams.lang as Locale)
     : 'en'; // fallback
   return (
     <>
