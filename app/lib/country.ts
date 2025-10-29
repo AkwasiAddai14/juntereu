@@ -2,9 +2,16 @@ import { currentUser } from "@clerk/nextjs/server";
 
 
 export const determineLocation = async () => {
-    const user = await currentUser();
+    let userCountry: string | undefined;
     
-    const userCountry = user?.unsafeMetadata.country
+    try {
+        const user = await currentUser();
+        userCountry = user?.unsafeMetadata?.country as string;
+    } catch (error) {
+        // If currentUser() fails (e.g., in cron jobs), use default
+        console.log('No user context available, using default database');
+        userCountry = undefined;
+    }
     switch (userCountry) {
         case 'Nederland':
             return process.env.MONGODB_NL_URL!;

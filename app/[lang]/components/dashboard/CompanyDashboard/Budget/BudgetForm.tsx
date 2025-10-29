@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { Button } from '@/app/[lang]/components/ui/button';
 import { Input } from '@/app/[lang]/components/ui/input';
 import { Label } from '@/app/[lang]/components/ui/label';
@@ -23,7 +23,7 @@ export default function BudgetForm({ employerId, onClose, onSuccess, existingBud
   const [budgetType, setBudgetType] = useState<'daily' | 'weekly' | 'monthly'>('monthly');
   const [isPercentage, setIsPercentage] = useState(false);
 
-  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
+  const { register, handleSubmit, setValue, watch, formState: { errors }, control } = useForm({
     defaultValues: {
       name: existingBudget?.name || '',
       description: existingBudget?.description || '',
@@ -140,23 +140,36 @@ export default function BudgetForm({ employerId, onClose, onSuccess, existingBud
             
             <div>
               <Label htmlFor="name" className="text-sm font-medium text-gray-700">Budget Name *</Label>
-              <Input
-                id="name"
-                {...register('name', { required: 'Budget name is required' })}
-                placeholder="e.g., Monthly Operations Budget"
-                className="mt-1 h-12 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              <Controller
+                name="name"
+                control={control}
+                rules={{ required: 'Budget name is required' }}
+                render={({ field }) => (
+                  <Input
+                    id="name"
+                    {...field}
+                    placeholder="e.g., Monthly Operations Budget"
+                    className="mt-1 h-12 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  />
+                )}
               />
               {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
             </div>
 
             <div>
               <Label htmlFor="description" className="text-sm font-medium text-gray-700">Description</Label>
-              <Textarea
-                id="description"
-                {...register('description')}
-                placeholder="Optional description of this budget"
-                className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
-                rows={3}
+              <Controller
+                name="description"
+                control={control}
+                render={({ field }) => (
+                  <Textarea
+                    id="description"
+                    {...field}
+                    placeholder="Optional description of this budget"
+                    className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
+                    rows={3}
+                  />
+                )}
               />
             </div>
           </div>
@@ -236,11 +249,18 @@ export default function BudgetForm({ employerId, onClose, onSuccess, existingBud
                 <Label htmlFor="startDate" className="text-sm font-medium text-gray-700">Start Date *</Label>
                 <div className="relative mt-1">
                   <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <Input
-                    id="startDate"
-                    type="date"
-                    {...register('startDate', { required: 'Start date is required' })}
-                    className="h-12 w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  <Controller
+                    name="startDate"
+                    control={control}
+                    rules={{ required: 'Start date is required' }}
+                    render={({ field }) => (
+                      <Input
+                        id="startDate"
+                        type="date"
+                        {...field}
+                        className="h-12 w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                      />
+                    )}
                   />
                 </div>
                 {errors.startDate && <p className="text-red-500 text-sm mt-1">{errors.startDate.message}</p>}
@@ -250,11 +270,18 @@ export default function BudgetForm({ employerId, onClose, onSuccess, existingBud
                 <Label htmlFor="endDate" className="text-sm font-medium text-gray-700">End Date *</Label>
                 <div className="relative mt-1">
                   <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <Input
-                    id="endDate"
-                    type="date"
-                    {...register('endDate', { required: 'End date is required' })}
-                    className="h-12 w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  <Controller
+                    name="endDate"
+                    control={control}
+                    rules={{ required: 'End date is required' }}
+                    render={({ field }) => (
+                      <Input
+                        id="endDate"
+                        type="date"
+                        {...field}
+                        className="h-12 w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                      />
+                    )}
                   />
                 </div>
                 {errors.endDate && <p className="text-red-500 text-sm mt-1">{errors.endDate.message}</p>}
@@ -283,16 +310,23 @@ export default function BudgetForm({ employerId, onClose, onSuccess, existingBud
                   <Label htmlFor="revenue" className="text-sm font-medium text-gray-700">Revenue Amount *</Label>
                   <div className="relative mt-1">
                     <CurrencyEuroIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <Input
-                      id="revenue"
-                      type="number"
-                      step="0.01"
-                      {...register('revenue', { 
+                    <Controller
+                      name="revenue"
+                      control={control}
+                      rules={{ 
                         required: isPercentage ? 'Revenue amount is required' : false,
                         min: { value: 0, message: 'Revenue must be positive' }
-                      })}
-                      placeholder="0.00"
-                      className="h-12 w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                      }}
+                      render={({ field }) => (
+                        <Input
+                          id="revenue"
+                          type="number"
+                          step="0.01"
+                          {...field}
+                          placeholder="0.00"
+                          className="h-12 w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                        />
+                      )}
                     />
                   </div>
                   {errors.revenue && <p className="text-red-500 text-sm mt-1">{errors.revenue.message}</p>}
@@ -301,19 +335,26 @@ export default function BudgetForm({ employerId, onClose, onSuccess, existingBud
                 <div>
                   <Label htmlFor="percentage" className="text-sm font-medium text-gray-700">Percentage *</Label>
                   <div className="relative mt-1">
-                    <Input
-                      id="percentage"
-                      type="number"
-                      step="0.01"
-                      min="0"
-                      max="100"
-                      {...register('percentage', { 
+                    <Controller
+                      name="percentage"
+                      control={control}
+                      rules={{ 
                         required: isPercentage ? 'Percentage is required' : false,
                         min: { value: 0, message: 'Percentage must be between 0-100' },
                         max: { value: 100, message: 'Percentage must be between 0-100' }
-                      })}
-                      placeholder="0"
-                      className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 pr-8 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                      }}
+                      render={({ field }) => (
+                        <Input
+                          id="percentage"
+                          type="number"
+                          step="0.01"
+                          min="0"
+                          max="100"
+                          {...field}
+                          placeholder="0"
+                          className="h-12 w-full rounded-lg border border-gray-300 bg-white px-4 pr-8 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                        />
+                      )}
                     />
                     <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">%</span>
                   </div>
@@ -325,16 +366,23 @@ export default function BudgetForm({ employerId, onClose, onSuccess, existingBud
                 <Label htmlFor="total" className="text-sm font-medium text-gray-700">Budget Amount *</Label>
                 <div className="relative mt-1">
                   <CurrencyEuroIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <Input
-                    id="total"
-                    type="number"
-                    step="0.01"
-                    {...register('total', { 
+                  <Controller
+                    name="total"
+                    control={control}
+                    rules={{ 
                       required: !isPercentage ? 'Budget amount is required' : false,
                       min: { value: 0, message: 'Budget amount must be positive' }
-                    })}
-                    placeholder="0.00"
-                    className="h-12 w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    }}
+                    render={({ field }) => (
+                      <Input
+                        id="total"
+                        type="number"
+                        step="0.01"
+                        {...field}
+                        placeholder="0.00"
+                        className="h-12 w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-3 text-gray-900 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                      />
+                    )}
                   />
                 </div>
                 {errors.total && <p className="text-red-500 text-sm mt-1">{errors.total.message}</p>}

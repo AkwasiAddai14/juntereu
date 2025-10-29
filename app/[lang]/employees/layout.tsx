@@ -30,6 +30,21 @@ export default function RootLayout({
     : 'en'; // fallback
   return (
     <>
+    <head>
+        {/* Google tag (gtag.js) */}
+        
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17686346268"></script>
+<script
+  dangerouslySetInnerHTML={{
+    __html: `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17686346268');
+    `,
+  }}
+/>
+      </head>
       <NavBar lang={lang} />
       <main>
         <section>

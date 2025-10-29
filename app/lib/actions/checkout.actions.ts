@@ -7,7 +7,6 @@ import Employer from "../models/employer.model";
 import Employee, { IEmployee } from "../models/employee.model";
 import mongoose, { Types } from "mongoose";
 import  { sendEmailBasedOnStatus }  from '@/app/lib/actions/shift.actions'
-import { currentUser } from "@clerk/nextjs/server";
 
 export async function updateShiftsAndMoveToCheckout() {
   try {

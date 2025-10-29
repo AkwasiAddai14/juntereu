@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import ShiftForm from "@/app/[lang]/components/shared/forms/Wrappers/ShiftWrapper";
 import { haalShiftMetId } from "@/app/lib/actions/shift.actions"
 import Footer from "@/app/[lang]/components/shared/navigation/Footer4";
@@ -21,13 +24,41 @@ type UpdateEventProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-const UpdateEvent = async ({ params, searchParams }: UpdateEventProps) => {
-  const { id } = await params;
-  const resolvedSearchParams = await searchParams;
-  const lang = supportedLocales.includes(resolvedSearchParams.lang as Locale) ? (resolvedSearchParams.lang as Locale): 'en';
-  const { dashboard } = await getDictionary(lang);
-  const shift = await haalShiftMetId(id);
-  const bedrijf = await fetchBedrijfClerkId(shift.employer as unknown as string)
+const UpdateEvent = ({ params, searchParams }: UpdateEventProps) => {
+  const [data, setData] = useState<{
+    lang: Locale;
+    dashboard: any;
+    shift: any;
+    bedrijf: any;
+  } | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const { id } = await params;
+        const resolvedSearchParams = await searchParams;
+        const lang = supportedLocales.includes(resolvedSearchParams.lang as Locale) ? (resolvedSearchParams.lang as Locale): 'en';
+        const { dashboard } = await getDictionary(lang);
+        const shift = await haalShiftMetId(id);
+        const bedrijf = await fetchBedrijfClerkId(shift.employer as unknown as string);
+        
+        setData({ lang, dashboard, shift, bedrijf });
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [params, searchParams]);
+
+  if (loading || !data) {
+    return <div>Loading...</div>;
+  }
+
+  const { lang, dashboard, shift, bedrijf } = data;
 
   return (
     <>

@@ -253,66 +253,66 @@ const shiftDetails = ({ id, lang, dashboard, shift: shiftData }: ShiftDetailsCli
             </div>
 
             {/* Key Info Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Hourly Rate Card */}
-              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-2xl p-6 border border-gray-200 hover:border-green-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="flex flex-col items-center text-center space-y-4">
+              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 border border-gray-200 hover:border-green-300 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <div className="flex flex-col items-center text-center space-y-3">
                   <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-green-200 group-hover:scale-110 transition-all duration-300">
-                      <span className="text-white font-bold text-2xl">€</span>
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-green-200 group-hover:scale-110 transition-all duration-300">
+                      <span className="text-white font-bold text-lg">€</span>
                     </div>
-                    <div className="absolute -top-1 -right-1 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
+                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-400 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs font-bold">+</span>
                     </div>
                   </div>
                   <div>
-                    <p className="text-gray-600 text-sm font-medium uppercase tracking-wide">Hourly Rate</p>
-                    <p className="text-3xl font-bold text-gray-900 mt-1">€{shiftData.hourlyRate}</p>
+                    <p className="text-gray-600 text-xs font-medium uppercase tracking-wide">Hourly Rate</p>
+                    <p className="text-xl font-bold text-gray-900 mt-1">€{shiftData.hourlyRate}</p>
                     <p className="text-xs text-gray-500 mt-1">per hour</p>
                   </div>
                 </div>
               </div>
 
               {/* Available Spots Card */}
-              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-2xl p-6 border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="flex flex-col items-center text-center space-y-4">
+              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <div className="flex flex-col items-center text-center space-y-3">
                   <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-blue-200 group-hover:scale-110 transition-all duration-300">
-                      <UserIcon className="w-8 h-8 text-white" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-blue-200 group-hover:scale-110 transition-all duration-300">
+                      <UserIcon className="w-6 h-6 text-white" />
                     </div>
-                    <div className="absolute -top-1 -right-1 w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center">
+                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-400 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs font-bold">{shiftData.spots}</span>
                     </div>
                   </div>
                   <div>
-                    <p className="text-gray-600 text-sm font-medium uppercase tracking-wide">Available</p>
-                    <p className="text-3xl font-bold text-gray-900 mt-1">{shiftData.spots}</p>
+                    <p className="text-gray-600 text-xs font-medium uppercase tracking-wide">Available</p>
+                    <p className="text-xl font-bold text-gray-900 mt-1">{shiftData.spots}</p>
                     <p className="text-xs text-gray-500 mt-1">spots left</p>
                   </div>
                 </div>
               </div>
 
               {/* Status Card */}
-              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-2xl p-6 border border-gray-200 hover:border-purple-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="flex flex-col items-center text-center space-y-4">
+              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 border border-gray-200 hover:border-purple-300 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <div className="flex flex-col items-center text-center space-y-3">
                   <div className="relative">
-                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300 ${
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-all duration-300 ${
                       shiftData.inFlexpool 
                         ? 'bg-gradient-to-br from-purple-500 to-purple-600 group-hover:shadow-purple-200' 
                         : 'bg-gradient-to-br from-gray-500 to-gray-600 group-hover:shadow-gray-200'
                     }`}>
-                      <span className="text-white text-2xl">
+                      <span className="text-white text-lg">
                         {shiftData.inFlexpool ? '✨' : '🔒'}
                       </span>
                     </div>
-                    <div className={`absolute -top-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center ${
+                    <div className={`absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center ${
                       shiftData.inFlexpool ? 'bg-purple-400' : 'bg-gray-400'
                     }`}>
                       <span className="text-white text-xs font-bold">!</span>
                     </div>
                   </div>
                   <div>
-                    <p className="text-gray-600 text-sm font-medium uppercase tracking-wide">Status</p>
+                    <p className="text-gray-600 text-xs font-medium uppercase tracking-wide">Status</p>
                     <p className="text-lg font-bold text-gray-900 mt-1">
                       {shiftData.inFlexpool ? 'Flexpool' : 'Private'}
                     </p>
@@ -324,18 +324,18 @@ const shiftDetails = ({ id, lang, dashboard, shift: shiftData }: ShiftDetailsCli
               </div>
 
               {/* Duration Card */}
-              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-2xl p-6 border border-gray-200 hover:border-orange-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="flex flex-col items-center text-center space-y-4">
+              <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <div className="flex flex-col items-center text-center space-y-3">
                   <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-orange-200 group-hover:scale-110 transition-all duration-300">
-                      <span className="text-white text-2xl">⏰</span>
+                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-orange-200 group-hover:scale-110 transition-all duration-300">
+                      <span className="text-white text-lg">⏰</span>
                     </div>
-                    <div className="absolute -top-1 -right-1 w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center">
+                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-orange-400 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs font-bold">h</span>
                     </div>
                   </div>
                   <div>
-                    <p className="text-gray-600 text-sm font-medium uppercase tracking-wide">Duration</p>
+                    <p className="text-gray-600 text-xs font-medium uppercase tracking-wide">Duration</p>
                     <p className="text-lg font-bold text-gray-900 mt-1">
                       {shiftData.starting} - {shiftData.ending}
                     </p>
@@ -357,46 +357,46 @@ const shiftDetails = ({ id, lang, dashboard, shift: shiftData }: ShiftDetailsCli
         {/* Left Column - Details */}
         <div className="lg:col-span-2 space-y-12">
           {/* Shift Details */}
-          <div className="bg-white rounded-3xl shadow-2xl border-2 border-gray-200 p-10 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] animate-slide-up">
-            <div className="flex items-center gap-4 mb-10">
-              <div className="p-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-lg">
-                <Image src={calendar} alt="calendar" width={32} height={32} className="text-white" />
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-slide-up">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-md">
+                <Image src={calendar} alt="calendar" width={24} height={24} className="text-white" />
               </div>
-              <h2 className="text-4xl font-bold text-gray-900">Shift Details</h2>
+              <h2 className="text-2xl font-bold text-gray-900">Shift Details</h2>
           </div>
 
-            <div className="space-y-10">
-              <div className="flex items-center gap-10 p-10 bg-white rounded-3xl hover:shadow-2xl transition duration-300 shadow-xl">
-                <div className="p-6 bg-blue-600 rounded-3xl shadow-xl">
-                  <Image src={calendar} alt="calendar" width={40} height={40} />
+            <div className="space-y-6">
+              <div className="flex items-center gap-6 p-6 bg-gray-50 rounded-xl hover:shadow-lg transition duration-300 border border-gray-100">
+                <div className="p-4 bg-blue-600 rounded-xl shadow-md">
+                  <Image src={calendar} alt="calendar" width={24} height={24} />
                 </div>
                 <div>
-                  <p className="text-2xl font-black text-gray-900 mb-3">
+                  <p className="text-lg font-bold text-gray-900 mb-2">
                     {new Date(shiftData.startingDate).toLocaleDateString(`${dashboard.localDateString}`)}
                   </p>
-                  <p className="text-gray-900 font-black text-2xl">
+                  <p className="text-gray-900 font-bold text-lg">
                     {shiftData.starting} - {shiftData.ending}
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-10 p-10 bg-white rounded-3xl hover:shadow-2xl transition duration-300 shadow-xl">
-                <div className="p-6 bg-red-600 rounded-3xl shadow-xl">
-                  <Image src={location} alt="location" width={40} height={40} />
+              <div className="flex items-center gap-6 p-6 bg-gray-50 rounded-xl hover:shadow-lg transition duration-300 border border-gray-100">
+                <div className="p-4 bg-red-600 rounded-xl shadow-md">
+                  <Image src={location} alt="location" width={24} height={24} />
                 </div>
                 <div>
-                  <p className="text-2xl font-black text-gray-900 mb-3">Location</p>
-                  <p className="text-gray-900 font-black text-2xl">{shiftData.adres}</p>
+                  <p className="text-lg font-bold text-gray-900 mb-2">Location</p>
+                  <p className="text-gray-900 font-bold text-lg">{shiftData.adres}</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-10 p-10 bg-white rounded-3xl hover:shadow-2xl transition duration-300 shadow-xl">
-                <div className="p-6 bg-purple-600 rounded-3xl shadow-xl">
-                  <UserIcon className="w-10 h-10 text-white" />
+              <div className="flex items-center gap-6 p-6 bg-gray-50 rounded-xl hover:shadow-lg transition duration-300 border border-gray-100">
+                <div className="p-4 bg-purple-600 rounded-xl shadow-md">
+                  <UserIcon className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-2xl font-black text-gray-900 mb-3">Available Spots</p>
-                  <p className="text-gray-900 font-black text-2xl">
+                  <p className="text-lg font-bold text-gray-900 mb-2">Available Spots</p>
+                  <p className="text-gray-900 font-bold text-lg">
                     {shiftData.spots} {dashboard.Shift.employer.FormFieldItems[2]}
                   </p>
                 </div>
@@ -405,17 +405,17 @@ const shiftDetails = ({ id, lang, dashboard, shift: shiftData }: ShiftDetailsCli
             </div>
 
           {/* Description */}
-          <div className="bg-white rounded-3xl shadow-2xl border-2 border-gray-200 p-10 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] animate-slide-up" style={{animationDelay: '0.2s'}}>
-            <div className="flex items-center gap-4 mb-8">
-              <div className="p-4 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl shadow-lg">
-                <span className="text-white font-bold text-2xl">📝</span>
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-slide-up" style={{animationDelay: '0.2s'}}>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl shadow-md">
+                <span className="text-white font-bold text-lg">📝</span>
               </div>
-              <h2 className="text-4xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-gray-900">
                 {dashboard.Shift.employer.FormFieldItems[6]}
               </h2>
             </div>
             <div className="prose prose-lg max-w-none">
-              <p className="text-gray-900 leading-relaxed text-2xl font-bold bg-gray-100 p-8 rounded-3xl shadow-xl">
+              <p className="text-gray-900 leading-relaxed text-lg font-medium bg-gray-50 p-6 rounded-xl border border-gray-100">
                 {shiftData.description}
               </p>
             </div>
@@ -423,42 +423,42 @@ const shiftDetails = ({ id, lang, dashboard, shift: shiftData }: ShiftDetailsCli
             </div>
 
         {/* Right Column - Skills & Requirements */}
-        <div className="space-y-16">
+        <div className="space-y-8">
           {/* Skills */}
-          <div className="bg-white rounded-3xl shadow-2xl border border-gray-300 p-12 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] animate-slide-up" style={{animationDelay: '0.4s'}}>
-            <div className="flex items-center gap-6 mb-10">
-              <div className="p-6 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-3xl shadow-xl">
-                <span className="text-white font-black text-3xl">🎯</span>
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-slide-up" style={{animationDelay: '0.4s'}}>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl shadow-md">
+                <span className="text-white font-bold text-lg">🎯</span>
               </div>
-              <h3 className="text-4xl font-black text-gray-900">
+              <h3 className="text-xl font-bold text-gray-900">
                 {dashboard.Shift.employer.FormFieldItems[4]}
               </h3>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-3">
               {shiftData.skills?.map((vaardigheid: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined, index: Key | null | undefined) => (
-                <div key={index} className="flex items-center gap-8 p-8 bg-white rounded-3xl hover:shadow-xl transition duration-300 shadow-lg">
-                  <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-lg"></div>
-                  <span className="text-gray-900 font-black text-2xl">{vaardigheid}</span>
+                <div key={index} className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:shadow-md transition duration-300 border border-gray-100">
+                  <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full shadow-sm"></div>
+                  <span className="text-gray-900 font-medium text-lg">{vaardigheid}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Dress Code */}
-          <div className="bg-white rounded-3xl shadow-2xl border border-gray-300 p-12 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] animate-slide-up" style={{animationDelay: '0.6s'}}>
-            <div className="flex items-center gap-6 mb-10">
-              <div className="p-6 bg-gradient-to-r from-orange-500 to-red-600 rounded-3xl shadow-xl">
-                <span className="text-white font-black text-3xl">👔</span>
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-slide-up" style={{animationDelay: '0.6s'}}>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl shadow-md">
+                <span className="text-white font-bold text-lg">👔</span>
               </div>
-              <h3 className="text-4xl font-black text-gray-900">
+              <h3 className="text-xl font-bold text-gray-900">
                 {dashboard.Shift.employer.FormFieldItems[5]}
               </h3>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-3">
               {shiftData.dresscode?.map((kleding: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined, index: Key | null | undefined) => (
-                <div key={index} className="flex items-center gap-8 p-8 bg-white rounded-3xl hover:shadow-xl transition duration-300 shadow-lg">
-                  <div className="w-6 h-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-lg"></div>
-                  <span className="text-gray-900 font-black text-2xl">{kleding}</span>
+                <div key={index} className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:shadow-md transition duration-300 border border-gray-100">
+                  <div className="w-3 h-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-sm"></div>
+                  <span className="text-gray-900 font-medium text-lg">{kleding}</span>
                 </div>
               ))}
             </div>

@@ -520,6 +520,48 @@ if (files.length > 0) {
     fetchStoredImages();
   }, [userId]);
 
+  // Update form fields when selectedShift changes
+  useEffect(() => {
+    if (selectedShift) {
+      console.log('🔄 ShiftForm - Updating form with selected shift:', selectedShift);
+      
+      // Update all form fields with selected shift data
+      setValue('title', selectedShift.title || '');
+      setValue('function', selectedShift.function || '');
+      setValue('description', selectedShift.description || '');
+      setValue('adres', selectedShift.adres || '');
+      setValue('image', selectedShift.image || '');
+      setValue('hourlyRate', selectedShift.hourlyRate || 14);
+      setValue('spots', selectedShift.spots || 1);
+      setValue('skills', Array.isArray(selectedShift.skills) ? selectedShift.skills.join(', ') : selectedShift.skills || '');
+      setValue('dresscode', Array.isArray(selectedShift.dresscode) ? selectedShift.dresscode.join(', ') : selectedShift.dresscode || '');
+      setValue('break', selectedShift.break || '30 minuten');
+      setValue('inFlexpool', selectedShift.inFlexpool || false);
+      setValue('flexpoolId', selectedShift.flexpools?.toString() || '');
+      
+      // Update dates
+      if (selectedShift.startingDate) {
+        setValue('startingDate', new Date(selectedShift.startingDate));
+      }
+      if (selectedShift.endingDate) {
+        setValue('endingDate', new Date(selectedShift.endingDate));
+      }
+      
+      // Update times and local state
+      if (selectedShift.starting) {
+        setValue('starting', selectedShift.starting);
+        setBegintijd(dayjs(selectedShift.starting));
+      }
+      if (selectedShift.ending) {
+        setValue('ending', selectedShift.ending);
+        setEindtijd(dayjs(selectedShift.ending));
+      }
+      
+      // Update flexpool state
+      setIsInFlexpool(selectedShift.inFlexpool || false);
+    }
+  }, [selectedShift, setValue]);
+
   // AI Fill functionality
   const { generateAIFillData, isLoading: aiLoading, error: aiError } = useAIFill({
     employer: bedrijfDetails || {},
@@ -702,9 +744,9 @@ if (files.length > 0) {
                   </FormLabel>
                 <FormControl>
                     <div className="h-12 w-full overflow-hidden rounded-lg bg-white border border-gray-300 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-colors">
-                <DropdownCategorie 
+                    <DropdownCategorie 
                       onChangeHandler={field.onChange}
-                        value={selectedShift ? selectedShift.function : field.value} 
+                        value={field.value} 
                         components={components} 
                       />
                 </div>
@@ -948,7 +990,7 @@ if (files.length > 0) {
     <div className="w-full">
       <TimePicker
         label={`${components.forms.ShiftForm.formItems[8]}`}
-        value={selectedShift ? dayjs(selectedShift.starting) : begintijd}
+        value={field.value ? dayjs(field.value) : begintijd}
         onChange={(newValue) => {
           const formattedTime = newValue ? newValue.format("HH:mm") : "08:00";
           setBegintijd(newValue); // Update local state for display
@@ -967,7 +1009,7 @@ if (files.length > 0) {
                 <div className="">
                 <TimePicker
           label={`${components.forms.ShiftForm.formItems[7]}`}
-          value={selectedShift ? dayjs(selectedShift.ending) : eindtijd}
+          value={field.value ? dayjs(field.value) : eindtijd}
           onChange={(newValue) => {
             const formattedTime = newValue ? newValue.format("HH:mm") : "08:00";
             setEindtijd(newValue);
@@ -993,7 +1035,7 @@ if (files.length > 0) {
                   <div className="h-12 w-full border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-colors">
                     <DropdownPauze 
                       onChangeHandler={field.onChange} 
-                      value={selectedShift ? selectedShift.break as unknown as string : field.value} 
+                      value={field.value} 
                       options={[
                         { value: "0", label: `${components.shared.DropdownPauze.options[0].label}` },
                         { value: "15", label: `${components.shared.DropdownPauze.options[1].label}` },
