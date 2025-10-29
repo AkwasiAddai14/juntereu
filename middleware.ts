@@ -46,11 +46,11 @@ function isLocale(locale: string): locale is typeof i18n.locales[number] {
   return i18n.locales.includes(locale as any);
 };
 
-export default clerkMiddleware((auth, request) => {
+export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   
-  // Skip middleware for API routes and UploadThing callbacks - let them pass through without language prefix
-  if (pathname.startsWith('/api/') || pathname.includes('uploadthing') || pathname.includes('utfs.io')) {
+  // Skip middleware for API routes - let them pass through without language prefix
+  if (pathname.startsWith('/api/')) {
     return NextResponse.next();
   }
   
@@ -91,7 +91,9 @@ export default clerkMiddleware((auth, request) => {
   }
   
   return NextResponse.next();
-});
+};
+
+export default clerkMiddleware();
 
 export const config = {
   matcher: [
