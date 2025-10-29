@@ -79,108 +79,103 @@ runConfig:
       availability:
       - BUILD
       - RUNTIME
-    - name: OPENAI_API_KEY
+    - variable: OPENAI_API_KEY
       valueFrom: { secretKeyRef: { name: OPENAI_API_KEY, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_URL
-      valueFrom: { secretKeyRef: { name: MONGODB_URL, key: latest } }
-      availability:
-      - BUILD
-      - RUNTIME
-    - name: MONGODB_NL_URL
+    - variable: MONGODB_NL_URL
       valueFrom: { secretKeyRef: { name: MONGODB_NL_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_BE_URL
+    - variable: MONGODB_BE_URL
       valueFrom: { secretKeyRef: { name: MONGODB_BE_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_VK_URL
+    - variable: MONGODB_VK_URL
       valueFrom: { secretKeyRef: { name: MONGODB_VK_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_DE_URL
+    - variable: MONGODB_DE_URL
       valueFrom: { secretKeyRef: { name: MONGODB_DE_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_FR_URL
+    - variable: MONGODB_FR_URL
       valueFrom: { secretKeyRef: { name: MONGODB_FR_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_ES_URL
+    - variable: MONGODB_ES_URL
       valueFrom: { secretKeyRef: { name: MONGODB_ES_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_PT_URL
+    - variable: MONGODB_PT_URL
       valueFrom: { secretKeyRef: { name: MONGODB_PT_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_IT_URL
+    - variable: MONGODB_IT_URL
       valueFrom: { secretKeyRef: { name: MONGODB_IT_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_OS_URL
+    - variable: MONGODB_OS_URL
       valueFrom: { secretKeyRef: { name: MONGODB_OS_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_CHF_URL
+    - variable: MONGODB_CHF_URL
       valueFrom: { secretKeyRef: { name: MONGODB_CHF_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_DK_URL
+    - variable: MONGODB_DK_URL
       valueFrom: { secretKeyRef: { name: MONGODB_DK_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_NO_URL
+    - variable: MONGODB_NO_URL
       valueFrom: { secretKeyRef: { name: MONGODB_NO_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_FI_URL
+    - variable: MONGODB_FI_URL
       valueFrom: { secretKeyRef: { name: MONGODB_FI_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_ZW_URL
+    - variable: MONGODB_ZW_URL
       valueFrom: { secretKeyRef: { name: MONGODB_ZW_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_AS_URL
+    - variable: MONGODB_AS_URL
       valueFrom: { secretKeyRef: { name: MONGODB_AS_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_US_URL
+    - variable: MONGODB_US_URL
       valueFrom: { secretKeyRef: { name: MONGODB_US_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: MONGODB_CA_URL
+    - variable: MONGODB_CA_URL
       valueFrom: { secretKeyRef: { name: MONGODB_CA_URL, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: FIREBASE_API_KEY
+    - variable: FIREBASE_API_KEY
       valueFrom: { secretKeyRef: { name: FIREBASE_API_KEY, key: latest } }
       availability:
       - BUILD
       - RUNTIME
-    - name: ROJECT_ID
-      value: { secretKeyRef: { name: PROJECT_ID, key: latest } }
+    - variable: PROJECT_ID
+      valueFrom: { secretKeyRef: { name: PROJECT_ID, key: latest } }
       availability:
       - BUILD
       - RUNTIME

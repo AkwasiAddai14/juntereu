@@ -43,9 +43,10 @@ export const determineLocation = async () => {
             return process.env.MONGODB_FI_URL!;
         default:
             if (!process.env.MONGODB_URL) {
-            throw new Error("Fallback MONGODB_URL not set in .env");
-          }
-          return 'Geen land geselecteerd'; // Fallback connection string
+                console.log("No country-specific database found and MONGODB_URL not set, using fallback");
+                return 'Geen land geselecteerd'; // Fallback connection string
+            }
+            return process.env.MONGODB_URL;
       }
 }
 
