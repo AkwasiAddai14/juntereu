@@ -1,8 +1,15 @@
 import { OpenAI } from 'openai';
 
-const openai = new OpenAI({ 
-  apiKey: process.env.OPENAI_API_KEY 
-});
+// Function to get OpenAI client with proper error handling
+function getOpenAIClient(): OpenAI {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error('OPENAI_API_KEY environment variable is not set');
+  }
+  return new OpenAI({
+    apiKey: apiKey,
+  });
+}
 
 interface UserData {
   aangemeld: any[];
@@ -85,6 +92,7 @@ export async function generateAISummary({ section, userData, language = 'nl' }: 
     Je schrijft in het Nederlands en gebruikt een vriendelijke, professionele toon. 
     Focus op prestaties, groei en motivatie. Houd het kort en krachtig (max 2 zinnen).`;
 
+    const openai = getOpenAIClient();
     const completion = await openai.chat.completions.create({
       model: 'gpt-4',
       messages: [
