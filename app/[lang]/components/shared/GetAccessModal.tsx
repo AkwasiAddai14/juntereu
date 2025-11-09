@@ -45,17 +45,20 @@ export default function GetAccessModal({ open, onOpenChange }: GetAccessModalPro
         throw new Error(data.error || 'Failed to submit form')
       }
 
-      // Reset form and close modal
+      // Show success message first
+      alert('Thank you! We will contact you soon.')
+      
+      // Reset form and close modal after showing message
       setFormData({
         name: '',
         companyName: '',
         email: '',
         phone: '',
       })
-      onOpenChange(false)
-      
-      // Show success message
-      alert('Thank you! We will contact you soon.')
+      // Use setTimeout to ensure alert is shown before closing
+      setTimeout(() => {
+        onOpenChange(false)
+      }, 100)
     } catch (error) {
       console.error('Error submitting form:', error)
       alert(error instanceof Error ? error.message : 'Something went wrong. Please try again.')
@@ -73,8 +76,26 @@ export default function GetAccessModal({ open, onOpenChange }: GetAccessModalPro
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+    <Dialog open={open} onOpenChange={(isOpen) => {
+      // Only close if not submitting and explicitly requested
+      if (!isSubmitting) {
+        onOpenChange(isOpen)
+      }
+    }}>
+      <DialogContent
+        onInteractOutside={(e) => {
+          // Prevent closing when clicking outside during submission
+          if (isSubmitting) {
+            e.preventDefault()
+          }
+        }}
+        onEscapeKeyDown={(e) => {
+          // Prevent closing with Escape during submission
+          if (isSubmitting) {
+            e.preventDefault()
+          }
+        }}
+      >
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-sky-600">
           <svg
             className="h-6 w-6 text-white"
@@ -99,7 +120,11 @@ export default function GetAccessModal({ open, onOpenChange }: GetAccessModalPro
             Fill in your details and we'll get in touch with you shortly.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="mt-5 sm:mt-6">
+        <form 
+          onSubmit={handleSubmit} 
+          onClick={(e) => e.stopPropagation()}
+          className="mt-5 sm:mt-6"
+        >
           <div className="space-y-4">
             <div>
               <Label htmlFor="name" className="block text-sm font-medium text-gray-900">
@@ -112,6 +137,8 @@ export default function GetAccessModal({ open, onOpenChange }: GetAccessModalPro
                 placeholder="John Doe"
                 value={formData.name}
                 onChange={handleChange}
+                onClick={(e) => e.stopPropagation()}
+                onFocus={(e) => e.stopPropagation()}
                 required
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
               />
@@ -127,6 +154,8 @@ export default function GetAccessModal({ open, onOpenChange }: GetAccessModalPro
                 placeholder="Acme Inc."
                 value={formData.companyName}
                 onChange={handleChange}
+                onClick={(e) => e.stopPropagation()}
+                onFocus={(e) => e.stopPropagation()}
                 required
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
               />
@@ -142,6 +171,8 @@ export default function GetAccessModal({ open, onOpenChange }: GetAccessModalPro
                 placeholder="john@acme.com"
                 value={formData.email}
                 onChange={handleChange}
+                onClick={(e) => e.stopPropagation()}
+                onFocus={(e) => e.stopPropagation()}
                 required
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
               />
@@ -157,6 +188,8 @@ export default function GetAccessModal({ open, onOpenChange }: GetAccessModalPro
                 placeholder="+1 (555) 123-4567"
                 value={formData.phone}
                 onChange={handleChange}
+                onClick={(e) => e.stopPropagation()}
+                onFocus={(e) => e.stopPropagation()}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
               />
             </div>
