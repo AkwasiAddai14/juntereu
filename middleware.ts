@@ -46,7 +46,7 @@ function isLocale(locale: string): locale is typeof i18n.locales[number] {
   return i18n.locales.includes(locale as any);
 };
 
-export function middleware(request: NextRequest) {
+export default clerkMiddleware((auth, request: NextRequest) => {
   const pathname = request.nextUrl.pathname
   
   // Skip middleware for API routes - let them pass through without language prefix
@@ -91,9 +91,7 @@ export function middleware(request: NextRequest) {
   }
   
   return NextResponse.next();
-};
-
-export default clerkMiddleware();
+});
 
 export const config = {
   matcher: [

@@ -24,6 +24,7 @@ import {
   SimpleStaggerItem, 
   SimpleFadeIn 
 } from '../components/shared/animations/AnimationUtils';
+import PricingCardWithModal from '../components/shared/PricingCardWithModal';
 
 type Bullet = { title: string; desc: string; icon?: IconName; } // optional if some items have no icon 
 type IconName = 'Cpu' | 'Clock3' | 'MessageSquare' | 'PlugZap' | 'CalendarDateRangeIcon' | 'UserPlusIcon' | 'UserGroupIcon' | 'CreditCardIcon' | 'CheckIcon' | 'LockClosedIcon'; // voeg meer icon namen toe indien nodig};
@@ -371,51 +372,14 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
             </SimpleStaggerContainer>
           </FadeInLeft>
           <FadeInRight className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:shrink-0">
-            <div className="rounded-2xl bg-gray-50 py-10 text-center inset-ring inset-ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
-              <div className="mx-auto max-w-xs px-8">
-                {/* <p className="text-base font-semibold text-gray-600">Pay once, own it forever</p> */}
-                  {/* Monthly price (default visible) */}
-          <div className="block group-has-[input[name='frequency'][value='annually']:checked]/tiers:hidden">
-            <p className="text-base font-semibold text-gray-600">
-              {pages.employersPage.Xedular.pricing.plans.Monthly.Maandelijks}
-            </p>
-            <p className="mt-6 flex items-baseline justify-center gap-x-2">
-              <span className="text-xl font-semibold tracking-tight text-gray-900">
-                {pages.employersPage.Xedular.pricing.plans.Monthly.Prijs}
-              </span>
-            </p>
-          </div>
-
-          {/* Yearly price (hidden until yearly checked) */}
-          <div className="hidden group-has-[input[name='frequency'][value='annually']:checked]/tiers:block">
-            <p className="text-base font-semibold text-gray-600">
-              {pages.employersPage.Xedular.pricing.plans.Yearly.Jaarlijks}
-            </p>
-            <p className="mt-6 flex items-baseline justify-center gap-x-2">
-              <span className="text-xl font-semibold tracking-tight text-gray-900">
-                {pages.employersPage.Xedular.pricing.plans.Yearly.Prijs}
-              </span>
-            </p>
-          </div>
-                <a
-                  href="#"
-                  className="mt-10 block w-full rounded-md bg-sky-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Get access
-                </a>
-                <p className="mt-6 text-xs/5 text-gray-600">
-                  Invoices and receipts available for easy company reimbursement
-                </p>
-                 <SimpleStaggerContainer className="mt-8 grid grid-cols-1 gap-4 text-sm/6 text-gray-600 sm:grid-cols-2 sm:gap-6">
-              {pages.employersPage.Xedular.pricing.usp.map((feature) => (
-                <SimpleStaggerItem key={feature} className="flex gap-x-3">
-                  <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-sky-600" />
-                  {feature}
-                </SimpleStaggerItem>
-              ))}
-            </SimpleStaggerContainer>
-              </div>
-            </div>
+            <PricingCardWithModal
+              monthlyLabel={pages.employersPage.Xedular.pricing.plans.Monthly.Maandelijks}
+              yearlyLabel={pages.employersPage.Xedular.pricing.plans.Yearly.Jaarlijks}
+              monthlyPrice={pages.employersPage.Xedular.pricing.plans.Monthly.Prijs}
+              yearlyPrice={pages.employersPage.Xedular.pricing.plans.Yearly.Prijs}
+              usp={pages.employersPage.Xedular.pricing.usp}
+              invoiceText="Invoices and receipts available for easy company reimbursement"
+            />
           </FadeInRight>
         </SimpleFadeIn>
       </div>

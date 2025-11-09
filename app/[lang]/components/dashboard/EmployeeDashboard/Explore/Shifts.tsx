@@ -63,7 +63,7 @@ export default function Shifts ({ lang, dashboard }: Props){
             {shift && shift.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {shift.slice(0, shift.length).map((shiftItem, index) => (
-                  <ShiftCard key={index} shift={shiftItem} lang={lang}/>
+                  <ShiftCard key={index} shift={shiftItem} lang={lang} components={dashboard?.components || {}}/>
                 ))}
               </div>
             ) : ( 

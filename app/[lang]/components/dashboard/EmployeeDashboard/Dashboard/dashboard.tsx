@@ -338,4 +338,4 @@ export default function EmployeeDashboard({ lang, dashboard }: { lang: Locale; d
       )}
       </Fragment>
   )
-}
+};

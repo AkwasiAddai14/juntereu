@@ -1410,39 +1410,55 @@ export async function haalShiftMetId(shiftId: string) {
 
 export async function haalShiftMetIdDelete(shiftId: string) {
   try {
+    // Validate shiftId
+    if (!shiftId || shiftId.trim() === '' || !mongoose.Types.ObjectId.isValid(shiftId)) {
+      throw new Error(`Invalid shift ID: ${shiftId}`);
+    }
     
     await connectToDB();
-    const shift = await ShiftArray.findById(shiftId).lean() as IShiftArray | null;;
-    console.log(shift)
-    if (!shift) throw new Error('Shift not found');
+    const shift = await ShiftArray.findById(shiftId).lean() as IShiftArray | null;
+    
+    if (!shift) {
+      throw new Error(`Shift not found with ID: ${shiftId}`);
+    }
+    
     return {
       ...shift,
-      _id: shift._id as string,  // Convert ObjectId to string
-      opdrachtgever: shift.employer.toString(),  // If this is also an ObjectId
+      _id: shift._id?.toString() || shiftId,  // Convert ObjectId to string
+      employer: shift.employer?.toString() || '',  // Convert employer ObjectId to string
+      opdrachtgever: shift.employer?.toString() || '',  // Also include opdrachtgever for compatibility
     };
 
   } catch (error: any) {
-    console.error(error);
-    throw new Error('Failed to fetch shift');
+    console.error('Error in haalShiftMetIdDelete:', error);
+    throw new Error(`Failed to fetch shift: ${error.message || error}`);
   }
 }
 
 export async function haalShiftMetIdApply(shiftId: string) {
   try {
+    // Validate shiftId
+    if (!shiftId || shiftId.trim() === '' || !mongoose.Types.ObjectId.isValid(shiftId)) {
+      throw new Error(`Invalid shift ID: ${shiftId}`);
+    }
     
     await connectToDB();
-    const shift = await ShiftArray.findById(shiftId).lean() as IShiftArray | null;;
-    console.log(shift)
-    if (!shift) throw new Error('Shift not found');
+    const shift = await ShiftArray.findById(shiftId).lean() as IShiftArray | null;
+    
+    if (!shift) {
+      throw new Error(`Shift not found with ID: ${shiftId}`);
+    }
+    
     return {
       ...shift,
-      _id: shift._id as string,  // Convert ObjectId to string
-      opdrachtgever: shift.employer.toString(),  // If this is also an ObjectId
+      _id: shift._id?.toString() || shiftId,  // Convert ObjectId to string
+      employer: shift.employer?.toString() || '',  // Convert employer ObjectId to string
+      opdrachtgever: shift.employer?.toString() || '',  // Also include opdrachtgever for compatibility
     };
 
   } catch (error: any) {
-    console.error(error);
-    throw new Error('Failed to fetch shift');
+    console.error('Error in haalShiftMetIdApply:', error);
+    throw new Error(`Failed to fetch shift: ${error.message || error}`);
   }
 }
 
@@ -1661,21 +1677,35 @@ interface FreelancerAfzeggenParams {
 
 export const checkAlreadyApplied = async ({freelancerObjectId, shiftArrayObjectId}: FreelancerAfzeggenParams): Promise<boolean>  => {
   try {
-
     await connectToDB();
 
+    // Validate ObjectIds before querying
+    if (!freelancerObjectId || freelancerObjectId.trim() === '' || !mongoose.Types.ObjectId.isValid(freelancerObjectId)) {
+      console.warn('Invalid freelancerObjectId:', freelancerObjectId);
+      return false;
+    }
+
+    if (!shiftArrayObjectId || shiftArrayObjectId.trim() === '' || !mongoose.Types.ObjectId.isValid(shiftArrayObjectId)) {
+      console.warn('Invalid shiftArrayObjectId:', shiftArrayObjectId);
+      return false;
+    }
+
+    const freelancerId = new mongoose.Types.ObjectId(freelancerObjectId);
+    const shiftArrayId = new mongoose.Types.ObjectId(shiftArrayObjectId);
+
     const shiftArray = await mongoose.model<IShiftArray>('ShiftArray').findOne({
-      _id: shiftArrayObjectId,
+      _id: shiftArrayId,
       $or: [
-        { aanmeldingen: freelancerObjectId },
-        { aangenomen: freelancerObjectId },
-        { reserves: freelancerObjectId },
+        { applications: freelancerId },
+        { accepted: freelancerId },
+        { reserves: freelancerId },
       ],
     });
 
     // If the shiftArray is found, the freelancer is already present
     return !!shiftArray;
   } catch (error: any) {
+    console.error('Error in checkAlreadyApplied:', error);
     throw new Error(`Failed to find shift: ${error.message}`);
   }
 }

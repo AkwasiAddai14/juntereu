@@ -11,7 +11,7 @@ const connections: Map<string, boolean> = new Map();
 const COUNTRY_DB_CONFIG = {
   'Nederland': {
     url: process.env.MONGODB_NL_URL!,
-    name: 'junter_nl',
+    name: 'Nederland',
     functions: {
       createEmployee: 'createNCEmployee',
       createEmployer: 'maakGLBedrijf'
@@ -140,25 +140,65 @@ export async function connectToCountryDatabase(country: string): Promise<boolean
     }
 
     // Check if already connected to this database
-    if (await isConnectedToCountry(country)) {
-      console.log(`Already connected to ${dbConfig.name} database`);
-      return true;
+    const connectionKey = `${country}_${dbConfig.name}`;
+    if (connections.get(connectionKey)) {
+      // Check if mongoose is actually connected to the right database
+      if (mongoose.connection.readyState === 1 && mongoose.connection.db?.databaseName === dbConfig.name) {
+        console.log(`Already connected to ${dbConfig.name} database`);
+        return true;
+      }
     }
 
-    // For now, let's use the default database for all countries
-    // This avoids the multiple connection issue
-    console.log(`Using default database for ${country} (${dbConfig.name})`);
+    console.log(`Connecting to ${dbConfig.name} database for country: ${country}`);
     
-    // Connect to default database if not already connected
-    if (mongoose.connection.readyState !== 1) {
-      await mongoose.connect(process.env.MONGODB_URI!, {
-        dbName: 'junter',
-      });
+    // Disconnect existing connection if it's to a different database
+    if (mongoose.connection.readyState === 1) {
+      const currentDbName = mongoose.connection.db?.databaseName;
+      if (currentDbName !== dbConfig.name) {
+        console.log(`Disconnecting from ${currentDbName} to connect to ${dbConfig.name}`);
+        await mongoose.disconnect();
+      } else {
+        // Already connected to the right database
+        connections.set(connectionKey, true);
+        console.log(`✅ Already connected to ${dbConfig.name} database`);
+        return true;
+      }
     }
     
-    connections.set(country, true);
-    console.log(`✅ Using default database for ${country}`);
-    return true;
+    // Connect to the country-specific database
+    if (!dbConfig.url) {
+      console.error(`No database URL configured for country: ${country}`);
+      return await connectToDefaultDatabase();
+    }
+
+    mongoose.set('strictQuery', true);
+    
+    // Check if the connection string already includes a database name
+    // MongoDB connection strings format: mongodb://host:port/database?options
+    // If the URL has a database name (after the last / and before ?), use it
+    // Otherwise, specify dbName in options
+    const urlMatch = dbConfig.url.match(/mongodb[^\/]*\/\/[^\/]+\/([^\/\?]+)/);
+    const connectOptions: { dbName?: string } = {};
+    
+    if (!urlMatch || !urlMatch[1]) {
+      // No database name in URL, use the configured name
+      connectOptions.dbName = dbConfig.name;
+      console.log(`No database in connection string, using dbName: ${dbConfig.name}`);
+    } else {
+      // Database name found in URL, mongoose will use it automatically
+      console.log(`Database name found in connection string: ${urlMatch[1]}`);
+    }
+    
+    await mongoose.connect(dbConfig.url, connectOptions);
+    
+    if (mongoose.connection.readyState === 1) {
+      connections.set(connectionKey, true);
+      console.log(`✅ Connected to ${dbConfig.name} database for ${country}`);
+      return true;
+    } else {
+      console.error(`❌ Failed to connect to ${dbConfig.name} database`);
+      return await connectToDefaultDatabase();
+    }
 
   } catch (error) {
     console.error(`Error connecting to database for ${country}:`, error);
@@ -270,7 +310,16 @@ export async function disconnectAllDatabases(): Promise<void> {
  * @returns boolean - Connection status
  */
 export async function isConnectedToCountry(country: string): Promise<boolean> {
-  return connections.get(country) || false;
+  const dbConfig = COUNTRY_DB_CONFIG[country as keyof typeof COUNTRY_DB_CONFIG];
+  if (!dbConfig) {
+    return false;
+  }
+  const connectionKey = `${country}_${dbConfig.name}`;
+  // Also check if mongoose is actually connected to the right database
+  if (connections.get(connectionKey) && mongoose.connection.readyState === 1) {
+    return mongoose.connection.db?.databaseName === dbConfig.name;
+  }
+  return false;
 }
 
 /**

@@ -76,6 +76,15 @@ type Experience = {
 
 export const createNCEmployee = async (user:Employee) => {
     try {
+      // Connection should already be established by the caller (createEmployee)
+      // Check if connected, but don't reconnect as it might switch to wrong database
+      if (mongoose.connection.readyState !== 1) {
+        console.log("DB connection not established - this should not happen");
+        throw new Error("DB connection not established. Please ensure getDatabaseConnection is called first.");
+      }
+      
+      console.log("Using existing database connection:", mongoose.connection.db?.databaseName);
+      
       const newEmployee = await Employee.create(user);
       await Employee.findOneAndUpdate({clerkId: user.clerkId}, {
         onboarded:false
@@ -109,17 +118,17 @@ const transporter = nodemailer.createTransport({
   function generateEmailContent(bedrijfDetails: any): EmailContent {
 
     return {
-        subject: `Gefeliciteerd! Een nieuw bedrijf heeft zich aangemeld: ${bedrijfDetails.displaynaam}`,
+        subject: `Gefeliciteerd! Een nieuw bedrijf heeft zich aangemeld: ${bedrijfDetails.displayname}`,
         text: `
         Gefeliciteerd! Een nieuw bedrijf heeft zich aangemeld:
-        Contactpersoon: ${bedrijfDetails.naam}
-        emailadres: ${bedrijfDetails.emailadres}
-        telefoonnummer: ${bedrijfDetails.telefoonnummer}
-        KVK-nummmer: ${bedrijfDetails.kvknr}
-        Straat: ${bedrijfDetails.straat}
-        Huisnummer: ${bedrijfDetails.huisnummer}
+        Contactpersoon: ${bedrijfDetails.name}
+        emailadres: ${bedrijfDetails.email}
+        telefoonnummer: ${bedrijfDetails.phone}
+        KVK-nummmer: ${bedrijfDetails.CompanyRegistrationNumber}
+        Straat: ${bedrijfDetails.street}
+        Huisnummer: ${bedrijfDetails.housenumber}
         postcode: ${bedrijfDetails.postcode}
-        stad: ${bedrijfDetails.stad}
+        stad: ${bedrijfDetails.city}
         Maak ze helemaal wegwijs op het platform!
         `,
     };
@@ -163,13 +172,14 @@ type company = {
 
 export async function maakGLBedrijf(organization: company) {
     try {
-        await connectToDB();
-        if (mongoose.connection.readyState === 1) {
-            console.log("Connected to db");
-        } else {
-            console.log("DB connection attempt failed");
-            throw new Error("DB connection attempt failed");
+        // Connection should already be established by the caller (maakBedrijf)
+        // Check if connected, but don't reconnect as it might switch to wrong database
+        if (mongoose.connection.readyState !== 1) {
+            console.log("DB connection not established - this should not happen");
+            throw new Error("DB connection not established. Please ensure getDatabaseConnection is called first.");
         }
+        
+        console.log("Using existing database connection:", mongoose.connection.db?.databaseName);
 
         console.log("Creating a new bedrijf document...");
         const newBedrijf = new Employer(organization);

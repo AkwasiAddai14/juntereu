@@ -1,16 +1,16 @@
-import { getDictionary } from '@/app/[lang]/dictionaries';
 import CheckoutCardClient from '@/app/[lang]/components/shared/cards/CheckoutCard';
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
 import { ShiftType } from '@/app/lib/models/shift.model';
 
-export default async function CheckoutCardServer({
+export default function CheckoutCardServer({
   shift,
   lang,
+  components,
 }: {
   shift: ShiftType;
   lang: Locale;
+  components?: any;
 }) {
-  const { components } = await getDictionary(lang);
-
-  return <CheckoutCardClient shift={shift} components={components} />;
+  // If components are not provided, use empty object (will fallback to defaults in client component)
+  return <CheckoutCardClient shift={shift} components={components || {}} />;
 }

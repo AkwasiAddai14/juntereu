@@ -84,7 +84,7 @@ export default function Afgerond({ lang, dashboard }: Props) {
                     {diensten.length > 0 ? (
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                         {diensten.slice(0, diensten.length).map((dienstenItem, index) => (
-                          <JobCard key={index} dienst={dienstenItem} lang={lang}/>
+                          <JobCard key={index} dienst={dienstenItem} lang={lang} components={dashboard?.components || {}}/>
                         ))}
                       </div>
                       ) : (

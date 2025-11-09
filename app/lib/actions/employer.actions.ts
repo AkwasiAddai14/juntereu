@@ -83,23 +83,27 @@ type company = {
 export async function maakBedrijf(organization: company) {
     try {
         const userInfo = await currentUser();
-        const country = userInfo?.unsafeMetadata?.country as string;
+        const countryFromMetadata = userInfo?.unsafeMetadata?.country as string;
+        
+        // Use country from organization object first, then metadata, then default
+        const targetCountry = (organization.country ?? countryFromMetadata ?? 'Nederland');
+        console.log(`Target country: ${targetCountry} (from organization: ${organization.country}, from metadata: ${countryFromMetadata})`);
         
         // Connect to the appropriate database based on country
-        const connected = await getDatabaseConnection( organization.country ?? country ?? 'Nederland' );
+        const connected = await getDatabaseConnection(targetCountry);
         
         if (!connected) {
             console.error('Failed to connect to database');
             throw new Error('Database connection failed');
         }
 
-        // Get country-specific functions
-        const countryFunctions = await getCountryFunctions(country || 'Nederland');
-        console.log(`Using functions for ${country}:`, countryFunctions);
+        // Get country-specific functions using the resolved country
+        const countryFunctions = await getCountryFunctions(targetCountry);
+        console.log(`Using functions for ${targetCountry}:`, countryFunctions);
 
         // Call country-specific function if available
-        if (country && countryFunctions.createEmployer === 'maakGLBedrijf') {
-            console.log(`Calling country-specific function for ${country}`);
+        if (targetCountry && countryFunctions.createEmployer === 'maakGLBedrijf') {
+            console.log(`Calling country-specific function for ${targetCountry}`);
             return await maakGLBedrijf(organization);
         }
         
@@ -291,7 +295,7 @@ export const fetchBedrijfDetails = async (clerkId: string) => {
       throw new Error('Bedrijf not found');
     } catch (error) {
       console.error('Error fetching bedrijf details:', error);
-      redirect('/[lang]/onboarding');
+      redirect('../onboarding');
     }
   };
 

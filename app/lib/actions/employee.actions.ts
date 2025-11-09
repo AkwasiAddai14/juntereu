@@ -61,23 +61,27 @@ export const createEmployee = async (user:Employee) => {
       console.log("Starting createEmployee with data:", user);
       
       const userInfo = await currentUser();
-      const country = userInfo?.unsafeMetadata?.country as string;
+      const countryFromMetadata = userInfo?.unsafeMetadata?.country as string;
+      
+      // Use country from user object first, then metadata, then default
+      const targetCountry = (user.country ?? countryFromMetadata ?? 'Nederland');
+      console.log(`Target country: ${targetCountry} (from user: ${user.country}, from metadata: ${countryFromMetadata})`);
       
       // Connect to the appropriate database based on country
-      const connected = await getDatabaseConnection((user.country ?? country) ?? 'Nederland' );
+      const connected = await getDatabaseConnection(targetCountry);
       
       if (!connected) {
         console.error('Failed to connect to database');
         throw new Error('Database connection failed');
       }
 
-      // Get country-specific functions
-      const countryFunctions = await getCountryFunctions(country || 'Nederland');
-      console.log(`Using functions for ${country}:`, countryFunctions);
+      // Get country-specific functions using the resolved country
+      const countryFunctions = await getCountryFunctions(targetCountry);
+      console.log(`Using functions for ${targetCountry}:`, countryFunctions);
 
       // Call country-specific function if available
-      if (country && countryFunctions.createEmployee === 'createNCEmployee') {
-        console.log(`Calling country-specific function for ${country}`);
+      if (targetCountry && countryFunctions.createEmployee === 'createNCEmployee') {
+        console.log(`Calling country-specific function for ${targetCountry}`);
         return await createNCEmployee(user);
       }
       
@@ -214,7 +218,7 @@ export const haalFreelancer = async (clerkId: string): Promise<IEmployee | null>
     return freelancer ? serializeData(freelancer) : null;
   } catch (error) {
     console.error('Error retrieving freelancer:', error);
-    redirect('../[lang]/onboarding');
+    redirect('../onboarding');
     return null;
   }
 };

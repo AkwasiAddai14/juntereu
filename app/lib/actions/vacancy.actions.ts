@@ -13,10 +13,18 @@ import { currentUser } from '@clerk/nextjs/server'
 import { serializeData } from '@/app/lib/utils/serialization';
 import cron from 'node-cron';
 import nodemailer from 'nodemailer';
+import { getDatabaseConnection } from '../database-connection';
 
  export const haalgebruikerMetId = async (clerkId: any) => {
     try {
-        await connectToDB();
+      // Get country from user metadata
+      const userInfo = await currentUser();
+      const countryFromMetadata = userInfo?.unsafeMetadata?.country as string;
+      const targetCountry = countryFromMetadata || 'Nederland';
+      
+      // Connect to country-specific database
+      await getDatabaseConnection(targetCountry);
+      
       // Controleer eerst of de gebruiker een bedrijf is
       const bedrijf = await Employer.findOne({ clerkId }).lean();
       if (bedrijf) {
@@ -40,13 +48,19 @@ import nodemailer from 'nodemailer';
 
 
   export const haalVacatureMetId = async (id: string) => {
-
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       throw new Error('Ongeldig vacature-ID');
     }
   
     try {
-        await connectToDB();
+      // Get country from user metadata
+      const userInfo = await currentUser();
+      const countryFromMetadata = userInfo?.unsafeMetadata?.country as string;
+      const targetCountry = countryFromMetadata || 'Nederland';
+      
+      // Connect to country-specific database
+      await getDatabaseConnection(targetCountry);
+      
       const vacature = await Vacancy.findById(id).lean(); // Use .lean() for plain objects
   
       if (!vacature) {
@@ -66,8 +80,13 @@ import nodemailer from 'nodemailer';
     }
   
     try {
-
-      await connectToDB();
+      // Get country from user metadata
+      const userInfo = await currentUser();
+      const countryFromMetadata = userInfo?.unsafeMetadata?.country as string;
+      const targetCountry = countryFromMetadata || 'Nederland';
+      
+      // Connect to country-specific database
+      await getDatabaseConnection(targetCountry);
 
       const diensten = await Job.find({ vacancy: vacatureId }).lean(); // Use .lean() for plain objects
   
@@ -84,8 +103,13 @@ import nodemailer from 'nodemailer';
     }
   
     try {
-
-      await connectToDB();
+      // Get country from user metadata
+      const userInfo = await currentUser();
+      const countryFromMetadata = userInfo?.unsafeMetadata?.country as string;
+      const targetCountry = countryFromMetadata || 'Nederland';
+      
+      // Connect to country-specific database
+      await getDatabaseConnection(targetCountry);
 
       const sollicitaties = await Application.find({ vacancy: vacatureId }).lean(); // Use .lean() for plain objects
   
@@ -475,49 +499,59 @@ import nodemailer from 'nodemailer';
         }
       };
 
-      export const haalRelevanteVacatures = async (freelancerId: Types.ObjectId) => {
+      export const haalRelevanteVacatures = async (freelancerId: Types.ObjectId | string) => {
         try {
           await connectToDB();
-          // Find the freelancer by their ObjectId
+          // Find the freelancer - freelancerId can be either MongoDB ObjectId or Clerk ID
           let freelancer; 
-          let vacatureArrayIds: string | any[];
-          if(mongoose.Types.ObjectId.isValid(freelancerId)){
+          let vacatureArrayIds: string[] = [];
+          
+          // Try to find by ObjectId first if it's a valid ObjectId
+          if (mongoose.Types.ObjectId.isValid(freelancerId as string)) {
             freelancer = await Employee.findById(freelancerId);
-            if (freelancer && freelancer.sollicitatie && freelancer.sollicitatie.length > 0) {
-              // Fetch the related Flexpool documents
-              const sollicitaties = await Application.find({ _id: { $in: freelancer.sollicitaties } }).lean() as IApplication[];
-              // Extract shiftArrayIds from each shift
-              console.log("alle sollicitties: ", sollicitaties)
-              vacatureArrayIds = sollicitaties.map( sollicitatie => sollicitatie.vacancy);
-          } else {
+          }
+          
+          // If not found by ObjectId, try to find by Clerk ID
+          if (!freelancer) {
+            // freelancerId might be a Clerk ID string
+            freelancer = await Employee.findOne({ clerkId: freelancerId as string });
+          }
+          
+          // If still not found, try to get from currentUser
+          if (!freelancer) {
             const user = await currentUser();
             if (user) {
-               freelancer = await Employee.findOne({ clerkId: user.id });
-               if (freelancer && freelancer.sollicitatie && freelancer.sollicitatie.length > 0) {
-               // Fetch the related Flexpool documents
-              const sollicitaties = await Application.find({ _id: { $in: freelancer.sollicitaties } }).lean() as IApplication[];
-              // Extract shiftArrayIds from each shift
-              console.log("alle sollicitties: ", sollicitaties)
-              vacatureArrayIds = sollicitaties.map( sollicitatie => sollicitatie.vacancy);
-              }
-          } else {
-            console.log('No Vacature found for this freelancer.');
-            return [];
-          }   
-      }
-          // Find all VacatureArray documents
-          const allVacatureArrays = await Vacancy.find({beschikbaar: true});
+              freelancer = await Employee.findOne({ clerkId: user.id });
+            }
+          }
+          
+          if (!freelancer) {
+            console.log('No employee found for this freelancer ID:', freelancerId);
+            // Return all available vacancies if no employee found
+            const allVacatureArrays = await Vacancy.find({beschikbaar: true}).lean();
+            return JSON.parse(JSON.stringify(allVacatureArrays));
+          }
+          
+          // Get vacancies that the freelancer has already applied to
+          if (freelancer.sollicitaties && freelancer.sollicitaties.length > 0) {
+            const sollicitaties = await Application.find({ _id: { $in: freelancer.sollicitaties } }).lean() as IApplication[];
+            console.log("alle sollicitties: ", sollicitaties);
+            vacatureArrayIds = sollicitaties.map(sollicitatie => sollicitatie.vacancy?.toString()).filter(Boolean);
+          }
+          
+          // Find all VacatureArray documents that are available
+          const allVacatureArrays = await Vacancy.find({beschikbaar: true}).lean();
       
-          // Filter VacatureArrays that do not match any VacatureArrayId in the freelancer's Vacature
+          // Filter VacatureArrays that do not match any VacatureArrayId in the freelancer's applications
           const filteredVacatureArrays = allVacatureArrays.filter((vacature: any) => 
             !vacatureArrayIds.includes(vacature._id.toString())
           );
-          console.log("filtered Vacature: ", allVacatureArrays)
-          return filteredVacatureArrays;
-        } 
-      } catch (error) {
-        console.error('Error fetching Vacature:', error);
-        throw new Error('Failed to fetch Vacature');
+          
+          console.log("filtered Vacature: ", filteredVacatureArrays);
+          return JSON.parse(JSON.stringify(filteredVacatureArrays));
+        } catch (error) {
+          console.error('Error fetching Vacature:', error);
+          throw new Error('Failed to fetch Vacature');
         }
       }
 

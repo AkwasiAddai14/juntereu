@@ -83,7 +83,7 @@ export default function Vacancy ({ lang, dashboard }: Props) {
             {vacatures.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {vacatures.slice(0, vacatures.length).map((vacaturesItem, index) => (
-                  <VacancyCard key={index} vacature={vacaturesItem} lang={lang}/>
+                  <VacancyCard key={index} vacature={vacaturesItem} lang={lang} components={dashboard?.components || {}}/>
                 ))}
               </div>
             ) : (

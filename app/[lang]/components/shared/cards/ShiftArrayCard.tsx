@@ -31,7 +31,23 @@ const Card = ({ shift, components, lang }: Props) => {
 
   const backgroundImageUrl = shift.image;
   const opdrachtgeverName = shift.employerName || 'Junter';
-  const opdrachtgeverStad = shift.adres || 'Amsterdam';
+  
+  // Handle adres as either string or object
+  let opdrachtgeverStad = 'Amsterdam';
+  if (shift.adres) {
+    if (typeof shift.adres === 'string') {
+      opdrachtgeverStad = shift.adres;
+    } else if (typeof shift.adres === 'object' && shift.adres !== null) {
+      // If adres is an object, format it as a string
+      const addressParts = [];
+      if (shift.adres.street) addressParts.push(shift.adres.street);
+      if (shift.adres.housenumber) addressParts.push(shift.adres.housenumber);
+      if (shift.adres.postcode) addressParts.push(shift.adres.postcode);
+      if (shift.adres.city) addressParts.push(shift.adres.city);
+      opdrachtgeverStad = addressParts.length > 0 ? addressParts.join(', ') : 'Amsterdam';
+    }
+  }
+  
   const flexpoolTitle = shift.inFlexpool ? "✅ flexpool" : '❎ flexpool';
 
 

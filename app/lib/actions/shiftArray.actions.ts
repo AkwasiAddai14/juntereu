@@ -132,49 +132,60 @@ export const haalGeplaatsteShifts = async ({ employerId }: { employerId: string 
   };
   
   
-  export const haalShift = async (freelancerId: Types.ObjectId) => {
+  export const haalShift = async (freelancerId: Types.ObjectId | string) => {
     try {
       await connectToDB();
-      // Find the freelancer by their ObjectId
+      // Find the freelancer - freelancerId can be either MongoDB ObjectId or Clerk ID
       let freelancer; 
-      let shiftsArrayIds: string | any[];
-      if(mongoose.Types.ObjectId.isValid(freelancerId)){
+      let shiftsArrayIds: string[] = [];
+      
+      // Try to find by ObjectId first if it's a valid ObjectId
+      if (mongoose.Types.ObjectId.isValid(freelancerId as string)) {
         freelancer = await Employee.findById(freelancerId);
-        if (freelancer && freelancer.shifts && freelancer.shifts.length > 0) {
-          // Fetch the related Flexpool documents
-          const shifts = await Shift.find({ _id: { $in: freelancer.shifts } }).lean() as ShiftType[];
-          // Extract shiftArrayIds from each shift
-          console.log("alle shifts: ", shifts)
-          shiftsArrayIds = shifts.map(shift => shift.shiftArrayId);
-      } else {
+      }
+      
+      // If not found by ObjectId, try to find by Clerk ID
+      if (!freelancer) {
+        // freelancerId might be a Clerk ID string
+        freelancer = await Employee.findOne({ clerkId: freelancerId as string });
+      }
+      
+      // If still not found, try to get from currentUser
+      if (!freelancer) {
         const user = await currentUser();
         if (user) {
-           freelancer = await Employee.findOne({ clerkId: user.id });
-           if (freelancer && freelancer.shifts && freelancer.shifts.length > 0) {
-            // Fetch the related shifts documents
-            const shifts = await Shift.find({ _id: { $in: freelancer.shifts } }) as ShiftType[];
-            // Extract shiftArrayIds from each shift
-            shiftsArrayIds = shifts.map(shift => shift.shiftArrayId);
-          }
-      } else {
-        console.log('No shifts found for this freelancer.');
-        return [];
-      }   
-  }
-      // Find all ShiftArray documents
+          freelancer = await Employee.findOne({ clerkId: user.id });
+        }
+      }
+      
+      if (!freelancer) {
+        console.log('No employee found for this freelancer ID:', freelancerId);
+        // Return all available shifts if no employee found
+        const allShiftArrays = await ShiftArray.find({beschikbaar: true}).lean();
+        return JSON.parse(JSON.stringify(allShiftArrays));
+      }
+      
+      // Get shifts that the freelancer is already associated with
+      if (freelancer.shifts && freelancer.shifts.length > 0) {
+        const shifts = await Shift.find({ _id: { $in: freelancer.shifts } }).lean() as ShiftType[];
+        console.log("alle shifts: ", shifts);
+        shiftsArrayIds = shifts.map(shift => shift.shiftArrayId?.toString()).filter(Boolean);
+      }
+      
+      // Find all ShiftArray documents that are available
       const allShiftArrays = await ShiftArray.find({beschikbaar: true}).lean();
   
       // Filter ShiftArrays that do not match any shiftArrayId in the freelancer's shifts
       const filteredShiftArrays = allShiftArrays.filter((shiftArray: any) => 
         !shiftsArrayIds.includes(shiftArray._id.toString())
       );
-      console.log("filtered shifts: ", filteredShiftArrays)
+      
+      console.log("filtered shifts: ", filteredShiftArrays);
       // Ensure proper serialization by converting to JSON and back
       return JSON.parse(JSON.stringify(filteredShiftArrays));
-    } 
-  } catch (error) {
-    console.error('Error fetching shifts:', error);
-    throw new Error('Failed to fetch shifts');
+    } catch (error) {
+      console.error('Error fetching shifts:', error);
+      throw new Error('Failed to fetch shifts');
     }
   };
 

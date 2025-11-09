@@ -420,8 +420,8 @@ const Dashboard =  () => {
                                 <VacatureCard 
                                   key={index} 
                                   vacature={vacaturesItem} 
-                                  lang={'at'} 
-                                  components={undefined} 
+                                  lang={lang} 
+                                  components={dashboard?.components || {}} 
                                 />
                               ))}
                             </div>
@@ -454,8 +454,8 @@ const Dashboard =  () => {
                               <ShiftCard 
                                 key={index} 
                                 shift={shiftItem} 
-                                components={undefined} 
-                                lang={'at'} 
+                                components={dashboard?.components || {}} 
+                                lang={lang} 
                               />
                             ))}
                           </div>
@@ -478,8 +478,8 @@ const Dashboard =  () => {
                                 <ShiftCard 
                                   key={index} 
                                   shift={unpublishedItem} 
-                                  components={undefined} 
-                                  lang={'at'} 
+                                  components={dashboard?.components || {}} 
+                                  lang={lang} 
                                 />
                               ))}
                             </div>
@@ -515,8 +515,8 @@ const Dashboard =  () => {
                                 <VacatureCard 
                                   key={index} 
                                   vacature={vacaturesItem} 
-                                  lang={'at'} 
-                                  components={undefined} 
+                                  lang={lang} 
+                                  components={dashboard?.components || {}} 
                                 />
                               ))}
                             </div>
@@ -637,8 +637,8 @@ const Dashboard =  () => {
                           <VacatureCard 
                             key={index} 
                             vacature={vacaturesItem} 
-                            lang={'at'} 
-                            components={undefined} 
+                            lang={lang} 
+                            components={dashboard?.components || {}} 
                           />
                         ))}
                       </div>
@@ -670,7 +670,7 @@ const Dashboard =  () => {
                 <ScrollArea>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {checkout.slice(0, 9).map((checkoutItem, index) => (
-                      <Card key={index} shift={checkoutItem} components={undefined} />
+                      <Card key={index} shift={checkoutItem} components={dashboard?.components || {}} />
                     ))}
                   </div>
                 </ScrollArea>
@@ -685,7 +685,7 @@ const Dashboard =  () => {
                 <ScrollArea>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {factuur.slice(0, 9).map((factuurItem, index) => (
-                      <FactuurCard key={index} factuur={factuurItem} components={undefined} /> // ****
+                      <FactuurCard key={index} factuur={factuurItem} components={dashboard?.components || {}} />
                     ))}
                   </div>
                 </ScrollArea>
@@ -717,7 +717,7 @@ const Dashboard =  () => {
                     </AlertDialog>
                   <div className="grid grid-cols-3 gap-4">
                     {flexpool.slice(0, 9).map((flexpoolItem, index) => (
-                      <FlexpoolCard key={index} flexpool={flexpoolItem} components={undefined} />
+                      <FlexpoolCard key={index} flexpool={flexpoolItem} components={dashboard?.components || {}} />
                     ))}
                   </div>
                 </ScrollArea>
@@ -888,8 +888,8 @@ const Dashboard =  () => {
         isVisible={showCheckout}
         onClose={() => setShowCheckout(false)} 
         shiftId={checkoutId}
-        lang={'at'}
-        components={undefined}    />
+        lang={lang}
+        components={dashboard?.components || {}}    />
     </Fragment>
   )
 }

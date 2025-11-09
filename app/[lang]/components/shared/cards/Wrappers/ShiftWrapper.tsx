@@ -1,14 +1,14 @@
 import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
-import { getDictionary } from '@/app/[lang]/dictionaries';
 import { ShiftType } from '@/app/lib/models/shift.model';
 import ShiftCardClient from '@/app/[lang]/components/shared/cards/ShiftCard';
 
 type Props = {
   shift: ShiftType;
   lang: Locale;
+  components?: any;
 };
 
-export default async function ShiftCardServer({ shift, lang }: Props) {
-  const { components } = await getDictionary(lang);
-  return <ShiftCardClient shift={shift} lang={lang} components={components} />;
+export default function ShiftCardServer({ shift, lang, components }: Props) {
+  // If components are not provided, use empty object (will fallback to defaults in client component)
+  return <ShiftCardClient shift={shift} lang={lang} components={components || {}} />;
 }

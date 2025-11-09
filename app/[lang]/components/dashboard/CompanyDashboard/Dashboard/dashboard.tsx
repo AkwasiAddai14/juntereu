@@ -654,8 +654,8 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                               <ShiftCard 
                                 key={index} 
                                 shift={shiftItem} 
-                                components={undefined} 
-                                lang={'at'} 
+                                components={dashboard.components} 
+                                lang={lang} 
                               />
                             ))}
                           </div>
@@ -678,8 +678,8 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                                 <ShiftCard 
                                   key={index} 
                                   shift={unpublishedItem} 
-                                  components={undefined} 
-                                  lang={'at'} 
+                                  components={dashboard.components} 
+                                  lang={lang} 
                                 />
                               ))}
                             </div>

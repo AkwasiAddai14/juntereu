@@ -1,6 +1,6 @@
 "use server"
 
-import { connectToDB} from "../mongoose";
+import { connectToDB } from "../mongoose";
 import Flexpool, { IFlexpool } from "../models/flexpool.model";
 import Employer, { IEmployer } from "../models/employer.model";
 import Employee, { IEmployee } from "../models/employee.model";
@@ -52,7 +52,7 @@ export async function maakFlexpool({
     company.flexpools.push(savedFlexpool._id as unknown as mongoose.Types.ObjectId); // Ensure the ID is of correct type
     await company.save(); // Save the updated company document
 
-    return [savedFlexpool._id.toString(), savedFlexpool.titel];
+    return [savedFlexpool._id as string , savedFlexpool.titel];
   } catch (error) {
     console.error('Error creating flexpool:', error);
     throw new Error('Error creating flexpool');
