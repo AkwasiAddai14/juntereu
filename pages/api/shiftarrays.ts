@@ -6,14 +6,34 @@ let initialized = false;
 
 async function getDb() {
   if (!client) {
-    client = new MongoClient(process.env.MONGODB_NL_URL!);
+    const mongoUrl = process.env.MONGODB_NL_URL;
+    if (!mongoUrl) {
+      throw new Error("MONGODB_NL_URL environment variable is not set");
+    }
+    client = new MongoClient(mongoUrl);
     await client.connect();
   }
-  const db = client.db(process.env.DB_NAME);
+  
+  // Get database name from environment or extract from connection string
+  let dbName = process.env.DB_NAME;
+  if (!dbName) {
+    // Try to extract from connection string or use default
+    const urlMatch = process.env.MONGODB_NL_URL?.match(/mongodb[^\/]*\/\/[^\/]+\/([^\/\?]+)/);
+    dbName = urlMatch?.[1] || "Nederland"; // Default to "Nederland" if not found
+  }
+  
+  const db = client.db(dbName);
   if (!initialized) {
     initialized = true;
     // Unieke index op hash (dedupe). 'sparse' zodat docs zonder hash niet falen.
-    await db.collection("shiftarrays").createIndex({ hash: 1 }, { unique: true, sparse: true });
+    try {
+      await db.collection("shiftarrays").createIndex({ hash: 1 }, { unique: true, sparse: true });
+    } catch (indexError: any) {
+      // Index might already exist, which is fine
+      if (indexError?.code !== 85) { // 85 = IndexOptionsConflict
+        console.warn("Index creation warning:", indexError.message);
+      }
+    }
   }
   return db;
 }
@@ -35,7 +55,32 @@ function makeHash(doc: any) {
     doc.startingDate instanceof Date
       ? doc.startingDate.toISOString().slice(0, 10)
       : (doc.startingDate || "");
-  const key = [doc.title, doc.adres, dateStr, doc.starting].join("|").toLowerCase();
+  
+  // Handle adres - can be string or object with {street, housenumber, postcode, city}
+  let adresKey = "";
+  if (doc.adres) {
+    if (typeof doc.adres === 'string') {
+      adresKey = doc.adres;
+    } else if (typeof doc.adres === 'object' && doc.adres !== null) {
+      // If adres is an object, format it as a string
+      const addressParts = [
+        doc.adres.street,
+        doc.adres.housenumber,
+        doc.adres.postcode,
+        doc.adres.city
+      ].filter(Boolean);
+      adresKey = addressParts.join(" ");
+    }
+  }
+  
+  // Safely handle all values that might be undefined
+  const key = [
+    doc.title || "",
+    adresKey,
+    dateStr,
+    doc.starting || ""
+  ].join("|").toLowerCase();
+  
   return crypto.createHash("sha1").update(key).digest("hex");
 }
 
@@ -57,12 +102,26 @@ export default async function handler(req: any, res: any) {
 
     // Payload klonen en casten
     const doc = { ...(req.body || {}) };
+    
+    // Validate required fields
+    if (!doc.title) {
+      return res.status(400).json({ error: "Missing required field: title" });
+    }
+    
     doc.employer = toOid(doc.employer);
     doc.startingDate = toDate(doc.startingDate);
     doc.endingDate = toDate(doc.endingDate);
 
     // Hash voor dedupe (title+adres+startdatum+starttijd)
-    if (!doc.hash) doc.hash = makeHash(doc);
+    // Ensure all values are safe before hashing
+    try {
+      if (!doc.hash) doc.hash = makeHash(doc);
+    } catch (hashError: any) {
+      console.error('Error creating hash:', hashError);
+      return res.status(400).json({ 
+        error: `Error creating hash: ${hashError.message || String(hashError)}` 
+      });
+    }
 
     if (req.method === "POST") {
       // Insert (faalt bij duplicaat hash)
