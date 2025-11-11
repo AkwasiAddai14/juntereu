@@ -6,9 +6,10 @@ let initialized = false;
 
 async function getDb() {
   if (!client) {
-    const mongoUrl = process.env.MONGODB_NL_URL;
+    // Try MONGODB_NL_URL first, fallback to MONGODB_URL if not available
+    const mongoUrl = process.env.MONGODB_NL_URL || process.env.MONGODB_URL;
     if (!mongoUrl) {
-      throw new Error("MONGODB_NL_URL environment variable is not set");
+      throw new Error("MONGODB_NL_URL or MONGODB_URL environment variable is not set. Please configure the database connection in your environment variables.");
     }
     client = new MongoClient(mongoUrl);
     await client.connect();
@@ -18,7 +19,8 @@ async function getDb() {
   let dbName = process.env.DB_NAME;
   if (!dbName) {
     // Try to extract from connection string or use default
-    const urlMatch = process.env.MONGODB_NL_URL?.match(/mongodb[^\/]*\/\/[^\/]+\/([^\/\?]+)/);
+    const mongoUrl = process.env.MONGODB_NL_URL || process.env.MONGODB_URL || "";
+    const urlMatch = mongoUrl.match(/mongodb[^\/]*\/\/[^\/]+\/([^\/\?]+)/);
     dbName = urlMatch?.[1] || "Nederland"; // Default to "Nederland" if not found
   }
   
@@ -87,7 +89,15 @@ function makeHash(doc: any) {
 // ----- Handler -----
 export default async function handler(req: any, res: any) {
   // Eenvoudige header-auth
-  if (req.headers["x-api-key"] !== process.env.API_KEY) {
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+    console.error("API_KEY environment variable is not set");
+    return res.status(500).json({ 
+      error: "Server configuration error: API_KEY not configured. Please set API_KEY in your environment variables." 
+    });
+  }
+  
+  if (req.headers["x-api-key"] !== apiKey) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
