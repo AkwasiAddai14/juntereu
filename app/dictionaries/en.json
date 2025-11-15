@@ -513,6 +513,167 @@
             ]
         }
     },
+    "payrollingPage": {
+        "badge": "Payrolling with Junter",
+        "headText": "Less hassle. More focus on your business.",
+        "subText": "With payrolling, you outsource the complete employer administration to Junter. We become the legal employer; you maintain control over selection, planning, and management on the work floor. Ideal for peak periods, seasonal work, or rapid growth — with maximum flexibility and minimal risks.",
+        "features": [
+            {
+                "name": "No employer risks",
+                "description": "Junter becomes the legal employer. We handle payroll taxes, contracts, sickness/absence management, and collective agreement compliance. You focus on planning and performance — without payroll payment and compliance risks.",
+                "icon": "ShieldCheckIcon"
+            },
+            {
+                "name": "Complete payroll & HR administration",
+                "description": "Salaries, payslips, pension, holiday pay, reserves, and annual statements: we handle it all. One digital file per employee and real-time insight into costs and hours.",
+                "icon": "ClipboardDocumentCheckIcon"
+            },
+            {
+                "name": "Quick scaling, clear rates",
+                "description": "Onboard in minutes via Junter. Pay a transparent all-in hourly rate (no hidden costs) and scale effortlessly up/down during peaks, projects, or seasonal demand.",
+                "icon": "CloudArrowUpIcon"
+            }
+        ],
+        "imageAlt": "Restaurant server delivering food - Payrolling service",
+        "calculator": {
+            "badge": "Cost Calculator",
+            "headText": "Calculate your all-in payroll rate",
+            "subText": "Choose a country preset (percentages + currency). After that, you can manually adjust each field.",
+            "resetButton": "Reset to preset",
+            "resetButtonTitle": "Restore the country presets (percentages/fee/currency).",
+            "sections": {
+                "personnelData": "Personnel Data",
+                "surchargesFees": "Surcharges & fees"
+            },
+            "fields": {
+                "grossHourly": "Gross hourly wage",
+                "hoursPerWeek": "Hours per week",
+                "weeksPerYear": "Weeks per year (effective)",
+                "employersCosts": "Employer costs",
+                "vacationPay": "Vacation pay",
+                "reserves": "Reserves",
+                "payrollFee": "Payroll fee (Junter)",
+                "margin": "Margin (optional)"
+            },
+            "tip": {
+                "text": "Tip:",
+                "description": "\"×\" is a factor. 0.08 = 8%. Set to 0.00 to disable."
+            },
+            "results": {
+                "title": "Result (per hour)",
+                "costPerHour": "Cost per hour",
+                "allInPerHour": "All-in (incl. payroll fee)",
+                "billRatePerHour": "Billable rate (incl. margin)",
+                "breakdown": "Breakdown",
+                "grossHourly": "Gross hourly wage",
+                "employersCosts": "Employer costs",
+                "vacationPay": "Vacation pay",
+                "reserves": "Reserves",
+                "subtotal": "Subtotal (cost price)",
+                "payrollFee": "Payroll fee",
+                "allInPerHour": "All-in per hour",
+                "margin": "Margin",
+                "billRatePerHour": "Billable rate per hour",
+                "monthlyApprox": "Per month (approximation)",
+                "monthlyHours": "Monthly hours (≈)",
+                "allInPerMonth": "All-in per month (≈)",
+                "billPerMonth": "Billable per month (≈)",
+                "yearlyHours": "Yearly hours (effective)"
+            },
+            "disclaimer": {
+                "label": "Disclaimer:",
+                "text": "indicative. Percentages may vary per collective agreement/sector/country/allowances. Contact us for a quote."
+            },
+            "countries": {
+                "NL": "Netherlands",
+                "UK": "United Kingdom"
+            }
+        }
+    },
+    "recruitmentPage": {
+        "badge": "Recruitment & Selection",
+        "headText": "Find and select proven talent",
+        "subText": "Junter helps employers find suitable employees faster — from flex to permanent positions. We combine a large, current candidate pool with smart matching and careful screening. You only get profiles that fit your team, schedule, and culture.",
+        "features": [
+            {
+                "name": "Quick access to the right candidates",
+                "description": "A shortlist within days. Our sector-focused talent pool and smart matching deliver candidates who are actually available for your location and hours.",
+                "icon": "UserPlusIcon"
+            },
+            {
+                "name": "Compliance & security",
+                "description": "We verify identity, employment status, and references. Including document checks and GDPR-compliant processes, so you can hire without risks.",
+                "icon": "ShieldCheckIcon"
+            },
+            {
+                "name": "Data-driven selection",
+                "description": "We combine performance data (such as punctuality and ratings) with your vacancy requirements. Result: higher retention and fewer mis-hires.",
+                "icon": "ChartBarIcon"
+            }
+        ],
+        "imageAlt": "Chef plating food in restaurant kitchen - Recruitment service"
+    },
+    "temporaryPage": {
+        "badge": "Need extra hands quickly?",
+        "headText": "Filling shifts? Temporary hire or freelancer — you choose.",
+        "subText": "With Junter, you fill open shifts quickly with experienced people. Choose per shift what fits: temporarily hire through our network or directly book a freelancer. Transparent, compliant, and hassle-free.",
+        "imageAlt": "Warehouse worker operating pallet jack - Temporary staffing service",
+        "features": [
+            {
+                "name": "Available within hours.",
+                "description": "Place your request in minutes. We immediately activate our network and you see live who signs up.",
+                "icon": "BoltIcon"
+            },
+            {
+                "name": "Everything legally compliant.",
+                "description": "Contracts, Chamber of Commerce/VAT check, time registration, and invoicing secured — without extra paperwork.",
+                "icon": "ShieldCheckIcon"
+            },
+            {
+                "name": "Flexible per shift.",
+                "description": "Choose per shift: hire through partner agency or directly book a freelancer. Mixing is allowed.",
+                "icon": "ArrowPathIcon"
+            },
+            {
+                "name": "Reliable people.",
+                "description": "Profiles with ID check, experience, ratings, and no-show history. You set the minimum score.",
+                "icon": "CheckBadgeIcon"
+            },
+            {
+                "name": "Smart matching.",
+                "description": "AI matching on role, rate, location, and availability. Filters for languages, certificates, and skills.",
+                "icon": "SparklesIcon"
+            },
+            {
+                "name": "Pay only what you use.",
+                "description": "Transparent rate per hour or per shift. No startup costs. Clear cost comparison: temporary hire vs. freelancer.",
+                "icon": "BanknotesIcon"
+            }
+        ],
+        "promotion": {
+            "badge": "Action until December 31, 2025",
+            "headText": "€0.50 discount per hour worked",
+            "subText": "Fill your shifts faster and more affordably. The discount is automatically applied to your invoice once you meet the conditions.",
+            "activateButton": "Activate discount",
+            "viewConditionsButton": "View conditions",
+            "conditionsTitle": "The discount applies when one of the following conditions is met:",
+            "conditions": [
+                {
+                    "text": "Weekly invoicing and payment",
+                    "detail": "(payment within the agreed term)."
+                },
+                {
+                    "text": "Automatic collection (SEPA)",
+                    "detail": "activated on your account."
+                },
+                {
+                    "text": "1,200 or more invoiced hours",
+                    "detail": "within the promotion period."
+                }
+            ],
+            "disclaimer": "* Discount applies to hours worked until 12-31-2025. Applied to (partial) invoices that meet the above conditions. Not valid retroactively. Other discounts and promotions may be excluded."
+        }
+    },
 
     "privacypolicyPage": {
       "privacyPolicyEmployee": {

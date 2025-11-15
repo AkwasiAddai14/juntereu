@@ -502,6 +502,167 @@
                 ]
             }
         },
+        "payrollingPage": {
+            "badge": "Payrolling met Junter",
+            "headText": "Minder gedoe. Meer focus op je business.",
+            "subText": "Met payrolling besteedt je de volledige werkgeverschap-administratie uit aan Junter. Wij worden juridisch werkgever; jij houdt de regie over selectie, planning en aansturing op de werkvloer. Ideaal voor piekdrukte, seizoenswerk of snelle groei — met maximale flexibiliteit en minimale risico's.",
+            "features": [
+                {
+                    "name": "Geen werkgeversrisico's",
+                    "description": "Junter wordt juridisch werkgever. Wij dragen loonheffingen af, regelen contracten, ziekte-/verzuimbeheer en cao-naleving. Jij stuurt op planning en performance — zonder loondoorbetalings- en compliancerisico's.",
+                    "icon": "ShieldCheckIcon"
+                },
+                {
+                    "name": "Volledige payroll & HR-administratie",
+                    "description": "Salarissen, loonstroken, pensioen, vakantiegeld, reserveringen en jaaropgaven: wij doen het allemaal. Eén digitaal dossier per werknemer en realtime inzicht in kosten en uren.",
+                    "icon": "ClipboardDocumentCheckIcon"
+                },
+                {
+                    "name": "Snel opschalen, helder tarief",
+                    "description": "Onboard in minuten via Junter. Betaal een transparant all-in uurtarief (geen verborgen kosten) en schaal moeiteloos op/af bij pieken, projecten of seizoensdrukte.",
+                    "icon": "CloudArrowUpIcon"
+                }
+            ],
+            "imageAlt": "Restaurant server delivering food - Payrolling service",
+            "calculator": {
+                "badge": "Kostencalculator",
+                "headText": "Bereken je all-in payrolltarief",
+                "subText": "Kies een landpreset (percentages + valuta). Daarna kun je elk veld handmatig aanpassen.",
+                "resetButton": "Reset naar preset",
+                "resetButtonTitle": "Herstel de land-presets (percentages/fee/valuta).",
+                "sections": {
+                    "personnelData": "Personeelsdata",
+                    "surchargesFees": "Opslagen & fees"
+                },
+                "fields": {
+                    "grossHourly": "Bruto uurloon",
+                    "hoursPerWeek": "Uren per week",
+                    "weeksPerYear": "Weken per jaar (effectief)",
+                    "employersCosts": "Werkgeverslasten",
+                    "vacationPay": "Vakantiegeld",
+                    "reserves": "Reserveringen",
+                    "payrollFee": "Payroll fee (Junter)",
+                    "margin": "Marge (optioneel)"
+                },
+                "tip": {
+                    "text": "Tip:",
+                    "description": "\"×\" is een factor. 0,08 = 8%. Zet op 0,00 om uit te schakelen."
+                },
+                "results": {
+                    "title": "Resultaat (per uur)",
+                    "costPerHour": "Kostprijs per uur",
+                    "allInPerHour": "All-in (incl. payroll fee)",
+                    "billRatePerHour": "Doorbelast tarief (incl. marge)",
+                    "breakdown": "Breakdown",
+                    "grossHourly": "Bruto uurloon",
+                    "employersCosts": "Werkgeverslasten",
+                    "vacationPay": "Vakantiegeld",
+                    "reserves": "Reserveringen",
+                    "subtotal": "Subtotaal (kostprijs)",
+                    "payrollFee": "Payroll fee",
+                    "allInPerHour": "All-in per uur",
+                    "margin": "Marge",
+                    "billRatePerHour": "Doorbelast tarief per uur",
+                    "monthlyApprox": "Per maand (benadering)",
+                    "monthlyHours": "Maanduren (≈)",
+                    "allInPerMonth": "All-in per maand (≈)",
+                    "billPerMonth": "Doorbelast per maand (≈)",
+                    "yearlyHours": "Jaaruren (effectief)"
+                },
+                "disclaimer": {
+                    "label": "Disclaimer:",
+                    "text": "indicatief. Percentages kunnen afwijken per cao/sector/land/toeslagen. Neem contact op voor een offerte."
+                },
+                "countries": {
+                    "NL": "Nederland",
+                    "UK": "Verenigd Koninkrijk"
+                }
+            }
+        },
+        "recruitmentPage": {
+            "badge": "Recruitment & Selection",
+            "headText": "Vind en selecteer bewezen talent",
+            "subText": "Junter helpt werkgevers sneller aan geschikte medewerkers — van flex tot vaste aanstelling. We combineren een grote, actuele kandidatenpool met slimme matching en zorgvuldige screening. Jij krijgt alleen profielen die passen bij jouw team, rooster en cultuur.",
+            "features": [
+                {
+                    "name": "Snel de juiste kandidaten",
+                    "description": "Binnen dagen een shortlist. Onze sector-gerichte talentpool en slimme matching leveren direct kandidaten op die echt beschikbaar zijn voor jouw locatie en uren.",
+                    "icon": "UserPlusIcon"
+                },
+                {
+                    "name": "Compliance & zekerheid",
+                    "description": "We verifiëren identiteit, werkstatus en referenties. Inclusief documentcheck en AVG-proof proces, zodat je zonder risico's kunt aannemen.",
+                    "icon": "ShieldCheckIcon"
+                },
+                {
+                    "name": "Datagedreven selectie",
+                    "description": "Wij combineren performance-data (zoals punctualiteit en beoordelingen) met jouw vacature-eisen. Resultaat: hogere retentie en minder mis-hire.",
+                    "icon": "ChartBarIcon"
+                }
+            ],
+            "imageAlt": "Chef plating food in restaurant kitchen - Recruitment service"
+        },
+        "temporaryPage": {
+            "badge": "Snel extra handen nodig?",
+            "headText": "Shifts invullen? Inlenen of freelancer — jij kiest.",
+            "subText": "Met Junter vul je openstaande diensten razendsnel met ervaren mensen. Kies per shift wat past: tijdelijk inlenen via ons netwerk óf direct een freelancer boeken. Transparant, compliant en zonder gedoe.",
+            "imageAlt": "Warehouse worker operating pallet jack - Temporary staffing service",
+            "features": [
+                {
+                    "name": "Binnen uren inzetbaar.",
+                    "description": "Plaats je aanvraag in minuten. Wij activeren direct ons netwerk en je ziet live wie zich aanmeldt.",
+                    "icon": "BoltIcon"
+                },
+                {
+                    "name": "Alles juridisch netjes.",
+                    "description": "Contracten, KVK/BTW-check, urenregistratie en facturatie geborgd — zonder extra papierwerk.",
+                    "icon": "ShieldCheckIcon"
+                },
+                {
+                    "name": "Flexibel per shift.",
+                    "description": "Kies per dienst: inlenen via partnerbureau of direct een freelancer boeken. Mixen mag.",
+                    "icon": "ArrowPathIcon"
+                },
+                {
+                    "name": "Betrouwbare mensen.",
+                    "description": "Profielen met ID-check, ervaring, beoordelingen en no-show-historie. Jij bepaalt de minimumscore.",
+                    "icon": "CheckBadgeIcon"
+                },
+                {
+                    "name": "Slimme matching.",
+                    "description": "AI-matching op rol, tarief, locatie en beschikbaarheid. Filters voor talen, certificaten en skills.",
+                    "icon": "SparklesIcon"
+                },
+                {
+                    "name": "Betaal alleen wat je gebruikt.",
+                    "description": "Transparant tarief per uur of per shift. Geen opstartkosten. Heldere kostenvergelijking inleen vs. freelancer.",
+                    "icon": "BanknotesIcon"
+                }
+            ],
+            "promotion": {
+                "badge": "Actie t/m 31 december 2025",
+                "headText": "€0,50 korting per gewerkt uur",
+                "subText": "Vul je shifts sneller én voordeliger. De korting wordt automatisch verrekend op je factuur zodra je aan de voorwaarden voldoet.",
+                "activateButton": "Activeer korting",
+                "viewConditionsButton": "Bekijk voorwaarden",
+                "conditionsTitle": "De korting geldt bij één van de volgende voorwaarden:",
+                "conditions": [
+                    {
+                        "text": "Wekelijkse facturatie én betaling",
+                        "detail": "(betaling binnen de afgesproken termijn)."
+                    },
+                    {
+                        "text": "Automatische incasso (SEPA)",
+                        "detail": "geactiveerd op je account."
+                    },
+                    {
+                        "text": "1.200 of meer gefactureerde uren",
+                        "detail": "binnen de actieperiode."
+                    }
+                ],
+                "disclaimer": "* Korting geldt voor uren gewerkt tot en met 31-12-2025. Wordt verrekend op (deel)facturen die aan bovenstaande voorwaarden voldoen. Niet geldig met terugwerkende kracht. Overige kortingen en promoties kunnen uitgesloten zijn."
+            }
+        },
         "privacypolicyPage": {
             "privacyPolicyEmployee": {
                 "title": "PrivacyBeleid",

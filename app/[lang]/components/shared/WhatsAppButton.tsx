@@ -41,24 +41,24 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
     const content = {
       employer: {
         en: {
-          url: 'https://wa.me/message/6GNNES3WHRBVG1',
+          url: 'https://wa.me/message/O7L3TX3O4MNGF1', //'https://wa.me/message/6GNNES3WHRBVG1',
           text: 'Sign up quickly',
           message: "Hi, I would like to quickly invite temporary workers!"
         },
         nl: {
-          url: 'https://wa.me/message/N3H7PVGTT73MG1',
+          url: 'https://wa.me/message/O7L3TX3O4MNGF1', //'https://wa.me/message/N3H7PVGTT73MG1',
           text: 'Aanmelden via WhatsApp',
           message: "Hi, Ik wil mij graag aanmelden als opdrachtgever!"
         }
       },
       employee: {
         en: {
-          url: 'https://wa.me/message/QLWIB7HXNSXEF1',
+          url: 'https://wa.me/message/O7L3TX3O4MNGF1', //'https://wa.me/message/QLWIB7HXNSXEF1',
           text: 'Sign up via WhatsApp',
           message: "Hi! I'm interested in signing up as an employee on Junter. Can you help me get started?"
         },
         nl: {
-          url: 'https://wa.me/message/VHOTXG3EJV6NM1',
+          url: 'https://wa.me/message/O7L3TX3O4MNGF1', //'https://wa.me/message/VHOTXG3EJV6NM1',
           text: 'Snel Aanmelden',
           message: "Hi! Ik wil mij graag aanmelden als werknemer bij Junter. Kun je me helpen om te beginnen?"
         }

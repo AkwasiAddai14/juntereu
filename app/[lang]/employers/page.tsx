@@ -1,5 +1,6 @@
 
 import React, { ComponentType,  } from 'react'
+import Link from 'next/link'
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import { CurrencyEuroIcon, UserGroupIcon, UsersIcon } from '@heroicons/react/24/outline'
 import dashboardLogo from '@/app/assets/images/A sleek modern dashboard displayed on a computer screen in a compact office space.jpg'
@@ -143,19 +144,45 @@ const icon2Mapping: Record<IconName, React.ComponentType<any>> = {
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
           {pages.employersPage.EmployTypes.map((feature) => {
   const IconComponent = iconMapping[feature.icon];
+  
+  // Map feature types to routes - using explicit matching for reliability
+  const getRoute = (type: string): string => {
+    const typeLower = type.toLowerCase().trim();
+    
+    // Explicit matching for each feature type
+    if (typeLower.includes('freelancer')) {
+      return `/${lang}/temporary`;
+    }
+    if (typeLower.includes('temporary') || typeLower.includes('secondment') || typeLower.includes("uitzenden") || typeLower.includes("tijdelijk")) {
+      return `/${lang}/temporary`;
+    }
+    if (typeLower.includes('recruitment') || typeLower.includes('selection') || typeLower.includes("werving") || typeLower.includes("selectie")) {
+      return `/${lang}/recruitment`;
+    }
+    if (typeLower.includes('payroll')) {
+      return `/${lang}/payrolling`;
+    }
+    // Fallback
+    return '#';
+  };
+
+  const route = getRoute(feature.type);
+  
   return (
-    <SimpleStaggerItem key={feature.type} className="relative pl-16">
-      <dt className="text-base font-semibold text-gray-900">
-        <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600">
-          {IconComponent ? (
-            <IconComponent className="h-6 w-6 text-white" aria-hidden="true" />
-          ) : (
-            <span className="h-6 w-6 text-white">?</span> // Fallback icon or placeholder
-          )}
-        </div>
-        {feature.type}
-      </dt>
-      <dd className="mt-2 text-base text-gray-600">{feature.explanation}</dd>
+    <SimpleStaggerItem key={feature.type}>
+      <Link href={route} className="group relative block pl-16 rounded-lg p-4 transition-all duration-300 hover:scale-105 hover:bg-orange-50 hover:shadow-lg">
+        <dt className="text-base font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+          <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600 group-hover:bg-orange-600 transition-colors duration-300">
+            {IconComponent ? (
+              <IconComponent className="h-6 w-6 text-white" aria-hidden="true" />
+            ) : (
+              <span className="h-6 w-6 text-white">?</span>
+            )}
+          </div>
+          {feature.type}
+        </dt>
+        <dd className="mt-2 text-base text-gray-600 group-hover:text-gray-700 transition-colors">{feature.explanation}</dd>
+      </Link>
     </SimpleStaggerItem>
   );
 })}
