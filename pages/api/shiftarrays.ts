@@ -7,11 +7,15 @@ let initialized = false;
 
 async function getDb() {
   if (!client) {
-    // Try MONGODB_NL_URL first, fallback to MONGODB_URL if not available
-    const mongoUrl = process.env.MONGODB_NL_URL || process.env.MONGODB_URL;
-    if (!mongoUrl) {
-      throw new Error("MONGODB_NL_URL or MONGODB_URL environment variable is not set. Please configure the database connection in your environment variables.");
-    }
+    // Use fallback values if environment variables are not available
+    const mongoUrl =  process.env.MONGODB_NL_URL || 'mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Nederland?retryWrites=true&w=majority&appName=thejunter';
+    
+    console.log('ShiftArrays API - Environment variables check:');
+    console.log('MONGO_URI:', process.env.MONGO_URI ? 'SET' : 'NOT SET');
+    console.log('MONGODB_NL_URL:', process.env.MONGODB_NL_URL ? 'SET' : 'NOT SET');
+    console.log('MONGODB_URL:', process.env.MONGODB_URL ? 'SET' : 'NOT SET');
+    console.log('Using fallback:', !process.env.MONGO_URI && !process.env.MONGODB_NL_URL && !process.env.MONGODB_URL);
+    
     client = new MongoClient(mongoUrl);
     await client.connect();
   }
@@ -20,7 +24,7 @@ async function getDb() {
   let dbName = process.env.DB_NAME;
   if (!dbName) {
     // Try to extract from connection string or use default
-    const mongoUrl = process.env.MONGODB_NL_URL || process.env.MONGODB_URL || "";
+    const mongoUrl = process.env.MONGO_URI || process.env.MONGODB_NL_URL || process.env.MONGODB_URL || 'mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Nederland?retryWrites=true&w=majority&appName=thejunter';
     const urlMatch = mongoUrl.match(/mongodb[^\/]*\/\/[^\/]+\/([^\/\?]+)/);
     dbName = urlMatch?.[1] || "Nederland"; // Default to "Nederland" if not found
   }
