@@ -90,15 +90,26 @@ function makeHash(doc: any) {
 export default async function handler(req: any, res: any) {
   // Eenvoudige header-auth
   const apiKey = process.env.API_KEY;
+  
+  // Check if API_KEY is configured
   if (!apiKey) {
+    const errorMsg = process.env.NODE_ENV === "production" 
+      ? "Server configuration error: API_KEY not configured. Please set API_KEY in your environment variables."
+      : "API_KEY not configured. Please set API_KEY in your environment variables for authentication.";
+    
     console.error("API_KEY environment variable is not set");
     return res.status(500).json({ 
-      error: "Server configuration error: API_KEY not configured. Please set API_KEY in your environment variables." 
+      error: errorMsg,
+      hint: "Set API_KEY in your .env.local or environment variables, then include it in the 'x-api-key' header of your request."
     });
   }
   
+  // Validate API key header
   if (req.headers["x-api-key"] !== apiKey) {
-    return res.status(401).json({ error: "Unauthorized" });
+    return res.status(401).json({ 
+      error: "Unauthorized",
+      hint: "Please include the 'x-api-key' header with the correct API key value."
+    });
   }
 
   try {
