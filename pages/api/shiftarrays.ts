@@ -89,8 +89,8 @@ function makeHash(doc: any) {
 // ----- Handler -----
 export default async function handler(req: any, res: any) {
   // Eenvoudige header-auth
-  const apiKey = process.env.API_KEY;
-  
+   const apiKey = process.env.API_KEY;
+  /*
   // Check if API_KEY is configured
   if (!apiKey) {
     const errorMsg = process.env.NODE_ENV === "production" 
@@ -102,15 +102,15 @@ export default async function handler(req: any, res: any) {
       error: errorMsg,
       hint: "Set API_KEY in your .env.local or environment variables, then include it in the 'x-api-key' header of your request."
     });
-  }
+  } */
   
   // Validate API key header
-  if (req.headers["x-api-key"] !== apiKey) {
+  /* if (req.headers["x-api-key"] !== apiKey) {
     return res.status(401).json({ 
       error: "Unauthorized",
       hint: "Please include the 'x-api-key' header with the correct API key value."
     });
-  }
+  } */
 
   try {
     const db = await getDb();
