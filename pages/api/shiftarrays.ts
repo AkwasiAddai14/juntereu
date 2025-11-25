@@ -1,4 +1,5 @@
 import { MongoClient, ObjectId } from "mongodb";
+import crypto from "crypto";
 
 // ----- Connection cache (belangrijk voor performance/cold starts) -----
 let client: MongoClient | null = null;
@@ -51,7 +52,25 @@ function toDate(v: any) {
 function toOid(v: any) {
   return typeof v === "string" && /^[a-f0-9]{24}$/i.test(v) ? new ObjectId(v) : v;
 }
-import crypto from "crypto";
+
+// Generate date range between start and end dates (inclusive)
+function generateDateRange(startDate: Date, endDate: Date): Date[] {
+  const dates: Date[] = [];
+  const current = new Date(startDate);
+  const end = new Date(endDate);
+  
+  // Reset time to midnight for accurate day comparison
+  current.setHours(0, 0, 0, 0);
+  end.setHours(0, 0, 0, 0);
+  
+  while (current <= end) {
+    dates.push(new Date(current));
+    current.setDate(current.getDate() + 1);
+  }
+  
+  return dates;
+}
+
 function makeHash(doc: any) {
   const dateStr =
     doc.startingDate instanceof Date
@@ -130,35 +149,151 @@ export default async function handler(req: any, res: any) {
     }
     
     doc.employer = toOid(doc.employer);
-    doc.startingDate = toDate(doc.startingDate);
-    doc.endingDate = toDate(doc.endingDate);
+    const startingDate = toDate(doc.startingDate);
+    const endingDate = toDate(doc.endingDate);
+    
+    // Validate dates
+    if (!startingDate) {
+      return res.status(400).json({ error: "Missing or invalid startingDate" });
+    }
+    
+    // If endingDate is not provided, use startingDate (single day)
+    const endDate = endingDate || startingDate;
+    
+    // Generate date range between startingDate and endingDate (inclusive)
+    const dateRange = generateDateRange(startingDate, endDate);
+    
+    console.log(`Creating ${dateRange.length} shiftArray(s) for date range: ${startingDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`);
 
-    // Hash voor dedupe (title+adres+startdatum+starttijd)
-    // Ensure all values are safe before hashing
-    try {
-      if (!doc.hash) doc.hash = makeHash(doc);
-    } catch (hashError: any) {
-      console.error('Error creating hash:', hashError);
-      return res.status(400).json({ 
-        error: `Error creating hash: ${hashError.message || String(hashError)}` 
+    if (req.method === "POST") {
+      // Insert multiple shiftArrays (one for each date in range)
+      const results = [];
+      const errors = [];
+      
+      for (const date of dateRange) {
+        // Create a copy of the document for this specific date
+        const dateDoc = {
+          ...doc,
+          startingDate: date,
+          endingDate: date, // Each shiftArray is for a single day
+          createdAt: new Date(),
+        };
+        
+        // Generate hash for this specific date
+        try {
+          if (!dateDoc.hash) {
+            dateDoc.hash = makeHash(dateDoc);
+          }
+        } catch (hashError: any) {
+          console.error('Error creating hash:', hashError);
+          errors.push({
+            date: date.toISOString().split('T')[0],
+            error: `Error creating hash: ${hashError.message || String(hashError)}`
+          });
+          continue;
+        }
+        
+        try {
+          const r = await col.insertOne(dateDoc);
+          results.push({
+            date: date.toISOString().split('T')[0],
+            insertedId: r.insertedId.toString()
+          });
+        } catch (insertError: any) {
+          // Handle duplicate key error
+          if (insertError?.code === 11000) {
+            errors.push({
+              date: date.toISOString().split('T')[0],
+              error: "Duplicate (hash already exists)"
+            });
+          } else {
+            errors.push({
+              date: date.toISOString().split('T')[0],
+              error: insertError?.message || String(insertError)
+            });
+          }
+        }
+      }
+      
+      // Return results with success and error information
+      if (results.length === 0) {
+        return res.status(400).json({
+          error: "Failed to create any shiftArrays",
+          errors: errors
+        });
+      }
+      
+      return res.status(201).json({
+        success: true,
+        created: results.length,
+        total: dateRange.length,
+        insertedIds: results.map(r => r.insertedId),
+        results: results,
+        ...(errors.length > 0 && { errors: errors })
       });
     }
 
-    if (req.method === "POST") {
-      // Insert (faalt bij duplicaat hash)
-      doc.createdAt = new Date();
-      const r = await col.insertOne(doc);
-      return res.status(201).json({ insertedId: r.insertedId });
-    }
-
     if (req.method === "PUT") {
-      // Upsert (aanrader): update of insert wanneer nieuw
-      const r = await col.findOneAndUpdate(
-        { hash: doc.hash },
-        { $set: doc, $setOnInsert: { createdAt: new Date() } },
-        { upsert: true, returnDocument: "after" }
-      );
-      return res.json(r!.value);
+      // Upsert multiple shiftArrays (one for each date in range)
+      const results = [];
+      const errors = [];
+      
+      for (const date of dateRange) {
+        // Create a copy of the document for this specific date
+        const dateDoc = {
+          ...doc,
+          startingDate: date,
+          endingDate: date, // Each shiftArray is for a single day
+        };
+        
+        // Generate hash for this specific date
+        try {
+          if (!dateDoc.hash) {
+            dateDoc.hash = makeHash(dateDoc);
+          }
+        } catch (hashError: any) {
+          console.error('Error creating hash:', hashError);
+          errors.push({
+            date: date.toISOString().split('T')[0],
+            error: `Error creating hash: ${hashError.message || String(hashError)}`
+          });
+          continue;
+        }
+        
+        try {
+          const r = await col.findOneAndUpdate(
+            { hash: dateDoc.hash },
+            { $set: dateDoc, $setOnInsert: { createdAt: new Date() } },
+            { upsert: true, returnDocument: "after" }
+          );
+          results.push({
+            date: date.toISOString().split('T')[0],
+            _id: r!.value!._id.toString(),
+            updated: r!.lastErrorObject?.updatedExisting || false
+          });
+        } catch (updateError: any) {
+          errors.push({
+            date: date.toISOString().split('T')[0],
+            error: updateError?.message || String(updateError)
+          });
+        }
+      }
+      
+      // Return results with success and error information
+      if (results.length === 0) {
+        return res.status(400).json({
+          error: "Failed to update/insert any shiftArrays",
+          errors: errors
+        });
+      }
+      
+      return res.json({
+        success: true,
+        processed: results.length,
+        total: dateRange.length,
+        results: results,
+        ...(errors.length > 0 && { errors: errors })
+      });
     }
 
     return res.status(405).json({ error: "Method Not Allowed" });
