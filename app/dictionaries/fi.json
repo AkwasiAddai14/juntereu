@@ -823,7 +823,7 @@
         "placeholderText": "Syötä sähköpostiosoitteesi",
         "button": "Tilaa"
       },
-      "footerText": "© 2025 Junter. Kaikki oikeudet pidätetään."
+      "footerText": "© 2026 Junter. Kaikki oikeudet pidätetään."
     },
     "dashboard": {
         "werknemersPage": {
@@ -1885,7 +1885,7 @@
             ]
           },
           "Footer4": {
-            "title": "2025 Junter. Kaikki oikeudet pidätetään."
+            "title": "2026 Junter. Kaikki oikeudet pidätetään."
           },
           "FooterForm": {
             "emailadres": "sähköpostiosoite"

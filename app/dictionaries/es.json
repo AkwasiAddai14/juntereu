@@ -785,7 +785,7 @@
             "placeholderText": "Introduce tu correo electrónico",
             "button": "Suscribirse"
         },
-        "footerText": "© 2025 Junter. Todos los derechos reservados."
+        "footerText": "© 2026 Junter. Todos los derechos reservados."
         },
         "dashboard":{
             "werknemersPage": {
@@ -1887,7 +1887,7 @@
                     ]
                   },
                   "Footer4": {
-                    "title": "2025 Junter. Todos los derechos reservados."
+                    "title": "2026 Junter. Todos los derechos reservados."
                   },
                   "FooterForm": {
                     "emailadres": "correo electrónico"

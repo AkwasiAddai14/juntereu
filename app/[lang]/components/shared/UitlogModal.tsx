@@ -20,13 +20,28 @@ type Props = {
 };
 
 export default function UitlogModal({ isVisible, onClose, components }: Props) {
-    const [open, setOpen] = useState(true)
-    const { signOut } = useClerk();
-    
-    if (!isVisible) return null;
+  const [open, setOpen] = useState(true);
+  const [isSigningOut, setIsSigningOut] = useState(false);
+  const { signOut } = useClerk();
+
+  const handleLogout = async () => {
+    if (isSigningOut) return;
+    setIsSigningOut(true);
+    try {
+      const redirectUrl = typeof window !== 'undefined' ? `${window.location.origin}/` : '/';
+      await signOut({ redirectUrl });
+    } catch (err) {
+      console.error('Logout failed:', err);
+      onClose();
+    } finally {
+      setIsSigningOut(false);
+    }
+  };
+
+  if (!isVisible) return null;
 
   return (
-    <Dialog open={open} onClose={setOpen} className="relative z-10">
+    <Dialog open={open} onClose={() => { setOpen(false); onClose(); }} className="relative z-10">
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
@@ -56,10 +71,11 @@ export default function UitlogModal({ isVisible, onClose, components }: Props) {
             <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
               <button
                 type="button"
-                onClick={() => signOut({ redirectUrl: '/' })}
-                className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                onClick={handleLogout}
+                disabled={isSigningOut}
+                className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 disabled:opacity-70 disabled:cursor-not-allowed sm:ml-3 sm:w-auto"
               >
-                {components?.shared?.UitlogModal?.buttons?.[1] || 'Logout'}
+                {isSigningOut ? '...' : (components?.shared?.UitlogModal?.buttons?.[1] || 'Logout')}
               </button>
               <button
                 type="button"
