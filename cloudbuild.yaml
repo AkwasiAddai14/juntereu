@@ -36,15 +36,19 @@ steps:
     name: "gcr.io/cloud-builders/gcloud"
     entrypoint: "bash"
     args:
-      - "-c"
-      - |
-        set -euo pipefail
-        # Secret Manager returns base64 in payload.data
-        CLERK_PK_B64="$(gcloud secrets versions access latest --secret=CLERK_PK --format='get(payload.data)')"
-        CLERK_SK_B64="$(gcloud secrets versions access latest --secret=CLERK_SK --format='get(payload.data)')"
+   - '-c'
+   - |
+    export NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$$(gcloud secrets versions access latest --secret=CLERK_PK --format='ge' | tr -d '\n' | base64 --decode)
+    # args:
+    #   - "-c"
+    #   - |
+    #     set -euo pipefail
+    #     # Secret Manager returns base64 in payload.data
+    #     CLERK_PK_B64="$(gcloud secrets versions access latest --secret=CLERK_PK --format='get(payload.data)')"
+    #     CLERK_SK_B64="$(gcloud secrets versions access latest --secret=CLERK_SK --format='get(payload.data)')"
 
-        echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$(echo "$CLERK_PK_B64" | tr -d '\n' | base64 --decode)" > /workspace/build.env
-        echo "CLERK_SECRET_KEY=$(echo "$CLERK_SK_B64" | tr -d '\n' | base64 --decode)" >> /workspace/build.env
+    #     echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$(echo "$CLERK_PK_B64" | tr -d '\n' | base64 --decode)" > /workspace/build.env
+    #     echo "CLERK_SECRET_KEY=$(echo "$CLERK_SK_B64" | tr -d '\n' | base64 --decode)" >> /workspace/build.env
 
   # If you want pack/buildpacks to do the build, you can remove these npm steps.
   # Keep them only if you truly need a prebuild for some other purpose.
