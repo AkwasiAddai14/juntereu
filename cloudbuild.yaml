@@ -17,8 +17,7 @@ steps:
   - 'CLERK_SECRET_KEY=sk_live_hEUWpfMYNnfUlApiG6l6b8uJLEatla9vrl3lyhvssW'
 
   options:
-  machineType: "E2_HIGHCPU_8"
-  diskSizeGb: 200
+  
   logging: CLOUD_LOGGING_ONLY
 
 # timeout: "1200s"
