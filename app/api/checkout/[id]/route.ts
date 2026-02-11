@@ -18,13 +18,13 @@ export async function GET(
       return NextResponse.json({ error: 'Checkout not found' }, { status: 404 });
     }
 
-    // Serialize the checkout data to avoid buffer objects
+    // Serialize the checkout data to avoid buffer objects (checkout is a Shift document; its _id is the shift id)
     const serializedCheckout = {
       ...checkout,
       _id: checkout._id?.toString(),
       employer: checkout.employer?.toString(),
       employee: checkout.employee?.toString(),
-      shift: checkout.shift?.toString(),
+      shift: checkout.shiftArrayId?.toString(),
     };
 
     return NextResponse.json(serializedCheckout);
