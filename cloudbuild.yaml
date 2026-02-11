@@ -101,6 +101,7 @@ steps:
 options:
   machineType: "E2_HIGHCPU_8"
   diskSizeGb: 200
-
+  logging: NONE
+  
 timeout: "1200s"
 
