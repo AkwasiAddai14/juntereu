@@ -31,7 +31,7 @@ export async function PATCH(
   if (apiKey !== process.env.API_KEY) {
     console.log("Unauthorized access attempt with API key:", apiKey);
     console.log("Expected API Key:", process.env.API_KEY);
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: `Unauthorized. Expected API Key: ${process.env.API_KEY}, Got: ${apiKey}` }, { status: 401 });
   }
 
   const { id } = await params;  // id comes from here, not req.query
