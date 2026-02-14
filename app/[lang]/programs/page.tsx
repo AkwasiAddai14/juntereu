@@ -201,7 +201,7 @@ export default function ABA_LandingPage() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="junter.nl/login" className="hidden lg:block rounded-md bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 transition-colors">
+            <a href="https://junter.nl" target="_blank" rel="noopener noreferrer" className="hidden lg:block rounded-md bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 transition-colors">
                 Inloggen {/* Portal   <span aria-hidden="true">&rarr;</span> */}
             </a>
           </div>
@@ -242,7 +242,9 @@ export default function ABA_LandingPage() {
                 </div>
                 <div className="py-6">
                   <a
-                    href="#"
+                    href="https://junter.nl"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                   >
                     Inloggen
