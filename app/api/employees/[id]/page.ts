@@ -4,10 +4,17 @@ import mongoose from "mongoose";
 import { connectToDB } from "@/app/lib/mongoose";
 
 function sanitizeEmployee(input: any) {
-  const allowed = ["clerkId", "firstname", "infix", "lastname", "email", "phone", "street", "housenumber", "postcode", "city", "country", "profilePhoto", "bio", "skills", "experience", "education"];
+  const allowed = [
+    "clerkId", "firstname", "infix", "lastname", "email", "phone",
+    "street", "housenumber", "postcode", "city", "country",
+    "profilephoto", "profilePhoto", "bio", "skills", "experience", "education",
+    "onboarded", "dateOfBirth", "rating", "ratingCount", "attendance", "punctuality",
+    "VATidnr", "companyRegistrationNumber", "SocialSecurity", "iban"
+  ];
   const out: Record<string, unknown> = {};
+  if (input == null || typeof input !== "object") return out;
   for (const k of allowed) {
-    if (input != null && typeof input[k] !== "undefined") out[k] = input[k];
+    if (typeof input[k] !== "undefined") out[k] = input[k];
   }
   return out;
 }
@@ -20,7 +27,7 @@ export default async function handler(req: any, res: any) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
-  const id = req.query.id as string; // dynamic segment [id]
+  const id = req.query.id as string;
   if (!id) return res.status(400).json({ error: "id is required" });
 
   if (req.method !== "PATCH" && req.method !== "PUT") {
@@ -51,11 +58,17 @@ export default async function handler(req: any, res: any) {
       { $set: doc, $setOnInsert: { createdAt: new Date() } },
       { upsert: true, returnDocument: "after" }
     );
-    return res.json(r!.value);
+
+    // Driver 4.x: r.value; 5+/6: sometimes r is the document
+    const resultDoc = r && typeof r === "object" && "value" in r
+      ? (r as { value?: unknown }).value
+      : r;
+    return res.json(resultDoc ?? null);
   } catch (e: any) {
     if (e?.code === 11000) {
       return res.status(409).json({ error: "Duplicate (clerkId already exists)" });
     }
-    return res.status(400).json({ error: e?.message || String(e) });
+    console.error("PATCH /api/employees/[id] error:", e?.message || e);
+    return res.status(500).json({ error: e?.message || String(e) });
   }
 }
