@@ -114,7 +114,7 @@ try {
     // Dynamically import clerkMiddleware only if keys are available
     const { clerkMiddleware } = require('@clerk/nextjs/server');
     
-    middlewareHandler = clerkMiddleware(async (auth, request: NextRequest) => {
+    middlewareHandler = clerkMiddleware(async (auth: any, request: NextRequest) => {
       const localeResponse = handleLocaleRouting(request);
       if (localeResponse) {
         return localeResponse;
