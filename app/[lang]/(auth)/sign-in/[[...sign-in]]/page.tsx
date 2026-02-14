@@ -1,9 +1,8 @@
 import { SignIn } from "@clerk/nextjs";
-import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
+import type { Locale } from '@/app/[lang]/dictionaries';
 import Footer from "@/app/[lang]/components/shared/navigation/Footer4";
 import NavBar from "@/app/[lang]/components/shared/navigation/Wrappers/NavigationBarWrapper";
 
-// Make this route request-bound so Clerk has context
 export const dynamic = "force-dynamic";
 
 const supportedLocales: Locale[] = [
@@ -14,21 +13,23 @@ const supportedLocales: Locale[] = [
 export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
   const resolvedParams = await params;
   const lang = supportedLocales.includes(resolvedParams.lang as Locale) ? (resolvedParams.lang as Locale) : 'en';
+  const hasClerkKey = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
   return (
     <>
       <NavBar lang={lang} />
       <div className="flex flex-col justify-center items-center min-h-screen bg-white">
-      <div className="flex items-center justify-center w-full">
-          <SignIn
-            fallbackRedirectUrl={`/${lang}/dashboard`}
-            forceRedirectUrl={`/${lang}/dashboard`}
-           /* appearance={{
-          variables: {
-            colorPrimary: '#0000ff', // blue
-            colorBackground: '#000000', // black
-          },
-        }} */
-          />
+        <div className="flex items-center justify-center w-full">
+          {hasClerkKey ? (
+            <SignIn
+              fallbackRedirectUrl={`/${lang}/dashboard`}
+              forceRedirectUrl={`/${lang}/dashboard`}
+            />
+          ) : (
+            <div className="text-center p-8 text-gray-600">
+              <p>Login is temporarily unavailable. Please try again later.</p>
+            </div>
+          )}
         </div>
       </div>
       <Footer lang={lang} />
