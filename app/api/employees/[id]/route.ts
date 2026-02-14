@@ -1,10 +1,8 @@
 // app/api/employees/[id]/route.ts
-import mongoose from "mongoose";
-import { ObjectId } from "mongodb";
 import { connectToDB } from "@/app/lib/mongoose";
+import Employee from "@/app/lib/models/employee.model";
 import { NextRequest, NextResponse } from "next/server";
-// ... your imports and helpers ...
-
+import mongoose from "mongoose";
 
 function sanitizeEmployee(input: any) {
   const allowed = [
@@ -51,29 +49,19 @@ export async function PATCH(
     }
 
     await connectToDB();
-    const db = mongoose.connection.db;
-    if (!db) {
-      return NextResponse.json({ error: "Database not connected" }, { status: 503 });
-    }
-    const col = db.collection("employees");
 
-    await col.createIndex({ clerkId: 1 }, { unique: true }).catch(() => {});
-
-    const toOid = (v: any) =>
-      (typeof v === "string" && /^[a-f0-9]{24}$/i.test(v)) ? new ObjectId(v) : null;
-    const oid = toOid(id);
+    const isValidOid = /^[a-f0-9]{24}$/i.test(id);
+    const oid = isValidOid ? new mongoose.Types.ObjectId(id) : null;
     const filter = oid ? { _id: oid } : { clerkId: doc.clerkId };
 
-    const r = await col.findOneAndUpdate(
+    const updated = await Employee.findOneAndUpdate(
       filter,
-      { $set: doc, $setOnInsert: { createdAt: new Date() } },
-      { upsert: true, returnDocument: "after" }
+      { $set: doc },
+      { upsert: true, new: true, runValidators: false }
     );
 
-    const resultDoc = r && typeof r === "object" && "value" in r
-      ? (r as { value?: unknown }).value
-      : r;
-    return NextResponse.json(resultDoc ?? null);
+    const resultDoc = updated ? updated.toObject() : null;
+    return NextResponse.json(resultDoc);
   } catch (e: any) {
     if (e?.code === 11000) {
       return NextResponse.json(
