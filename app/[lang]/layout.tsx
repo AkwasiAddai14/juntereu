@@ -31,7 +31,10 @@ export async function generateStaticParams() {
     children: React.ReactNode
     params: Promise<{ lang: 'en' | 'nl' | 'fr' | 'de' | 'es' | 'it' | 'pt' | 'fi' | 'os' | 'dk' | 'no' | 'sw' | 'nlBE' | 'frBE' | 'itCH' | 'frCH' | 'deCH' | 'lu' }>
   }>) {
-    const clerkAvailable = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+    const clerkAvailable = !!(
+      process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+      'pk_live_Y2xlcmsuanVudGVyLmV1JA'
+    )
     return (
       <ClerkAvailableProvider available={clerkAvailable}>
         {children}

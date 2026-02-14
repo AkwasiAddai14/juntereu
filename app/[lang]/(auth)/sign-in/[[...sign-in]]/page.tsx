@@ -13,23 +13,16 @@ const supportedLocales: Locale[] = [
 export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
   const resolvedParams = await params;
   const lang = supportedLocales.includes(resolvedParams.lang as Locale) ? (resolvedParams.lang as Locale) : 'en';
-  const hasClerkKey = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
   return (
     <>
       <NavBar lang={lang} />
       <div className="flex flex-col justify-center items-center min-h-screen bg-white">
         <div className="flex items-center justify-center w-full">
-          {hasClerkKey ? (
-            <SignIn
-              fallbackRedirectUrl={`/${lang}/dashboard`}
-              forceRedirectUrl={`/${lang}/dashboard`}
-            />
-          ) : (
-            <div className="text-center p-8 text-gray-600">
-              <p>Login is temporarily unavailable. Please try again later.</p>
-            </div>
-          )}
+          <SignIn
+            fallbackRedirectUrl={`/${lang}/dashboard`}
+            forceRedirectUrl={`/${lang}/dashboard`}
+          />
         </div>
       </div>
       <Footer lang={lang} />

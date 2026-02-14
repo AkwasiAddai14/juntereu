@@ -36,7 +36,10 @@ export default async function AuthLayout({
   const resolvedParams = await params;
   const selectedLocalization = localeMap[resolvedParams.lang] || nlNL;
 
-  const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  // Prefer env; fallback so auth works when App Hosting doesn't inject at runtime (match apphosting.yaml value)
+  const clerkPublishableKey =
+    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+    'pk_live_Y2xlcmsuanVudGVyLmV1JA';
 
   if (!clerkPublishableKey) {
     return (

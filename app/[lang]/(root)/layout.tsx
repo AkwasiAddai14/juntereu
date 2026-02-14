@@ -60,7 +60,9 @@ export default async function RootLayout({
   const resolvedParams = await params;
   const selectedLocalization = localeMap[resolvedParams.lang] || nlNL;
   
-  const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  const clerkPublishableKey =
+    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+    'pk_live_Y2xlcmsuanVudGVyLmV1JA';
 
   if (!clerkPublishableKey) {
     return (

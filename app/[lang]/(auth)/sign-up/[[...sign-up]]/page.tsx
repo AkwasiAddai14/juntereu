@@ -16,23 +16,15 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
   const lang = supportedLocales.includes(resolvedParams.lang as Locale)
     ? (resolvedParams.lang as Locale)
     : 'en';
-  const hasClerkKey = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-
   return (
     <>
       <NavBar lang={lang} />
       <div className="flex flex-col justify-center items-center min-h-screen bg-white">
         <div className="flex items-center justify-center w-full">
-          {hasClerkKey ? (
-            <SignUp
-              fallbackRedirectUrl={`/${lang}/onboarding`}
-              forceRedirectUrl={`/${lang}/onboarding`}
-            />
-          ) : (
-            <div className="text-center p-8 text-gray-600">
-              <p>Registration is temporarily unavailable. Please try again later.</p>
-            </div>
-          )}
+          <SignUp
+            fallbackRedirectUrl={`/${lang}/onboarding`}
+            forceRedirectUrl={`/${lang}/onboarding`}
+          />
         </div>
       </div>
       <Footer lang={lang} />

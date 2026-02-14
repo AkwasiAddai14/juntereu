@@ -37,10 +37,10 @@ export default function DashboardLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }>) {
-  const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  const clerkPublishableKey =
+    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+    'pk_live_Y2xlcmsuanVudGVyLmV1JA';
 
-  // During build/prerender the env may not be injected yet; render without Clerk so build succeeds.
-  // At runtime App Hosting provides the key, so Clerk will wrap on first request.
   if (!clerkPublishableKey) {
     return (
       <>

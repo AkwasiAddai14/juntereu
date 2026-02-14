@@ -34,7 +34,9 @@ export default async function RootLayout({
   const lang = supportedLocales.includes(resolvedParams.lang as Locale)
     ? (resolvedParams.lang as Locale)
     : 'en';
-  const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  const clerkPublishableKey =
+    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+    'pk_live_Y2xlcmsuanVudGVyLmV1JA';
 
   const content = (
     <html lang="en">
