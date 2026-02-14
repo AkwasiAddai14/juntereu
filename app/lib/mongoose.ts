@@ -51,7 +51,7 @@ export const connectToDB = async () => {
                 throw new Error("No MongoDB connection string available. Please set MONGODB_URL environment variable.");
             }
 
-            await mongoose.connect(connectionString!);
+            await mongoose.connect(process.env.MONGODB_URL!);
             isConnected = true;
             const dbName = mongoose.connection.db?.databaseName || "Unknown";
             console.log("Connected to MONGODB");
