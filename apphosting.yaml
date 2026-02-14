@@ -19,16 +19,6 @@ runConfig:
       availability:
       - BUILD
       - RUNTIME
-    - variable: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-      secret: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-      availability:
-      - BUILD
-      - RUNTIME
-    - variable: CLERK_SECRET_KEY
-      secret: CLERK_SECRET_KEY
-      availability:
-      - BUILD
-      - RUNTIME
     - variable: WEBHOOK_SECRET
       secret: WEBHOOK_SECRET
       availability:
@@ -191,3 +181,13 @@ runConfig:
       - RUNTIME
 
 
+    # - variable: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+    #   secret: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+    #   availability:
+    #   - BUILD
+    #   - RUNTIME
+    # - variable: CLERK_SECRET_KEY
+    #   secret: CLERK_SECRET_KEY
+    #   availability:
+    #   - BUILD
+    #   - RUNTIME

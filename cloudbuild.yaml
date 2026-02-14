@@ -15,8 +15,8 @@ steps:
   entrypoint: 'npm'
   args: ['run', 'build']
   env:
-  - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsuanVudGVyLmV1JA
-  - CLERK_SECRET_KEY=sk_live_hEUWpfMYNnfUlApiG6l6b8uJLEatla9vrl3lyhvssW
+  - 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_Y2xlcmsuanVudGVyLmV1JA'
+  - 'CLERK_SECRET_KEY=sk_live_hEUWpfMYNnfUlApiG6l6b8uJLEatla9vrl3lyhvssW'
 
 options:
   
