@@ -299,7 +299,7 @@ export default function ABA_LandingPage() {
                   Start als Partner
                 </a>
                 <a href="#how-it-works" className="text-sm font-semibold leading-6 text-gray-900">
-                  Bekijk de mogelijkheden <span aria-hidden="true">→</span>
+                  Bekijk de mogelijkheden {/* <span aria-hidden="true">→</span> */}
                 </a>
               </div>
             </motion.div>
