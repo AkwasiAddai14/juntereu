@@ -23,9 +23,13 @@ const toOid = (v: any) =>
   (typeof v === "string" && /^[a-f0-9]{24}$/i.test(v)) ? new ObjectId(v) : null;
 
 export default async function handler(req: any, res: any) {
-  if (req.headers["x-api-key"] !== process.env.API_KEY) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
+  const headers = req?.headers;
+const apiKey = headers != null
+  ? (typeof headers.get === "function" ? headers.get("x-api-key") : headers["x-api-key"])
+  : undefined;
+if (apiKey !== process.env.API_KEY) {
+  return res.status(401).json({ error: "Unauthorized" });
+}
 
   const id = req.query.id as string;
   if (!id) return res.status(400).json({ error: "id is required" });
