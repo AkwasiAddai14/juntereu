@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { frFR, svSE, esES, ptPT, nbNO, itIT, deDE, fiFI, nlNL, daDK, arSA, enGB } from '@clerk/localizations'
 import { Toaster } from "@/app/[lang]/components/ui/toaster"
-import { ClerkAvailableProvider } from './ClerkAvailableContext';
 import '@/app/[lang]/globals.css'
 
 export const dynamic = 'force-dynamic';
@@ -65,10 +64,10 @@ export default async function RootLayout({
 
   if (!clerkPublishableKey) {
     return (
-      <ClerkAvailableProvider available={false}>
+      <>
         {children}
         <Toaster />
-      </ClerkAvailableProvider>
+      </>
     );
   }
 
@@ -77,10 +76,8 @@ export default async function RootLayout({
       publishableKey={clerkPublishableKey}
       localization={selectedLocalization}
     >
-      <ClerkAvailableProvider available={true}>
-        {children}
-        <Toaster />
-      </ClerkAvailableProvider>
+      {children}
+      <Toaster />
     </ClerkProvider>
   );
 }

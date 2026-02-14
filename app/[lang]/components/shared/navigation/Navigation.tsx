@@ -8,15 +8,15 @@ import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { useClerk } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
-import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
-import { getDictionary } from '@/app/[lang]/dictionaries';
+import type { Locale } from '@/app/[lang]/dictionaries';
+import { useClerkAvailable } from '@/app/[lang]/(root)/ClerkAvailableContext';
 
 type Props = {
   lang: Locale;
-  components: any; // of specifieker type als je die hebt
+  components: any;
 };
 
-export default function Example({ lang, components }: Props) {
+function NavigationWithClerk({ lang, components }: Props) {
   const { isLoaded, user } = useUser();
   const [profilePhoto, setProfilePhoto] = useState("");
   const router = useRouter();
@@ -125,5 +125,33 @@ export default function Example({ lang, components }: Props) {
         </div>
       </DisclosurePanel>
     </Disclosure>
-  )
+  );
+}
+
+export default function Example({ lang, components }: Props) {
+  const clerkAvailable = useClerkAvailable();
+
+  if (!clerkAvailable) {
+    return (
+      <Disclosure as="nav" className="bg-white shadow">
+        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="relative flex h-16 justify-between">
+            <div className="flex flex-shrink-0 items-center">
+              <Image src={logo} alt="The Junter" height={48} width={48} />
+            </div>
+            <div className="flex items-center">
+              <a href={`/${lang}/sign-in`} className="text-sm font-medium text-gray-700 hover:text-sky-600 mr-4">
+                {components?.navigation?.NavBar?.inloggen ?? 'Log in'}
+              </a>
+              <a href={`/${lang}/sign-up`} className="rounded-md bg-sky-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-sky-500">
+                {components?.navigation?.NavBar?.aanmelden ?? 'Sign up'}
+              </a>
+            </div>
+          </div>
+        </div>
+      </Disclosure>
+    );
+  }
+
+  return <NavigationWithClerk lang={lang} components={components} />;
 }

@@ -3,18 +3,16 @@
 import { useUser, useClerk } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import type { Locale } from '@/app/[lang]/dictionaries'; // define this type based on keys
-
+import type { Locale } from '@/app/[lang]/dictionaries';
+import { useClerkAvailable } from '@/app/[lang]/(root)/ClerkAvailableContext';
 
 const supportedLocales: Locale[] = [
   'en', 'nl', 'fr', 'de', 'es', 'it', 'pt', 'fi', 'da', 'no', 'lu',
   'sv', 'at', 'nlBE', 'frBE', 'itCH', 'frCH', 'deCH',
 ];
 
-export default function Example({ pages, params }: { pages: any; navigation: any; footer: any, params: { lang: string } }) {
-  const lang = supportedLocales.includes(params.lang as Locale)
-  ? (params.lang as Locale)
-  : 'en';
+function VerifyFormInner({ pages, params }: { pages: any; navigation?: any; footer?: any; params: { lang: string } }) {
+  const lang = supportedLocales.includes(params.lang as Locale) ? (params.lang as Locale) : 'en';
   const { isLoaded, isSignedIn, user } = useUser();
   const router = useRouter();
   const { signOut } = useClerk();
@@ -290,5 +288,21 @@ export default function Example({ pages, params }: { pages: any; navigation: any
     </div>
     </div>
 </div>
-    )
+  );
+}
+
+export default function Example({ pages, params }: { pages: any; navigation?: any; footer?: any; params: { lang: string } }) {
+  const clerkAvailable = useClerkAvailable();
+
+  if (!clerkAvailable) {
+    return (
+      <div className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div className="mx-auto max-w-xl text-center">
+          <p className="text-lg text-gray-600">Verification is temporarily unavailable. Please try again later.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return <VerifyFormInner pages={pages} params={params} />;
 }
