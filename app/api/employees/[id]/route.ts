@@ -29,6 +29,8 @@ export async function PATCH(
   const headers = request.headers;
   const apiKey = headers.get("x-api-key");
   if (apiKey !== process.env.API_KEY) {
+    console.log("Unauthorized access attempt with API key:", apiKey);
+    console.log("Expected API Key:", process.env.API_KEY);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
