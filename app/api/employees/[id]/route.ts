@@ -1,8 +1,53 @@
 // app/api/employees/[id]/route.ts
+import mongoose from "mongoose";
+import { MongoClient, ObjectId } from "mongodb";
 import { connectToDB } from "@/app/lib/mongoose";
 import Employee from "@/app/lib/models/employee.model";
 import { NextRequest, NextResponse } from "next/server";
-import mongoose from "mongoose";
+
+// ----- Connection cache (belangrijk voor performance/cold starts) -----
+let client: MongoClient | null = null;
+let initialized = false;
+
+async function getDb() {
+  if (!client) {
+    // Use fallback values if environment variables are not available
+    const mongoUrl =  process.env.MONGODB_NL_URL || 'mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Nederland?retryWrites=true&w=majority&appName=thejunter';
+    
+    console.log('Employees API - Environment variables check:');
+    console.log('MONGO_URI:', process.env.MONGO_URI ? 'SET' : 'NOT SET');
+    console.log('MONGODB_NL_URL:', process.env.MONGODB_NL_URL ? 'SET' : 'NOT SET');
+    console.log('MONGODB_URL:', process.env.MONGODB_URL ? 'SET' : 'NOT SET');
+    console.log('Using fallback:', !process.env.MONGO_URI && !process.env.MONGODB_NL_URL && !process.env.MONGODB_URL);
+    
+    client = new MongoClient(mongoUrl);
+    await client.connect();
+  }
+  
+  // Get database name from environment or extract from connection string
+  let dbName = process.env.DB_NAME;
+  if (!dbName) {
+    // Try to extract from connection string or use default
+    const mongoUrl = process.env.MONGO_URI || process.env.MONGODB_NL_URL || process.env.MONGODB_URL || 'mongodb+srv://akwasivdsm:Drve33REtwzIqqXo@thejunter.83qsl.mongodb.net/Nederland?retryWrites=true&w=majority&appName=thejunter';
+    const urlMatch = mongoUrl.match(/mongodb[^\/]*\/\/[^\/]+\/([^\/\?]+)/);
+    dbName = urlMatch?.[1] || "Nederland"; // Default to "Nederland" if not found
+  }
+  
+  const db = client.db(dbName);
+  if (!initialized) {
+    initialized = true;
+    // Unieke index op hash (dedupe). 'sparse' zodat docs zonder hash niet falen.
+    try {
+      await db.collection("employees").createIndex({ clerkId: 1 }, { unique: true, sparse: true });
+    } catch (indexError: any) {
+      // Index might already exist, which is fine
+      if (indexError?.code !== 85) { // 85 = IndexOptionsConflict
+        console.warn("Index creation warning:", indexError.message);
+      }
+    }
+  }
+  return db;
+}
 
 function sanitizeEmployee(input: any) {
   const allowed = [

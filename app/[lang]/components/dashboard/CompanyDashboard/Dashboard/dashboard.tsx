@@ -1,7 +1,7 @@
 'use client'
 
 import { Dialog, Input, Transition } from '@headlessui/react';
-import {  Bars3Icon,  CalendarIcon,  HomeIcon,  UserGroupIcon,  XMarkIcon,  DocumentCheckIcon,  BanknotesIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
+import {  Bars3Icon,  CalendarIcon,  HomeIcon,  UserGroupIcon,  XMarkIcon,  DocumentCheckIcon,  BanknotesIcon, DocumentTextIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { useUser } from "@clerk/nextjs";
 import { Fragment, useEffect, useState } from "react";
@@ -603,6 +603,29 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                           )}
                         </div>
 
+                         {/* Published Shifts Section */}
+                         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                           <div className="flex items-center justify-between mb-6">
+                             <h1 className="text-3xl font-bold text-gray-900">{dashboard.werkgeversPage.Dashboard.texts[1].name}</h1>
+                             <div className="flex items-center space-x-2">
+                               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                 {shift.length} {dashboard.werkgeversPage.Dashboard.texts[1].status || "active"}
+                               </span>
+                             </div>
+                           </div>
+                          
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {shift.map((shiftItem, index) => (
+                              <ShiftCard 
+                                key={index} 
+                                shift={shiftItem} 
+                                components={dashboard.components} 
+                                lang={lang} 
+                              />
+                            ))}
+                          </div>
+                        </div>
+
                         {/* Vacancies Section */}
                         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                           <div className="flex items-center justify-between mb-6">
@@ -636,29 +659,6 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                               <p className="mt-1 text-sm text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[0].emptyDescription || "There are currently no vacancies published."}</p>
                             </div>
                           )}
-                        </div>
-
-                         {/* Published Shifts Section */}
-                         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                           <div className="flex items-center justify-between mb-6">
-                             <h1 className="text-3xl font-bold text-gray-900">{dashboard.werkgeversPage.Dashboard.texts[1].name}</h1>
-                             <div className="flex items-center space-x-2">
-                               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                 {shift.length} {dashboard.werkgeversPage.Dashboard.texts[1].status || "active"}
-                               </span>
-                             </div>
-                           </div>
-                          
-                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {shift.map((shiftItem, index) => (
-                              <ShiftCard 
-                                key={index} 
-                                shift={shiftItem} 
-                                components={dashboard.components} 
-                                lang={lang} 
-                              />
-                            ))}
-                          </div>
                         </div>
 
                          {/* Unpublished Shifts Section */}
@@ -728,13 +728,34 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                           </div>
                         </div>
 
+                        {/* Published shifts - Empty State */}
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div className="flex items-center justify-between mb-6">
+                            <h1 className="text-3xl font-bold text-gray-900">{dashboard.werkgeversPage.Dashboard.texts[1].name}</h1>
+                            <div className="flex items-center space-x-2">
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                0 {dashboard.werkgeversPage.Dashboard.texts[1].status || "active"}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="text-center py-12">
+                            <div className="mx-auto h-12 w-12 text-gray-400">
+                              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                            </div>
+                            <h3 className="mt-2 text-sm font-medium text-gray-900">{dashboard.werkgeversPage.Dashboard.texts[1].notFound}</h3>
+                            <p className="mt-1 text-sm text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[1].emptyDescription || "There are currently no shifts published."}</p>
+                          </div>
+                        </div>
+
                         {/* Vacancies Section - Empty State */}
                         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                           <div className="flex items-center justify-between mb-6">
                             <h1 className="text-3xl font-bold text-gray-900">{dashboard.werkgeversPage.Dashboard.texts[0].name}</h1>
                             <div className="flex items-center space-x-2">
                               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                0 {dashboard.werkgeversPage.Dashboard.texts[1].status || "active"}
+                                0 {dashboard.werkgeversPage.Dashboard.texts[0].status || "active"}
                               </span>
                             </div>
                           </div>
@@ -761,28 +782,6 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                               <p className="mt-1 text-sm text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[0].emptyDescription || "There are currently no vacancies published."}</p>
                             </div>
                           )}
-                        </div>
-
-                       
-                        {/* Empty Shifts State */}
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                        <div className="flex items-center justify-between mb-6">
-                            <h1 className="text-3xl font-bold text-gray-900">{dashboard.werkgeversPage.Dashboard.texts[1].name}</h1>
-                            <div className="flex items-center space-x-2">
-                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                0 {dashboard.werkgeversPage.Dashboard.texts[1].status || "active"}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="text-center py-12">
-                            <div className="mx-auto h-12 w-12 text-gray-400">
-                              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                            </div>
-                            <h3 className="mt-2 text-sm font-medium text-gray-900">{dashboard.werkgeversPage.Dashboard.texts[1].notFound}</h3>
-                            <p className="mt-1 text-sm text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[1].emptyDescription || "There are currently no shifts published."}</p>
-                          </div>
                         </div>
                       </div>
                     )
@@ -1041,7 +1040,7 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                           </svg>
-                          {dashboard.werkgeversPage.Dashboard.texts[6].modal?.title || "Create Flexpool"}
+                          {dashboard.werkgeversPage.Dashboard.texts[4].modal?.title || "Create Flexpool"}
                         </AlertDialogTrigger>
                          <AlertDialogContent className="bg-white rounded-3xl shadow-2xl border-0 max-w-lg mx-4 overflow-hidden">
                              <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
@@ -1052,7 +1051,7 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                                          </svg>
                                      </div>
                                      <div>
-                                         <AlertDialogTitle className="text-2xl font-bold text-white">{dashboard.werkgeversPage.Dashboard.texts[6].modal?.title}</AlertDialogTitle>
+                                         <AlertDialogTitle className="text-2xl font-bold text-white">{dashboard.werkgeversPage.Dashboard.texts[4].modal?.title}</AlertDialogTitle>
                                          <p className="text-blue-100 text-sm">{dashboard.werkgeversPage.Dashboard.texts[4].modal?.description || "Create a new flexpool for your team"}</p>
                                      </div>
                                  </div>
@@ -1082,7 +1081,7 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                              
                              <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
                                  <AlertDialogCancel className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-100 hover:border-gray-400 transition-all duration-300 font-medium">
-                                     {dashboard.werkgeversPage.Dashboard.texts[6].modal?.buttons[0]}
+                                     {dashboard.werkgeversPage.Dashboard.texts[4].modal?.buttons[0]}
                                  </AlertDialogCancel>
                                  <AlertDialogAction 
                                      onClick={voegFlexpoolToe}
@@ -1091,13 +1090,17 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                      </svg>
-                                     {dashboard.werkgeversPage.Dashboard.texts[6].modal?.buttons[1]}
+                                     {dashboard.werkgeversPage.Dashboard.texts[4].modal?.buttons[1]}
                                  </AlertDialogAction>
                              </div>
                         </AlertDialogContent>
                     </AlertDialog> */}
-                    <h1 className='mb-10 items-center justify-center text-4xl'>{dashboard.werkgeversPage.Dashboard.texts[4].name}</h1>
-                  <div className="grid grid-cols-3 gap-4">
+                    <div className="mb-8 border-b border-gray-200 pb-6">
+                      <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+                        {dashboard.werkgeversPage.Dashboard.texts[4].name}
+                      </h1>
+                    </div>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {/* Add Flexpool Card */}
                     <AlertDialog>
                         <AlertDialogTrigger className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-blue-600 shadow-md transition-all hover:shadow-lg hover:bg-blue-700 hover:scale-105 md:min-h-[438px] cursor-pointer">
@@ -1133,7 +1136,7 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                                          </svg>
                                      </div>
                                      <div>
-                                         <AlertDialogTitle className="text-2xl font-bold text-white">{dashboard.werkgeversPage.Dashboard.texts[6].modal?.title}</AlertDialogTitle>
+                                         <AlertDialogTitle className="text-2xl font-bold text-white">{dashboard.werkgeversPage.Dashboard.texts[4].modal?.title}</AlertDialogTitle>
                                          <p className="text-blue-100 text-sm">{dashboard.werkgeversPage.Dashboard.texts[4].modal?.description || "Create a new flexpool for your team"}</p>
                                      </div>
                                  </div>
@@ -1166,7 +1169,7 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                                      <svg className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                      </svg>
-                                     {dashboard.werkgeversPage.Dashboard.texts[6].modal?.buttons[0]}
+                                     {dashboard.werkgeversPage.Dashboard.texts[4].modal?.buttons[0]}
                                  </AlertDialogCancel>
                                  <AlertDialogAction 
                                      onClick={voegFlexpoolToe}
@@ -1176,7 +1179,7 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                                      <svg className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-200 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                      </svg>
-                                     <span className="relative z-10">{dashboard.werkgeversPage.Dashboard.texts[6].modal?.buttons[1]}</span>
+                                     <span className="relative z-10">{dashboard.werkgeversPage.Dashboard.texts[4].modal?.buttons[1]}</span>
                                  </AlertDialogAction>
                              </div>
                         </AlertDialogContent>
@@ -1187,77 +1190,89 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                   </div>
                 </ScrollArea>
               ) : (
-                <div className="lg:pl-96 h-full overflow-hidden">
-                  <AlertDialog>
-                        <AlertDialogTrigger className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium">
-                          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                          </svg>
-                          {dashboard.werkgeversPage.Dashboard.texts[6].modal?.title}
-                        </AlertDialogTrigger>
-                         <AlertDialogContent className="bg-white rounded-3xl shadow-2xl border-0 max-w-lg mx-4 overflow-hidden">
-                             <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
-                                 <div className="flex items-center space-x-3">
-                                     <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                         </svg>
-                                     </div>
-                                     <div>
-                                         <AlertDialogTitle className="text-2xl font-bold text-white">{dashboard.werkgeversPage.Dashboard.texts[6].modal?.title}</AlertDialogTitle>
-                                         <p className="text-blue-100 text-sm">{dashboard.werkgeversPage.Dashboard.texts[4].modal?.description || "Create a new flexpool for your team"}</p>
-                                     </div>
-                                 </div>
-                             </div>
-                             
-                             <div className="p-6">
-                                 <div className="text-gray-600">
-                                     <div className="space-y-6">
-                                         <div>
-                                             <label className="block text-sm font-semibold text-gray-800 mb-3">
-                                                 <svg className="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                                                 </svg>
-                                                 {dashboard.werkgeversPage.Dashboard.texts[4].modal?.subTitle || "Flexpool Name"}
-                                             </label>
-                                             <Input 
-                                                 type="text" 
-                                                 placeholder={dashboard.werkgeversPage.Dashboard.texts[4].modal?.subTitle || "Enter flexpool name"} 
-                                                 className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-300 text-lg font-medium" 
-                                                 onChange={(e) => setNewFlexpoolTitle(e.target.value)} 
-                                             />
-                                             <p className="text-xs text-gray-500 mt-2">{dashboard.werkgeversPage.Dashboard.texts[4].modal?.description || "Choose a clear name for your flexpool"}</p>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
-                             
-                             <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
-                                 <AlertDialogCancel className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-100 hover:border-gray-400 transition-all duration-300 font-medium">
-                                     {dashboard.werkgeversPage.Dashboard.texts[6].modal?.buttons[0]}
-                                 </AlertDialogCancel>
-                                 <AlertDialogAction 
-                                     onClick={voegFlexpoolToe}
-                                     className="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium shadow-lg"
-                                 >
-                                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                     </svg>
-                                     {dashboard.werkgeversPage.Dashboard.texts[6].modal?.buttons[1]}
-                                 </AlertDialogAction>
-                             </div>
-                         </AlertDialogContent>
-                    </AlertDialog>
-                   <div className="text-center py-16">
-                     <div className="mx-auto h-20 w-20 bg-gray-100 rounded-full flex items-center justify-center mb-6">
-                       <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                       </svg>
-                     </div>
-                     <h3 className="text-xl font-semibold text-gray-900 mb-2">{dashboard.werkgeversPage.Dashboard.texts[4].notFound || "No flexpools found"}</h3>
-                     <p className="text-gray-500 mb-8">{dashboard.werkgeversPage.Dashboard.texts[4].modal?.emptyState || "Start by creating your first flexpool to organize your team"}</p>
-                   </div>
+                <div className="w-full max-w-5xl space-y-8">
+                  <div className="flex flex-col gap-4 border-b border-gray-200 pb-6 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+                        {dashboard.werkgeversPage.Dashboard.texts[4].name}
+                      </h1>
                     </div>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          type="button"
+                          className="h-11 shrink-0 gap-2 self-start bg-blue-600 px-5 text-white shadow-sm hover:bg-blue-700 sm:self-auto"
+                        >
+                          <PlusIcon className="h-5 w-5" aria-hidden />
+                          {dashboard.werkgeversPage.Dashboard.texts[4].modal?.title}
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent className="max-w-lg overflow-hidden rounded-2xl border-0 p-0 shadow-2xl">
+                        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
+                              <UserGroupIcon className="h-7 w-7 text-white" aria-hidden />
+                            </div>
+                            <div>
+                              <AlertDialogTitle className="text-left text-xl font-bold text-white">
+                                {dashboard.werkgeversPage.Dashboard.texts[4].modal?.title}
+                              </AlertDialogTitle>
+                              <p className="mt-0.5 text-sm text-blue-100">
+                                {dashboard.werkgeversPage.Dashboard.texts[4].modal?.description ||
+                                  'Create a new flexpool for your team'}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-6">
+                          <label className="mb-2 block text-sm font-semibold text-gray-800">
+                            {dashboard.werkgeversPage.Dashboard.texts[4].modal?.subTitle || 'Flexpool name'}
+                          </label>
+                          <Input
+                            type="text"
+                            placeholder={
+                              dashboard.werkgeversPage.Dashboard.texts[4].modal?.subTitle || 'Enter flexpool name'
+                            }
+                            className="w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-base font-medium transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+                            onChange={(e) => setNewFlexpoolTitle(e.target.value)}
+                          />
+                          <p className="mt-2 text-xs text-gray-500">
+                            {dashboard.werkgeversPage.Dashboard.texts[4].modal?.description ||
+                              'Choose a clear name for your flexpool'}
+                          </p>
+                        </div>
+
+                        <div className="flex justify-end gap-3 border-t border-gray-100 bg-gray-50 px-6 py-4">
+                          <AlertDialogCancel className="rounded-xl border-gray-300 bg-white px-5 py-2.5 text-gray-700 hover:bg-gray-100">
+                            {dashboard.werkgeversPage.Dashboard.texts[4].modal?.buttons?.[0]}
+                          </AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={voegFlexpoolToe}
+                            className="rounded-xl bg-blue-600 px-6 py-2.5 text-white hover:bg-blue-700 focus-visible:ring-blue-500"
+                          >
+                            {dashboard.werkgeversPage.Dashboard.texts[4].modal?.buttons?.[1]}
+                          </AlertDialogAction>
+                        </div>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </div>
+
+                  <div className="rounded-xl border border-gray-200 bg-white p-10 shadow-sm ring-1 ring-gray-900/5 sm:p-12">
+                    <div className="mx-auto flex max-w-md flex-col items-center text-center">
+                      <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
+                        <UserGroupIcon className="h-9 w-9" aria-hidden />
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        {dashboard.werkgeversPage.Dashboard.texts[4].notFound || 'No flexpools found'}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-gray-500">
+                        {dashboard.werkgeversPage.Dashboard.texts[4].modal?.emptyState ||
+                          'Start by creating your first flexpool to organize your team'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               ): null 
               }
               </div>
@@ -1265,25 +1280,36 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
 
 
         {sidebarOpen || (
-        <aside className="fixed inset-y-0 left-20 hidden lg:block lg:w-96 overflow-hidden border-r border-gray-200 px-4 py-6 lg:px-8">
-        <div className="h-full py-2 px-2 items-stretch rounded-lg flex flex-col space-y-4">
-          <div className="h-1/3 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-lg border border-blue-200 flex flex-col overflow-hidden">
-            <div className="w-full bg-gradient-to-r from-blue-600 to-blue-700 h-12 flex items-center justify-center">
-              <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="text-white font-semibold text-lg">{dashboard.werkgeversPage.Dashboard.texts[6].name || "Published Shifts"}</p>
+        <aside className="fixed inset-y-0 left-20 z-30 hidden lg:block lg:w-96 overflow-hidden border-r border-gray-200/90 bg-[#f8f9fb] px-3 py-5 lg:px-4">
+        <div className="flex h-full min-h-0 flex-col gap-3">
+          {/* Activity sidebar: shifts — soft card, matches main dashboard */}
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-gray-200/90 bg-white shadow-sm ring-1 ring-gray-900/[0.04]">
+            <div className="shrink-0 border-b border-gray-100 bg-white px-3 pt-3 pb-2">
+              <div className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-600 ring-1 ring-sky-100/80">
+                  <CalendarIcon className="h-5 w-5" aria-hidden />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold leading-tight text-gray-900">{dashboard.werkgeversPage.Dashboard.texts[6].name || "Published Shifts"}</p>
+                  <p className="mt-1 text-xs leading-snug text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[6].description || "Active shifts currently published"}</p>
+                </div>
               </div>
             </div>
-            <div className="px-4 py-2 bg-blue-50 border-b border-blue-200">
-              <p className="text-xs text-blue-600 font-medium">{dashboard.werkgeversPage.Dashboard.texts[6].description || "Active shifts currently published"}</p>
-            </div>
-            <div className="flex-grow overflow-hidden">
-            <ScrollArea className="h-full overflow-auto">
+            <div className="min-h-0 flex-1 overflow-hidden bg-slate-50/40">
+            <ScrollArea className="h-full max-h-full overflow-auto p-2">
+            {shift.length === 0 ? (
+              <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-200 bg-white/80 px-3 py-8 text-center">
+                <div className="mb-2 rounded-full bg-gray-100 p-2.5 text-gray-400">
+                  <CalendarIcon className="h-6 w-6" aria-hidden />
+                </div>
+                <p className="text-xs font-medium text-gray-700">{dashboard.werkgeversPage.Dashboard.texts[1].notFound}</p>
+                <p className="mt-1 text-xs text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[1].emptyDescription}</p>
+              </div>
+            ) : (
+            <ul className="space-y-2">
             {shift.map((shiftItem, index) => {
   return (
-    <li key={index} className="col-span-1 flex rounded-lg shadow-sm bg-white border border-gray-100 hover:shadow-md transition-shadow duration-200">
+    <li key={index} className="col-span-1 flex rounded-lg bg-white shadow-sm ring-1 ring-gray-900/5 transition-shadow hover:shadow-md">
       <div className="flex flex-1 items-center justify-between p-4">
         <div className="flex-1 min-w-0">
           <a href={`/dashboard/shift/employer/${shiftItem._id}`} className="font-semibold text-gray-900 hover:text-blue-600 transition-colors duration-200 block truncate">
@@ -1331,27 +1357,38 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
     </li>
   );
 })}
+            </ul>
+            )}
 
               </ScrollArea>
             </div>
           </div>
       
-          <div className="h-1/3 bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-lg border border-green-200 flex flex-col overflow-hidden">
-            <div className="w-full bg-gradient-to-r from-green-600 to-green-700 h-12 flex items-center justify-center">
-              <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-white font-semibold text-lg">{dashboard.werkgeversPage.Dashboard.texts[7].name || "Checkouts"}</p>
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-gray-200/90 bg-white shadow-sm ring-1 ring-gray-900/[0.04]">
+            <div className="shrink-0 border-b border-gray-100 bg-white px-3 pt-3 pb-2">
+              <div className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100/80">
+                  <DocumentCheckIcon className="h-5 w-5" aria-hidden />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold leading-tight text-gray-900">{dashboard.werkgeversPage.Dashboard.texts[7].name || "Checkouts"}</p>
+                  <p className="mt-1 text-xs leading-snug text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[7].description || "Pending checkouts awaiting approval"}</p>
+                </div>
               </div>
             </div>
-            <div className="px-4 py-2 bg-green-50 border-b border-green-200">
-              <p className="text-xs text-green-600 font-medium">{dashboard.werkgeversPage.Dashboard.texts[7].description || "Pending checkouts awaiting approval"}</p>
-            </div>
-            <div className="flex-grow overflow-hidden">
-            <ScrollArea className="h-full overflow-auto">
+            <div className="min-h-0 flex-1 overflow-hidden bg-slate-50/40">
+            <ScrollArea className="h-full max-h-full overflow-auto p-2">
+                  {checkout.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-200 bg-white/80 px-3 py-8 text-center">
+                      <div className="mb-2 rounded-full bg-gray-100 p-2.5 text-gray-400">
+                        <DocumentCheckIcon className="h-6 w-6" aria-hidden />
+                      </div>
+                      <p className="text-xs font-medium text-gray-700">{dashboard.werkgeversPage.Dashboard.texts[2].notFound}</p>
+                    </div>
+                  ) : (
+                  <ul className="space-y-2">
                   {checkout.map((checkoutItem, index) => (
-                    <li key={index} className="col-span-1 flex rounded-lg shadow-sm bg-white border border-gray-100 hover:shadow-md transition-shadow duration-200 mb-2">
+                    <li key={index} className="col-span-1 flex rounded-lg bg-white shadow-sm ring-1 ring-gray-900/5 transition-shadow hover:shadow-md">
                       <div className="flex flex-1 items-center justify-between p-4">
                       <div className="flex-1 min-w-0">
                          
@@ -1401,26 +1438,37 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                       </div>
                     </li>
                   ))}
+                  </ul>
+                  )}
                 </ScrollArea>               
             </div>
           </div>
       
-          <div className="h-1/3 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-lg border border-purple-200 flex flex-col overflow-hidden">
-            <div className="w-full bg-gradient-to-r from-purple-600 to-purple-700 h-12 flex items-center justify-center">
-              <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                <p className="text-white font-semibold text-lg">{dashboard.werkgeversPage.Dashboard.texts[8].name || "Invoices"}</p>
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-gray-200/90 bg-white shadow-sm ring-1 ring-gray-900/[0.04]">
+            <div className="shrink-0 border-b border-gray-100 bg-white px-3 pt-3 pb-2">
+              <div className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-violet-50 text-violet-600 ring-1 ring-violet-100/80">
+                  <DocumentTextIcon className="h-5 w-5" aria-hidden />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold leading-tight text-gray-900">{dashboard.werkgeversPage.Dashboard.texts[8].name || "Invoices"}</p>
+                  <p className="mt-1 text-xs leading-snug text-gray-500">{dashboard.werkgeversPage.Dashboard.texts[8].description || "Weekly invoices and payment summaries"}</p>
+                </div>
               </div>
             </div>
-            <div className="px-4 py-2 bg-purple-50 border-b border-purple-200">
-              <p className="text-xs text-purple-600 font-medium">{dashboard.werkgeversPage.Dashboard.texts[8].description || "Weekly invoices and payment summaries"}</p>
-            </div>
-            <div className="flex-grow overflow-hidden">
-              <ScrollArea className="h-full overflow-auto">
+            <div className="min-h-0 flex-1 overflow-hidden bg-slate-50/40">
+              <ScrollArea className="h-full max-h-full overflow-auto p-2">
+                {factuur.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-200 bg-white/80 px-3 py-8 text-center">
+                    <div className="mb-2 rounded-full bg-gray-100 p-2.5 text-gray-400">
+                      <DocumentTextIcon className="h-6 w-6" aria-hidden />
+                    </div>
+                    <p className="text-xs font-medium text-gray-700">{dashboard.werkgeversPage.Dashboard.texts[5].notFound}</p>
+                  </div>
+                ) : (
+                <ul className="space-y-2">
                 {factuur.map((factuurItem, index) => (
-                  <li key={index} className="col-span-1 flex rounded-lg shadow-sm bg-white border border-gray-100 hover:shadow-md transition-shadow duration-200 mb-2">
+                  <li key={index} className="col-span-1 flex rounded-lg bg-white shadow-sm ring-1 ring-gray-900/5 transition-shadow hover:shadow-md">
                      <div className="flex flex-1 items-center justify-between p-4">
                       <div className="flex-1 min-w-0">
                         <a href={`/dashboard/invoice/employer/${factuurItem._id}`} className="font-medium text-gray-900 hover:text-gray-600">
@@ -1449,6 +1497,8 @@ const Dashboard = ({ lang, dashboard }: { lang: Locale; dashboard: any }) => {
                     </div>
                   </li>
                 ))}
+                </ul>
+                )}
               </ScrollArea>
             </div>
           </div>

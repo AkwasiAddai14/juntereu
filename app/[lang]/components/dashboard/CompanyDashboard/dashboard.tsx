@@ -15,12 +15,12 @@ import { haalFlexpools, maakFlexpool } from "@/app/lib/actions/flexpool.actions"
 import { haalGeplaatsteShifts, haalOngepubliceerdeShifts } from '@/app/lib/actions/shiftArray.actions';
 import ShiftCard from '@/app/[lang]/components/shared/cards/ShiftArrayCard';
 import FlexpoolCard from '@/app/[lang]/components/shared/cards/FlexpoolCard';
-import { haalFacturen } from '@/app/lib/actions/invoice.actions';
+import { haalFacturen } from '@/app/lib/actions/invoice.actions'; 
 import { IShiftArray } from '@/app/lib/models/shiftArray.model';
 import mongoose from 'mongoose';
 import { AlertDialog,   AlertDialogAction,   AlertDialogCancel, AlertDialogContent,   AlertDialogDescription, AlertDialogFooter,   AlertDialogHeader, AlertDialogTitle,   AlertDialogTrigger } from '@/app/[lang]/components/ui/alert-dialog';
 import FactuurCard from '@/app/[lang]/components/shared/cards/InvoiceCard';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { toast } from '@/app/[lang]/components/ui/use-toast';
 import CheckoutModal from '@/app/[lang]/components/shared/CheckoutModal';
 import Card from '@/app/[lang]/components/shared/cards/CheckoutCard';
@@ -52,6 +52,12 @@ function classNames(...classes: string[]) {
 
 
 const Dashboard =  () => {
+  const params = useParams();
+  const rawLang = params?.lang;
+  const lang = (Array.isArray(rawLang) ? rawLang[0] : rawLang ?? 'en') as Locale;
+  /** i18n props bundle — wire from parent when this dashboard is server-wrapped with dictionary */
+  const dashboard = { components: {} as Record<string, unknown> };
+
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { isLoaded, user } = useUser();
   const [position, setPosition] = useState("Dashboard");
@@ -396,7 +402,7 @@ const Dashboard =  () => {
 
           
             <div className="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
-            {position === 'Dashboard' && ( <Calender dashboard={undefined} lang={'at'}/> )}
+            {position === 'Dashboard' && ( <Calender dashboard={undefined} lang={lang}/> )}
             </div>
 
             <div className="lg:pl-96 ml-6 h-full overflow-hidden px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
@@ -694,8 +700,92 @@ const Dashboard =  () => {
               ): null 
               }
 
+              {position === 'Flexpools' && (
+  <div className="space-y-6">
+    <AlertDialog>
+      
+      {/* 1. Vaste Paginakop */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-gray-200 pb-5 mb-6">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Flexpools</h1>
+          <p className="mt-1 text-sm text-gray-500">
+            Beheer je groepen flexwerkers en organiseer je personeel.
+          </p>
+        </div>
+        
+        {/* Toon de knop in de header alléén als er al flexpools zijn */}
+        {flexpool.length > 0 && (
+          <div className="mt-4 sm:mt-0">
+            <AlertDialogTrigger className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all">
+              <UserGroupIcon className="w-5 h-5 mr-2 -ml-1" />
+              Nieuwe Flexpool
+            </AlertDialogTrigger>
+          </div>
+        )}
+      </div>
 
-              {position === 'Flexpools' ?
+      {/* Modal Inhoud (Blijft hetzelfde, maar met iets strakkere styling) */}
+      <AlertDialogContent className="bg-white sm:max-w-md rounded-xl">
+        <AlertDialogHeader>
+          <AlertDialogTitle className="text-xl font-semibold text-gray-900">Nieuwe Flexpool aanmaken</AlertDialogTitle>
+          <AlertDialogDescription className="pt-4">
+            <Input 
+              type="text" 
+              placeholder="Bijv. 'Horeca Toppers' of 'Weekendploeg'" 
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+              onChange={(e) => setNewFlexpoolTitle(e.target.value)} 
+            />
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter className="mt-6">
+          <AlertDialogCancel className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+            Annuleren
+          </AlertDialogCancel>
+          <AlertDialogAction 
+            onClick={voegFlexpoolToe}
+            className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+          >
+            Toevoegen
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+
+      {/* 2. Content Gebied (Grid of Empty State) */}
+      {flexpool.length > 0 ? (
+        <ScrollArea className="h-full pb-10">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {flexpool.map((flexpoolItem, index) => (
+              <FlexpoolCard 
+                key={index} 
+                flexpool={flexpoolItem} 
+                components={dashboard?.components || {}} 
+              />
+            ))}
+          </div>
+        </ScrollArea>
+      ) : (
+        /* 3. Verbeterde Lege Status (Empty State) */
+        <div className="flex flex-col items-center justify-center py-24 px-4 text-center bg-gray-50 border-2 border-gray-200 border-dashed rounded-xl">
+          <div className="flex items-center justify-center w-16 h-16 mb-4 bg-white rounded-full shadow-sm">
+            <UserGroupIcon className="w-8 h-8 text-gray-400" />
+          </div>
+          <h3 className="text-lg font-semibold text-gray-900">Geen flexpools gevonden</h3>
+          <p className="max-w-sm mt-2 text-sm text-gray-500 mb-6">
+            Begin met het bouwen van je pool door je eerste flexpool aan te maken. Je kunt later werknemers toevoegen.
+          </p>
+          
+          {/* De trigger knop netjes in het midden van de empty state */}
+          <AlertDialogTrigger className="inline-flex items-center justify-center rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all">
+            + Maak je eerste flexpool
+          </AlertDialogTrigger>
+        </div>
+      )}
+
+    </AlertDialog>
+  </div>
+)}
+
+              {/* {position === 'Flexpools' ?
               flexpool.length > 0 ? (
                 <ScrollArea>
                   <AlertDialog>
@@ -724,7 +814,7 @@ const Dashboard =  () => {
               ) : (
                 <div className="lg:pl-96 h-full overflow-hidden"> Geen flexpools beschikbaar </div>
               ): null 
-              }
+              } */}
               </div>
         </main>
 

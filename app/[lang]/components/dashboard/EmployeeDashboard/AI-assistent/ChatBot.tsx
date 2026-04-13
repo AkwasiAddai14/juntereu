@@ -1,95 +1,29 @@
 import React from 'react';
-import styled from 'styled-components';
+import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
 
 interface ChatBotIconProps {
   messageCount?: number;
   onClick?: () => void;
 }
 
-const ChatBotContainer = styled.div`
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  cursor: pointer;
-  z-index: 1000;
-`;
-
-const ChatBotWrapper = styled.div`
-  position: relative;
-  width: 60px;
-  height: 60px;
-`;
-
-const SunBackground = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #87CEEB;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-`;
-
-const BotIcon = styled.div`
-  width: 40px;
-  height: 40px;
-  background-color: #FFA500;
-  border-radius: 50%;
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #FFA500;
-    border-radius: 50%;
-    top: -10px;
-    left: 10px;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-radius: 50%;
-    top: 15px;
-    left: 15px;
-  }
-`;
-
-const MessageBadge = styled.div`
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: #FF0000;
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
-`;
-
 const ChatBotIcon: React.FC<ChatBotIconProps> = ({ messageCount, onClick }) => {
   return (
-    <ChatBotContainer onClick={onClick}>
-      <ChatBotWrapper>
-        <SunBackground>
-          <BotIcon />
-        </SunBackground>
-        {messageCount && messageCount > 0 && (
-          <MessageBadge>{messageCount}</MessageBadge>
-        )}
-      </ChatBotWrapper>
-    </ChatBotContainer>
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="Open chat assistant"
+      className="group fixed bottom-6 right-6 z-[1000] flex h-14 w-14 items-center justify-center rounded-full border border-orange-500/90 bg-orange-500 text-white shadow-lg shadow-orange-900/25 ring-1 ring-orange-400/60 transition hover:border-orange-600 hover:bg-orange-600 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
+    >
+      <ChatBubbleLeftRightIcon
+        className="h-7 w-7 text-white transition group-hover:text-white"
+        aria-hidden
+      />
+      {messageCount != null && messageCount > 0 ? (
+        <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[11px] font-semibold leading-none text-white shadow-sm">
+          {messageCount > 9 ? '9+' : messageCount}
+        </span>
+      ) : null}
+    </button>
   );
 };
 
