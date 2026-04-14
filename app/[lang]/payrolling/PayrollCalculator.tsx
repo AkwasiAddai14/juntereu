@@ -46,7 +46,7 @@ export default function PayrollCalculator({ dictionary, lang = 'en' }: PayrollCa
       employers: 0.21,
       vacation: 0.08,
       reserves: 0.12,
-      fee: 0.05,
+      fee: 0.15,
     },
     UK: {
       label: countries.UK || "Verenigd Koninkrijk",
@@ -55,7 +55,7 @@ export default function PayrollCalculator({ dictionary, lang = 'en' }: PayrollCa
       employers: 0.17,
       vacation: 0.1207,
       reserves: 0.06,
-      fee: 0.05,
+      fee: 0.15,
     },
   };
   // Land + presets

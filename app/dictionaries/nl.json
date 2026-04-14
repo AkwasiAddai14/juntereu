@@ -147,7 +147,7 @@
             "Benefits": [
                 {
                     "benefit": "Kosten",
-                    "explanation": "Door te kiezen voor ons platform, profiteer je van een transparant en eenvoudig kostenmodel, waarbij je alleen betaalt voor de daadwerkelijk gewerkte uren van de flexwerkers die je uitnodigt. Nodig onbeperkt flexwerkers uit vanaf €16,50 per gewerkt uur.",
+                    "explanation": "Door te kiezen voor ons platform, profiteer je van een transparant en eenvoudig kostenmodel, waarbij je alleen betaalt voor de daadwerkelijk gewerkte uren van de flexwerkers die je uitnodigt. Nodig onbeperkt flexwerkers uit vanaf €19,25 per gewerkt uur.",
                     "imageSrc": "euroBillsLogo",
                     "imageAlt": "Bills flying around." 
                 },
@@ -421,8 +421,8 @@
             "subText": "Bij Junter geloven we in eerlijkheid en duidelijkheid. Geen verborgen kosten of kleine lettertjes, maar transparante tarieven waarmee je altijd precies weet waar je aan toe bent.",
             "pricingCards": [
              {  "naam": "Freelancers",
-                "prijs": "€16,50",
-                "prijsUitleg": "€14 + €2,50 (fee)",
+                "prijs": "€19,75",
+                "prijsUitleg": "€16 + €3,75 (fee)",
                 "features": [
                     "Minder administratieve lasten", 
                     "Geen werkgeverslasten", 
@@ -640,7 +640,7 @@
                 }
             ],
             "promotion": {
-                "badge": "Actie t/m 31 december 2025",
+                "badge": "Actie t/m 31 augustus 2026",
                 "headText": "€0,50 korting per gewerkt uur",
                 "subText": "Vul je shifts sneller én voordeliger. De korting wordt automatisch verrekend op je factuur zodra je aan de voorwaarden voldoet.",
                 "activateButton": "Activeer korting",
@@ -660,7 +660,7 @@
                         "detail": "binnen de actieperiode."
                     }
                 ],
-                "disclaimer": "* Korting geldt voor uren gewerkt tot en met 31-12-2025. Wordt verrekend op (deel)facturen die aan bovenstaande voorwaarden voldoen. Niet geldig met terugwerkende kracht. Overige kortingen en promoties kunnen uitgesloten zijn."
+                "disclaimer": "* Korting geldt voor uren gewerkt tot en met 31-08-2026. Wordt verrekend op (deel)facturen die aan bovenstaande voorwaarden voldoen. Niet geldig met terugwerkende kracht. Overige kortingen en promoties kunnen uitgesloten zijn."
             }
         },
         "privacypolicyPage": {

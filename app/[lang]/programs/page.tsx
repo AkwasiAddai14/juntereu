@@ -112,6 +112,45 @@ const benefits = [
   'Bouw aan je CV en zakelijk netwerk',
 ]
 
+const earningsStories = [
+  {
+    id: 1,
+    type: 'Freelancers',
+    title: 'De Spoelkeuken van Ziam',
+    shortStory: 'Ziam opent een nieuw restaurant maar mist nog spoelkeuken personeel. Tot hij vast personeel vindt, huurt hij via jou freelancers in.',
+    fullStory: 'Ziam heeft een nieuw restaurant geopend en heeft nog geen vast personeel voor in de spoelkeuken. Totdat Ziam een geschikte kandidaat vindt, vraagt hij 7 dagen in de week, 2 keer per dag een medewerker uit (één voor de middag, één voor de avond). Beide medewerkers werken, inclusief pauze, 6 uur per shift. Jij introduceerde Ziam bij Junter en krijgt betaald per gewerkt uur.',
+    calculationTitle: 'Jouw maandelijkse commissie',
+    calculationMath: '30 dagen x 2 shifts x 6 uur = 360 uur per maand.',
+    commissionRate: 'Jouw fee: €1,25 per uur',
+    total: '€ 450,- p/m',
+    icon: RocketLaunchIcon, // Zorg dat deze is geïmporteerd
+  },
+  {
+    id: 2,
+    type: 'Werving & Selectie',
+    title: 'De Senior Developer',
+    shortStory: 'Een bevriende ondernemer zoekt met spoed een Senior Developer. Jij koppelt hem aan Junter voor het W&S traject.',
+    fullStory: 'Tijdens een netwerkborrel hoor je dat het softwarebureau van een kennis al maanden zoekt naar een Senior React Developer. Ze lopen hierdoor projecten mis. Jij geeft de lead door aan Junter. Onze recruiters vinden de perfecte match. Bij plaatsing betaalt het bureau een succesfee, en jij krijgt daar een vast percentage van.',
+    calculationTitle: 'Jouw eenmalige commissie',
+    calculationMath: 'Succesfee Junter: €8.000,-',
+    commissionRate: 'Jouw share (10%):',
+    total: '€ 800,- eenmalig',
+    icon: UserGroupIcon,
+  },
+  {
+    id: 3,
+    type: 'Payrolling',
+    title: 'De Groeiende Retailer',
+    shortStory: 'Een lokale kledingwinkel neemt 4 nieuwe weekendhulpen aan, maar wil de administratieve rompslomp niet. Jij stelt payrolling voor.',
+    fullStory: 'Een kledingwinkel in jouw stad groeit hard en neemt voor de drukke weekenden 4 nieuwe parttimers aan. De eigenaar ziet op tegen de contracten, ziekmeldingen en salarisadministratie. Jij introduceert Junter Payrolling. Junter neemt het juridisch werkgeverschap over, en jij bouwt een passieve inkomstenstroom op zolang zij werken.',
+    calculationTitle: 'Jouw wederkerende commissie',
+    calculationMath: '4 pers. x 12 uur p/w x 4 weken = 192 uur per maand.',
+    commissionRate: 'Jouw fee: €1,00 per uur',
+    total: '€ 192,- p/m',
+    icon: CurrencyEuroIcon,
+  },
+];
+
 // --- ANIMATIE COMPONENTS ---
 
 function FloatingIcons() {
@@ -165,6 +204,8 @@ function FadeInSection({ children }: { children: React.ReactNode }) {
 export default function ABA_LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // Voeg dit toe naast je bestaande states in ABA_LandingPage:
+  const [selectedStory, setSelectedStory] = useState<(typeof earningsStories)[0] | null>(null);
 
 
   return (
@@ -356,6 +397,70 @@ export default function ABA_LandingPage() {
           </dl>
         </div>
 
+                {/* Verdienmodel Verhalen Sectie */}
+                <div id="earnings" className="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Hoeveel kun je verdienen?
+            </h2>
+            <p className="mt-6 text-lg/8 text-gray-600">
+              Jouw inkomsten groeien mee met het succes van de bedrijven die je aandraagt. Bekijk de praktijkvoorbeelden hieronder. Hover over de kaarten voor een snelle berekening, of klik voor het hele verhaal.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
+            {earningsStories.map((story) => (
+              <div
+                key={story.id}
+                className="group h-96 cursor-pointer"
+                style={{ perspective: '1000px' }}
+                onClick={() => setSelectedStory(story)}
+              >
+                {/* De wrapper die de 3D flip uitvoert */}
+                <div className="relative h-full w-full rounded-2xl shadow-lg transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] border border-gray-100">
+                  
+                  {/* VOORKANT (Verhaal kort) */}
+                  <div className="absolute inset-0 flex flex-col justify-between rounded-2xl bg-white p-8 [backface-visibility:hidden]">
+                    <div>
+                      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-sky-100 text-sky-600">
+                        <story.icon className="h-6 w-6" aria-hidden="true" />
+                      </div>
+                      <p className="text-sm font-semibold text-sky-600 uppercase tracking-wide">{story.type}</p>
+                      <h3 className="mt-2 text-xl font-bold text-gray-900">{story.title}</h3>
+                      <p className="mt-4 text-base text-gray-600 leading-relaxed">
+                        {story.shortStory}
+                      </p>
+                    </div>
+                    <div className="text-sm font-medium text-sky-600 flex items-center">
+                      Bekijk de rekensom <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                  </div>
+
+                  {/* ACHTERKANT (Rekensom) */}
+                  <div className="absolute inset-0 flex flex-col justify-center rounded-2xl bg-sky-600 p-8 text-white [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                    <h3 className="text-xl font-bold mb-6">{story.calculationTitle}</h3>
+                    <div className="space-y-4">
+                      <div className="border-b border-sky-400 pb-4">
+                        <p className="text-sm text-sky-200">Volume</p>
+                        <p className="font-semibold">{story.calculationMath}</p>
+                      </div>
+                      <div className="border-b border-sky-400 pb-4">
+                        <p className="text-sm text-sky-200">Vergoeding</p>
+                        <p className="font-semibold">{story.commissionRate}</p>
+                      </div>
+                      <div className="pt-2">
+                        <p className="text-sm text-sky-200 mb-1">Jouw inkomsten</p>
+                        <p className="text-4xl font-bold">{story.total}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* THE HUNTER SECTION (Active Motivation) */}
         <div className="mt-32 sm:mt-40 bg-gray-900 py-24 sm:py-32 relative overflow-hidden isolate">
            {/* Dark background generic visual */}
@@ -382,6 +487,88 @@ export default function ABA_LandingPage() {
             </div>
           </FadeInSection>
         </div>
+
+        {/* Modal voor het volledige verhaal */}
+        <Dialog open={selectedStory !== null} onClose={() => setSelectedStory(null)} className="relative z-50">
+          {/* Backdrop */}
+          <div className="fixed inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity" aria-hidden="true" />
+
+          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <DialogPanel className="relative transform overflow-hidden rounded-2xl bg-white px-4 pb-4 pt-5 text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-8">
+                {selectedStory && (
+                  <>
+                    <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedStory(null)}
+                        className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
+                      >
+                        <span className="sr-only">Sluiten</span>
+                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                      </button>
+                    </div>
+                    <div className="sm:flex sm:items-start">
+                      <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-sky-100 sm:mx-0 sm:h-10 sm:w-10">
+                        <selectedStory.icon className="h-6 w-6 text-sky-600" aria-hidden="true" />
+                      </div>
+                      <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                        <h3 className="text-sm font-semibold text-sky-600 uppercase tracking-wide">{selectedStory.type}</h3>
+                        <Dialog.Title as="h2" className="text-2xl font-bold leading-6 text-gray-900 mt-1">
+                          {selectedStory.title}
+                        </Dialog.Title>
+                        
+                        <div className="mt-6">
+                          <p className="text-base text-gray-600 leading-7">
+                            {selectedStory.fullStory}
+                          </p>
+                        </div>
+
+                        {/* Reken-blok in de modal */}
+                        <div className="mt-8 bg-gray-50 rounded-xl p-6 border border-gray-100">
+                          <h4 className="font-semibold text-gray-900 mb-4">{selectedStory.calculationTitle}</h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                              <p className="text-sm text-gray-500">Formule</p>
+                              <p className="font-medium text-gray-900">{selectedStory.calculationMath}</p>
+                            </div>
+                            <div>
+                              <p className="text-sm text-gray-500">{selectedStory.commissionRate.split(':')[0]}</p>
+                              <p className="font-medium text-gray-900">{selectedStory.commissionRate.split(':')[1] || selectedStory.commissionRate}</p>
+                            </div>
+                          </div>
+                          <div className="mt-6 pt-6 border-t border-gray-200 flex justify-between items-center">
+                            <span className="text-gray-900 font-semibold text-lg">Totaal:</span>
+                            <span className="text-3xl font-bold text-sky-600">{selectedStory.total}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-8 sm:mt-10 sm:flex sm:flex-row-reverse">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedStory(null);
+                          setIsModalOpen(true); // Open de algemene aanmeld modal
+                        }}
+                        className="inline-flex w-full justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 sm:ml-3 sm:w-auto transition-colors"
+                      >
+                        Ik wil dit ook
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedStory(null)}
+                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto transition-colors"
+                      >
+                        Terug
+                      </button>
+                    </div>
+                  </>
+                )}
+              </DialogPanel>
+            </div>
+          </div>
+        </Dialog>
 
         {/* Team Section (Support) */}
         <div id="team" className="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">

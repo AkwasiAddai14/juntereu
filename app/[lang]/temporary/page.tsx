@@ -159,7 +159,7 @@ export default function Temporary({ params }: TemporaryProps) {
         <section className="relative isolate overflow-hidden bg-slate-50 py-20 sm:py-24">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <FadeInUp className="mx-auto max-w-3xl text-center">
-              <p className="text-sm font-semibold text-sky-600">{promotion.badge || 'Action until December 31, 2025'}</p>
+              <p className="text-sm font-semibold text-sky-600">{promotion.badge || 'Action until August 31, 2026'}</p>
               <h2 className="mt-2 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
                 {promotion.headText || '€0.50 discount per hour worked'}
               </h2>
@@ -204,7 +204,7 @@ export default function Temporary({ params }: TemporaryProps) {
                 </SimpleStaggerContainer>
 
                 <p className="mt-6 text-xs text-slate-500">
-                  {promotion.disclaimer || '* Discount applies to hours worked until 12-31-2025.'}
+                  {promotion.disclaimer || '* Discount applies to hours worked until 08-31-2026.'}
                 </p>
               </div>
             </FadeInUp>
